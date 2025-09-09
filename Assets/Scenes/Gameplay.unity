@@ -553,6 +553,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141396678}
   m_CullTransparentMesh: 1
+--- !u!4 &165057880 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2095022577501822889, guid: 6ab41ab3a0db56d4ea871450de0d6ac9, type: 3}
+  m_PrefabInstance: {fileID: 1203841243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &178525492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +1058,22 @@ MonoBehaviour:
     snapOnStart: 0
     semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
     subjectName: Toan Cao Cap
+  - id: Tu Tuong HCM
+    customName: Co Hoa
+    prefab: {fileID: 2451311780333065249, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
+    spawnPoint: {fileID: 165057880}
+    keepUprightOnSpawn: 1
+    snapOnStart: 0
+    semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+    subjectName: Tu Tuong HCM
+  - id: Tieng Anh 1
+    customName: Thay Hiep
+    prefab: {fileID: 3306565607529824732, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+    spawnPoint: {fileID: 758802649}
+    keepUprightOnSpawn: 1
+    snapOnStart: 0
+    semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+    subjectName: Tieng Anh 1
   spawnOnStart: 1
 --- !u!4 &430717729
 Transform:
@@ -2384,6 +2405,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1075222532834424145, guid: 6ab41ab3a0db56d4ea871450de0d6ac9, type: 3}
   m_PrefabInstance: {fileID: 1203841243}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &758802648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 758802649}
+  m_Layer: 8
+  m_Name: PosNPC
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &758802649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758802648}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.9143426, z: -0, w: 0.40494147}
+  m_LocalPosition: {x: -19.853, y: -7.212, z: -14.072}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1203841244}
+  m_LocalEulerAnglesHint: {x: 0, y: -132.225, z: 0}
 --- !u!1 &789569182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3000,7 +3052,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14620468, y: 0.0000000147413175, z: -0.000000002178661, w: 0.98925436}
+  m_LocalRotation: {x: 0.1462047, y: -0.000000033291606, z: 0.000000004920261, w: 0.98925436}
   m_LocalPosition: {x: 54.49167, y: 2.5100021, z: -12.85882}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3400,6 +3452,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -93.35
       objectReference: {fileID: 0}
+    - target: {fileID: 2095022577501822889, guid: 6ab41ab3a0db56d4ea871450de0d6ac9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.21
+      objectReference: {fileID: 0}
     - target: {fileID: 7010294046491875024, guid: 6ab41ab3a0db56d4ea871450de0d6ac9, type: 3}
       propertyPath: m_Name
       value: SchoolMap
@@ -3446,9 +3502,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6615241308675840186, guid: 6ab41ab3a0db56d4ea871450de0d6ac9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 758802649}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ab41ab3a0db56d4ea871450de0d6ac9, type: 3}
+--- !u!4 &1203841244 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6615241308675840186, guid: 6ab41ab3a0db56d4ea871450de0d6ac9, type: 3}
+  m_PrefabInstance: {fileID: 1203841243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1224846662
 GameObject:
   m_ObjectHideFlags: 0
@@ -3532,9 +3596,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4294368750080800279, guid: 5a6fc207378617b4f8a0266627d27189, type: 3}
-        m_TargetAssemblyTypeName: TeacherAction, Assembly-CSharp
-        m_MethodName: UI_Close
+      - m_Target: {fileID: 957691368}
+        m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
+        m_MethodName: OnClick_CloseDialogue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4099,9 +4163,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4294368750080800279, guid: 5a6fc207378617b4f8a0266627d27189, type: 3}
-        m_TargetAssemblyTypeName: TeacherAction, Assembly-CSharp
-        m_MethodName: UI_StartClass
+      - m_Target: {fileID: 957691368}
+        m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
+        m_MethodName: OnClick_StartClass
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

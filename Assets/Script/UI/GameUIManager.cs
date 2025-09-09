@@ -15,6 +15,19 @@ public class GameUIManager : Singleton<GameUIManager>
 
     private bool _dialogueOpen;
 
+    // ==== Context giáo viên đang tương tác ====
+    private TeacherAction _activeTeacher;
+    public void BindTeacher(TeacherAction t) { _activeTeacher = t; }
+    public void UnbindTeacher(TeacherAction t) { if (_activeTeacher == t) _activeTeacher = null; }
+
+    // ==== Các hàm để gán vào Button OnClick ====
+    public void OnClick_StartClass() { _activeTeacher?.UI_StartClass(); }
+    public void OnClick_CloseDialogue()
+    {
+        if (_activeTeacher != null) _activeTeacher.UI_Close();
+        else CloseDialogue(); // fallback
+    }
+
     public override void Awake()
     {
         MakeSingleton(false);
@@ -22,12 +35,13 @@ public class GameUIManager : Singleton<GameUIManager>
         if (dialogueRoot) dialogueRoot.SetActive(false);
     }
 
-    public void ShowInteractPrompt(string npcName, KeyCode key = KeyCode.None)
+    // Gợi ý: đổi 'npcName' -> 'promptText' để hiển thị đúng nội dung prompt từ NPC
+    public void ShowInteractPrompt(string promptText, KeyCode key = KeyCode.None)
     {
         if (_dialogueOpen) return;
         var useKey = key == KeyCode.None ? defaultInteractKey : key;
         if (interactPromptText)
-            interactPromptText.text = $"Nhấn {useKey}: Nói chuyện";
+            interactPromptText.text = $"Nhấn {useKey}: {promptText}";
         if (interactPromptRoot) interactPromptRoot.SetActive(true);
     }
 
@@ -36,12 +50,13 @@ public class GameUIManager : Singleton<GameUIManager>
         if (interactPromptRoot) interactPromptRoot.SetActive(false);
     }
 
-    public void OpenDialogue(string npcName, string content)
+    public void OpenDialogue(string title, string content)
     {
         _dialogueOpen = true;
         HideInteractPrompt();
 
-        if (dialogueNpcNameText) dialogueNpcNameText.text = npcName;
+        // KHÔNG tự override 'title' bằng môn từ thời khoá biểu – dùng đúng tham số truyền vào
+        if (dialogueNpcNameText) dialogueNpcNameText.text = title;
         if (dialogueContentText) dialogueContentText.text = content;
 
         if (dialogueRoot) dialogueRoot.SetActive(true);

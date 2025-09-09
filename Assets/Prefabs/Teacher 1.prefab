@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Teacher 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 36783ddfa58ea8a4cbe22b0808b17c78, type: 3}
+      propertyPath: m_TagString
+      value: Teacher
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 36783ddfa58ea8a4cbe22b0808b17c78, type: 3}
       propertyPath: m_Controller
       value: 
@@ -171,9 +175,6 @@ MonoBehaviour:
   interactKey: 102
   autoListenKey: 1
   interactCooldown: 0.2
-  spawnPoint: {fileID: 0}
-  snapToSpawnOnStart: 1
-  keepUprightOnSnap: 1
 --- !u!114 &4294368750080800279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,8 +190,17 @@ MonoBehaviour:
   overridePrompt: 
   semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
   subjectName: Toan Cao Cap
-  classSeconds: 3
-  greetText: "Ch\xE0o em, v\xE0o l\u1EDBp \u0111i\u1EC3m danh n\xE0o!"
-  learningText: "\u0110ang h\u1ECDc..."
+  titleText: Toan Cao Cap
+  confirmText: "\u0110\xFAng ca m\xF4n n\xE0y. B\u1EA5m '\u0110i\u1EC3m danh & H\u1ECDc'
+    \u0111\u1EC3 b\u1EAFt \u0111\u1EA7u, ho\u1EB7c '\u0110\xF3ng' \u0111\u1EC3 hu\u1EF7."
   wrongTimeText: "Kh\xF4ng ph\u1EA3i gi\u1EDD m\xF4n n\xE0y, quay l\u1EA1i \u0111\xFAng
     ca nh\xE9."
+  greetText: "Ch\xE0o em, v\xE0o l\u1EDBp \u0111i\u1EC3m danh n\xE0o!"
+  learningText: "\u0110ang h\u1ECDc..."
+  classSeconds: 3
+  onClassStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onClassFinished:
+    m_PersistentCalls:
+      m_Calls: []
