@@ -1,0 +1,28 @@
+1. Định nghĩa đạo hàm:
+   - Cho hàm số y = f(x). Đạo hàm của f tại điểm x0 là:
+     f'(x0) = lim (h → 0) [f(x0 + h) - f(x0)] / h
+   - Ý nghĩa hình học: hệ số góc của tiếp tuyến tại điểm (x0, f(x0)).
+
+2. Quy tắc tính đạo hàm cơ bản:
+   - (x^n)' = n·x^(n-1)
+   - (sin x)' = cos x
+   - (cos x)' = -sin x
+   - (e^x)' = e^x
+   - (ln x)' = 1/x
+
+3. Quy tắc đạo hàm:
+   - (u ± v)' = u' ± v'
+   - (u·v)' = u'·v + u·v'
+   - (u/v)' = (u'·v - u·v') / v^2
+   - (f(g(x)))' = f'(g(x)) · g'(x)   (chuỗi)
+
+4. Ứng dụng đạo hàm:
+   - Tính vận tốc tức thời và gia tốc trong vật lý.
+   - Xác định cực trị của hàm số.
+   - Tìm khoảng đồng biến, nghịch biến của hàm.
+   - Giải bài toán cực trị: tối ưu hóa chi phí, lợi nhuận,...
+
+5. Bài tập tham khảo:
+   - Tính đạo hàm của y = (x^2 + 3x - 1)^5
+   - Tìm cực trị của hàm y = x^3 - 3x + 2
+   - Chứng minh hàm f(x) = ln(x) - 1/x đồng biến trên (0, +∞).

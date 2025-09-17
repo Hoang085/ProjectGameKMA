@@ -3,8 +3,8 @@
 public class DialogueAction : InteractableAction
 {
     [Header("Dialogue")]
-    public string npcName = "NPC";
-    [TextArea] public string message = "Chào em, hôm nay chúng ta bắt đầu buổi học nhé";
+    public string npcName;
+    public string message = DataKeyText.openText;
 
     GameUIManager UI => GameUIManager.Ins;
 

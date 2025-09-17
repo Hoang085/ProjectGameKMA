@@ -1,0 +1,50 @@
+1. Phương pháp đổi biến số
+Nguyên tắc: Nếu đặt t = g(x), khi đó dt = g’(x) dx, ta có thể biến đổi tích phân ∫ f(x) dx thành dạng ∫ f(g⁻¹(t)) dt để dễ tính hơn.
+Các bước:
+Chọn phép đặt biến thích hợp.
+Đổi toàn bộ biểu thức dưới dấu tích phân sang biến mới.
+Thay cận nếu là tích phân xác định.
+Ví dụ: ∫ 2x cos(x^2) dx.
+Đặt t = x^2 ⇒ dt = 2x dx.
+Khi đó tích phân thành ∫ cos(t) dt = sin(t) + C = sin(x^2) + C.
+
+2. Phương pháp tích phân từng phần
+Nguyên tắc:
+∫ u dv = uv - ∫ v du.
+Cách chọn u và dv:
+Thường chọn u là hàm dễ tính đạo hàm (đa thức, logarit, lượng giác đơn giản).
+Chọn dv là phần dễ tính nguyên hàm.
+Ví dụ: ∫ x e^x dx.
+Đặt u = x ⇒ du = dx.
+dv = e^x dx ⇒ v = e^x.
+Tích phân = x e^x - ∫ e^x dx = (x - 1)e^x + C.
+
+3. Một số tích phân thường gặp
+∫ sin^2(x) dx = (x/2) - (sin(2x)/4) + C.
+∫ cos^2(x) dx = (x/2) + (sin(2x)/4) + C.
+∫ 1/(1 + x^2) dx = arctan(x) + C.
+∫ 1/√(1 - x^2) dx = arcsin(x) + C.
+
+4. Tích phân suy rộng
+Tích phân suy rộng (improper integral) là tích phân mà cận là vô hạn hoặc hàm số không liên tục tại một điểm nào đó trong khoảng tích phân.
+Loại 1: Cận vô hạn
+Ví dụ: ∫[1 → ∞] (1/x^2) dx.
+Ta tính: lim(b → ∞) ∫[1 → b] (1/x^2) dx = lim(b → ∞) (1 - 1/b) = 1.
+⇒ Tích phân hội tụ và bằng 1.
+Loại 2: Gián đoạn tại một điểm
+Ví dụ: ∫[0 → 1] 1/√x dx.
+Ta tính: lim(a → 0+) ∫[a → 1] 1/√x dx = lim(a → 0+) (2 - 2√a) = 2.
+⇒ Tích phân hội tụ và bằng 2.
+
+5. Tiêu chuẩn hội tụ
+Nếu tích phân suy rộng tồn tại hữu hạn, ta nói nó hội tụ.
+Nếu kết quả tiến tới vô cực, ta nói nó phân kỳ.
+Một số tiêu chuẩn:
+∫[1 → ∞] 1/x^p dx hội tụ khi p > 1, phân kỳ khi p ≤ 1.
+∫[0 → 1] 1/x^p dx hội tụ khi p < 1, phân kỳ khi p ≥ 1.
+
+6. Ứng dụng của tích phân suy rộng
+Trong toán học: nghiên cứu các chuỗi, kiểm tra điều kiện hội tụ.
+Trong vật lý: mô tả sóng, dao động, điện từ trường với miền vô hạn.
+Trong kỹ thuật: tính toán năng lượng hoặc công trên miền không giới hạn.
+Trong kinh tế: mô hình hóa các quá trình kéo dài vô hạn.

@@ -1,0 +1,26 @@
+	Artificial Intelligence and Its Impact on Society
+
+1. What is Artificial Intelligence (AI)?
+- AI refers to computer systems that can perform tasks requiring human intelligence, such as problem--solving, language understanding, or image recognition.
+- Common examples include voice assistants (Siri, Alexa), recommendation systems (Netflix, YouTube), and self-driving cars.
+
+2. Positive impacts of AI
+- Efficiency and productivity – automation reduces repetitive work and saves time.
+- Healthcare improvements – AI assists in diagnosing diseases, analyzing medical data, and even developing new drugs.
+- Education – personalized learning platforms adapt to student needs.
+- Daily convenience – smart devices, chatbots, and digital assistants support everyday life.
+
+3. Challenges and risks
+- Job displacement: automation may replace some human labor.
+- Bias and fairness: AI systems may reflect existing social biases if trained on biased data.
+- Privacy concerns: large-scale data collection raises ethical questions.
+- Security threats: AI can be misused for cyberattacks or surveillance.
+
+4. The future of AI in society
+- AI will continue to expand in fields like transportation, education, and environmental protection.
+- Governments and organizations need policies to regulate AI responsibly.
+- Ethical guidelines are necessary to ensure AI serves humanity’s interests.
+
+5. Conclusion
+- AI is a double-edged sword: it brings tremendous opportunities but also serious challenges.
+- The key lies in using AI wisely — maximizing benefits while minimizing risks — to create a more advanced, fair, and sustainable society.

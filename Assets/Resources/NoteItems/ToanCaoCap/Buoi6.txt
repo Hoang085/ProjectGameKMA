@@ -1,0 +1,52 @@
+1. Mục tiêu của khảo sát đồ thị
+Khảo sát đồ thị hàm số là quá trình phân tích toàn diện các đặc tính của hàm, từ đó vẽ được hình dạng tổng quát và hiểu rõ hành vi của nó. Việc khảo sát bao gồm các bước: xác định tập xác định, tính đơn điệu, cực trị, tiệm cận, điểm uốn và cuối cùng là lập bảng biến thiên.
+
+2. Tập xác định của hàm số
+Là tập hợp tất cả các giá trị x mà tại đó hàm số có nghĩa.
+Khi xác định cần lưu ý:
+Mẫu số không được bằng 0.
+Biểu thức trong căn bậc chẵn phải không âm.
+Biểu thức trong logarit phải dương.
+Ví dụ: Hàm f(x) = 1/(x - 2) có tập xác định là R loại bỏ x = 2.
+
+3. Sự biến thiên của hàm số
+Tính đạo hàm f’(x).
+Giải phương trình f’(x) = 0 để tìm các điểm tới hạn.
+Xét dấu của f’(x):
+f’(x) > 0 trên khoảng nào thì hàm đồng biến trên khoảng đó.
+f’(x) < 0 trên khoảng nào thì hàm nghịch biến trên khoảng đó.
+Dựa vào kết quả ta có thể xác định được khoảng tăng, khoảng giảm, và các điểm cực trị.
+Ví dụ: Với f(x) = x^3 - 3x, ta có f’(x) = 3x^2 - 3. Nghiệm của f’(x) = 0 là x = ±1. Xét dấu f’ trên các khoảng, ta kết luận được cực đại tại x = -1 và cực tiểu tại x = 1.
+
+4. Độ cong và điểm uốn
+Tính đạo hàm bậc hai f’’(x).
+Nếu f’’(x) > 0 trên một khoảng, đồ thị cong lên (lõm lên).
+Nếu f’’(x) < 0 trên một khoảng, đồ thị cong xuống (lõm xuống).
+Nếu f’’(x0) = 0 và dấu của f’’ đổi khi đi qua x0, thì x0 là điểm uốn.
+Ví dụ: Hàm f(x) = x^3 có f’’(x) = 6x. Khi x = 0, đạo hàm bậc hai đổi dấu từ âm sang dương, do đó (0, 0) là điểm uốn.
+
+5. Tiệm cận của đồ thị
+Tiệm cận đứng: khi x tiến tới giá trị a mà f(x) tiến ra vô cực. Ví dụ f(x) = 1/(x - 2) có tiệm cận đứng x = 2.
+Tiệm cận ngang: khi x tiến tới ±∞ mà f(x) tiến về một hằng số L. Ví dụ f(x) = (2x + 1)/(x + 3), khi x → ∞ thì f(x) → 2, nên y = 2 là tiệm cận ngang.
+Tiệm cận xiên: khi x → ∞ mà f(x) gần giống một đường thẳng y = ax + b. Khi đó a = lim f(x)/x, b = lim [f(x) - ax].
+
+6. Lập bảng biến thiên
+Các thông tin từ trên được sắp xếp vào một bảng, trong đó:
+Hàng đầu ghi các khoảng xác định.
+Hàng thứ hai ghi dấu của f’(x).
+Hàng thứ ba ghi chiều biến thiên (tăng hay giảm).
+Ghi thêm các giá trị đặc biệt: cực trị, tiệm cận, điểm uốn.
+Bảng biến thiên giúp ta dễ dàng nhìn thấy toàn bộ hành vi của hàm số mà không cần vẽ ngay đồ thị.
+
+7. Vẽ đồ thị
+Dựa vào bảng biến thiên và các điểm đặc biệt, ta phác thảo được đồ thị:
+Vẽ tiệm cận (nếu có).
+Đánh dấu cực trị, điểm uốn.
+Vẽ các nhánh đồ thị bám theo chiều biến thiên đã xác định.
+Ví dụ: Với f(x) = (x^2 - 1)/(x - 1), sau khi khảo sát ta biết hàm có tiệm cận đứng x = 1, tiệm cận xiên y = x + 1, và có tính chất đồng biến trên một số khoảng. Dựa vào đó vẽ được đồ thị đầy đủ.
+
+8. Ứng dụng của khảo sát đồ thị
+Trong toán học: hiểu hình dạng và tính chất của hàm số.
+Trong vật lý: phân tích dao động, chuyển động, xác định giá trị cực trị của các đại lượng.
+Trong kinh tế: biểu diễn xu hướng cung cầu, lợi nhuận, chi phí.
+Trong kỹ thuật: nghiên cứu tín hiệu, khảo sát ổn định của hệ thống.

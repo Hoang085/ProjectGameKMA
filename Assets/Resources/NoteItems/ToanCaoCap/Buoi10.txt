@@ -1,0 +1,47 @@
+1. Khái niệm chuỗi số
+Một chuỗi số là tổng vô hạn các số hạng:
+S = a1 + a2 + a3 + … = ∑(n=1→∞) an.
+Dãy (Sn) gọi là dãy tổng riêng, trong đó:
+Sn = a1 + a2 + … + an.
+Nếu lim (n→∞) Sn tồn tại hữu hạn thì chuỗi hội tụ, và giới hạn đó chính là tổng của chuỗi.
+Nếu lim (n→∞) Sn không tồn tại hoặc tiến ra vô cực thì chuỗi phân kỳ.
+
+2. Chuỗi hình học
+Chuỗi hình học có dạng: ∑ q^n (n từ 0 đến ∞).
+Công thức:
+Nếu |q| < 1 thì chuỗi hội tụ và tổng bằng 1/(1 - q).
+Nếu |q| ≥ 1 thì chuỗi phân kỳ.
+Ví dụ: 1 + 1/2 + 1/4 + 1/8 + … = 1/(1 - 1/2) = 2.
+
+3. Chuỗi điều hòa
+Chuỗi ∑ 1/n (n từ 1 đến ∞) gọi là chuỗi điều hòa.
+Chuỗi này phân kỳ, mặc dù các số hạng tiến về 0.
+Đây là ví dụ điển hình cho thấy điều kiện cần để chuỗi hội tụ (an → 0) không phải là điều kiện đủ.
+
+4. Tiêu chuẩn hội tụ
+Một số tiêu chuẩn kiểm tra chuỗi:
+Tiêu chuẩn so sánh: Nếu 0 ≤ an ≤ bn và ∑ bn hội tụ thì ∑ an cũng hội tụ.
+Tiêu chuẩn tỉ số (d’Alembert): Nếu lim |a(n+1)/an| = L < 1 thì chuỗi hội tụ; nếu L > 1 thì chuỗi phân kỳ.
+Tiêu chuẩn căn bậc n (Cauchy): Nếu lim √|an| = L < 1 thì chuỗi hội tụ; nếu L > 1 thì phân kỳ.
+Tiêu chuẩn so sánh giới hạn: Nếu lim an/bn = c (c > 0) và ∑ bn hội tụ thì ∑ an cũng hội tụ.
+
+5. Chuỗi luân phiên (Alternating series)
+Chuỗi có dạng: a1 - a2 + a3 - a4 + … với an ≥ 0.
+Định lý Leibniz: Nếu dãy (an) giảm dần về 0 thì chuỗi hội tụ.
+Ví dụ: Chuỗi ∑ (-1)^(n+1)/n = 1 - 1/2 + 1/3 - 1/4 + … là hội tụ.
+
+6. Chuỗi Taylor và Maclaurin
+Chuỗi Taylor của hàm f(x) phát triển quanh x0:
+f(x) = f(x0) + f’(x0)(x - x0) + f’’(x0)/2! (x - x0)^2 + …
+Chuỗi Maclaurin là chuỗi Taylor tại x0 = 0.
+Một số chuỗi Maclaurin quan trọng:
+e^x = 1 + x + x^2/2! + x^3/3! + …
+sin(x) = x - x^3/3! + x^5/5! - …
+cos(x) = 1 - x^2/2! + x^4/4! - …
+ln(1 + x) = x - x^2/2 + x^3/3 - … (|x| < 1).
+
+7. Ý nghĩa và ứng dụng
+Trong toán học: Chuỗi Taylor, Maclaurin là công cụ để xấp xỉ hàm số, chứng minh nhiều định lý.
+Trong vật lý: Xấp xỉ dao động nhỏ, mô hình sóng, cơ học lượng tử.
+Trong kỹ thuật: Tính gần đúng bằng đa thức giúp giảm độ phức tạp tính toán.
+Trong kinh tế: Xấp xỉ các hàm số chi phí, lợi nhuận khi thay đổi nhỏ quanh điểm cân bằng.

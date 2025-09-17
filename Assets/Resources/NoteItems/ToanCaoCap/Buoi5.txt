@@ -1,0 +1,33 @@
+1. Khái niệm bài toán tối ưu
+Trong thực tế, nhiều bài toán yêu cầu tìm giá trị lớn nhất hoặc nhỏ nhất của một đại lượng nào đó, ví dụ như lợi nhuận, chi phí, diện tích, thể tích, quãng đường, thời gian. Những bài toán như vậy được gọi chung là bài toán tối ưu.
+Phương pháp giải thường dựa trên đạo hàm:
+Thiết lập hàm số biểu diễn đại lượng cần tối ưu.
+Xác định tập xác định của hàm số.
+Tính đạo hàm và giải phương trình f’(x) = 0 để tìm các điểm tới hạn.
+Kết hợp với điều kiện biên (nếu có) để chọn giá trị lớn nhất hoặc nhỏ nhất.
+
+2. Bài toán cực trị hình học
+Ví dụ 1: Tìm diện tích hình chữ nhật lớn nhất nội tiếp trong parabol
+Cho parabol y = 4 - x^2, tìm diện tích lớn nhất của hình chữ nhật nội tiếp có cạnh nằm trên trục hoành.
+Gọi hoành độ của điểm trên parabol là x, khi đó tung độ là y = 4 - x^2.
+Hình chữ nhật có chiều dài 2x và chiều cao y = 4 - x^2.
+Diện tích: S(x) = 2x(4 - x^2) = 8x - 2x^3.
+Đạo hàm: S’(x) = 8 - 6x^2. Giải S’(x) = 0 được x = √(4/3).
+Giá trị cực đại: S = 8√(4/3) - 2(4/3)√(4/3) = 32√3 / 9.
+=> Diện tích lớn nhất là 32√3 / 9.
+Ví dụ 2: Thể tích lớn nhất của hình hộp chữ nhật
+Tìm hình hộp chữ nhật có thể tích lớn nhất nội tiếp trong mặt cầu bán kính R.
+Đặt nửa cạnh hình hộp theo ba trục là x, y, z. Khi đó x^2 + y^2 + z^2 = R^2.
+Thể tích: V = 8xyz.
+Bằng phương pháp nhân tử Lagrange hoặc bất đẳng thức, ta chứng minh hình hộp có thể tích lớn nhất là hình lập phương với cạnh bằng 2R/√3.
+Khi đó thể tích cực đại là Vmax = (8/3√3)R^3.
+
+3. Bài toán tối ưu trong kinh tế
+Ví dụ 1: Tối đa hóa lợi nhuận
+Một doanh nghiệp bán sản phẩm với doanh thu R(q) và chi phí C(q) phụ thuộc vào sản lượng q.
+Lợi nhuận: P(q) = R(q) - C(q).
+Để tối đa hóa lợi nhuận, ta tính P’(q) = 0, sau đó dùng P’’(q) để xác định cực đại.
+Ví dụ 2: Tối thiểu hóa chi phí sản xuất
+Chi phí sản xuất có thể mô hình hóa bởi hàm số C(x), trong đó x là lượng sản phẩm.
+Giải C’(x) = 0 để tìm mức sản xuất tối ưu.
+Kiểm tra C’’(x) > 0 để đảm bảo đó là cực tiểu.

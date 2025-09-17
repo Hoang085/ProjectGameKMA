@@ -6,29 +6,27 @@ public class TeacherAction : InteractableAction
 {
     [Header("Config")]
     public SemesterConfig semesterConfig;
+    [Tooltip("Tên môn hiển thị")]
+    public string subjectName;
+    [Tooltip("Key để load Note ở Resources/NoteItems/<key>/BuoiN.txt.")]
+    public string subjectKeyForNotes = "";
 
-    [Tooltip("Tên môn mà NPC này phụ trách (ví dụ: \"Tư Tưởng HCM\"). Có thể để không dấu.")]
-    public string subjectName = "Tu Tuong HCM";
-
-    [Tooltip("Để trống để tự dùng subjectName làm tiêu đề.")]
-    public string titleText = "";
+    [Header("UI Title")]
+    public string titleText = "Giảng viên";
 
     [Header("UI Texts")]
-    [TextArea]
-    public string confirmText =
-        "Đúng ca môn này. Bấm 'Điểm danh & Học' để bắt đầu, hoặc 'Đóng' để huỷ.";
-    [TextArea]
-    public string wrongTimeText =
-        "Không phải giờ môn này, quay lại đúng ca nhé.";
-    [TextArea]
-    public string greetText =
-        "Chào em, vào lớp điểm danh nào!";
-    [TextArea]
-    public string learningText =
-        "Đang học...";
+    public string openText = DataKeyText.openText;
+    public string confirmText = DataKeyText.text1; 
+    public string wrongTimeText = DataKeyText.text2; 
+    public string learningText = DataKeyText.text3; 
 
     [Header("Flow")]
     [Min(0.1f)] public float classSeconds = 3f;
+
+    [Header("Notes")]
+    public bool addNoteWhenFinished = true;
+    [Tooltip("0 = tự đánh số tiếp theo. >0 = dùng số buổi chỉ định.")]
+    public int overrideSessionIndex = 0;
 
     [Header("Events")]
     public UnityEvent onClassStarted;
@@ -42,13 +40,36 @@ public class TeacherAction : InteractableAction
     GameUIManager UI => GameUIManager.Ins;
     GameClock Clock => GameClock.I;
 
-    string Title => string.IsNullOrEmpty(titleText) ? subjectName : titleText;
+    // ---------------- Helpers ----------------
+    string TitleText()
+    {
+        return string.IsNullOrWhiteSpace(titleText) ? "No Title" : titleText;
+    }
 
-    // --------- InteractableAction ----------
+    bool IsRightNowThisSubject()
+    {
+        if (!Clock || !semesterConfig || string.IsNullOrWhiteSpace(subjectName)) return false;
+        var today = Clock.Weekday;
+        var slot1Based = Clock.GetSlotIndex1Based();
+        return ScheduleResolver.IsSessionMatch(semesterConfig, subjectName, today, slot1Based);
+    }
+
+    int GetNextSessionIndexFor(string subjectKey)
+    {
+        var list = NotesService.Instance.noteRefs;
+        int max = 0;
+        for (int i = 0; i < list.Count; i++)
+            if (list[i].subjectKey == subjectKey && list[i].sessionIndex > max)
+                max = list[i].sessionIndex;
+        return max + 1;
+    }
+    // -----------------------------------------
+
+    // ============== InteractableAction ==============
     public override string GetPromptText()
     {
-        if (!string.IsNullOrEmpty(overridePrompt)) return overridePrompt;
-        return IsRightNowThisSubject() ? Title : "Chưa đến giờ môn này";
+        // Luôn mời nói chuyện (không hiện "chưa đến giờ...")
+        return !string.IsNullOrEmpty(overridePrompt) ? overridePrompt : TitleText();
     }
 
     public override void OnPlayerExit()
@@ -57,70 +78,45 @@ public class TeacherAction : InteractableAction
         {
             _state = State.Idle;
             UI?.CloseDialogue();
-            UI?.UnbindTeacher(this);             // <<< THÊM
+            UI?.UnbindTeacher(this);
         }
     }
 
     public override void DoInteract(InteractableNPC caller)
     {
-        if (!UI) return;
-        if (_state == State.InClass) return;
+        if (!UI || _state == State.InClass) return;
 
-        if (!IsRightNowThisSubject())
-        {
-            UI.OpenDialogue(Title, wrongTimeText);
-            return;
-        }
-
+        // Ấn F: luôn mở openText
         _state = State.AwaitConfirm;
         _callerCache = caller;
 
-        UI.BindTeacher(this);                    // <<< THÊM: đăng ký giáo viên đang mở hộp
-        UI.OpenDialogue(Title, confirmText);
+        UI.BindTeacher(this);
+        UI.OpenDialogue(TitleText(), openText);
     }
-    // ---------------------------------------
+    // ===============================================
 
-    /// <summary>Gắn vào nút UI "Điểm danh & Học".</summary>
+    // Gắn vào nút "Điểm danh & Học"
     public void UI_StartClass()
     {
         if (!IsRightNowThisSubject())
         {
-            UI?.OpenDialogue(Title, wrongTimeText);
+            UI?.OpenDialogue(TitleText(), wrongTimeText); // sai ca → text2
             return;
         }
-        StartClass(_callerCache);
+        StartClass();
     }
 
-    /// <summary>Gắn vào nút UI "Đóng".</summary>
     public void UI_Close()
     {
         UI?.CloseDialogue();
-        UI?.UnbindTeacher(this);                 // <<< THÊM
+        UI?.UnbindTeacher(this);
         _state = State.Idle;
     }
 
-    // ================= Core =================
-
-    bool IsRightNowThisSubject()
+    void StartClass()
     {
-        if (!Clock || !semesterConfig || string.IsNullOrWhiteSpace(subjectName))
-            return false;
-
-        var today = Clock.Weekday;
-        var slot1Based = Clock.GetSlotIndex1Based();
-
-        return ScheduleResolver.IsSessionMatch(
-            semesterConfig, subjectName, today, slot1Based);
-    }
-
-    void StartClass(InteractableNPC caller)
-    {
-        MonoBehaviour runner = UI != null ? (MonoBehaviour)UI : this;
-        if (!runner || !runner.isActiveAndEnabled)
-        {
-            Debug.LogWarning("[TeacherAction] No active runner to start coroutine.");
-            return;
-        }
+        var runner = UI != null ? (MonoBehaviour)UI : this;
+        if (!runner || !runner.isActiveAndEnabled) return;
 
         if (_classRoutine != null) runner.StopCoroutine(_classRoutine);
         _classRoutine = runner.StartCoroutine(ClassRoutine());
@@ -129,28 +125,37 @@ public class TeacherAction : InteractableAction
     IEnumerator ClassRoutine()
     {
         _state = State.InClass;
-
         onClassStarted?.Invoke();
 
-        UI?.OpenDialogue(Title, greetText);
-        yield return new WaitForSeconds(1.2f);
+        // Đúng ca: hiện text1 trước…
+        UI?.OpenDialogue(TitleText(), confirmText);
+        yield return new WaitForSeconds(1.0f);
 
-        UI?.OpenDialogue(Title, learningText);
+        // …rồi chuyển sang text4 trong lúc học
+        UI?.OpenDialogue(TitleText(), learningText);
         yield return new WaitForSeconds(classSeconds);
 
         UI?.CloseDialogue();
-
         onClassFinished?.Invoke();
+
+        // Tạo note sau khi học xong (nếu bật)
+        if (addNoteWhenFinished && NotesService.Instance != null)
+        {
+            string key = !string.IsNullOrWhiteSpace(subjectKeyForNotes) ? subjectKeyForNotes : subjectName;
+            int sessionIndex = overrideSessionIndex > 0 ? overrideSessionIndex : GetNextSessionIndexFor(key);
+
+            NotesService.Instance.AddNoteRef(key, sessionIndex, subjectName);
+
+            var b = FindObjectOfType<BackpackUIManager>();
+            if (b && b.gameObject.activeInHierarchy) b.RefreshNoteButtons();
+        }
 
         if (Clock) Clock.NextSlot();
 
         _state = State.Idle;
 
         // refresh prompt
-        if (UI)
-        {
-            UI.HideInteractPrompt();
-            UI.ShowInteractPrompt(GetPromptText(), KeyCode.F);
-        }
+        UI?.HideInteractPrompt();
+        UI?.ShowInteractPrompt(KeyCode.F);
     }
 }

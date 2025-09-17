@@ -1,0 +1,41 @@
+1. Tính diện tích hình phẳng
+Nếu hàm f(x) ≥ 0 trên đoạn [a, b], diện tích hình phẳng giới hạn bởi đồ thị y = f(x), trục Ox và hai đường thẳng x = a, x = b là:
+S = ∫[a → b] f(x) dx.
+Nếu hai hàm số f(x) và g(x) cắt nhau, diện tích phần hình phẳng giữa hai đồ thị trên đoạn [a, b] là:
+S = ∫[a → b] |f(x) - g(x)| dx.
+Ví dụ: Tính diện tích giới hạn bởi y = x và y = x^2 trên [0, 1].
+S = ∫[0 → 1] (x - x^2) dx = [x^2/2 - x^3/3] từ 0 đến 1 = 1/2 - 1/3 = 1/6.
+
+2. Tính thể tích khối tròn xoay
+Khi quay hình phẳng giới hạn bởi y = f(x), trục Ox và đoạn [a, b] quanh trục Ox, thể tích khối tròn xoay:
+V = π ∫[a → b] (f(x))^2 dx.
+Nếu quay quanh trục Oy, thể tích:
+V = π ∫[c → d] (g(y))^2 dy, với x = g(y).
+Ví dụ: Quay miền giới hạn bởi parabol y = √x, x = 0, x = 1 quanh trục Ox.
+V = π ∫[0 → 1] (√x)^2 dx = π ∫[0 → 1] x dx = π [x^2/2] từ 0 đến 1 = π/2.
+
+3. Tính độ dài cung và diện tích mặt xoay
+Độ dài cung của đồ thị y = f(x) trên [a, b]:
+L = ∫[a → b] √(1 + (f’(x))^2) dx.
+Diện tích mặt xoay khi quay đồ thị y = f(x) quanh trục Ox:
+S = 2π ∫[a → b] f(x) √(1 + (f’(x))^2) dx.
+Ví dụ: Tính độ dài cung của y = √x từ x = 0 đến x = 1.
+Ta có f’(x) = 1/(2√x).
+L = ∫[0 → 1] √(1 + 1/(4x)) dx = ∫[0 → 1] √((4x+1)/(4x)) dx. (Kết quả cụ thể dùng đổi biến).
+
+4. Ứng dụng trong vật lý
+Quãng đường đi được: s = ∫ v(t) dt, với v(t) là vận tốc theo thời gian.
+Công của lực: A = ∫ F(x) dx, khi lực F(x) thay đổi theo vị trí.
+Điện tích: Q = ∫ I(t) dt, với I(t) là cường độ dòng điện theo thời gian.
+Khối lượng của vật: nếu mật độ khối ρ(x) thay đổi, M = ∫ ρ(x) dx trên miền xét.
+
+5. Ứng dụng trong kinh tế và xác suất
+Tính chi phí hoặc lợi nhuận tích lũy: Nếu chi phí biên C’(x) được cho, tổng chi phí khi sản xuất từ a đến b là: ∫[a → b] C’(x) dx.
+Tính lợi nhuận kỳ vọng: dựa vào hàm mật độ xác suất f(x), giá trị kỳ vọng E(X) = ∫ x f(x) dx.
+Xác suất: Xác suất biến ngẫu nhiên X thuộc đoạn [a, b] được tính bằng P(a ≤ X ≤ b) = ∫[a → b] f(x) dx.
+
+6. Ý nghĩa tổng quát
+Trong toán học, tích phân giúp liên hệ giữa đạo hàm và diện tích, thể hiện mối liên hệ sâu sắc giữa hình học và giải tích.
+Trong vật lý, tích phân cho ta công cụ để tính toán các đại lượng thay đổi liên tục, như chuyển động, điện, từ, năng lượng.
+Trong kinh tế, tích phân được dùng để phân tích xu hướng dài hạn, lợi nhuận tích lũy, rủi ro và kỳ vọng.
+Trong kỹ thuật, tích phân là công cụ thiết yếu trong thiết kế, xây dựng, mô phỏng, xử lý tín hiệu.

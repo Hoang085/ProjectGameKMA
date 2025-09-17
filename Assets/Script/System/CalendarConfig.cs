@@ -1,35 +1,29 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Enum ngày trong tuần (Mon = Thứ 2)
-/// </summary>
+// Enum Thứ trong tuần
 public enum Weekday { Mon, Tue, Wed, Thu, Fri, Sat, Sun }
 
-/// <summary>
-/// Enum ca trong ngày
-/// </summary>
-// CalendarConfig.cs (chỉ phần cần thay đổi)
-
-public enum DaySlot { MorningA, MorningB, AfternoonA, AfternoonB, Evening } // + Evening
+// Enum ca trong ngày
+public enum DaySlot { MorningA, MorningB, AfternoonA, AfternoonB, Evening }
 
 [CreateAssetMenu(menuName = "Configs/CalendarConfig", fileName = "CalendarConfig")]
 public class CalendarConfig : ScriptableObject
 {
     [Header("Cấu hình năm học")]
-    [Min(1)] public int termsPerYear = 2;
-    [Min(1)] public int weeksPerTerm = 5;
-    [Min(1)] public int daysPerWeek = 7;
-    [Min(1)] public int slotsPerDay = 5; // = 5 sẽ có Tối; để 4 nếu chưa cần
+    [Min(1)] public int termsPerYear = 2; // Năm học có mấy học kỳ
+    [Min(1)] public int weeksPerTerm = 5; // Mỗi học kỳ có mấy tuần
+    [Min(1)] public int daysPerWeek = 7; // Mỗi tuần có mấy ngày
+    [Min(1)] public int slotsPerDay = 5; // Mỗi ngày có mấy ca
 
-    [Header("Quy tắc xếp lớp")]
+    [Header("Quy tắc xếp lớp")] // Các ngày trong tuần có thể dạy học
     [SerializeField]
     private List<Weekday> teachingDays = new()
     { Weekday.Mon, Weekday.Tue, Weekday.Wed, Weekday.Thu, Weekday.Fri };
 
-    [Min(1)] public int maxSessionsPerCoursePerWeek = 2;
+    [Min(1)] public int maxSessionsPerCoursePerWeek = 3; // Tối đa số buổi học trên mỗi môn trong 1 tuần
 
-    [Header("Slot bị chặn (không cho xếp hoạt động)")]
+    [Header("Slot bị chặn")] // Ca tối không thể dạy học
     [SerializeField] private List<DaySlot> blockedSlots = new() { DaySlot.Evening };
 
     public IReadOnlyList<Weekday> TeachingDays => teachingDays;
@@ -38,10 +32,10 @@ public class CalendarConfig : ScriptableObject
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        termsPerYear = Mathf.Max(1, termsPerYear);
-        weeksPerTerm = Mathf.Max(1, weeksPerTerm);
-        daysPerWeek = Mathf.Clamp(daysPerWeek, 1, 7);
-        slotsPerDay = Mathf.Clamp(slotsPerDay, 1, 5); // tối đa 5 vì có Evening
+        termsPerYear = Mathf.Max(1, termsPerYear); // Ít nhất 1 học kỳ
+        weeksPerTerm = Mathf.Max(1, weeksPerTerm); // Ít nhất 1 tuần
+        daysPerWeek = Mathf.Clamp(daysPerWeek, 1, 7); // Tối đa 7 ngày/tuần
+        slotsPerDay = Mathf.Clamp(slotsPerDay, 1, 5); // Tối đa 5 ca/ngày
     }
 #endif
 }

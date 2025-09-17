@@ -1,0 +1,41 @@
+1. Giới hạn của dãy số
+Một dãy số (a_n) có giới hạn A nếu với mọi epsilon > 0, tồn tại N > 0 sao cho với mọi n > N thì |a_n - A| < epsilon.
+Ký hiệu: lim (n -> infinity) a_n = A.
+Nếu |a_n| -> infinity khi n -> infinity, ta nói dãy số có giới hạn vô cực.
+Ví dụ:
+lim (1/n) khi n -> infinity = 0.
+lim (1 + 1/n)^n khi n -> infinity = e.
+
+2. Giới hạn của hàm số
+Định nghĩa: lim (x -> x0) f(x) = L nếu với mọi epsilon > 0, tồn tại delta > 0 sao cho với mọi 0 < |x - x0| < delta thì |f(x) - L| < epsilon.
+Giới hạn có thể hữu hạn, vô cực hoặc không tồn tại.
+Giới hạn một bên: lim (x -> x0+) f(x), lim (x -> x0-) f(x).
+Một số giới hạn đặc biệt:
+lim (x -> 0) sin(x)/x = 1.
+lim (x -> infinity) 1/x = 0.
+lim (x -> infinity) (1 + 1/x)^x = e.
+
+3. Tính chất của giới hạn
+Giới hạn (nếu tồn tại) là duy nhất.
+Các quy tắc:
+lim (f(x) ± g(x)) = lim f(x) ± lim g(x).
+lim (f(x) * g(x)) = lim f(x) * lim g(x).
+lim (f(x) / g(x)) = lim f(x) / lim g(x) nếu lim g(x) ≠ 0.
+Định lý kẹp (Sandwich): nếu f(x) ≤ g(x) ≤ h(x) và lim f(x) = lim h(x) = L thì lim g(x) = L.
+
+4. Liên tục của hàm số
+Hàm số f(x) liên tục tại x0 nếu:
+f(x0) xác định.
+Giới hạn lim (x -> x0) f(x) tồn tại.
+lim (x -> x0) f(x) = f(x0).
+Nếu một trong các điều kiện trên không thỏa, hàm số gián đoạn tại x0.
+Các loại gián đoạn:
+Kiểu 1: tồn tại giới hạn trái và phải nhưng khác nhau.
+Kiểu 2: giới hạn vô cực hoặc không xác định.
+Kiểu 3: hàm dao động mạnh, không tiến về giá trị nào.
+
+5. Ý nghĩa và ứng dụng
+Giới hạn và liên tục là nền tảng để xây dựng đạo hàm và tích phân.
+Trong vật lý: mô tả chuyển động liên tục, tốc độ tức thời, gia tốc.
+Trong kinh tế: mô hình tăng trưởng, lợi nhuận biên, xu hướng thị trường.
+Trong kỹ thuật: phân tích tín hiệu, dao động, ổn định hệ thống.

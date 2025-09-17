@@ -41,8 +41,7 @@ public class InteractableNPC : MonoBehaviour
         _action?.OnPlayerEnter();
 
         if (!UI) return;
-        var prompt = _action ? _action.GetPromptText() : "Tương tác";
-        UI.ShowInteractPrompt(prompt, interactKey);
+        UI.ShowInteractPrompt(interactKey);
     }
 
     void OnTriggerExit(Collider other)
@@ -70,7 +69,5 @@ public class InteractableNPC : MonoBehaviour
     {
         if (_action != null)
             _action.DoInteract(this);
-        else if (UI != null)
-            UI.OpenDialogue("NPC", "Chào em, hôm nay chúng ta bắt đầu buổi học nhé");
     }
 }

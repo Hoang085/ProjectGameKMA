@@ -1,0 +1,29 @@
+1. Đạo hàm cấp 2
+Ký hiệu: f''(x).
+Định nghĩa: f''(x) = (f'(x))', tức là đạo hàm cấp 2 được tính bằng cách lấy đạo hàm của đạo hàm cấp 1.
+Vai trò: đạo hàm cấp 2 cho ta thông tin về độ cong và độ lõm của đồ thị hàm số.
+Nếu f''(x) > 0 tại một điểm thì đồ thị cong lên (lõm lên).
+Nếu f''(x) < 0 tại một điểm thì đồ thị cong xuống (lõm xuống).
+
+2.Đạo hàm cấp 3 và các cấp cao hơn
+Ký hiệu: f'''(x) cho cấp 3, f^(4)(x) cho cấp 4, và nói chung f^(n)(x) cho đạo hàm cấp n.
+Quy tắc: f^(n)(x) = (f^(n-1)(x))', tức là lấy đạo hàm của đạo hàm cấp (n-1).
+Ví dụ minh họa:
+Với f(x) = x^4:
+f'(x) = 4x^3
+f''(x) = 12x^2
+f'''(x) = 24x
+f^(4)(x) = 24 (một hằng số)
+f^(5)(x) = 0 và các đạo hàm cao hơn cũng bằng 0.
+
+3.Ý nghĩa toán học và ứng dụng
+Đạo hàm cấp 2:
+	Nghiên cứu cực trị: nếu f'(x0) = 0 và f''(x0) > 0 thì x0 là điểm cực tiểu; nếu f'(x0) = 0 và f''(x0) < 0 thì x0 là điểm cực đại.
+	Nghiên cứu hình dáng đồ thị: xác định điểm uốn (inflection point) khi f''(x) đổi dấu.
+Đạo hàm cấp 3, cấp 4:
+	Sử dụng trong khai triển Taylor và Maclaurin để xấp xỉ giá trị của hàm số bằng đa thức.
+	Trong vật lý: mô tả dao động và các đại lượng liên quan đến lực, moment, hay sóng.
+	Trong kỹ thuật: dùng để phân tích tín hiệu, đặc biệt trong xử lý số liệu, mô hình dao động cơ học và điện tử.
+Đạo hàm cấp n:
+	Cho phép khái quát hóa nhiều định lý, ví dụ như định lý Taylor-Lagrange.
+	Là công cụ để xây dựng và chứng minh các tính chất sâu hơn của hàm số.

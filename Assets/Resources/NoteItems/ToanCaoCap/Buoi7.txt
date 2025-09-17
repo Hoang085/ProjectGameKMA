@@ -1,0 +1,48 @@
+1. Khái niệm tích phân
+Tích phân xác định được dùng để tính diện tích, thể tích, khối lượng, quãng đường… trong nhiều bài toán thực tế.
+Tích phân của hàm f(x) trên đoạn [a, b] được định nghĩa là:
+∫[a → b] f(x) dx.
+Ý nghĩa hình học: nếu f(x) ≥ 0 trên [a, b] thì ∫[a → b] f(x) dx chính là diện tích hình phẳng giới hạn bởi đồ thị y = f(x), trục hoành và hai đường thẳng x = a, x = b.
+
+2. Nguyên hàm
+Một hàm F(x) được gọi là nguyên hàm của f(x) nếu F’(x) = f(x).
+Ký hiệu: ∫ f(x) dx = F(x) + C (C là hằng số tùy ý).
+Một số nguyên hàm cơ bản:
+∫ k dx = kx + C (k là hằng số).
+∫ x^n dx = x^(n+1)/(n+1) + C (với n ≠ -1).
+∫ 1/x dx = ln|x| + C.
+∫ e^x dx = e^x + C.
+∫ sin(x) dx = -cos(x) + C.
+∫ cos(x) dx = sin(x) + C.
+
+3. Định lý cơ bản của giải tích
+Nếu F(x) là một nguyên hàm của f(x), thì:
+∫[a → b] f(x) dx = F(b) - F(a).
+Ví dụ: ∫[0 → 1] (2x) dx = [x^2] từ 0 đến 1 = 1^2 - 0^2 = 1.
+
+4. Các phương pháp tính tích phân
+Đổi biến số: đặt t = g(x) để đơn giản hóa biểu thức.
+Ví dụ: ∫ 2x cos(x^2) dx, đặt t = x^2, dt = 2x dx, được ∫ cos(t) dt = sin(t) + C = sin(x^2) + C.
+Tích phân từng phần: ∫ u dv = uv - ∫ v du.
+Ví dụ: ∫ x e^x dx, đặt u = x, dv = e^x dx, ta có ∫ x e^x dx = x e^x - ∫ e^x dx = (x - 1)e^x + C.
+
+5. Ứng dụng của tích phân
+Tính diện tích hình phẳng
+Nếu f(x) ≥ 0 trên [a, b], diện tích S = ∫[a → b] f(x) dx.
+Nếu f(x) đổi dấu, cần lấy giá trị tuyệt đối hoặc chia thành các đoạn.
+Tính thể tích vật thể tròn xoay
+Khi quay hình phẳng giới hạn bởi y = f(x), trục hoành và đoạn [a, b] quanh trục Ox, thể tích:
+V = π ∫[a → b] (f(x))^2 dx.
+Tính độ dài cung
+Độ dài cung của đồ thị y = f(x) từ x = a đến x = b:
+L = ∫[a → b] √(1 + (f’(x))^2) dx.
+Ứng dụng trong vật lý
+Quãng đường đi được khi biết vận tốc v(t): s = ∫ v(t) dt.
+Công cơ học khi lực thay đổi theo quãng đường: A = ∫ F(x) dx.
+Điện tích nạp vào tụ: Q = ∫ I(t) dt với I là cường độ dòng điện.
+
+6. Ý nghĩa và ứng dụng thực tiễn
+Trong toán học: tích phân là công cụ cơ bản trong giải tích, song hành với đạo hàm.
+Trong vật lý: tính chuyển động, công, năng lượng, điện tích, từ thông.
+Trong kinh tế: tính chi phí tích lũy, tổng lợi nhuận theo thời gian.
+Trong kỹ thuật: tính diện tích, thể tích, khối lượng trong thiết kế, xây dựng, cơ khí.

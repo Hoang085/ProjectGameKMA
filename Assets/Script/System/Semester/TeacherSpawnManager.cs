@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class TeacherSpawnManager : MonoBehaviour
+public class TeacherSpawnManager : Singleton<TeacherSpawnManager>
 {
-    public static TeacherSpawnManager I;
-
     [Header("Setup")]
     [Tooltip("Danh sách các giáo viên cần spawn")]
     public List<TeacherEntry> teachers = new List<TeacherEntry>();
@@ -17,10 +15,9 @@ public class TeacherSpawnManager : MonoBehaviour
     // instance cache
     private readonly Dictionary<string, GameObject> _instances = new Dictionary<string, GameObject>();
 
-    void Awake()
+    public override void Awake()
     {
-        if (I && I != this) { Destroy(gameObject); return; }
-        I = this;
+        MakeSingleton(false);
     }
 
     void Start()
@@ -28,23 +25,19 @@ public class TeacherSpawnManager : MonoBehaviour
         if (spawnOnStart) SpawnAll();
     }
 
-    /// <summary>
-    /// Spawn tất cả entries chưa có instance.
-    /// </summary>
+    //Spawn tất cả entries chưa có instance.
     [ContextMenu("Spawn All Now")]
     public void SpawnAll()
     {
         foreach (var t in teachers)
         {
-            if (string.IsNullOrWhiteSpace(t.id)) continue;
-            if (!_instances.ContainsKey(t.id) || _instances[t.id] == null)
-                Spawn(t.id);
+            if (string.IsNullOrWhiteSpace(t.subjectName)) continue;
+            if (!_instances.ContainsKey(t.subjectName) || _instances[t.subjectName] == null)
+                Spawn(t.subjectName);
         }
     }
 
-    /// <summary>
-    /// Despawn toàn bộ giáo viên đang tồn tại.
-    /// </summary>
+    // Despawn toàn bộ giáo viên đang tồn tại.
     [ContextMenu("Despawn All Now")]
     public void DespawnAll()
     {
@@ -55,26 +48,24 @@ public class TeacherSpawnManager : MonoBehaviour
         _instances.Clear();
     }
 
-    /// <summary>
-    /// Spawn theo id (được đặt trong TeacherEntry.id).
-    /// </summary>
-    public GameObject Spawn(string id)
+    // Spawn theo id (được đặt trong TeacherEntry.id).
+    public GameObject Spawn(string subjectName)
     {
-        var entry = GetEntry(id);
+        var entry = GetEntry(subjectName);
         if (entry == null)
         {
-            Debug.LogWarning($"[TeacherSpawnManager] Không tìm thấy entry id='{id}'");
+            Debug.LogWarning($"[TeacherSpawnManager] Không tìm thấy entry subjectName='{subjectName}'");
             return null;
         }
 
         if (entry.prefab == null || entry.spawnPoint == null)
         {
-            Debug.LogWarning($"[TeacherSpawnManager] Entry '{id}' thiếu prefab hoặc spawnPoint");
+            Debug.LogWarning($"[TeacherSpawnManager] Entry '{subjectName}' thiếu prefab hoặc spawnPoint");
             return null;
         }
 
         // nếu đã có instance thì trả về
-        if (_instances.TryGetValue(id, out var existed) && existed != null)
+        if (_instances.TryGetValue(subjectName, out var existed) && existed != null)
             return existed;
 
         // Tạo mới
@@ -83,54 +74,45 @@ public class TeacherSpawnManager : MonoBehaviour
             : entry.spawnPoint.rotation;
 
         var go = Instantiate(entry.prefab, entry.spawnPoint.position, rot, transform);
-        go.name = string.IsNullOrEmpty(entry.customName) ? $"Teacher_{id}" : entry.customName;
+        go.name = entry.prefab.name;
 
         // Cấu hình InteractableNPC / TeacherAction nếu có
         SetupComponents(go, entry);
 
-        _instances[id] = go;
+        _instances[subjectName] = go;
         return go;
     }
 
-    /// <summary>
-    /// Xoá instance theo id (nếu có).
-    /// </summary>
-    public void Despawn(string id)
+    // Xoá instance.
+    public void Despawn(string subjectName)
     {
-        if (_instances.TryGetValue(id, out var inst) && inst != null)
+        if (_instances.TryGetValue(subjectName, out var inst) && inst != null)
             Destroy(inst);
-        _instances.Remove(id);
+        _instances.Remove(subjectName);
     }
 
-    /// <summary>
-    /// Despawn rồi spawn lại theo id.
-    /// </summary>
-    [ContextMenu("Respawn Selected (First)")]
-    public void Respawn(string id)
+    // Despawn rồi spawn lại
+    public void Respawn(string subjectName)
     {
-        Despawn(id);
-        Spawn(id);
+        Despawn(subjectName);
+        Spawn(subjectName);
     }
 
-    /// <summary>
-    /// Lấy instance hiện tại theo id.
-    /// </summary>
-    public GameObject GetInstance(string id)
+    // Lấy instance hiện tại theo id.
+    public GameObject GetInstance(string subjectName)
     {
-        return _instances.TryGetValue(id, out var inst) ? inst : null;
+        return _instances.TryGetValue(subjectName, out var inst) ? inst : null;
     }
 
-    /// <summary>
-    /// Tìm entry theo id.
-    /// </summary>
-    public TeacherEntry GetEntry(string id)
+    // Tìm entry theo id.
+    public TeacherEntry GetEntry(string subjectName)
     {
-        return teachers.Find(t => t != null && t.id == id);
+        return teachers.Find(t => t != null && t.subjectName == subjectName);
     }
 
     private void SetupComponents(GameObject go, TeacherEntry e)
     {
-        // --- Snap vị trí khi spawn ---
+        //  Snap vị trí khi spawn 
         if (e.spawnPoint)
         {
             var pos = e.spawnPoint.position;
@@ -151,20 +133,13 @@ public class TeacherSpawnManager : MonoBehaviour
             }
         }
 
-        // --- Ưu tiên TeacherAction, loại xung đột với DialogueAction ---
+        //  Ưu tiên TeacherAction, loại xung đột với DialogueAction 
         var teacher = go.GetComponent<TeacherAction>();
         if (teacher != null)
         {
             // Bơm data từ entry
             if (e.semesterConfig) teacher.semesterConfig = e.semesterConfig;
-            if (!string.IsNullOrWhiteSpace(e.subjectName)) teacher.subjectName = e.subjectName;
-
-            // Để trống => TeacherAction sẽ dùng subjectName làm tiêu đề (an toàn, không lệch)
-            teacher.titleText = string.Empty;
-
-            // Gợi ý prompt nếu muốn (không bắt buộc)
-            if (string.IsNullOrEmpty(teacher.overridePrompt))
-                teacher.overridePrompt = $"GV: {e.subjectName}";
+            teacher.subjectName = e.subjectName;
         }
 
         // Nếu trên prefab còn DialogueAction thì tắt để tránh mở hộp thoại thứ 2
@@ -184,20 +159,6 @@ public class TeacherSpawnManager : MonoBehaviour
 
 
 #if UNITY_EDITOR
-    private void OnValidate()
-    {
-        // Tự động điền id nếu để trống
-        foreach (var t in teachers)
-        {
-            if (t == null) continue;
-            if (string.IsNullOrWhiteSpace(t.id))
-            {
-                if (t.prefab) t.id = t.prefab.name;
-                else if (t.spawnPoint) t.id = t.spawnPoint.name;
-            }
-        }
-    }
-
     private void OnDrawGizmosSelected()
     {
         if (teachers == null) return;
@@ -212,10 +173,8 @@ public class TeacherSpawnManager : MonoBehaviour
             Gizmos.DrawWireSphere(t.spawnPoint.position, 0.25f);
             Gizmos.DrawLine(t.spawnPoint.position, t.spawnPoint.position + t.spawnPoint.forward * 0.8f);
 
-            // Nhãn
-            var label = string.IsNullOrEmpty(t.id) ? "(no id)" : t.id;
 #if UNITY_EDITOR
-            UnityEditor.Handles.Label(t.spawnPoint.position + Vector3.up * 0.25f, $"Teacher: {label}");
+            UnityEditor.Handles.Label(t.spawnPoint.position + Vector3.up * 0.25f, $"Teacher: {t.subjectName}");
 #endif
         }
     }
@@ -225,26 +184,14 @@ public class TeacherSpawnManager : MonoBehaviour
 [Serializable]
 public class TeacherEntry
 {
-    [Header("Identity")]
-    [Tooltip("Khoá duy nhất để tham chiếu teacher này")]
-    public string id;
-
-    [Tooltip("Tên GameObject sau khi spawn (tuỳ chọn)")]
-    public string customName;
-
     [Header("Prefab & Vị trí")]
     public GameObject prefab;
-    [Tooltip("Điểm đứng của giáo viên")]
     public Transform spawnPoint;
 
-    [Tooltip("Giữ đứng thẳng khi spawn (chỉ lấy rotation Y)")]
     public bool keepUprightOnSpawn = true;
-
-    [Tooltip("Snap ngay khi spawn xong (và khi Start của InteractableNPC)")]
     public bool snapOnStart = true;
 
-    [Header("Lịch / Môn (bơm vào TeacherAction)")]
+    [Header("Lịch / Môn (gán vào TeacherAction)")]
     public SemesterConfig semesterConfig;
-    [Tooltip("Tên môn khớp với Subjects.Name trong SemesterConfig")]
     public string subjectName = "Toan";
 }

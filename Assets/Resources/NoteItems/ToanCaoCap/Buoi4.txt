@@ -1,0 +1,36 @@
+1. Điểm cực trị của hàm số
+Định nghĩa: Một điểm x0 được gọi là điểm cực trị của hàm số f(x) nếu tại đó hàm số đạt giá trị cực đại hoặc cực tiểu cục bộ. Nói cách khác, cực trị là những điểm mà tại đó hàm số đổi chiều biến thiên, từ tăng sang giảm hoặc từ giảm sang tăng.
+Điều kiện cần: Nếu hàm số f(x) có cực trị tại x0 và f(x) khả vi tại đó thì đạo hàm f’(x0) = 0. Đây được gọi là điều kiện dừng (critical point).
+Điều kiện đủ:
+Nếu f’(x0) = 0 và f’’(x0) > 0 thì x0 là điểm cực tiểu.
+Nếu f’(x0) = 0 và f’’(x0) < 0 thì x0 là điểm cực đại.
+Nếu f’(x0) = 0 và f’’(x0) = 0 thì cần xét các đạo hàm cấp cao hơn hoặc dùng phương pháp khác (ví dụ xét dấu của f’ ở hai phía của x0).
+Ví dụ minh họa: Xét hàm số f(x) = x^3 - 3x. Ta có f’(x) = 3x^2 - 3. Giải f’(x) = 0 được x = -1 và x = 1. Tính tiếp f’’(x) = 6x. Với x = -1 thì f’’(-1) = -6 < 0 nên x = -1 là cực đại. Với x = 1 thì f’’(1) = 6 > 0 nên x = 1 là cực tiểu.
+
+2. Giá trị lớn nhất và nhỏ nhất trên đoạn
+Định lý Weierstrass khẳng định rằng nếu một hàm số liên tục trên đoạn [a, b] thì nó luôn đạt được giá trị lớn nhất và giá trị nhỏ nhất trên đoạn đó.
+Cách tìm giá trị lớn nhất, nhỏ nhất:
+Xác định các điểm tới hạn trong khoảng (a, b) bằng cách giải phương trình f’(x) = 0 hoặc tìm các điểm mà đạo hàm không tồn tại.
+Tính giá trị của hàm số tại các điểm tới hạn.
+Tính giá trị của hàm số tại hai đầu mút a và b.
+So sánh tất cả các giá trị tìm được để chọn giá trị lớn nhất và nhỏ nhất.
+Ví dụ: Với hàm f(x) = x^2 - 2x + 1 trên đoạn [0, 3]. Ta có f’(x) = 2x - 2, giải f’(x) = 0 được x = 1. Khi đó f(0) = 1, f(1) = 0, f(3) = 4. So sánh các giá trị: nhỏ nhất là 0 tại x = 1, lớn nhất là 4 tại x = 3.
+
+3. Khảo sát sự biến thiên của hàm số
+Để khảo sát một hàm số và vẽ đồ thị, ta tiến hành các bước:
+Xác định tập xác định: tìm miền giá trị của x mà hàm số có nghĩa (tránh chia cho 0 hoặc căn bậc chẵn của số âm).
+Tính đạo hàm bậc nhất: tìm f’(x) để nghiên cứu tính đơn điệu. Nếu f’(x) > 0 trên một khoảng thì hàm đồng biến trên khoảng đó. Nếu f’(x) < 0 thì hàm nghịch biến.
+Xác định cực trị: tìm nghiệm của f’(x) = 0 và dùng f’’(x) hoặc xét dấu f’ để kết luận cực đại hoặc cực tiểu.
+Tính đạo hàm bậc hai: tìm f’’(x) để nghiên cứu độ cong. Nếu f’’(x) > 0 thì đồ thị cong lên, nếu f’’(x) < 0 thì đồ thị cong xuống. Điểm mà f’’(x) đổi dấu gọi là điểm uốn.
+Xét tiệm cận:
+Tiệm cận đứng khi x tiến đến một giá trị mà hàm số tiến ra vô cùng.
+Tiệm cận ngang khi x tiến ra ± vô cùng mà hàm số tiến về một hằng số.
+Tiệm cận xiên khi x tiến ra vô cùng mà hàm số có dạng gần giống một đường thẳng y = ax + b.
+Lập bảng biến thiên: trình bày các khoảng tăng, giảm, cực trị, điểm uốn, giá trị tại các mốc quan trọng.
+Vẽ đồ thị: dựa trên các thông tin đã thu được để phác thảo chính xác hình dáng.
+
+4. Ý nghĩa và ứng dụng
+Trong toán học: giúp hiểu rõ hành vi của hàm số, chứng minh các định lý và giải các bài toán cực trị.
+Trong vật lý: dùng để tìm vị trí cân bằng, xác định điểm cực đại hoặc cực tiểu của năng lượng, phân tích chuyển động.
+Trong kinh tế: tìm sản lượng tối ưu để lợi nhuận lớn nhất, tính chi phí nhỏ nhất, phân tích xu hướng thị trường.
+Trong kỹ thuật: khảo sát các hàm đặc trưng của hệ thống, tìm điều kiện vận hành tối ưu, phân tích dao động và ổn định.
