@@ -127,7 +127,7 @@ public class TeacherSpawnManager : Singleton<TeacherSpawnManager>
                 var rb = go.GetComponent<Rigidbody>();
                 if (rb)
                 {
-                    rb.velocity = Vector3.zero;
+                    rb.linearVelocity = Vector3.zero;
                     rb.angularVelocity = Vector3.zero;
                 }
             }

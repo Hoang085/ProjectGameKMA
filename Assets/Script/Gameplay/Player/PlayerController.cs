@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         if (_jumpPressed && grounded)
         {
             // Xoa van toc Y hien tai de nhay chinh xac hon
-            _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+            _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, 0f, _rb.linearVelocity.z);
             _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             if (_anim) _anim.SetTrigger(DataKey.JUMP);
         }
@@ -119,14 +119,14 @@ public class PlayerController : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             // LERP van toc XZ de muot va giu van toc Y de chong rung
-            Vector3 targetVel = new Vector3(moveDir.x * baseSpeed, _rb.velocity.y, moveDir.z * baseSpeed);
-            _rb.velocity = SmoothVelocity(_rb.velocity, targetVel, acceleration);
+            Vector3 targetVel = new Vector3(moveDir.x * baseSpeed, _rb.linearVelocity.y, moveDir.z * baseSpeed);
+            _rb.linearVelocity = SmoothVelocity(_rb.linearVelocity, targetVel, acceleration);
         }
         else
         {
             // Khong co input, LERP van toc XZ ve 0 de dung muot
-            Vector3 targetVel = new Vector3(0f, _rb.velocity.y, 0f);
-            _rb.velocity = SmoothVelocity(_rb.velocity, targetVel, acceleration);
+            Vector3 targetVel = new Vector3(0f, _rb.linearVelocity.y, 0f);
+            _rb.linearVelocity = SmoothVelocity(_rb.linearVelocity, targetVel, acceleration);
         }
     }
 
