@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-/// Quản lý dòng thời gian: Năm → Kì → Tuần → Ngày → Ca
-/// Data lấy từ CalendarConfig (terms, weeks, days, slots, teachingDays, blockedSlots)
-public class GameClock : MonoBehaviour
+/// Quan ly dong thoi gian: Nawm, Ky, Tuan, Ngay, Ca
+/// Data lay tu CalendarConfig (terms, weeks, days, slots, teachingDays, blockedSlots)
+public class GameClock : Singleton<GameClock>
 {
-    public static GameClock I { get; private set; }
-
-    [Header("Config (gán asset CalendarConfig)")]
+    [Header("Config (Assign asset CalendarConfig)")]
     public CalendarConfig config;
 
-    [Header("Thời gian hiện tại (1-based)")]
+    [Header("Current Time (1-based)")]
     [SerializeField] private int _year = 1;
     [SerializeField] private int _term = 1;    // 1..termsPerYear
     [SerializeField] private int _week = 1;    // 1..weeksPerTerm
@@ -27,22 +25,19 @@ public class GameClock : MonoBehaviour
     public Weekday Weekday => (Weekday)Mathf.Clamp(_day - 1, 0, 6);
     public DaySlot Slot => _slot;
 
-    // Events cho UI/hệ thống khác lắng nghe
+    // Events for System listeners
     public event Action OnSlotChanged, OnDayChanged, OnWeekChanged, OnTermChanged, OnYearChanged;
 
-    private void Awake()
+    public override void Awake()
     {
-        if (I != null && I != this) { Destroy(gameObject); return; }
-        I = this;
-        DontDestroyOnLoad(gameObject);
+        MakeSingleton(false);
 
-        if (!config) Debug.LogWarning("[GameClock] Chưa gán CalendarConfig!");
+        if (!config) Debug.LogWarning("[GameClock] don't assign CalendarConfig!");
         NormalizeNow(fullClamp: true);
     }
 
     // ===================== API =====================
-
-    /// Tăng thời gian lên 1 ca.
+    /// Increase to next slot; if overflow, go to next day
     [ContextMenu("Next Slot")]
     public void NextSlot()
     {
@@ -56,13 +51,13 @@ public class GameClock : MonoBehaviour
             return;
         }
 
-        // qua ngày
+        // Over day
         _slot = DaySlot.MorningA;
         OnSlotChanged?.Invoke();
         NextDayInternal();
     }
 
-    /// Đặt thẳng thời gian (phục vụ load/save)
+    /// Setup time; auto normalize
     public void SetTime(int year, int term, int week, int dayIndex1Based, DaySlot slot)
     {
         _year = Mathf.Max(1, year);
@@ -79,20 +74,15 @@ public class GameClock : MonoBehaviour
         OnSlotChanged?.Invoke();
     }
 
-    /// Hôm nay có phải ngày dạy (Mon–Fri) không?
+    /// check teaching day for Mon..Fri
     public bool IsTeachingDay(Weekday d) =>
         config != null && ((IReadOnlyList<Weekday>)config.TeachingDays).Contains(d);
 
-    /// Slot hiện tại có được phép xếp hoạt động không? (ví dụ chặn buổi tối)
+    ///Slot hien tai co duoc phep xep hoat dong khong? (vi du chan buoi toi)
     public bool IsSchedulableSlot(DaySlot s) =>
         config != null && !((IReadOnlyList<DaySlot>)config.BlockedSlots).Contains(s);
 
     public int GetSlotIndex1Based() => (int)_slot + 1;
-
-    public string GetFormattedLabelEN() =>
-        $"Year {_year} – Term {_term} – Week {_week} – {WeekdayToEN(Weekday)} – {SlotToEN(_slot)}";
-    public string GetFormattedLabelVN() =>
-        $"Năm {_year} – Kì {_term} – Tuần {_week} – {WeekdayToVN(Weekday)} – {SlotToVN(_slot)}";
 
     // ================= Helpers (text) =================
     public static string WeekdayToEN(Weekday d) => d switch
@@ -104,32 +94,6 @@ public class GameClock : MonoBehaviour
         Weekday.Fri => "Friday",
         Weekday.Sat => "Saturday",
         _ => "Sunday"
-    };
-    public static string WeekdayToVN(Weekday d) => d switch
-    {
-        Weekday.Mon => "Thứ 2",
-        Weekday.Tue => "Thứ 3",
-        Weekday.Wed => "Thứ 4",
-        Weekday.Thu => "Thứ 5",
-        Weekday.Fri => "Thứ 6",
-        Weekday.Sat => "Thứ 7",
-        _ => "Chủ nhật"
-    };
-    public static string SlotToEN(DaySlot s) => s switch
-    {
-        DaySlot.MorningA => "Morning 1",
-        DaySlot.MorningB => "Morning 2",
-        DaySlot.AfternoonA => "Afternoon 1",
-        DaySlot.AfternoonB => "Afternoon 2",
-        _ => "Evening"
-    };
-    public static string SlotToVN(DaySlot s) => s switch
-    {
-        DaySlot.MorningA => "Sáng 1",
-        DaySlot.MorningB => "Sáng 2",
-        DaySlot.AfternoonA => "Chiều 1",
-        DaySlot.AfternoonB => "Chiều 2",
-        _ => "Tối"
     };
 
     // ================= Internal =================
@@ -164,7 +128,7 @@ public class GameClock : MonoBehaviour
         }
     }
 
-    /// Đảm bảo state nằm trong phạm vi config
+    /// Dam bao state hien tai hop le
     private void NormalizeNow(bool fullClamp)
     {
         int dPerW = config ? Mathf.Clamp(config.daysPerWeek, 1, 7) : 7;

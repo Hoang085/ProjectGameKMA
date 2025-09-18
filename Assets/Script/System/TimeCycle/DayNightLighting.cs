@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering; // để chỉnh AmbientMode
+using UnityEngine.Rendering; // Setup AmbientMode
 
 [DisallowMultipleComponent]
 public class DayNightLighting : MonoBehaviour
@@ -9,20 +9,20 @@ public class DayNightLighting : MonoBehaviour
     [System.Serializable]
     public struct SlotLighting
     {
-        public Vector3 sunEuler;     // góc quay Directional Light
-        public float sunIntensity;   // cường độ light
-        public Color sunColor;       // màu light
-        [Range(0f, 2f)] public float ambientIntensity; // độ sáng môi trường
-        public Color ambientColor;   // màu môi trường (Flat)
-        [Range(0f, 2f)] public float skyboxExposure;   // nếu dùng Skybox procedural
+        public Vector3 sunEuler;     // Goc quay Directional Light
+        public float sunIntensity;   // Cuong do light
+        public Color sunColor;       // Color light
+        [Range(0f, 2f)] public float ambientIntensity; // Do sang moi truong
+        public Color ambientColor;   // Mau moi truong
+        [Range(0f, 2f)] public float skyboxExposure;   // Neu dung Skybox procedural
     }
 
     [Header("Refs")]
     public Light sun;                          // Directional Light
-    public Material skyboxMat;                 // Skybox (optional, để đổi exposure)
+    public Material skyboxMat;                 // Skybox (optional, swap exposure)
 
     [Header("Transition")]
-    [Range(0f, 5f)] public float lerpSeconds = 1.0f;   // thời gian chuyển cảnh
+    [Range(0f, 5f)] public float lerpSeconds = 1.0f;   // Thoi gian chuyen canh
     public AnimationCurve lerpCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     [Header("Lighting Preset theo Slot")]
@@ -87,7 +87,7 @@ public class DayNightLighting : MonoBehaviour
 
     void OnEnable()
     {
-        if (GameClock.I)
+        if (GameClock.Ins)
         {
             Hook(true);
             ApplyNow(true);
@@ -101,23 +101,23 @@ public class DayNightLighting : MonoBehaviour
 
     IEnumerator WaitAndHook()
     {
-        while (!GameClock.I) yield return null;
+        while (!GameClock.Ins) yield return null;
         Hook(true);
         ApplyNow(true);
     }
 
     void Hook(bool sub)
     {
-        if (!GameClock.I) return;
+        if (!GameClock.Ins) return;
         if (sub)
         {
-            GameClock.I.OnSlotChanged += ApplyNow;
-            GameClock.I.OnDayChanged += ApplyNow;
+            GameClock.Ins.OnSlotChanged += ApplyNow;
+            GameClock.Ins.OnDayChanged += ApplyNow;
         }
         else
         {
-            GameClock.I.OnSlotChanged -= ApplyNow;
-            GameClock.I.OnDayChanged -= ApplyNow;
+            GameClock.Ins.OnSlotChanged -= ApplyNow;
+            GameClock.Ins.OnDayChanged -= ApplyNow;
         }
     }
 
@@ -125,18 +125,17 @@ public class DayNightLighting : MonoBehaviour
 
     void ApplyNow(bool instant)
     {
-        if (!sun || !GameClock.I) return;
+        if (!sun || !GameClock.Ins) return;
 
-        var target = GetPreset(GameClock.I.Slot, GameClock.I);
+        var target = GetPreset(GameClock.Ins.Slot, GameClock.Ins);
         if (_routine != null) StopCoroutine(_routine);
         _routine = StartCoroutine(LerpLighting(target, instant ? 0f : lerpSeconds));
     }
 
     SlotLighting GetPreset(DaySlot slot, GameClock clock)
     {
-        // nếu CalendarConfig chỉ có 4 ca/ngày → coi như không dùng evening
-        int sPerD = clock && clock.config ? Mathf.Max(1, clock.config.slotsPerDay) : 4;
-        if (sPerD <= 4 && slot == DaySlot.Evening) slot = DaySlot.AfternoonB;
+        // Setup 5 ca/ngay mac dinh
+        int sPerD = clock && clock.config ? Mathf.Max(1, clock.config.slotsPerDay) : 5;
 
         return slot switch
         {

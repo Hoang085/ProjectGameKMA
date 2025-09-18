@@ -38,7 +38,7 @@ public class TeacherAction : InteractableAction
     InteractableNPC _callerCache;
 
     GameUIManager UI => GameUIManager.Ins;
-    GameClock Clock => GameClock.I;
+    GameClock Clock => GameClock.Ins;
 
     // ---------------- Helpers ----------------
     string TitleText()
