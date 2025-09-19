@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 30898bb5526f8f542aa93bfaac20d996
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Examples/Prefabs/Healtbar.prefab
+  uploadId: 364203

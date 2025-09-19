@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 322335fb95ca09546bfb78b78147144b
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Editor/Code Generation/Templates/GameEventListenerTemplate
+  uploadId: 364203

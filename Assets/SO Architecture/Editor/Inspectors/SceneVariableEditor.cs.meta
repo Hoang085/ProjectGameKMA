@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: c76dd1dc59a44956a549cab1ec2f6905
+timeCreated: 1555320819
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Editor/Inspectors/SceneVariableEditor.cs
+  uploadId: 364203

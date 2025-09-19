@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cdb30503fc431034480da3ad5e66c268
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Editor/ScriptableObject-Architecture.Editor.asmdef
+  uploadId: 364203

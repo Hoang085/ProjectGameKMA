@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6b4a9d4ae717c8646a08e19ec31e859c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Examples/Scripts/ImageFillSetter.cs
+  uploadId: 364203
