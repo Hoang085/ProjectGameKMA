@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 508ddb2b74994e04b8af4f74c38fa859
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Editor/Generic Property Drawer/IPropertyDrawIterator.cs
+  uploadId: 364203

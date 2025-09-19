@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c2241684fa1fedc469507f17bf259e44
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Events/Responses/ByteUnityEvent.cs
+  uploadId: 364203

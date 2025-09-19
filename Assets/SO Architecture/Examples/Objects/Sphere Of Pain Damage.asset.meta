@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6a37932d0acd09746b3d2a9b91fc143e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Examples/Objects/Sphere Of Pain Damage.asset
+  uploadId: 364203

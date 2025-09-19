@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5bb692329aca5084da7363c2ad67846e
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Editor/Code Generation/Templates/ReferenceTemplate
+  uploadId: 364203

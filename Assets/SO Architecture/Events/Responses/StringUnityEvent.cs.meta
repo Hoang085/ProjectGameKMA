@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4975f08f908c73d4a8c24d675cf25b54
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Events/Responses/StringUnityEvent.cs
+  uploadId: 364203

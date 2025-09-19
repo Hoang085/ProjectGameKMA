@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c37df815504227545bf3c909a86f6ee6
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Editor/Code Generation/Templates/CollectionTemplate
+  uploadId: 364203

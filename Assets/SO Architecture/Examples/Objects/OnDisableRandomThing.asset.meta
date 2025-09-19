@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: aa89c184710051e43b3123245794dda6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Examples/Objects/OnDisableRandomThing.asset
+  uploadId: 364203

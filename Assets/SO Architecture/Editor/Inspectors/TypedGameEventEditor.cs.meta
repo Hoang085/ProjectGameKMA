@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f8c7bd95d11941644a5f9f3045c0545f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Editor/Inspectors/TypedGameEventEditor.cs
+  uploadId: 364203

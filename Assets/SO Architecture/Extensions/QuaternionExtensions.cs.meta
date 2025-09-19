@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 519b10e3cd564520adb5118a5b996f43
+timeCreated: 1555707619
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Extensions/QuaternionExtensions.cs
+  uploadId: 364203

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e00e4c8cc9a36d34e974afdacc9e034f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/AssemblyInfo.cs
+  uploadId: 364203

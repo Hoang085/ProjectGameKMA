@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 88af777236d645b45a7bf9fd42d6dd95
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Documentation/Variables.txt
+  uploadId: 364203
