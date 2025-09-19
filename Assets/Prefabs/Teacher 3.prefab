@@ -179,10 +179,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79326cba34a93b4285769d6d383ff81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overridePrompt: 
   semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
-  subjectName: Tieng Anh 1
-  subjectKeyForNotes: TiengAnh1
+  subjects:
+  - subjectName: Tieng Anh 1
+    subjectKeyForNotes: TiengAnh1
+    maxSessions: 15
+    currentSessionIndex: 0
   titleText: Thay Khoi - Tieng Anh 1
   openText: "Ch\xE0o em, h\xF4m nay em \u0111\u1EBFn \u0111\u1EC3 b\u1EAFt \u0111\u1EA7u
     bu\u1ED5i h\u1ECDc \u0111\xFAng kh\xF4ng?"
@@ -191,6 +193,8 @@ MonoBehaviour:
   wrongTimeText: "Kh\xF4ng ph\u1EA3i gi\u1EDD m\xF4n n\xE0y, quay l\u1EA1i \u0111\xFAng
     ca nh\xE9."
   learningText: "\u0110ang h\u1ECDc..."
+  finishedAllSessionsText: "Em \u0111\xE3 h\u1ECDc xong t\u1EA5t c\u1EA3 c\xE1c bu\u1ED5i
+    c\u1EE7a m\xF4n n\xE0y!"
   classSeconds: 3
   addNoteWhenFinished: 1
   overrideSessionIndex: 0

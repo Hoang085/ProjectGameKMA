@@ -16,7 +16,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
             // Chỉ tìm trong scene; KHÔNG tạo GameObject mới ở giai đoạn teardown
             if (m_ins == null)
-                m_ins = GameObject.FindObjectOfType<T>();
+                m_ins = GameObject.FindFirstObjectByType<T>();
 
             return m_ins;
         }

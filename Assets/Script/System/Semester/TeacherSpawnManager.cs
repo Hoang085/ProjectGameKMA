@@ -2,42 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Quan ly spawn va despawn giao vien
 [DisallowMultipleComponent]
 public class TeacherSpawnManager : Singleton<TeacherSpawnManager>
 {
     [Header("Setup")]
-    [Tooltip("Danh sách các giáo viên cần spawn")]
-    public List<TeacherEntry> teachers = new List<TeacherEntry>();
+    [Tooltip("Danh sach cac giao vien can spawn")]
+    public List<TeacherEntry> teachers = new List<TeacherEntry>(); // Danh sach thong tin giao vien
 
     [Header("Optional Debug")]
-    public bool spawnOnStart = true;
+    public bool spawnOnStart = true; // Tu dong spawn khi start
 
-    // instance cache
-    private readonly Dictionary<string, GameObject> _instances = new Dictionary<string, GameObject>();
+    // Cache instance theo teacherId
+    private readonly Dictionary<string, GameObject> _instances = new Dictionary<string, GameObject>(StringComparer.Ordinal);
 
+    // Khoi tao singleton
     public override void Awake()
     {
         MakeSingleton(false);
     }
 
-    void Start()
+    // Spawn tat ca giao vien khi start neu duoc bat
+    private void Start()
     {
         if (spawnOnStart) SpawnAll();
     }
 
-    //Spawn tất cả entries chưa có instance.
+    // Spawn tat ca giao vien chua co instance
     [ContextMenu("Spawn All Now")]
     public void SpawnAll()
     {
         foreach (var t in teachers)
         {
-            if (string.IsNullOrWhiteSpace(t.subjectName)) continue;
-            if (!_instances.ContainsKey(t.subjectName) || _instances[t.subjectName] == null)
-                Spawn(t.subjectName);
+            if (t == null || string.IsNullOrWhiteSpace(t.teacherId)) continue;
+            if (!_instances.ContainsKey(t.teacherId) || _instances[t.teacherId] == null)
+                Spawn(t.teacherId); // Spawn giao vien
         }
     }
 
-    // Despawn toàn bộ giáo viên đang tồn tại.
+    // Despawn tat ca giao vien
     [ContextMenu("Despawn All Now")]
     public void DespawnAll()
     {
@@ -45,74 +48,75 @@ public class TeacherSpawnManager : Singleton<TeacherSpawnManager>
         {
             if (kv.Value) Destroy(kv.Value);
         }
-        _instances.Clear();
+        _instances.Clear(); // Xoa cache
     }
 
-    // Spawn theo id (được đặt trong TeacherEntry.id).
-    public GameObject Spawn(string subjectName)
+    // Spawn giao vien theo teacherId
+    public GameObject Spawn(string teacherId)
     {
-        var entry = GetEntry(subjectName);
+        var entry = GetEntry(teacherId);
         if (entry == null)
         {
-            Debug.LogWarning($"[TeacherSpawnManager] Không tìm thấy entry subjectName='{subjectName}'");
+            Debug.LogWarning($"[TeacherSpawnManager] Không tìm thấy entry teacherId='{teacherId}'");
             return null;
         }
 
-        if (entry.prefab == null || entry.spawnPoint == null)
+        if (!entry.prefab || !entry.spawnPoint)
         {
-            Debug.LogWarning($"[TeacherSpawnManager] Entry '{subjectName}' thiếu prefab hoặc spawnPoint");
+            Debug.LogWarning($"[TeacherSpawnManager] Entry '{teacherId}' thiếu prefab hoặc spawnPoint");
             return null;
         }
 
-        // nếu đã có instance thì trả về
-        if (_instances.TryGetValue(subjectName, out var existed) && existed != null)
+        // Tra ve instance neu da ton tai
+        if (_instances.TryGetValue(teacherId, out var existed) && existed != null)
             return existed;
 
-        // Tạo mới
+        // Tao instance moi
         var rot = entry.keepUprightOnSpawn
             ? Quaternion.Euler(0f, entry.spawnPoint.rotation.eulerAngles.y, 0f)
             : entry.spawnPoint.rotation;
 
         var go = Instantiate(entry.prefab, entry.spawnPoint.position, rot, transform);
-        go.name = entry.prefab.name;
+        go.name = string.IsNullOrWhiteSpace(entry.displayName) ? entry.prefab.name : entry.displayName;
 
-        // Cấu hình InteractableNPC / TeacherAction nếu có
+        // Cau hinh component tren instance
         SetupComponents(go, entry);
 
-        _instances[subjectName] = go;
+        _instances[teacherId] = go;
         return go;
     }
 
-    // Xoá instance.
-    public void Despawn(string subjectName)
+    // Despawn giao vien theo teacherId
+    public void Despawn(string teacherId)
     {
-        if (_instances.TryGetValue(subjectName, out var inst) && inst != null)
+        if (_instances.TryGetValue(teacherId, out var inst) && inst != null)
             Destroy(inst);
-        _instances.Remove(subjectName);
+        _instances.Remove(teacherId);
     }
 
-    // Despawn rồi spawn lại
-    public void Respawn(string subjectName)
+    // Despawn va spawn lai giao vien
+    public void Respawn(string teacherId)
     {
-        Despawn(subjectName);
-        Spawn(subjectName);
+        Despawn(teacherId);
+        Spawn(teacherId);
     }
 
-    // Lấy instance hiện tại theo id.
-    public GameObject GetInstance(string subjectName)
+    // Lay instance giao vien theo teacherId
+    public GameObject GetInstance(string teacherId)
     {
-        return _instances.TryGetValue(subjectName, out var inst) ? inst : null;
+        return _instances.TryGetValue(teacherId, out var inst) ? inst : null;
     }
 
-    // Tìm entry theo id.
-    public TeacherEntry GetEntry(string subjectName)
+    // Tim entry giao vien theo teacherId
+    public TeacherEntry GetEntry(string teacherId)
     {
-        return teachers.Find(t => t != null && t.subjectName == subjectName);
+        return teachers.Find(t => t != null && t.teacherId == teacherId);
     }
 
+    // Cau hinh component cho instance giao vien
     private void SetupComponents(GameObject go, TeacherEntry e)
     {
-        //  Snap vị trí khi spawn 
+        // Dat vi tri va xoay
         if (e.spawnPoint)
         {
             var pos = e.spawnPoint.position;
@@ -122,6 +126,7 @@ public class TeacherSpawnManager : Singleton<TeacherSpawnManager>
 
             go.transform.SetPositionAndRotation(pos, rot);
 
+            // Snap velocity neu co Rigidbody
             if (e.snapOnStart)
             {
                 var rb = go.GetComponent<Rigidbody>();
@@ -133,32 +138,42 @@ public class TeacherSpawnManager : Singleton<TeacherSpawnManager>
             }
         }
 
-        //  Ưu tiên TeacherAction, loại xung đột với DialogueAction 
+        // Cau hinh TeacherAction
         var teacher = go.GetComponent<TeacherAction>();
         if (teacher != null)
         {
-            // Bơm data từ entry
             if (e.semesterConfig) teacher.semesterConfig = e.semesterConfig;
-            teacher.subjectName = e.subjectName;
+            if (!string.IsNullOrWhiteSpace(e.overrideTitleText)) teacher.titleText = e.overrideTitleText;
+
+            // Gan danh sach mon hoc
+            if (e.subjects != null && e.subjects.Count > 0)
+            {
+                teacher.subjects = new List<SubjectEntry>(e.subjects.Count);
+                foreach (var s in e.subjects)
+                {
+                    if (s == null) continue;
+                    var copy = new SubjectEntry
+                    {
+                        subjectName = s.subjectName,
+                        subjectKeyForNotes = s.subjectKeyForNotes,
+                        maxSessions = s.maxSessions,
+                        currentSessionIndex = 0 // Tien do se duoc tai trong Awake()
+                    };
+                    teacher.subjects.Add(copy);
+                }
+            }
         }
 
-        // Nếu trên prefab còn DialogueAction thì tắt để tránh mở hộp thoại thứ 2
-        var dlg = go.GetComponent<DialogueAction>();
-        if (dlg != null)
+        // Tat DialogueAction neu can
+        if (e.disableDialogueActionOnSpawn)
         {
-            // Có thể Destroy component, hoặc chỉ disable để còn dùng sau
-            // Destroy(dlg);
-            dlg.enabled = false;
+            var dlg = go.GetComponent<DialogueAction>();
+            if (dlg != null) dlg.enabled = false;
         }
-
-        // (Tùy chọn) nếu bạn có InteractableNPC chọn action theo thứ tự,
-        // có thể đảm bảo TeacherAction đứng trước:
-        // var actions = go.GetComponents<InteractableAction>();
-        // => Sắp xếp lại nếu cần (không bắt buộc nếu InteractableNPC đã xử lý tốt).
     }
 
-
 #if UNITY_EDITOR
+    // Ve gizmos de debug vi tri spawn
     private void OnDrawGizmosSelected()
     {
         if (teachers == null) return;
@@ -168,30 +183,45 @@ public class TeacherSpawnManager : Singleton<TeacherSpawnManager>
         {
             if (t == null || t.spawnPoint == null) continue;
 
-            // Vẽ vị trí spawn
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(t.spawnPoint.position, 0.25f);
             Gizmos.DrawLine(t.spawnPoint.position, t.spawnPoint.position + t.spawnPoint.forward * 0.8f);
 
-#if UNITY_EDITOR
-            UnityEditor.Handles.Label(t.spawnPoint.position + Vector3.up * 0.25f, $"Teacher: {t.subjectName}");
-#endif
+# if UNITY_EDITOR
+            UnityEditor.Handles.Label(t.spawnPoint.position + Vector3.up * 0.25f, $"Teacher: {t.displayName} ({t.teacherId})");
+# endif
         }
     }
 #endif
 }
 
+// Thong tin cau hinh cho mot giao vien
 [Serializable]
 public class TeacherEntry
 {
-    [Header("Prefab & Vị trí")]
-    public GameObject prefab;
-    public Transform spawnPoint;
+    [Header("Dinh danh")]
+    [Tooltip("ID duy nhat cho giao vien")]
+    public string teacherId = "GV_Toan_01"; // ID giao vien
+    [Tooltip("Ten hien thi trong Hierarchy")]
+    public string displayName = "Teacher Toan 01"; // Ten hien thi
 
-    public bool keepUprightOnSpawn = true;
-    public bool snapOnStart = true;
+    [Header("Prefab & Vi tri")]
+    public GameObject prefab; // Prefab giao vien
+    public Transform spawnPoint; // Vi tri spawn
+    [Tooltip("Giu truc dung khi spawn")]
+    public bool keepUprightOnSpawn = true; // Giu truc dung
+    [Tooltip("Dat velocity=0 khi spawn neu co Rigidbody")]
+    public bool snapOnStart = true; // Snap velocity
 
-    [Header("Lịch / Môn (gán vào TeacherAction)")]
-    public SemesterConfig semesterConfig;
-    public string subjectName = "Toan";
+    [Header("Lich / UI")]
+    public SemesterConfig semesterConfig; // Cau hinh hoc ky
+    [Tooltip("Ghi de titleText trong TeacherAction")]
+    public string overrideTitleText = "Giang vien"; // Tieu de giao dien
+
+    [Header("Mon giang day")]
+    public List<SubjectEntry> subjects = new List<SubjectEntry>(); // Danh sach mon day
+
+    [Header("Khac")]
+    [Tooltip("Tat DialogueAction khi spawn")]
+    public bool disableDialogueActionOnSpawn = true; // Tat DialogueAction
 }

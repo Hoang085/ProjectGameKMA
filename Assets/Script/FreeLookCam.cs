@@ -2,36 +2,91 @@
 using Cinemachine;
 using System.Collections;
 
+// Quản lý camera FreeLook, theo dõi người chơi và lưu game
 public class FreeLookCam : MonoBehaviour
 {
-    public CinemachineFreeLook freeLookCam;     // có thể để trống, script sẽ tự tìm
-    public PlayerSaveManager playerSaveManager; // có thể để trống, script sẽ tự tìm
+    public CinemachineFreeLook freeLookCam;        
+    public PlayerSaveManager playerSaveManager;  
 
-    public bool saveOnPause = true;
-    public bool saveOnQuit = true;
+    [Header("Behavior")]
+    public bool lockWhenDialogueOpen = true;    
+
+    public bool saveOnPause = true;                   // Lưu khi tạm dừng game
+    public bool saveOnQuit = true;                    // Lưu khi thoát game
+
+    // cache thông số để khôi phục
+    float _xSpeed0, _ySpeed0;
+    string _xAxisName0, _yAxisName0;
+    bool _isLocked;
 
     void Awake()
     {
-        if (!playerSaveManager) playerSaveManager = FindObjectOfType<PlayerSaveManager>();
-        if (!freeLookCam) freeLookCam = FindObjectOfType<CinemachineFreeLook>();
+        if (!playerSaveManager) playerSaveManager = SafeFindFirst<PlayerSaveManager>();
+        if (!freeLookCam) freeLookCam = SafeFindFirst<CinemachineFreeLook>();
+
+        if (freeLookCam)
+        {
+            // Lưu lại cấu hình gốc để còn khôi phục
+            _xSpeed0 = freeLookCam.m_XAxis.m_MaxSpeed;
+            _ySpeed0 = freeLookCam.m_YAxis.m_MaxSpeed;
+            _xAxisName0 = freeLookCam.m_XAxis.m_InputAxisName;
+            _yAxisName0 = freeLookCam.m_YAxis.m_InputAxisName;
+        }
     }
 
     void Start()
     {
-        // Fallback: nếu PlayerSaveManager chưa kịp BindTo(), đợi instance sẵn sàng rồi tự bind
         StartCoroutine(BindWhenReady());
+    }
+
+    void Update()
+    {
+        if (!lockWhenDialogueOpen || !freeLookCam) return;
+
+        bool wantLock = GameUIManager.Ins && GameUIManager.Ins.IsDialogueOpen;
+        if (wantLock != _isLocked)
+        {
+            ApplyLock(wantLock);
+            _isLocked = wantLock;
+        }
+    }
+
+    void ApplyLock(bool locked)
+    {
+        if (!freeLookCam) return;
+
+        if (locked)
+        {
+            // Khóa xoay: set speed = 0 + tắt input axis
+            freeLookCam.m_XAxis.m_MaxSpeed = 0f;
+            freeLookCam.m_YAxis.m_MaxSpeed = 0f;
+
+            freeLookCam.m_XAxis.m_InputAxisName = string.Empty;
+            freeLookCam.m_YAxis.m_InputAxisName = string.Empty;
+
+            // cũng reset giá trị input tức thời về 0 để dừng ngay lập tức
+            freeLookCam.m_XAxis.m_InputAxisValue = 0f;
+            freeLookCam.m_YAxis.m_InputAxisValue = 0f;
+        }
+        else
+        {
+            // Mở khóa: khôi phục cấu hình gốc
+            freeLookCam.m_XAxis.m_MaxSpeed = _xSpeed0;
+            freeLookCam.m_YAxis.m_MaxSpeed = _ySpeed0;
+
+            freeLookCam.m_XAxis.m_InputAxisName = _xAxisName0;
+            freeLookCam.m_YAxis.m_InputAxisName = _yAxisName0;
+        }
     }
 
     IEnumerator BindWhenReady()
     {
-        // đợi đến khi có instance
         while (!playerSaveManager || !playerSaveManager.PlayerInstance)
             yield return null;
 
-        BindTo(playerSaveManager.PlayerInstance);
+        BindTo(playerSaveManager.PlayerInstance); // Gán camera với người chơi
     }
 
-    // === API được PlayerSaveManager gọi trực tiếp sau khi Instantiate ===
     public void BindTo(GameObject playerInstance)
     {
         if (!freeLookCam || !playerInstance) return;
@@ -39,8 +94,8 @@ public class FreeLookCam : MonoBehaviour
         var t = playerInstance.transform;
         var lookAt = t.Find("LookAt") ?? t;
 
-        freeLookCam.Follow = t;      // bám theo thân Player
-        freeLookCam.LookAt = lookAt; // nhìn vào child "LookAt" nếu có, nếu không thì gốc
+        freeLookCam.Follow = t;
+        freeLookCam.LookAt = lookAt;
     }
 
     void OnApplicationPause(bool paused)
@@ -53,5 +108,19 @@ public class FreeLookCam : MonoBehaviour
     {
         if (saveOnQuit)
             playerSaveManager?.SaveNow();
+    }
+
+    // Tìm instance đầu tiên của T, hỗ trợ Unity cũ và mới
+    static T SafeFindFirst<T>(bool includeInactive = false) where T : Object
+    {
+#if UNITY_2023_1_OR_NEWER
+        return includeInactive
+            ? FindFirstObjectByType<T>(FindObjectsInactive.Include)
+            : FindFirstObjectByType<T>();
+#else
+        return includeInactive
+            ? Object.FindObjectOfType<T>(true)
+            : Object.FindObjectOfType<T>();
+#endif
     }
 }

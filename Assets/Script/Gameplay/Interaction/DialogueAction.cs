@@ -1,18 +1,11 @@
 ﻿using UnityEngine;
 
-public class DialogueAction : InteractableAction
+public class DialogueAction : InteractableAction //dung de xu ly hanh dong tuong tac voi NPC lien quan den viec hien thi hop thoai
 {
     [Header("Dialogue")]
     public string npcName;
     public string message = DataKeyText.openText;
-
     GameUIManager UI => GameUIManager.Ins;
-
-    public override string GetPromptText()
-    {
-        // Nếu không overridePrompt thì dùng tên NPC
-        return string.IsNullOrEmpty(overridePrompt) ? npcName : overridePrompt;
-    }
 
     public override void DoInteract(InteractableNPC caller)
     {

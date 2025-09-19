@@ -57,8 +57,9 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
 
     private void HookClock()
     {
-        var c = GameClock.Ins ?? FindObjectOfType<GameClock>(true);
+        var c = GameClock.Ins ?? FindFirstObjectByType<GameClock>(FindObjectsInactive.Include);
         if (!c) return;
+
         c.OnSlotChanged += Capture;
         c.OnDayChanged += Capture;
         c.OnWeekChanged += Capture;
@@ -68,8 +69,9 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
 
     private void UnhookClock()
     {
-        var c = GameClock.Ins ?? FindObjectOfType<GameClock>(true);
+        var c = GameClock.Ins ?? FindFirstObjectByType<GameClock>(FindObjectsInactive.Include);
         if (!c) return;
+
         c.OnSlotChanged -= Capture;
         c.OnDayChanged -= Capture;
         c.OnWeekChanged -= Capture;
@@ -77,14 +79,17 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
         c.OnYearChanged -= Capture;
     }
 
+
     // Luu lai trang thai hien tai vao PlayerPrefs
     private void Capture()
     {
-        var c = GameClock.Ins ?? FindObjectOfType<GameClock>(true);
+        var c = GameClock.Ins ?? FindFirstObjectByType<GameClock>(FindObjectsInactive.Include);
         if (!c) return;
+
         _lastState = ToDTO(c);
         _hasState = true;
     }
+
 
     private void OnApplicationPause(bool pauseStatus)
     {
@@ -116,10 +121,12 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
 
     private bool TrySaveFromClock()
     {
-        var c = GameClock.Ins ?? FindObjectOfType<GameClock>(true);
+        var c = GameClock.Ins ?? FindFirstObjectByType<GameClock>(FindObjectsInactive.Include);
         if (!c) return false;
+
         var dto = ToDTO(c);
         SaveDTO(dto);
+
         _lastState = dto;
         _hasState = true;
         return true;
@@ -145,7 +152,7 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
         var dto = JsonUtility.FromJson<ClockStateDTO>(json);
 
         //Neu luc load chua co GameClock, cache lai va cho scene gameplay
-        var c = GameClock.Ins ?? FindObjectOfType<GameClock>(true);
+        var c = GameClock.Ins ?? FindFirstObjectByType<GameClock>(FindObjectsInactive.Include);
         if (!c)
         {
             _lastState = dto;

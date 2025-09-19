@@ -11,14 +11,14 @@ public class PlayerSaveManager : MonoBehaviour
 
     [Header("Options")]
     public bool restoreOnStart = true;
-    public bool onlyYawRotation = true; // chỉ nhớ góc Y
+    public bool onlyYawRotation = true; // chi nho quay theo truc Y
 
     // Keys
     const string KX = "player_pos_x", KY = "player_pos_y", KZ = "player_pos_z";
     const string KRX = "player_rot_x", KRY = "player_rot_y", KRZ = "player_rot_z";
     const string KSCENE = "player_scene";
 
-    // Expose cho script khác dùng (read-only)
+    // Expose cho script khac dung read-only
     public GameObject PlayerInstance { get; private set; }
 
     private void Awake()
@@ -56,7 +56,7 @@ public class PlayerSaveManager : MonoBehaviour
         else
         {
             SpawnAtDefault();
-            return; // SpawnAtDefault sẽ tự bind camera
+            return; // SpawnAtDefault tu tim rang buoc BindCamera
         }
 
         BindCamera();
@@ -74,7 +74,7 @@ public class PlayerSaveManager : MonoBehaviour
     void BindCamera()
     {
         if (!_freeLookCam || !PlayerInstance) return;
-        _freeLookCam.BindTo(PlayerInstance);   // <<< gọi sang FreeLookCam
+        _freeLookCam.BindTo(PlayerInstance);   // Goi FreeLookCam bind theo Player moi
     }
 
     bool HasSavedPosition() => PlayerPrefs.HasKey(KX);
