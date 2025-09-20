@@ -244,7 +244,17 @@ public class TeacherAction : InteractableAction
 
         AddNoteIfNeeded(subj); // Them ghi chu
 
-        if (Clock) Clock.NextSlot(); // Chuyen ca tiep theo
+        // ✅ Gọi ClockUI để chuyển ca + warp đồng hồ
+        var clockUI = Object.FindFirstObjectByType<ClockUI>();
+        if (clockUI != null)
+        {
+            clockUI.JumpToNextSessionNow();
+        }
+        else
+        {
+            // fallback nếu chưa có ClockUI trong scene
+            if (Clock) Clock.NextSlot();
+        }
 
         _state = State.Idle;
         UI?.HideInteractPrompt();

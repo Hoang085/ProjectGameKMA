@@ -9,32 +9,28 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
     [System.Serializable]
     public struct ClockStateDTO
     {
-        public int year;  // 1-based
-        public int term;  // 1-based
-        public int week;  // 1-based
-        public int day;   // 1-based (1 = Monday)
-        public int slot;  // DaySlot enum -> int
+        public int year;   // 1-based
+        public int term;   // 1-based
+        public int week;   // 1-based
+        public int day;    // 1-based (1 = Monday)
+        public int slot;   // DaySlot enum -> int
+        public int minuteOfDay; // NEW: 0..1439, thời gian trong ngày của ClockUI
     }
 
     [Header("Options")]
     public bool loadOnStart = true;
     public bool autoSaveOnPause = true;
     public bool autoSaveOnQuit = true;
+    [Tooltip("Khi load, đồng bộ GameClock slot theo minuteOfDay (nếu lệch).")]
+    public bool syncSlotWithMinuteOnLoad = true;
 
-    // Lay cache gan nhat
+    // cache gần nhất
     private ClockStateDTO _lastState;
     private bool _hasState;
 
-    public override void Awake()
-    {
-        MakeSingleton(false);
-    }
+    public override void Awake() { MakeSingleton(false); }
 
-    private void OnEnable()
-    {
-        SceneManager.activeSceneChanged += OnSceneChanged;
-    }
-
+    private void OnEnable() { SceneManager.activeSceneChanged += OnSceneChanged; }
     private void OnDisable()
     {
         SceneManager.activeSceneChanged -= OnSceneChanged;
@@ -45,7 +41,7 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
     {
         if (loadOnStart) TryLoad();
         HookClock();
-        Capture(); // Lay cache dau tien neu co
+        Capture(); // cache lần đầu
     }
 
     private void OnSceneChanged(Scene _, Scene __)
@@ -79,35 +75,38 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
         c.OnYearChanged -= Capture;
     }
 
-
-    // Luu lai trang thai hien tai vao PlayerPrefs
+    // ==== Lấy trạng thái hiện tại (kèm minute từ ClockUI) ====
     private void Capture()
     {
         var c = GameClock.Ins ?? FindFirstObjectByType<GameClock>(FindObjectsInactive.Include);
         if (!c) return;
 
-        _lastState = ToDTO(c);
+        var dto = ToDTO(c);
+        // Lấy minuteOfDay từ ClockUI nếu có
+        var clockUI = FindFirstObjectByType<ClockUI>(FindObjectsInactive.Include);
+        dto.minuteOfDay = clockUI ? clockUI.GetMinuteOfDay() : -1; // -1 = không có
+
+        _lastState = dto;
         _hasState = true;
     }
 
-
     private void OnApplicationPause(bool pauseStatus)
     {
-        if (autoSaveOnPause && pauseStatus) Save(); // Luu khi pause
+        if (autoSaveOnPause && pauseStatus) Save();
     }
 
     private void OnApplicationQuit()
     {
-        if (autoSaveOnQuit) Save(); // Neu GameClock null thi dung cache
+        if (autoSaveOnQuit) Save();
     }
 
     [ContextMenu("Save Now")]
     public void Save()
     {
-        // Uu tien tu GameClock
-        if (TrySaveFromClock()) return;
+        // Ưu tiên lấy mới từ scene hiện tại
+        if (TrySaveFromScene()) return;
 
-        // Game Clock null, dung cache neu co
+        // Không có scene hợp lệ → lưu cache nếu có
         if (_hasState)
         {
             SaveDTO(_lastState);
@@ -115,16 +114,21 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
         }
 
 #if UNITY_EDITOR
-        Debug.LogWarning("[TimeSaveManager] Khong co GameClock cung nhu chua co state de luu");
+        Debug.LogWarning("[TimeSaveManager] Khong co GameClock/ClockUI va chua co cache de luu.");
 #endif
     }
 
-    private bool TrySaveFromClock()
+    private bool TrySaveFromScene()
     {
         var c = GameClock.Ins ?? FindFirstObjectByType<GameClock>(FindObjectsInactive.Include);
         if (!c) return false;
 
         var dto = ToDTO(c);
+
+        // Lấy minuteOfDay hiện tại từ ClockUI (nếu không có thì -1)
+        var clockUI = FindFirstObjectByType<ClockUI>(FindObjectsInactive.Include);
+        dto.minuteOfDay = clockUI ? clockUI.GetMinuteOfDay() : -1;
+
         SaveDTO(dto);
 
         _lastState = dto;
@@ -151,7 +155,7 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
 
         var dto = JsonUtility.FromJson<ClockStateDTO>(json);
 
-        //Neu luc load chua co GameClock, cache lai va cho scene gameplay
+        // Nếu chưa có GameClock, cache lại đợi scene gameplay
         var c = GameClock.Ins ?? FindFirstObjectByType<GameClock>(FindObjectsInactive.Include);
         if (!c)
         {
@@ -160,7 +164,17 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
             return;
         }
 
+        // 1) Khôi phục GameClock như trước
         c.SetTime(dto.year, dto.term, dto.week, dto.day, (DaySlot)dto.slot);
+
+        // 2) Khôi phục đồng hồ số (minuteOfDay) nếu có
+        var clockUI = FindFirstObjectByType<ClockUI>(FindObjectsInactive.Include);
+        if (clockUI && dto.minuteOfDay >= 0)
+        {
+            // Nếu muốn, sync lại slot theo minute luôn cho khớp
+            clockUI.SetMinuteOfDay(dto.minuteOfDay, syncSlotWithMinuteOnLoad);
+        }
+
         _lastState = dto;
         _hasState = true;
 #if UNITY_EDITOR
@@ -185,7 +199,8 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
             term = c.Term,
             week = c.Week,
             day = c.DayIndex,
-            slot = (int)c.Slot
+            slot = (int)c.Slot,
+            minuteOfDay = -1 // sẽ gán thật khi Capture/TrySaveFromScene
         };
     }
 }
