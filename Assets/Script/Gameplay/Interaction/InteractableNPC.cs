@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// Lop InteractableNPC xu ly tuong tac giua nguoi choi va NPC
 [RequireComponent(typeof(Collider))]
 public class InteractableNPC : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class InteractableNPC : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
+    // An goi y tuong tac khi tat NPC
     void OnDisable()
     {
         if (UI) UI.HideInteractPrompt();
@@ -37,23 +39,17 @@ public class InteractableNPC : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         _playerNearby = true;
-
         _action?.OnPlayerEnter();
-
-        if (!UI) return;
-        UI.ShowInteractPrompt(interactKey);
+        if (UI) UI.ShowInteractPrompt(interactKey); // Hien thi goi y tuong tac
     }
 
     void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
         _playerNearby = false;
-
         _action?.OnPlayerExit();
-
-        if (UI) UI.HideInteractPrompt();
+        if (UI) UI.HideInteractPrompt(); // An goi y tuong tac
     }
-
 
     void Update()
     {
@@ -61,10 +57,11 @@ public class InteractableNPC : MonoBehaviour
         if (Input.GetKeyDown(interactKey) && Time.time - _lastInteractTime >= interactCooldown)
         {
             _lastInteractTime = Time.time;
-            DoInteract();
+            DoInteract(); // Thuc hien tuong tac
         }
     }
 
+    // Kich hoat hanh dong tuong tac
     public void DoInteract()
     {
         if (_action != null)

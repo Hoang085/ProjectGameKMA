@@ -2,12 +2,10 @@
 using System.Text;
 using UnityEngine;
 
+// ScheduleResolver xu ly logic lien quan den lich hoc
 public static class ScheduleResolver
 {
-    /// <summary>
-    /// Trả về true nếu tại (weekday, slot) hiện tại trong SemesterConfig
-    /// có môn trùng với subjectName (so khớp bỏ dấu & không phân biệt hoa/thường).
-    /// </summary>
+    // Kiem tra mon hoc tai ngay va ca co khop voi ten mon
     public static bool IsSessionMatch(
         SemesterConfig sem, string subjectName, Weekday today, int slotIndex1Based)
     {
@@ -15,9 +13,7 @@ public static class ScheduleResolver
         return NameEquals(subjectNow, subjectName);
     }
 
-    /// <summary>
-    /// Đọc SemesterConfig để tìm tên môn tại (weekday, slot). Trả về "" nếu không có.
-    /// </summary>
+    // Tim ten mon hoc tai ngay va ca cu the
     public static string FindSubjectAt(SemesterConfig sem, Weekday day, int slotIndex1Based)
     {
         if (!sem || sem.Subjects == null) return string.Empty;
@@ -33,17 +29,17 @@ public static class ScheduleResolver
                 if (TryParseWeekday(ses.Day, out var d))
                 {
                     if (d == day && ses.Slot == slotIndex1Based)
-                        return sub.Name ?? string.Empty; // lấy TEXT trong ScriptableObject
+                        return sub.Name ?? string.Empty; // Tra ve ten mon hoc
                 }
             }
         }
         return string.Empty;
     }
 
-    /// <summary>So sánh bỏ dấu + không phân biệt hoa/thường.</summary>
+    // So sanh ten mon hoc, bo qua dau va khong phan biet hoa/thuong
     public static bool NameEquals(string a, string b) => Normalize(a) == Normalize(b);
 
-    /// <summary>Chuẩn hoá chuỗi: trim, lower, bỏ dấu tiếng Việt.</summary>
+    // Chuan hoa chuoi: loai bo dau, chuyen thanh thuong, trim
     public static string Normalize(string s)
     {
         if (string.IsNullOrWhiteSpace(s)) return "";
@@ -57,14 +53,13 @@ public static class ScheduleResolver
         return sb.ToString().Normalize(NormalizationForm.FormC);
     }
 
-    /// <summary>Parse thứ từ chuỗi trong ScriptableObject (EN hoặc VI).</summary>
+    // Parse chuoi ngay thanh enum Weekday
     public static bool TryParseWeekday(string dayStr, out Weekday d)
     {
         d = Weekday.Mon;
         if (string.IsNullOrWhiteSpace(dayStr)) return false;
         var s = Normalize(dayStr);
 
-        // en
         if (s is "mon" or "monday") { d = Weekday.Mon; return true; }
         if (s is "tue" or "tuesday") { d = Weekday.Tue; return true; }
         if (s is "wed" or "wednesday") { d = Weekday.Wed; return true; }
@@ -72,15 +67,6 @@ public static class ScheduleResolver
         if (s is "fri" or "friday") { d = Weekday.Fri; return true; }
         if (s is "sat" or "saturday") { d = Weekday.Sat; return true; }
         if (s is "sun" or "sunday") { d = Weekday.Sun; return true; }
-
-        // vi
-        if (s is "thu 2" or "thu2" or "t2") { d = Weekday.Mon; return true; }
-        if (s is "thu 3" or "thu3" or "t3") { d = Weekday.Tue; return true; }
-        if (s is "thu 4" or "thu4" or "t4") { d = Weekday.Wed; return true; }
-        if (s is "thu 5" or "thu5" or "t5") { d = Weekday.Thu; return true; }
-        if (s is "thu 6" or "thu6" or "t6") { d = Weekday.Fri; return true; }
-        if (s is "thu 7" or "thu7" or "t7") { d = Weekday.Sat; return true; }
-        if (s is "chu nhat" or "chunhat" or "cn") { d = Weekday.Sun; return true; }
 
         return false;
     }

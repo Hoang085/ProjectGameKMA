@@ -195,11 +195,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79326cba34a93b4285769d6d383ff81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overridePrompt: 
   semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
-  subjectName: Tu Tuong HCM
-  subjectKeyForNotes: TuTuongHCM
-  titleText: Co Hoa - Tu Tuong HCM
+  subjects:
+  - subjectName: Tu Tuong HCM
+    subjectKeyForNotes: TuTuongHCM
+    maxSessions: 10
+    currentSessionIndex: 0
+  titleText: "C\xF4 Hoa"
   openText: "Ch\xE0o em, h\xF4m nay em \u0111\u1EBFn \u0111\u1EC3 b\u1EAFt \u0111\u1EA7u
     bu\u1ED5i h\u1ECDc \u0111\xFAng kh\xF4ng?"
   confirmText: "Em \u0111\xE3 \u0111i\u1EC3m danh bu\u1ED5i h\xF4m nay, ch\xFAng
@@ -207,6 +209,10 @@ MonoBehaviour:
   wrongTimeText: "Kh\xF4ng ph\u1EA3i gi\u1EDD m\xF4n n\xE0y, quay l\u1EA1i \u0111\xFAng
     ca nh\xE9."
   learningText: "\u0110ang h\u1ECDc..."
+  finishedAllSessionsText: "Em \u0111\xE3 h\u1ECDc xong t\u1EA5t c\u1EA3 c\xE1c bu\u1ED5i
+    c\u1EE7a m\xF4n n\xE0y!"
+  exceededAbsenceText: "Em \u0111\xE3 ngh\u1EC9 qu\xE1 s\u1ED1 bu\u1ED5i quy \u0111\u1ECBnh
+    cho ph\xE9p"
   classSeconds: 3
   addNoteWhenFinished: 1
   overrideSessionIndex: 0

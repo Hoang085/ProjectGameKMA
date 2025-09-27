@@ -3,30 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering; // Setup AmbientMode
 
+// Quan ly anh sang ngay va dem theo cac ca trong ngay
 [DisallowMultipleComponent]
 public class DayNightLighting : MonoBehaviour
 {
+    // Cau truc chua thong tin anh sang cho mot ca
     [System.Serializable]
     public struct SlotLighting
     {
         public Vector3 sunEuler;     // Goc quay Directional Light
-        public float sunIntensity;   // Cuong do light
-        public Color sunColor;       // Color light
+        public float sunIntensity;   // Cuong do anh sang
+        public Color sunColor;       // Mau anh sang
         [Range(0f, 2f)] public float ambientIntensity; // Do sang moi truong
         public Color ambientColor;   // Mau moi truong
-        [Range(0f, 2f)] public float skyboxExposure;   // Neu dung Skybox procedural
+        [Range(0f, 2f)] public float skyboxExposure;   // Do phoi sang skybox
     }
 
     [Header("Refs")]
-    public Light sun;                          // Directional Light
-    public Material skyboxMat;                 // Skybox (optional, swap exposure)
+    public Light sun; // Directional Light
+    public Material skyboxMat; // Material skybox (tuỳ chon)
 
     [Header("Transition")]
-    [Range(0f, 5f)] public float lerpSeconds = 1.0f;   // Thoi gian chuyen canh
-    public AnimationCurve lerpCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    [Range(0f, 5f)] public float lerpSeconds = 1.0f; // Thoi gian chuyen canh
+    public AnimationCurve lerpCurve = AnimationCurve.EaseInOut(0, 0, 1, 1); // Duong cong chuyen tiep
 
     [Header("Lighting Preset theo Slot")]
-    public SlotLighting morningA = new SlotLighting
+    public SlotLighting morningA = new SlotLighting // Ca sang som
     {
         sunEuler = new Vector3(25, 30, 0),
         sunIntensity = 1.0f,
@@ -35,7 +37,7 @@ public class DayNightLighting : MonoBehaviour
         ambientColor = new Color(0.75f, 0.78f, 0.9f),
         skyboxExposure = 1.1f
     };
-    public SlotLighting morningB = new SlotLighting
+    public SlotLighting morningB = new SlotLighting // Ca sang muon
     {
         sunEuler = new Vector3(50, 60, 0),
         sunIntensity = 1.2f,
@@ -44,7 +46,7 @@ public class DayNightLighting : MonoBehaviour
         ambientColor = new Color(0.8f, 0.82f, 0.92f),
         skyboxExposure = 1.2f
     };
-    public SlotLighting afternoonA = new SlotLighting
+    public SlotLighting afternoonA = new SlotLighting // Ca chieu som
     {
         sunEuler = new Vector3(35, 150, 0),
         sunIntensity = 1.1f,
@@ -53,7 +55,7 @@ public class DayNightLighting : MonoBehaviour
         ambientColor = new Color(0.78f, 0.8f, 0.9f),
         skyboxExposure = 1.1f
     };
-    public SlotLighting afternoonB = new SlotLighting
+    public SlotLighting afternoonB = new SlotLighting // Ca chieu muon
     {
         sunEuler = new Vector3(10, 200, 0),
         sunIntensity = 0.7f,
@@ -62,8 +64,8 @@ public class DayNightLighting : MonoBehaviour
         ambientColor = new Color(0.65f, 0.7f, 0.85f),
         skyboxExposure = 0.9f
     };
-    public SlotLighting evening = new SlotLighting
-    {     // dùng khi bạn có slot Evening
+    public SlotLighting evening = new SlotLighting // Ca toi
+    {
         sunEuler = new Vector3(-5, 230, 0),
         sunIntensity = 0.15f,
         sunColor = new Color(0.7f, 0.8f, 1.0f),
@@ -72,19 +74,28 @@ public class DayNightLighting : MonoBehaviour
         skyboxExposure = 0.6f
     };
 
-    Coroutine _routine;
+    Coroutine _routine; // Coroutine chuyen doi anh sang
 
+    // Tu dong tim Directional Light va skybox
     void Reset()
     {
-        // auto-find Directional Light
         if (!sun)
         {
-            foreach (var l in FindObjectsOfType<Light>())
-                if (l.type == LightType.Directional) { sun = l; break; }
+            foreach (var l in FindObjectsByType<Light>(FindObjectsSortMode.None))
+            {
+                if (l.type == LightType.Directional)
+                {
+                    sun = l;
+                    break;
+                }
+            }
         }
-        if (!skyboxMat && RenderSettings.skybox) skyboxMat = RenderSettings.skybox;
+
+        if (!skyboxMat && RenderSettings.skybox)
+            skyboxMat = RenderSettings.skybox;
     }
 
+    // Lang nghe su kien thay doi ca/ngay
     void OnEnable()
     {
         if (GameClock.Ins)
@@ -97,8 +108,11 @@ public class DayNightLighting : MonoBehaviour
             StartCoroutine(WaitAndHook());
         }
     }
+
+    // Huy lang nghe su kien
     void OnDisable() => Hook(false);
 
+    // Cho GameClock khoi tao
     IEnumerator WaitAndHook()
     {
         while (!GameClock.Ins) yield return null;
@@ -106,6 +120,7 @@ public class DayNightLighting : MonoBehaviour
         ApplyNow(true);
     }
 
+    // Dang ky/huy su kien GameClock
     void Hook(bool sub)
     {
         if (!GameClock.Ins) return;
@@ -121,8 +136,10 @@ public class DayNightLighting : MonoBehaviour
         }
     }
 
+    // Ap dung anh sang ngay lap tuc
     void ApplyNow() => ApplyNow(false);
 
+    // Ap dung anh sang voi tuy chon chuyen canh
     void ApplyNow(bool instant)
     {
         if (!sun || !GameClock.Ins) return;
@@ -132,9 +149,9 @@ public class DayNightLighting : MonoBehaviour
         _routine = StartCoroutine(LerpLighting(target, instant ? 0f : lerpSeconds));
     }
 
+    // Lay preset anh sang theo ca
     SlotLighting GetPreset(DaySlot slot, GameClock clock)
     {
-        // Setup 5 ca/ngay mac dinh
         int sPerD = clock && clock.config ? Mathf.Max(1, clock.config.slotsPerDay) : 5;
 
         return slot switch
@@ -147,9 +164,9 @@ public class DayNightLighting : MonoBehaviour
         };
     }
 
+    // Chuyen doi anh sang voi lerp
     IEnumerator LerpLighting(SlotLighting target, float seconds)
     {
-        // capture current
         var startRot = sun.transform.eulerAngles;
         var startIntensity = sun.intensity;
         var startColor = sun.color;
@@ -184,6 +201,7 @@ public class DayNightLighting : MonoBehaviour
         Apply(target);
     }
 
+    // Ap dung thong so anh sang
     void Apply(SlotLighting p)
     {
         sun.transform.eulerAngles = p.sunEuler;
