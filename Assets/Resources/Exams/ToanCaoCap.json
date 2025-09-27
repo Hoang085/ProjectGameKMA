@@ -1,0 +1,37 @@
+﻿{
+  "examTitle": "Đề thi cuối kì 1",
+  "subjectName": "Toán Cao Cấp",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Đạo hàm của f(x) tại x = a luôn tồn tại nếu f(x) khả vi trên toàn bộ miền xác định.",
+      "options": [
+        "Đúng",
+        "Sai",
+        "Đúng trong một số trường hợp",
+        "Không xác định"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nếu f(a) tồn tại, thì f(x) phải liên tục tại x = a.",
+      "options": [
+        "Đúng",
+        "Sai",
+        "Chỉ đúng khi f(x) khả vi",
+        "Không xác định"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Nếu f(x) không khả vi tại x = a, thì f(x) chắc chắn không liên tục tại x = a.",
+      "options": [
+        "Đúng",
+        "Sai",
+        "Có thể đúng có thể sai",
+        "Không xác định"
+      ],
+      "correctIndex": 1
+    }
+  ]
+}

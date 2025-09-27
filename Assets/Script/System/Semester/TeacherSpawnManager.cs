@@ -143,7 +143,6 @@ public class TeacherSpawnManager : Singleton<TeacherSpawnManager>
         if (teacher != null)
         {
             if (e.semesterConfig) teacher.semesterConfig = e.semesterConfig;
-            if (!string.IsNullOrWhiteSpace(e.overrideTitleText)) teacher.titleText = e.overrideTitleText;
 
             // Gan danh sach mon hoc
             if (e.subjects != null && e.subjects.Count > 0)
@@ -215,8 +214,6 @@ public class TeacherEntry
 
     [Header("Lich / UI")]
     public SemesterConfig semesterConfig; // Cau hinh hoc ky
-    [Tooltip("Ghi de titleText trong TeacherAction")]
-    public string overrideTitleText = "Giang vien"; // Tieu de giao dien
 
     [Header("Mon giang day")]
     public List<SubjectEntry> subjects = new List<SubjectEntry>(); // Danh sach mon day

@@ -3,5 +3,11 @@
     public const string openText = "Chào em, hôm nay em đến để bắt đầu buổi học đúng không?"; // openText
     public const string text1 = "Em đã điểm danh buổi hôm nay, chúng ta bắt đầu vào học nhé"; // confirmText
     public const string text2 = "Không phải giờ môn này, quay lại đúng ca nhé."; // wrongTimeText
-    public const string text3 = "Đang học..."; // learningText
+    public const string text3 = "Đang học..."; // learningText 
+    public const string text4 = "Môn này không có trong SemesterConfig hiện tại: "; // noSubjectText
+    public const string text5 = "Em đã nghỉ quá số buổi quy định cho phép"; // exceedAbsenceText
+    public const string text6 = "Ca hiện tại chưa khởi tạo."; // noCurrentSlotText
+    public const string text7 = "Không đúng ca học của môn này đang là: "; // wrongSubjectText
+    public const string text8 = "Không tìm thấy khung giờ điểm danh cho ca này."; // noTimeWindowText
+    public const string text9 = "Đã quá giờ điểm danh vào học, em không thể học môn này ngày hôm nay lần sau hãy đến đúng giờ vào nhé";
 }

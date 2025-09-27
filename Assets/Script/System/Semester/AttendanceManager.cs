@@ -78,24 +78,24 @@ public class AttendanceManager : MonoBehaviour
         var sub = FindSubject(sem, subjectName);
         if (sub == null)
         {
-            error = $"Môn '{subjectName}' không có trong SemesterConfig hiện tại.";
+            error = DataKeyText.text4 + subjectName ;
             return false;
         }
 
         if (HasExceededAbsences(subjectName, clock.Term))
         {
-            error = "Em đã nghỉ quá số buổi quy định cho phép";
+            error = DataKeyText.text5;
             return false;
         }
 
         if (_currentSubject == null)
         {
-            error = "Ca hiện tại chưa khởi tạo (hãy chuyển slot 1 lần).";
+            error = DataKeyText.text6;
             return false;
         }
         if (!SameSubject(subjectName, _currentSubject.Name))
         {
-            error = $"Không đúng ca học của môn này (đang là: '{_currentSubject.Name}').";
+            error = DataKeyText.text6 + _currentSubject.Name;
             return false;
         }
 
@@ -105,13 +105,13 @@ public class AttendanceManager : MonoBehaviour
         if (!clockUI) { error = "ClockUI chưa sẵn sàng."; return false; }
 
         var slot = clock.Slot;
-        if (slot == DaySlot.Evening) { error = "Ca tối không cho điểm danh."; return false; }
-        if (slotPolicy == null) { error = "Chưa cấu hình SubjectAttendanceConfig (slotPolicy)."; return false; }
+        if (slot == DaySlot.Evening) return false; 
+        if (slotPolicy == null) return false; 
 
         int slotStart = GetSlotStart(slot);
         if (!slotPolicy.TryGetWindow(slot, slotStart, out int windowStart, out int windowEnd))
         {
-            error = "Không tìm thấy khung giờ điểm danh cho ca này.";
+            error = DataKeyText.text8;
             return false;
         }
 
@@ -119,20 +119,20 @@ public class AttendanceManager : MonoBehaviour
 
         if (now < windowStart)
         {
-            error = $"Chưa đến giờ điểm danh (từ {windowStart / 60:00}:{windowStart % 60:00}).";
+            error = $"Chưa đến giờ học! Em hãy đến điểm danh từ {windowStart / 60:00}:{windowStart % 60:00} đến {windowEnd / 60:00}:{windowEnd % 60:00} nhé.";
             return false;
         }
 
         if (now < windowEnd)
         {
-            // ✅ Đúng giờ trong [windowStart, windowEnd)
+            // Đúng giờ trong [windowStart, windowEnd)
             _attendedThisSlot = true;
             isLate = false;
             return true;
         }
 
-        // ❌ Hết endOffsetMinutes → không cho điểm danh
-        error = $"Ngoài khung giờ điểm danh (đến {windowEnd / 60:00}:{windowEnd % 60:00}).";
+        // Hết endOffsetMinutes → không cho điểm danh
+        error = DataKeyText.text9;
         return false;
     }
 
