@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: DataCalendar
   m_EditorClassIdentifier: 
   termsPerYear: 2
-  weeksPerTerm: 5
+  weeksPerTerm: 6
   daysPerWeek: 7
   slotsPerDay: 5
   teachingDays: 0000000001000000020000000300000004000000
-  maxSessionsPerCoursePerWeek: 2
+  maxSessionsPerCoursePerWeek: 3
   blockedSlots: 04000000

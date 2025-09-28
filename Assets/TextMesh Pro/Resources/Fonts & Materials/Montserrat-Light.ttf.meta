@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f2dd72dcda98c3d42a176071c7d020b4
+guid: c9f109060f8ea5f40a4ab745c6de4771
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - VNI-Disney
+  - Montserrat
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

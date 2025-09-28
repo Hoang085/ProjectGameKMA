@@ -13,7 +13,7 @@ public class CalendarConfig : ScriptableObject
 {
     [Header("Cau hinh nam hoc")]
     [Min(1)] public int termsPerYear = 2; // So hoc ky trong nam
-    [Min(1)] public int weeksPerTerm = 5; // So tuan trong mot hoc ky
+    [Min(1)] public int weeksPerTerm = 6; // So tuan trong mot hoc ky
     [Min(1)] public int daysPerWeek = 7; // So ngay trong mot tuan
     [Min(1)] public int slotsPerDay = 5; // So ca trong mot ngay
 

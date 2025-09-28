@@ -187,10 +187,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 251192555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 450, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &25794348
 MonoBehaviour:
@@ -1288,6 +1288,7 @@ MonoBehaviour:
       subjectKeyForNotes: ToanCaoCap
       maxSessions: 10
       currentSessionIndex: 0
+      examIndexInLoader: -1
     disableDialogueActionOnSpawn: 1
   - teacherId: GVTiengAnh
     displayName: TiengAnh
@@ -1301,6 +1302,7 @@ MonoBehaviour:
       subjectKeyForNotes: TuTuongHCM
       maxSessions: 10
       currentSessionIndex: 0
+      examIndexInLoader: -1
     disableDialogueActionOnSpawn: 1
   - teacherId: Thay Hop
     displayName: Thay Hop
@@ -1314,6 +1316,7 @@ MonoBehaviour:
       subjectKeyForNotes: TiengAnh1
       maxSessions: 15
       currentSessionIndex: 0
+      examIndexInLoader: -1
     disableDialogueActionOnSpawn: 1
   spawnOnStart: 1
 --- !u!4 &430717729
@@ -1602,10 +1605,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 251192555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 600, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &540127706
 MonoBehaviour:
@@ -2506,8 +2509,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 89.22501}
-  m_SizeDelta: {x: 0, y: 178.35}
+  m_AnchoredPosition: {x: 0, y: 76}
+  m_SizeDelta: {x: 0, y: 152}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &842200947
 MonoBehaviour:
@@ -3430,10 +3433,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 251192555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 750, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1110131744
 MonoBehaviour:
@@ -5252,7 +5255,7 @@ MonoBehaviour:
   iconMorning: {fileID: 1163480711, guid: 4fc037aafe133034ea91f6dad196d9c5, type: 3}
   iconAfternoon: {fileID: 1123815092, guid: 4fc037aafe133034ea91f6dad196d9c5, type: 3}
   iconNight: {fileID: 1910843929, guid: 4fc037aafe133034ea91f6dad196d9c5, type: 3}
-  secondsPerGameMinute: 10
+  secondsPerGameMinute: 500
   warpDuration: 1.5
   warpScale: 1.3
   warpTint: {r: 1, g: 0.95, b: 0.7, a: 1}
@@ -5590,10 +5593,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 251192555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 300, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1847736914
 MonoBehaviour:

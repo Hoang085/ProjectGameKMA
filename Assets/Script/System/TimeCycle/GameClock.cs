@@ -114,7 +114,7 @@ public class GameClock : Singleton<GameClock>
         OnDayChanged?.Invoke();
 
         int dPerW = config ? Mathf.Clamp(config.daysPerWeek, 1, 7) : 7;
-        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 5;
+        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 6;
         int tPerY = config ? Mathf.Max(1, config.termsPerYear) : 2;
 
         if (_day > dPerW)
@@ -143,7 +143,7 @@ public class GameClock : Singleton<GameClock>
     private void NormalizeNow(bool fullClamp)
     {
         int dPerW = config ? Mathf.Clamp(config.daysPerWeek, 1, 7) : 7;
-        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 5;
+        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 6;
         int tPerY = config ? Mathf.Max(1, config.termsPerYear) : 2;
         int sPerD = config ? Mathf.Clamp(config.slotsPerDay, 1, 5) : 4;
 

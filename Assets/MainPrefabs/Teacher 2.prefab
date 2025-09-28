@@ -197,10 +197,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
   subjects:
-  - subjectName: Tu Tuong HCM
+  - subjectName: "T\u01B0 T\u01B0\u1EDFng HCM"
     subjectKeyForNotes: TuTuongHCM
     maxSessions: 10
     currentSessionIndex: 0
+    examIndexInLoader: 1
   titleText: "C\xF4 Hoa"
   openText: "Ch\xE0o em, h\xF4m nay em \u0111\u1EBFn \u0111\u1EC3 b\u1EAFt \u0111\u1EA7u
     bu\u1ED5i h\u1ECDc \u0111\xFAng kh\xF4ng?"

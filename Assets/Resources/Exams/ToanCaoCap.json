@@ -32,6 +32,221 @@
         "Không xác định"
       ],
       "correctIndex": 1
+    },
+    {
+      "text": "Phát biểu nào sau đây sai:",
+      "options": [
+        "Hệ gồm một vectơ khác 0 là độc lập tuyến tính",
+        "Nếu thêm một vectơ vào hệ độc lập tuyến tính thì được hệ phụ thuộc tuyến tính",
+        " Nếu bỏ đi một vectơ của hệ độc lập tuyến tính thì được hệ độc lập tuyến tính",
+        "Nếu một hệ vectơ có vectơ 0 thì phụ thuộc tuyến tính"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Hàm f(x) = x^3 - 3x có bao nhiêu cực trị?",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Chuỗi Σ 1/n từ n=1 đến ∞ (chuỗi điều hoà) có tính chất:",
+      "options": [ "Hội tụ", "Phân kỳ", "Hội tụ tuyệt đối", "Sai số nhỏ" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Giới hạn lim(x→0) (e^x - 1)/x bằng:",
+      "options": [ "1", "0", "∞", "Không xác định" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Đạo hàm của f(x) = 1/x là:",
+      "options": [ "-1/x^2", "1/x^2", "ln(x)", "0" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nếu hàm số f(x) liên tục trên đoạn [a, b] và f(a)·f(b) < 0 thì theo định lý giá trị trung gian:",
+      "options": [
+        "Phương trình f(x) = 0 có ít nhất một nghiệm trong (a, b)",
+        "Phương trình f(x) = 0 không có nghiệm",
+        "Hàm số đồng biến",
+        "Hàm số nghịch biến"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nếu f'(x) > 0 trên (a, b) thì:",
+      "options": [
+        "f(x) đồng biến trên (a, b)",
+        "f(x) nghịch biến trên (a, b)",
+        "f(x) có cực đại",
+        "f(x) không xác định"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Cực trị của hàm số là gì?",
+      "options": [
+        "Giá trị lớn nhất hoặc nhỏ nhất cục bộ của hàm số",
+        "Giá trị lớn nhất toàn cục",
+        "Điểm gián đoạn",
+        "Điểm mà đạo hàm không xác định"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nếu f(x) là hàm chẵn thì đồ thị của nó có tính chất:",
+      "options": [
+        "Đối xứng qua trục tung",
+        "Đối xứng qua gốc tọa độ",
+        "Đối xứng qua trục hoành",
+        "Không đối xứng"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Định lý Taylor dùng để:",
+      "options": [
+        "Khai triển xấp xỉ hàm số bằng đa thức",
+        "Tính đạo hàm",
+        "Tính tích phân",
+        "Tính giới hạn"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Một chuỗi số Σ a_n được gọi là hội tụ khi:",
+      "options": [
+        "Tổng các phần tử tiến đến một giá trị hữu hạn",
+        "Tổng tiến đến vô cùng",
+        "Các số hạng bằng 0",
+        "Không xác định"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Ý nghĩa vật lý của đạo hàm trong cơ học là:",
+      "options": [
+        "Vận tốc tức thời là đạo hàm của quãng đường theo thời gian",
+        "Gia tốc tức thời là đạo hàm của vận tốc theo không gian",
+        "Thể tích vật thể",
+        "Khối lượng vật thể"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Định nghĩa hàm số liên tục trên (a, b):",
+      "options": [
+        "Liên tục tại mọi điểm trong khoảng (a, b)",
+        "Liên tục tại a và b",
+        "Không có đạo hàm tại a và b",
+        "Giới hạn tại một điểm bất kỳ luôn bằng 0"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Định lý cơ bản của giải tích khẳng định:",
+      "options": [
+        "Nếu F(x) là nguyên hàm của f(x), thì ∫_a^b f(x) dx = F(b) - F(a)",
+        "Mọi hàm số đều có nguyên hàm",
+        "Mọi hàm số liên tục đều khả vi",
+        "Giới hạn luôn tồn tại"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tích phân ∫ (2x) dx bằng:",
+      "options": [ "x^2 + C", "2x^2 + C", "ln(x) + C", "e^x + C" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Đạo hàm của sin(x) là:",
+      "options": [ "cos(x)", "-cos(x)", "sin(x)", "-sin(x)" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tính đạo hàm của f(x) = x·ln(x).",
+      "options": [ "ln(x) + 1", "ln(x)", "x/ln(x)", "1/x" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tính tích phân ∫ e^(2x) dx.",
+      "options": [ "e^(2x) + C", "1/2 e^(2x) + C", "2e^(2x) + C", "ln(e^(2x)) + C" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Giá trị lớn nhất của f(x) = -x^2 + 4x + 5 là:",
+      "options": [ "9", "10", "11", "12" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Hàm số f(x) = x^2 có cực trị tại đâu?",
+      "options": [ "x = 0 cực tiểu", "x = 0 cực đại", "Không có cực trị", "x = ±1 cực tiểu" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nghiệm của phương trình vi phân y' = y là:",
+      "options": [ "y = Ce^x", "y = Cx", "y = e^x + C", "y = C/x" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nếu f(x) = ln(1+x), đạo hàm f'(0) bằng:",
+      "options": [ "0", "1", "∞", "-1" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Hàm số f(x) = |x| liên tục tại x=0 nhưng:",
+      "options": [
+        "Không khả vi tại x=0",
+        "Khả vi tại x=0",
+        "Có cực đại tại x=0",
+        "Có cực tiểu tại x=0"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nếu f(x,y) liên tục trên miền đóng và bị chặn thì:",
+      "options": [
+        "f(x,y) đạt GTLN và GTNN",
+        "f(x,y) không có cực trị",
+        "f(x,y) luôn lồi",
+        "f(x,y) luôn lõm"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Định nghĩa đạo hàm bậc hai f''(x):",
+      "options": [
+        "Đạo hàm của đạo hàm bậc nhất",
+        "Giới hạn của f(x)",
+        "Giới hạn của f'(x)/x",
+        "Không xác định"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nếu f(x) là hàm lồi trên (a,b) thì tiếp tuyến của đồ thị:",
+      "options": [
+        "Nằm dưới đồ thị",
+        "Nằm trên đồ thị",
+        "Cắt đồ thị vô hạn điểm",
+        "Không xác định"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Định lý Weierstrass khẳng định: nếu f(x) liên tục trên [a,b] thì:",
+      "options": [
+        "f(x) đạt GTLN và GTNN trên [a,b]",
+        "f(x) luôn đồng biến",
+        "f(x) không có giới hạn",
+        "f(x) không khả vi"
+      ],
+      "correctIndex": 0
     }
   ]
 }
