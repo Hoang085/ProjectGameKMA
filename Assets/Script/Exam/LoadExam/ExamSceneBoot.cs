@@ -10,14 +10,11 @@ public class ExamSceneBoot : MonoBehaviour
     void Awake()
     {
         var loader = FindFirstObjectByType<ExamLoader>();
-        if (!loader)
-        {
-            Debug.LogError("[ExamSceneBoot] Không tìm thấy ExamLoader trong scene.");
-            return;
-        }
+        if (!loader) { Debug.LogError("[ExamSceneBoot] Không tìm thấy ExamLoader trong scene."); return; }
 
-        // 1) Quyết định index
-        int idx;
+        int idx = -1;
+
+        // 1) Nếu có override từ route → ưu tiên tuyệt đối
         if (ExamRouteData.subjectIndexOverride.HasValue)
         {
             idx = ExamRouteData.subjectIndexOverride.Value;
@@ -25,7 +22,7 @@ public class ExamSceneBoot : MonoBehaviour
         }
         else
         {
-            // Lấy từ route (hoặc PlayerPrefs dự phòng)
+            // 2) Thử tìm theo route name/key
             string routeName = string.IsNullOrWhiteSpace(ExamRouteData.subjectName)
                 ? PlayerPrefs.GetString("LastExam_SubjectName", "")
                 : ExamRouteData.subjectName;
@@ -35,17 +32,18 @@ public class ExamSceneBoot : MonoBehaviour
                 : ExamRouteData.subjectKey;
 
             idx = FindSubjectIndexOnLoader(loader, routeName, routeKey);
+
             if (idx < 0)
             {
-                Debug.LogWarning($"[ExamSceneBoot] Không khớp '{routeName}' (key='{routeKey}') → dùng index 0.");
-                idx = 0;
+                // 🚩 Không có route hợp lệ:
+                // → Giữ đúng chỉ số đã set ở Inspector để test
+                loader.ApplyDefault();
+                Debug.Log($"[ExamSceneBoot] Route rỗng/không khớp → dùng Inspector SubjectIndex={loader.subjectIndex}");
+                return;
             }
         }
 
-        // 2) Đặt index và buộc ExamLoader chọn lại đề ngay lập tức
         ApplyIndexToLoader(loader, idx);
-
-        // 3) Phòng trường hợp ExamLoader còn Init ở Late/Start → re-apply cuối frame
         StartCoroutine(ForceReapplyNextFrame(loader, idx));
     }
 

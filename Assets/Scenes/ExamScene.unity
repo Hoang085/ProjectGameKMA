@@ -1741,7 +1741,7 @@ MonoBehaviour:
     resourcePath: Exams/TiengAnh1
   - displayName: "T\u01B0 t\u01B0\u1EDFng HCM"
     resourcePath: Exams/TuTuongHCM
-  subjectIndex: 1
+  subjectIndex: 2
   examFileName: Exams/ToanCaoCap
 --- !u!4 &486868433
 Transform:
