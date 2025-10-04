@@ -6,25 +6,51 @@ public class GameUIManager : Singleton<GameUIManager>
 {
     [Header("Prompt")]
     public GameObject interactPromptRoot;
-    public Text interactPromptText; 
+    public Text interactPromptText;
     public KeyCode defaultInteractKey = KeyCode.F;
 
     [Header("Dialogue")]
-    public GameObject dialogueRoot; 
-    public Text dialogueNpcNameText; 
+    public GameObject dialogueRoot;
+    public Text dialogueNpcNameText;
     public Text dialogueContentText;
 
     [Header("Note Popup")]
-    public NotePopup notePopupPrefab; 
-    public Transform popupParent; 
+    public NotePopup notePopupPrefab;
+    public Transform popupParent;
     private bool _dialogueOpen;
     public bool IsDialogueOpen => _dialogueOpen;
 
+    [Header("ShowStatsUI")]
+    [SerializeField] private GameObject playerUI;
+    [SerializeField] private GameObject baloUI;
+    [SerializeField] private GameObject taskUI;
+    [SerializeField] private GameObject scoreUI;
+
+    [Header("BtnListIcon")]
+    [SerializeField] private Button btnPlayerIcon;
+    [SerializeField] private Button btnBaloIcon;
+    [SerializeField] private Button btnTaskIcon;
+    [SerializeField] private Button btnScoreIcon;
+
     [Header("Backpack/Balo")]
-    public GameObject baloPlayerUI;
     public BackpackUIManager backpackUIManager;
 
-    private TeacherAction _activeTeacher; 
+    // ========== THEO DÕI TRẠNG THÁI UI ==========
+    /// <summary>
+    /// Kiểm tra có bất kỳ UI nào đang mở không (bao gồm cả dialogue)
+    /// </summary>
+    public bool IsAnyUIOpen => _dialogueOpen || IsAnyStatUIOpen;
+
+    /// <summary>
+    /// Kiểm tra có UI thống kê nào đang mở không
+    /// </summary>
+    public bool IsAnyStatUIOpen =>
+        (playerUI != null && playerUI.activeSelf) ||
+        (baloUI != null && baloUI.activeSelf) ||
+        (taskUI != null && taskUI.activeSelf) ||
+        (scoreUI != null && scoreUI.activeSelf);
+
+    private TeacherAction _activeTeacher;
     public void BindTeacher(TeacherAction t) { _activeTeacher = t; }
     public void UnbindTeacher(TeacherAction t) { if (_activeTeacher == t) _activeTeacher = null; }
 
@@ -50,44 +76,132 @@ public class GameUIManager : Singleton<GameUIManager>
         _activeTeacher.UI_StartClass(); // Goi bat dau lop
     }
 
-    // Dong hop thoai khi nhan nut
-    public void OnClick_CloseDialogue()
+    // ========== XỬ LÝ SỰ KIỆN CLICK ICON ==========
+    public void OnClick_PlayerIcon()
     {
-        if (_activeTeacher != null) _activeTeacher.UI_Close();
-        else CloseDialogue(); // Dong hop thoai neu khong co giao vien
+        // Ngăn click khi dialogue đang mở
+        if (_dialogueOpen)
+        {
+            Debug.Log("[GameUIManager] Không thể mở Player UI khi đang trong dialogue");
+            return;
+        }
+
+        CloseAllUIs();
+        if (playerUI != null)
+        {
+            playerUI.SetActive(true);
+            Debug.Log("[GameUIManager] Đã mở Player UI");
+        }
     }
 
-    // Mo balo
-    public void OnClick_OpenBackpack()
+    public void OnClick_BaloIcon()
     {
-        if (!baloPlayerUI) return;
-        baloPlayerUI.SetActive(true);
-        if (backpackUIManager) backpackUIManager.RefreshNoteButtons(); // Lam moi ghi chu
+        // Ngăn click khi dialogue đang mở
+        if (_dialogueOpen)
+        {
+            Debug.Log("[GameUIManager] Không thể mở Balo UI khi đang trong dialogue");
+            return;
+        }
+
+        CloseAllUIs();
+        if (!baloUI) return;
+        baloUI.SetActive(true);
+        if (backpackUIManager) backpackUIManager.RefreshNoteButtons();
+        Debug.Log("[GameUIManager] Đã mở Balo UI");
     }
 
-    // Dong balo
-    public void OnClick_CloseBackpack()
+    public void OnClick_TaskIcon()
     {
-        if (!baloPlayerUI) return;
-        baloPlayerUI.SetActive(false);
+        // Ngăn click khi dialogue đang mở
+        if (_dialogueOpen)
+        {
+            Debug.Log("[GameUIManager] Không thể mở Task UI khi đang trong dialogue");
+            return;
+        }
+
+        CloseAllUIs();
+        if (taskUI != null)
+        {
+            taskUI.SetActive(true);
+            Debug.Log("[GameUIManager] Đã mở Task UI");
+        }
     }
 
-    // Toggle balo (mo/dong)
-    public void OnClick_ToggleBackpack()
+    public void OnClick_ScoreIcon()
     {
-        if (!baloPlayerUI) return;
-        bool show = !baloPlayerUI.activeSelf;
-        baloPlayerUI.SetActive(show);
-        if (show && backpackUIManager) backpackUIManager.RefreshNoteButtons();
+        // Ngăn click khi dialogue đang mở
+        if (_dialogueOpen)
+        {
+            Debug.Log("[GameUIManager] Không thể mở Score UI khi đang trong dialogue");
+            return;
+        }
+
+        CloseAllUIs();
+        if (scoreUI != null)
+        {
+            scoreUI.SetActive(true);
+            Debug.Log("[GameUIManager] Đã mở Score UI");
+        }
     }
 
-    // Khoi tao singleton, an tat ca UI
+    /// <summary>
+    /// Đóng tất cả UI thống kê (trừ dialogue và interact prompt)
+    /// </summary>
+    public void CloseAllUIs()
+    {
+        if (playerUI != null) playerUI.SetActive(false);
+        if (baloUI != null) baloUI.SetActive(false);
+        if (taskUI != null) taskUI.SetActive(false);
+        if (scoreUI != null) scoreUI.SetActive(false);
+    }
+
     public override void Awake()
     {
         MakeSingleton(false);
+
+        // Ẩn tất cả UI khi khởi tạo
         if (interactPromptRoot) interactPromptRoot.SetActive(false);
         if (dialogueRoot) dialogueRoot.SetActive(false);
-        if (baloPlayerUI) baloPlayerUI.SetActive(false);
+        CloseAllUIs();
+
+        // Gán sự kiện click cho các nút icon
+        SetupIconButtonEvents();
+    }
+
+    /// <summary>
+    /// Thiết lập sự kiện click cho các nút icon
+    /// </summary>
+    private void SetupIconButtonEvents()
+    {
+        if (btnPlayerIcon != null)
+            btnPlayerIcon.onClick.AddListener(OnClick_PlayerIcon);
+
+        if (btnBaloIcon != null)
+            btnBaloIcon.onClick.AddListener(OnClick_BaloIcon);
+
+        if (btnTaskIcon != null)
+            btnTaskIcon.onClick.AddListener(OnClick_TaskIcon);
+
+        if (btnScoreIcon != null)
+            btnScoreIcon.onClick.AddListener(OnClick_ScoreIcon);
+    }
+
+    /// <summary>
+    /// Hủy đăng ký sự kiện khi destroy object để tránh memory leak
+    /// </summary>
+    private void OnDestroy()
+    {
+        if (btnPlayerIcon != null)
+            btnPlayerIcon.onClick.RemoveListener(OnClick_PlayerIcon);
+
+        if (btnBaloIcon != null)
+            btnBaloIcon.onClick.RemoveListener(OnClick_BaloIcon);
+
+        if (btnTaskIcon != null)
+            btnTaskIcon.onClick.RemoveListener(OnClick_TaskIcon);
+
+        if (btnScoreIcon != null)
+            btnScoreIcon.onClick.RemoveListener(OnClick_ScoreIcon);
     }
 
     // Hien thi goi y tuong tac
