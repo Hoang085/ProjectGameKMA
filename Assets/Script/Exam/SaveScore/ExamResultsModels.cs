@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class ExamAttempt
 {
+    public int semesterIndex; 
     public string subjectKey;
     public string subjectName;
     public string examTitle;
