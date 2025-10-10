@@ -11,9 +11,11 @@ namespace HHH.MiniGame
         public EnemySpawner spawner;
         //public HudController hud;
 
-        [Header("Rules")] public int lives = 3;
+        [Header("Rules")] 
+        public int lives = 3;
         public int scorePerWord = 100;
         public int scorePerLetter = 5;
+        public int scorePerPowerUp = 500;
 
         readonly List<ZTypeEnemy> _enemies = new List<ZTypeEnemy>();
         ZTypeEnemy _active;
@@ -28,8 +30,9 @@ namespace HHH.MiniGame
             if (spawner) spawner.OnSpawned -= RegisterEnemy;
         }
 
-        void Update()
+        public override void Tick()
         {
+            base.Tick();
             HandleKeyboardInput();
         }
 
@@ -42,8 +45,17 @@ namespace HHH.MiniGame
 
         void OnEnemyKilled(ZTypeEnemy e)
         {
-            //hud?.AddScore(scorePerWord);
-            RemoveEnemy(e, destroyed: true);
+            //hud?.AddScore(e.IsPowerUp ? scorePerPowerUp : scorePerWord);
+            if (e.IsPowerUp)
+            {
+                // Kích hoạt EMP: tiêu diệt tất cả kẻ thù
+                foreach (var enemy in _enemies.ToArray())
+                    RemoveEnemy(enemy, destroyed: true);
+            }
+            else
+            {
+                RemoveEnemy(e, destroyed: true);
+            }
         }
 
         void OnEnemyReachedBottom(ZTypeEnemy e)
@@ -68,22 +80,19 @@ namespace HHH.MiniGame
 
         void HandleKeyboardInput()
         {
-            // Lấy tất cả ký tự vừa gõ frame này
             var input = Input.inputString;
             if (string.IsNullOrEmpty(input)) return;
 
-            foreach (char raw in input)
+            foreach (char c in input)
             {
-                char c = raw;
-                if (char.IsUpper(c)) c = char.ToLower(c);
-                if (!IsAsciiLetter(c)) continue; // bỏ qua phím không phải chữ
+                if (!IsAsciiLetter(c)) continue;
 
-                // Nếu chưa khóa mục tiêu → tìm enemy có từ bắt đầu bằng ký tự này (ưu tiên gần đáy)
                 if (_active == null)
                 {
+                    // Tìm enemy có từ bắt đầu bằng c, ưu tiên gần mép trái
                     var candidate = _enemies
-                        .Where(en => en && en.Word.Length > 0 && en.Word[0] == c)
-                        .OrderBy(en => en.transform.position.y) // y nhỏ hơn = gần đáy hơn
+                        .Where(en => en && en.Word.Length > en.TypedIndex && en.Word[en.TypedIndex] == c)
+                        .OrderBy(en => en.transform.position.x) // x nhỏ hơn = gần mép trái
                         .FirstOrDefault();
 
                     if (candidate != null)
@@ -93,23 +102,18 @@ namespace HHH.MiniGame
                     }
                     else
                     {
-                        // Không có từ nào bắt đầu bằng c → có thể thử "tự do": chọn kẻ địch chứa c ở vị trí hiện tại?
-                        // Để đơn giản: bỏ qua.
                         continue;
                     }
                 }
 
-                // Có mục tiêu → gõ ký tự
                 if (_active != null)
                 {
                     bool ok = _active.TryTypeChar(c);
                     //if (ok) hud?.AddScore(scorePerLetter);
 
-                    // Nếu enemy đã bị OnWordCompleted, _active sẽ được reset trong RemoveEnemy
                     if (_active && _active.TypedIndex >= _active.Word.Length)
                     {
-                        // đảm bảo dọn dẹp (an toàn)
-                        _active = null;
+                        _active = null; // Reset sau khi hoàn thành từ
                     }
                 }
             }
@@ -119,7 +123,6 @@ namespace HHH.MiniGame
 
         void GameOver()
         {
-            // Dừng spawn & đóng băng game đơn giản
             if (spawner) spawner.enabled = false;
             foreach (var e in _enemies.ToArray()) RemoveEnemy(e, destroyed: true);
             //hud?.ShowGameOver();

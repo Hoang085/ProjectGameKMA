@@ -9,6 +9,11 @@ namespace HHH.MiniGame
 
         private IMiniGame _game;
 
+        public void Awake()
+        {
+            ObjectPoolExt.Init(GetComponent<IObjectPool>());
+        }
+
         public void Play(System.Action<MiniGameResult> onEnded)
         {
             StartCoroutine(Loader.Load(Definition, mg => {
