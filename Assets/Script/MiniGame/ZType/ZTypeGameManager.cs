@@ -9,7 +9,7 @@ namespace HHH.MiniGame
     {
         [Header("Refs")] 
         public EnemySpawner spawner;
-        //public HudController hud;
+        public GameObject hud;
 
         [Header("Rules")] 
         public int lives = 3;
@@ -19,6 +19,13 @@ namespace HHH.MiniGame
 
         readonly List<ZTypeEnemy> _enemies = new List<ZTypeEnemy>();
         ZTypeEnemy _active;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            
+            hud.SetActive(false);
+        }
 
         void OnEnable()
         {
@@ -51,10 +58,13 @@ namespace HHH.MiniGame
                 // Kích hoạt EMP: tiêu diệt tất cả kẻ thù
                 foreach (var enemy in _enemies.ToArray())
                     RemoveEnemy(enemy, destroyed: true);
+                
+                EnemySpawner.EnemyCount = 0;
             }
             else
             {
                 RemoveEnemy(e, destroyed: true);
+                EnemySpawner.EnemyCount--;
             }
         }
 
@@ -82,7 +92,7 @@ namespace HHH.MiniGame
         {
             var input = Input.inputString;
             if (string.IsNullOrEmpty(input)) return;
-
+            
             foreach (char c in input)
             {
                 if (!IsAsciiLetter(c)) continue;
@@ -125,7 +135,7 @@ namespace HHH.MiniGame
         {
             if (spawner) spawner.enabled = false;
             foreach (var e in _enemies.ToArray()) RemoveEnemy(e, destroyed: true);
-            //hud?.ShowGameOver();
+            hud.SetActive(true);
             enabled = false;
         }
     }

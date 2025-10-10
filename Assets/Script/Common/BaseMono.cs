@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading;
 using Sirenix.OdinInspector;
@@ -40,6 +41,11 @@ namespace HHH.Common
         void Start()
         {
             if (initOnStart) Initialize();
+        }
+
+        private void Update()
+        {
+            Tick();
         }
 
         void OnDisable()

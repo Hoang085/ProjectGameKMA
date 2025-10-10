@@ -47,9 +47,11 @@ namespace HHH.MiniGame
         {
             base.FixedTick();
             transform.Translate((Vector3)direction * speed * Time.deltaTime);
-            
-            if (transform.position.x < -8f) // Mép trái màn hình
+
+            if (transform.position.y < -12f) //vị trí tàu người chơi
+            {
                 OnReachedBottom?.Invoke(this);
+            }
             
             if (body)
                 body.color = IsActiveTarget ? Color.Lerp(_baseColor, Color.white, 0.6f) : _baseColor;
