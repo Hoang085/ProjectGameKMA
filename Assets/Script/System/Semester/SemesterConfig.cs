@@ -12,7 +12,7 @@ public class SubjectData
 {
     public string Name;
     [Min(0)]
-    public int MaxAbsences;
+    public int MaxAbsences; // so buoi nghi toi da
     public SessionData[] Sessions;
 }
 

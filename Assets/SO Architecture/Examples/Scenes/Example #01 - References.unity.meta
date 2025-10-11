@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: aa169694de7c0d046ad1b5fdb65c8cb5
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Examples/Scenes/Example #01 - References.unity
+  uploadId: 364203

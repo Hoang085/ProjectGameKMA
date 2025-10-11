@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f351fc1a6cf09e6429d7fcee563de780
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Utility/SOArchitecture_Settings.cs
+  uploadId: 364203

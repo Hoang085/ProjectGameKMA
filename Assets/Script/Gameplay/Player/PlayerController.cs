@@ -54,10 +54,17 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
     }
 
-
-    // Set up phim di chuyen, nhay, chay
     private void HandleInput()
     {
+        // THAY ĐỔI: Sử dụng IsAnyUIOpen thay vì chỉ IsDialogueOpen
+        if (GameUIManager.Ins && GameUIManager.Ins.IsAnyUIOpen)
+        {
+            _moveInput = Vector2.zero;
+            _runHeld = false;
+            _jumpPressed = false;
+            return;
+        }
+
         _moveInput.x = Input.GetAxisRaw("Horizontal");
         _moveInput.y = Input.GetAxisRaw("Vertical");
         _runHeld = Input.GetMouseButton(1);

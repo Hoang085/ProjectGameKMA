@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4af3f7bae9508154aa309138a5831b06
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Examples/Prefabs/Sphere Of Pain.prefab
+  uploadId: 364203

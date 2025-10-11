@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 7dfc7e5eb87c48ffbd1ea05999025055
+timeCreated: 1572335662
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Events/Responses/AudioClipUnityEvent.cs
+  uploadId: 364203

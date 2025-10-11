@@ -3,61 +3,67 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-/// Quan ly dong thoi gian: Nawm, Ky, Tuan, Ngay, Ca
-/// Data lay tu CalendarConfig (terms, weeks, days, slots, teachingDays, blockedSlots)
+// Quan ly dong thoi gian trong game: Nam, Ky, Tuan, Ngay, Ca
 public class GameClock : Singleton<GameClock>
 {
     [Header("Config (Assign asset CalendarConfig)")]
-    public CalendarConfig config;
+    public CalendarConfig config; // Cau hinh lich
 
     [Header("Current Time (1-based)")]
-    [SerializeField] private int _year = 1;
-    [SerializeField] private int _term = 1;    // 1..termsPerYear
-    [SerializeField] private int _week = 1;    // 1..weeksPerTerm
-    [SerializeField] private int _day = 1;     // 1..daysPerWeek (1 = Monday)
-    [SerializeField] private DaySlot _slot = DaySlot.MorningA;
+    [SerializeField] private int _year = 1; // Nam
+    [SerializeField] private int _term = 1; // Ky
+    [SerializeField] private int _week = 1; // Tuan
+    [SerializeField] private int _day = 1; // Ngay (1 = Thu 2)
+    [SerializeField] private DaySlot _slot = DaySlot.MorningA; // Ca
 
     // Getters
     public int Year => _year;
     public int Term => _term;
     public int Week => _week;
-    public int DayIndex => _day; // 1..daysPerWeek
-    public Weekday Weekday => (Weekday)Mathf.Clamp(_day - 1, 0, 6);
-    public DaySlot Slot => _slot;
+    public int DayIndex => _day; // Chi so ngay (1-based)
+    public Weekday Weekday => (Weekday)Mathf.Clamp(_day - 1, 0, 6); // Thu trong tuan
+    public DaySlot Slot => _slot; // Ca hien tai
 
-    // Events for System listeners
+    // Cac su kien khi thoi gian thay doi
     public event Action OnSlotChanged, OnDayChanged, OnWeekChanged, OnTermChanged, OnYearChanged;
+    public event Action<int, string, int> OnSlotStarted; // Khi ca bat dau
+    public event Action<int, string, int> OnSlotEnded; // Khi ca ket thuc
 
+    // Khoi tao singleton va chuan hoa thoi gian
     public override void Awake()
     {
         MakeSingleton(false);
-
         if (!config) Debug.LogWarning("[GameClock] don't assign CalendarConfig!");
         NormalizeNow(fullClamp: true);
+        FireSlotStarted(); // Kich hoat su kien ca bat dau
     }
 
-    // ===================== API =====================
-    /// Increase to next slot; if overflow, go to next day
+    // Tang ca, chuyen sang ngay moi neu tran
     [ContextMenu("Next Slot")]
     public void NextSlot()
     {
         int sPerD = config ? Mathf.Clamp(config.slotsPerDay, 1, 5) : 4;
-        int nextSlot = (int)_slot + 1;
 
-        if (nextSlot < sPerD)
+        FireSlotEnded(); // Ket thuc ca hien tai
+
+        int currentSlotIndex = (int)_slot;
+        bool willRollDay = (currentSlotIndex + 1) >= sPerD;
+
+        if (!willRollDay)
         {
-            _slot = (DaySlot)nextSlot;
+            _slot = (DaySlot)(currentSlotIndex + 1); // Sang ca tiep theo
             OnSlotChanged?.Invoke();
+            FireSlotStarted(); // Bat dau ca moi
             return;
         }
 
-        // Over day
-        _slot = DaySlot.MorningA;
+        NextDayInternal(); // Chuyen sang ngay moi
+        _slot = DaySlot.MorningA; // Reset ve ca dau ngay
         OnSlotChanged?.Invoke();
-        NextDayInternal();
+        FireSlotStarted(); // Bat dau ca moi
     }
 
-    /// Setup time; auto normalize
+    // Dat thoi gian moi, chuan hoa va kich hoat su kien
     public void SetTime(int year, int term, int week, int dayIndex1Based, DaySlot slot)
     {
         _year = Mathf.Max(1, year);
@@ -72,19 +78,21 @@ public class GameClock : Singleton<GameClock>
         OnWeekChanged?.Invoke();
         OnDayChanged?.Invoke();
         OnSlotChanged?.Invoke();
+        FireSlotStarted(); // Bat dau ca tai thoi diem moi
     }
 
-    /// check teaching day for Mon..Fri
+    // Kiem tra ngay co phai ngay day hoc
     public bool IsTeachingDay(Weekday d) =>
         config != null && ((IReadOnlyList<Weekday>)config.TeachingDays).Contains(d);
 
-    ///Slot hien tai co duoc phep xep hoat dong khong? (vi du chan buoi toi)
+    // Kiem tra ca co duoc phep xep lich
     public bool IsSchedulableSlot(DaySlot s) =>
         config != null && !((IReadOnlyList<DaySlot>)config.BlockedSlots).Contains(s);
 
+    // Lay chi so ca (1-based)
     public int GetSlotIndex1Based() => (int)_slot + 1;
 
-    // ================= Helpers (text) =================
+    // Chuyen enum Weekday thanh ten tieng Anh
     public static string WeekdayToEN(Weekday d) => d switch
     {
         Weekday.Mon => "Monday",
@@ -96,14 +104,17 @@ public class GameClock : Singleton<GameClock>
         _ => "Sunday"
     };
 
-    // ================= Internal =================
+    // Lay ten ngay hien tai bang tieng Anh
+    public string CurrentDayNameEN() => WeekdayToEN(Weekday);
+
+    // Chuyen sang ngay moi, cap nhat tuan/ky/nam neu can
     private void NextDayInternal()
     {
         _day++;
         OnDayChanged?.Invoke();
 
         int dPerW = config ? Mathf.Clamp(config.daysPerWeek, 1, 7) : 7;
-        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 5;
+        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 6;
         int tPerY = config ? Mathf.Max(1, config.termsPerYear) : 2;
 
         if (_day > dPerW)
@@ -118,32 +129,47 @@ public class GameClock : Singleton<GameClock>
                 _term++;
                 OnTermChanged?.Invoke();
 
-                if (_term > tPerY)
+                // SỬA LỖI: Bỏ logic reset term về 1, chỉ tăng year khi cần
+                // Kiểm tra xem có cần tăng year không (ví dụ: mỗi 2 kỳ = 1 năm)
+                if (_term > 1 && (_term - 1) % tPerY == 0)
                 {
-                    _term = 1;
                     _year++;
                     OnYearChanged?.Invoke();
+                    Debug.Log($"[GameClock] Tăng năm lên {_year} tại kỳ {_term}");
                 }
             }
         }
     }
 
-    /// Dam bao state hien tai hop le
+    // Chuan hoa thoi gian hien tai
     private void NormalizeNow(bool fullClamp)
     {
         int dPerW = config ? Mathf.Clamp(config.daysPerWeek, 1, 7) : 7;
-        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 5;
+        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 6;
         int tPerY = config ? Mathf.Max(1, config.termsPerYear) : 2;
         int sPerD = config ? Mathf.Clamp(config.slotsPerDay, 1, 5) : 4;
 
         if (fullClamp)
         {
-            _term = Mathf.Clamp(_term, 1, tPerY);
+            // SỬA LỖI: Bỏ clamp term, cho phép term tăng liên tục
+            // _term = Mathf.Clamp(_term, 1, tPerY); // ← COMMENT DÒNG NÀY
             _week = Mathf.Clamp(_week, 1, wPerT);
             _day = Mathf.Clamp(_day, 1, dPerW);
         }
 
         int maxSlotIndex = Mathf.Min((int)DaySlot.Evening, sPerD - 1);
         _slot = (DaySlot)Mathf.Clamp((int)_slot, 0, Mathf.Max(0, maxSlotIndex));
+    }
+
+    // Kich hoat su kien bat dau ca
+    private void FireSlotStarted()
+    {
+        OnSlotStarted?.Invoke(_week, CurrentDayNameEN(), GetSlotIndex1Based());
+    }
+
+    // Kich hoat su kien ket thuc ca
+    private void FireSlotEnded()
+    {
+        OnSlotEnded?.Invoke(_week, CurrentDayNameEN(), GetSlotIndex1Based());
     }
 }

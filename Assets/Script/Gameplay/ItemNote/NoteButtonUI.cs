@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+// NoteButtonUI quan ly nut ghi chu trong giao dien
 public class NoteButtonUI : MonoBehaviour
 {
     public Text titleText;
     string _subjectKey;
     int _sessionIndex;
 
+    // Thiet lap nut ghi chu
     public void Setup(string subjectKey, string subjectDisplay, int sessionIndex)
     {
         _subjectKey = subjectKey;
@@ -20,8 +22,11 @@ public class NoteButtonUI : MonoBehaviour
         {
             NotePopup popup = null;
             var ui = GameUIManager.Ins;
-            if (ui) popup = ui.GetOrCreateNotePopup();
-            if (!popup) popup = NotePopup.Instance ?? FindObjectOfType<NotePopup>(true);
+            if (ui)
+                popup = ui.GetOrCreateNotePopup();
+
+            if (!popup)
+                popup = NotePopup.Instance ?? FindFirstObjectByType<NotePopup>(FindObjectsInactive.Include);
 
             if (!popup)
             {
@@ -29,7 +34,8 @@ public class NoteButtonUI : MonoBehaviour
                 return;
             }
 
-            var title = titleText ? titleText.text : $"{subjectDisplay} - Buổi {sessionIndex}";
+            // Hien thi popup voi thong tin ghi chu
+            var title = titleText ? titleText.text : $"{subjectDisplay} - Buổi {_sessionIndex}";
             popup.ShowByKey(_subjectKey, _sessionIndex, title);
         });
     }

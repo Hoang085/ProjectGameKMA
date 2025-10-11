@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b786e1b7e7eaff2459e2286b5f95b019
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Examples/Objects/Player Starting Health.asset
+  uploadId: 364203

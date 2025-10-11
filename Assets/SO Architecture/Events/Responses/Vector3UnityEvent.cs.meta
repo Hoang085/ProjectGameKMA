@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 77b5b9fa517d55e439c2886283c1c640
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Events/Responses/Vector3UnityEvent.cs
+  uploadId: 364203

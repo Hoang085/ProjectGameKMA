@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 32913f49a5274d4795151f814b3dc24d
+timeCreated: 1555400635
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Editor/Drawers/SceneInfoPropertyDrawer.cs
+  uploadId: 364203

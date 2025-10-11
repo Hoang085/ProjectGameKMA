@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: cbe4d59e612f226418a9f7ddf54c95bf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 346c4474e35a8914295939193925b5f3, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131520
+  packageName: ScriptableObject-Architecture
+  packageVersion: 1.7.0
+  assetPath: Assets/SO Architecture/Events/Game Events/BoolGameEvent.cs
+  uploadId: 364203
