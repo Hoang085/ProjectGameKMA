@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 
 // Quan ly giao dien nguoi dung trong game
+// Quan ly giao dien nguoi dung trong game
 public class GameUIManager : Singleton<GameUIManager>
 {
     [Header("Prompt")]
@@ -54,6 +55,72 @@ public class GameUIManager : Singleton<GameUIManager>
     public void BindTeacher(TeacherAction t) { _activeTeacher = t; }
     public void UnbindTeacher(TeacherAction t) { if (_activeTeacher == t) _activeTeacher = null; }
 
+    // ===== UPDATED: USE TASKMANAGER INSTEAD OF TASKPLAYERUI =====
+    /// <summary>
+    /// Get TaskPlayerUI component (for backward compatibility)
+    /// </summary>
+    public TaskPlayerUI GetTaskPlayerUI()
+    {
+        if (taskUI != null)
+        {
+            return taskUI.GetComponent<TaskPlayerUI>();
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Get task count from TaskManager (new unified source)
+    /// </summary>
+    public int GetActiveTaskCount()
+    {
+        if (TaskManager.Instance != null)
+        {
+            return TaskManager.Instance.GetActiveTaskCount();
+        }
+        return 0;
+    }
+
+    /// <summary>
+    /// Check if TaskManager has pending tasks
+    /// </summary>
+    public bool HasPendingTasks()
+    {
+        if (TaskManager.Instance != null)
+        {
+            return TaskManager.Instance.HasPendingTasks();
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Refresh task notification through GameManager
+    /// </summary>
+    public void RefreshTaskNotification()
+    {
+        if (GameManager.Ins != null)
+        {
+            GameManager.Ins.RefreshIconNotification(IconType.Task);
+        }
+    }
+
+    /// <summary>
+    /// Called when a new task is added - NO LONGER NEEDED (TaskManager handles this)
+    /// </summary>
+    public void OnTaskAdded()
+    {
+        // TaskManager now handles notification directly
+        Debug.Log("[GameUIManager] Task added - TaskManager handles notification");
+    }
+
+    /// <summary>
+    /// Called when a task is completed/removed - NO LONGER NEEDED (TaskManager handles this)
+    /// </summary>
+    public void OnTaskCompleted()
+    {
+        // TaskManager now handles notification directly
+        Debug.Log("[GameUIManager] Task completed - TaskManager handles notification");
+    }
+
     public void OnClick_TakeExam()
     {
         if (_activeTeacher == null)
@@ -86,6 +153,12 @@ public class GameUIManager : Singleton<GameUIManager>
             return;
         }
 
+        // Clear notification when icon is clicked
+        if (GameManager.Ins != null)
+        {
+            GameManager.Ins.OnIconClicked(IconType.Player);
+        }
+
         CloseAllUIs();
         if (playerUI != null)
         {
@@ -101,6 +174,12 @@ public class GameUIManager : Singleton<GameUIManager>
         {
             Debug.Log("[GameUIManager] Không thể mở Balo UI khi đang trong dialogue");
             return;
+        }
+
+        // Clear notification when icon is clicked
+        if (GameManager.Ins != null)
+        {
+            GameManager.Ins.OnIconClicked(IconType.Balo);
         }
 
         CloseAllUIs();
@@ -119,6 +198,9 @@ public class GameUIManager : Singleton<GameUIManager>
             return;
         }
 
+        // FIXED: Don't clear notification when clicking - only when closing
+        // GameManager will handle this properly now
+
         CloseAllUIs();
         if (taskUI != null)
         {
@@ -136,6 +218,12 @@ public class GameUIManager : Singleton<GameUIManager>
             return;
         }
 
+        // Clear notification when icon is clicked
+        if (GameManager.Ins != null)
+        {
+            GameManager.Ins.OnIconClicked(IconType.Score);
+        }
+
         CloseAllUIs();
         if (scoreUI != null)
         {
@@ -147,12 +235,23 @@ public class GameUIManager : Singleton<GameUIManager>
     /// <summary>
     /// Đóng tất cả UI thống kê (trừ dialogue và interact prompt)
     /// </summary>
+    /// <summary>
+    /// Đóng tất cả UI thống kê (trừ dialogue và interact prompt)
+    /// </summary>
     public void CloseAllUIs()
     {
+        bool taskUIWasOpen = (taskUI != null && taskUI.activeSelf);
+
         if (playerUI != null) playerUI.SetActive(false);
         if (baloUI != null) baloUI.SetActive(false);
         if (taskUI != null) taskUI.SetActive(false);
         if (scoreUI != null) scoreUI.SetActive(false);
+
+        // FIXED: Call the new method when task UI is closed
+        if (taskUIWasOpen && GameManager.Ins != null)
+        {
+            GameManager.Ins.OnTaskUIClosed();
+        }
     }
 
     public override void Awake()
@@ -166,6 +265,12 @@ public class GameUIManager : Singleton<GameUIManager>
 
         // Gán sự kiện click cho các nút icon
         SetupIconButtonEvents();
+    }
+
+    void Start()
+    {
+        // REMOVED: No longer need to refresh here, TaskManager handles this
+        // RefreshTaskNotification();
     }
 
     /// <summary>

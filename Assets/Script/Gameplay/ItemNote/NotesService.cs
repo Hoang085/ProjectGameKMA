@@ -51,9 +51,19 @@ public class NotesService : MonoBehaviour
     public void AddNoteRef(string subjectKey, int sessionIndex, string subjectDisplay = null)
     {
         if (noteRefs.Exists(n => n.subjectKey == subjectKey && n.sessionIndex == sessionIndex)) return;
+
         noteRefs.Add(new NoteRef { subjectKey = subjectKey, sessionIndex = sessionIndex, subjectDisplay = subjectDisplay });
+
         if (!string.IsNullOrEmpty(subjectDisplay)) UpsertName(subjectKey, subjectDisplay);
+
         Save();
+
+        // ===== NOTIFICATION INTEGRATION =====
+        // Trigger notification for new note
+        if (GameManager.Ins != null)
+        {
+            GameManager.Ins.OnNoteAdded(subjectKey, sessionIndex);
+        }
     }
 
     public string GetDisplayName(string key)

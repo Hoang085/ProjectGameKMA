@@ -18,7 +18,6 @@ public static class ExamResultStorageFile
         get
         {
             string path = Path.Combine(Application.persistentDataPath, FileName);
-            Debug.Log($"[ExamResultStorageFile] FilePath = {path}");
             return path;
         }
     }
@@ -34,7 +33,6 @@ public static class ExamResultStorageFile
         }
         catch (Exception e)
         {
-            Debug.LogError($"[ExamResultStorageFile] Load error: {e}");
             return new ExamResultsDB();
         }
     }
@@ -66,7 +64,6 @@ public static class ExamResultStorageFile
 #endif
             }
 
-            Debug.Log($"[ExamResultStorageFile] Saved {db.entries.Count} entries → {FilePath}");
         }
         catch (Exception e)
         {
@@ -108,8 +105,15 @@ public static class ExamResultStorageFile
 
         Save(db);
 
-        // Cập nhật cache “điểm gần nhất”
+        // Cập nhật cache "điểm gần nhất"
         CacheLatest(a);
+
+        // ===== NOTIFICATION INTEGRATION =====
+        // Trigger notification for new score
+        if (GameManager.Ins != null)
+        {
+            GameManager.Ins.OnScoreAdded(a.subjectKey, a.semesterIndex, a.takenAtUnix);
+        }
     }
 
     static void TrimPerSubject(ExamResultsDB db, string subjectKey, int maxPerSubject)

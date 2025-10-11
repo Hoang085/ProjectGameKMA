@@ -182,7 +182,7 @@ MonoBehaviour:
   semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
   subjects:
   - subjectName: "Ti\u1EBFng Anh 1"
-    subjectKeyForNotes: TiengAnh1
+    subjectKeyForNotes: tienganh1
     maxSessions: 15
     currentSessionIndex: 0
     examIndexInLoader: 2
@@ -200,7 +200,8 @@ MonoBehaviour:
     cho ph\xE9p"
   classSeconds: 3
   addNoteWhenFinished: 1
-  overrideSessionIndex: 0
+  noteSessionIndex: 0
+  weeksPerTerm: 5
   onClassStarted:
     m_PersistentCalls:
       m_Calls: []

@@ -208,7 +208,8 @@ MonoBehaviour:
     cho ph\xE9p"
   classSeconds: 3
   addNoteWhenFinished: 1
-  overrideSessionIndex: 0
+  noteSessionIndex: 0
+  weeksPerTerm: 5
   onClassStarted:
     m_PersistentCalls:
       m_Calls: []

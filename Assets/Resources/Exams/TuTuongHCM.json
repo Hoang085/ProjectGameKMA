@@ -8,42 +8,42 @@
       "options": [
         "Chủ nghĩa Mác – Lênin",
         "Truyền thống dân tộc",
-        "Tinh hoa văn hóa nhân loại",
-        "Cả 3 đáp án trên"
+        "Cả 3 đáp án trên",
+        "Tinh hoa văn hóa nhân loại"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "text": "Nội dung cốt lõi và xuyên suốt của tư tưởng Hồ Chí Minh là:",
       "options": [
-        "Độc lập dân tộc gắn liền với chủ nghĩa xã hội",
-        "Xây dựng Nhà nước pháp quyền",
         "Phát triển kinh tế thị trường",
-        "Đổi mới toàn diện đất nước"
+        "Độc lập dân tộc gắn liền với chủ nghĩa xã hội",
+        "Đổi mới toàn diện đất nước",
+        "Xây dựng Nhà nước pháp quyền"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "text": "Hồ Chí Minh ra đi tìm đường cứu nước vào năm nào?",
-      "options": [ "1911", "1920", "1930", "1941" ],
-      "correctIndex": 0
+      "options": [ "1920", "1930", "1941", "1911" ],
+      "correctIndex": 3
     },
     {
       "text": "Hồ Chí Minh tiếp nhận chủ nghĩa Mác – Lênin từ đâu?",
       "options": [
-        "Qua sách báo Pháp",
         "Qua hoạt động thực tiễn cách mạng",
         "Qua Quốc tế Cộng sản",
-        "Tất cả đáp án trên"
+        "Tất cả đáp án trên",
+        "Qua sách báo Pháp"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "text": "Tư tưởng Hồ Chí Minh về vấn đề dân tộc nhấn mạnh điều gì?",
       "options": [
-        "Giải phóng dân tộc",
         "Độc lập dân tộc gắn với tự do hạnh phúc của nhân dân",
         "Đoàn kết dân tộc",
+        "Giải phóng dân tộc",
         "Cả 3 ý trên"
       ],
       "correctIndex": 3
@@ -51,150 +51,150 @@
     {
       "text": "Theo Hồ Chí Minh, cách mạng Việt Nam muốn thắng lợi phải đi theo con đường nào?",
       "options": [
-        "Con đường dân chủ tư sản",
-        "Con đường bạo động phong kiến",
+        "Con đường cải cách hòa bình",
         "Con đường cách mạng vô sản",
-        "Con đường cải cách hòa bình"
+        "Con đường dân chủ tư sản",
+        "Con đường bạo động phong kiến"
       ],
-      "correctIndex": 2
+      "correctIndex": 1
     },
     {
       "text": "Tư tưởng Hồ Chí Minh về đạo đức cách mạng nhấn mạnh phẩm chất nào?",
       "options": [
-        "Cần, kiệm, liêm, chính, chí công vô tư",
         "Giàu có, thông minh",
-        "Khôn khéo, mềm dẻo",
-        "Vui vẻ, hòa đồng"
+        "Vui vẻ, hòa đồng",
+        "Cần, kiệm, liêm, chính, chí công vô tư",
+        "Khôn khéo, mềm dẻo"
       ],
-      "correctIndex": 0
+      "correctIndex": 2
     },
     {
       "text": "Theo Hồ Chí Minh, độc lập dân tộc phải gắn liền với:",
-      "options": [ "Chủ nghĩa xã hội", "Chủ nghĩa tư bản", "Chủ nghĩa dân tộc cực đoan", "Tư tưởng Khổng giáo" ],
+      "options": [ "Chủ nghĩa xã hội", "Tư tưởng Khổng giáo", "Chủ nghĩa dân tộc cực đoan", "Chủ nghĩa tư bản" ],
       "correctIndex": 0
     },
     {
       "text": "Văn kiện nào đánh dấu bước ngoặt Hồ Chí Minh từ chủ nghĩa yêu nước sang chủ nghĩa Mác – Lênin?",
       "options": [
-        "Đọc Luận cương của Lênin về vấn đề dân tộc và thuộc địa",
+        "Đường Kách mệnh",
         "Bản án chế độ thực dân Pháp",
         "Tuyên ngôn độc lập 1945",
-        "Đường Kách mệnh"
+        "Đọc Luận cương của Lênin về vấn đề dân tộc và thuộc địa"
       ],
-      "correctIndex": 0
+      "correctIndex": 3
     },
     {
       "text": "Theo Hồ Chí Minh, động lực to lớn của cách mạng là:",
-      "options": [ "Quần chúng nhân dân", "Tầng lớp trí thức", "Địa chủ phong kiến", "Tiểu thương" ],
-      "correctIndex": 0
+      "options": [ "Tầng lớp trí thức", "Quần chúng nhân dân", "Địa chủ phong kiến", "Tiểu thương" ],
+      "correctIndex": 1
     },
     {
       "text": "Trong lĩnh vực văn hóa, Hồ Chí Minh coi trọng việc gì?",
       "options": [
         "Xây dựng nền văn hóa mới, khoa học, dân tộc và đại chúng",
-        "Phát triển công nghiệp văn hóa",
+        "Hòa nhập với văn hóa phương Tây",
         "Xây dựng nền văn hóa phong kiến",
-        "Hòa nhập với văn hóa phương Tây"
+        "Phát triển công nghiệp văn hóa"
       ],
       "correctIndex": 0
     },
     {
       "text": "Theo Hồ Chí Minh, Nhà nước ta có bản chất gì?",
       "options": [
-        "Nhà nước của dân, do dân, vì dân",
         "Nhà nước quân chủ",
         "Nhà nước tư sản",
+        "Nhà nước của dân, do dân, vì dân",
         "Nhà nước phong kiến"
       ],
-      "correctIndex": 0
+      "correctIndex": 2
     },
     {
       "text": "Phong cách Hồ Chí Minh được đặc trưng bởi:",
       "options": [
         "Giản dị, khiêm tốn, gần gũi nhân dân",
+        "Cứng nhắc, bảo thủ",
         "Xa hoa, cầu kỳ",
-        "Nghiêm khắc, xa cách",
-        "Cứng nhắc, bảo thủ"
+        "Nghiêm khắc, xa cách"
       ],
       "correctIndex": 0
     },
     {
       "text": "Tư tưởng Hồ Chí Minh về con người nhấn mạnh:",
       "options": [
-        "Con người vừa là mục tiêu vừa là động lực của cách mạng",
         "Con người chỉ là công cụ sản xuất",
-        "Con người phụ thuộc hoàn toàn vào kinh tế",
-        "Con người không quan trọng bằng tài nguyên"
+        "Con người vừa là mục tiêu vừa là động lực của cách mạng",
+        "Con người không quan trọng bằng tài nguyên",
+        "Con người phụ thuộc hoàn toàn vào kinh tế"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "text": "Theo Hồ Chí Minh, lực lượng cách mạng Việt Nam bao gồm:",
       "options": [
-        "Công nhân, nông dân, trí thức và các tầng lớp lao động yêu nước",
         "Chỉ có công nhân",
         "Chỉ có nông dân",
-        "Chỉ có trí thức"
+        "Chỉ có trí thức",
+        "Công nhân, nông dân, trí thức và các tầng lớp lao động yêu nước"
       ],
-      "correctIndex": 0
+      "correctIndex": 3
     },
     {
       "text": "Tác phẩm 'Đường Kách mệnh' ra đời năm nào?",
-      "options": [ "1927", "1930", "1941", "1945" ],
-      "correctIndex": 0
+      "options": [ "1941", "1930", "1927", "1945" ],
+      "correctIndex": 2
     },
     {
       "text": "Trong tư tưởng Hồ Chí Minh, đại đoàn kết dân tộc được coi là:",
       "options": [
+        "Vấn đề phụ",
         "Vấn đề chiến lược, quyết định thành công của cách mạng",
         "Vấn đề tạm thời",
-        "Vấn đề quân sự",
-        "Vấn đề phụ"
+        "Vấn đề quân sự"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "text": "Theo Hồ Chí Minh, mục tiêu cuối cùng của chủ nghĩa xã hội là:",
       "options": [
-        "Nâng cao đời sống vật chất và tinh thần cho nhân dân",
-        "Phát triển công nghiệp nặng",
         "Mở rộng ngoại thương",
-        "Đào tạo trí thức"
+        "Đào tạo trí thức",
+        "Phát triển công nghiệp nặng",
+        "Nâng cao đời sống vật chất và tinh thần cho nhân dân"
       ],
-      "correctIndex": 0
+      "correctIndex": 3
     },
     {
       "text": "Quan điểm 'Không có gì quý hơn độc lập, tự do' được Hồ Chí Minh khẳng định vào:",
-      "options": [ "Năm 1966", "Năm 1945", "Năm 1954", "Năm 1930" ],
-      "correctIndex": 0
+      "options": [ "Năm 1945", "Năm 1954", "Năm 1930", "Năm 1966" ],
+      "correctIndex": 3
     },
     {
       "text": "Theo Hồ Chí Minh, Đảng Cộng sản Việt Nam là:",
       "options": [
-        "Người lãnh đạo duy nhất của cách mạng Việt Nam",
         "Một tổ chức chính trị như các tổ chức khác",
+        "Người lãnh đạo duy nhất của cách mạng Việt Nam",
         "Một hiệp hội nghề nghiệp",
         "Một phong trào quần chúng tự phát"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "text": "Tư tưởng Hồ Chí Minh về xây dựng Đảng nhấn mạnh yếu tố nào?",
       "options": [
-        "Đảng phải trong sạch, vững mạnh",
         "Đảng phải có nhiều đảng viên",
         "Đảng phải giàu có",
+        "Đảng phải trong sạch, vững mạnh",
         "Đảng phải có nhiều kinh nghiệm thương mại"
       ],
-      "correctIndex": 0
+      "correctIndex": 2
     },
     {
       "text": "Trong Tuyên ngôn Độc lập 1945, Hồ Chí Minh đã trích dẫn những văn kiện nào?",
       "options": [
-        "Tuyên ngôn Độc lập Mỹ 1776 và Tuyên ngôn Nhân quyền và Dân quyền Pháp 1791",
+        "Tuyên ngôn Nhân quyền và Dân quyền Pháp 1791 và Tuyên ngôn Độc lập Mỹ 1776",
+        "Luận cương Lênin",
         "Tuyên ngôn Cộng sản",
-        "Hiến pháp Mỹ",
-        "Luận cương Lênin"
+        "Hiến pháp Mỹ"
       ],
       "correctIndex": 0
     },
@@ -211,62 +211,72 @@
     {
       "text": "Tư tưởng Hồ Chí Minh về văn hóa giáo dục nhấn mạnh:",
       "options": [
+        "Cả 3 đáp án trên",
         "Học đi đôi với hành",
-        "Giáo dục phải toàn diện",
         "Giáo dục phục vụ kháng chiến, kiến quốc",
-        "Cả 3 đáp án trên"
+        "Giáo dục phải toàn diện"
       ],
-      "correctIndex": 3
+      "correctIndex": 0
     },
     {
       "text": "Hồ Chí Minh coi trọng đạo đức cách mạng bởi vì:",
       "options": [
-        "Đạo đức là gốc của người cách mạng",
-        "Đạo đức giúp làm giàu",
         "Đạo đức để được ca ngợi",
-        "Đạo đức chỉ là hình thức"
+        "Đạo đức chỉ là hình thức",
+        "Đạo đức là gốc của người cách mạng",
+        "Đạo đức giúp làm giàu"
       ],
-      "correctIndex": 0
+      "correctIndex": 2
     },
     {
       "text": "Theo Hồ Chí Minh, phương châm đoàn kết quốc tế của Việt Nam là:",
       "options": [
+        "Không cần đoàn kết quốc tế",
         "Đoàn kết với tất cả các dân tộc bị áp bức và giai cấp vô sản thế giới",
-        "Chỉ đoàn kết với các nước lớn",
         "Chỉ đoàn kết với các nước xã hội chủ nghĩa",
-        "Không cần đoàn kết quốc tế"
+        "Chỉ đoàn kết với các nước lớn"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "text": "Tư tưởng Hồ Chí Minh về Nhà nước của dân, do dân, vì dân nhấn mạnh yếu tố gì?",
       "options": [
-        "Dân là chủ và dân làm chủ",
         "Chính quyền thuộc về tầng lớp trí thức",
-        "Nhà nước do cá nhân lãnh đạo",
-        "Nhà nước phục vụ giai cấp địa chủ"
+        "Dân là chủ và dân làm chủ",
+        "Nhà nước phục vụ giai cấp địa chủ",
+        "Nhà nước do cá nhân lãnh đạo"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "text": "Theo Hồ Chí Minh, mục tiêu xây dựng con người mới xã hội chủ nghĩa là:",
       "options": [
-        "Có đạo đức, tri thức, sức khỏe và lao động tốt",
         "Chỉ có học vấn cao",
         "Chỉ có sức khỏe tốt",
+        "Có đạo đức, tri thức, sức khỏe và lao động tốt",
         "Chỉ có ý chí kiên cường"
       ],
-      "correctIndex": 0
+      "correctIndex": 2
     },
     {
       "text": "Phong cách làm việc của Hồ Chí Minh được đặc trưng bởi:",
       "options": [
-        "Khoa học, dân chủ, tập thể, gắn liền với thực tiễn",
-        "Nghiêm khắc, bảo thủ",
         "Quan liêu, hình thức",
-        "Tùy tiện, ngẫu hứng"
+        "Khoa học, dân chủ, tập thể, gắn liền với thực tiễn",
+        "Tùy tiện, ngẫu hứng",
+        "Nghiêm khắc, bảo thủ"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
+    },
+    {
+      "text": "Theo Hồ Chí Minh, đạo đức cách mạng được ví như gì?",
+      "options": [
+        "Tài sản vật chất",
+        "Phương tiện tuyên truyền",
+        "Công cụ lãnh đạo",
+        "Gốc của người cách mạng"
+      ],
+      "correctIndex": 3
     }
   ]
 }
