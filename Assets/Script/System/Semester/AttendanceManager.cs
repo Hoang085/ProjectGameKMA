@@ -34,6 +34,7 @@ public class AttendanceManager : MonoBehaviour
         {
             clock.OnSlotStarted += HandleSlotStarted;
             clock.OnSlotEnded += HandleSlotEnded;
+            // Khởi tạo trạng thái theo ca hiện tại
             HandleSlotStarted(clock.Week, null, clock.GetSlotIndex1Based());
         }
     }
@@ -51,12 +52,13 @@ public class AttendanceManager : MonoBehaviour
     private void HandleSlotStarted(int week, string _, int slot)
     {
         var sem = GetCurrentSemester();
-        _currentSubject = SemesterConfigUtil.GetSubjectAt(sem, clock.Weekday, slot);
+        _currentSubject = SemesterConfigUtil.instance.GetSubjectAt(sem, clock.Weekday, slot);
         _attendedThisSlot = false;
     }
 
     private void HandleSlotEnded(int week, string dayName, int slot)
     {
+        // Kết thúc ca mà chưa điểm danh -> tính vắng
         if (_currentSubject != null && !_attendedThisSlot)
             IncrementAbsence(_currentSubject.Name, clock.Term);
 
@@ -68,7 +70,7 @@ public class AttendanceManager : MonoBehaviour
     public bool TryCheckIn(string subjectName, out string error) =>
         TryCheckIn(subjectName, out error, out _);
 
-    // Hàm mới: có cờ isLate để UI biết và hiển thị thông báo phù hợp
+    // Hàm mới: có cờ isLate để UI biết và hiển thị thông báo phù hợp (hiện chưa dùng late window)
     public bool TryCheckIn(string subjectName, out string error, out bool isLate)
     {
         isLate = false;
@@ -76,26 +78,26 @@ public class AttendanceManager : MonoBehaviour
 
         var sem = GetCurrentSemester();
         var sub = FindSubject(sem, subjectName);
-        if (sub == null)
-        {
-            error = DataKeyText.text4 + subjectName ;
-            return false;
-        }
+        if (sub == null) { error = DataKeyText.text4 + subjectName; return false; }
 
-        if (HasExceededAbsences(subjectName, clock.Term))
+        // Lưu ý: KHÔNG chặn theo (đã học + đã vắng) ở đây.
+        // Việc khóa môn khi đã tiêu thụ đủ số buổi sẽ do TeacherAction xử lý ở UI_StartClass.
+        // Tại đây chỉ xử lý: quá số buổi vắng -> không cho điểm danh.
+        int term = clock ? clock.Term : 1;
+        if (HasExceededAbsences(subjectName, term))
         {
-            error = DataKeyText.text5;
+            error = DataKeyText.text5; // quá số buổi vắng
             return false;
         }
 
         if (_currentSubject == null)
         {
-            error = DataKeyText.text6;
+            error = DataKeyText.text6; // Không đúng môn ở ca này
             return false;
         }
         if (!SameSubject(subjectName, _currentSubject.Name))
         {
-            error = DataKeyText.text6 + _currentSubject.Name;
+            error = DataKeyText.text6 + _currentSubject.Name; // Đang là môn khác
             return false;
         }
 
@@ -105,13 +107,13 @@ public class AttendanceManager : MonoBehaviour
         if (!clockUI) { error = "ClockUI chưa sẵn sàng."; return false; }
 
         var slot = clock.Slot;
-        if (slot == DaySlot.Evening) return false; 
-        if (slotPolicy == null) return false; 
+        if (slot == DaySlot.Evening) { error = "Ca tối không cho điểm danh."; return false; }
+        if (slotPolicy == null) { error = "Chưa cấu hình SubjectAttendanceConfig."; return false; }
 
         int slotStart = GetSlotStart(slot);
         if (!slotPolicy.TryGetWindow(slot, slotStart, out int windowStart, out int windowEnd))
         {
-            error = DataKeyText.text8;
+            error = DataKeyText.text8; // Không có khung giờ cho ca này
             return false;
         }
 
@@ -126,16 +128,15 @@ public class AttendanceManager : MonoBehaviour
         if (now < windowEnd)
         {
             // Đúng giờ trong [windowStart, windowEnd)
-            _attendedThisSlot = true;
+            _attendedThisSlot = true;   // Đã điểm danh trong ca -> không tính vắng ở HandleSlotEnded
             isLate = false;
             return true;
         }
 
         // Hết endOffsetMinutes → không cho điểm danh
-        error = DataKeyText.text9;
+        error = DataKeyText.text9; // Hết giờ điểm danh
         return false;
     }
-
 
     // === Logic khung giờ từ AttendanceService ===
     public bool CanCheckInNow(string subjectName, out int windowStart, out int windowEnd)
@@ -185,7 +186,7 @@ public class AttendanceManager : MonoBehaviour
         var sem = GetCurrentSemester();
         var sub = FindSubject(sem, subjectName);
         if (sub == null || sub.MaxAbsences <= 0) return false;
-        return GetAbsences(subjectName, term) >= sub.MaxAbsences;
+        return GetAbsences(subjectName, term) > sub.MaxAbsences;
     }
 
     public int GetAbsences(string subjectName, int term) =>
@@ -217,6 +218,7 @@ public class AttendanceManager : MonoBehaviour
 
     private static string Normalize(string s) =>
         (s ?? "").Trim().ToLowerInvariant();
+
     public int GetNextSlotStart(DaySlot slot) => slot switch
     {
         DaySlot.MorningA => morningBStart,
@@ -226,5 +228,4 @@ public class AttendanceManager : MonoBehaviour
         DaySlot.Evening => 24 * 60, // cuối ngày; ta không cho check-in ca tối
         _ => 24 * 60
     };
-
 }

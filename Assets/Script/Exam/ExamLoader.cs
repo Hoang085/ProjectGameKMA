@@ -17,7 +17,7 @@ public class ExamLoader : MonoBehaviour
     public ExamEntry[] exams;
 
     [Tooltip("Lựa chọn môn để thi")] 
-    public int subjectIndex = 0;
+    public int subjectIndex;
 
     // giữ lại API cũ để tương thích (không bắt buộc dùng nữa)
     [HideInInspector] public string examFileName = "";
@@ -55,6 +55,7 @@ public class ExamLoader : MonoBehaviour
             path = exams[_currentIndex].resourcePath;
         if (string.IsNullOrEmpty(path))
             path = examFileName;
+        Debug.Log($"[ExamLoader] Using path: {path} (index={_currentIndex})");
 
         TextAsset textAsset = Resources.Load<TextAsset>(path);
         if (textAsset == null)

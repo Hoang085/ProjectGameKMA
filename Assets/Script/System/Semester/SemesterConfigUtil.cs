@@ -2,13 +2,18 @@
 using System.Linq;
 
 // SemesterConfigUtil cung cap cac phuong thuc xu ly SemesterConfig
-public static class SemesterConfigUtil
+public class SemesterConfigUtil
 {
+    private static SemesterConfigUtil _instance;
+    public static SemesterConfigUtil instance => _instance ??= new SemesterConfigUtil();
+
+    private SemesterConfigUtil() { }
+
     // Chuan hoa chuoi: trim va chuyen thanh chu thuong
-    private static string N(string s) => (s ?? "").Trim().ToLowerInvariant();
+    private string N(string s) => (s ?? "").Trim().ToLowerInvariant();
 
     // Tim mon hoc tai ngay va ca, ho tro dinh dang ngay
-    public static SubjectData GetSubjectAt(SemesterConfig cfg, Weekday day, int slot)
+    public SubjectData GetSubjectAt(SemesterConfig cfg, Weekday day, int slot)
     {
         if (cfg?.Subjects == null) return null;
 
@@ -34,7 +39,7 @@ public static class SemesterConfigUtil
     }
 
     // Ho tro nguoc cho code cu, chuyen ten ngay thanh enum Weekday
-    public static SubjectData GetSubjectAt(SemesterConfig cfg, string dayName, int slot)
+    public SubjectData GetSubjectAt(SemesterConfig cfg, string dayName, int slot)
     {
         Weekday parsed = Weekday.Mon;
         string d = N(dayName);

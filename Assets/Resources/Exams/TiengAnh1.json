@@ -1,0 +1,157 @@
+﻿{
+  "examTitle": "Đề thi cuối kì 1",
+  "subjectName": "Tiếng Anh 1",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Choose the correct form: She ____ to school every day.",
+      "options": [ "go", "goes", "going", "gone" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Which sentence is correct?",
+      "options": [ "He have a car", "He has a car", "He haves a car", "He having a car" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "What is the past tense of 'buy'?",
+      "options": [ "buyed", "buys", "bought", "buying" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Choose the correct question: ____ you like pizza?",
+      "options": [ "Do", "Does", "Did", "Doing" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "What is the plural of 'child'?",
+      "options": [ "childs", "childes", "children", "childrens" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Choose the correct sentence:",
+      "options": [ "I am teacher.", "I am a teacher.", "I teacher am.", "Am I teacher." ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Complete: We ____ at home yesterday.",
+      "options": [ "are", "was", "were", "be" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "What is the opposite of 'hot'?",
+      "options": [ "warm", "cold", "cool", "heat" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Choose the correct future form: I ____ visit my grandma tomorrow.",
+      "options": [ "will", "am", "did", "was" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Which sentence is correct?",
+      "options": [ "There is three apples.", "There are three apples.", "There be three apples.", "There am three apples." ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Complete: She ____ in London now.",
+      "options": [ "live", "lives", "is living", "living" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "What is the comparative of 'big'?",
+      "options": [ "biger", "biggest", "more big", "bigger" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Choose the correct preposition: I am good ____ English.",
+      "options": [ "at", "in", "on", "with" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Complete: ____ your brother like football?",
+      "options": [ "Do", "Does", "Is", "Was" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "What is the past tense of 'see'?",
+      "options": [ "see", "saw", "seen", "seeing" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Which word is a noun?",
+      "options": [ "quickly", "beautiful", "book", "run" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Choose the correct sentence:",
+      "options": [ "She can sings.", "She cans sing.", "She can sing.", "She singing can." ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Complete: They ____ to the park last Sunday.",
+      "options": [ "go", "goes", "went", "going" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Which is a correct negative sentence?",
+      "options": [ "He not like coffee.", "He don’t like coffee.", "He doesn’t like coffee.", "He isn’t likes coffee." ],
+      "correctIndex": 2
+    },
+    {
+      "text": "What is the superlative of 'happy'?",
+      "options": [ "happier", "more happy", "happiest", "most happiest" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Complete: I usually ____ up at 7 a.m.",
+      "options": [ "get", "gets", "getting", "got" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Choose the correct sentence:",
+      "options": [ "She has got two brother.", "She have two brothers.", "She has got two brothers.", "She haves brothers." ],
+      "correctIndex": 2
+    },
+    {
+      "text": "What is the opposite of 'early'?",
+      "options": [ "late", "fast", "quick", "last" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Which is a correct question?",
+      "options": [ "Where you live?", "Where do you live?", "Where are you lives?", "Where you living?" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Complete: There ____ a cat under the table.",
+      "options": [ "is", "are", "was", "were" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "What is the past tense of 'take'?",
+      "options": [ "took", "taken", "takes", "taking" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Choose the correct article: She is ____ engineer.",
+      "options": [ "a", "an", "the", "no article" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "What is the plural of 'man'?",
+      "options": [ "mans", "men", "manses", "mens" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Complete: I am ____ than my sister.",
+      "options": [ "tall", "taller", "tallest", "most tall" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Which word is an adjective?",
+      "options": [ "slowly", "happy", "swim", "apple" ],
+      "correctIndex": 1
+    }
+  ]
+}

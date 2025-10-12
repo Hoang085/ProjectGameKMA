@@ -13,8 +13,14 @@ public static class ExamResultStorageFile
     // Số bản ghi tối đa mỗi môn để giữ gọn file (đổi nếu cần)
     public static int MaxAttemptsPerSubject = 50;
 
-    static string FilePath =>
-        Path.Combine(Application.persistentDataPath, FileName);
+    static string FilePath
+    {
+        get
+        {
+            string path = Path.Combine(Application.persistentDataPath, FileName);
+            return path;
+        }
+    }
 
     public static ExamResultsDB Load()
     {
@@ -27,7 +33,6 @@ public static class ExamResultStorageFile
         }
         catch (Exception e)
         {
-            Debug.LogError($"[ExamResultStorageFile] Load error: {e}");
             return new ExamResultsDB();
         }
     }
@@ -36,21 +41,58 @@ public static class ExamResultStorageFile
     {
         try
         {
-            var json = JsonUtility.ToJson(db);
-            // Atomic write: ghi ra tmp rồi replace
+            var json = JsonUtility.ToJson(db, true);
+            var dir = Path.GetDirectoryName(FilePath);
+            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
             var tmp = FilePath + ".tmp";
             File.WriteAllText(tmp, json);
+
+            // Nếu file đích CHƯA tồn tại -> Move (lần đầu)
+            if (!File.Exists(FilePath))
+            {
+                File.Move(tmp, FilePath);
+            }
+            else
+            {
 #if UNITY_2021_2_OR_NEWER
-            File.Replace(tmp, FilePath, null);
+                // Đích đã tồn tại -> Replace an toàn
+                File.Replace(tmp, FilePath, null);
 #else
-            if (File.Exists(FilePath)) File.Delete(FilePath);
+            File.Delete(FilePath);
             File.Move(tmp, FilePath);
 #endif
+            }
+
         }
         catch (Exception e)
         {
             Debug.LogError($"[ExamResultStorageFile] Save error: {e}");
         }
+    }
+
+
+    public static void DebugPrintAll()
+    {
+        var db = Load();
+        if (db == null || db.entries.Count == 0)
+        {
+            Debug.Log("[ExamResultStorageFile] Chưa có dữ liệu điểm nào.");
+            return;
+        }
+
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine("[ExamResultStorageFile] ===== Lịch sử thi đã lưu =====");
+        for (int i = 0; i < db.entries.Count; i++)
+        {
+            var a = db.entries[i];
+            sb.AppendLine(
+                $"#{i + 1} | {a.subjectName} ({a.subjectKey}) | {a.examTitle} | " +
+                $"{a.score10:0.0}/10, {a.score4:0.0}/4, {a.letter} | " +
+                $"{a.correct}/{a.total} câu đúng | {a.takenAtIso}"
+            );
+        }
+        Debug.Log(sb.ToString());
     }
 
     public static void AddAttempt(ExamAttempt a)
@@ -63,8 +105,15 @@ public static class ExamResultStorageFile
 
         Save(db);
 
-        // Cập nhật cache “điểm gần nhất”
+        // Cập nhật cache "điểm gần nhất"
         CacheLatest(a);
+
+        // ===== NOTIFICATION INTEGRATION =====
+        // Trigger notification for new score
+        if (GameManager.Ins != null)
+        {
+            GameManager.Ins.OnScoreAdded(a.subjectKey, a.semesterIndex, a.takenAtUnix);
+        }
     }
 
     static void TrimPerSubject(ExamResultsDB db, string subjectKey, int maxPerSubject)

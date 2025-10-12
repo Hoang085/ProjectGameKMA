@@ -277,6 +277,7 @@ public class ExamUIManager : MonoBehaviour
             takenAtUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
         };
         ExamResultStorageFile.AddAttempt(attempt);
+        ExamResultStorageFile.DebugPrintAll();
         // ===================================
 
         if (btnPrev) btnPrev.interactable = false;

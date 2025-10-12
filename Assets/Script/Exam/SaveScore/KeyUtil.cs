@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 public static class KeyUtil
 {
-    // Tạo subjectKey ổn định: không dấu, chữ thường, gạch dưới
+    // Tạo subjectKey ổn định: không dấu, viết thường, viết liền
     public static string MakeKey(string name)
     {
         if (string.IsNullOrWhiteSpace(name)) return "unknown";
@@ -20,9 +20,9 @@ public static class KeyUtil
         }
         s = sb.ToString().Normalize(NormalizationForm.FormC);
 
-        // thay space & ký tự lạ -> _
-        s = Regex.Replace(s, @"[^a-z0-9]+", "_");
-        s = Regex.Replace(s, "_{2,}", "_").Trim('_');
+        // bỏ hết ký tự không phải a-z0-9 (viết liền)
+        s = Regex.Replace(s, @"[^a-z0-9]+", "");
+
         if (string.IsNullOrEmpty(s)) s = "unknown";
         return s;
     }

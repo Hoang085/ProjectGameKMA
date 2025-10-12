@@ -114,7 +114,7 @@ public class GameClock : Singleton<GameClock>
         OnDayChanged?.Invoke();
 
         int dPerW = config ? Mathf.Clamp(config.daysPerWeek, 1, 7) : 7;
-        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 5;
+        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 6;
         int tPerY = config ? Mathf.Max(1, config.termsPerYear) : 2;
 
         if (_day > dPerW)
@@ -129,11 +129,13 @@ public class GameClock : Singleton<GameClock>
                 _term++;
                 OnTermChanged?.Invoke();
 
-                if (_term > tPerY)
+                // SỬA LỖI: Bỏ logic reset term về 1, chỉ tăng year khi cần
+                // Kiểm tra xem có cần tăng year không (ví dụ: mỗi 2 kỳ = 1 năm)
+                if (_term > 1 && (_term - 1) % tPerY == 0)
                 {
-                    _term = 1;
                     _year++;
                     OnYearChanged?.Invoke();
+                    Debug.Log($"[GameClock] Tăng năm lên {_year} tại kỳ {_term}");
                 }
             }
         }
@@ -143,13 +145,14 @@ public class GameClock : Singleton<GameClock>
     private void NormalizeNow(bool fullClamp)
     {
         int dPerW = config ? Mathf.Clamp(config.daysPerWeek, 1, 7) : 7;
-        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 5;
+        int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 6;
         int tPerY = config ? Mathf.Max(1, config.termsPerYear) : 2;
         int sPerD = config ? Mathf.Clamp(config.slotsPerDay, 1, 5) : 4;
 
         if (fullClamp)
         {
-            _term = Mathf.Clamp(_term, 1, tPerY);
+            // SỬA LỖI: Bỏ clamp term, cho phép term tăng liên tục
+            // _term = Mathf.Clamp(_term, 1, tPerY); // ← COMMENT DÒNG NÀY
             _week = Mathf.Clamp(_week, 1, wPerT);
             _day = Mathf.Clamp(_day, 1, dPerW);
         }

@@ -389,4 +389,10 @@ public class ClockUI : MonoBehaviour
             _ => DaySlot.MorningA
         };
     }
+    public static string FormatHM(int minuteOfDay)
+    {
+        int h = minuteOfDay / 60;
+        int m = minuteOfDay % 60;
+        return $"{h:00}:{m:00}";
+    }
 }
