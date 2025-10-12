@@ -13,6 +13,7 @@ namespace HHH.MiniGame
         {
             var op = SceneManager.LoadSceneAsync(def.SceneName, LoadSceneMode.Additive);
             yield return op;
+            
             // Tìm một MiniGameBase trong scene
             var root = SceneManager.GetSceneByName(def.SceneName).GetRootGameObjects();
             IMiniGame mg = null;
@@ -23,7 +24,7 @@ namespace HHH.MiniGame
             var ctx = new MiniGameContext{
                 Definition = def, 
                 Services = Services,
-                UIRoot = FindObjectOfType<Canvas>().transform // hoặc inject sẵn
+                UIRoot = FindObjectOfType<Canvas>().transform
             };
             mg.Initialize(ctx);
             onReady?.Invoke(mg);
