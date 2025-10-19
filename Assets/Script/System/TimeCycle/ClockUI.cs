@@ -215,9 +215,14 @@ public class ClockUI : MonoBehaviour
     {
         if (!GameClock.Ins) return;
 
-        if (textTopDay) textTopDay.text = GameClock.WeekdayToEN(GameClock.Ins.Weekday);
-        if (textSession) textSession.text = "Session: " + GameClock.Ins.GetSlotIndex1Based();
-        if (textSemester) textSemester.text = "Semester: " + GameClock.Ins.Term;
+        if (textTopDay) textTopDay.text = GameClock.WeekdayToVN(GameClock.Ins.Weekday);
+        if (textSession) textSession.text = "Ca Học: " + GameClock.Ins.GetSlotIndex1Based();
+        
+        // **ĐƠN GIẢN: Chỉ hiển thị học kì**
+        if (textSemester) 
+        {
+            textSemester.text = $"Học kì: {GameClock.Ins.Term}";
+        }
 
         UpdateIconsBySession(GameClock.Ins.GetSlotIndex1Based());
         UpdateProgressDiscrete();

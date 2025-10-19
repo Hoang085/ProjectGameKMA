@@ -18,7 +18,7 @@ public class SemesterConfigUtil
         if (cfg?.Subjects == null) return null;
 
         string dayEnumName = day.ToString(); // Ten enum: "Mon", "Tue", ...
-        string dayEnglish = GameClock.WeekdayToEN(day); // Ten tieng Anh: "Monday", "Tuesday", ...
+        string dayEnglish = GameClock.WeekdayToVN(day); // Ten tieng Anh: "Monday", "Tuesday", ...
         string dayNum = ((int)day + 1).ToString(); // So thu tu ngay: 1..7
 
         foreach (var sub in cfg.Subjects)
@@ -49,7 +49,7 @@ public class SemesterConfigUtil
         else
         {
             foreach (Weekday w in Enum.GetValues(typeof(Weekday)))
-                if (N(GameClock.WeekdayToEN(w)) == d) { parsed = w; break; }
+                if (N(GameClock.WeekdayToVN(w)) == d) { parsed = w; break; }
 
             if (int.TryParse(dayName, out int num) && num >= 1 && num <= 7)
                 parsed = (Weekday)(num - 1);
