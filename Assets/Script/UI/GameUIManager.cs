@@ -26,12 +26,16 @@ public class GameUIManager : Singleton<GameUIManager>
     [SerializeField] private GameObject baloUI;
     [SerializeField] private GameObject taskUI;
     [SerializeField] private GameObject scoreUI;
+    [SerializeField] private GameObject scheduleUI; // Thêm UI cho lịch học
+    [SerializeField] private GameObject settingUI;  // Thêm UI cho cài đặt
 
     [Header("BtnListIcon")]
     [SerializeField] private Button btnPlayerIcon;
     [SerializeField] private Button btnBaloIcon;
     [SerializeField] private Button btnTaskIcon;
     [SerializeField] private Button btnScoreIcon;
+    [SerializeField] private Button btnScheduleIcon; // Thêm button lịch học
+    [SerializeField] private Button btnSettingIcon;  // Thêm button cài đặt
 
     [Header("Backpack/Balo")]
     public BackpackUIManager backpackUIManager;
@@ -198,8 +202,11 @@ public class GameUIManager : Singleton<GameUIManager>
             return;
         }
 
-        // FIXED: Don't clear notification when clicking - only when closing
-        // GameManager will handle this properly now
+        // Clear notification when icon is clicked
+        if (GameManager.Ins != null)
+        {
+            GameManager.Ins.OnIconClicked(IconType.Task);
+        }
 
         CloseAllUIs();
         if (taskUI != null)
@@ -232,9 +239,36 @@ public class GameUIManager : Singleton<GameUIManager>
         }
     }
 
-    /// <summary>
-    /// Đóng tất cả UI thống kê (trừ dialogue và interact prompt)
-    /// </summary>
+    public void OnClick_ScheduleIcon()
+    {
+        if (_dialogueOpen)
+        {
+            Debug.Log("[GameUIManager] Không thể mở Schedule UI khi đang trong dialogue");
+            return;
+        }
+        CloseAllUIs();
+        if (scheduleUI != null)
+        {
+            scheduleUI.SetActive(true);
+            Debug.Log("[GameUIManager] Đã mở Schedule UI");
+        }
+    }
+
+    public void OnClick_SettingIcon()
+    {
+        if (_dialogueOpen)
+        {
+            Debug.Log("[GameUIManager] Không thể mở Setting UI khi đang trong dialogue");
+            return;
+        }
+        CloseAllUIs();
+        if (settingUI != null)
+        {
+            settingUI.SetActive(true);
+            Debug.Log("[GameUIManager] Đã mở Setting UI");
+        }
+    }
+
     /// <summary>
     /// Đóng tất cả UI thống kê (trừ dialogue và interact prompt)
     /// </summary>
@@ -246,11 +280,13 @@ public class GameUIManager : Singleton<GameUIManager>
         if (baloUI != null) baloUI.SetActive(false);
         if (taskUI != null) taskUI.SetActive(false);
         if (scoreUI != null) scoreUI.SetActive(false);
+        if (scheduleUI != null) scheduleUI.SetActive(false); // Đóng Schedule UI
+        if (settingUI != null) settingUI.SetActive(false);   // Đóng Setting UI
 
-        // FIXED: Call the new method when task UI is closed
+        // Refresh task notification when task UI is closed
         if (taskUIWasOpen && GameManager.Ins != null)
         {
-            GameManager.Ins.OnTaskUIClosed();
+            GameManager.Ins.RefreshIconNotification(IconType.Task);
         }
     }
 
@@ -289,6 +325,12 @@ public class GameUIManager : Singleton<GameUIManager>
 
         if (btnScoreIcon != null)
             btnScoreIcon.onClick.AddListener(OnClick_ScoreIcon);
+
+        if (btnScheduleIcon != null)
+            btnScheduleIcon.onClick.AddListener(OnClick_ScheduleIcon);
+
+        if (btnSettingIcon != null)
+            btnSettingIcon.onClick.AddListener(OnClick_SettingIcon);
     }
 
     /// <summary>
@@ -307,6 +349,12 @@ public class GameUIManager : Singleton<GameUIManager>
 
         if (btnScoreIcon != null)
             btnScoreIcon.onClick.RemoveListener(OnClick_ScoreIcon);
+
+        if (btnScheduleIcon != null)
+            btnScheduleIcon.onClick.RemoveListener(OnClick_ScheduleIcon);
+
+        if (btnSettingIcon != null)
+            btnSettingIcon.onClick.RemoveListener(OnClick_SettingIcon);
     }
 
     // Hien thi goi y tuong tac

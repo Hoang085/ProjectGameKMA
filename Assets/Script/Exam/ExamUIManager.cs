@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System;
+using System.Collections;
 
 public class ExamUIManager : MonoBehaviour
 {
@@ -304,5 +306,29 @@ public class ExamUIManager : MonoBehaviour
     void CloseFinalDialog()
     {
         if (finalDialog) finalDialog.SetActive(false);
+        
+        // **THÊM: Return to GameScene after closing exam**
+        Debug.Log("[ExamUIManager] Closing exam and returning to GameScene...");
+        StartCoroutine(ReturnToGameScene());
+    }
+    
+    /// <summary>
+    /// **MỚI: Return to GameScene with proper state management**
+    /// </summary>
+    private IEnumerator ReturnToGameScene()
+    {
+        // Set flag to indicate we should restore state after exam
+        PlayerPrefs.SetInt("ShouldRestoreStateAfterExam", 1);
+        PlayerPrefs.SetInt("ADVANCE_SLOT_AFTER_EXAM", 1);
+        PlayerPrefs.Save();
+        
+        Debug.Log("[ExamUIManager] Set ShouldRestoreStateAfterExam flag - GameManager will handle restoration");
+        
+        // Wait a frame to ensure PlayerPrefs are saved
+        yield return null;
+        
+        // Load GameScene
+        Debug.Log("[ExamUIManager] Loading GameScene...");
+        SceneManager.LoadScene("GameScene");
     }
 }

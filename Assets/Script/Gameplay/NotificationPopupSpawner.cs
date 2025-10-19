@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class NotificationPopupSpawner : MonoBehaviour
 {
     public static NotificationPopupSpawner Ins { get; private set; }
 
     [Header("Prefab & Parent")]
-    [SerializeField] private GameObject popupPrefab; // giờ là GameObject thay vì NotificationPopupUI
-    [SerializeField] private Transform popupParent;  // nếu trống thì dùng chính transform
+    [SerializeField] private GameObject popupPrefab;
+    [SerializeField] private Transform popupParent;
 
     [Header("Queue")]
     [SerializeField, Min(0.05f)] private float delayBetween = 0.25f;
@@ -21,26 +22,153 @@ public class NotificationPopupSpawner : MonoBehaviour
     [SerializeField] private Sprite baloIcon;
     [SerializeField] private Sprite playerIcon;
 
+    [Header("Canvas Management")]
+    [SerializeField] private bool findCanvasAutomatically = true;
+
     private readonly Queue<(string msg, Sprite icon)> _queue = new();
     private bool _running;
+    private bool _eventRegistered = false;
+    private Canvas _targetCanvas;
+    private Transform _originalParent;
 
-    private void Awake() => Ins = this;
+    private void Awake()
+    {
+        Ins = this;
+
+        // Store original parent before potentially being moved to DontDestroyOnLoad
+        _originalParent = popupParent;
+
+        // Find or validate canvas
+        FindValidCanvas();
+    }
 
     private void Start()
     {
-        // Đăng ký lắng nghe sự kiện từ GameManager
-        if (GameManager.Ins != null)
+        // Ensure we have a valid canvas reference after scene setup
+        if (_targetCanvas == null)
         {
-            GameManager.Ins.OnIconNotificationChanged += OnIconNotificationChanged;
+            FindValidCanvas();
+        }
+
+        // Start the GameManager registration process
+        StartCoroutine(RegisterWithGameManager());
+    }
+
+    /// <summary>
+    /// Find a valid Canvas to spawn notifications
+    /// </summary>
+    private void FindValidCanvas()
+    {
+        // First, try to use the assigned popupParent if it's in a Canvas
+        if (popupParent != null)
+        {
+            _targetCanvas = popupParent.GetComponentInParent<Canvas>();
+            if (_targetCanvas != null)
+            {
+                Debug.Log($"[NotificationPopupSpawner] Using assigned parent canvas: {_targetCanvas.name}");
+                return;
+            }
+        }
+
+        // If findCanvasAutomatically is enabled, search for a suitable Canvas
+        if (findCanvasAutomatically)
+        {
+            // Look for Canvas in scene
+            Canvas[] canvases = FindObjectsOfType<Canvas>();
+
+            foreach (Canvas canvas in canvases)
+            {
+                // Prefer Canvas that's not in DontDestroyOnLoad and has higher sortOrder
+                if (canvas.gameObject.scene.name != "DontDestroyOnLoad")
+                {
+                    _targetCanvas = canvas;
+
+                    // Try to find a suitable parent within this canvas
+                    Transform canvasTransform = canvas.transform;
+
+                    // Look for common UI container names
+                    Transform uiContainer = canvasTransform.Find("UI") ??
+                                          canvasTransform.Find("HUD") ??
+                                          canvasTransform.Find("Notifications") ??
+                                          canvasTransform.Find("Popups");
+
+                    if (uiContainer != null)
+                    {
+                        popupParent = uiContainer;
+                    }
+                    else
+                    {
+                        // Use canvas directly as parent
+                        popupParent = canvasTransform;
+                    }
+
+                    Debug.Log($"[NotificationPopupSpawner] Auto-found canvas: {canvas.name}, using parent: {popupParent.name}");
+                    return;
+                }
+            }
+
+            Debug.LogWarning("[NotificationPopupSpawner] No suitable Canvas found in scene!");
+        }
+    }
+
+    /// <summary>
+    /// Refresh canvas reference (call this when scene changes or canvas might have changed)
+    /// </summary>
+    public void RefreshCanvasReference()
+    {
+        FindValidCanvas();
+    }
+
+    /// <summary>
+    /// Đăng ký với GameManager với retry mechanism
+    /// </summary>
+    private IEnumerator RegisterWithGameManager()
+    {
+        int maxAttempts = 20;
+        int attempt = 0;
+        float retryInterval = 0.25f;
+
+        while (attempt < maxAttempts && !_eventRegistered)
+        {
+            if (GameManager.Ins != null)
+            {
+                try
+                {
+                    GameManager.Ins.OnIconNotificationChanged += OnIconNotificationChanged;
+                    _eventRegistered = true;
+                    Debug.Log("[NotificationPopupSpawner] ✓ Successfully registered with GameManager");
+                    break;
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogWarning($"[NotificationPopupSpawner] Failed to register with GameManager (attempt {attempt + 1}): {ex.Message}");
+                }
+            }
+
+            attempt++;
+            yield return new WaitForSeconds(retryInterval);
+        }
+
+        if (!_eventRegistered)
+        {
+            Debug.LogError("[NotificationPopupSpawner] Failed to register with GameManager after all attempts - notifications will not work");
         }
     }
 
     private void OnDestroy()
     {
-        // Hủy đăng ký khi destroy
-        if (GameManager.Ins != null)
+        // Hủy đăng ký an toàn
+        if (_eventRegistered && GameManager.Ins != null)
         {
-            GameManager.Ins.OnIconNotificationChanged -= OnIconNotificationChanged;
+            try
+            {
+                GameManager.Ins.OnIconNotificationChanged -= OnIconNotificationChanged;
+                _eventRegistered = false;
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogWarning($"[NotificationPopupSpawner] Error unregistering from GameManager: {ex.Message}");
+            }
         }
     }
 
@@ -51,12 +179,22 @@ public class NotificationPopupSpawner : MonoBehaviour
     {
         if (!enablePointRedNotifications) return;
 
-        // Chỉ spawn popup khi PointRed được BẬT (không phải tắt)
-        bool isNotificationVisible = GameManager.Ins?.GetIconNotification(iconType) ?? false;
+        // Kiểm tra an toàn GameManager
+        if (GameManager.Ins == null) return;
 
-        if (isNotificationVisible)
+        try
         {
-            SpawnPointRedNotification(iconType);
+            // Chỉ spawn popup khi PointRed được BẬT (không phải tắt)
+            bool isNotificationVisible = GameManager.Ins.GetIconNotification(iconType);
+
+            if (isNotificationVisible)
+            {
+                SpawnPointRedNotification(iconType);
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"[NotificationPopupSpawner] Error handling notification change for {iconType}: {ex.Message}");
         }
     }
 
@@ -69,8 +207,6 @@ public class NotificationPopupSpawner : MonoBehaviour
         Sprite icon = GetNotificationIcon(iconType);
 
         Enqueue(message, icon);
-
-        Debug.Log($"[NotificationPopupSpawner] PointRed {iconType} được bật - spawn popup: {message}");
     }
 
     /// <summary>
@@ -111,6 +247,18 @@ public class NotificationPopupSpawner : MonoBehaviour
         if (!popupPrefab || string.IsNullOrWhiteSpace(message))
             return;
 
+        // Ensure we have a valid canvas before enqueuing
+        if (_targetCanvas == null || popupParent == null)
+        {
+            RefreshCanvasReference();
+
+            if (_targetCanvas == null)
+            {
+                Debug.LogWarning("[NotificationPopupSpawner] No valid Canvas found - notification will not be displayed");
+                return;
+            }
+        }
+
         _queue.Enqueue((message, icon));
         if (!_running)
             StartCoroutine(Run());
@@ -134,12 +282,37 @@ public class NotificationPopupSpawner : MonoBehaviour
         Enqueue(message, icon);
     }
 
+    /// <summary>
+    /// Force re-register với GameManager (cho trường hợp mất kết nối)
+    /// </summary>
+    public void ForceReregisterWithGameManager()
+    {
+        if (_eventRegistered && GameManager.Ins != null)
+        {
+            try
+            {
+                GameManager.Ins.OnIconNotificationChanged -= OnIconNotificationChanged;
+            }
+            catch { }
+        }
+
+        _eventRegistered = false;
+        StartCoroutine(RegisterWithGameManager());
+    }
+
     private System.Collections.IEnumerator Run()
     {
         _running = true;
         while (_queue.Count > 0)
         {
             var (msg, icon) = _queue.Dequeue();
+
+            // Double-check canvas and parent before spawning
+            if (_targetCanvas == null || popupParent == null)
+            {
+                RefreshCanvasReference();
+            }
+
             var parent = popupParent ? popupParent : transform;
 
             // Spawn prefab
@@ -149,10 +322,10 @@ public class NotificationPopupSpawner : MonoBehaviour
             var rt = popupObj.GetComponent<RectTransform>();
             if (rt)
             {
-                rt.anchorMin = new Vector2(0.5f, 1f);
-                rt.anchorMax = new Vector2(0.5f, 1f);
-                rt.pivot = new Vector2(0.5f, 1f);
-                rt.anchoredPosition = Vector2.zero;
+                rt.anchorMin = new Vector2(0.52f, 1f);
+                rt.anchorMax = new Vector2(0.52f, 1f);
+                rt.pivot = new Vector2(0.5f, 0.4f);
+                rt.anchoredPosition = new Vector2(0, -50f);
             }
 
             // Nếu prefab có component NotificationPopupUI thì gọi Setup
@@ -180,5 +353,22 @@ public class NotificationPopupSpawner : MonoBehaviour
 
     [ContextMenu("Test Player PointRed")]
     private void _TestPlayerPointRed() => TriggerPointRedNotification(IconType.Player);
+
+    [ContextMenu("Force Re-register with GameManager")]
+    private void _TestForceReregister() => ForceReregisterWithGameManager();
+
+    [ContextMenu("Refresh Canvas Reference")]
+    private void _TestRefreshCanvas() => RefreshCanvasReference();
+
+    [ContextMenu("Check Registration Status")]
+    private void _TestCheckRegistration()
+    {
+        Debug.Log($"[NotificationPopupSpawner] Event registered: {_eventRegistered}");
+        Debug.Log($"[NotificationPopupSpawner] GameManager.Ins available: {GameManager.Ins != null}");
+        Debug.Log($"[NotificationPopupSpawner] Queue count: {_queue.Count}");
+        Debug.Log($"[NotificationPopupSpawner] Running: {_running}");
+        Debug.Log($"[NotificationPopupSpawner] Target Canvas: {(_targetCanvas != null ? _targetCanvas.name : "NULL")}");
+        Debug.Log($"[NotificationPopupSpawner] Popup Parent: {(popupParent != null ? popupParent.name : "NULL")}");
+    }
 #endif
 }
