@@ -59,6 +59,10 @@ public class TeacherAction : InteractableAction
     [Tooltip("Số tuần mỗi kỳ (fallback nếu không đọc được từ GameClock/CalendarConfig).")]
     public int weeksPerTerm = 5;
 
+    [Header("Exam Options")]
+    [Tooltip("Tự động tạo lịch thi cho môn đã hoàn thành nếu chưa có")]
+    public bool autoCreateExamSchedule = true;
+
     [Header("Events")]
     public UnityEvent onClassStarted;
     public UnityEvent onClassFinished;
@@ -90,6 +94,33 @@ public class TeacherAction : InteractableAction
         {
             DBG("DEV clear exam state: no subject found for NOW.");
         }
+    }
+
+    [ContextMenu("DEV: Create missing exam schedules")]
+    private void Dev_CreateMissingExamSchedules()
+    {
+        int created = 0;
+        foreach (var subj in subjects)
+        {
+            if (IsCourseFinished(subj))
+            {
+                if (!TryLoadExamAssignment(subj, out _, out _, out _, out _, out _))
+                {
+                    if (TryGetNearestExamSlotNextWeek(subj, out var examTerm, out var examWeek, out var examDayNextWeek, out var slotIdx1Based))
+                    {
+                        SaveExamAssignment(subj, examTerm, examWeek, examDayNextWeek, slotIdx1Based);
+                        created++;
+                        
+                        string dayVN = DataKeyText.VN_Weekday(examDayNextWeek);
+                        int startMin = DataKeyText.TryGetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slotIdx1Based));
+                        string timeStr = DataKeyText.FormatHM(startMin);
+                        
+                        DBG($"Tạo lịch thi cho môn '{subj.subjectName}': {dayVN} lúc {timeStr}");
+                    }
+                }
+            }
+        }
+        DBG($"Đã tạo {created} lịch thi bị thiếu.");
     }
 
     // ---------- Key helpers ----------
@@ -192,6 +223,41 @@ public class TeacherAction : InteractableAction
         Debug.Log($"[TeacherAction] ClearExamAssignment: {s.subjectName}");
     }
 
+    // ---------- EXAM SCHEDULE AUTO-CREATION ----------
+    /// <summary>
+    /// Tự động tạo lịch thi nếu môn đã hoàn thành nhưng chưa có lịch thi
+    /// </summary>
+    private void EnsureExamScheduleExists(SubjectEntry subj)
+    {
+        if (!autoCreateExamSchedule) return;
+
+        // Kiểm tra xem đã có lịch thi chưa
+        if (TryLoadExamAssignment(subj, out _, out _, out _, out _, out _))
+        {
+            DBG($"Môn '{subj.subjectName}' đã có lịch thi.");
+            return; // Đã có lịch thi rồi
+        }
+
+        // Nếu môn đã hoàn thành (học + vắng >= maxSessions) thì tạo lịch thi
+        if (IsCourseFinished(subj))
+        {
+            if (TryGetNearestExamSlotNextWeek(subj, out var examTerm, out var examWeek, out var examDayNextWeek, out var slotIdx1Based))
+            {
+                SaveExamAssignment(subj, examTerm, examWeek, examDayNextWeek, slotIdx1Based);
+                
+                string dayVN = DataKeyText.VN_Weekday(examDayNextWeek);
+                int startMin = DataKeyText.TryGetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slotIdx1Based));
+                string timeStr = DataKeyText.FormatHM(startMin);
+                
+                DBG($"Tự động tạo lịch thi cho môn '{subj.subjectName}': {dayVN} lúc {timeStr}");
+            }
+            else
+            {
+                DBG($"Không thể tạo lịch thi cho môn '{subj.subjectName}' - không tìm thấy ca phù hợp.");
+            }
+        }
+    }
+
     private string TitleText() => string.IsNullOrWhiteSpace(titleText) ? "No Title" : titleText;
 
     // ---------- Load/Save + migrate ----------
@@ -234,7 +300,27 @@ public class TeacherAction : InteractableAction
     {
         for (int i = 0; i < subjects.Count; i++)
             subjects[i].currentSessionIndex = LoadProgress(subjects[i]);
+            
+        // Tự động tạo lịch thi cho những môn đã hoàn thành nhưng chưa có lịch
+        if (autoCreateExamSchedule)
+        {
+            StartCoroutine(CreateMissingExamSchedulesDelayed());
+        }
     }
+
+    private IEnumerator CreateMissingExamSchedulesDelayed()
+    {
+        yield return new WaitForSeconds(1f); // Đợi hệ thống khởi tạo xong
+        
+        foreach (var subj in subjects)
+        {
+            if (IsCourseFinished(subj))
+            {
+                EnsureExamScheduleExists(subj);
+            }
+        }
+    }
+
     private void OnDestroy()
     {
         for (int i = 0; i < subjects.Count; i++)
@@ -506,11 +592,14 @@ public class TeacherAction : InteractableAction
             return;
         }
 
+        // **THÊM: Tự động tạo lịch thi nếu chưa có**
+        EnsureExamScheduleExists(subj);
+
         // 2) Lấy lịch thi đã chốt
         if (!TryLoadExamAssignment(subj, out int aTerm, out int aWeek, out Weekday aDay, out int aSlot1, out bool missed))
         {
-            UI?.OpenDialogue(TitleText(), "Chưa có lịch thi được thông báo. Hãy hoàn thành môn để nhận lịch thi.");
-            DBG($"UI_TakeExam: No assigned exam for '{subj.subjectName}'.");
+            UI?.OpenDialogue(TitleText(), "Không thể tạo lịch thi cho môn này. Kiểm tra cấu hình SemesterConfig.");
+            DBG($"UI_TakeExam: Cannot create exam schedule for '{subj.subjectName}'.");
             return;
         }
 
@@ -608,15 +697,6 @@ public class TeacherAction : InteractableAction
         // Trong cửa sổ 07:05–07:15 → cho vào thi
         DBG("UI_TakeExam: Inside exam window -> ProceedEnterExam.");
         ProceedEnterExam(subj);
-
-    }
-
-    private void ShowAssignedSlotHint(Weekday day, int slot1Based)
-    {
-        int startMin = DataKeyText.TryGetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slot1Based));
-        string timeStr = DataKeyText.FormatHM(startMin);
-        string dayVN = DataKeyText.VN_Weekday(day);
-        UI?.OpenDialogue(TitleText(), $"Không đúng ca thi đã thông báo. Em chỉ được phép thi vào {dayVN} lúc {timeStr}.");
     }
 
     private void AnnounceExamEnded(Weekday day, int slot1Based)
@@ -631,6 +711,10 @@ public class TeacherAction : InteractableAction
     private void ProceedEnterExam(SubjectEntry subj)
     {
         UI?.OpenDialogue(TitleText(), $"Em đủ điều kiện để thi môn '{subj.subjectName}'. Chúc may mắn!");
+        
+        // **THÊM: Lưu trạng thái game trước khi vào thi**
+        GameStateManager.SavePreExamState(subj.subjectName);
+        
         ExamRouteData.Set(subj.subjectName, subj.subjectKeyForNotes);
         ClearExamAssignment(subj);
         StartCoroutine(LoadExamSceneDelayed("ExamScene", 2.5f));
