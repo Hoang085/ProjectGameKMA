@@ -146,7 +146,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 13, y: 13, z: 13}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1700361807}
@@ -195,7 +195,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -100
-  m_Sprite: {fileID: 21300000, guid: a6799abed4b065742ba1a2f5a557665e, type: 3}
+  m_Sprite: {fileID: -362325917, guid: 483ea5bad002c164691dd1aad12d12aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -351,13 +351,13 @@ MonoBehaviour:
   parent: {fileID: 361225605}
   wordList: {fileID: 11400000, guid: 306ae98fa1954844e9f2b243d28d9c43, type: 2}
   enemyPrefab: {fileID: 1549889040937320847, guid: 8585c4ef23a41464d9a92e282023c319, type: 3}
-  maxEnemiesOnScene: 5
+  maxEnemiesOnScene: 3
   maxEnemiesIncreaseRate: 20
   spawnInterval: 1.6
   minSpawnInterval: 0.8
   spawnIntervalIncreaseRate: 10
   difficultyIncreaseRate: 0.1
-  spawnYRange: {x: -4, y: 10}
+  spawnYRange: {x: 20, y: 21}
   spawnXRange: {x: -20, y: 20}
   powerUpChance: 0.1
   powerUpWord: emp
@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 768300844}
   - component: {fileID: 768300845}
   - component: {fileID: 768300846}
+  - component: {fileID: 768300847}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -538,8 +539,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -12, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1700361807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -587,7 +588,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c92f5a874faeb10449518aa1e23516ff, type: 3}
+  m_Sprite: {fileID: 306953923, guid: ae123c55b289e2b4ba92909a2b52c7c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -628,10 +629,33 @@ MonoBehaviour:
   initOnStart: 1
   spawner: {fileID: 185450532}
   hud: {fileID: 1582844343}
-  lives: 3
+  playerAnimator: {fileID: 768300847}
+  lives: 1
   scorePerWord: 100
   scorePerLetter: 5
   scorePerPowerUp: 500
+--- !u!95 &768300847
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768300843}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2de4dc4453f6c4408c91d40ee801802, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1035885849
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,8 +814,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -808,8 +832,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 200
+  m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -948,8 +972,8 @@ Canvas:
   m_GameObject: {fileID: 1582844343}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1035885851}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

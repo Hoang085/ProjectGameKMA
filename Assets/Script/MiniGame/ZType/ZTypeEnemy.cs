@@ -7,11 +7,11 @@ namespace HHH.MiniGame
 {
     public class ZTypeEnemy : BaseMono
     {
-        [Header("Refs")] 
+        [Header("Refs")]
         [SerializeField] private TextMeshProUGUI wordLabel;
         [SerializeField] private SpriteRenderer body;
 
-        [Header("Move")] 
+        [Header("Move")]
         [SerializeField] private float speed = 2f;
         [SerializeField] private Vector2 direction = Vector2.left; // Di chuyển sang trái
 
@@ -24,8 +24,13 @@ namespace HHH.MiniGame
         public event Action<ZTypeEnemy> OnReachedBottom;
         public event Action<ZTypeEnemy> OnWordCompleted;
 
-        Color _baseColor;
-        float _shakeTime;
+        private Color _baseColor;
+        private float _shakeTime;
+
+        // ===== Mã màu =====
+        private static readonly string COLOR_TYPED_YELLOW = "#FFD54A"; // vàng chữ đã gõ
+        private static readonly string COLOR_TAIL_RED = "#FF3333"; // đỏ đậm enemy thường
+        private static readonly string COLOR_TAIL_BLUE = "#0099FF"; // xanh dương đậm power-up
 
         void Awake()
         {
@@ -48,11 +53,9 @@ namespace HHH.MiniGame
             base.FixedTick();
             transform.Translate((Vector3)direction * speed * Time.deltaTime);
 
-            if (transform.position.y < -12f) //vị trí tàu người chơi
-            {
+            if (transform.position.y < -12f) // chạm vị trí người chơi
                 OnReachedBottom?.Invoke(this);
-            }
-            
+
             if (body)
                 body.color = IsActiveTarget ? Color.Lerp(_baseColor, Color.white, 0.6f) : _baseColor;
         }
@@ -60,6 +63,7 @@ namespace HHH.MiniGame
         public bool TryTypeChar(char c)
         {
             if (TypedIndex >= Word.Length) return false;
+
             c = char.ToLower(c);
             if (Word[TypedIndex] == c)
             {
@@ -81,13 +85,13 @@ namespace HHH.MiniGame
         {
             if (wordLabel)
                 wordLabel.transform.localScale = Vector3.Lerp(wordLabel.transform.localScale, Vector3.one, 10f * Time.deltaTime);
-            
+
             if (_shakeTime > 0)
             {
                 _shakeTime -= Time.deltaTime;
                 if (wordLabel)
                     wordLabel.transform.localPosition = new Vector3(
-                        Mathf.Sin(Time.time * 50f) * 0.1f, // Rung mạnh hơn
+                        Mathf.Sin(Time.time * 50f) * 0.1f,
                         wordLabel.transform.localPosition.y,
                         wordLabel.transform.localPosition.z
                     );
@@ -96,14 +100,19 @@ namespace HHH.MiniGame
             }
         }
 
+        // ==== Cập nhật màu chữ ====
         void UpdateWordLabel()
         {
             if (!wordLabel) return;
-            var head = Word.Substring(0, TypedIndex);
-            var tail = Word.Substring(TypedIndex);
-            wordLabel.text = IsPowerUp
-                ? $"<color=#FFAA00>{head}</color><color=#FFFF00>{tail}</color>" // Màu vàng cho power-up
-                : $"<color=#6DF77A>{head}</color><color=#FFFFFF>{tail}</color>";
+
+            var head = Word.Substring(0, TypedIndex);   // phần đã gõ
+            var tail = Word.Substring(TypedIndex);      // phần chưa gõ
+
+            // head luôn vàng, tail đổi màu tùy loại enemy
+            if (IsPowerUp)
+                wordLabel.text = $"<color={COLOR_TYPED_YELLOW}>{head}</color><color={COLOR_TAIL_BLUE}>{tail}</color>";
+            else
+                wordLabel.text = $"<color={COLOR_TYPED_YELLOW}>{head}</color><color={COLOR_TAIL_RED}>{tail}</color>";
         }
 
         void SetActiveVisual(bool active)

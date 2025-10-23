@@ -1,27 +1,27 @@
 using System.Collections.Generic;
-using HHH.Common;
-using NUnit.Framework;
 using UnityEngine;
 
 namespace HHH.MiniGame
 {
     [CreateAssetMenu(menuName = "MiniGame/ZType/WordData", fileName = "WordListSO")]
-    public class WordListSO : BaseSO
+    public class WordListSO : ScriptableObject
     {
         [TextArea(2, 10)] public string wordsRaw;
-        
-        // Phân loại từ theo độ dài
-        [System.NonSerialized] private Dictionary<int, List<string>> _wordsByLength;
 
-        public override void Initialize()
+        private Dictionary<int, List<string>> _wordsByLength;
+
+        public void Initialize()
         {
-            base.Initialize();
             _wordsByLength = new Dictionary<int, List<string>>();
-            foreach (var line in wordsRaw.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries))
+
+            // Tách theo dấu phẩy, xuống dòng, hoặc dấu cách
+            var separators = new char[] { ',', '\n', '\r', ' ' };
+            foreach (var raw in wordsRaw.Split(separators, System.StringSplitOptions.RemoveEmptyEntries))
             {
-                var w = line.Trim().ToLower();
+                var w = raw.Trim().Trim('"').ToLower();
                 if (string.IsNullOrEmpty(w)) continue;
                 int len = w.Length;
+
                 if (!_wordsByLength.ContainsKey(len))
                     _wordsByLength[len] = new List<string>();
                 _wordsByLength[len].Add(w);
@@ -31,6 +31,7 @@ namespace HHH.MiniGame
         public List<string> GetWords(int minLength = 3, int maxLength = 10)
         {
             if (_wordsByLength == null) Initialize();
+
             var result = new List<string>();
             for (int i = minLength; i <= maxLength; i++)
             {

@@ -12,19 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8006225a666f4b8e9425aec42fc68124, type: 3}
   m_Name: WordListSO
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  id: word_list_s_o
-  ticker: {fileID: 11400000, guid: 0024969ce8ec4b347852687ee9ef3cc1, type: 2}
-  earlyTick: 0
-  tick: 0
-  lateTick: 0
-  fixedTick: 0
-  wordsRaw: '"test","word","alpha","beta"'
+  wordsRaw: '"journey","improve","conversation","invite","borrow","lend","busy","tidy","neighbor","weekend","subject","exam","teacher","lesson","office","colleague","salary","experience","interview","career","vegetable","healthy","exercise","hospital","medicine","weather","cloudy","airport","ticket","hotel"'

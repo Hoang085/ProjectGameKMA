@@ -10,6 +10,7 @@ namespace HHH.MiniGame
         [Header("Refs")] 
         public EnemySpawner spawner;
         public GameObject hud;
+        public Animator playerAnimator; // Thêm biến Animator cho player
 
         [Header("Rules")] 
         public int lives = 3;
@@ -92,17 +93,19 @@ namespace HHH.MiniGame
         {
             var input = Input.inputString;
             if (string.IsNullOrEmpty(input)) return;
-            
+
+            // Kích hoạt animation mỗi khi nhấn phím
+            if (playerAnimator) playerAnimator.SetTrigger("Type");
+
             foreach (char c in input)
             {
                 if (!IsAsciiLetter(c)) continue;
 
                 if (_active == null)
                 {
-                    // Tìm enemy có từ bắt đầu bằng c, ưu tiên gần mép trái
+                    // Ưu tiên enemy spawn trước (cũ nhất)
                     var candidate = _enemies
                         .Where(en => en && en.Word.Length > en.TypedIndex && en.Word[en.TypedIndex] == c)
-                        .OrderBy(en => en.transform.position.x) // x nhỏ hơn = gần mép trái
                         .FirstOrDefault();
 
                     if (candidate != null)

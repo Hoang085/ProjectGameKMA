@@ -36,6 +36,14 @@ namespace HHH.MiniGame
 
         public System.Action<ZTypeEnemy> OnSpawned;
 
+        private int _currentMinWordLength;
+        private int _currentMaxWordLength;
+
+        private List<float> _recentSpawnX = new List<float>();
+        private const float MinXPadding = 1f; // padding nhỏ giữa các enemy
+        private const int MaxSpawnTries = 10;
+        private float _enemyWidth = 1.0f; // default, sẽ lấy từ prefab
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void ResetStaticVariables()
         {
@@ -44,8 +52,17 @@ namespace HHH.MiniGame
         public override void Initialize()
         {
             base.Initialize();
-            _words = wordList ? wordList.GetWords(GetMinWordLength(), GetMaxWordLength()) : new List<string> { "test", "word", "alpha", "beta" };
+            _currentMinWordLength = GetMinWordLength();
+            _currentMaxWordLength = GetMaxWordLength();
+            _words = wordList ? wordList.GetWords(_currentMinWordLength, _currentMaxWordLength) : new List<string> { "test", "word", "alpha", "beta" };
             currentSpawnInterval = spawnInterval;
+            // Lấy kích thước thực tế của enemy (nếu có SpriteRenderer)
+            if (enemyPrefab)
+            {
+                var sr = enemyPrefab.GetComponentInChildren<SpriteRenderer>();
+                if (sr)
+                    _enemyWidth = sr.bounds.size.x;
+            }
         }
 
         public override void Tick()
@@ -58,6 +75,17 @@ namespace HHH.MiniGame
             currentSpawnInterval = Mathf.Max(minSpawnInterval, spawnInterval - (_gameTime / spawnIntervalIncreaseRate) * difficultyIncreaseRate);
             currentMaxEnemiesOnScene = maxEnemiesOnScene + (int)(_gameTime / maxEnemiesIncreaseRate);
 
+            // Cập nhật độ dài từ nếu thay đổi
+            int minLen = GetMinWordLength();
+            int maxLen = GetMaxWordLength();
+            if (minLen != _currentMinWordLength || maxLen != _currentMaxWordLength)
+            {
+                _currentMinWordLength = minLen;
+                _currentMaxWordLength = maxLen;
+                if (wordList)
+                    _words = wordList.GetWords(_currentMinWordLength, _currentMaxWordLength);
+            }
+
             if (_t >= currentSpawnInterval)
             {
                 _t = 0f;
@@ -68,19 +96,39 @@ namespace HHH.MiniGame
         void SpawnOne()
         {
             if (!enemyPrefab || EnemyCount >= currentMaxEnemiesOnScene) return;
-            
+
             bool isPowerUp = _rng.NextDouble() < powerUpChance;
             string word = isPowerUp ? powerUpWord : _words[_rng.Next(_words.Count)];
-            
-            var x = Mathf.Lerp(spawnXRange.x, spawnXRange.y, (float)_rng.NextDouble());
-            var y = Mathf.Lerp(spawnYRange.x, spawnYRange.y, (float)_rng.NextDouble());
+
+            float x = 0f, y = 0f;
+            int tries = 0;
+            bool found = false;
+            float minDistance = _enemyWidth + MinXPadding;
+            while (tries < MaxSpawnTries && !found)
+            {
+                x = Mathf.Lerp(spawnXRange.x, spawnXRange.y, (float)_rng.NextDouble());
+                found = true;
+                foreach (var recentX in _recentSpawnX)
+                {
+                    if (Mathf.Abs(x - recentX) < minDistance)
+                    {
+                        found = false;
+                        break;
+                    }
+                }
+                tries++;
+            }
+            y = Mathf.Lerp(spawnYRange.x, spawnYRange.y, (float)_rng.NextDouble());
             var pos = new Vector3(x, y, 0f);
-            
-            //var e = Instantiate(enemyPrefab, pos, Quaternion.identity);
+
             var e = enemyPrefab.GetObjectInPool<ZTypeEnemy>(pos, parent.transform);
             EnemyCount++;
             e.Init(word, isPowerUp);
             OnSpawned?.Invoke(e);
+
+            // Lưu lại vị trí X vừa spawn, chỉ giữ số lượng bằng số enemy tối đa trên scene
+            _recentSpawnX.Add(x);
+            if (_recentSpawnX.Count > currentMaxEnemiesOnScene) _recentSpawnX.RemoveAt(0);
         }
 
         int GetMinWordLength() => Mathf.Min(3 + (int)(_gameTime / 30f), 5); // Tăng độ dài tối thiểu mỗi 30s
