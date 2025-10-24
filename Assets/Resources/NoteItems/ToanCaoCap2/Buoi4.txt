@@ -1,0 +1,16 @@
+1.Khái niệm:
+-Tích phân đường loại 1 và loại 2.
+-Tích phân mặt – thông lượng qua mặt S.
+
+2.Công thức:
+ ∫₍C₎ f(x,y) ds
+ ∫₍C₎ (P dx + Q dy + R dz)
+ ∬₍S₎ F·n dS
+
+3.Quy tắc:
+-Hướng dương theo chiều tăng tham số.
+-Định lý Green, Gauss, Stokes liên hệ các loại tích phân.
+
+4.Ứng dụng:
+-Tính công của lực dọc theo quỹ đạo.
+-Tính thông lượng qua mặt kín.

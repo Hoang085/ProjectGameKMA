@@ -1,0 +1,15 @@
+1.Khái niệm:
+-Công, năng lượng, công suất.
+-Định luật bảo toàn năng lượng.
+
+2.Công thức:
+ A = F·s·cosα
+ W = m·g·h + ½·m·v²
+ A = ΔW
+
+3.Quy tắc:
+-Chọn mốc thế năng hợp lý.
+-Đơn vị: J (Jun), W (Oát).
+
+4.Ứng dụng:
+Ném vật lên cao, con lắc đơn.

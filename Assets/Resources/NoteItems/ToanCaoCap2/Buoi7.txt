@@ -1,0 +1,15 @@
+1.Khái niệm:
+-Phương trình tuyến tính hệ số hằng: y″ + a·y′ + b·y = 0.
+-Nghiệm đặc trưng, nghiệm riêng, nghiệm tổng quát.
+
+2.Công thức:
+ Δ = a² − 4b
+ y = e^(rx) với r₁, r₂ là nghiệm của r² + a·r + b = 0.
+
+3.Quy tắc:
+-Nếu Δ > 0 ⇒ hai nghiệm thực khác nhau.
+-Nếu Δ = 0 ⇒ nghiệm kép.
+-Nếu Δ < 0 ⇒ nghiệm phức → dao động điều hòa.
+
+4.Ứng dụng:
+Dao động cơ, mạch điện RLC, hệ cơ học.

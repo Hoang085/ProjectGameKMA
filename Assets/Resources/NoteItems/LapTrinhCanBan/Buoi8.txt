@@ -1,0 +1,17 @@
+1.Khái niệm:
+-Tham trị: truyền bản sao giá trị → không ảnh hưởng biến gốc.
+-Tham chiếu: truyền địa chỉ → thay đổi ảnh hưởng biến gốc.
+-Biến cục bộ: tồn tại trong phạm vi hàm.
+-Biến toàn cục: tồn tại trong toàn bộ chương trình.
+
+2.Cú pháp (C++):
+  void swap(int &a, int &b) {
+    int temp = a; a = b; b = temp;
+ }
+3.Quy tắc:
+-Hạn chế dùng biến toàn cục để tránh lỗi logic.
+-Dùng static để lưu giá trị giữa các lần gọi hàm.
+
+4.Ứng dụng:
+-Viết hàm hoán đổi hai số bằng tham chiếu.
+-So sánh kết quả giữa truyền tham trị và tham chiếu.

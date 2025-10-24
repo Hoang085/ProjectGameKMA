@@ -1,0 +1,33 @@
+1.Khái niệm:
+
+-Toán tử số học: +, -, *, /, %
+
+-Toán tử so sánh: ==, !=, >, <, >=, <=
+
+-Toán tử logic: &&, ||, !
+
+2.Cú pháp:
+
+   if (x > 0) {
+   printf("Số dương");
+  } else if (x == 0) {
+   printf("Số không");
+  } else {
+   printf("Số âm");
+  }
+
+3.Quy tắc:
+
+-Mỗi nhánh if chỉ chạy khi điều kiện đúng.
+
+-Dùng {} để nhóm nhiều lệnh trong cùng một khối.
+
+-Ưu tiên: ! > && > ||.
+
+4.Ứng dụng:
+
+-Xác định số chẵn/lẻ, dương/âm.
+
+-Tính học lực dựa trên điểm trung bình.
+
+-Xác định năm nhuận.

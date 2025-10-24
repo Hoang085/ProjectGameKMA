@@ -66,20 +66,36 @@ public class GameClock : Singleton<GameClock>
     // Dat thoi gian moi, chuan hoa va kich hoat su kien
     public void SetTime(int year, int term, int week, int dayIndex1Based, DaySlot slot)
     {
+        // lưu trạng thái cũ
+        int oldYear = _year, oldTerm = _term, oldWeek = _week, oldDay = _day;
+        DaySlot oldSlot = _slot;
+
+        // gán mới
         _year = Mathf.Max(1, year);
         _term = Mathf.Max(1, term);
         _week = Mathf.Max(1, week);
         _day = Mathf.Max(1, dayIndex1Based);
         _slot = slot;
+
         NormalizeNow(fullClamp: true);
 
-        OnYearChanged?.Invoke();
-        OnTermChanged?.Invoke();
-        OnWeekChanged?.Invoke();
-        OnDayChanged?.Invoke();
-        OnSlotChanged?.Invoke();
-        FireSlotStarted(); // Bat dau ca tai thoi diem moi
+        // CHỈ phát event khi có thay đổi
+        if (oldYear != _year) OnYearChanged?.Invoke();
+        if (oldTerm != _term) OnTermChanged?.Invoke();
+        if (oldWeek != _week) OnWeekChanged?.Invoke();
+        if (oldDay != _day) OnDayChanged?.Invoke();
+        if (oldSlot != _slot) { OnSlotChanged?.Invoke(); FireSlotStarted(); }
     }
+
+    public void SetSlotOnly(DaySlot newSlot)
+    {
+        if (_slot == newSlot) return;
+        _slot = newSlot;
+        NormalizeNow(fullClamp: false);
+        OnSlotChanged?.Invoke();
+        FireSlotStarted();
+    }
+
 
     // Kiem tra ngay co phai ngay day hoc
     public bool IsTeachingDay(Weekday d) =>

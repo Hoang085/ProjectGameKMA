@@ -1,0 +1,15 @@
+1.Khái niệm:
+-Trường vector, đường cong kín, mặt kín.
+-Định lý cơ bản trong giải tích vector.
+
+2.Công thức:
+ Green: ∬₍D₎ (∂Q/∂x − ∂P/∂y) dA = ∮₍C₎ (P dx + Q dy)
+ Gauss: ∬₍S₎ F·n dS = ∭₍V₎ div F dV
+ Stokes: ∮₍C₎ F·dr = ∬₍S₎ rot F·n dS
+
+3.Quy tắc:
+-div = ∂P/∂x + ∂Q/∂y + ∂R/∂z
+-rot = (∂R/∂y−∂Q/∂z, ∂P/∂z−∂R/∂x, ∂Q/∂x−∂P/∂y)
+
+4.Ứng dụng:
+Cơ học chất lưu, điện từ trường, trường lực.

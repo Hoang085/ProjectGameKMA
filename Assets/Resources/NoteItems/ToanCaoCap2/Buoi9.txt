@@ -1,0 +1,15 @@
+1.Khái niệm:
+-Biến đổi Laplace: công cụ giải phương trình vi phân.
+-Biến đổi Fourier: biểu diễn hàm bằng sóng sin-cos.
+
+2.Công thức:
+ ℒ{f(t)} = ∫₀^∞ e^(−st)f(t) dt
+ 𝓕{f(t)} = ∫₋∞^∞ f(t)e^(−iωt) dt
+
+3.Quy tắc:
+-Tuyến tính: ℒ{a·f + b·g} = aℒ{f} + bℒ{g}.
+-Dịch thời gian: ℒ{f(t−a)} = e^(−as)ℒ{f(t)}.
+
+4.Ứng dụng:
+-Giải phương trình dao động, mạch RC/RL.
+-Phân tích tín hiệu, xử lý ảnh, âm thanh.

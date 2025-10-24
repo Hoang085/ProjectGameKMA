@@ -1,0 +1,11 @@
+1.Tổng hợp kiến thức:
+Vi phân nhiều biến, tích phân bội, tích phân đường và mặt, phương trình vi phân, biến đổi Laplace/Fourier.
+
+2.Công thức trọng tâm:
+ df = ∂f/∂x·dx + ∂f/∂y·dy
+ ∮₍C₎ F·dr = ∬ rot F·n dS
+ y″ + a·y′ + b·y = 0
+
+3.Ứng dụng:
+-Mô hình hóa vật lý – kỹ thuật: dao động cơ, dòng điện, truyền nhiệt.
+-Giải bài tập tổng hợp, phân tích thực nghiệm.

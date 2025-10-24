@@ -1,0 +1,16 @@
+1.Khái niệm:
+-Lực và chuyển động.
+-Các loại lực: trọng lực, ma sát, đàn hồi.
+
+2.Công thức:
+F = m·a
+P = m·g
+Fₘₛ = μ·N
+
+3.Quy tắc:
+-Chọn hệ quy chiếu quán tính.
+-Vẽ hướng lực rõ ràng.
+
+4.Ứng dụng:
+-Vật kéo trên mặt phẳng nghiêng.
+-Bài tập tính ma sát, gia tốc.

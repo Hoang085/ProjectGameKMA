@@ -5,35 +5,76 @@ using UnityEngine;
 
 namespace HHH.MiniGame
 {
-    public class ZTypeGameManager : BaseMono
+    /// <summary>
+    /// Minigame Z-Type.
+    /// - Kế thừa MiniGameBase (đúng chữ ký).
+    /// - Implement StartGame().
+    /// - Reset runtime trong Start().
+    /// - GameOver() gọi Finish(default) để không phụ thuộc field của MiniGameResult.
+    /// </summary>
+    public class ZTypeGameManager : MiniGameBase
     {
-        [Header("Refs")] 
+        [Header("Refs")]
         public EnemySpawner spawner;
-        public GameObject hud;
-        public Animator playerAnimator; // Thêm biến Animator cho player
+        public GameObject hud;          // Panel "GAME OVER"
+        public Animator playerAnimator; // Animator nhân vật (trigger "Type")
 
-        [Header("Rules")] 
+        [Header("Rules")]
         public int lives = 3;
         public int scorePerWord = 100;
         public int scorePerLetter = 5;
         public int scorePerPowerUp = 500;
 
-        readonly List<ZTypeEnemy> _enemies = new List<ZTypeEnemy>();
-        ZTypeEnemy _active;
+        // Runtime
+        private readonly List<ZTypeEnemy> _enemies = new List<ZTypeEnemy>();
+        private ZTypeEnemy _active;
 
-        public override void Initialize()
+        // ===== Lifecycle =====
+
+        // ĐÚNG chữ ký của MiniGameBase
+        public override void Initialize(MiniGameContext ctx)
         {
-            base.Initialize();
-            
-            hud.SetActive(false);
+            base.Initialize(ctx);
+            if (hud) hud.SetActive(false);
         }
 
-        void OnEnable()
+        // Đáp ứng abstract bắt buộc
+        public override void StartGame()
+        {
+            // Khi bắt đầu game thật sự (từ loader), đảm bảo trạng thái sạch
+            if (hud) hud.SetActive(false);
+            lives = Mathf.Max(lives, 1);
+            EnemySpawner.EnemyCount = 0;
+            _enemies.Clear();
+            _active = null;
+            if (spawner) spawner.enabled = true;
+        }
+
+        private void Start()
+        {
+            // Lưới an toàn khi vào scene trực tiếp (không qua loader)
+            if (hud) hud.SetActive(false);
+
+            if (lives <= 0)
+            {
+                lives = 3;
+                Debug.Log("[ZTypeGameManager] Reset lives về mặc định = 3");
+            }
+
+            EnemySpawner.EnemyCount = 0;
+            _enemies.Clear();
+            _active = null;
+
+            foreach (var e in FindObjectsOfType<ZTypeEnemy>())
+                Destroy(e.gameObject);
+        }
+
+        private void OnEnable()
         {
             if (spawner) spawner.OnSpawned += RegisterEnemy;
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             if (spawner) spawner.OnSpawned -= RegisterEnemy;
         }
@@ -44,41 +85,49 @@ namespace HHH.MiniGame
             HandleKeyboardInput();
         }
 
-        void RegisterEnemy(ZTypeEnemy e)
+        // ===== Gameplay =====
+
+        private void RegisterEnemy(ZTypeEnemy e)
         {
+            if (!e) return;
             _enemies.Add(e);
             e.OnWordCompleted += OnEnemyKilled;
             e.OnReachedBottom += OnEnemyReachedBottom;
         }
 
-        void OnEnemyKilled(ZTypeEnemy e)
+        private void OnEnemyKilled(ZTypeEnemy e)
         {
-            //hud?.AddScore(e.IsPowerUp ? scorePerPowerUp : scorePerWord);
+            if (!e) return;
+
             if (e.IsPowerUp)
             {
-                // Kích hoạt EMP: tiêu diệt tất cả kẻ thù
                 foreach (var enemy in _enemies.ToArray())
                     RemoveEnemy(enemy, destroyed: true);
-                
+
                 EnemySpawner.EnemyCount = 0;
             }
             else
             {
                 RemoveEnemy(e, destroyed: true);
-                EnemySpawner.EnemyCount--;
+                EnemySpawner.EnemyCount = Mathf.Max(0, EnemySpawner.EnemyCount - 1);
             }
         }
 
-        void OnEnemyReachedBottom(ZTypeEnemy e)
+        private void OnEnemyReachedBottom(ZTypeEnemy e)
         {
-            lives--;
-            //hud?.SetLives(lives);
+            if (lives <= 0) { RemoveEnemy(e, destroyed: true); return; }
+
+            lives = Mathf.Max(0, lives - 1);
             RemoveEnemy(e, destroyed: true);
-            if (lives <= 0) GameOver();
+
+            if (lives <= 0)
+                GameOver();
         }
 
-        void RemoveEnemy(ZTypeEnemy e, bool destroyed)
+        private void RemoveEnemy(ZTypeEnemy e, bool destroyed)
         {
+            if (!e) return;
+
             if (_active == e)
             {
                 _active.SetAsActiveTarget(false);
@@ -89,12 +138,11 @@ namespace HHH.MiniGame
             if (destroyed && e) Destroy(e.gameObject);
         }
 
-        void HandleKeyboardInput()
+        private void HandleKeyboardInput()
         {
             var input = Input.inputString;
             if (string.IsNullOrEmpty(input)) return;
 
-            // Kích hoạt animation mỗi khi nhấn phím
             if (playerAnimator) playerAnimator.SetTrigger("Type");
 
             foreach (char c in input)
@@ -103,7 +151,6 @@ namespace HHH.MiniGame
 
                 if (_active == null)
                 {
-                    // Ưu tiên enemy spawn trước (cũ nhất)
                     var candidate = _enemies
                         .Where(en => en && en.Word.Length > en.TypedIndex && en.Word[en.TypedIndex] == c)
                         .FirstOrDefault();
@@ -113,32 +160,35 @@ namespace HHH.MiniGame
                         _active = candidate;
                         _active.SetAsActiveTarget(true);
                     }
-                    else
-                    {
-                        continue;
-                    }
+                    else continue;
                 }
 
                 if (_active != null)
                 {
                     bool ok = _active.TryTypeChar(c);
-                    //if (ok) hud?.AddScore(scorePerLetter);
-
                     if (_active && _active.TypedIndex >= _active.Word.Length)
-                    {
-                        _active = null; // Reset sau khi hoàn thành từ
-                    }
+                        _active = null;
                 }
             }
         }
 
-        bool IsAsciiLetter(char c) => (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+        private bool IsAsciiLetter(char c) =>
+            (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
 
-        void GameOver()
+        private void GameOver()
         {
             if (spawner) spawner.enabled = false;
-            foreach (var e in _enemies.ToArray()) RemoveEnemy(e, destroyed: true);
-            hud.SetActive(true);
+
+            foreach (var e in _enemies.ToArray())
+                RemoveEnemy(e, destroyed: true);
+
+            if (hud) hud.SetActive(true);
+
+            Debug.Log("[ZTypeGameManager] GameOver - returning to GameScene...");
+
+            // KHÔNG dùng field của MiniGameResult → truyền default
+            Finish(default);
+
             enabled = false;
         }
     }

@@ -1,0 +1,26 @@
+1.Khái niệm:
+
+-Khi có nhiều lựa chọn → dùng switch...case.
+
+-Toán tử 3 ngôi: kq = (điều_kiện) ? giá_trị_đúng : giá_trị_sai;
+
+2.Ví dụ:
+
+switch (choice) {
+    case 1: printf("Cộng"); break;
+    case 2: printf("Trừ"); break;
+    default: printf("Lựa chọn không hợp lệ");
+}
+
+
+3.Quy tắc:
+
+-Luôn có break để tránh rơi xuống các case khác.
+
+-default được thực hiện nếu không khớp case nào.
+
+4.Ứng dụng:
+
+-Tạo menu lựa chọn chức năng.
+
+-Tính ngày trong tháng (xét tháng và năm).

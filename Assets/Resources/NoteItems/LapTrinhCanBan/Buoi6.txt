@@ -1,0 +1,20 @@
+1.Khái niệm:
+-Chuỗi là dãy ký tự kết thúc bằng '\0'.
+-Thường dùng để lưu tên, câu, dữ liệu text.
+
+2.Cú pháp:
+  char name[20];
+  gets(name);
+  printf("Xin chào %s", name);
+
+
+3.Hàm xử lý chuỗi phổ biến:
+-strlen(str) – độ dài chuỗi
+-strcpy(dest, src) – sao chép chuỗi
+-strcmp(a, b) – so sánh hai chuỗi
+-strcat(a, b) – nối chuỗi
+
+4.Ứng dụng:
+-Nhập tên → in ra từng ký tự.
+-Kiểm tra chuỗi đối xứng (palindrome).
+-Đếm số nguyên âm trong chuỗi.

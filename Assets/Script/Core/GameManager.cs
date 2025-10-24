@@ -9,6 +9,8 @@ public class GameManager : Singleton<GameManager>
     [Header("Icon Notification System")]
     [SerializeField] private IconNotificationManager iconNotificationManager;
 
+    public static event Action OnGameManagerReady;
+
     public event Action<IconType> OnIconNotificationChanged;
 
     private Dictionary<IconType, bool> iconNotificationStates = new Dictionary<IconType, bool>();
@@ -37,6 +39,9 @@ public class GameManager : Singleton<GameManager>
         // **QUAN TRỌNG: Đăng ký sự kiện scene load**
         MakeSingleton(true);
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        // Thông báo cho các hệ thống khác khi GameManager đã sẵn sàng
+        OnGameManagerReady?.Invoke();
     }
 
     void OnDestroy()
@@ -53,35 +58,61 @@ public class GameManager : Singleton<GameManager>
         taskManagerRetryCount = 0;
         taskManagerCheckTimer = 0f;
 
-
-
         // Chỉ xử lý khi load GameScene
-        if (scene.name == "GameScene")
+        if (scene.name != "GameScene")
+            return;
+
+        // Lưới an toàn: nếu trước đó MiniGame có pause, bảo đảm về GameScene luôn chạy bình thường
+        Time.timeScale = 1f;
+
+        Debug.Log($"[GameManager] Scene '{scene.name}' đã load - Kiểm tra cờ khôi phục...");
+
+        bool shouldRestoreExam = PlayerPrefs.GetInt("ShouldRestoreStateAfterExam", 0) == 1;
+        bool shouldRestoreMiniGame = PlayerPrefs.GetInt("ShouldRestoreStateAfterMiniGame", 0) == 1;
+        bool shouldAdvance = PlayerPrefs.GetInt("ShouldAdvanceTimeAfterExam", 0) == 1;
+
+        bool hasAnyFlag = shouldRestoreExam || shouldRestoreMiniGame || shouldAdvance;
+
+        if (!hasAnyFlag)
         {
-            Debug.Log($"[GameManager] Scene '{scene.name}' đã load - Kiểm tra cờ khôi phục...");
+            Debug.Log("[GameManager] Không có cờ khôi phục nào được thiết lập");
+            return;
+        }
 
-            // **TỐI ƪU: Kiểm tra ngay lập tức, không coroutine**
-            bool shouldRestore = PlayerPrefs.GetInt("ShouldRestoreStateAfterExam", 0) == 1;
-            bool shouldAdvance = PlayerPrefs.GetInt("ShouldAdvanceTimeAfterExam", 0) == 1;
+        // Tránh xử lý lặp nhiều lần cho cùng một lần load GameScene
+        if (lastSceneName == scene.name)
+        {
+            Debug.Log("[GameManager] Bỏ qua vì đã xử lý cho lần load hiện tại.");
+            return;
+        }
+        lastSceneName = scene.name;
 
-            if (shouldRestore || shouldAdvance)
-            {
-                // **QUAN TRỌNG: Tránh duplicate check**
-                if (lastSceneName != scene.name)
-                {
-                    lastSceneName = scene.name;
-                    Debug.Log($"[GameManager] Phát hiện cờ khôi phục: Restore={shouldRestore}, Advance={shouldAdvance}");
+        Debug.Log($"[GameManager] Phát hiện cờ khôi phục: RestoreExam={shouldRestoreExam}, RestoreMiniGame={shouldRestoreMiniGame}, Advance={shouldAdvance}");
 
-                    // **TỐI ƪU: Gọi trực tiếp mà không delay**
-                    CheckAndHandlePostExamStateRestore();
-                }
-            }
-            else
-            {
-                Debug.Log("[GameManager] Không có cờ khôi phục nào được thiết lập");
-            }
+        // Xoá các cờ NGAY LẬP TỨC để tránh loop nếu có reload
+        if (shouldRestoreExam)
+            PlayerPrefs.DeleteKey("ShouldRestoreStateAfterExam");
+        if (shouldRestoreMiniGame)
+            PlayerPrefs.DeleteKey("ShouldRestoreStateAfterMiniGame");
+        if (shouldAdvance)
+            PlayerPrefs.DeleteKey("ShouldAdvanceTimeAfterExam");
+        PlayerPrefs.Save();
+
+        // Ưu tiên khôi phục state nếu có (khôi phục xong sẽ tự chuyển ca)
+        if (shouldRestoreExam || shouldRestoreMiniGame)
+        {
+            StartCoroutine(FastRestoreStateCoroutine());
+            return;
+        }
+
+        // Nếu chỉ có yêu cầu chuyển ca (không cần khôi phục)
+        if (shouldAdvance)
+        {
+            StartCoroutine(AdvanceTimeAfterExamCoroutine());
+            return;
         }
     }
+
 
     void Start()
     {

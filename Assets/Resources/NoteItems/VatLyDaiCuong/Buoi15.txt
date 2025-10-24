@@ -1,0 +1,13 @@
+1.Khái niệm:
+-Liên hệ giữa điện và từ.
+-Cảm ứng điện từ, dòng điện xoay chiều cơ bản.
+
+2.Công thức:
+ ε = −ΔΦ ÷ Δt
+ F = q·(v × B)
+
+3.Ứng dụng:
+Máy phát điện, động cơ điện, cuộn cảm.
+
+4.Thực hành:
+Thí nghiệm Faraday, đo từ thông, mô phỏng dòng cảm ứng.

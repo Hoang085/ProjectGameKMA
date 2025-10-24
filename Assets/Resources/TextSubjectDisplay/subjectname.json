@@ -11,6 +11,18 @@
     {
       "key": "tienganh1",
       "display": "Tiếng Anh 1"
+    },
+    {
+      "key": "laptrinhcanban",
+      "display": "Lập Trình Căn Bản"
+    },
+    {
+      "key": "toancaocap2",
+      "display": "Toán Cao Cấp 2"
+    },
+    {
+      "key": "vatlydaicuong",
+      "display": "Vật Lý Đại Cương"
     }
   ]
 }

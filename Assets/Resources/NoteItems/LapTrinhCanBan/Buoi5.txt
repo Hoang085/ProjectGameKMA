@@ -1,0 +1,17 @@
+1.Khái niệm:
+-Mảng là tập hợp các phần tử cùng kiểu dữ liệu được lưu liên tiếp.
+-Chỉ số bắt đầu từ 0.
+
+2.Cú pháp:
+  int a[5] = {1, 2, 3, 4, 5};
+  printf("%d", a[2]); // In ra phần tử thứ 3
+
+3.Quy tắc:
+-Không truy cập vượt kích thước mảng.
+-Có thể dùng vòng lặp để duyệt mảng.
+
+4.Ứng dụng:
+
+-Nhập n phần tử → tính tổng, tìm min, max.
+-Đếm số phần tử chia hết cho 3.
+-Đảo ngược mảng.

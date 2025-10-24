@@ -1,0 +1,12 @@
+1.Khái niệm:
+-Vật rắn, lỏng, khí nở khi tăng nhiệt độ.
+
+2.Công thức:
+ ΔL = α·L₀·Δt
+ ΔV = β·V₀·Δt
+
+3.Quy tắc:
+-Hệ số nở dài (α) phụ thuộc vào vật liệu.
+
+4.Ứng dụng:
+Khe hở cầu thép, dây điện chùng.

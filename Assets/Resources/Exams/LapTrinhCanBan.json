@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 2",
+  "subjectName": "Lập Trình Căn Bản",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Ngôn ngữ lập trình C được phát triển bởi ai?",
+      "options": [ "James Gosling", "Dennis Ritchie", "Bjarne Stroustrup", "Guido van Rossum" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Hàm main() trong C có vai trò gì?",
+      "options": [ "Để định nghĩa thư viện", "Là điểm bắt đầu của chương trình", "Để khai báo biến toàn cục", "Để lưu dữ liệu tạm" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Câu lệnh nào dùng để in ra màn hình trong C?",
+      "options": [ "cin>>", "cout<<", "printf()", "print()" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Khai báo nào đúng để tạo biến nguyên trong C?",
+      "options": [ "number a;", "int a;", "char a;", "float a;" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Kết thúc mỗi câu lệnh trong C phải có ký tự nào?",
+      "options": [ ":", ".", ",", ";" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Toán tử % trong C có ý nghĩa là gì?",
+      "options": [ "Lấy phần dư", "Chia lấy thương", "Tăng biến", "So sánh bằng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Kết quả của biểu thức 5 / 2 trong C là gì?",
+      "options": [ "3", "2.5", "2", "2.0" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Cấu trúc điều kiện trong C được viết với từ khóa nào?",
+      "options": [ "for", "case", "if", "switch" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Cấu trúc vòng lặp nào luôn thực hiện ít nhất một lần?",
+      "options": [ "while", "for", "if...else", "do...while" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Hàm scanf() trong C dùng để làm gì?",
+      "options": [ "Tính toán", "In dữ liệu", "Thoát chương trình", "Nhập dữ liệu" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Kiểu dữ liệu float trong C dùng để lưu gì?",
+      "options": [ "Số nguyên", "Ký tự", "Chuỗi", "Số thực" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Toán tử ++a và a++ khác nhau ở điểm nào?",
+      "options": [ "Thứ tự tăng giá trị", "Không khác nhau", "Một cái cộng, một cái trừ", "Cả hai đều sai" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Câu lệnh break dùng để:",
+      "options": [ "Thoát khỏi vòng lặp", "Chuyển sang vòng lặp mới", "Dừng chương trình", "Tiếp tục vòng lặp" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Toán tử logic && có nghĩa là:",
+      "options": [ "Hoặc", "Và", "Không", "So sánh bằng" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Mảng trong C bắt đầu chỉ số từ:",
+      "options": [ "Ngẫu nhiên", "0", "1", "-1" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Để khai báo mảng gồm 10 phần tử kiểu int, ta viết:",
+      "options": [ "int a = {10};", "int a(10);", "int a[10];", "array int[10];" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Ký tự '\\n' trong C có nghĩa là gì?",
+      "options": [ "Xuống dòng", "Tab", "Khoảng trắng", "Kết thúc chuỗi" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Hàm nào dùng để tính căn bậc hai trong C?",
+      "options": [ "pow()", "sqrt()", "abs()", "exp()" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Để khai báo hằng số trong C, ta dùng từ khóa:",
+      "options": [ "define", "const", "static", "fixed" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Để đọc một ký tự từ bàn phím, ta dùng hàm:",
+      "options": [ "getchar()", "scanf()", "gets()", "input()" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Hàm strlen() có tác dụng gì?",
+      "options": [ "So sánh chuỗi", "Sao chép chuỗi", "Đếm độ dài chuỗi", "Ghép chuỗi" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong C, chuỗi được kết thúc bằng ký tự nào?",
+      "options": [ "'\\0'", "';'", "'\\n'", "' '" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Hàm strcpy(a,b) dùng để:",
+      "options": [ "So sánh a và b", "Sao chép chuỗi b vào a", "Ghép chuỗi b vào a", "Xóa chuỗi b" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Để khai báo con trỏ trỏ đến kiểu int, ta viết:",
+      "options": [ "int p;", "pointer int;", "int *p;", "int& p;" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Toán tử * trong con trỏ có ý nghĩa là gì?",
+      "options": [ "Truy cập giá trị mà con trỏ trỏ tới", "Khai báo con trỏ", "Nhân hai số", "Lấy địa chỉ" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Hàm nào trả về giá trị ngẫu nhiên trong C?",
+      "options": [ "random()", "rand()", "getrand()", "num()" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Cấu trúc switch...case dùng để:",
+      "options": [ "Khai báo biến", "So sánh ký tự", "Rẽ nhánh theo giá trị", "Lặp vô hạn" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Kết quả của biểu thức 10 % 3 là:",
+      "options": [ "3", "2", "1", "0" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Để thoát khỏi chương trình trong C, dùng hàm:",
+      "options": [ "stop();", "return;", "break;", "exit(0);" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Khi biên dịch chương trình C, tệp đầu ra có phần mở rộng là:",
+      "options": [ ".obj", ".bin", ".exe", ".out" ],
+      "correctIndex": 2
+    }
+  ]
+}

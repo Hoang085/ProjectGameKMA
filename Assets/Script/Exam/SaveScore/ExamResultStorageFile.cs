@@ -31,7 +31,7 @@ public static class ExamResultStorageFile
             var db = JsonUtility.FromJson<ExamResultsDB>(json);
             return db ?? new ExamResultsDB();
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return new ExamResultsDB();
         }
@@ -59,8 +59,8 @@ public static class ExamResultStorageFile
                 // Đích đã tồn tại -> Replace an toàn
                 File.Replace(tmp, FilePath, null);
 #else
-            File.Delete(FilePath);
-            File.Move(tmp, FilePath);
+                File.Delete(FilePath);
+                File.Move(tmp, FilePath);
 #endif
             }
 
@@ -70,7 +70,6 @@ public static class ExamResultStorageFile
             Debug.LogError($"[ExamResultStorageFile] Save error: {e}");
         }
     }
-
 
     public static void DebugPrintAll()
     {
@@ -97,6 +96,14 @@ public static class ExamResultStorageFile
 
     public static void AddAttempt(ExamAttempt a)
     {
+        // --- ONLY CHANGE: đảm bảo semesterIndex là 1-based theo kỳ hiện tại ---
+        // Nếu chỗ tạo ExamAttempt chưa set hoặc set = 0 thì mình gán = GameClock.Term (1-based).
+        if (a.semesterIndex <= 0)
+        {
+            a.semesterIndex = GetCurrentTermOrDefault1();
+        }
+        // ----------------------------------------------------------------------
+
         var db = Load();
         db.entries.Add(a);
 
@@ -114,6 +121,16 @@ public static class ExamResultStorageFile
         {
             GameManager.Ins.OnScoreAdded(a.subjectKey, a.semesterIndex, a.takenAtUnix);
         }
+    }
+
+    static int GetCurrentTermOrDefault1()
+    {
+        try
+        {
+            if (GameClock.Ins != null) return Mathf.Max(1, GameClock.Ins.Term); // Term đã 1-based
+        }
+        catch { }
+        return 1;
     }
 
     static void TrimPerSubject(ExamResultsDB db, string subjectKey, int maxPerSubject)

@@ -1,0 +1,33 @@
+1.Khái niệm cơ bản:
+
+-Lập trình là quá trình ra lệnh cho máy tính thực hiện công việc cụ thể thông qua ngôn ngữ lập trình.
+
+-Phân biệt ngôn ngữ bậc thấp (Assembly, Machine Code) và ngôn ngữ bậc cao (C, C++, Java, Python…).
+
+2.Cấu trúc chương trình: phần khai báo, phần thân, phần kết thúc.
+
+-Cú pháp và ví dụ:
+
+-Cú pháp in ra màn hình:
+
+   printf("Hello World!"); hoặc cout << "Hello World";
+
+-Khai báo biến:
+
+   int a; float b; char c; string name;
+
+
+3.Quy tắc:
+
+-Tên biến không bắt đầu bằng số, không chứa ký tự đặc biệt (trừ “_”).
+
+-Biến phải được khai báo trước khi sử dụng.
+
+-Mỗi dòng lệnh kết thúc bằng dấu “;”.
+
+4.Ứng dụng:
+
+-Viết chương trình nhập tên, tuổi và in ra màn hình:
+“Xin chào [tên], bạn [tuổi] tuổi.”
+
+-Bài tập nhỏ: đổi đơn vị nhiệt độ từ °C sang °F.

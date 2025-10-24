@@ -1,0 +1,12 @@
+1.Khái niệm:
+Nhiệt năng, nhiệt dung riêng, cân bằng nhiệt.
+
+2.Công thức:
+  Q = m·c·Δt
+
+3.Quy tắc:
+-Hệ kín: Qₜₒₐ = Qₜₕₐ.
+-Đơn vị: J hoặc cal.
+
+4.Ứng dụng:
+Trộn nước nóng và lạnh, tính nhiệt độ cân bằng.

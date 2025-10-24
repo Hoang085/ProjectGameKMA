@@ -1,0 +1,13 @@
+1.Khái niệm:
+-Cực đại, cực tiểu cục bộ, ràng buộc bằng phương pháp nhân tử Lagrange.
+
+2.Công thức:
+ ∂f/∂x = 0, ∂f/∂y = 0
+ Hàm ràng buộc g(x, y) = 0 ⇒ ∇f = λ∇g
+
+3.Quy tắc:
+ Ma trận Hessian xác định loại cực trị.
+ Δ = fₓₓfᵧᵧ − (fₓᵧ)².
+
+4.Ứng dụng:
+Tối ưu hóa trong kỹ thuật: chi phí, vật liệu, công suất.

@@ -1,0 +1,17 @@
+1.Khái niệm:
+-Hàm nhiều biến z = f(x, y, z).
+-Đạo hàm riêng, gradient, vi phân toàn phần.
+-Ý nghĩa hình học: mặt cong, mặt đẳng thế.
+
+2.Công thức:
+ ∂f/∂x, ∂f/∂y, ∂f/∂z
+ df = fₓ·dx + fᵧ·dy + f_z·dz
+ grad f = (∂f/∂x, ∂f/∂y, ∂f/∂z)
+
+3.Quy tắc:
+-Gradient chỉ hướng tăng nhanh nhất của f.
+-df mô tả xấp xỉ tuyến tính gần điểm.
+
+4.Ứng dụng:
+-Tính vi phân của hàm nhiều biến.
+-Bài toán cực trị có ràng buộc (dùng Lagrange).

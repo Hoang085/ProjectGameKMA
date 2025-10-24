@@ -1,0 +1,16 @@
+1.Tổng hợp kiến thức:
+-Biến, toán tử, điều kiện, vòng lặp, hàm, mảng, chuỗi, struct.
+
+2.Ứng dụng tổng hợp:
+-Dự án nhỏ: Quản lý sinh viên
+-Nhập, hiển thị, tìm kiếm, sắp xếp danh sách.
+-Tính điểm trung bình, xếp loại, xuất báo cáo.
+
+3.Quy tắc và kỹ năng:
+-Viết mã sạch, đặt tên có nghĩa.
+-Chia nhỏ hàm, tránh trùng lặp.
+-Thêm chú thích, định dạng mã nguồn chuẩn.
+
+4.Mở rộng:
+-Làm quen khái niệm con trỏ và file.
+-Giới thiệu ngắn về hướng đối tượng (OOP).

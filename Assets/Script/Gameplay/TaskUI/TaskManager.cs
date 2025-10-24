@@ -4,28 +4,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Quản lý tasks độc lập khỏi UI - tự động spawn khi đúng thời gian
+/// Quản lý tasks độc lập khỏi UI - tự động spawn khi đúng thời gian.
+/// Đã cập nhật: chỉ hoạt động trong học kỳ hiện tại, tự clear khi chuyển kỳ.
 /// </summary>
 public class TaskManager : MonoBehaviour
 {
     [Header("Task System Config")]
-    private bool enableAutoTaskSpawn = true;
-    [Min(0)] private int showTaskMinutesEarly = 5;
+    [SerializeField] private bool enableAutoTaskSpawn = true;
+    [Min(0)][SerializeField] private int showTaskMinutesEarly = 5;
 
     [Header("Subject Display")]
-    private string jsonPathInResources = "TextSubjectDisplay/subjectname";
-    private bool normalizeKeyOnLoad = false;
+    [SerializeField] private string jsonPathInResources = "TextSubjectDisplay/subjectname";
+    [SerializeField] private bool normalizeKeyOnLoad = false;
 
-    // Task storage - không phụ thuộc UI
+    // Task storage
     private readonly Dictionary<string, TaskData> activeTasks = new();
     private readonly Dictionary<string, string> subjectDisplayMap = new();
 
     // System references
     private GameClock clock;
     private AttendanceManager attendanceManager;
+    private Coroutine _waitSyncRoutine;
 
-    // Notification tracking - FIXED: Initialize to null to force initial update
+    // Notification tracking
     private bool? hasActiveTasksLastFrame = null;
+
+    // Term tracking
+    private int lastKnownTerm = -1;
 
     public static TaskManager Instance { get; private set; }
 
@@ -51,147 +56,120 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    void Awake()
+    // ============================================================
+    #region Unity Lifecycle
+
+    private void Awake()
     {
-        // Singleton pattern
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
             InitializeSystem();
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        else Destroy(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
         LoadSubjectNamesFromJson();
         SubscribeToEvents();
-
-        // FIXED: Delay initialization to ensure GameManager is ready
         StartCoroutine(DelayedInitialization());
     }
 
-    // FIXED: Add delayed notification sync
-    private IEnumerator DelayedInitialization()
-    {
-        // Wait a few frames to ensure all managers are initialized
-        yield return null;
-        yield return null;
-
-        // Initialize tasks
-        if (enableAutoTaskSpawn)
-        {
-            RefreshTasks();
-        }
-
-        // FIXED: Initialize notification state properly
-        bool currentlyHasTasks = activeTasks.Count > 0;
-        hasActiveTasksLastFrame = currentlyHasTasks;
-
-        // FIXED: Force sync with GameManager
-        if (GameManager.Ins != null)
-        {
-            GameManager.Ins.SetIconNotification(IconType.Task, currentlyHasTasks);
-            Debug.Log($"[TaskManager] Initial sync completed: {(currentlyHasTasks ? "SHOW" : "HIDE")} ({activeTasks.Count} tasks)");
-        }
-
-        Debug.Log($"[TaskManager] Delayed initialization completed with {activeTasks.Count} tasks");
-    }
-
-    void OnDestroy()
+    private void OnDestroy()
     {
         UnsubscribeFromEvents();
         if (Instance == this)
-        {
             Instance = null;
-        }
     }
 
-    void InitializeSystem()
+    #endregion
+    // ============================================================
+
+    private void InitializeSystem()
     {
         clock = GameClock.Ins;
         attendanceManager = FindAnyObjectByType<AttendanceManager>();
-
-        Debug.Log("[TaskManager] System initialized");
+        lastKnownTerm = clock != null ? clock.Term : -1;
+        Debug.Log("[TaskManager] System initialized.");
     }
 
-    void LoadSubjectNamesFromJson()
+    private IEnumerator DelayedInitialization()
     {
-        if (string.IsNullOrEmpty(jsonPathInResources)) return;
+        yield return null;
+        yield return null;
 
-        var textAsset = Resources.Load<TextAsset>(jsonPathInResources);
-        if (!textAsset) return;
+        if (enableAutoTaskSpawn)
+            RefreshTasks();
 
-        try
-        {
-            var list = JsonUtility.FromJson<TaskPlayerUI.SubjectNameList>(textAsset.text);
-            if (list?.items == null) return;
+        bool hasTasks = activeTasks.Count > 0;
+        hasActiveTasksLastFrame = hasTasks;
 
-            subjectDisplayMap.Clear();
-            foreach (var item in list.items)
-            {
-                if (item == null || string.IsNullOrEmpty(item.key) || string.IsNullOrEmpty(item.display))
-                    continue;
+        if (GameManager.Ins != null)
+            GameManager.Ins.SetIconNotification(IconType.Task, hasTasks);
 
-                var key = normalizeKeyOnLoad ? NormalizeKey(item.key) : item.key;
-                subjectDisplayMap[key] = item.display;
-            }
-
-            Debug.Log($"[TaskManager] Loaded {subjectDisplayMap.Count} subject display names");
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"[TaskManager] Error loading subject names: {ex.Message}");
-        }
+        Debug.Log($"[TaskManager] Delayed init complete. Active tasks: {activeTasks.Count}");
     }
 
-    void SubscribeToEvents()
+    private void SubscribeToEvents()
     {
         if (clock != null)
         {
             clock.OnSlotStarted += OnSlotStarted;
             clock.OnSlotEnded += OnSlotEnded;
+            clock.OnTermChanged += OnTermChanged; // <— NEW: detect semester change
         }
 
-        // Subscribe to minute changes for real-time task updates
         if (enableAutoTaskSpawn)
-        {
-            InvokeRepeating(nameof(RefreshTasks), 1f, 30f); // Check every 30 seconds
-        }
+            InvokeRepeating(nameof(RefreshTasks), 1f, 30f);
     }
 
-    void UnsubscribeFromEvents()
+    private void UnsubscribeFromEvents()
     {
         if (clock != null)
         {
             clock.OnSlotStarted -= OnSlotStarted;
             clock.OnSlotEnded -= OnSlotEnded;
+            clock.OnTermChanged -= OnTermChanged;
         }
 
         CancelInvoke(nameof(RefreshTasks));
     }
 
-    void OnSlotStarted(int week, string dayEN, int slot1)
+    // ============================================================
+    #region GameClock Events
+
+    private void OnSlotStarted(int week, string dayEN, int slot1)
     {
         if (enableAutoTaskSpawn)
-        {
             RefreshTasks();
-        }
     }
 
-    void OnSlotEnded(int week, string dayEN, int slot1)
+    private void OnSlotEnded(int week, string dayEN, int slot1)
     {
         ClearAllTasks();
         UpdateTaskNotificationState();
     }
 
-    /// <summary>
-    /// Refresh tasks - được gọi tự động theo thời gian
-    /// </summary>
+    private void OnTermChanged()
+    {
+        lastKnownTerm = clock != null ? clock.Term : -1;
+
+        ClearAllTasks();
+        UpdateTaskNotificationState();
+
+        if (enableAutoTaskSpawn)
+            RefreshTasks();
+
+        Debug.Log($"[TaskManager] Term changed → T{lastKnownTerm}. Cleared old tasks and refreshed.");
+    }
+
+    #endregion
+    // ============================================================
+
+    #region Core Logic
+
     public void RefreshTasks()
     {
         if (!IsValidState())
@@ -199,6 +177,13 @@ public class TaskManager : MonoBehaviour
             ClearAllTasks();
             UpdateTaskNotificationState();
             return;
+        }
+
+        // Khi kỳ đổi, dọn sạch task kỳ cũ
+        if (clock != null && lastKnownTerm != clock.Term)
+        {
+            lastKnownTerm = clock.Term;
+            ClearAllTasks();
         }
 
         var currentSubject = GetCurrentSubject();
@@ -213,9 +198,10 @@ public class TaskManager : MonoBehaviour
         UpdateTaskNotificationState();
     }
 
-    bool IsValidState() => clock != null && attendanceManager != null && enableAutoTaskSpawn;
+    private bool IsValidState() =>
+        clock != null && attendanceManager != null && enableAutoTaskSpawn;
 
-    SubjectData GetCurrentSubject()
+    private SubjectData GetCurrentSubject()
     {
         try
         {
@@ -230,7 +216,7 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    void ProcessSubjectTask(SubjectData subject)
+    private void ProcessSubjectTask(SubjectData subject)
     {
         string subjectKey = KeyUtil.MakeKey(subject.Name);
         string subjectDisplayName = GetDisplayName(subjectKey);
@@ -242,7 +228,7 @@ public class TaskManager : MonoBehaviour
             RemoveTask(taskKey);
     }
 
-    bool ShouldShowTask(string subjectName, out int windowStart, out int windowEnd)
+    private bool ShouldShowTask(string subjectName, out int windowStart, out int windowEnd)
     {
         windowStart = windowEnd = 0;
         bool canCheckIn = attendanceManager.CanCheckInNow(subjectName, out windowStart, out windowEnd);
@@ -250,7 +236,7 @@ public class TaskManager : MonoBehaviour
         return ShouldShowEarlyNotification(out windowStart, out windowEnd);
     }
 
-    bool ShouldShowEarlyNotification(out int windowStart, out int windowEnd)
+    private bool ShouldShowEarlyNotification(out int windowStart, out int windowEnd)
     {
         windowStart = windowEnd = 0;
 
@@ -274,7 +260,7 @@ public class TaskManager : MonoBehaviour
         return false;
     }
 
-    void CreateStudyTask(string taskKey, string subjectDisplayName, string subjectKey, int windowStart)
+    private void CreateStudyTask(string taskKey, string subjectDisplayName, string subjectKey, int windowStart)
     {
         string timeStr = ClockUI.FormatHM(windowStart);
         string slotName = GetSlotDisplayName(clock.Slot);
@@ -287,19 +273,17 @@ public class TaskManager : MonoBehaviour
         CreateOrUpdateTask(taskKey, title, detail, buttonText, searchData);
     }
 
-    void CreateOrUpdateTask(string key, string title, string detail, string btnText, string searchData)
+    private void CreateOrUpdateTask(string key, string title, string detail, string btnText, string searchData)
     {
         bool isNewTask = !activeTasks.ContainsKey(key);
 
         if (isNewTask)
         {
             activeTasks[key] = new TaskData(key, title, detail, btnText, searchData);
-
             Debug.Log($"[TaskManager] Created new task: {title}");
         }
         else
         {
-            // Update existing task
             var task = activeTasks[key];
             task.title = title;
             task.detail = detail;
@@ -308,15 +292,13 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    void RemoveTask(string key)
+    private void RemoveTask(string key)
     {
         if (activeTasks.Remove(key))
-        {
             Debug.Log($"[TaskManager] Removed task: {key}");
-        }
     }
 
-    void ClearAllTasks()
+    private void ClearAllTasks()
     {
         if (activeTasks.Count > 0)
         {
@@ -326,79 +308,53 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    // FIXED: Improved notification state management
-    void UpdateTaskNotificationState()
+    #endregion
+    // ============================================================
+
+    #region Notifications
+
+    private void UpdateTaskNotificationState()
     {
         bool hasActiveTasks = activeTasks.Count > 0;
 
-        // FIXED: Update notification every time during first few seconds, then only on change
-        bool shouldUpdate = hasActiveTasksLastFrame == null ||
-                           hasActiveTasks != hasActiveTasksLastFrame.Value ||
-                           Time.time < 5f; // Force updates for first 5 seconds
-
-        if (shouldUpdate)
+        if (GameManager.Ins == null || !GameManager.Ins.isActiveAndEnabled)
         {
-            hasActiveTasksLastFrame = hasActiveTasks;
-
-            if (GameManager.Ins != null)
-            {
-                GameManager.Ins.SetIconNotification(IconType.Task, hasActiveTasks);
-                Debug.Log($"[TaskManager] Task notification updated: {(hasActiveTasks ? "SHOW" : "HIDE")} (Active tasks: {activeTasks.Count})");
-            }
-            else
-            {
-                Debug.LogWarning("[TaskManager] GameManager not available for notification sync");
-            }
+            if (_waitSyncRoutine == null)
+                _waitSyncRoutine = StartCoroutine(WaitForGameManagerAndSync(hasActiveTasks));
+            return;
         }
+
+        GameManager.Ins.SetIconNotification(IconType.Task, hasActiveTasks);
     }
 
-    // FIXED: Add method to reset notification state (useful for testing)
-    [ContextMenu("Reset Task Notification State")]
-    public void ResetTaskNotificationState()
+    private IEnumerator WaitForGameManagerAndSync(bool stateToSync)
     {
-        hasActiveTasksLastFrame = null;
-        ForceUpdateTaskNotificationState();
-        Debug.Log("[TaskManager] Task notification state reset and synced");
+        while (GameManager.Ins == null || !GameManager.Ins.isActiveAndEnabled)
+            yield return null;
+
+        GameManager.Ins.SetIconNotification(IconType.Task, stateToSync);
+        _waitSyncRoutine = null;
     }
 
-    // FIXED: Add method to force notification update
-    /// <summary>
-    /// Force update task notification state regardless of previous state
-    /// </summary>
-    private void ForceUpdateTaskNotificationState()
-    {
-        bool hasActiveTasks = activeTasks.Count > 0;
-        hasActiveTasksLastFrame = hasActiveTasks;
+    #endregion
+    // ============================================================
 
-        if (GameManager.Ins != null)
-        {
-            GameManager.Ins.SetIconNotification(IconType.Task, hasActiveTasks);
-            Debug.Log($"[TaskManager] Task notification FORCE updated: {(hasActiveTasks ? "SHOW" : "HIDE")} (Active tasks: {activeTasks.Count})");
-        }
-    }
+    #region Public API
 
-    // === Public API ===
-    public Dictionary<string, TaskData> GetActiveTasks()
-    {
-        return new Dictionary<string, TaskData>(activeTasks);
-    }
+    public Dictionary<string, TaskData> GetActiveTasks() =>
+        new Dictionary<string, TaskData>(activeTasks);
 
-    public bool HasPendingTasks()
-    {
-        return activeTasks.Count > 0;
-    }
+    public bool HasPendingTasks() => activeTasks.Count > 0;
+    public int GetActiveTaskCount() => activeTasks.Count;
 
-    public int GetActiveTaskCount()
-    {
-        return activeTasks.Count;
-    }
+    public TaskData GetTask(string key) =>
+        activeTasks.TryGetValue(key, out var task) ? task : null;
 
-    public TaskData GetTask(string key)
-    {
-        return activeTasks.TryGetValue(key, out var task) ? task : null;
-    }
+    #endregion
+    // ============================================================
 
-    // === Navigation Handling ===
+    #region Navigation
+
     public void HandleTaskAction(string searchData)
     {
         if (string.IsNullOrEmpty(searchData)) return;
@@ -409,20 +365,23 @@ public class TaskManager : MonoBehaviour
 
         var targetTeacher = FindTeacherForSubject(displayName, subjectKey);
         if (targetTeacher != null)
-        {
             NavigateToTeacher(targetTeacher, displayName);
-        }
         else
-        {
             Debug.LogWarning($"[TaskManager] Teacher not found for subject '{displayName}'");
-        }
     }
 
-    TeacherAction FindTeacherForSubject(string displayName, string subjectKey)
+    private TeacherAction FindTeacherForSubject(string displayName, string subjectKey)
     {
         var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
         foreach (var teacher in teachers)
         {
+            // NEW: bỏ qua giáo viên không thuộc kỳ hiện tại
+            if (clock != null && teacher.semesterConfig != null)
+            {
+                if (teacher.semesterConfig.Semester != clock.Term)
+                    continue;
+            }
+
             if (teacher.subjects == null) continue;
             foreach (var subject in teacher.subjects)
             {
@@ -434,7 +393,7 @@ public class TaskManager : MonoBehaviour
         return null;
     }
 
-    bool IsSubjectMatch(string teacherSubjectName, string displayName, string subjectKey)
+    private bool IsSubjectMatch(string teacherSubjectName, string displayName, string subjectKey)
     {
         if (string.IsNullOrEmpty(teacherSubjectName)) return false;
 
@@ -450,24 +409,54 @@ public class TaskManager : MonoBehaviour
                string.Equals(nTeacher, nKey, StringComparison.OrdinalIgnoreCase);
     }
 
-    void NavigateToTeacher(TeacherAction teacher, string subjectName)
+    private void NavigateToTeacher(TeacherAction teacher, string subjectName)
     {
         if (NavigationLineManager.Instance != null)
             NavigationLineManager.Instance.CreateNavigationLine(teacher.transform, $"GV {teacher.name} - {subjectName}");
 
-        // Close Task UI if open
         if (GameUIManager.Ins != null && GameUIManager.Ins.IsAnyStatUIOpen)
-        {
             GameUIManager.Ins.CloseAllUIs();
-        }
 
         Debug.Log($"[TaskManager] Navigation started to teacher {teacher.name} for subject {subjectName}");
     }
 
-    // === Helper Methods ===
-    string NormalizeKey(string key) => key.Replace(" ", "").Replace("_", "").ToLowerInvariant();
+    #endregion
+    // ============================================================
 
-    string GetDisplayName(string keyOrFallback)
+    #region Helpers
+
+    private void LoadSubjectNamesFromJson()
+    {
+        if (string.IsNullOrEmpty(jsonPathInResources)) return;
+        var textAsset = Resources.Load<TextAsset>(jsonPathInResources);
+        if (!textAsset) return;
+
+        try
+        {
+            var list = JsonUtility.FromJson<TaskPlayerUI.SubjectNameList>(textAsset.text);
+            if (list?.items == null) return;
+
+            subjectDisplayMap.Clear();
+            foreach (var item in list.items)
+            {
+                if (item == null || string.IsNullOrEmpty(item.key) || string.IsNullOrEmpty(item.display))
+                    continue;
+                var key = normalizeKeyOnLoad ? NormalizeKey(item.key) : item.key;
+                subjectDisplayMap[key] = item.display;
+            }
+
+            Debug.Log($"[TaskManager] Loaded {subjectDisplayMap.Count} subject display names");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[TaskManager] Error loading subject names: {ex.Message}");
+        }
+    }
+
+    private string NormalizeKey(string key) =>
+        key.Replace(" ", "").Replace("_", "").ToLowerInvariant();
+
+    private string GetDisplayName(string keyOrFallback)
     {
         if (string.IsNullOrEmpty(keyOrFallback)) return keyOrFallback;
         var key = normalizeKeyOnLoad ? NormalizeKey(keyOrFallback) : keyOrFallback;
@@ -477,7 +466,24 @@ public class TaskManager : MonoBehaviour
                .ToTitleCase(key.Replace('_', ' ').ToLowerInvariant());
     }
 
-    string GetSlotDisplayName(DaySlot slot) => slot switch
+    // ==== Compatibility wrappers for GameStateManager ====
+    [ContextMenu("Force Refresh Tasks (compat)")]
+    public void ForceRefreshTasks()
+    {
+        // gọi flow chuẩn hiện tại
+        RefreshTasks();
+    }
+
+    [ContextMenu("Reset Task Notification State (compat)")]
+    public void ResetTaskNotificationState()
+    {
+        // ép đồng bộ lại icon/notification dù trạng thái cũ là gì
+        hasActiveTasksLastFrame = null;   // nếu bạn đang dùng kiểu bool? như hiện tại
+        UpdateTaskNotificationState();
+    }
+
+
+    private string GetSlotDisplayName(DaySlot slot) => slot switch
     {
         DaySlot.MorningA => "Buổi sáng - Ca 1",
         DaySlot.MorningB => "Buổi sáng - Ca 2",
@@ -487,24 +493,5 @@ public class TaskManager : MonoBehaviour
         _ => slot.ToString()
     };
 
-    // === Editor Methods ===
-    [ContextMenu("Force Refresh Tasks")]
-    public void ForceRefreshTasks()
-    {
-        RefreshTasks();
-    }
-
-    [ContextMenu("Clear All Tasks")]
-    public void ForceClearAllTasks()
-    {
-        ClearAllTasks();
-        ForceUpdateTaskNotificationState(); // FIXED: Use force update method
-    }
-
-    // FIXED: Add public method to force notification refresh
-    [ContextMenu("Force Refresh Notification")]
-    public void ForceRefreshNotification()
-    {
-        ForceUpdateTaskNotificationState();
-    }
+    #endregion
 }

@@ -1,0 +1,13 @@
+1.Khái niệm:
+-Động lượng p = m·v.
+-Va chạm đàn hồi và không đàn hồi.
+
+2.Công thức:
+ m₁v₁ + m₂v₂ = m₁v₁′ + m₂v₂′
+
+3.Quy tắc:
+-Bảo toàn theo từng trục tọa độ.
+-Năng lượng chỉ bảo toàn trong va chạm đàn hồi.
+
+4.Ứng dụng:
+Súng bắn đạn, xe va chạm.

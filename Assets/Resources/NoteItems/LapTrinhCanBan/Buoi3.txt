@@ -1,0 +1,25 @@
+1.Khái niệm:
+
+-Dùng để thực hiện lặp lại một khối lệnh nhiều lần.
+
+-Các loại vòng lặp:
+
+  for: biết trước số lần lặp.
+  while: lặp khi điều kiện đúng.
+  do...while: kiểm tra điều kiện sau khi lặp ít nhất 1 lần.
+
+2.Cú pháp
+
+-for (int i = 1; i <= 10; i++) {
+    printf("%d ", i);
+ }
+
+3.Quy tắc:
+-Cẩn thận với vòng lặp vô hạn (while(true) không có điểm dừng).
+-Dùng break để thoát vòng lặp sớm.
+-Dùng continue để bỏ qua lần lặp hiện tại.
+
+4.Ứng dụng:
+-Tính tổng 1→n, tổng số chẵn.
+-In tam giác số, bảng cửu chương.
+-Đếm số chữ số của một số nguyên.

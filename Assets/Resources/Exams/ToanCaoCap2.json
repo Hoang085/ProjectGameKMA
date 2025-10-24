@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 2",
+  "subjectName": "Toán Cao Cấp 2",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Đạo hàm riêng của hàm f(x, y) theo biến x ký hiệu là gì?",
+      "options": [ "∂f/∂x", "df/dx", "Δf/Δx", "f'(x)" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Gradient của hàm f(x, y, z) là vectơ có hướng:",
+      "options": [ "Vuông góc với đường mức", "Hướng giảm nhanh nhất của f", "Hướng tăng nhanh nhất của f", "Song song với trục Oz" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Vi phân toàn phần của hàm z = f(x, y) được tính bằng:",
+      "options": [ "dz = f·dx + f·dy", "dz = fₓ·dx + fᵧ·dy", "dz = x·dy + y·dx", "dz = df/dx + df/dy" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Điều kiện cực trị của hàm hai biến là:",
+      "options": [ "fₓₓ = 0", "fₓ = 0 và fᵧ = 0", "fₓ ≠ fᵧ", "fᵧ = 0" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Ma trận Hessian dùng để:",
+      "options": [ "Đổi biến tích phân", "Kiểm tra loại cực trị", "Tính gradient", "Tính đạo hàm riêng" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Tích phân kép ∬₍D₎ f(x, y) dx dy biểu diễn:",
+      "options": [ "Thể tích dưới mặt f(x,y)", "Công của lực", "Diện tích mặt phẳng", "Thể tích khối trụ" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tích phân ba lớp ∭₍V₎ f(x, y, z) dV dùng để tính:",
+      "options": [ "Diện tích mặt phẳng", "Độ cong của mặt", "Khối lượng hoặc thể tích không gian", "Chu vi đường cong" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Khi đổi sang tọa độ cực, ta có:",
+      "options": [ "x = r·sinθ, y = r·cosθ", "x = θ·cosr, y = θ·sinr", "x = r², y = θ²", "x = r·cosθ, y = r·sinθ" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Định lý Green dùng để liên hệ giữa:",
+      "options": [ "Tích phân mặt và tích phân khối", "Tích phân đường và tích phân mặt phẳng", "Đạo hàm và tích phân", "Tích phân đường và tích phân mặt" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Trong định lý Gauss, đại lượng div F được gọi là:",
+      "options": [ "Phân kỳ của trường F", "Gradient của F", "Độ lớn của F", "Xoáy của trường F" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Công thức rot F = ∇ × F biểu thị:",
+      "options": [ "Độ xoáy của trường", "Gradient của trường", "Hàm thế", "Phân kỳ của trường" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phương trình vi phân cấp 1 dạng tách biến có dạng:",
+      "options": [ "dy/dx = f(x)·g(y)", "dy/dx = y/x", "dy/dx = f(x)/g(y)", "dy/dx = f(x,y)" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phương trình vi phân tuyến tính cấp 1 có dạng:",
+      "options": [ "dy/dx = P(x) + Q(y)", "y'' + ay' + by = 0", "y' + P(x)y = Q(x)", "y' = x²" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Nghiệm của phương trình y' + P(x)y = Q(x) là:",
+      "options": [ "y = e^(−∫Pdx)[∫Qe^(∫Pdx)dx + C]", "y = Q/P", "y = e^(∫Pdx) + Q", "y = Cx + D" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phương trình y'' + a·y' + b·y = 0 có nghiệm đặc trưng dạng:",
+      "options": [ "r² − a·r − b = 0", "r² + a·r + b = 0", "r + a + b = 0", "r = a/b" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Nếu Δ = a² − 4b < 0, nghiệm của phương trình vi phân bậc 2 là:",
+      "options": [ "Một nghiệm kép", "Hai nghiệm thực khác nhau", "Hai nghiệm phức liên hợp", "Không có nghiệm" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Đối với hệ vi phân x′ = A·x, nghiệm tổng quát có dạng:",
+      "options": [ "x = e^(At)·C", "x = C·A·t", "x = A·t + C", "x = A^t + C" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Ma trận e^(At) được định nghĩa bằng:",
+      "options": [ "Định thức của A", "Chuỗi lũy thừa vô hạn", "Nghịch đảo của A", "Đạo hàm của A theo t" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Giá trị riêng λ và vectơ riêng v của A thỏa mãn:",
+      "options": [ "A + v = λ", "A·v = λ·v", "A/λ = v", "det(A+λI) = 0" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Phương trình đặc trưng của ma trận A là:",
+      "options": [ "A = λ²I", "A − λI = 0", "A·λ = I", "det(A − λI) = 0" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Biến đổi Laplace của f(t) là:",
+      "options": [ "ℒ{f(t)} = ∫₀^∞ e^(−st)f(t)dt", "ℒ{f(t)} = ∫ e^(st)f(t)dt", "ℒ{f(t)} = f′(t)e^(−st)", "ℒ{f(t)} = s·f(t)" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tính chất tuyến tính của Laplace được viết là:",
+      "options": [ "ℒ{f·g} = ℒ{f}·ℒ{g}", "ℒ{a·f + b·g} = aℒ{f} + bℒ{g}", "ℒ{f/g} = ℒ{f}/ℒ{g}", "ℒ{f+g} = ℒ{f−g}" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Biến đổi Fourier của f(t) là:",
+      "options": [ "𝓕{f(t)} = e^(−st)", "𝓕{f(t)} = ∫₋∞^∞ f(t)e^(−iωt)dt", "𝓕{f(t)} = ∂f/∂t", "𝓕{f(t)} = ∫₀^∞ f(t)e^(st)dt" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Tích phân đường loại 1 dùng để tính:",
+      "options": [ "Thể tích vật thể", "Công suất trung bình", "Momen lực", "Công của lực theo đường cong" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Trong định lý Stokes, đường cong C là:",
+      "options": [ "Đường bao của mặt S", "Đường thẳng bất kỳ", "Trục tọa độ Ox", "Đường khép kín trong không gian" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Dấu vi phân toàn phần df biểu diễn:",
+      "options": [ "Giới hạn của f", "Độ cong của f", "Sự biến thiên nhỏ của f", "Giá trị cực đại của f" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Chu kỳ T và tần số f liên hệ bởi công thức:",
+      "options": [ "T = 1/f", "T = 2πf", "T = f/2π", "f = T²" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Đạo hàm bậc hai của hàm f(x) ký hiệu là:",
+      "options": [ "∂f²/∂x", "f''(x)", "d²f/dx", "f′(x)²" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Nếu div F = 0 thì trường F là:",
+      "options": [ "Trường xoáy", "Trường đều", "Trường thế", "Trường không phân kỳ" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Nếu rot F = 0 thì F là:",
+      "options": [ "Trường thế (có hàm thế φ)", "Trường phân kỳ", "Trường xoáy", "Trường không đều" ],
+      "correctIndex": 0
+    }
+  ]
+}

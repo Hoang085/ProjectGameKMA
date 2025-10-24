@@ -1,0 +1,14 @@
+1.Khái niệm:
+-Tích phân kép, tích phân ba lớp, thể tích không gian.
+-Vùng tích phân: hình chữ nhật, hình tròn, miền tổng quát.
+
+2.Công thức:
+ ∬₍D₎ f(x,y) dx dy
+ ∭₍V₎ f(x,y,z) dV
+
+3.Quy tắc:
+-Thứ tự lấy tích phân ảnh hưởng giới hạn.
+-Có thể đổi sang tọa độ cực, cầu, trụ.
+
+4.Ứng dụng:
+Tính thể tích vật thể, khối lượng, mô men quán tính.

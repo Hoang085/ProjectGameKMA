@@ -364,16 +364,7 @@ public class ClockUI : MonoBehaviour
             int now = GameClock.Ins.GetSlotIndex1Based();
             if (s != now)
             {
-                // Đưa GameClock về đúng ca theo minute hiện tại:
-                // Cách đơn giản: gọi SetTime giữ nguyên y/t/w/d, chỉ đổi slot
-                GameClock.Ins.SetTime(
-                GameClock.Ins.Year,
-                GameClock.Ins.Term,
-                GameClock.Ins.Week,
-                GameClock.Ins.DayIndex,
-                SlotFromIndex1Based(s)
-            );
-
+                GameClock.Ins.SetSlotOnly(SlotFromIndex1Based(s));
             }
 
             // Cập nhật hiển thị ngay

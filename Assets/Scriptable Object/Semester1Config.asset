@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: Semester1Config
   m_EditorClassIdentifier: 
   Semester: 1
-  Weeks: 5
+  Weeks: 6
   Subjects:
-  - Name: Toan Cao Cap
+  - Name: "To\xE1n Cao C\u1EA5p"
     MaxAbsences: 3
     Sessions:
     - Day: Mon
       Slot: 1
     - Day: Wed
       Slot: 3
-  - Name: Tu Tuong HCM
+  - Name: "T\u01B0 T\u01B0\u1EDFng HCM"
     MaxAbsences: 3
     Sessions:
     - Day: Mon
       Slot: 4
     - Day: Wed
       Slot: 2
-  - Name: Tieng Anh 1
+  - Name: "Ti\u1EBFng Anh 1"
     MaxAbsences: 4
     Sessions:
     - Day: Tue

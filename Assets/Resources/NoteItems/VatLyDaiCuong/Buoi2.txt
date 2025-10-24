@@ -1,0 +1,15 @@
+1.Khái niệm:
+-Quỹ đạo, vận tốc, gia tốc.
+-Phân biệt chuyển động đều và biến đổi đều.
+
+2.Công thức:
+v = s ÷ t
+s = v₀t + ½·a·t²
+
+3.Quy tắc:
+-Vectơ vận tốc cùng hướng chuyển động.
+-Gia tốc dương khi tăng tốc, âm khi giảm tốc.
+
+4.Ứng dụng:
+-Rơi tự do, phóng vật thẳng đứng.
+-Bài tập: tính thời gian, quãng đường, vận tốc.

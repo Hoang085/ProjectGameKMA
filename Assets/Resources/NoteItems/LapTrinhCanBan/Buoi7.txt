@@ -1,0 +1,17 @@
+1.Khái niệm:
+-Hàm là khối lệnh thực hiện nhiệm vụ cụ thể, có thể được gọi nhiều lần.
+-Có thể có tham số và giá trị trả về.
+
+2.Cú pháp:
+  int Tong(int a, int b) {
+    return a + b;
+  }
+
+3.Quy tắc:
+-Phải khai báo nguyên mẫu hàm (prototype) trước khi dùng.
+-Mỗi hàm chỉ nên làm một nhiệm vụ.
+
+4.Ứng dụng:
+-Viết hàm tính giai thừa.
+-Viết hàm kiểm tra số nguyên tố.
+-Hàm hoán đổi hai giá trị.

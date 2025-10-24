@@ -1,0 +1,19 @@
+1.Khái niệm:
+-struct là kiểu dữ liệu do người dùng tự định nghĩa.
+-Gộp nhiều biến khác kiểu thành một nhóm.
+
+2.Cú pháp:
+  struct SinhVien {
+    char ten[30];
+    int tuoi;
+    float diemTB;
+};
+
+3.Quy tắc:
+-Truy cập phần tử bằng dấu . (vd: sv1.ten).
+-Có thể khai báo mảng struct.
+
+4.Ứng dụng:
+-Nhập danh sách sinh viên.
+-Tìm sinh viên có điểm cao nhất.
+-Tính điểm trung bình lớp.

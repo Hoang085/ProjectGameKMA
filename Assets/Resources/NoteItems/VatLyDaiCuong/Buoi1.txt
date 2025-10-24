@@ -1,0 +1,16 @@
+1.Khái niệm cơ bản:
+-Đối tượng và phương pháp nghiên cứu của vật lý học.
+-Đơn vị đo trong hệ SI: m, kg, s, A, K, mol, cd.
+-Đại lượng vật lý: vô hướng, vectơ.
+
+2.Công thức:
+-Chuyển đổi đơn vị: 1 km = 10³ m; 1h = 3600s.
+-Quy tắc cộng vectơ, phân tích vectơ.
+
+3.Quy tắc:
+-Luôn ghi đơn vị khi tính toán.
+-Dùng vectơ để biểu diễn đại lượng có hướng.
+
+4.Ứng dụng:
+-Đo gia tốc rơi tự do bằng con lắc.
+-Bài tập đổi đơn vị, cộng vectơ.

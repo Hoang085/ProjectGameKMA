@@ -1,0 +1,14 @@
+1.Khái niệm:
+-Chuyển động theo quỹ đạo tròn với tốc độ không đổi.
+-Đại lượng: vận tốc góc (ω), chu kỳ (T), tần số (f).
+
+2.Công thức:
+v = ω·R
+a = v² ÷ R = ω²·R
+
+3.Quy tắc:
+-Gia tốc luôn hướng vào tâm quỹ đạo.
+-Góc quay đo bằng radian.
+
+4.Ứng dụng:
+Vệ tinh quay quanh Trái Đất, bánh xe quay.

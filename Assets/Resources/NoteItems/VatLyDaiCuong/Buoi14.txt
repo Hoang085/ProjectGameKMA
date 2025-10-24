@@ -1,0 +1,13 @@
+1.Khái niệm:
+-Cường độ dòng điện (I), hiệu điện thế (U), điện trở (R).
+
+2.Công thức:
+ I = U ÷ R
+ P = U·I
+
+3.Quy tắc:
+-Nối tiếp: Rₜ = R₁ + R₂ + ...
+-Song song: 1/Rₜ = 1/R₁ + 1/R₂ + ...
+
+4.Ứng dụng:
+Mạch điện đơn giản, đo điện trở, tính công suất.

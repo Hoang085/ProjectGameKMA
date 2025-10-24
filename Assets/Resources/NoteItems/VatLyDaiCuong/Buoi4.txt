@@ -1,0 +1,13 @@
+1.Khái niệm:
+-Lực, hợp lực, cân bằng lực.
+-Định luật I Newton.
+
+2.Công thức:
+Σ𝐅 = 0 → vật cân bằng.
+
+3.Quy tắc:
+-Vẽ sơ đồ lực trước khi tính toán.
+-Dùng hệ trục tọa độ thuận lợi.
+
+4.Ứng dụng:
+Cân bằng vật treo, vật trên mặt phẳng nghiêng.

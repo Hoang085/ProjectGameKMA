@@ -1,0 +1,14 @@
+1.Khái niệm:
+-Momen lực, trục quay, đòn bẩy.
+-Cân bằng quay.
+
+2.Công thức:
+ M = F·d
+ ΣM = 0
+
+3.Quy tắc:
+-Xác định trục quay trước khi tính momen.
+-Quy ước chiều quay dương, âm.
+
+4.Ứng dụng:
+Đòn bẩy, cờ lê, cân Roberval.

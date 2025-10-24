@@ -1,0 +1,13 @@
+1.Khái niệm:
+-Sóng là sự lan truyền dao động.
+-Sóng ngang và sóng dọc.
+
+2.Công thức:
+ v = λ·f
+ y = A·cos(ωt − kx)
+
+3.Quy tắc:
+-Sóng không truyền vật chất, chỉ truyền năng lượng.
+
+4.Ứng dụng:
+Sóng trên dây, sóng âm.

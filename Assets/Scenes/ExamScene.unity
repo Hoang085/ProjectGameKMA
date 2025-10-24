@@ -1737,11 +1737,29 @@ MonoBehaviour:
   exams:
   - displayName: "To\xE1n Cao C\u1EA5p"
     resourcePath: Exams/ToanCaoCap
+    semesterIndex: 0
+    subjectKey: 
   - displayName: "Ti\u1EBFng Anh 1"
     resourcePath: Exams/TiengAnh1
+    semesterIndex: 0
+    subjectKey: 
   - displayName: "T\u01B0 t\u01B0\u1EDFng HCM"
     resourcePath: Exams/TuTuongHCM
-  subjectIndex: 2
+    semesterIndex: 0
+    subjectKey: 
+  - displayName: "L\u1EADp Tr\xECnh C\u0103n B\u1EA3n"
+    resourcePath: Exams/LapTrinhCanBan
+    semesterIndex: 1
+    subjectKey: 
+  - displayName: "To\xE1n Cao C\u1EA5p 2"
+    resourcePath: Exams/ToanCaoCap2
+    semesterIndex: 1
+    subjectKey: 
+  - displayName: "V\u1EADt L\xFD \u0110\u1EA1i C\u01B0\u01A1ng"
+    resourcePath: Exams/VatLyDaiCuong
+    semesterIndex: 1
+    subjectKey: 
+  subjectIndex: 3
   examFileName: Exams/ToanCaoCap
 --- !u!4 &486868433
 Transform:
@@ -2347,8 +2365,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 491902220}
   m_HandleRect: {fileID: 491902219}
   m_Direction: 2
-  m_Value: 0.9948718
-  m_Size: 0.999986
+  m_Value: -0.010204081
+  m_Size: 0.99998593
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4302,7 +4320,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000006548114}
+  m_AnchoredPosition: {x: 0, y: 0.0030040836}
   m_SizeDelta: {x: 0, y: 212.34}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &907055453

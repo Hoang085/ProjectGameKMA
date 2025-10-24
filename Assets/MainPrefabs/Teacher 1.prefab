@@ -187,10 +187,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79326cba34a93b4285769d6d383ff81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+  semesterConfig: {fileID: 0}
+  configsByTerm:
+  - {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+  - {fileID: 11400000, guid: 809b5c34db5a8f24ebb7fe5a9975b6ed, type: 2}
+  autoSyncSubjectsFromConfig: 1
   subjects:
   - subjectName: "To\xE1n Cao C\u1EA5p"
     subjectKeyForNotes: ToanCaoCap
+    maxSessions: 10
+    currentSessionIndex: 0
+    examIndexInLoader: 0
+  - subjectName: "L\u1EADp Tr\xECnh C\u0103n B\u1EA3n"
+    subjectKeyForNotes: LapTrinhCanBan
     maxSessions: 10
     currentSessionIndex: 0
     examIndexInLoader: 0
@@ -210,6 +219,7 @@ MonoBehaviour:
   addNoteWhenFinished: 1
   noteSessionIndex: 0
   weeksPerTerm: 5
+  autoCreateExamSchedule: 1
   onClassStarted:
     m_PersistentCalls:
       m_Calls: []

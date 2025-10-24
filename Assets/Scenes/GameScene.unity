@@ -5414,48 +5414,71 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teachers:
-  - teacherId: GV_Toan_01
-    displayName: Teacher Toan 01
+  - teacherId: 1
+    displayName: "Th\u1EA7y H\u1EE3p"
     prefab: {fileID: 3462412213510598879, guid: 5a6fc207378617b4f8a0266627d27189, type: 3}
     spawnPoint: {fileID: 757228995}
     keepUprightOnSpawn: 1
     snapOnStart: 0
-    semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+    semesterConfigs:
+    - {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+    - {fileID: 11400000, guid: 809b5c34db5a8f24ebb7fe5a9975b6ed, type: 2}
     subjects:
-    - subjectName: Toan Cao Cap
+    - subjectName: "To\xE1n Cao C\u1EA5p"
       subjectKeyForNotes: ToanCaoCap
+      maxSessions: 10
+      currentSessionIndex: 0
+      examIndexInLoader: 0
+    - subjectName: "L\u1EADp Tr\xECnh C\u0103n B\u1EA3n"
+      subjectKeyForNotes: LapTrinhCanBan
       maxSessions: 10
       currentSessionIndex: 0
       examIndexInLoader: -1
     disableDialogueActionOnSpawn: 1
-  - teacherId: GVTiengAnh
-    displayName: TiengAnh
+  - teacherId: 2
+    displayName: "C\xF4 Hoa"
     prefab: {fileID: 2451311780333065249, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
     spawnPoint: {fileID: 165057880}
     keepUprightOnSpawn: 1
     snapOnStart: 0
-    semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+    semesterConfigs:
+    - {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+    - {fileID: 11400000, guid: 809b5c34db5a8f24ebb7fe5a9975b6ed, type: 2}
     subjects:
-    - subjectName: Tu Tuong HCM
+    - subjectName: "T\u01B0 T\u01B0\u1EDFng HCM"
       subjectKeyForNotes: TuTuongHCM
       maxSessions: 10
       currentSessionIndex: 0
-      examIndexInLoader: -1
-    disableDialogueActionOnSpawn: 1
-  - teacherId: Thay Hop
-    displayName: Thay Hop
-    prefab: {fileID: 3306565607529824732, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
-    spawnPoint: {fileID: 758802649}
-    keepUprightOnSpawn: 1
-    snapOnStart: 0
-    semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
-    subjects:
-    - subjectName: Tieng Anh 1
-      subjectKeyForNotes: TiengAnh1
+      examIndexInLoader: 2
+    - subjectName: "V\u1EADt L\xFD \u0110\u1EA1i C\u01B0\u01A1ng"
+      subjectKeyForNotes: VatLyDaiCuong
       maxSessions: 15
       currentSessionIndex: 0
       examIndexInLoader: -1
     disableDialogueActionOnSpawn: 1
+  - teacherId: 3
+    displayName: "Th\u1EA7y H\u1EE3p"
+    prefab: {fileID: 3306565607529824732, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+    spawnPoint: {fileID: 758802649}
+    keepUprightOnSpawn: 1
+    snapOnStart: 0
+    semesterConfigs:
+    - {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+    - {fileID: 11400000, guid: 809b5c34db5a8f24ebb7fe5a9975b6ed, type: 2}
+    subjects:
+    - subjectName: "Ti\u1EBFng Anh 1"
+      subjectKeyForNotes: TiengAnh1
+      maxSessions: 15
+      currentSessionIndex: 0
+      examIndexInLoader: 1
+    - subjectName: "To\xE1n Cao C\u1EA5p 2"
+      subjectKeyForNotes: ToanCaoCap2
+      maxSessions: 10
+      currentSessionIndex: 0
+      examIndexInLoader: -1
+    disableDialogueActionOnSpawn: 1
+  filterByCurrentTerm: 1
+  respawnOnTermChanged: 1
   spawnOnStart: 1
 --- !u!4 &430717729
 Transform:
@@ -12582,6 +12605,8 @@ MonoBehaviour:
   btnScheduleIcon: {fileID: 766201721}
   btnSettingIcon: {fileID: 700280779}
   backpackUIManager: {fileID: 1607857838}
+  endOfSemesterNoticeObj: {fileID: 1948327191}
+  endOfSemesterNotice: {fileID: 1948327195}
 --- !u!4 &957691369
 Transform:
   m_ObjectHideFlags: 0
@@ -13208,6 +13233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   semesterConfigs:
   - {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+  - {fileID: 11400000, guid: 809b5c34db5a8f24ebb7fe5a9975b6ed, type: 2}
   slotPolicy: {fileID: 11400000, guid: bd46a14eafd9a1d4e88871e77a668216, type: 2}
   clock: {fileID: 2118815283}
   morningAStart: 420
@@ -13942,6 +13968,151 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036313696}
   m_CullTransparentMesh: 1
+--- !u!1 &1051082632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1051082635}
+  - component: {fileID: 1051082634}
+  - component: {fileID: 1051082633}
+  m_Layer: 0
+  m_Name: AudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1051082633
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051082632}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: c713d8760db814c418be158adf862e8d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1051082634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051082632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f851c25d49d64944f8c48ad0b9b1e478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmSource: {fileID: 1051082633}
+  gameSceneMusic: {fileID: 8300000, guid: c713d8760db814c418be158adf862e8d, type: 3}
+  loop: 1
+--- !u!4 &1051082635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051082632}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.37708482, y: 0.5688412, z: -4.4100003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1051316805
 GameObject:
   m_ObjectHideFlags: 0
@@ -24511,6 +24682,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496f57238c8910e488907af038e32d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAutoTaskSpawn: 1
+  showTaskMinutesEarly: 5
+  jsonPathInResources: TextSubjectDisplay/subjectname
+  normalizeKeyOnLoad: 0
 --- !u!1 &1927857754
 GameObject:
   m_ObjectHideFlags: 0
@@ -24929,6 +25104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1948327192}
   - component: {fileID: 1948327194}
+  - component: {fileID: 1948327195}
   m_Layer: 5
   m_Name: EndOfSemesterNotice
   m_TagString: Untagged
@@ -24964,6 +25140,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948327191}
   m_CullTransparentMesh: 1
+--- !u!114 &1948327195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948327191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014e4650f02dd8f4595ddeaafee662c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noticeRoot: {fileID: 1948327191}
+  confirmButton: {fileID: 1058892092}
+  contentText: {fileID: 371571920}
+  pauseWhenShown: 1
+  disableClockUI: 1
+  disablePlayerController: 1
+  disableFreeLookCam: 1
+  extraToDisable: []
 --- !u!1 &1962217967
 GameObject:
   m_ObjectHideFlags: 0
@@ -27407,3 +27603,4 @@ SceneRoots:
   - {fileID: 1022244326}
   - {fileID: 1812121511}
   - {fileID: 1100729351}
+  - {fileID: 1051082635}

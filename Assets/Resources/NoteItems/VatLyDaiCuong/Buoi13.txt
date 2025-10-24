@@ -1,0 +1,13 @@
+1.Khái niệm:
+-Trạng thái khí: áp suất (p), thể tích (V), nhiệt độ (T).
+
+2.Công thức:
+ p·V = const (Boyle)
+ V ÷ T = const (Charles)
+ p ÷ T = const (Gay-Lussac)
+
+3.Quy tắc:
+T tính bằng Kelvin (K = °C + 273).
+
+4.Ứng dụng:
+Bình khí nén, xilanh, nồi áp suất.

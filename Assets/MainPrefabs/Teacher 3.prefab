@@ -179,13 +179,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79326cba34a93b4285769d6d383ff81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  semesterConfig: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+  semesterConfig: {fileID: 0}
+  configsByTerm:
+  - {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+  - {fileID: 11400000, guid: 809b5c34db5a8f24ebb7fe5a9975b6ed, type: 2}
+  autoSyncSubjectsFromConfig: 1
   subjects:
   - subjectName: "Ti\u1EBFng Anh 1"
-    subjectKeyForNotes: tienganh1
+    subjectKeyForNotes: TiengAnh1
     maxSessions: 15
     currentSessionIndex: 0
     examIndexInLoader: 2
+  - subjectName: "To\xE1n Cao C\u1EA5p 2"
+    subjectKeyForNotes: ToanCaoCap2
+    maxSessions: 10
+    currentSessionIndex: 0
+    examIndexInLoader: 1
   titleText: "Th\u1EA7y Kh\xF4i"
   openText: "Ch\xE0o em, h\xF4m nay em \u0111\u1EBFn \u0111\u1EC3 b\u1EAFt \u0111\u1EA7u
     bu\u1ED5i h\u1ECDc \u0111\xFAng kh\xF4ng?"
@@ -202,6 +211,7 @@ MonoBehaviour:
   addNoteWhenFinished: 1
   noteSessionIndex: 0
   weeksPerTerm: 5
+  autoCreateExamSchedule: 1
   onClassStarted:
     m_PersistentCalls:
       m_Calls: []

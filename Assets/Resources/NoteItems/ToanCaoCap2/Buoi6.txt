@@ -1,0 +1,14 @@
+1.Khái niệm:
+-Dạng tổng quát: dy/dx = f(x,y).
+-Phương trình tách biến, tuyến tính, đồng chất.
+
+2.Công thức:
+ ∫dy/y = ∫dx/x → y = Cx
+ y′ + P(x)y = Q(x) → y = e^(−∫P dx)[∫Q e^(∫P dx) dx + C]
+
+3.Quy tắc:
+-Tách biến nếu có thể.
+-Dùng hệ số tích phân trong phương trình tuyến tính.
+
+4.Ứng dụng:
+Bài toán tăng trưởng dân số, làm nguội Newton.

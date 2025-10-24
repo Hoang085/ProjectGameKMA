@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 // Quan ly giao dien nguoi dung trong game
 // Quan ly giao dien nguoi dung trong game
@@ -39,6 +41,10 @@ public class GameUIManager : Singleton<GameUIManager>
 
     [Header("Backpack/Balo")]
     public BackpackUIManager backpackUIManager;
+
+    [Header("End Of Semester")]
+    [SerializeField] private GameObject endOfSemesterNoticeObj;      // có thể để inactive trong Hierarchy
+    [SerializeField] private EndOfSemesterNotice endOfSemesterNotice; // component trên object trên
 
     // ========== THEO DÕI TRẠNG THÁI UI ==========
     /// <summary>
@@ -143,8 +149,27 @@ public class GameUIManager : Singleton<GameUIManager>
             Debug.LogWarning("[GameUIManager] OnClick_StartClass nhưng chưa có activeTeacher!");
             return;
         }
+
         Debug.Log($"[GameUIManager] StartClass gọi tới teacher: {_activeTeacher.name}");
-        _activeTeacher.UI_StartClass(); // Goi bat dau lop
+        _activeTeacher.UI_StartClass(); // Gọi bắt đầu lớp
+
+        // 🔐 LƯU TRẠNG THÁI TRƯỚC KHI RỜI GAMESCENE
+        GameStateManager.SavePreExamState($"CLASS:{_activeTeacher.name}");
+
+        // 🔁 Đặt flag để GameManager biết phải khôi phục khi quay về từ MiniGame
+        PlayerPrefs.SetInt("ShouldRestoreStateAfterMiniGame", 1);
+        PlayerPrefs.Save();
+
+        // ⏱️ Bảo đảm không bị pause dở dang
+        Time.timeScale = 1f;
+
+        StartCoroutine(DelayedLoadMiniGame());
+    }
+
+    private IEnumerator DelayedLoadMiniGame()
+    {
+        yield return new WaitForSeconds(2.5f); // chờ 2–3s tùy animation của bạn
+        SceneManager.LoadScene("MiniGameScene1");
     }
 
     // ========== XỬ LÝ SỰ KIỆN CLICK ICON ==========
@@ -294,19 +319,21 @@ public class GameUIManager : Singleton<GameUIManager>
     {
         MakeSingleton(false);
 
-        // Ẩn tất cả UI khi khởi tạo
+        // Đăng ký sự kiện đổi kỳ
+        if (GameClock.Ins != null)
+            GameClock.Ins.OnTermChanged += HandleTermChanged_EOS;
+
+        // Ẩn các UI khi khởi tạo
         if (interactPromptRoot) interactPromptRoot.SetActive(false);
         if (dialogueRoot) dialogueRoot.SetActive(false);
         CloseAllUIs();
 
-        // Gán sự kiện click cho các nút icon
         SetupIconButtonEvents();
     }
 
     void Start()
     {
-        // REMOVED: No longer need to refresh here, TaskManager handles this
-        // RefreshTaskNotification();
+
     }
 
     /// <summary>
@@ -355,6 +382,21 @@ public class GameUIManager : Singleton<GameUIManager>
 
         if (btnSettingIcon != null)
             btnSettingIcon.onClick.RemoveListener(OnClick_SettingIcon);
+
+        if (GameClock.Ins != null)
+            GameClock.Ins.OnTermChanged -= HandleTermChanged_EOS;
+    }
+
+    private void HandleTermChanged_EOS()
+    {
+        if (endOfSemesterNotice == null) return;
+
+        // Bật object nếu đang tắt để đảm bảo script hoạt động
+        if (endOfSemesterNoticeObj != null && !endOfSemesterNoticeObj.activeSelf)
+            endOfSemesterNoticeObj.SetActive(true);
+
+        int term = GameClock.Ins != null ? GameClock.Ins.Term : 1;
+        endOfSemesterNotice.TryShowForTerm(term);
     }
 
     // Hien thi goi y tuong tac

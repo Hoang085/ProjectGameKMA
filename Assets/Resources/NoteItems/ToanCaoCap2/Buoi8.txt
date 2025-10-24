@@ -1,0 +1,14 @@
+1.Khái niệm:
+-Hệ vi phân tuyến tính: x′ = A·x
+-Ma trận hệ số, nghiệm bằng phương pháp giá trị riêng.
+
+2.Công thức:
+ A·v = λ·v
+ x(t) = C₁e^(λ₁t)v₁ + C₂e^(λ₂t)v₂ + …
+
+3.Quy tắc:
+-Ma trận A chéo hóa được nếu có đủ vectơ riêng.
+-Dùng ma trận e^(At) để giải hệ.
+
+4.Ứng dụng:
+Dao động ghép, mạch điện nhiều phần tử, động học robot.
