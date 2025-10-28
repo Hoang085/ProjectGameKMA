@@ -163,7 +163,7 @@ public class GameUIManager : Singleton<GameUIManager>
         // ⏱️ Bảo đảm không bị pause dở dang
         Time.timeScale = 1f;
 
-        StartCoroutine(DelayedLoadMiniGame());
+        //StartCoroutine(DelayedLoadMiniGame());
     }
 
     private IEnumerator DelayedLoadMiniGame()
