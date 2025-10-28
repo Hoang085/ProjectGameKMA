@@ -2,9 +2,10 @@
 using TMPro;
 using System.Collections.Generic;
 using System.Linq;
+using HHH.Common;
 
 [DisallowMultipleComponent]
-public class PlayerStatsUI : MonoBehaviour
+public class PlayerStatsUI : BasePopUp
 {
     [Header("Text động hiển thị")]
     [SerializeField] private TMP_Text tittleNameText;   // "Sinh viên năm X"
@@ -36,8 +37,9 @@ public class PlayerStatsUI : MonoBehaviour
     private float currentGPA = 0f;
     private string currentRank = "";
 
-    void Start()
+    public override void OnInitScreen()
     {
+        base.OnInitScreen();
         if (!clockUI) clockUI = FindFirstObjectByType<ClockUI>();
         currentStamina = PlayerPrefs.GetInt(staminaSaveKey, maxStamina);
         ClampAndPaintStamina();

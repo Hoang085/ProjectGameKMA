@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+public class Singleton<T> : SerializedMonoBehaviour where T : SerializedMonoBehaviour 
 {
     protected static T m_ins;
     protected static bool s_isQuitting;
