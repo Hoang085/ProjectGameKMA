@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -129,7 +129,7 @@ namespace HHH.Common
         {
             GameObject prfScr = Resources.Load<GameObject>($"UI/{scrDictionary[scr]}");
             GameObject instance = Instantiate(prfScr, parent == ParentPopup.Default ? defaultParent : highParent);
-            instance.transform.localPosition = Vector3.zero;
+            instance.transform.localPosition = new Vector3(17f, -128f, 22f);
             instance.transform.localScale = Vector3.one;
             BasePopUp basePopup = instance.GetComponent<BasePopUp>();
             return basePopup;
