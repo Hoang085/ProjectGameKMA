@@ -2,6 +2,7 @@
 using TMPro;
 using System.Collections.Generic;
 using System.Reflection;
+using HHH.Common;
 
 /// <summary>
 /// JSON deserialization classes for subject names
@@ -19,7 +20,7 @@ public class SubjectNameWrapper
     public SubjectNameItem[] items;
 }
 
-public class ScheduleUI : MonoBehaviour
+public class ScheduleUI : BasePopUp
 {
     [Header("Text Table Attendance")]
     [SerializeField] private TextMeshProUGUI _textSubjectAttendance1; //mon1
@@ -40,7 +41,7 @@ public class ScheduleUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textDateExam2;    //ngay thi
     [SerializeField] private TextMeshProUGUI _textDateExam3;    //ngay thi
 
-    [Header("**MỚI: Semester Config để lấy tất cả môn học**")]
+    [Header("Semester Config để lấy tất cả môn học")]
     [SerializeField] private SemesterConfig _semesterConfig;
     [Tooltip("Nếu bỏ trống, sẽ tự động tìm TeacherAction đầu tiên có SemesterConfig")]
     
@@ -50,6 +51,17 @@ public class ScheduleUI : MonoBehaviour
 
     // Subject name mapping cache
     private Dictionary<string, string> _subjectDisplayNames;
+
+    public override void OnInitScreen()
+    {
+        LoadSubjectDisplayNames();
+    }
+
+    public override void OnShowScreen()
+    {
+        base.OnShowScreen();
+        RefreshAllScheduleData();
+    }
 
     void OnEnable()
     {
@@ -116,7 +128,7 @@ public class ScheduleUI : MonoBehaviour
         FillAttendanceTable(allSubjects);
         FillExamTable(allSubjects);
 
-        Debug.Log($"[ScheduleUI] **MỚI**: Refreshed schedule data for {allSubjects.Count} subjects (bao gồm cả môn không học)");
+        Debug.Log($"[ScheduleUI] Refreshed schedule data for {allSubjects.Count} subjects (bao gồm cả môn không học)");
     }
 
     /// <summary>
@@ -407,7 +419,7 @@ public class ScheduleUI : MonoBehaviour
                         {
                             // Format exam time using TeacherAction data
                             string dayName = DataKeyText.VN_Weekday(subject.examInfo.examDay);
-                            int startMin = DataKeyText.TryGetSlotStartMinute(DataKeyText.SlotFromIndex1Based(subject.examInfo.examSlot));
+                            int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(subject.examInfo.examSlot));
                             string timeStr = DataKeyText.FormatHM(startMin);
                             dateTexts[i].text = $"Thời gian thi - {dayName} - Ca {subject.examInfo.examSlot}";
                         }

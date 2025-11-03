@@ -1,0 +1,23 @@
+{
+  "subjectKey": "ToanCaoCap",
+  "questions": [
+    {
+      "id": "TCC1",
+      "question": "Đâu là tên gọi của 'tỷ lệ thay đổi tức thời' của một hàm số tại một điểm?",
+      "answers": [ "Tích phân", "Đạo hàm", "Giới hạn", "Nguyên hàm" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2",
+      "question": "Một ma trận có số hàng bằng số cột được gọi là gì?",
+      "answers": [ "Ma trận đơn vị", "Ma trận chuyển vị", "Ma trận vuông", "Ma trận không" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TCC3",
+      "question": "Phép toán ngược của phép toán lấy đạo hàm được gọi là gì?",
+      "answers": [ "Nguyên hàm", "Tích phân xác định", "Giới hạn", "Vi phân" ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -4,7 +4,12 @@ namespace HHH.Common
     {
         None,
         PlayerStat,
+        BaloPlayer,
+        TaskPlayer,
+        ScoreSubject,
+        ScheduleUI,
         Setting,
+        EndOfSemesterNotice,
         ShopAll,
         Pause,
         Inventory

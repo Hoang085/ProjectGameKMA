@@ -1,76 +1,232 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// Quan ly dong thoi gian trong game: Nam, Ky, Tuan, Ngay, Ca
+[DisallowMultipleComponent]
 public class GameClock : Singleton<GameClock>
 {
-    [Header("Config (Assign asset CalendarConfig)")]
-    public CalendarConfig config; // Cau hinh lich
+    [Header("Config (assign CalendarConfig)")]
+    public CalendarConfig config;
 
     [Header("Current Time (1-based)")]
-    [SerializeField] private int _year = 1; // Nam
-    [SerializeField] private int _term = 1; // Ky
-    [SerializeField] private int _week = 1; // Tuan
-    [SerializeField] private int _day = 1; // Ngay (1 = Thu 2)
-    [SerializeField] private DaySlot _slot = DaySlot.MorningA; // Ca
+    [SerializeField] private int _year = 1;              // Năm học
+    [SerializeField] private int _term = 1;              // Kỳ học 
+    [SerializeField] private int _week = 1;              // Tuần trong kỳ
+    [SerializeField] private int _day = 1;               // Ngày trong tuần 
+    [SerializeField] private DaySlot _slot = DaySlot.MorningA; // Ca hiện tại
+    [SerializeField] private int _minuteOfDay = 7 * 60;
 
-    // Getters
+    [Header("Game-time speed")]
+    [Tooltip("1 phút TRONG GAME = X giây THẬT (unscaled time)")]
+    [Min(0.01f)] public float secondsPerGameMinute = 30f;
+
+    [Header("Session (slot) boundaries - start minutes")]
+    public int tSession1 = 7 * 60;
+    public int tSession2 = 9 * 60 + 30;
+    public int tSession3 = 12 * 60 + 30;
+    public int tSession4 = 15 * 60;
+    public int tSession5 = 17 * 60;
+
+    const int MIN_PER_DAY = 24 * 60;
+
+    // Getters (đọc-only)
     public int Year => _year;
     public int Term => _term;
     public int Week => _week;
-    public int DayIndex => _day; // Chi so ngay (1-based)
-    public Weekday Weekday => (Weekday)Mathf.Clamp(_day - 1, 0, 6); // Thu trong tuan
-    public DaySlot Slot => _slot; // Ca hien tai
+    public int DayIndex => _day; // 1..daysPerWeek
+    public Weekday Weekday => (Weekday)Mathf.Clamp(_day - 1, 0, 6);
+    public DaySlot Slot => _slot;
+    public int MinuteOfDay => _minuteOfDay;
+    public int SlotIndex1Based => ((int)_slot) + 1;
 
-    // Cac su kien khi thoi gian thay doi
+    // EVENTS
     public event Action OnSlotChanged, OnDayChanged, OnWeekChanged, OnTermChanged, OnYearChanged;
-    public event Action<int, string, int> OnSlotStarted; // Khi ca bat dau
-    public event Action<int, string, int> OnSlotEnded; // Khi ca ket thuc
+    public event Action<int, string, int> OnSlotStarted; // args: week, dayNameVN, slotIdx(1..5)
+    public event Action<int, string, int> OnSlotEnded;
+    public event Action<int> OnMinuteChanged;            // NEW: minuteOfDay (0..1439) thay đổi
 
-    // Khoi tao singleton va chuan hoa thoi gian
+    // Internal tick
+    float _secAcc;
+    bool _started;
+
+    // ===== Unity lifecycle =====
     public override void Awake()
     {
         MakeSingleton(false);
-        if (!config) Debug.LogWarning("[GameClock] don't assign CalendarConfig!");
+        if (!config) Debug.LogWarning("[GameClock] CalendarConfig chưa được gán!");
         NormalizeNow(fullClamp: true);
-        FireSlotStarted(); // Kich hoat su kien ca bat dau
     }
 
-    // Tang ca, chuyen sang ngay moi neu tran
+    void OnEnable()
+    {
+        // Khởi phát ca hiện tại để mọi hệ thống UI có trạng thái ban đầu
+        FireSlotStarted();
+        _started = true;
+    }
+
+    void Update()
+    {
+        // dùng unscaled time để không bị ảnh hưởng bởi Time.timeScale
+        _secAcc += Time.unscaledDeltaTime;
+        if (_secAcc >= secondsPerGameMinute)
+        {
+            int add = Mathf.FloorToInt(_secAcc / secondsPerGameMinute);
+            _secAcc -= add * secondsPerGameMinute;
+            if (add > 0) AdvanceMinutes(add);
+        }
+
+        // hotkeys optional (giữ nguyên cho tiện test)
+        if (Input.GetKeyDown(KeyCode.N)) JumpToNextSessionStart();
+        if (Input.GetKeyDown(KeyCode.LeftBracket)) { secondsPerGameMinute *= 2f; Debug.Log($"[GameClock] Slower → {secondsPerGameMinute:F2}s/min"); }
+        if (Input.GetKeyDown(KeyCode.RightBracket)) { secondsPerGameMinute = Mathf.Max(0.01f, secondsPerGameMinute * 0.5f); Debug.Log($"[GameClock] Faster → {secondsPerGameMinute:F2}s/min"); }
+    }
+
+    // ======= TIME FLOW (data + logic moved from ClockUI) =======
+
+    /// <summary>Tiến thời gian trong ngày thêm 'delta' phút game, tự xử lý đổi ca/ngày/tuần/kỳ/năm.</summary>
+    public void AdvanceMinutes(int delta)
+    {
+        if (delta <= 0) return;
+
+        int before = _minuteOfDay;
+        _minuteOfDay = ((_minuteOfDay + delta) % MIN_PER_DAY + MIN_PER_DAY) % MIN_PER_DAY;
+        OnMinuteChanged?.Invoke(_minuteOfDay);
+
+        // kiểm tra ranh giới ca (dựa theo thứ tự thời gian trong ngày)
+        int toSession = GetSessionIndexFromMinute(_minuteOfDay);
+
+        // Cross helpers (xét vòng qua 0h)
+        bool Crossed(int a, int b, int t)
+        {
+            if (a <= b) return a < t && b >= t;
+            return a < t || b >= t;
+        }
+
+        // đổi ca trong cùng ngày
+        if (Crossed(before, _minuteOfDay, tSession2)) TryAdvanceSlotTo(2);
+        if (Crossed(before, _minuteOfDay, tSession3)) TryAdvanceSlotTo(3);
+        if (Crossed(before, _minuteOfDay, tSession4)) TryAdvanceSlotTo(4);
+        if (Crossed(before, _minuteOfDay, tSession5)) TryAdvanceSlotTo(5);
+
+        // qua ngày mới (Ca5 -> Ca1 ở mốc tSession1)
+        if (Crossed(before, _minuteOfDay, tSession1))
+        {
+            // chỉ khi đang ở ca 5 mới sang ca 1 + qua ngày
+            if (SlotIndex1Based == 5) NextSlot(); // NextSlot sẽ roll day và set slot=1
+            else
+            {
+                // nếu vì lý do nào đó không ở 5, ta sync slot theo minute để nhất quán
+                SyncSlotWithMinute(force: true);
+            }
+        }
+        else
+        {
+            // không qua mốc đầu ngày → đảm bảo slot nhất quán với minute (không force để giữ tiến trình NextSlot)
+            SyncSlotWithMinute(force: false);
+        }
+    }
+
+    /// <summary>Đặt minute-of-day (0..1439). Nếu syncSlot = true thì tự căn lại ca cho khớp.</summary>
+    public void SetMinuteOfDay(int minute, bool syncSlot = true)
+    {
+        int clamped = ((minute % MIN_PER_DAY) + MIN_PER_DAY) % MIN_PER_DAY;
+        if (clamped == _minuteOfDay && !syncSlot) return;
+
+        _minuteOfDay = clamped;
+        OnMinuteChanged?.Invoke(_minuteOfDay);
+        if (syncSlot) SyncSlotWithMinute(force: true);
+    }
+
+    /// <summary>Nhảy tới mốc đầu ca tiếp theo (giữ ngày/tuần/kỳ theo logic NextSlot).</summary>
+    public void JumpToNextSessionStart()
+    {
+        int cur = SlotIndex1Based; // 1..5
+        int targetMin = cur switch
+        {
+            1 => tSession2,
+            2 => tSession3,
+            3 => tSession4,
+            4 => tSession5,
+            _ => tSession1 // 5 -> đầu ngày mới
+        };
+
+        if (cur == 5)
+        {
+            _minuteOfDay = targetMin;        // 07:00
+            OnMinuteChanged?.Invoke(_minuteOfDay);
+            NextSlot();                       // 5 -> (day+1, slot=1)
+        }
+        else
+        {
+            _minuteOfDay = targetMin;        // tới đầu ca tiếp theo trong ngày
+            OnMinuteChanged?.Invoke(_minuteOfDay);
+            NextSlot();                       // slot + 1
+        }
+    }
+
+    /// <summary>Đổi ca sang chỉ số mong muốn (1..5) nếu đúng ca kế tiếp.</summary>
+    void TryAdvanceSlotTo(int expectedNextSessionIndex1Based)
+    {
+        if (SlotIndex1Based + 1 == expectedNextSessionIndex1Based)
+            NextSlot();
+    }
+
+    /// <summary>Đồng bộ Slot theo _minuteOfDay (không gọi NextSlot nếu không cần).</summary>
+    void SyncSlotWithMinute(bool force)
+    {
+        int session = GetSessionIndexFromMinute(_minuteOfDay); // 1..5
+        if (force || session != SlotIndex1Based)
+        {
+            SetSlotOnly(SlotFromIndex1Based(session));
+        }
+    }
+
+    /// <summary>Mapping minute-of-day → session index (1..5).</summary>
+    public int GetSessionIndexFromMinute(int min)
+    {
+        // lưu ý: khoảng 17:00..24:00 và 00:00..(trước tSession1) là Ca5
+        if (InRange(min, tSession1, tSession2)) return 1;
+        if (InRange(min, tSession2, tSession3)) return 2;
+        if (InRange(min, tSession3, tSession4)) return 3;
+        if (InRange(min, tSession4, tSession5)) return 4;
+        return 5;
+
+        bool InRange(int x, int start, int end) => start <= end ? (x >= start && x < end) : (x >= start || x < end);
+    }
+
+    // ======= Public controls for date/term =======
+
     [ContextMenu("Next Slot")]
     public void NextSlot()
     {
-        int sPerD = config ? Mathf.Clamp(config.slotsPerDay, 1, 5) : 4;
+        int sPerD = config ? Mathf.Clamp(config.slotsPerDay, 1, 5) : 5;
 
-        FireSlotEnded(); // Ket thuc ca hien tai
+        // kết thúc ca hiện tại
+        FireSlotEnded();
 
         int currentSlotIndex = (int)_slot;
         bool willRollDay = (currentSlotIndex + 1) >= sPerD;
 
         if (!willRollDay)
         {
-            _slot = (DaySlot)(currentSlotIndex + 1); // Sang ca tiep theo
+            _slot = (DaySlot)(currentSlotIndex + 1);
             OnSlotChanged?.Invoke();
-            FireSlotStarted(); // Bat dau ca moi
+            FireSlotStarted();
             return;
         }
 
-        NextDayInternal(); // Chuyen sang ngay moi
-        _slot = DaySlot.MorningA; // Reset ve ca dau ngay
+        // hết ngày → sang ngày mới, slot=1
+        NextDayInternal();
+        _slot = DaySlot.MorningA;
         OnSlotChanged?.Invoke();
-        FireSlotStarted(); // Bat dau ca moi
+        FireSlotStarted();
     }
 
-    // Dat thoi gian moi, chuan hoa va kich hoat su kien
+    /// <summary>Đặt thời gian tuyệt đối (year, term, week, day, slot). Tự normalize & phát event theo thay đổi.</summary>
     public void SetTime(int year, int term, int week, int dayIndex1Based, DaySlot slot)
     {
-        // lưu trạng thái cũ
-        int oldYear = _year, oldTerm = _term, oldWeek = _week, oldDay = _day;
-        DaySlot oldSlot = _slot;
+        int oldYear = _year, oldTerm = _term, oldWeek = _week, oldDay = _day; DaySlot oldSlot = _slot;
 
-        // gán mới
         _year = Mathf.Max(1, year);
         _term = Mathf.Max(1, term);
         _week = Mathf.Max(1, week);
@@ -79,36 +235,28 @@ public class GameClock : Singleton<GameClock>
 
         NormalizeNow(fullClamp: true);
 
-        // CHỈ phát event khi có thay đổi
         if (oldYear != _year) OnYearChanged?.Invoke();
         if (oldTerm != _term) OnTermChanged?.Invoke();
         if (oldWeek != _week) OnWeekChanged?.Invoke();
         if (oldDay != _day) OnDayChanged?.Invoke();
-        if (oldSlot != _slot) { OnSlotChanged?.Invoke(); FireSlotStarted(); }
+        if (oldSlot != _slot)
+        {
+            OnSlotChanged?.Invoke();
+            // khi set slot thủ công, coi như bắt đầu ca mới:
+            FireSlotStarted();
+        }
     }
 
+    /// <summary>Chỉ set slot, giữ y/t/w/d, có clamp theo config.</summary>
     public void SetSlotOnly(DaySlot newSlot)
     {
         if (_slot == newSlot) return;
-        _slot = newSlot;
-        NormalizeNow(fullClamp: false);
+        _slot = ClampSlotByConfig(newSlot);
         OnSlotChanged?.Invoke();
         FireSlotStarted();
     }
 
-
-    // Kiem tra ngay co phai ngay day hoc
-    public bool IsTeachingDay(Weekday d) =>
-        config != null && ((IReadOnlyList<Weekday>)config.TeachingDays).Contains(d);
-
-    // Kiem tra ca co duoc phep xep lich
-    public bool IsSchedulableSlot(DaySlot s) =>
-        config != null && !((IReadOnlyList<DaySlot>)config.BlockedSlots).Contains(s);
-
-    // Lay chi so ca (1-based)
-    public int GetSlotIndex1Based() => (int)_slot + 1;
-
-    // Chuyen enum Weekday thanh ten tieng Anh
+    // ======= Helpers & academic info =======
     public static string WeekdayToVN(Weekday d) => d switch
     {
         Weekday.Mon => "Thứ Hai",
@@ -120,134 +268,30 @@ public class GameClock : Singleton<GameClock>
         _ => "Chủ Nhật"
     };
 
-    // Lay ten ngay hien tai bang tieng Anh
     public string CurrentDayNameVN() => WeekdayToVN(Weekday);
 
-    /// <summary>
-    /// **MỚI: Lấy năm học dựa trên kỳ hiện tại**
-    /// Ví dụ: Kỳ 1,2 = Năm học 1; Kỳ 3,4 = Năm học 2; ...
-    /// </summary>
     public int GetAcademicYear()
     {
         int tPerY = config ? Mathf.Max(1, config.termsPerYear) : 2;
         return (((_term - 1) / tPerY) + 1);
     }
 
-    /// <summary>
-    /// **MỚI: Lấy kỳ trong năm học (1 hoặc 2)**
-    /// Ví dụ: Kỳ 1,3,5,7,9 = Kỳ 1 trong năm; Kỳ 2,4,6,8,10 = Kỳ 2 trong năm
-    /// </summary>
     public int GetTermInYear()
     {
         int tPerY = config ? Mathf.Max(1, config.termsPerYear) : 2;
         return (((_term - 1) % tPerY) + 1);
     }
 
-    /// <summary>
-    /// **MỚI: Lấy chuỗi mô tả năm học và kỳ**
-    /// Ví dụ: "Năm 1 - Kỳ 1", "Năm 2 - Kỳ 2", etc.
-    /// </summary>
-    public string GetAcademicYearString()
+    public string GetAcademicYearString() => $"Năm {GetAcademicYear()} - Kỳ {GetTermInYear()}";
+
+    public static string FormatHM(int minuteOfDay)
     {
-        return $"Năm {GetAcademicYear()} - Kỳ {GetTermInYear()}";
+        int h = Mathf.FloorToInt(minuteOfDay / 60f);
+        int m = minuteOfDay % 60;
+        return $"{h:00}:{m:00}";
     }
 
-    /// <summary>
-    /// **MỚI: Debug method để hiển thị thông tin kỳ học**
-    /// </summary>
-    [ContextMenu("Show Academic Info")]
-    public void ShowAcademicInfo()
-    {
-        Debug.Log($"[GameClock] === THÔNG TIN KỲ HỌC ===");
-        Debug.Log($"[GameClock] Kỳ tuyệt đối: {_term}");
-        Debug.Log($"[GameClock] Năm học: {GetAcademicYear()}");
-        Debug.Log($"[GameClock] Kỳ trong năm: {GetTermInYear()}");
-        Debug.Log($"[GameClock] Chuỗi mô tả: {GetAcademicYearString()}");
-        Debug.Log($"[GameClock] Tuần: {_week} | Ngày: {CurrentDayNameVN()} | Ca: {GetSlotIndex1Based()}");
-    }
-
-    /// <summary>
-    /// **TEST: Simulate chuyển đến kỳ cụ thể để test logic**
-    /// </summary>
-    [ContextMenu("TEST: Jump to Term 3")]
-    public void TestJumpToTerm3()
-    {
-        SetTime(2, 3, 1, 1, DaySlot.MorningA);
-        ShowAcademicInfo();
-        Debug.Log("[GameClock] TEST: Đã chuyển đến Kỳ 3 (Năm 2 - Kỳ 1)");
-    }
-
-    /// <summary>
-    /// **TEST: Simulate chuyển đến kỳ 10 để test**
-    /// </summary>
-    [ContextMenu("TEST: Jump to Term 10")]
-    public void TestJumpToTerm10()
-    {
-        SetTime(5, 10, 1, 1, DaySlot.MorningA);
-        ShowAcademicInfo();
-        Debug.Log("[GameClock] TEST: Đã chuyển đến Kỳ 10 (Năm 5 - Kỳ 2)");
-    }
-
-    /// <summary>
-    /// **TEST: Chuyển nhanh nhiều kỳ để test logic tăng dần**
-    /// </summary>
-    [ContextMenu("TEST: Fast Forward Terms")]
-    public void TestFastForwardTerms()
-    {
-        Debug.Log("[GameClock] === TEST FAST FORWARD TERMS ===");
-        
-        for (int testTerm = 1; testTerm <= 10; testTerm++)
-        {
-            int expectedYear = ((testTerm - 1) / 2) + 1;
-            int expectedTermInYear = ((testTerm - 1) % 2) + 1;
-            
-            SetTime(expectedYear, testTerm, 1, 1, DaySlot.MorningA);
-            
-            Debug.Log($"[GameClock] Kỳ {testTerm}: Năm {GetAcademicYear()}, Kỳ trong năm {GetTermInYear()} | Expected: Năm {expectedYear}, Kỳ {expectedTermInYear}");
-            
-            if (GetAcademicYear() != expectedYear || GetTermInYear() != expectedTermInYear)
-            {
-                Debug.LogError($"[GameClock] ❌ LOGIC ERROR at Term {testTerm}!");
-            }
-        }
-        
-        Debug.Log("[GameClock] === TEST COMPLETED ===");
-    }
-
-    /// <summary>
-    /// **TEST: Test chuyển tuần để trigger chuyển kỳ**
-    /// </summary>
-    [ContextMenu("TEST: Trigger Term Change")]
-    public void TestTriggerTermChange()
-    {
-        Debug.Log("[GameClock] === TEST TRIGGER TERM CHANGE ===");
-        
-        // Set to week 6, should trigger term change on next week
-        int currentTerm = _term;
-        SetTime(_year, currentTerm, 6, 7, DaySlot.Evening); // Last day of week 6
-        
-        Debug.Log($"[GameClock] Before trigger: Term {_term}");
-        ShowAcademicInfo();
-        
-        // Trigger next slot -> should go to next day -> next week -> next term
-        NextSlot();
-        
-        Debug.Log($"[GameClock] After trigger: Term {_term}");
-        ShowAcademicInfo();
-        
-        if (_term == currentTerm + 1)
-        {
-            Debug.Log("[GameClock] ✅ Term change triggered successfully!");
-        }
-        else
-        {
-            Debug.LogError($"[GameClock] ❌ Term change failed! Expected {currentTerm + 1}, got {_term}");
-        }
-        
-        Debug.Log("[GameClock] === TEST COMPLETED ===");
-    }
-
-    // Chuyen sang ngay moi, cap nhat tuan/ky/nam neu can
+    // ======= Internals =======
     private void NextDayInternal()
     {
         _day++;
@@ -269,63 +313,83 @@ public class GameClock : Singleton<GameClock>
                 _term++;
                 OnTermChanged?.Invoke();
 
-                // **SỬA LỖI: Logic chuyển kỳ - kỳ tăng liên tục, không reset**
-                // Tính năm dựa trên kỳ hiện tại: mỗi tPerY kỳ = 1 năm
                 int newYear = (((_term - 1) / tPerY) + 1);
                 if (newYear != _year)
                 {
                     _year = newYear;
                     OnYearChanged?.Invoke();
-                    Debug.Log($"[GameClock] Chuyển sang năm {_year}, kỳ {_term}");
+                    Debug.Log($"[GameClock] → Năm {_year}, Kỳ {_term}");
                 }
                 else
                 {
-                    Debug.Log($"[GameClock] Chuyển sang kỳ {_term}, năm {_year}");
+                    Debug.Log($"[GameClock] → Kỳ {_term}, Năm {_year}");
                 }
             }
         }
-        
-        Debug.Log($"[GameClock] NextDayInternal: Y{_year} T{_term} W{_week} D{_day}");
+
+        // khi sang ngày mới, đưa clock về đầu ngày theo mốc Ca1
+        if (_started)
+        {
+            _minuteOfDay = tSession1;
+            OnMinuteChanged?.Invoke(_minuteOfDay);
+        }
+
+        Debug.Log($"[GameClock] NextDay: Y{_year} T{_term} W{_week} D{_day}");
     }
 
-    // Chuan hoa thoi gian hien tai
     private void NormalizeNow(bool fullClamp)
     {
         int dPerW = config ? Mathf.Clamp(config.daysPerWeek, 1, 7) : 7;
         int wPerT = config ? Mathf.Max(1, config.weeksPerTerm) : 6;
         int tPerY = config ? Mathf.Max(1, config.termsPerYear) : 2;
-        int sPerD = config ? Mathf.Clamp(config.slotsPerDay, 1, 5) : 4;
+        int sPerD = config ? Mathf.Clamp(config.slotsPerDay, 1, 5) : 5;
 
         if (fullClamp)
         {
-            // **SỬA LỖI: Không clamp term nữa, cho phép kỳ tăng liên tục**
-            // Chỉ clamp tuần và ngày
             _week = Mathf.Clamp(_week, 1, wPerT);
             _day = Mathf.Clamp(_day, 1, dPerW);
-            
-            // **THÊM: Tính toán năm dựa trên kỳ hiện tại**
-            // Đảm bảo year được cập nhật đúng theo term
+
             int calculatedYear = (((_term - 1) / tPerY) + 1);
             if (_year < calculatedYear)
             {
                 _year = calculatedYear;
-                Debug.Log($"[GameClock] NormalizeNow: Điều chỉnh năm thành {_year} dựa trên kỳ {_term}");
+                Debug.Log($"[GameClock] NormalizeNow → Điều chỉnh Năm = {_year} theo Kỳ = {_term}");
             }
         }
 
+        // clamp slot theo số ca/ngày trong config
         int maxSlotIndex = Mathf.Min((int)DaySlot.Evening, sPerD - 1);
         _slot = (DaySlot)Mathf.Clamp((int)_slot, 0, Mathf.Max(0, maxSlotIndex));
+
+        // clamp minute-of-day hợp lệ
+        _minuteOfDay = ((_minuteOfDay % MIN_PER_DAY) + MIN_PER_DAY) % MIN_PER_DAY;
+        OnMinuteChanged?.Invoke(_minuteOfDay);
     }
 
-    // Kich hoat su kien bat dau ca
-    private void FireSlotStarted()
+    private DaySlot ClampSlotByConfig(DaySlot s)
     {
-        OnSlotStarted?.Invoke(_week, CurrentDayNameVN(), GetSlotIndex1Based());
+        int sPerD = config ? Mathf.Clamp(config.slotsPerDay, 1, 5) : 5;
+        int maxSlotIndex = Mathf.Min((int)DaySlot.Evening, sPerD - 1);
+        return (DaySlot)Mathf.Clamp((int)s, 0, Mathf.Max(0, maxSlotIndex));
     }
 
-    // Kich hoat su kien ket thuc ca
-    private void FireSlotEnded()
+    private DaySlot SlotFromIndex1Based(int idx) => idx switch
     {
-        OnSlotEnded?.Invoke(_week, CurrentDayNameVN(), GetSlotIndex1Based());
-    }
+        1 => DaySlot.MorningA,
+        2 => DaySlot.MorningB,
+        3 => DaySlot.AfternoonA,
+        4 => DaySlot.AfternoonB,
+        5 => DaySlot.Evening,
+        _ => DaySlot.MorningA
+    };
+
+    private void FireSlotStarted() => OnSlotStarted?.Invoke(_week, CurrentDayNameVN(), SlotIndex1Based);
+    private void FireSlotEnded() => OnSlotEnded?.Invoke(_week, CurrentDayNameVN(), SlotIndex1Based);
+
+    // ====== Convenience Queries ======
+    public bool IsTeachingDay(Weekday d) =>
+        config != null && ((System.Collections.Generic.IReadOnlyList<Weekday>)config.TeachingDays).Contains(d);
+
+    public bool IsSchedulableSlot(DaySlot s) =>
+        config != null && !((System.Collections.Generic.IReadOnlyList<DaySlot>)config.BlockedSlots).Contains(s);
 }

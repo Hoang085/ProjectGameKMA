@@ -37,7 +37,7 @@ public static class GameStateManager
             state.examSubject = examSubject;
             state.sceneName = SceneManager.GetActiveScene().name;
             
-            Debug.Log($"[GameStateManager] 🔄 Bắt đầu lưu trạng thái trước thi '{examSubject}'");
+            Debug.Log($"[GameStateManager] Bắt đầu lưu trạng thái trước thi '{examSubject}'");
             
             // 1. Lưu thời gian qua TimeSaveManager
             SaveTimeState();
@@ -56,11 +56,11 @@ public static class GameStateManager
             PlayerPrefs.SetString(SAVE_KEY, json);
             PlayerPrefs.Save();
             
-            Debug.Log($"[GameStateManager] ✅ Đã lưu trạng thái trước thi '{examSubject}'");
+            Debug.Log($"[GameStateManager] Đã lưu trạng thái trước thi '{examSubject}'");
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[GameStateManager] ❌ Lỗi lưu trạng thái: {ex.Message}");
+            Debug.LogError($"[GameStateManager] Lỗi lưu trạng thái: {ex.Message}");
         }
     }
     
@@ -82,7 +82,7 @@ public static class GameStateManager
             
             if (state == null)
             {
-                Debug.LogError("[GameStateManager] ❌ Không thể parse dữ liệu");
+                Debug.LogError("[GameStateManager] Không thể parse dữ liệu");
                 return;
             }
             
@@ -95,14 +95,14 @@ public static class GameStateManager
                 return;
             }
             
-            Debug.Log($"[GameStateManager] 🔄 Bắt đầu khôi phục trạng thái từ thi '{state.examSubject}'");
+            Debug.Log($"[GameStateManager] Bắt đầu khôi phục trạng thái từ thi '{state.examSubject}'");
             
             // Khôi phục theo thứ tự
             GameManager.Ins.StartCoroutine(RestoreStateCoroutine(state));
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[GameStateManager] ❌ Lỗi khôi phục: {ex.Message}");
+            Debug.LogError($"[GameStateManager] Lỗi khôi phục: {ex.Message}");
             ClearSavedState();
         }
     }
@@ -131,7 +131,7 @@ public static class GameStateManager
         // 4. Hoàn thành
         yield return new UnityEngine.WaitForSeconds(0.2f);
         
-        Debug.Log("[GameStateManager] ✅ Hoàn thành khôi phục trạng thái");
+        Debug.Log("[GameStateManager] Hoàn thành khôi phục trạng thái");
         
         // Xóa dữ liệu đã lưu
         ClearSavedState();
@@ -146,11 +146,11 @@ public static class GameStateManager
         if (timeSaveManager != null)
         {
             timeSaveManager.Save();
-            Debug.Log("[GameStateManager] ✅ Đã lưu thời gian qua TimeSaveManager");
+            Debug.Log("[GameStateManager] Đã lưu thời gian qua TimeSaveManager");
         }
         else
         {
-            Debug.LogWarning("[GameStateManager] ⚠️ TimeSaveManager không tìm thấy");
+            Debug.LogWarning("[GameStateManager] TimeSaveManager không tìm thấy");
         }
     }
     
@@ -163,11 +163,11 @@ public static class GameStateManager
         if (playerSaveManager != null)
         {
             playerSaveManager.SaveNow();
-            Debug.Log("[GameStateManager] ✅ Đã lưu vị trí Player qua PlayerSaveManager");
+            Debug.Log("[GameStateManager] Đã lưu vị trí Player qua PlayerSaveManager");
         }
         else
         {
-            Debug.LogWarning("[GameStateManager] ⚠️ PlayerSaveManager không tìm thấy");
+            Debug.LogWarning("[GameStateManager] PlayerSaveManager không tìm thấy");
         }
     }
     
@@ -182,11 +182,11 @@ public static class GameStateManager
         if (timeSaveManager != null)
         {
             timeSaveManager.TryLoad();
-            Debug.Log("[GameStateManager] ✅ Đã khôi phục thời gian qua TimeSaveManager");
+            Debug.Log("[GameStateManager] Đã khôi phục thời gian qua TimeSaveManager");
         }
         else
         {
-            Debug.LogWarning("[GameStateManager] ⚠️ TimeSaveManager không tìm thấy");
+            Debug.LogWarning("[GameStateManager] TimeSaveManager không tìm thấy");
         }
         
         yield return new UnityEngine.WaitForSeconds(0.1f);
@@ -205,7 +205,7 @@ public static class GameStateManager
         {
             taskManager.ForceRefreshTasks();
             taskManager.ResetTaskNotificationState();
-            Debug.Log("[GameStateManager] ✅ Đã refresh TaskManager");
+            Debug.Log("[GameStateManager] Đã refresh TaskManager");
         }
         
         yield return new UnityEngine.WaitForSeconds(0.2f);
@@ -214,7 +214,7 @@ public static class GameStateManager
         if (GameManager.Ins != null)
         {
             GameManager.Ins.SyncNotificationSystemAfterRestore();
-            Debug.Log("[GameStateManager] ✅ Đã sync notification system qua GameManager");
+            Debug.Log("[GameStateManager] Đã sync notification system qua GameManager");
         }
         else
         {
@@ -228,7 +228,7 @@ public static class GameStateManager
                     bool state = false; // Default state since GameManager is not available
                     iconNotificationManager.SetNotificationVisible(iconType, state);
                 }
-                Debug.Log("[GameStateManager] ✅ Đã sync IconNotificationManager (fallback)");
+                Debug.Log("[GameStateManager] Đã sync IconNotificationManager (fallback)");
             }
         }
         
@@ -237,7 +237,7 @@ public static class GameStateManager
         // 3. AttendanceManager và NotesService tự động hoạt động qua PlayerPrefs
         // Không cần thao tác gì thêm
         
-        Debug.Log("[GameStateManager] ✅ Hoàn thành refresh hệ thống");
+        Debug.Log("[GameStateManager] Hoàn thành refresh hệ thống");
     }
     
     /// <summary>
@@ -286,36 +286,6 @@ public static class GameStateManager
     {
         PlayerPrefs.DeleteKey(SAVE_KEY);
         PlayerPrefs.Save();
-        Debug.Log("[GameStateManager] 🗑️ Đã xóa dữ liệu trạng thái");
-    }
-    
-    /// <summary>
-    /// [DEBUG] Kiểm tra trạng thái của các hệ thống
-    /// </summary>
-    [System.Diagnostics.Conditional("UNITY_EDITOR")]
-    public static void DebugSystemStates()
-    {
-        Debug.Log("=== DEBUG SYSTEM STATES ===");
-        
-        // GameClock
-        var gameClock = GameClock.Ins;
-        if (gameClock != null)
-            Debug.Log($"GameClock: Y{gameClock.Year} T{gameClock.Term} W{gameClock.Week} D{gameClock.DayIndex} S{gameClock.GetSlotIndex1Based()}");
-        
-        // TimeSaveManager
-        var timeSaveManager = TimeSaveManager.Ins;
-        Debug.Log($"TimeSaveManager: {(timeSaveManager != null ? "Available" : "Missing")}");
-        
-        // TaskManager
-        var taskManager = TaskManager.Instance;
-        if (taskManager != null)
-            Debug.Log($"TaskManager: {taskManager.GetActiveTaskCount()} active tasks");
-        
-        // PlayerSaveManager
-        var playerSaveManager = UnityEngine.Object.FindFirstObjectByType<PlayerSaveManager>();
-        if (playerSaveManager != null && playerSaveManager.PlayerInstance != null)
-            Debug.Log($"PlayerSaveManager: Player at {playerSaveManager.PlayerInstance.transform.position}");
-        
-        Debug.Log("=== END DEBUG ===");
+        Debug.Log("[GameStateManager] Đã xóa dữ liệu trạng thái");
     }
 }

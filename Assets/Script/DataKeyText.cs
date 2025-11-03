@@ -1,14 +1,14 @@
 ﻿public static class DataKeyText
 {
     public const string openText = "Chào em, hôm nay em đến để bắt đầu buổi học đúng không?"; // openText
-    public const string text1 = "Em đã điểm danh buổi hôm nay, chúng ta bắt đầu vào học nhé"; // confirmText
-    public const string text2 = "Không phải giờ môn này, quay lại đúng ca nhé."; // wrongTimeText
-    public const string text3 = "Đang học..."; // learningText 
-    public const string text4 = "Môn này không có trong SemesterConfig hiện tại: "; // noSubjectText
-    public const string text5 = "Em đã nghỉ quá số buổi quy định cho phép"; // exceedAbsenceText
-    public const string text6 = "Ca hiện tại chưa khởi tạo."; // noCurrentSlotText
-    public const string text7 = "Không đúng ca học của môn này đang là: "; // wrongSubjectText
-    public const string text8 = "Không tìm thấy khung giờ điểm danh cho ca này."; // noTimeWindowText
+    public const string text1 = "Em đã điểm danh buổi hôm nay, chúng ta bắt đầu vào học nhé";  // confirmText
+    public const string text2 = "Không phải giờ môn này, quay lại đúng ca nhé.";              // wrongTimeText
+    public const string text3 = "Đang học...";                                                // learningText 
+    public const string text4 = "Môn này không có trong SemesterConfig hiện tại: ";           // noSubjectText
+    public const string text5 = "Em đã nghỉ quá số buổi quy định cho phép";                   // exceedAbsenceText
+    public const string text6 = "Ca hiện tại chưa khởi tạo.";                                 // noCurrentSlotText
+    public const string text7 = "Không đúng ca học của môn này đang là: ";                    // wrongSubjectText
+    public const string text8 = "Không tìm thấy khung giờ điểm danh cho ca này.";             // noTimeWindowText
     public const string text9 = "Đã quá giờ điểm danh vào học, em không thể học môn này ngày hôm nay lần sau hãy đến đúng giờ vào nhé";
 
     public static string VN_Weekday(Weekday w)
@@ -47,20 +47,18 @@
         }
     }
 
-    // Lấy phút bắt đầu của từng ca từ AttendanceManager
-    public static int TryGetSlotStartMinute(DaySlot slot)
+    // Lấy phút bắt đầu của từng ca từ GameClock (không fallback)
+    public static int GetSlotStartMinute(DaySlot slot)
     {
-        var att = AttendanceManager.Instance;
-        if (!att) return -1;
-
+        var clock = GameClock.Ins; // giả định luôn tồn tại
         switch (slot)
         {
-            case DaySlot.MorningA: return att.morningAStart;
-            case DaySlot.MorningB: return att.morningBStart;
-            case DaySlot.AfternoonA: return att.afternoonAStart;
-            case DaySlot.AfternoonB: return att.afternoonBStart;
-            case DaySlot.Evening: return att.eveningStart;
-            default: return -1;
+            case DaySlot.MorningA: return clock.tSession1;
+            case DaySlot.MorningB: return clock.tSession2;
+            case DaySlot.AfternoonA: return clock.tSession3;
+            case DaySlot.AfternoonB: return clock.tSession4;
+            case DaySlot.Evening: return clock.tSession5;
+            default: return clock.tSession1;
         }
     }
 }
