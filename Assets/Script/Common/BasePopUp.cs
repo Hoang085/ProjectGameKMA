@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,6 +13,7 @@ namespace HHH.Common
         [SerializeField] private PopupShowingType showingType = PopupShowingType.FadeInOut;
         [ShowIf("showingType", PopupShowingType.Slide), SerializeField] private Vector2 targetPos;
         [SerializeField] private GameObject blockRaycast;
+        
         public PopupName currentScreen;
         private CanvasGroup _canvasGroup;
         private Tween _tween,_tween2;
@@ -22,7 +23,7 @@ namespace HHH.Common
         public bool IsShowing { get; private set; }
         public bool IsClosing { get; private set; } 
         public bool EnableGoldUI => enableGoldUI;
-
+        
         protected void Awake()
         {
             this.OnInitScreen();
@@ -38,6 +39,10 @@ namespace HHH.Common
             if(blockRaycast != null)
                 blockRaycast.SetActive(false);
             BlockMultyClick();
+            
+            // Notify GameUIManager that a popup is opening
+            NotifyUIStateChanged(true);
+            
             if (showingType == PopupShowingType.FadeInOut)
                 OnFadeIn();
             else if (showingType == PopupShowingType.Slide)
@@ -51,6 +56,10 @@ namespace HHH.Common
             BlockMultyClick();
             if(blockRaycast!=null)
                 blockRaycast.SetActive(false);
+            
+            // Notify GameUIManager that a popup is opening
+            NotifyUIStateChanged(true);
+                
             if (showingType == PopupShowingType.FadeInOut)
                 OnFadeIn();
             else if (showingType == PopupShowingType.Slide)
@@ -64,6 +73,10 @@ namespace HHH.Common
             BlockMultyClick();
             if(blockRaycast!=null)
                 blockRaycast.SetActive(false);
+            
+            // Notify GameUIManager that a popup is opening
+            NotifyUIStateChanged(true);
+                
             if (showingType == PopupShowingType.FadeInOut)
                 OnFadeIn();
             else if(showingType == PopupShowingType.Slide)
@@ -81,6 +94,10 @@ namespace HHH.Common
             else
                 HideScreen();
             BlockMultyClick();
+            
+            // Notify GameUIManager that a popup is closing
+            // Delay slightly to ensure animation completes
+            DOVirtual.DelayedCall(0.3f, () => NotifyUIStateChanged(false)).SetUpdate(true);
         }
 
         public void OnDeActived()
@@ -251,6 +268,24 @@ namespace HHH.Common
             {
                 blockRaycast.SetActive(false);
             }).SetUpdate(true);
+        }
+
+        /// <summary>
+        /// Notify GameUIManager about popup state changes for player/camera control
+        /// </summary>
+        private void NotifyUIStateChanged(bool isOpening)
+        {
+            if (GameUIManager.Ins != null)
+            {
+                if (isOpening)
+                {
+                    GameUIManager.Ins.OnPopupOpened();
+                }
+                else
+                {
+                    GameUIManager.Ins.OnPopupClosed();
+                }
+            }
         }
     }
 }

@@ -2,8 +2,8 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using HHH.Common;
 
-// Quan ly giao dien nguoi dung trong game
 // Quan ly giao dien nguoi dung trong game
 public class GameUIManager : Singleton<GameUIManager>
 {
@@ -16,20 +16,13 @@ public class GameUIManager : Singleton<GameUIManager>
     public GameObject dialogueRoot;
     public Text dialogueNpcNameText;
     public Text dialogueContentText;
-
+    [SerializeField] private Button btnCloseDialogue; // Nút đóng dialogue
+    
     [Header("Note Popup")]
     public NotePopup notePopupPrefab;
     public Transform popupParent;
     private bool _dialogueOpen;
     public bool IsDialogueOpen => _dialogueOpen;
-
-    [Header("ShowStatsUI")]
-    [SerializeField] private GameObject playerUI;
-    [SerializeField] private GameObject baloUI;
-    [SerializeField] private GameObject taskUI;
-    [SerializeField] private GameObject scoreUI;
-    [SerializeField] private GameObject scheduleUI; // Thêm UI cho lịch học
-    [SerializeField] private GameObject settingUI;  // Thêm UI cho cài đặt
 
     [Header("BtnListIcon")]
     [SerializeField] private Button btnPlayerIcon;
@@ -42,41 +35,45 @@ public class GameUIManager : Singleton<GameUIManager>
     [Header("Backpack/Balo")]
     public BackpackUIManager backpackUIManager;
 
+    [Header("Quiz System")]
+    public QuizGameManager quizGameManager;
+
     [Header("End Of Semester")]
-    [SerializeField] private GameObject endOfSemesterNoticeObj;      // có thể để inactive trong Hierarchy
     [SerializeField] private EndOfSemesterNotice endOfSemesterNotice; // component trên object trên
 
     // ========== THEO DÕI TRẠNG THÁI UI ==========
     /// <summary>
-    /// Kiểm tra có bất kỳ UI nào đang mở không (bao gồm cả dialogue)
+    /// Track number of open popups (from PopupManager)
     /// </summary>
-    public bool IsAnyUIOpen => _dialogueOpen || IsAnyStatUIOpen;
+    private int _openPopupCount = 0;
+    
+    /// <summary>
+    /// Check if any popup is currently open
+    /// </summary>
+    public bool IsAnyPopupOpen => _openPopupCount > 0;
+    
+    /// <summary>
+    /// Kiểm tra có bất kỳ UI nào đang mở không (bao gồm cả dialogue và popups)
+    /// </summary>
+    public bool IsAnyUIOpen => _dialogueOpen || IsAnyStatUIOpen || IsQuizOpen || IsAnyPopupOpen;
 
     /// <summary>
     /// Kiểm tra có UI thống kê nào đang mở không
     /// </summary>
-    public bool IsAnyStatUIOpen =>
-        (playerUI != null && playerUI.activeSelf) ||
-        (baloUI != null && baloUI.activeSelf) ||
-        (taskUI != null && taskUI.activeSelf) ||
-        (scoreUI != null && scoreUI.activeSelf);
+    public bool IsAnyStatUIOpen;
+    
+    /// <summary>
+    /// Kiểm tra có Quiz đang mở không
+    /// </summary>
+    public bool IsQuizOpen => quizGameManager != null && quizGameManager.gameObject.activeInHierarchy;
 
     private TeacherAction _activeTeacher;
+    
+    // **THÊM: Lưu subjectKey để sử dụng sau khi class kết thúc**
+    private string _cachedSubjectKey;
+    
     public void BindTeacher(TeacherAction t) { _activeTeacher = t; }
     public void UnbindTeacher(TeacherAction t) { if (_activeTeacher == t) _activeTeacher = null; }
-
-    // ===== UPDATED: USE TASKMANAGER INSTEAD OF TASKPLAYERUI =====
-    /// <summary>
-    /// Get TaskPlayerUI component (for backward compatibility)
-    /// </summary>
-    public TaskPlayerUI GetTaskPlayerUI()
-    {
-        if (taskUI != null)
-        {
-            return taskUI.GetComponent<TaskPlayerUI>();
-        }
-        return null;
-    }
 
     /// <summary>
     /// Get task count from TaskManager (new unified source)
@@ -151,72 +148,161 @@ public class GameUIManager : Singleton<GameUIManager>
         }
 
         Debug.Log($"[GameUIManager] StartClass gọi tới teacher: {_activeTeacher.name}");
-        _activeTeacher.UI_StartClass(); // Gọi bắt đầu lớp
+        
+        // **QUAN TRỌNG: Lấy và lưu subjectKey TRƯỚC KHI bắt đầu class routine**
+        _cachedSubjectKey = GetCurrentSubjectKeyFromTeacher();
+        
+        if (string.IsNullOrWhiteSpace(_cachedSubjectKey))
+        {
+            Debug.LogError("[GameUIManager] Không thể lấy subjectKey từ teacher! Không thể bắt đầu lớp học.");
+            OpenDialogue(_activeTeacher.titleText, "Lỗi: Không tìm thấy môn học cho ca này. Vui lòng kiểm tra cấu hình.");
+            return;
+        }
+        
+        Debug.Log($"[GameUIManager] Đã lưu subjectKey: {_cachedSubjectKey}");
+        
+        // **SỬA: Bắt đầu quiz NGAY LẬP TỨC thay vì đợi class routine kết thúc**
+        CloseDialogue();
+        
+        // Bắt đầu Quiz ngay lập tức (sau delay ngắn để đóng dialogue)
+        StartCoroutine(StartQuizImmediately(_cachedSubjectKey, 0.2f));
+    }
+    
+    /// <summary>
+    /// **MỚI: Bắt đầu quiz ngay lập tức khi nhấn "Điểm danh và học"**
+    /// </summary>
+    private System.Collections.IEnumerator StartQuizImmediately(string subjectKey, float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        
+        if (quizGameManager != null)
+        {
+            Debug.Log($"[GameUIManager] Bắt đầu Quiz ngay lập tức cho môn: {subjectKey}");
+            quizGameManager.StartQuiz(subjectKey);
+            
+            // **SAU KHI QUIZ HOÀN THÀNH, gọi teacher để xử lý logic điểm danh**
+            quizGameManager.OnQuizCompleted = OnQuizCompletedHandler;
+        }
+        else
+        {
+            Debug.LogError("[GameUIManager] QuizGameManager chưa được gán!");
+            OpenDialogue("Lỗi", "Lỗi: QuizGameManager chưa được cấu hình. Không thể bắt đầu Quiz.");
+        }
+        
+        _cachedSubjectKey = null;
+    }
+    
+    /// <summary>
+    /// **MỚI: Xử lý khi quiz hoàn thành - tiếp tục với class routine**
+    /// </summary>
+    private void OnQuizCompletedHandler(int correctCount, int totalCount)
+    {
+        Debug.Log($"[GameUIManager] Quiz completed with score: {correctCount}/{totalCount}");
+        
+        // **SỬA: Gọi hàm mới để hoàn thành logic học KHÔNG bao gồm quiz**
+        if (_activeTeacher != null)
+        {
+            _activeTeacher.CompleteClassAfterQuiz();
+        }
+    }
+    
+    /// <summary>
+    /// Lấy subjectKey từ TeacherAction dựa trên môn học hiện tại (ca hiện tại)
+    /// </summary>
+    private string GetCurrentSubjectKeyFromTeacher()
+    {
+        if (_activeTeacher == null)
+        {
+            Debug.LogError("[GameUIManager] Active teacher is null! Cannot get subject key.");
+            return null;
+        }
 
-        // 🔐 LƯU TRẠNG THÁI TRƯỚC KHI RỜI GAMESCENE
-        GameStateManager.SavePreExamState($"CLASS:{_activeTeacher.name}");
+        if (_activeTeacher.subjects == null || _activeTeacher.subjects.Count == 0)
+        {
+            Debug.LogError($"[GameUIManager] Teacher '{_activeTeacher.name}' has no subjects configured!");
+            return null;
+        }
 
-        // 🔁 Đặt flag để GameManager biết phải khôi phục khi quay về từ MiniGame
-        PlayerPrefs.SetInt("ShouldRestoreStateAfterMiniGame", 1);
-        PlayerPrefs.Save();
+        // Tìm môn đang học ở ca hiện tại (giống logic trong TeacherAction.TryFindSubjectForNow)
+        if (_activeTeacher.semesterConfig != null && GameClock.Ins != null)
+        {
+            var today = GameClock.Ins.Weekday;
+            var slot1Based = GameClock.Ins.SlotIndex1Based;
 
-        // ⏱️ Bảo đảm không bị pause dở dang
-        Time.timeScale = 1f;
+            foreach (var subj in _activeTeacher.subjects)
+            {
+                if (string.IsNullOrWhiteSpace(subj.subjectName)) continue;
+                
+                if (ScheduleResolver.IsSessionMatch(_activeTeacher.semesterConfig, subj.subjectName, today, slot1Based))
+                {
+                    // Ưu tiên subjectKeyForNotes, fallback về subjectName
+                    string key = !string.IsNullOrWhiteSpace(subj.subjectKeyForNotes) 
+                        ? subj.subjectKeyForNotes 
+                        : MakeQuizKey(subj.subjectName);
+                    
+                    Debug.Log($"[GameUIManager] Tìm thấy môn hiện tại: {subj.subjectName} với key: {key}");
+                    return key;
+                }
+            }
+        }
+        else
+        {
+            if (_activeTeacher.semesterConfig == null)
+                Debug.LogError($"[GameUIManager] Teacher '{_activeTeacher.name}' has no SemesterConfig!");
+            if (GameClock.Ins == null)
+                Debug.LogError("[GameUIManager] GameClock instance is null!");
+        }
 
-        //StartCoroutine(DelayedLoadMiniGame());
+        // Không tìm thấy môn cho ca hiện tại
+        Debug.LogError($"[GameUIManager] Không tìm thấy môn học nào cho ca hiện tại! " +
+                      $"Teacher: {_activeTeacher.name}, " +
+                      $"Day: {(GameClock.Ins != null ? GameClock.Ins.Weekday.ToString() : "N/A")}, " +
+                      $"Slot: {(GameClock.Ins != null ? GameClock.Ins.SlotIndex1Based.ToString() : "N/A")}");
+        return null;
     }
 
-    private IEnumerator DelayedLoadMiniGame()
+    /// <summary>
+    /// Tạo quiz key từ subject name (loại bỏ khoảng trắng, lowercase)
+    /// </summary>
+    private string MakeQuizKey(string subjectName)
     {
-        yield return new WaitForSeconds(2.5f); // chờ 2–3s tùy animation của bạn
-        SceneManager.LoadScene("MiniGameScene1");
+        if (string.IsNullOrWhiteSpace(subjectName)) return "ToanCaoCap";
+        return subjectName.Trim().Replace(" ", "").ToLowerInvariant();
     }
 
     // ========== XỬ LÝ SỰ KIỆN CLICK ICON ==========
     public void OnClick_PlayerIcon()
     {
-        // Ngăn click khi dialogue đang mở
         if (_dialogueOpen)
         {
             Debug.Log("[GameUIManager] Không thể mở Player UI khi đang trong dialogue");
             return;
         }
 
-        // Clear notification when icon is clicked
         if (GameManager.Ins != null)
-        {
             GameManager.Ins.OnIconClicked(IconType.Player);
-        }
 
-        CloseAllUIs();
-        if (playerUI != null)
-        {
-            playerUI.SetActive(true);
-            Debug.Log("[GameUIManager] Đã mở Player UI");
-        }
+        CloseAllUIs(); 
+        PopupManager.Ins.OnShowScreen(PopupName.PlayerStat);
+        Debug.Log("[GameUIManager] Đã mở PlayerStatsUI (popup)");
     }
 
     public void OnClick_BaloIcon()
     {
-        // Ngăn click khi dialogue đang mở
         if (_dialogueOpen)
         {
             Debug.Log("[GameUIManager] Không thể mở Balo UI khi đang trong dialogue");
             return;
         }
 
-        // Clear notification when icon is clicked
         if (GameManager.Ins != null)
-        {
             GameManager.Ins.OnIconClicked(IconType.Balo);
-        }
 
-        CloseAllUIs();
-        if (!baloUI) return;
-        baloUI.SetActive(true);
-        if (backpackUIManager) backpackUIManager.RefreshNoteButtons();
-        Debug.Log("[GameUIManager] Đã mở Balo UI");
+        CloseAllUIs(); // đóng UI legacy
+        PopupManager.Ins.OnShowScreen(PopupName.BaloPlayer);   //  mở popup Balo
+        Debug.Log("[GameUIManager] Đã mở BaloPlayer (popup)");
     }
+
 
     public void OnClick_TaskIcon()
     {
@@ -233,12 +319,9 @@ public class GameUIManager : Singleton<GameUIManager>
             GameManager.Ins.OnIconClicked(IconType.Task);
         }
 
-        CloseAllUIs();
-        if (taskUI != null)
-        {
-            taskUI.SetActive(true);
-            Debug.Log("[GameUIManager] Đã mở Task UI");
-        }
+        CloseAllUIs(); // đóng UI legacy
+        PopupManager.Ins.OnShowScreen(PopupName.TaskPlayer);   //  mở popup Balo
+        Debug.Log("[GameUIManager] Đã mở Task UI");
     }
 
     public void OnClick_ScoreIcon()
@@ -256,12 +339,9 @@ public class GameUIManager : Singleton<GameUIManager>
             GameManager.Ins.OnIconClicked(IconType.Score);
         }
 
-        CloseAllUIs();
-        if (scoreUI != null)
-        {
-            scoreUI.SetActive(true);
-            Debug.Log("[GameUIManager] Đã mở Score UI");
-        }
+        CloseAllUIs(); // đóng UI legacy
+        PopupManager.Ins.OnShowScreen(PopupName.ScoreSubject);
+        Debug.Log("[GameUIManager] Đã mở Score UI");
     }
 
     public void OnClick_ScheduleIcon()
@@ -272,11 +352,8 @@ public class GameUIManager : Singleton<GameUIManager>
             return;
         }
         CloseAllUIs();
-        if (scheduleUI != null)
-        {
-            scheduleUI.SetActive(true);
-            Debug.Log("[GameUIManager] Đã mở Schedule UI");
-        }
+        PopupManager.Ins.OnShowScreen(PopupName.ScheduleUI);
+        Debug.Log("[GameUIManager] Đã mở Schedule UI");
     }
 
     public void OnClick_SettingIcon()
@@ -287,11 +364,9 @@ public class GameUIManager : Singleton<GameUIManager>
             return;
         }
         CloseAllUIs();
-        if (settingUI != null)
-        {
-            settingUI.SetActive(true);
-            Debug.Log("[GameUIManager] Đã mở Setting UI");
-        }
+        PopupManager.Ins.OnShowScreen(PopupName.Setting);
+        Debug.Log("[GameUIManager] Đã mở Setting UI");
+
     }
 
     /// <summary>
@@ -299,20 +374,7 @@ public class GameUIManager : Singleton<GameUIManager>
     /// </summary>
     public void CloseAllUIs()
     {
-        bool taskUIWasOpen = (taskUI != null && taskUI.activeSelf);
-
-        if (playerUI != null) playerUI.SetActive(false);
-        if (baloUI != null) baloUI.SetActive(false);
-        if (taskUI != null) taskUI.SetActive(false);
-        if (scoreUI != null) scoreUI.SetActive(false);
-        if (scheduleUI != null) scheduleUI.SetActive(false); // Đóng Schedule UI
-        if (settingUI != null) settingUI.SetActive(false);   // Đóng Setting UI
-
-        // Refresh task notification when task UI is closed
-        if (taskUIWasOpen && GameManager.Ins != null)
-        {
-            GameManager.Ins.RefreshIconNotification(IconType.Task);
-        }
+        Debug.Log("[GameUIManager] Đóng tất cả UI thống kê");
     }
 
     public override void Awake()
@@ -329,11 +391,27 @@ public class GameUIManager : Singleton<GameUIManager>
         CloseAllUIs();
 
         SetupIconButtonEvents();
+        
+        // Đăng ký sự kiện cho nút đóng dialogue
+        if (btnCloseDialogue != null)
+            btnCloseDialogue.onClick.AddListener(OnClick_CloseDialogue);
     }
 
     void Start()
     {
 
+    }
+
+    void Update()
+    {
+        // Cho phép đóng dialogue bằng phím ESC hoặc chuột phải
+        if (_dialogueOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+            {
+                OnClick_CloseDialogue();
+            }
+        }
     }
 
     /// <summary>
@@ -363,7 +441,7 @@ public class GameUIManager : Singleton<GameUIManager>
     /// <summary>
     /// Hủy đăng ký sự kiện khi destroy object để tránh memory leak
     /// </summary>
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         if (btnPlayerIcon != null)
             btnPlayerIcon.onClick.RemoveListener(OnClick_PlayerIcon);
@@ -383,6 +461,9 @@ public class GameUIManager : Singleton<GameUIManager>
         if (btnSettingIcon != null)
             btnSettingIcon.onClick.RemoveListener(OnClick_SettingIcon);
 
+        if (btnCloseDialogue != null)
+            btnCloseDialogue.onClick.RemoveListener(OnClick_CloseDialogue);
+
         if (GameClock.Ins != null)
             GameClock.Ins.OnTermChanged -= HandleTermChanged_EOS;
     }
@@ -391,12 +472,8 @@ public class GameUIManager : Singleton<GameUIManager>
     {
         if (endOfSemesterNotice == null) return;
 
-        // Bật object nếu đang tắt để đảm bảo script hoạt động
-        if (endOfSemesterNoticeObj != null && !endOfSemesterNoticeObj.activeSelf)
-            endOfSemesterNoticeObj.SetActive(true);
-
         int term = GameClock.Ins != null ? GameClock.Ins.Term : 1;
-        endOfSemesterNotice.TryShowForTerm(term);
+        EndOfSemesterNotice.TryShowForTerm(term);
     }
 
     // Hien thi goi y tuong tac
@@ -430,20 +507,112 @@ public class GameUIManager : Singleton<GameUIManager>
     {
         _dialogueOpen = false;
         if (dialogueRoot) dialogueRoot.SetActive(false);
+        
+        // Unbind teacher nếu có
+        if (_activeTeacher != null)
+        {
+            UnbindTeacher(_activeTeacher);
+        }
+    }
+
+    /// <summary>
+    /// Xử lý sự kiện click nút đóng dialogue
+    /// </summary>
+    public void OnClick_CloseDialogue()
+    {
+        if (!_dialogueOpen) return;
+        
+        Debug.Log("[GameUIManager] Đóng dialogue");
+        CloseDialogue();
     }
 
     // Lay hoac tao popup ghi chu
     public NotePopup GetOrCreateNotePopup()
     {
         if (NotePopup.Instance) return NotePopup.Instance;
+
         if (!notePopupPrefab)
         {
             Debug.LogError("[GameUIManager] notePopupPrefab chưa được gán. Kéo prefab vào GameUIManager.");
             return null;
         }
-        var parent = popupParent ? popupParent : this.transform;
-        var popup = Instantiate(notePopupPrefab, parent, false);
+        var popup = Instantiate(notePopupPrefab);
+        popup.gameObject.SetActive(false); 
+
+        Transform targetParent = null;
+        Canvas[] canvases = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+
+        foreach (var canvas in canvases)
+        {
+            if (canvas.gameObject.scene.name != null &&
+                canvas.gameObject.scene.name.Equals("DontDestroyOnLoad"))
+            {
+                targetParent = canvas.transform;
+                Debug.Log($"[GameUIManager] Tìm thấy Canvas trong DontDestroyOnLoad: {canvas.name}");
+                break;
+            }
+        }
+
+        if (targetParent == null)
+        {
+            foreach (var canvas in canvases)
+            {
+                if (canvas.gameObject.scene.name != null &&
+                    !canvas.gameObject.scene.name.Equals("DontDestroyOnLoad"))
+                {
+                    targetParent = canvas.transform;
+                    Debug.Log($"[GameUIManager] Fallback: Tìm thấy Canvas trong scene: {canvas.name}");
+                    break;
+                }
+            }
+        }
+
+        if (targetParent != null)
+        {
+            popup.transform.SetParent(targetParent, false);
+            Debug.Log($"[GameUIManager] Đã gán NotePopup vào Canvas: {targetParent.name}");
+        }
+        else
+        {
+            Debug.LogWarning("[GameUIManager] Không tìm thấy Canvas, NotePopup sẽ ở root!");
+        }
+
+        RectTransform rectTransform = popup.GetComponent<RectTransform>();
+        if (rectTransform != null)
+        {
+            // Đặt anchor ở giữa màn hình
+            rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+            rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+            rectTransform.pivot = new Vector2(0.5f, 0.5f);
+
+            rectTransform.anchoredPosition = new Vector2(0f, -100f);
+
+            Debug.Log($"[GameUIManager] Đã điều chỉnh vị trí NotePopup: {rectTransform.anchoredPosition}");
+        }
+
+        popup.transform.SetAsLastSibling();
+        Debug.Log($"[GameUIManager] Đã đặt NotePopup làm last sibling (index: {popup.transform.GetSiblingIndex()})");
+
         popup.gameObject.SetActive(true);
         return popup;
+    }
+
+    /// <summary>
+    /// Called by BasePopUp when a popup is opened
+    /// </summary>
+    public void OnPopupOpened()
+    {
+        _openPopupCount++;
+        Debug.Log($"[GameUIManager] Popup opened. Total open popups: {_openPopupCount}");
+    }
+
+    /// <summary>
+    /// Called by BasePopUp when a popup is closed
+    /// </summary>
+    public void OnPopupClosed()
+    {
+        _openPopupCount--;
+        if (_openPopupCount < 0) _openPopupCount = 0; // Safety check
+        Debug.Log($"[GameUIManager] Popup closed. Total open popups: {_openPopupCount}");
     }
 }

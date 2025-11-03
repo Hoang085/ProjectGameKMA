@@ -89,9 +89,9 @@ public class TaskManager : MonoBehaviour
 
     private void InitializeSystem()
     {
-        clock = GameClock.Ins;
+        clock = GameClock.Ins; // BẮT BUỘC có
         attendanceManager = FindAnyObjectByType<AttendanceManager>();
-        lastKnownTerm = clock != null ? clock.Term : -1;
+        lastKnownTerm = clock.Term;
         Debug.Log("[TaskManager] System initialized.");
     }
 
@@ -114,12 +114,9 @@ public class TaskManager : MonoBehaviour
 
     private void SubscribeToEvents()
     {
-        if (clock != null)
-        {
-            clock.OnSlotStarted += OnSlotStarted;
-            clock.OnSlotEnded += OnSlotEnded;
-            clock.OnTermChanged += OnTermChanged; // <— NEW: detect semester change
-        }
+        clock.OnSlotStarted += OnSlotStarted;
+        clock.OnSlotEnded += OnSlotEnded;
+        clock.OnTermChanged += OnTermChanged;
 
         if (enableAutoTaskSpawn)
             InvokeRepeating(nameof(RefreshTasks), 1f, 30f);
@@ -154,7 +151,7 @@ public class TaskManager : MonoBehaviour
 
     private void OnTermChanged()
     {
-        lastKnownTerm = clock != null ? clock.Term : -1;
+        lastKnownTerm = clock.Term;
 
         ClearAllTasks();
         UpdateTaskNotificationState();
@@ -180,7 +177,7 @@ public class TaskManager : MonoBehaviour
         }
 
         // Khi kỳ đổi, dọn sạch task kỳ cũ
-        if (clock != null && lastKnownTerm != clock.Term)
+        if (lastKnownTerm != clock.Term)
         {
             lastKnownTerm = clock.Term;
             ClearAllTasks();
@@ -207,7 +204,7 @@ public class TaskManager : MonoBehaviour
         {
             int semIndex = Mathf.Clamp(clock.Term - 1, 0, attendanceManager.semesterConfigs.Length - 1);
             var semester = attendanceManager.semesterConfigs[semIndex];
-            return SemesterConfigUtil.instance.GetSubjectAt(semester, clock.Weekday, clock.GetSlotIndex1Based());
+            return SemesterConfigUtil.instance.GetSubjectAt(semester, clock.Weekday, clock.SlotIndex1Based);
         }
         catch (Exception ex)
         {
@@ -240,10 +237,9 @@ public class TaskManager : MonoBehaviour
     {
         windowStart = windowEnd = 0;
 
-        var clockUI = FindAnyObjectByType<ClockUI>();
-        if (clockUI == null || attendanceManager.slotPolicy == null) return false;
+        if (attendanceManager.slotPolicy == null) return false;
 
-        int currentMinute = clockUI.GetMinuteOfDay();
+        int currentMinute = clock.MinuteOfDay;
         int slotStart = attendanceManager.GetSlotStart(clock.Slot);
 
         if (attendanceManager.slotPolicy.TryGetWindow(clock.Slot, slotStart, out int winStart, out int winEnd))
@@ -262,7 +258,7 @@ public class TaskManager : MonoBehaviour
 
     private void CreateStudyTask(string taskKey, string subjectDisplayName, string subjectKey, int windowStart)
     {
-        string timeStr = ClockUI.FormatHM(windowStart);
+        string timeStr = GameClock.FormatHM(windowStart);
         string slotName = GetSlotDisplayName(clock.Slot);
 
         string title = $"Sắp đến giờ học môn {subjectDisplayName}";
@@ -375,12 +371,9 @@ public class TaskManager : MonoBehaviour
         var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
         foreach (var teacher in teachers)
         {
-            // NEW: bỏ qua giáo viên không thuộc kỳ hiện tại
-            if (clock != null && teacher.semesterConfig != null)
-            {
-                if (teacher.semesterConfig.Semester != clock.Term)
-                    continue;
-            }
+            // Bỏ qua giáo viên không thuộc kỳ hiện tại
+            if (teacher.semesterConfig != null && teacher.semesterConfig.Semester != clock.Term)
+                continue;
 
             if (teacher.subjects == null) continue;
             foreach (var subject in teacher.subjects)
@@ -466,22 +459,15 @@ public class TaskManager : MonoBehaviour
                .ToTitleCase(key.Replace('_', ' ').ToLowerInvariant());
     }
 
-    // ==== Compatibility wrappers for GameStateManager ====
     [ContextMenu("Force Refresh Tasks (compat)")]
-    public void ForceRefreshTasks()
-    {
-        // gọi flow chuẩn hiện tại
-        RefreshTasks();
-    }
+    public void ForceRefreshTasks() => RefreshTasks();
 
     [ContextMenu("Reset Task Notification State (compat)")]
     public void ResetTaskNotificationState()
     {
-        // ép đồng bộ lại icon/notification dù trạng thái cũ là gì
-        hasActiveTasksLastFrame = null;   // nếu bạn đang dùng kiểu bool? như hiện tại
+        hasActiveTasksLastFrame = null;
         UpdateTaskNotificationState();
     }
-
 
     private string GetSlotDisplayName(DaySlot slot) => slot switch
     {

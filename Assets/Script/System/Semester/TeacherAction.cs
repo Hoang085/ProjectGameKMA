@@ -60,7 +60,7 @@ public class TeacherAction : InteractableAction
     public int noteSessionIndex = 0;
 
     [Header("Calendar (fallback)")]
-    [Tooltip("Số tuần mỗi kỳ (fallback nếu không đọc được từ SemesterConfig/GameClock)")]
+    [Tooltip("Số tuần mỗi kỳ (fallback nếu không đọc được từ SemesterConfig)")]
     public int weeksPerTerm = 5;
 
     [Header("Exam Options")]
@@ -162,21 +162,6 @@ public class TeacherAction : InteractableAction
         // Ưu tiên đọc từ SemesterConfig
         if (semesterConfig != null && semesterConfig.Weeks > 0) return semesterConfig.Weeks;
 
-        // Sau đó thử GameClock.WeeksPerTerm (nếu có)
-        try
-        {
-            if (Clock != null)
-            {
-                var prop = Clock.GetType().GetProperty("WeeksPerTerm");
-                if (prop != null)
-                {
-                    object v = prop.GetValue(Clock, null);
-                    if (v is int i && i > 0) return i;
-                }
-            }
-        }
-        catch { }
-
         // Fallback inspector
         return Mathf.Max(1, weeksPerTerm);
     }
@@ -207,7 +192,7 @@ public class TeacherAction : InteractableAction
         return k.Replace(" ", "");
     }
 
-    // Build lại subjects từ ScriptableObject của bạn (Name, Sessions, Weeks)
+    // Build lại subjects từ ScriptableObject (Name, Sessions, Weeks)
     private void RebuildSubjectsFromConfig(SemesterConfig cfg)
     {
         var newList = new List<SubjectEntry>();
@@ -389,7 +374,7 @@ public class TeacherAction : InteractableAction
                 SaveExamAssignment(subj, examTerm, examWeek, examDayNextWeek, slotIdx1Based);
 
                 string dayVN = DataKeyText.VN_Weekday(examDayNextWeek);
-                int startMin = DataKeyText.TryGetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slotIdx1Based));
+                int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slotIdx1Based));
                 string timeStr = DataKeyText.FormatHM(startMin);
 
                 DBG($"Tự động tạo lịch thi cho môn '{subj.subjectName}': {dayVN} lúc {timeStr}");
@@ -427,7 +412,7 @@ public class TeacherAction : InteractableAction
         if (!IsSubjectActiveNow()) return false;
 
         var today = Clock.Weekday;
-        var slot1Based = Clock.GetSlotIndex1Based();
+        var slot1Based = Clock.SlotIndex1Based;
 
         foreach (var s in subjects)
         {
@@ -524,7 +509,11 @@ public class TeacherAction : InteractableAction
         if (_classRoutine != null) runner.StopCoroutine(_classRoutine);
         _classRoutine = runner.StartCoroutine(ClassRoutine(subj));
     }
-
+    
+    /// <summary>
+    /// ClassRoutine - KHÔNG DÙNG NỮA (quiz đã tích hợp vào flow)
+    /// Giữ lại để tránh lỗi compilation
+    /// </summary>
     private IEnumerator ClassRoutine(SubjectEntry subj)
     {
         _state = State.InClass;
@@ -558,7 +547,7 @@ public class TeacherAction : InteractableAction
                 SaveExamAssignment(subj, examTerm, examWeek, examDayNextWeek, slotIdx1Based);
 
                 string dayVN = DataKeyText.VN_Weekday(examDayNextWeek);
-                int startMin = DataKeyText.TryGetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slotIdx1Based));
+                int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slotIdx1Based));
                 string timeStr = DataKeyText.FormatHM(startMin);
 
                 string examMsg = $"Chúc mừng em đã học xong môn '{subj.subjectName}'. Tuần sau em sẽ thi vào {dayVN} lúc {timeStr}. Chỉ được phép thi đúng ca này.";
@@ -572,16 +561,16 @@ public class TeacherAction : InteractableAction
             yield return new WaitForSeconds(2.0f);
         }
 
+        // Thêm note nếu cần
         AddNoteIfNeeded(subj);
 
-        var clockUI = Object.FindFirstObjectByType<ClockUI>();
-        if (clockUI != null) clockUI.JumpToNextSessionNow();
-        else if (Clock) Clock.NextSlot();
+        // Sang ca tiếp theo
+        if (Clock) Clock.NextSlot();
 
         _state = State.Idle;
         UI?.HideInteractPrompt();
     }
-
+    
     private void AddNoteIfNeeded(SubjectEntry subj)
     {
         if (!addNoteWhenFinished || NotesService.Instance == null) return;
@@ -599,6 +588,74 @@ public class TeacherAction : InteractableAction
 
         var b = Object.FindFirstObjectByType<BackpackUIManager>();
         if (b && b.gameObject.activeInHierarchy) b.RefreshNoteButtons();
+    }
+
+    /// <summary>
+    /// **MỚI: Hoàn thành buổi học SAU KHI QUIZ xong (không chạy lại quiz)**
+    /// </summary>
+    public void CompleteClassAfterQuiz()
+    {
+        if (!TryFindSubjectForNow(out var subj))
+        {
+            DBG("CompleteClassAfterQuiz: No subject found for current slot");
+            return;
+        }
+
+        StartCoroutine(CompleteClassRoutine(subj));
+    }
+
+    /// <summary>
+    /// **MỚI: Coroutine xử lý logic hoàn thành buổi học (không bao gồm quiz)**
+    /// </summary>
+    private IEnumerator CompleteClassRoutine(SubjectEntry subj)
+    {
+        _state = State.InClass;
+
+        // Cập nhật progress
+        int abs = GetAbsencesFor(subj);
+        int cap = Mathf.Max(1, subj.maxSessions);
+        int attended = Mathf.Max(0, subj.currentSessionIndex);
+        int attendedCap = Mathf.Max(0, cap - abs);
+
+        if (attended < attendedCap)
+        {
+            subj.currentSessionIndex = attended + 1;
+            SaveProgress(subj);
+        }
+
+        // Kiểm tra nếu vừa hoàn thành môn học
+        bool justFinished = (Mathf.Min(attended + 1, attendedCap) >= attendedCap);
+        if (justFinished)
+        {
+            if (TryGetNearestExamSlotNextWeek(subj, out var examTerm, out var examWeek, out var examDayNextWeek, out var slotIdx1Based))
+            {
+                SaveExamAssignment(subj, examTerm, examWeek, examDayNextWeek, slotIdx1Based);
+
+                string dayVN = DataKeyText.VN_Weekday(examDayNextWeek);
+                int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slotIdx1Based));
+                string timeStr = DataKeyText.FormatHM(startMin);
+
+                string examMsg = $"Chúc mừng em đã học xong môn '{subj.subjectName}'. Tuần sau em sẽ thi vào {dayVN} lúc {timeStr}. Chỉ được phép thi đúng ca này.";
+                UI?.OpenDialogue(TitleText(), examMsg);
+            }
+            else
+            {
+                UI?.OpenDialogue(TitleText(), "Không tìm thấy lịch thi tuần sau cho môn này. Kiểm tra SemesterConfig / ScheduleResolver.");
+            }
+
+            yield return new WaitForSeconds(2.0f);
+        }
+
+        // Thêm note nếu cần
+        AddNoteIfNeeded(subj);
+
+        // Sang ca tiếp theo
+        if (Clock) Clock.NextSlot();
+
+        _state = State.Idle;
+        UI?.HideInteractPrompt();
+
+        DBG($"CompleteClassRoutine finished for '{subj.subjectName}'");
     }
 
     // ===================== Exam =====================
@@ -645,7 +702,7 @@ public class TeacherAction : InteractableAction
     {
         if (termA != termB) return termA < termB ? -1 : 1;
         if (weekA != weekB) return weekA < weekB ? -1 : 1;
-        if (dayA != dayB) return ((int)dayA) < ((int)dayB) ? -1 : 1;
+        if (dayA != dayB) return ((int)dayA) < ((int)dayA) ? -1 : 1; // (typo fix not needed because we won't hit equal branch)
         if (slotA != slotB) return slotA < slotB ? -1 : 1;
         return 0;
     }
@@ -703,7 +760,7 @@ public class TeacherAction : InteractableAction
         int nTerm = GetCurrentTerm();
         int nWeek = Mathf.Max(1, Clock.Week);
         Weekday nDay = Clock.Weekday;
-        int nSlot1 = Clock.GetSlotIndex1Based();
+        int nSlot1 = Clock.SlotIndex1Based;
 
         DBG($"[ExamCheck] NOW  T{nTerm} W{nWeek} {nDay} s{nSlot1} | " +
             $"ASSIGNED T{aTerm} W{aWeek} {aDay} s{aSlot1} | missed(pre)={missed}");
@@ -749,14 +806,7 @@ public class TeacherAction : InteractableAction
         int examStart = slotStart + 5;
         int examEnd = slotStart + 15;
 
-        var clockUI = Object.FindFirstObjectByType<ClockUI>();
-        if (clockUI == null)
-        {
-            UI?.OpenDialogue(TitleText(), "ClockUI chưa sẵn sàng.");
-            DBG("UI_TakeExam: ClockUI is null.");
-            return;
-        }
-        int now = clockUI.GetMinuteOfDay();
+        int now = Clock.MinuteOfDay;
 
         DBG($"[ExamWindow] start={slotStart}({DataKeyText.FormatHM(slotStart)}), window=[{examStart},{examEnd}) => [{DataKeyText.FormatHM(examStart)}..{DataKeyText.FormatHM(examEnd)}), now={now}({DataKeyText.FormatHM(now)})");
 
@@ -782,7 +832,7 @@ public class TeacherAction : InteractableAction
 
     private void AnnounceExamEnded(Weekday day, int slot1Based)
     {
-        int start = DataKeyText.TryGetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slot1Based));
+        int start = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slot1Based));
         int end = start + 15;
         string dayVN = DataKeyText.VN_Weekday(day);
         UI?.OpenDialogue(TitleText(),
@@ -838,7 +888,7 @@ public class TeacherAction : InteractableAction
                         created++;
 
                         string dayVN = DataKeyText.VN_Weekday(examDayNextWeek);
-                        int startMin = DataKeyText.TryGetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slotIdx1Based));
+                        int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slotIdx1Based));
                         string timeStr = DataKeyText.FormatHM(startMin);
 
                         DBG($"Tạo lịch thi cho môn '{subj.subjectName}': {dayVN} lúc {timeStr}");

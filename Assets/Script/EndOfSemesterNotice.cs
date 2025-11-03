@@ -2,20 +2,20 @@
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using HHH.Common; // dùng BasePopUp & PopupManager
 
-public class EndOfSemesterNotice : MonoBehaviour
+public class EndOfSemesterNotice : BasePopUp
 {
     [Header("Refs")]
-    [SerializeField] private GameObject noticeRoot;   // panel con để bật/tắt
     [SerializeField] private Button confirmButton;
     [SerializeField] private TMP_Text contentText;
 
     [Header("Pause Options")]
-    [SerializeField] private bool pauseWhenShown = true;      // dùng timeScale + audio
-    [SerializeField] private bool disableClockUI = true;      // tắt ClockUI (đang dùng unscaled)
+    [SerializeField] private bool pauseWhenShown = true;
+    [SerializeField] private bool disableClockUI = true;
     [SerializeField] private bool disablePlayerController = true;
     [SerializeField] private bool disableFreeLookCam = true;
-    [SerializeField] private List<MonoBehaviour> extraToDisable; // thêm script khác nếu cần (DayNightLighting, TickerMono, v.v.)
+    [SerializeField] private List<MonoBehaviour> extraToDisable;
 
     private const string PP_LAST_SHOWN_TERM = "EOS_LastShownTerm";
 
@@ -30,33 +30,40 @@ public class EndOfSemesterNotice : MonoBehaviour
     // lưu trạng thái enabled để khôi phục
     private readonly Dictionary<Behaviour, bool> _enabledBefore = new();
 
-    private void Awake()
+    public override void OnInitScreen()
     {
-        if (noticeRoot == null) noticeRoot = gameObject;
-        if (confirmButton == null) confirmButton = GetComponentInChildren<Button>(true);
-        if (contentText == null) contentText = GetComponentInChildren<TMP_Text>(true);
+        base.OnInitScreen();
+        if (!confirmButton) confirmButton = GetComponentInChildren<Button>(true);
+        if (!contentText) contentText = GetComponentInChildren<TMP_Text>(true);
 
         if (confirmButton != null)
         {
-            confirmButton.onClick.RemoveListener(HideNotice);
-            confirmButton.onClick.AddListener(HideNotice);
+            confirmButton.onClick.RemoveAllListeners();
+            confirmButton.onClick.AddListener(() =>
+            {
+                // Thả pause trước để game tiếp tục trong lúc popup fade-out
+                ReleasePause();
+                OnCloseScreen(); // dùng lifecycle của BasePopUp (đóng có tween)
+            });
         }
-
-        if (noticeRoot != null)
-            noticeRoot.SetActive(false);
     }
 
-    // === API được gọi từ GameUIManager ===
-    public void TryShowForTerm(int term)
-    {
-        ShowIfNotShown(term);
-    }
-
-    private void ShowIfNotShown(int term)
+    /// <summary>
+    /// Gọi ở bất kỳ đâu để hiển thị EOS nếu chưa hiển thị cho kỳ này.
+    /// </summary>
+    public static void TryShowForTerm(int term)
     {
         int lastShown = PlayerPrefs.GetInt(PP_LAST_SHOWN_TERM, -1);
         if (lastShown == term) return;
 
+        // Hiển thị qua PopupManager, truyền term làm arg
+        PopupManager.Ins.OnShowScreen(PopupName.EndOfSemesterNotice, term);
+    }
+
+    public override void OnShowScreen(object arg)
+    {
+        // 1) Soạn nội dung theo term (lấy từ arg hoặc GameClock)
+        int term = (arg is int t) ? t : (GameClock.Ins ? GameClock.Ins.Term : 1);
         if (contentText != null)
         {
             int prev = Mathf.Max(1, term - 1);
@@ -65,21 +72,21 @@ public class EndOfSemesterNotice : MonoBehaviour
                 $"Chuẩn bị tinh thần để bước sang học kỳ {term} nào!";
         }
 
-        if (!gameObject.activeSelf) gameObject.SetActive(true);
-        if (noticeRoot != null) noticeRoot.SetActive(true);
+        // 2) Áp dụng pause/input lock trước khi chạy hiệu ứng mở popup (tween chạy unscaled)
+        ApplyPause();
 
-        ApplyPause(); // ⛔ dừng mọi hoạt động
-
+        // 3) Ghi nhớ đã show
         PlayerPrefs.SetInt(PP_LAST_SHOWN_TERM, term);
         PlayerPrefs.Save();
-        Debug.Log($"[EOS] Shown notice for term {term}");
+
+        // 4) Gọi animation mở của BasePopUp
+        base.OnShowScreen(arg);
     }
 
-    public void HideNotice()
+    public override void OnShowScreen()
     {
-        if (noticeRoot != null) noticeRoot.SetActive(false);
-        ReleasePause(); // ▶️ tiếp tục
-        Debug.Log("[EOS] Notice closed");
+        // fallback nếu ai đó gọi overload không arg
+        OnShowScreen(GameClock.Ins ? (object)GameClock.Ins.Term : 1);
     }
 
     // =============== PAUSE PACK ===============
@@ -88,28 +95,22 @@ public class EndOfSemesterNotice : MonoBehaviour
         if (_paused) return;
         _paused = true;
 
-        // cache refs 1 lần nếu chưa có
         if (disableClockUI && _clockUI == null)
             _clockUI = FindIncludingInactive<ClockUI>();
-
         if (disablePlayerController && _playerController == null)
             _playerController = FindIncludingInactive<PlayerController>();
-
         if (disableFreeLookCam && _freeLookCam == null)
             _freeLookCam = FindIncludingInactive<FreeLookCam>();
 
-        // Lưu timeScale & audio
         _prevTimeScale = Time.timeScale;
         _prevAudioPause = AudioListener.pause;
 
-        // Dừng “thế giới”
         if (pauseWhenShown)
         {
             Time.timeScale = 0f;
             AudioListener.pause = true;
         }
 
-        // Tắt các component unscaled / input
         _enabledBefore.Clear();
         DisableIfNotNull(_clockUI);
         DisableIfNotNull(_playerController);
@@ -118,7 +119,6 @@ public class EndOfSemesterNotice : MonoBehaviour
             foreach (var mb in extraToDisable)
                 DisableIfNotNull(mb);
 
-        // mở chuột nếu đang lock
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -128,14 +128,12 @@ public class EndOfSemesterNotice : MonoBehaviour
         if (!_paused) return;
         _paused = false;
 
-        // Khôi phục timeScale & audio
         if (pauseWhenShown)
         {
             Time.timeScale = _prevTimeScale;
             AudioListener.pause = _prevAudioPause;
         }
 
-        // Khôi phục trạng thái enabled ban đầu
         foreach (var kv in _enabledBefore)
         {
             if (kv.Key != null)
@@ -152,7 +150,6 @@ public class EndOfSemesterNotice : MonoBehaviour
         b.enabled = false;
     }
 
-    // === Helper để tìm object kể cả khi inactive (hoạt động trên Unity 6 và cũ hơn) ===
     private static T FindIncludingInactive<T>() where T : UnityEngine.Object
     {
 #if UNITY_6000_0_OR_NEWER || UNITY_2023_1_OR_NEWER

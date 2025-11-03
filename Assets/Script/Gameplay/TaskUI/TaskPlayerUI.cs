@@ -2,8 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using HHH.Common;
 
-public class TaskPlayerUI : MonoBehaviour
+public class TaskPlayerUI : BasePopUp
 {
     [Serializable] public class SubjectName { public string key; public string display; }
     [Serializable] public class SubjectNameList { public List<SubjectName> items = new(); }
@@ -19,9 +20,16 @@ public class TaskPlayerUI : MonoBehaviour
     private GameObject panelRoot;
     private Coroutine refreshCoroutine;
 
-    void Awake()
+    public override void OnInitScreen()
     {
-        InitializeComponents();
+        base.OnInitScreen();
+        InitializeComponents();                         
+    }
+
+    public override void OnCloseScreen()
+    {
+        StopRefreshLoop();                      
+        base.OnCloseScreen();                              
     }
 
     void OnEnable()
