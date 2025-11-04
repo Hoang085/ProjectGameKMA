@@ -407,9 +407,6 @@ public class TaskManager : MonoBehaviour
         if (NavigationLineManager.Instance != null)
             NavigationLineManager.Instance.CreateNavigationLine(teacher.transform, $"GV {teacher.name} - {subjectName}");
 
-        if (GameUIManager.Ins != null && GameUIManager.Ins.IsAnyStatUIOpen)
-            GameUIManager.Ins.CloseAllUIs();
-
         Debug.Log($"[TaskManager] Navigation started to teacher {teacher.name} for subject {subjectName}");
     }
 

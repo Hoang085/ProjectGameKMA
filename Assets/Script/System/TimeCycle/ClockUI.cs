@@ -76,16 +76,6 @@ public class ClockUI : MonoBehaviour
             int mm = minutesToShow % 60;
             textClock.text = $"{hh:00}:{mm:00}";
         }
-
-        // Phím chuyển ca
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            if (GameClock.Ins)
-            {
-                Debug.Log("[ClockUI] N pressed → JumpToNextSessionStart()");
-                GameClock.Ins.JumpToNextSessionStart();
-            }
-        }
     }
 
     void TryHookGameClock()

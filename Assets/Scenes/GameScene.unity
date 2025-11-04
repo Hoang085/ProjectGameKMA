@@ -9668,7 +9668,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 957691368}
         m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
-        m_MethodName: CloseDialogue
+        m_MethodName: OnClick_CloseDialogue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10880,6 +10880,7 @@ MonoBehaviour:
   questionsPerSession: 3
   subjectKey: ToanCaoCap
   pauseGameDuringQuiz: 1
+  minCorrectToPass: 2
 --- !u!114 &1453232689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12683,8 +12684,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450.3, y: -50}
-  m_SizeDelta: {x: 900.5, y: 100}
+  m_AnchoredPosition: {x: 577, y: -50}
+  m_SizeDelta: {x: 1081.4, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1701433517
 MonoBehaviour:
@@ -12740,7 +12741,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
