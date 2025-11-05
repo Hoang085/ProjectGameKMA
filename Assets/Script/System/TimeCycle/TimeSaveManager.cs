@@ -75,16 +75,15 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
         c.OnYearChanged -= Capture;
     }
 
-    // ==== Lấy trạng thái hiện tại (kèm minute từ ClockUI) ====
+    // ==== Lấy trạng thái hiện tại (kèm minute từ GameClock) ====
     private void Capture()
     {
         var c = GameClock.Ins ?? FindFirstObjectByType<GameClock>(FindObjectsInactive.Include);
         if (!c) return;
 
         var dto = ToDTO(c);
-        // Lấy minuteOfDay từ ClockUI nếu có
-        var clockUI = FindFirstObjectByType<ClockUI>(FindObjectsInactive.Include);
-        dto.minuteOfDay = clockUI ? clockUI.GetMinuteOfDay() : -1; // -1 = không có
+        // Lấy minuteOfDay trực tiếp từ GameClock (source of truth)
+        dto.minuteOfDay = c.MinuteOfDay;
 
         _lastState = dto;
         _hasState = true;
@@ -125,9 +124,8 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
 
         var dto = ToDTO(c);
 
-        // Lấy minuteOfDay hiện tại từ ClockUI (nếu không có thì -1)
-        var clockUI = FindFirstObjectByType<ClockUI>(FindObjectsInactive.Include);
-        dto.minuteOfDay = clockUI ? clockUI.GetMinuteOfDay() : -1;
+        // Lấy minuteOfDay trực tiếp từ GameClock
+        dto.minuteOfDay = c.MinuteOfDay;
 
         SaveDTO(dto);
 
@@ -164,15 +162,13 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
             return;
         }
 
-        // 1) Khôi phục GameClock như trước
+        // 1) Khôi phục GameClock (bao gồm cả minuteOfDay)
         c.SetTime(dto.year, dto.term, dto.week, dto.day, (DaySlot)dto.slot);
-
-        // 2) Khôi phục đồng hồ số (minuteOfDay) nếu có
-        var clockUI = FindFirstObjectByType<ClockUI>(FindObjectsInactive.Include);
-        if (clockUI && dto.minuteOfDay >= 0)
+        
+        // 2) Khôi phục minuteOfDay nếu có dữ liệu hợp lệ
+        if (dto.minuteOfDay >= 0)
         {
-            // Nếu muốn, sync lại slot theo minute luôn cho khớp
-            clockUI.SetMinuteOfDay(dto.minuteOfDay, syncSlotWithMinuteOnLoad);
+            c.SetMinuteOfDay(dto.minuteOfDay, syncSlotWithMinuteOnLoad);
         }
 
         _lastState = dto;
@@ -200,7 +196,7 @@ public class TimeSaveManager : Singleton<TimeSaveManager>
             week = c.Week,
             day = c.DayIndex,
             slot = (int)c.Slot,
-            minuteOfDay = -1 // sẽ gán thật khi Capture/TrySaveFromScene
+            minuteOfDay = c.MinuteOfDay // Lấy trực tiếp từ GameClock
         };
     }
 }

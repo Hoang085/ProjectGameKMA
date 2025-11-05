@@ -121,8 +121,8 @@ public class QuizGameManager : MonoBehaviour
         {
             // Use rich text instead of Unicode symbols
             resultText.text = correct 
-                ? "<color=green><size=150%>✔</size></color> <b>Chính xác!</b>" 
-                : $"<color=red><size=150%>✖</size></color> <b>Sai</b> — Đáp án đúng: <b>{(char)('A' + q.correctIndex)}</b>";
+                ? "<color=green><size=150%></size></color> <b>Chính xác!</b>" 
+                : $"<color=red><size=150%></size></color> <b>Sai</b> — Đáp án đúng: <b>{(char)('A' + q.correctIndex)}</b>";
             resultText.gameObject.SetActive(true);
         }
 
@@ -130,7 +130,7 @@ public class QuizGameManager : MonoBehaviour
 
         if (delayCoroutine != null) StopCoroutine(delayCoroutine);
         // Giảm từ 3s xuống 2s để gameplay mượt mà hơn, vẫn đủ thời gian đọc
-        delayCoroutine = StartCoroutine(DelayedNextStep(2f));
+        delayCoroutine = StartCoroutine(DelayedNextStep(1f));
     }
 
     private IEnumerator DelayedNextStep(float delay)
