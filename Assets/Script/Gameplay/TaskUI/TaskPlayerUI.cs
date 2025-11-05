@@ -180,6 +180,9 @@ public class TaskPlayerUI : BasePopUp
     /// </summary>
     void OnTaskButtonClicked(string searchData)
     {
+        // **MỚI: Đóng popup ngay lập tức khi nhấn nút "Đi học"**
+        PopupManager.Ins.OnCloseScreen(PopupName.TaskPlayer);
+        
         if (TaskManager.Instance != null)
         {
             TaskManager.Instance.HandleTaskAction(searchData);
