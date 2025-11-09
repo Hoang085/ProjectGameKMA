@@ -1,0 +1,185 @@
+﻿{
+  "subjectKey": "VatLyDaiCuong",
+  "questions": [
+    {
+      "id": "VLDC1",
+      "question": "Đơn vị của lực trong hệ SI là gì?",
+      "answers": [ "Watt (W)", "Pascal (Pa)", "Newton (N)" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "VLDC2",
+      "question": "Công thức tính động năng là gì?",
+      "answers": [ "W = 1/2 * m * v^2", "E = m * g * h", "W = F * s" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC3",
+      "question": "Vật chuyển động đều khi nào?",
+      "answers": [ "Vận tốc không đổi theo thời gian", "Gia tốc không đổi", "Vận tốc thay đổi theo thời gian" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC4",
+      "question": "Công có giá trị âm khi nào?",
+      "answers": [ "Lực ngược chiều chuyển động", "Lực cùng chiều chuyển động", "Lực vuông góc chuyển động" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC5",
+      "question": "Đơn vị của gia tốc là gì?",
+      "answers": [ "N", "m/s^2", "m/s" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "VLDC6",
+      "question": "Định luật II Newton phát biểu như thế nào?",
+      "answers": [ "Tổng lực bằng không", "Mọi vật đều có quán tính", "F = m * a" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "VLDC7",
+      "question": "Khi vận tốc tăng gấp đôi, động năng thay đổi như thế nào?",
+      "answers": [ "Tăng gấp đôi", "Tăng gấp 4 lần", "Giảm một nửa" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "VLDC8",
+      "question": "Đơn vị của công suất trong hệ SI là gì?",
+      "answers": [ "Watt (W)", "Joule (J)", "Newton (N)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC9",
+      "question": "Áp suất là đại lượng tỉ lệ thuận với đại lượng nào?",
+      "answers": [ "Diện tích bề mặt", "Lực tác dụng", "Thể tích" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "VLDC10",
+      "question": "Chuyển động tròn đều có đặc điểm nào?",
+      "answers": [ "Gia tốc hướng vào tâm quỹ đạo", "Không có gia tốc", "Vận tốc và gia tốc cùng hướng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC11",
+      "question": "Định luật bảo toàn cơ năng đúng khi nào?",
+      "answers": [ "Có lực cản không khí", "Chỉ có lực thế tác dụng", "Chỉ có ma sát" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "VLDC12",
+      "question": "Trọng lực là gì?",
+      "answers": [ "Lực hút của Trái Đất tác dụng lên vật", "Lực ma sát", "Lực đàn hồi" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC13",
+      "question": "Công suất được định nghĩa là gì?",
+      "answers": [ "Lượng công trong một đơn vị thời gian", "Tích của lực và quãng đường", "Tích của khối lượng và vận tốc" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC14",
+      "question": "Độ lớn gia tốc rơi tự do g gần bằng bao nhiêu?",
+      "answers": [ "9.8 m/s^2", "8 m/s^2", "10 m/s" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC15",
+      "question": "Công thức tính thế năng trọng trường là gì?",
+      "answers": [ "W = 1/2 * m * v^2", "E = m * g * h", "F = m * a" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "VLDC16",
+      "question": "Nhiệt dung riêng là gì?",
+      "answers": [ "Lượng nhiệt cần để 1 kg vật tăng 1 độ C", "Lượng nhiệt cần để 1 g vật tăng 1 độ C", "Nhiệt lượng mà vật tỏa ra" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC17",
+      "question": "Nhiệt lượng tỏa ra khi đốt cháy nhiên liệu gọi là gì?",
+      "answers": [ "Nhiệt trị của nhiên liệu", "Nhiệt dung riêng", "Nhiệt lượng riêng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC18",
+      "question": "Công thức định luật Ohm là gì?",
+      "answers": [ "U = I * R", "I = U * R", "P = U / I" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC19",
+      "question": "Đơn vị của điện tích là gì?",
+      "answers": [ "Coulomb (C)", "Ampere (A)", "Volt (V)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC20",
+      "question": "Điện trở tương đương của hai điện trở mắc song song được tính như thế nào?",
+      "answers": [ "R = R1 + R2", "1/R = 1/R1 + 1/R2", "R = R1 * R2" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "VLDC21",
+      "question": "Công thức tính công của dòng điện là gì?",
+      "answers": [ "A = U * I * t", "A = I^2 * R", "A = U * t" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC22",
+      "question": "Đơn vị của công suất điện là gì?",
+      "answers": [ "Watt (W)", "Joule (J)", "Ampere (A)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC23",
+      "question": "Nam châm có mấy cực?",
+      "answers": [ "Hai cực: Bắc và Nam", "Hai cực: Dương và Âm", "Hai cực: Đông và Tây" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC24",
+      "question": "Đơn vị của cảm ứng từ là gì?",
+      "answers": [ "Tesla (T)", "Weber (Wb)", "Volt (V)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC25",
+      "question": "Hiện tượng cảm ứng điện từ do ai phát hiện?",
+      "answers": [ "Faraday", "Ampere", "Ohm" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC26",
+      "question": "Tốc độ truyền ánh sáng trong chân không xấp xỉ bao nhiêu?",
+      "answers": [ "3 x 10^8 m/s", "3 x 10^6 m/s", "3 x 10^3 m/s" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC27",
+      "question": "Sóng cơ học là gì?",
+      "answers": [ "Dao động lan truyền trong môi trường vật chất", "Từ trường biến thiên", "Sóng truyền trong chân không" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC28",
+      "question": "Biến trở được dùng để làm gì?",
+      "answers": [ "Điều chỉnh dòng điện", "Tạo từ trường", "Lưu trữ điện tích" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC29",
+      "question": "Thấu kính hội tụ có tác dụng gì?",
+      "answers": [ "Hội tụ tia sáng", "Phân kỳ tia sáng", "Làm song song tia sáng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "VLDC30",
+      "question": "Hiện tượng khúc xạ ánh sáng xảy ra khi nào?",
+      "answers": [ "Ánh sáng bị hấp thụ", "Ánh sáng đi từ môi trường này sang môi trường khác", "Ánh sáng bị phản xạ hoàn toàn" ],
+      "correctIndex": 1
+    }
+  ]
+}

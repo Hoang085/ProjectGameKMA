@@ -1,0 +1,189 @@
+﻿{
+  "subjectKey": "LapTrinhCanBan",
+  "questions": [
+    {
+      "id": "LTCB1",
+      "question": "Ngôn ngữ lập trình C được phát triển bởi ai?",
+      "answers": [ "James Gosling", "Dennis Ritchie", "Bjarne Stroustrup" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB2",
+      "question": "Hàm main() trong C có vai trò gì?",
+      "answers": [
+        "Để định nghĩa thư viện",
+        "Là điểm bắt đầu của chương trình",
+        "Để khai báo biến toàn cục"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB3",
+      "question": "Câu lệnh nào dùng để in ra màn hình trong C?",
+      "answers": [ "cout<<", "printf()", "print()" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB4",
+      "question": "Khai báo nào đúng để tạo biến nguyên trong C?",
+      "answers": [ "number a;", "int a;", "char a;" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB5",
+      "question": "Kết thúc mỗi câu lệnh trong C phải có ký tự nào?",
+      "answers": [ ":", ".", ";" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTCB6",
+      "question": "Toán tử % trong C có ý nghĩa là gì?",
+      "answers": [ "Lấy phần dư", "Chia lấy thương", "So sánh bằng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTCB7",
+      "question": "Kết quả của biểu thức 5 / 2 trong C là gì?",
+      "answers": [ "3", "2.5", "2" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTCB8",
+      "question": "Cấu trúc điều kiện trong C được viết với từ khóa nào?",
+      "answers": [ "case", "if", "switch" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB9",
+      "question": "Cấu trúc vòng lặp nào luôn thực hiện ít nhất một lần?",
+      "answers": [ "while", "for", "do...while" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTCB10",
+      "question": "Hàm scanf() trong C dùng để làm gì?",
+      "answers": [ "In dữ liệu", "Thoát chương trình", "Nhập dữ liệu" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTCB11",
+      "question": "Kiểu dữ liệu float trong C dùng để lưu gì?",
+      "answers": [ "Số nguyên", "Chuỗi", "Số thực" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTCB12",
+      "question": "Toán tử ++a và a++ khác nhau ở điểm nào?",
+      "answers": [ "Thứ tự tăng giá trị", "Không khác nhau", "Một cái cộng, một cái trừ" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTCB13",
+      "question": "Câu lệnh break dùng để:",
+      "answers": [ "Thoát khỏi vòng lặp", "Chuyển sang vòng lặp mới", "Tiếp tục vòng lặp" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTCB14",
+      "question": "Toán tử logic && có nghĩa là:",
+      "answers": [ "Hoặc", "Và", "Không" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB15",
+      "question": "Mảng trong C bắt đầu chỉ số từ:",
+      "answers": [ "Ngẫu nhiên", "0", "1" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB16",
+      "question": "Để khai báo mảng gồm 10 phần tử kiểu int, ta viết:",
+      "answers": [ "int a(10);", "int a[10];", "array int[10];" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB17",
+      "question": "Ký tự '\\n' trong C có nghĩa là gì?",
+      "answers": [ "Xuống dòng", "Tab", "Khoảng trắng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTCB18",
+      "question": "Hàm nào dùng để tính căn bậc hai trong C?",
+      "answers": [ "pow()", "sqrt()", "abs()" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB19",
+      "question": "Để khai báo hằng số trong C, ta dùng từ khóa:",
+      "answers": [ "define", "const", "static" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB20",
+      "question": "Để đọc một ký tự từ bàn phím, ta dùng hàm:",
+      "answers": [ "getchar()", "scanf()", "gets()" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTCB21",
+      "question": "Hàm strlen() có tác dụng gì?",
+      "answers": [ "So sánh chuỗi", "Sao chép chuỗi", "Đếm độ dài chuỗi" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTCB22",
+      "question": "Trong C, chuỗi được kết thúc bằng ký tự nào?",
+      "answers": [ "'\\0'", "';'", "'\\n'" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTCB23",
+      "question": "Hàm strcpy(a,b) dùng để:",
+      "answers": [ "So sánh a và b", "Sao chép chuỗi b vào a", "Ghép chuỗi b vào a" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB24",
+      "question": "Để khai báo con trỏ trỏ đến kiểu int, ta viết:",
+      "answers": [ "int p;", "int *p;", "int& p;" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB25",
+      "question": "Toán tử * trong con trỏ có ý nghĩa là gì?",
+      "answers": [ "Truy cập giá trị mà con trỏ trỏ tới", "Khai báo con trỏ", "Nhân hai số" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTCB26",
+      "question": "Hàm nào trả về giá trị ngẫu nhiên trong C?",
+      "answers": [ "random()", "rand()", "getrand()" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB27",
+      "question": "Cấu trúc switch...case dùng để:",
+      "answers": [ "So sánh ký tự", "Rẽ nhánh theo giá trị", "Lặp vô hạn" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB28",
+      "question": "Kết quả của biểu thức 10 % 3 là:",
+      "answers": [ "3", "2", "1" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTCB29",
+      "question": "Để thoát khỏi chương trình trong C, dùng hàm:",
+      "answers": [ "stop();", "return;", "exit(0);" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTCB30",
+      "question": "Khi biên dịch chương trình C, tệp đầu ra có phần mở rộng là:",
+      "answers": [ ".obj", ".exe", ".out" ],
+      "correctIndex": 1
+    }
+  ]
+}

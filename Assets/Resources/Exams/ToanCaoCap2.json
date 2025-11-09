@@ -4,153 +4,153 @@
   "durationSeconds": 120,
   "questions": [
     {
-      "text": "Đạo hàm riêng của hàm f(x, y) theo biến x ký hiệu là gì?",
-      "options": [ "∂f/∂x", "df/dx", "Δf/Δx", "f'(x)" ],
+      "text": "Đạo hàm riêng của hàm f(x, y) theo biến x được ký hiệu là gì?",
+      "options": [ "df/dx (đạo hàm riêng)", "df/dx", "delta f / delta x", "f'(x)" ],
       "correctIndex": 0
     },
     {
-      "text": "Gradient của hàm f(x, y, z) là vectơ có hướng:",
+      "text": "Gradient của hàm f(x, y, z) là vectơ có hướng nào?",
       "options": [ "Vuông góc với đường mức", "Hướng giảm nhanh nhất của f", "Hướng tăng nhanh nhất của f", "Song song với trục Oz" ],
       "correctIndex": 2
     },
     {
-      "text": "Vi phân toàn phần của hàm z = f(x, y) được tính bằng:",
-      "options": [ "dz = f·dx + f·dy", "dz = fₓ·dx + fᵧ·dy", "dz = x·dy + y·dx", "dz = df/dx + df/dy" ],
+      "text": "Vi phân toàn phần của hàm z = f(x, y) được tính bằng công thức nào?",
+      "options": [ "dz = f*dx + f*dy", "dz = fx*dx + fy*dy", "dz = x*dy + y*dx", "dz = df/dx + df/dy" ],
       "correctIndex": 1
     },
     {
-      "text": "Điều kiện cực trị của hàm hai biến là:",
-      "options": [ "fₓₓ = 0", "fₓ = 0 và fᵧ = 0", "fₓ ≠ fᵧ", "fᵧ = 0" ],
+      "text": "Điều kiện cực trị của hàm hai biến là gì?",
+      "options": [ "fxx = 0", "fx = 0 và fy = 0", "fx khác fy", "fy = 0" ],
       "correctIndex": 1
     },
     {
-      "text": "Ma trận Hessian dùng để:",
+      "text": "Ma trận Hessian dùng để làm gì?",
       "options": [ "Đổi biến tích phân", "Kiểm tra loại cực trị", "Tính gradient", "Tính đạo hàm riêng" ],
       "correctIndex": 1
     },
     {
-      "text": "Tích phân kép ∬₍D₎ f(x, y) dx dy biểu diễn:",
-      "options": [ "Thể tích dưới mặt f(x,y)", "Công của lực", "Diện tích mặt phẳng", "Thể tích khối trụ" ],
+      "text": "Tích phân kép trên miền D của f(x, y) dx dy biểu diễn đại lượng nào?",
+      "options": [ "Thể tích dưới mặt f(x, y)", "Công của lực", "Diện tích mặt phẳng", "Thể tích khối trụ" ],
       "correctIndex": 0
     },
     {
-      "text": "Tích phân ba lớp ∭₍V₎ f(x, y, z) dV dùng để tính:",
+      "text": "Tích phân ba lớp của f(x, y, z) theo thể tích V dùng để tính gì?",
       "options": [ "Diện tích mặt phẳng", "Độ cong của mặt", "Khối lượng hoặc thể tích không gian", "Chu vi đường cong" ],
       "correctIndex": 2
     },
     {
-      "text": "Khi đổi sang tọa độ cực, ta có:",
-      "options": [ "x = r·sinθ, y = r·cosθ", "x = θ·cosr, y = θ·sinr", "x = r², y = θ²", "x = r·cosθ, y = r·sinθ" ],
+      "text": "Khi đổi sang tọa độ cực, ta có công thức nào đúng?",
+      "options": [ "x = r*sin(a), y = r*cos(a)", "x = a*cos(r), y = a*sin(r)", "x = r^2, y = a^2", "x = r*cos(a), y = r*sin(a)" ],
       "correctIndex": 3
     },
     {
-      "text": "Định lý Green dùng để liên hệ giữa:",
+      "text": "Định lý Green liên hệ giữa hai loại tích phân nào?",
       "options": [ "Tích phân mặt và tích phân khối", "Tích phân đường và tích phân mặt phẳng", "Đạo hàm và tích phân", "Tích phân đường và tích phân mặt" ],
       "correctIndex": 1
     },
     {
-      "text": "Trong định lý Gauss, đại lượng div F được gọi là:",
+      "text": "Trong định lý Gauss, đại lượng div(F) được gọi là gì?",
       "options": [ "Phân kỳ của trường F", "Gradient của F", "Độ lớn của F", "Xoáy của trường F" ],
       "correctIndex": 0
     },
     {
-      "text": "Công thức rot F = ∇ × F biểu thị:",
+      "text": "Công thức rot(F) = nabla x F biểu thị điều gì?",
       "options": [ "Độ xoáy của trường", "Gradient của trường", "Hàm thế", "Phân kỳ của trường" ],
       "correctIndex": 0
     },
     {
-      "text": "Phương trình vi phân cấp 1 dạng tách biến có dạng:",
-      "options": [ "dy/dx = f(x)·g(y)", "dy/dx = y/x", "dy/dx = f(x)/g(y)", "dy/dx = f(x,y)" ],
+      "text": "Phương trình vi phân cấp 1 tách biến có dạng nào?",
+      "options": [ "dy/dx = f(x)*g(y)", "dy/dx = y/x", "dy/dx = f(x)/g(y)", "dy/dx = f(x, y)" ],
       "correctIndex": 0
     },
     {
-      "text": "Phương trình vi phân tuyến tính cấp 1 có dạng:",
-      "options": [ "dy/dx = P(x) + Q(y)", "y'' + ay' + by = 0", "y' + P(x)y = Q(x)", "y' = x²" ],
+      "text": "Phương trình vi phân tuyến tính cấp 1 có dạng nào?",
+      "options": [ "dy/dx = P(x) + Q(y)", "y'' + a*y' + b*y = 0", "y' + P(x)*y = Q(x)", "y' = x^2" ],
       "correctIndex": 2
     },
     {
-      "text": "Nghiệm của phương trình y' + P(x)y = Q(x) là:",
-      "options": [ "y = e^(−∫Pdx)[∫Qe^(∫Pdx)dx + C]", "y = Q/P", "y = e^(∫Pdx) + Q", "y = Cx + D" ],
+      "text": "Nghiệm của phương trình y' + P(x)*y = Q(x) là gì?",
+      "options": [ "y = e^(-∫Pdx) * (∫Q*e^(∫Pdx)dx + C)", "y = Q/P", "y = e^(∫Pdx) + Q", "y = Cx + D" ],
       "correctIndex": 0
     },
     {
-      "text": "Phương trình y'' + a·y' + b·y = 0 có nghiệm đặc trưng dạng:",
-      "options": [ "r² − a·r − b = 0", "r² + a·r + b = 0", "r + a + b = 0", "r = a/b" ],
+      "text": "Phương trình y'' + a*y' + b*y = 0 có phương trình đặc trưng dạng nào?",
+      "options": [ "r^2 - a*r - b = 0", "r^2 + a*r + b = 0", "r + a + b = 0", "r = a/b" ],
       "correctIndex": 1
     },
     {
-      "text": "Nếu Δ = a² − 4b < 0, nghiệm của phương trình vi phân bậc 2 là:",
+      "text": "Nếu delta = a^2 - 4b < 0, nghiệm của phương trình vi phân bậc 2 là gì?",
       "options": [ "Một nghiệm kép", "Hai nghiệm thực khác nhau", "Hai nghiệm phức liên hợp", "Không có nghiệm" ],
       "correctIndex": 2
     },
     {
-      "text": "Đối với hệ vi phân x′ = A·x, nghiệm tổng quát có dạng:",
-      "options": [ "x = e^(At)·C", "x = C·A·t", "x = A·t + C", "x = A^t + C" ],
+      "text": "Đối với hệ vi phân x' = A*x, nghiệm tổng quát có dạng nào?",
+      "options": [ "x = e^(A*t)*C", "x = C*A*t", "x = A*t + C", "x = A^t + C" ],
       "correctIndex": 0
     },
     {
-      "text": "Ma trận e^(At) được định nghĩa bằng:",
+      "text": "Ma trận e^(A*t) được định nghĩa bằng gì?",
       "options": [ "Định thức của A", "Chuỗi lũy thừa vô hạn", "Nghịch đảo của A", "Đạo hàm của A theo t" ],
       "correctIndex": 1
     },
     {
-      "text": "Giá trị riêng λ và vectơ riêng v của A thỏa mãn:",
-      "options": [ "A + v = λ", "A·v = λ·v", "A/λ = v", "det(A+λI) = 0" ],
+      "text": "Giá trị riêng lambda và vectơ riêng v của A thỏa mãn điều kiện nào?",
+      "options": [ "A + v = lambda", "A*v = lambda*v", "A/lambda = v", "det(A + lambda*I) = 0" ],
       "correctIndex": 1
     },
     {
-      "text": "Phương trình đặc trưng của ma trận A là:",
-      "options": [ "A = λ²I", "A − λI = 0", "A·λ = I", "det(A − λI) = 0" ],
+      "text": "Phương trình đặc trưng của ma trận A là gì?",
+      "options": [ "A = lambda^2*I", "A - lambda*I = 0", "A*lambda = I", "det(A - lambda*I) = 0" ],
       "correctIndex": 3
     },
     {
-      "text": "Biến đổi Laplace của f(t) là:",
-      "options": [ "ℒ{f(t)} = ∫₀^∞ e^(−st)f(t)dt", "ℒ{f(t)} = ∫ e^(st)f(t)dt", "ℒ{f(t)} = f′(t)e^(−st)", "ℒ{f(t)} = s·f(t)" ],
+      "text": "Biến đổi Laplace của f(t) được viết như thế nào?",
+      "options": [ "L{f(t)} = tích phân từ 0 đến vô cực e^(-s*t)*f(t)dt", "L{f(t)} = tích phân e^(s*t)*f(t)dt", "L{f(t)} = f'(t)*e^(-s*t)", "L{f(t)} = s*f(t)" ],
       "correctIndex": 0
     },
     {
-      "text": "Tính chất tuyến tính của Laplace được viết là:",
-      "options": [ "ℒ{f·g} = ℒ{f}·ℒ{g}", "ℒ{a·f + b·g} = aℒ{f} + bℒ{g}", "ℒ{f/g} = ℒ{f}/ℒ{g}", "ℒ{f+g} = ℒ{f−g}" ],
+      "text": "Tính chất tuyến tính của Laplace được viết là gì?",
+      "options": [ "L{f*g} = L{f}*L{g}", "L{a*f + b*g} = a*L{f} + b*L{g}", "L{f/g} = L{f}/L{g}", "L{f+g} = L{f-g}" ],
       "correctIndex": 1
     },
     {
-      "text": "Biến đổi Fourier của f(t) là:",
-      "options": [ "𝓕{f(t)} = e^(−st)", "𝓕{f(t)} = ∫₋∞^∞ f(t)e^(−iωt)dt", "𝓕{f(t)} = ∂f/∂t", "𝓕{f(t)} = ∫₀^∞ f(t)e^(st)dt" ],
+      "text": "Biến đổi Fourier của f(t) được viết như thế nào?",
+      "options": [ "F{f(t)} = e^(-s*t)", "F{f(t)} = tích phân từ -vô cực đến vô cực f(t)*e^(-i*w*t)dt", "F{f(t)} = df/dt", "F{f(t)} = tích phân từ 0 đến vô cực f(t)*e^(s*t)dt" ],
       "correctIndex": 1
     },
     {
-      "text": "Tích phân đường loại 1 dùng để tính:",
-      "options": [ "Thể tích vật thể", "Công suất trung bình", "Momen lực", "Công của lực theo đường cong" ],
+      "text": "Tích phân đường loại 1 dùng để tính đại lượng nào?",
+      "options": [ "Thể tích vật thể", "Công suất trung bình", "Mômen lực", "Công của lực theo đường cong" ],
       "correctIndex": 3
     },
     {
-      "text": "Trong định lý Stokes, đường cong C là:",
+      "text": "Trong định lý Stokes, đường cong C là gì?",
       "options": [ "Đường bao của mặt S", "Đường thẳng bất kỳ", "Trục tọa độ Ox", "Đường khép kín trong không gian" ],
       "correctIndex": 0
     },
     {
-      "text": "Dấu vi phân toàn phần df biểu diễn:",
+      "text": "Dấu vi phân toàn phần df biểu diễn điều gì?",
       "options": [ "Giới hạn của f", "Độ cong của f", "Sự biến thiên nhỏ của f", "Giá trị cực đại của f" ],
       "correctIndex": 2
     },
     {
-      "text": "Chu kỳ T và tần số f liên hệ bởi công thức:",
-      "options": [ "T = 1/f", "T = 2πf", "T = f/2π", "f = T²" ],
+      "text": "Chu kỳ T và tần số f liên hệ với nhau bằng công thức nào?",
+      "options": [ "T = 1/f", "T = 2*pi*f", "T = f/(2*pi)", "f = T^2" ],
       "correctIndex": 0
     },
     {
-      "text": "Đạo hàm bậc hai của hàm f(x) ký hiệu là:",
-      "options": [ "∂f²/∂x", "f''(x)", "d²f/dx", "f′(x)²" ],
+      "text": "Đạo hàm bậc hai của hàm f(x) được ký hiệu là gì?",
+      "options": [ "d2f/dx", "f''(x)", "d^2f/dx^2", "f'(x)^2" ],
       "correctIndex": 1
     },
     {
-      "text": "Nếu div F = 0 thì trường F là:",
+      "text": "Nếu div(F) = 0 thì trường F là gì?",
       "options": [ "Trường xoáy", "Trường đều", "Trường thế", "Trường không phân kỳ" ],
       "correctIndex": 3
     },
     {
-      "text": "Nếu rot F = 0 thì F là:",
-      "options": [ "Trường thế (có hàm thế φ)", "Trường phân kỳ", "Trường xoáy", "Trường không đều" ],
+      "text": "Nếu rot(F) = 0 thì trường F là gì?",
+      "options": [ "Trường thế (có hàm thế phi)", "Trường phân kỳ", "Trường xoáy", "Trường không đều" ],
       "correctIndex": 0
     }
   ]

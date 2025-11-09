@@ -9,8 +9,8 @@
       "correctIndex": 3
     },
     {
-      "text": "Công thức tính động năng là:",
-      "options": [ "W = 1/2·m·v^2", "P = W/t", "E = mgh", "W = F·s" ],
+      "text": "Công thức tính động năng là gì?",
+      "options": [ "W = 1/2 * m * v^2", "P = W / t", "E = m * g * h", "W = F * s" ],
       "correctIndex": 0
     },
     {
@@ -24,103 +24,103 @@
       "correctIndex": 0
     },
     {
-      "text": "Gia tốc có đơn vị là:",
-      "options": [ "N", "J", "m/s²", "m/s" ],
+      "text": "Đơn vị của gia tốc là gì?",
+      "options": [ "N", "J", "m/s^2", "m/s" ],
       "correctIndex": 2
     },
     {
-      "text": "Định luật II Newton phát biểu rằng:",
-      "options": [ "F = 0", "Tổng lực bằng không", "Mọi vật đều có quán tính", "F = m·a" ],
+      "text": "Định luật II Newton phát biểu như thế nào?",
+      "options": [ "F = 0", "Tổng lực bằng không", "Mọi vật đều có quán tính", "F = m * a" ],
       "correctIndex": 3
     },
     {
-      "text": "Khi vận tốc tăng gấp đôi, động năng thay đổi thế nào?",
+      "text": "Khi vận tốc tăng gấp đôi, động năng thay đổi như thế nào?",
       "options": [ "Không đổi", "Tăng gấp đôi", "Tăng gấp 4 lần", "Giảm một nửa" ],
       "correctIndex": 2
     },
     {
-      "text": "Đơn vị của công suất trong hệ SI là:",
+      "text": "Đơn vị của công suất trong hệ SI là gì?",
       "options": [ "Watt (W)", "Joule (J)", "Newton (N)", "Pascal (Pa)" ],
       "correctIndex": 0
     },
     {
-      "text": "Áp suất là đại lượng tỉ lệ thuận với:",
+      "text": "Áp suất là đại lượng tỉ lệ thuận với đại lượng nào?",
       "options": [ "Diện tích bề mặt", "Lực tác dụng", "Khối lượng riêng", "Thể tích" ],
       "correctIndex": 1
     },
     {
-      "text": "Chuyển động tròn đều có đặc điểm:",
+      "text": "Chuyển động tròn đều có đặc điểm nào?",
       "options": [ "Gia tốc hướng vào tâm quỹ đạo", "Không có gia tốc", "Vận tốc và gia tốc cùng hướng", "Tốc độ không đổi và hướng vận tốc cố định" ],
       "correctIndex": 0
     },
     {
-      "text": "Định luật bảo toàn cơ năng đúng khi:",
+      "text": "Định luật bảo toàn cơ năng đúng khi nào?",
       "options": [ "Có lực cản không khí", "Chỉ có lực thế tác dụng", "Lực ngoài thay đổi theo thời gian", "Chỉ có ma sát" ],
       "correctIndex": 1
     },
     {
-      "text": "Trọng lực là:",
-      "options": [ "Lực hút Trái Đất tác dụng lên vật", "Lực ma sát", "Lực đàn hồi", "Lực điện" ],
+      "text": "Trọng lực là gì?",
+      "options": [ "Lực hút của Trái Đất tác dụng lên vật", "Lực ma sát", "Lực đàn hồi", "Lực điện" ],
       "correctIndex": 0
     },
     {
-      "text": "Công suất được định nghĩa là:",
+      "text": "Công suất được định nghĩa là gì?",
       "options": [ "Lượng công trong một đơn vị thời gian", "Lực nhân với vận tốc", "Tích của lực và quãng đường", "Tích của khối lượng và vận tốc" ],
       "correctIndex": 0
     },
     {
-      "text": "Độ lớn gia tốc rơi tự do g gần bằng:",
-      "options": [ "9,8 N", "9,8 m/s²", "8 m/s²", "10 m/s" ],
+      "text": "Độ lớn gia tốc rơi tự do g gần bằng bao nhiêu?",
+      "options": [ "9.8 N", "9.8 m/s^2", "8 m/s^2", "10 m/s" ],
       "correctIndex": 1
     },
     {
-      "text": "Công thức tính thế năng trọng trường là:",
-      "options": [ "E = q·U", "E = m·g·h", "W = 1/2·m·v^2", "F = m·a" ],
+      "text": "Công thức tính thế năng trọng trường là gì?",
+      "options": [ "E = q * U", "E = m * g * h", "W = 1/2 * m * v^2", "F = m * a" ],
       "correctIndex": 1
     },
     {
       "text": "Nhiệt dung riêng là gì?",
-      "options": [ "Lượng nhiệt cần để 1kg vật tăng 1°C", "Lượng nhiệt cần để 1g vật tăng 1°C", "Nhiệt lượng mà vật tỏa ra", "Nhiệt độ vật thay đổi" ],
+      "options": [ "Lượng nhiệt cần để 1 kg vật tăng 1 độ C", "Lượng nhiệt cần để 1 g vật tăng 1 độ C", "Nhiệt lượng mà vật tỏa ra", "Nhiệt độ vật thay đổi" ],
       "correctIndex": 0
     },
     {
-      "text": "Nhiệt lượng tỏa ra khi đốt cháy nhiên liệu gọi là:",
+      "text": "Nhiệt lượng tỏa ra khi đốt cháy nhiên liệu gọi là gì?",
       "options": [ "Nhiệt trị của nhiên liệu", "Nhiệt dung mol", "Nhiệt dung riêng", "Nhiệt lượng riêng" ],
       "correctIndex": 0
     },
     {
-      "text": "Công thức định luật Ohm là:",
-      "options": [ "R = P/I", "P = U/I", "U = I·R", "I = U·R" ],
+      "text": "Công thức định luật Ohm là gì?",
+      "options": [ "R = P / I", "P = U / I", "U = I * R", "I = U * R" ],
       "correctIndex": 2
     },
     {
-      "text": "Đơn vị của điện tích là:",
-      "options": [ "Ampere (A)", "Coulomb (C)", "Volt (V)", "Ohm (Ω)" ],
+      "text": "Đơn vị của điện tích là gì?",
+      "options": [ "Ampere (A)", "Coulomb (C)", "Volt (V)", "Ohm (Ohm)" ],
       "correctIndex": 1
     },
     {
-      "text": "Điện trở tương đương của hai điện trở mắc song song là:",
-      "options": [ "R = R1·R2", "R = R1 + R2", "1/R = 1/R1 + 1/R2", "R = R1 - R2" ],
+      "text": "Điện trở tương đương của hai điện trở mắc song song được tính như thế nào?",
+      "options": [ "R = R1 * R2", "R = R1 + R2", "1/R = 1/R1 + 1/R2", "R = R1 - R2" ],
       "correctIndex": 2
     },
     {
-      "text": "Công thức tính công của dòng điện là:",
-      "options": [ "A = U·I·t", "A = U + I", "A = I²·R", "A = U·t" ],
+      "text": "Công thức tính công của dòng điện là gì?",
+      "options": [ "A = U * I * t", "A = U + I", "A = I^2 * R", "A = U * t" ],
       "correctIndex": 0
     },
     {
-      "text": "Đơn vị của công suất điện là:",
+      "text": "Đơn vị của công suất điện là gì?",
       "options": [ "Coulomb (C)", "Ampere (A)", "Watt (W)", "Joule (J)" ],
       "correctIndex": 2
     },
     {
-      "text": "Nam châm có hai cực:",
-      "options": [ "Bắc và Nam", "Đông và Tây", "Dương và âm", "Trái và phải" ],
+      "text": "Nam châm có mấy cực?",
+      "options": [ "Hai cực: Bắc và Nam", "Hai cực: Đông và Tây", "Hai cực: Dương và Âm", "Hai cực: Trái và Phải" ],
       "correctIndex": 0
     },
     {
-      "text": "Cảm ứng từ có đơn vị là:",
-      "options": [ "Wb (Weber)", "T (Tesla)", "V (Volt)", "N (Newton)" ],
+      "text": "Đơn vị của cảm ứng từ là gì?",
+      "options": [ "Weber (Wb)", "Tesla (T)", "Volt (V)", "Newton (N)" ],
       "correctIndex": 1
     },
     {
@@ -129,27 +129,27 @@
       "correctIndex": 2
     },
     {
-      "text": "Tốc độ truyền ánh sáng trong chân không là khoảng:",
-      "options": [ "3×10⁵ km/s", "3×10⁸ m/s", "3×10³ m/s", "3×10⁶ m/s" ],
+      "text": "Tốc độ truyền ánh sáng trong chân không xấp xỉ bao nhiêu?",
+      "options": [ "3 x 10^5 km/s", "3 x 10^8 m/s", "3 x 10^3 m/s", "3 x 10^6 m/s" ],
       "correctIndex": 1
     },
     {
-      "text": "Sóng cơ học là:",
+      "text": "Sóng cơ học là gì?",
       "options": [ "Dao động của electron", "Dao động lan truyền trong môi trường vật chất", "Từ trường biến thiên", "Sóng truyền trong chân không" ],
       "correctIndex": 1
     },
     {
-      "text": "Biến trở được dùng để:",
+      "text": "Biến trở được dùng để làm gì?",
       "options": [ "Điều chỉnh dòng điện", "Tạo từ trường", "Lưu trữ điện tích", "Tăng điện áp" ],
       "correctIndex": 0
     },
     {
-      "text": "Thấu kính hội tụ có tác dụng:",
+      "text": "Thấu kính hội tụ có tác dụng gì?",
       "options": [ "Làm song song tia sáng", "Hội tụ tia sáng", "Phân kỳ tia sáng", "Không ảnh hưởng đến tia sáng" ],
       "correctIndex": 1
     },
     {
-      "text": "Hiện tượng khúc xạ ánh sáng xảy ra khi:",
+      "text": "Hiện tượng khúc xạ ánh sáng xảy ra khi nào?",
       "options": [ "Ánh sáng bị hấp thụ", "Ánh sáng bị phản xạ hoàn toàn", "Ánh sáng đi qua môi trường đồng nhất", "Ánh sáng đi từ môi trường này sang môi trường khác" ],
       "correctIndex": 3
     }

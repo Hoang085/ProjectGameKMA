@@ -1,0 +1,185 @@
+{
+  "subjectKey": "TiengAnh1",
+  "questions": [
+    {
+      "id": "TA1_1",
+      "question": "Choose the correct form: She ____ to school every day.",
+      "answers": [ "go", "goes", "going" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_2",
+      "question": "Which sentence is correct?",
+      "answers": [ "He have a car", "He has a car", "He haves a car" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_3",
+      "question": "What is the past tense of 'buy'?",
+      "answers": [ "buyed", "bought", "buying" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_4",
+      "question": "Choose the correct question: ____ you like pizza?",
+      "answers": [ "Do", "Does", "Did" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA1_5",
+      "question": "What is the plural of 'child'?",
+      "answers": [ "childs", "children", "childrens" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_6",
+      "question": "Choose the correct sentence:",
+      "answers": [ "I am teacher.", "I am a teacher.", "I teacher am." ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_7",
+      "question": "Complete: We ____ at home yesterday.",
+      "answers": [ "was", "were", "be" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_8",
+      "question": "What is the opposite of 'hot'?",
+      "answers": [ "warm", "cold", "cool" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_9",
+      "question": "Choose the correct future form: I ____ visit my grandma tomorrow.",
+      "answers": [ "will", "am", "did" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA1_10",
+      "question": "Which sentence is correct?",
+      "answers": [ "There is three apples.", "There are three apples.", "There be three apples." ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_11",
+      "question": "Complete: She ____ in London now.",
+      "answers": [ "lives", "is living", "living" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_12",
+      "question": "What is the comparative of 'big'?",
+      "answers": [ "biger", "more big", "bigger" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TA1_13",
+      "question": "Choose the correct preposition: I am good ____ English.",
+      "answers": [ "at", "in", "on" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA1_14",
+      "question": "Complete: ____ your brother like football?",
+      "answers": [ "Do", "Does", "Is" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_15",
+      "question": "What is the past tense of 'see'?",
+      "answers": [ "see", "saw", "seen" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_16",
+      "question": "Which word is a noun?",
+      "answers": [ "quickly", "book", "run" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_17",
+      "question": "Choose the correct sentence:",
+      "answers": [ "She can sings.", "She can sing.", "She singing can." ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_18",
+      "question": "Complete: They ____ to the park last Sunday.",
+      "answers": [ "go", "went", "going" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_19",
+      "question": "Which is a correct negative sentence?",
+      "answers": [ "He don’t like coffee.", "He doesn’t like coffee.", "He isn’t likes coffee." ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_20",
+      "question": "What is the superlative of 'happy'?",
+      "answers": [ "happier", "more happy", "happiest" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TA1_21",
+      "question": "Complete: I usually ____ up at 7 a.m.",
+      "answers": [ "get", "gets", "getting" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA1_22",
+      "question": "Choose the correct sentence:",
+      "answers": [ "She has got two brother.", "She has got two brothers.", "She have two brothers." ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_23",
+      "question": "What is the opposite of 'early'?",
+      "answers": [ "late", "fast", "quick" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA1_24",
+      "question": "Which is a correct question?",
+      "answers": [ "Where you live?", "Where do you live?", "Where are you lives?" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_25",
+      "question": "Complete: There ____ a cat under the table.",
+      "answers": [ "is", "are", "were" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA1_26",
+      "question": "What is the past tense of 'take'?",
+      "answers": [ "took", "taken", "takes" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA1_27",
+      "question": "Choose the correct article: She is ____ engineer.",
+      "answers": [ "a", "an", "the" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_28",
+      "question": "What is the plural of 'man'?",
+      "answers": [ "mans", "men", "mens" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_29",
+      "question": "Complete: I am ____ than my sister.",
+      "answers": [ "tall", "taller", "tallest" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA1_30",
+      "question": "Which word is an adjective?",
+      "answers": [ "slowly", "happy", "swim" ],
+      "correctIndex": 1
+    }
+  ]
+}

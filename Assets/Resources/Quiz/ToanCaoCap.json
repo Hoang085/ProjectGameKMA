@@ -3,20 +3,242 @@
   "questions": [
     {
       "id": "TCC1",
-      "question": "Đâu là tên gọi của 'tỷ lệ thay đổi tức thời' của một hàm số tại một điểm?",
-      "answers": [ "Tích phân", "Đạo hàm", "Giới hạn", "Nguyên hàm" ],
-      "correctIndex": 1
+      "question": "Đạo hàm của f(x) tại x = a luôn tồn tại nếu f(x) khả vi trên toàn bộ miền xác định.",
+      "answers": [ "Đúng", "Sai", "Đúng trong một số trường hợp" ],
+      "correctIndex": 0
     },
     {
       "id": "TCC2",
-      "question": "Một ma trận có số hàng bằng số cột được gọi là gì?",
-      "answers": [ "Ma trận đơn vị", "Ma trận chuyển vị", "Ma trận vuông", "Ma trận không" ],
-      "correctIndex": 2
+      "question": "Nếu f(a) tồn tại, thì f(x) phải liên tục tại x = a.",
+      "answers": [ "Đúng", "Sai", "Chỉ đúng khi f(x) khả vi" ],
+      "correctIndex": 1
     },
     {
       "id": "TCC3",
-      "question": "Phép toán ngược của phép toán lấy đạo hàm được gọi là gì?",
-      "answers": [ "Nguyên hàm", "Tích phân xác định", "Giới hạn", "Vi phân" ],
+      "question": "Nếu f(x) không khả vi tại x = a, thì f(x) chắc chắn không liên tục tại x = a.",
+      "answers": [ "Đúng", "Sai", "Có thể đúng có thể sai" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC4",
+      "question": "Phát biểu nào sau đây sai:",
+      "answers": [
+        "Hệ gồm một vectơ khác 0 là độc lập tuyến tính",
+        "Nếu thêm một vectơ vào hệ độc lập tuyến tính thì được hệ phụ thuộc tuyến tính",
+        "Nếu bỏ đi một vectơ của hệ độc lập tuyến tính thì được hệ độc lập tuyến tính"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC5",
+      "question": "Hàm f(x) = x^3 - 3x có bao nhiêu cực trị?",
+      "answers": [ "0", "1", "2" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TCC6",
+      "question": "Chuỗi Σ 1/n từ n=1 đến ∞ (chuỗi điều hoà) có tính chất:",
+      "answers": [ "Hội tụ", "Phân kỳ", "Hội tụ tuyệt đối" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC7",
+      "question": "Giới hạn lim(x→0) (e^x - 1)/x bằng:",
+      "answers": [ "1", "0", "∞" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC8",
+      "question": "Đạo hàm của f(x) = 1/x là:",
+      "answers": [ "-1/x^2", "1/x^2", "ln(x)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC9",
+      "question": "Nếu hàm số f(x) liên tục trên đoạn [a, b] và f(a)·f(b) < 0 thì theo định lý giá trị trung gian:",
+      "answers": [
+        "Phương trình f(x) = 0 có ít nhất một nghiệm trong (a, b)",
+        "Phương trình f(x) = 0 không có nghiệm",
+        "Hàm số đồng biến"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC10",
+      "question": "Nếu f'(x) > 0 trên (a, b) thì:",
+      "answers": [
+        "f(x) đồng biến trên (a, b)",
+        "f(x) nghịch biến trên (a, b)",
+        "f(x) có cực đại"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC11",
+      "question": "Cực trị của hàm số là gì?",
+      "answers": [
+        "Giá trị lớn nhất hoặc nhỏ nhất cục bộ của hàm số",
+        "Giá trị lớn nhất toàn cục",
+        "Điểm gián đoạn"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC12",
+      "question": "Nếu f(x) là hàm chẵn thì đồ thị của nó có tính chất:",
+      "answers": [
+        "Đối xứng qua trục tung",
+        "Đối xứng qua gốc tọa độ",
+        "Đối xứng qua trục hoành"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC13",
+      "question": "Định lý Taylor dùng để:",
+      "answers": [
+        "Khai triển xấp xỉ hàm số bằng đa thức",
+        "Tính đạo hàm",
+        "Tính tích phân"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC14",
+      "question": "Một chuỗi số Σ a_n được gọi là hội tụ khi:",
+      "answers": [
+        "Tổng các phần tử tiến đến một giá trị hữu hạn",
+        "Tổng tiến đến vô cùng",
+        "Các số hạng bằng 0"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC15",
+      "question": "Ý nghĩa vật lý của đạo hàm trong cơ học là:",
+      "answers": [
+        "Vận tốc tức thời là đạo hàm của quãng đường theo thời gian",
+        "Gia tốc tức thời là đạo hàm của vận tốc theo không gian",
+        "Thể tích vật thể"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC16",
+      "question": "Định nghĩa hàm số liên tục trên (a, b):",
+      "answers": [
+        "Liên tục tại mọi điểm trong khoảng (a, b)",
+        "Liên tục tại a và b",
+        "Không có đạo hàm tại a và b"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC17",
+      "question": "Định lý cơ bản của giải tích khẳng định:",
+      "answers": [
+        "Nếu F(x) là nguyên hàm của f(x), thì ∫_a^b f(x) dx = F(b) - F(a)",
+        "Mọi hàm số đều có nguyên hàm",
+        "Mọi hàm số liên tục đều khả vi"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC18",
+      "question": "Tích phân ∫ (2x) dx bằng:",
+      "answers": [ "x^2 + C", "2x^2 + C", "ln(x) + C" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC19",
+      "question": "Đạo hàm của sin(x) là:",
+      "answers": [ "cos(x)", "-cos(x)", "sin(x)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC20",
+      "question": "Tính đạo hàm của f(x) = x·ln(x).",
+      "answers": [ "ln(x) + 1", "ln(x)", "x/ln(x)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC21",
+      "question": "Tính tích phân ∫ e^(2x) dx.",
+      "answers": [ "e^(2x) + C", "1/2 e^(2x) + C", "2e^(2x) + C" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC22",
+      "question": "Giá trị lớn nhất của f(x) = -x^2 + 4x + 5 là:",
+      "answers": [ "9", "10", "11" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TCC23",
+      "question": "Hàm số f(x) = x^2 có cực trị tại đâu?",
+      "answers": [ "x = 0 cực tiểu", "x = 0 cực đại", "Không có cực trị" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC24",
+      "question": "Nghiệm của phương trình vi phân y' = y là:",
+      "answers": [ "y = Ce^x", "y = Cx", "y = e^x + C" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC25",
+      "question": "Nếu f(x) = ln(1+x), đạo hàm f'(0) bằng:",
+      "answers": [ "0", "1", "-1" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC26",
+      "question": "Hàm số f(x) = |x| liên tục tại x=0 nhưng:",
+      "answers": [
+        "Không khả vi tại x=0",
+        "Khả vi tại x=0",
+        "Có cực đại tại x=0"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC27",
+      "question": "Nếu f(x,y) liên tục trên miền đóng và bị chặn thì:",
+      "answers": [
+        "f(x,y) đạt GTLN và GTNN",
+        "f(x,y) không có cực trị",
+        "f(x,y) luôn lồi"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC28",
+      "question": "Định nghĩa đạo hàm bậc hai f''(x):",
+      "answers": [
+        "Đạo hàm của đạo hàm bậc nhất",
+        "Giới hạn của f(x)",
+        "Giới hạn của f'(x)/x"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC29",
+      "question": "Nếu f(x) là hàm lồi trên (a,b) thì tiếp tuyến của đồ thị:",
+      "answers": [
+        "Nằm dưới đồ thị",
+        "Nằm trên đồ thị",
+        "Cắt đồ thị vô hạn điểm"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC30",
+      "question": "Định lý Weierstrass khẳng định: nếu f(x) liên tục trên [a,b] thì:",
+      "answers": [
+        "f(x) đạt GTLN và GTNN trên [a,b]",
+        "f(x) luôn đồng biến",
+        "f(x) không có giới hạn"
+      ],
       "correctIndex": 0
     }
   ]
