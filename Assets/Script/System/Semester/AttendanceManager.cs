@@ -12,6 +12,7 @@ public class AttendanceManager : MonoBehaviour
 
     private SubjectData _currentSubject;
     private bool _attendedThisSlot;
+    private bool _pendingAttendanceForQuiz; // NEW: Chờ kết quả quiz
 
     void Awake()
     {
@@ -49,6 +50,7 @@ public class AttendanceManager : MonoBehaviour
         var sem = GetCurrentSemester();
         _currentSubject = SemesterConfigUtil.instance.GetSubjectAt(sem, clock.Weekday, slotIndex1Based);
         _attendedThisSlot = false;
+        _pendingAttendanceForQuiz = false; // Reset pending state
     }
 
     private void HandleSlotEnded(int week, string dayName, int slotIndex1Based)
@@ -59,6 +61,7 @@ public class AttendanceManager : MonoBehaviour
 
         _currentSubject = null;
         _attendedThisSlot = false;
+        _pendingAttendanceForQuiz = false;
     }
 
     // Giữ hàm cũ để không phá code hiện tại
@@ -114,13 +117,47 @@ public class AttendanceManager : MonoBehaviour
 
         if (now < windowEnd)
         {
-            _attendedThisSlot = true;   // Đã điểm danh trong ca -> không tính vắng ở HandleSlotEnded
+            // **SỬA: KHÔNG đánh dấu attended ngay - chờ quiz hoàn thành**
+            _pendingAttendanceForQuiz = true;   // Đánh dấu pending
             isLate = false;
             return true;
         }
 
         error = DataKeyText.text9; // Hết giờ điểm danh
         return false;
+    }
+
+    /// <summary>
+    /// **MỚI: Gọi khi quiz ĐẠT để confirm attendance**
+    /// </summary>
+    public void ConfirmAttendance(string subjectName)
+    {
+        if (_pendingAttendanceForQuiz && _currentSubject != null && SameSubject(subjectName, _currentSubject.Name))
+        {
+            _attendedThisSlot = true;
+            _pendingAttendanceForQuiz = false;
+            Debug.Log($"[AttendanceManager] ✓ Confirmed attendance for {subjectName} (Term {clock.Term})");
+        }
+    }
+
+    /// <summary>
+    /// **MỚI: Gọi khi quiz KHÔNG ĐẠT để hủy pending và tính vắng**
+    /// </summary>
+    public void CancelAttendanceAndMarkAbsent(string subjectName)
+    {
+        if (_pendingAttendanceForQuiz && _currentSubject != null && SameSubject(subjectName, _currentSubject.Name))
+        {
+            _pendingAttendanceForQuiz = false;
+            
+            // **QUAN TRỌNG: Tăng vắng TRỰC TIẾP thay vì chờ HandleSlotEnded()**
+            // Vì TeacherAction sẽ JumpToNextSessionStart() ngay sau đó
+            IncrementAbsence(subjectName, clock.Term);
+            
+            // Đánh dấu đã xử lý để HandleSlotEnded() không tăng vắng lần nữa
+            _attendedThisSlot = true;
+            
+            Debug.Log($"[AttendanceManager] ✗ Cancelled attendance for {subjectName} - marked as absent immediately");
+        }
     }
 
     // === API cho TaskManager: kiểm tra có thể check-in NGAY BÂY GIỜ ===
@@ -180,12 +217,16 @@ public class AttendanceManager : MonoBehaviour
     public int GetAbsences(string subjectName, int term) =>
         PlayerPrefs.GetInt(AbsKey(subjectName, term), 0);
 
-    private void IncrementAbsence(string subjectName, int term)
+    /// <summary>
+    /// **Public method để tăng số buổi vắng (dùng internal hoặc khi quiz không đạt)**
+    /// </summary>
+    public void IncrementAbsence(string subjectName, int term)
     {
         string k = AbsKey(subjectName, term);
         int v = PlayerPrefs.GetInt(k, 0) + 1;
         PlayerPrefs.SetInt(k, v);
         PlayerPrefs.Save();
+        Debug.Log($"[AttendanceManager] ⚠ Increased absence for {subjectName} (Term {term}): {v - 1} → {v}");
     }
 
     private string AbsKey(string subjectName, int term) =>

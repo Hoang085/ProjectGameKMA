@@ -121,8 +121,8 @@ public class QuizGameManager : MonoBehaviour
         {
             // Use rich text instead of Unicode symbols
             resultText.text = correct 
-                ? "<color=green><size=150%></size></color> <b>Chính xác!</b>" 
-                : $"<color=red><size=150%></size></color> <b>Sai</b> — Đáp án đúng: <b>{(char)('A' + q.correctIndex)}</b>";
+                ? "Chính xác!" 
+                : $"Sai! Đáp án đúng: {(char)('A' + q.correctIndex)}";
             resultText.gameObject.SetActive(true);
         }
 
@@ -160,25 +160,26 @@ public class QuizGameManager : MonoBehaviour
         bool passed = correctAnswers >= minCorrectToPass;
         
         // Use rich text formatting for completion message với màu sắc tùy theo kết quả
-        string resultColor = passed ? "green" : "red";
+        string resultColor = passed ? "black" : "red";
         string resultMessage = passed 
-            ? "Bạn đã hoàn thành buổi học hôm nay!" 
-            : $"Bạn chưa đạt yêu cầu tối thiểu {minCorrectToPass} câu đúng.\nBuổi học này được tính là <b>vắng mặt</b>.";
-        
-        questionText.text = $"<color={resultColor}>{resultMessage}</color>\n\n<size=120%>Điểm: <color=yellow>{correctAnswers}</color>/{questionsPerSession}</size>";
-        if (titleText) titleText.text = passed ? "<color=green>Hoàn thành!</color>" : "<color=red>Chưa đạt</color>";
+            ? "Chúc mừng! Bạn đã đạt yêu cầu." +
+              $"Kết quả của bạn: {correctAnswers}/{questionsPerSession} câu đúng\n" +
+              $"Buổi học này sẽ được tính là đi học."
+            : $"Rất tiếc! Bạn chưa đạt yêu cầu." +
+              $"Kết quả của bạn: {correctAnswers}/{questionsPerSession} câu đúng\n" +
+              $"Buổi học này sẽ được tính là vắng mặt.";
+
+        questionText.text = $"<color={resultColor}>{resultMessage}</color>\n\n";
         
         foreach (var b in answerButtons) b.gameObject.SetActive(false);
 
-        // Gọi event cũ (giữ tương thích ngược)
-        OnQuizCompleted?.Invoke(correctAnswers, questionsPerSession);
-        
-        // MỚI: Gọi event mới để TeacherAction biết kết quả đạt/không đạt
         OnQuizResult?.Invoke(passed);
+        
+        OnQuizCompleted?.Invoke(correctAnswers, questionsPerSession);
 
         if (delayCoroutine != null) StopCoroutine(delayCoroutine);
-        // Tăng thời gian hiển thị kết quả cuối cùng lên 4s để đọc kỹ
-        delayCoroutine = StartCoroutine(DelayedCloseQuiz(4f));
+        float displayTime = passed ? 3f : 5f;
+        delayCoroutine = StartCoroutine(DelayedCloseQuiz(displayTime));
     }
 
     private IEnumerator DelayedCloseQuiz(float delay)

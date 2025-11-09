@@ -16,7 +16,7 @@ public class SubjectEntry
     [Tooltip("Tổng số buổi tối đa của môn trong học kỳ")]
     public int maxSessions;
 
-    [HideInInspector] public int currentSessionIndex = 0; // số buổi đã HỌC (không tính vắng)
+    [HideInInspector] public int currentSessionIndex = 0;
 
     [Header("Exam Linking")]
     [Tooltip("Index của môn này trong ExamLoader.exams (trên ExamScene). -1 = không dùng, sẽ match theo tên.")]
@@ -29,7 +29,7 @@ public class TeacherAction : InteractableAction
     public SemesterConfig semesterConfig;
 
     [Header("Auto switch by term")]
-    [SerializeField] private List<SemesterConfig> configsByTerm = new(); // index = term - 1
+    [SerializeField] private List<SemesterConfig> configsByTerm = new(); 
     [SerializeField] private bool autoSyncSubjectsFromConfig = true;
 
     [Header("Các môn giảng dạy (được build từ SemesterConfig theo kỳ)")]
@@ -85,7 +85,6 @@ public class TeacherAction : InteractableAction
     private void DBG(string msg) => Debug.Log($"[TeacherAction] {msg}");
 #endif
 
-    // ===================== Lifecycle =====================
     private void OnEnable()
     {
         if (GameClock.Ins != null)
@@ -146,29 +145,23 @@ public class TeacherAction : InteractableAction
         UI_Close();
     }
 
-    // ===================== Helpers: Term/Config =====================
     private int GetCurrentTerm() => Clock ? Clock.Term : 1;
 
     private int GetWeeksPerTerm()
     {
-        // Ưu tiên đọc từ SemesterConfig
         if (semesterConfig != null && semesterConfig.Weeks > 0) return semesterConfig.Weeks;
 
-        // Fallback inspector
         return Mathf.Max(1, weeksPerTerm);
     }
 
     private SemesterConfig FindConfigForTerm(int term)
     {
-        // Ưu tiên list kéo sẵn theo index
         if (term >= 1 && term <= configsByTerm.Count && configsByTerm[term - 1] != null)
             return configsByTerm[term - 1];
 
-        // Fallback: tìm trong Resources theo convention "Semester{term}Config"
         var res = Resources.Load<SemesterConfig>($"Semester{term}Config");
         if (res != null) return res;
 
-        // Fallback 2: duyệt list để tìm asset có field Semester == term
         foreach (var c in configsByTerm)
         {
             if (c == null) continue;
@@ -184,7 +177,6 @@ public class TeacherAction : InteractableAction
         return k.Replace(" ", "");
     }
 
-    // Build lại subjects từ ScriptableObject (Name, Sessions, Weeks)
     private void RebuildSubjectsFromConfig(SemesterConfig cfg)
     {
         var newList = new List<SubjectEntry>();
@@ -210,7 +202,6 @@ public class TeacherAction : InteractableAction
 
         subjects = newList;
 
-        // Nạp lại tiến độ theo key của kỳ hiện tại
         for (int i = 0; i < subjects.Count; i++)
             subjects[i].currentSessionIndex = LoadProgress(subjects[i]);
     }
@@ -220,7 +211,6 @@ public class TeacherAction : InteractableAction
 
     private bool IsSubjectActiveNow() => Clock && GetTeacherSemester() == Clock.Term;
 
-    // ===================== Progress Keys (theo kỳ của teacher/config) =====================
     private string GetStableSubjectKey(SubjectEntry s)
     {
         var baseKey = !string.IsNullOrWhiteSpace(s.subjectKeyForNotes) ? s.subjectKeyForNotes : s.subjectName;
@@ -278,7 +268,6 @@ public class TeacherAction : InteractableAction
         PlayerPrefs.Save();
     }
 
-    // ===================== Exam Assignment (theo kỳ của teacher/config) =====================
     private string ExamKeyPrefix(SubjectEntry s)
     {
         int term = GetTeacherSemester();
@@ -330,7 +319,7 @@ public class TeacherAction : InteractableAction
 
     private IEnumerator CreateMissingExamSchedulesDelayed()
     {
-        yield return new WaitForSeconds(1f); // đợi hệ thống khởi tạo xong
+        yield return new WaitForSeconds(1f); 
 
         if (!IsSubjectActiveNow()) yield break;
 
@@ -349,7 +338,7 @@ public class TeacherAction : InteractableAction
     private void EnsureExamScheduleExists(SubjectEntry subj)
     {
         if (!autoCreateExamSchedule) return;
-        if (!IsSubjectActiveNow()) return; // chỉ áp dụng cho môn của kỳ hiện tại
+        if (!IsSubjectActiveNow()) return; 
 
         if (TryLoadExamAssignment(subj, out _, out _, out _, out _, out _))
         {
@@ -365,7 +354,6 @@ public class TeacherAction : InteractableAction
         }
     }
 
-    // ===================== Attendance / Finish =====================
     private int GetAbsencesFor(SubjectEntry subj)
     {
         var att = AttendanceManager.Instance;
@@ -381,13 +369,11 @@ public class TeacherAction : InteractableAction
         return (attended + abs) >= cap;
     }
 
-    // ===================== Find subject for NOW =====================
     private bool TryFindSubjectForNow(out SubjectEntry subj)
     {
         subj = null;
         if (!Clock || !semesterConfig || subjects == null || subjects.Count == 0) return false;
 
-        // Chỉ cho phép match khi đúng kỳ
         if (!IsSubjectActiveNow()) return false;
 
         var today = Clock.Weekday;
@@ -405,7 +391,6 @@ public class TeacherAction : InteractableAction
         return false;
     }
 
-    // ===================== InteractableAction =====================
     public override void OnPlayerExit()
     {
         if (_state == State.AwaitConfirm)
@@ -440,7 +425,6 @@ public class TeacherAction : InteractableAction
 
     private string TitleText() => string.IsNullOrWhiteSpace(titleText) ? "No Title" : titleText;
 
-    // ===================== Start class =====================
     public void UI_StartClass()
     {
         if (_state == State.InClass) return;
@@ -485,21 +469,11 @@ public class TeacherAction : InteractableAction
         UI?.StartQuizForSubject(quizKey);
     }
     
-    /// <summary>
-    /// ClassRoutine - KHÔNG DÙNG NỮA (quiz đã tích hợp vào flow)
-    /// Giữ lại để tránh lỗi compilation
-    /// </summary>
-    [System.Obsolete("This method is deprecated. Quiz flow now integrated in UI_StartClass -> CompleteClassAfterQuiz")]
-    private IEnumerator ClassRoutine(SubjectEntry subj)
-    {
-        Debug.LogWarning("[TeacherAction] ClassRoutine is deprecated and should not be called!");
-        yield break;
-    }
     
     private void AddNoteIfNeeded(SubjectEntry subj)
     {
         if (!addNoteWhenFinished || NotesService.Instance == null) return;
-        if (!IsSubjectActiveNow()) return; // chỉ ghi note cho kỳ hiện tại
+        if (!IsSubjectActiveNow()) return; 
 
         string key = !string.IsNullOrWhiteSpace(subj.subjectKeyForNotes) ? subj.subjectKeyForNotes : subj.subjectName;
 
@@ -507,7 +481,7 @@ public class TeacherAction : InteractableAction
         int absencesSoFar = GetAbsencesFor(subj);
         int realSessionIndex = attendedSoFar + absencesSoFar;
 
-        int sessionIndex = noteSessionIndex > 0 ? noteSessionIndex : realSessionIndex;
+        int sessionIndex = noteSessionIndex > 0 ? noteSessionIndex : (realSessionIndex + 1);
 
         NotesService.Instance.AddNoteRef(key, sessionIndex, subj.subjectName);
 
@@ -515,9 +489,6 @@ public class TeacherAction : InteractableAction
         if (b && b.gameObject.activeInHierarchy) b.RefreshNoteButtons();
     }
 
-    /// <summary>
-    /// **MỚI: Hoàn thành buổi học SAU KHI QUIZ xong (không chạy lại quiz)**
-    /// </summary>
     public void CompleteClassAfterQuiz(bool quizPassed = true)
     {
         if (!TryFindSubjectForNow(out var subj))
@@ -528,28 +499,37 @@ public class TeacherAction : InteractableAction
         StartCoroutine(CompleteClassRoutine(subj, quizPassed));
     }
 
-    /// <summary>
-    /// **MỚI: Coroutine xử lý logic hoàn thành buổi học (không bao gồm quiz)**
-    /// </summary>
     private IEnumerator CompleteClassRoutine(SubjectEntry subj, bool quizPassed)
     {
         _state = State.InClass;
+        var att = AttendanceManager.Instance;
 
-        // **LOGIC MỚI: Xử lý kết quả quiz**
+        AddNoteIfNeeded(subj);
+
         if (!quizPassed)
         {
-            // Không đạt quiz -> tính vắng mặt
-            UI?.OpenDialogue(TitleText(), $"Em chưa đạt yêu cầu trong bài kiểm tra.\nBuổi học này được tính là <color=red><b>vắng mặt</b></color>.");
-            yield return new WaitForSecondsRealtime(3.0f);
+            if (att != null)
+            {
+                att.CancelAttendanceAndMarkAbsent(subj.subjectName);
+            }
 
-            // Tăng số buổi vắng (thông qua AttendanceManager hoặc trực tiếp)
-            IncrementAbsenceForSubject(subj);
+            string failMsg = $"Chưa đạt yêu cầu kiểm tra! Em chưa đạt điểm tối thiểu trong bài kiểm tra quá trình học. Buổi học này sẽ được tính là vắng mặt. Tài liệu buổi học đã được thêm vào Túi đồ. Lưu ý: Nếu vắng quá số buổi quy định, em sẽ bị cấm thi!";
+            
+            UI?.OpenDialogue(TitleText(), failMsg);
+            yield return new WaitForSecondsRealtime(4.5f);
+            
+            if (att != null && att.HasExceededAbsences(subj.subjectName, GetTeacherSemester()))
+            {
+                string warnMsg = $"Cảnh báo nghiêm trọng! Em đã vắng {att.GetAbsences(subj.subjectName, GetTeacherSemester())} buổi học môn {subj.subjectName}. Em đã bị cấm thi môn này do nghỉ quá số buổi quy định!";
+
+                UI?.OpenDialogue(TitleText(), warnMsg);
+                yield return new WaitForSecondsRealtime(3.0f);
+            }
             
             // **QUAN TRỌNG: Đóng dialogue VÀ unbind teacher**
             UI?.CloseDialogue(unbindTeacher: true);
             yield return new WaitForSecondsRealtime(0.5f);
 
-            // **CHUYỂN SANG CA TIẾP THEO**
             Debug.Log($"[TeacherAction] Quiz failed - Chuyển sang ca tiếp theo");
             if (Clock) 
             {
@@ -562,9 +542,14 @@ public class TeacherAction : InteractableAction
             yield break; // Kết thúc sớm, không tính progress
         }
 
-        // **LOGIC CŨ: Đạt quiz -> tiếp tục như bình thường**
-        UI?.OpenDialogue(TitleText(), "Hoàn thành buổi học! Đang xử lý...");
-        yield return new WaitForSecondsRealtime(1.0f);
+        // **LOGIC CŨ: Đạt quiz -> confirm attendance và tiếp tục**
+        if (att != null)
+        {
+            att.ConfirmAttendance(subj.subjectName);
+        }
+        
+        UI?.OpenDialogue(TitleText(), "Hoàn thành buổi học! Tài liệu đã được thêm vào Túi đồ. Đang xử lý kết quả...");
+        yield return new WaitForSecondsRealtime(1.5f);
 
         int abs = GetAbsencesFor(subj);
         int cap = Mathf.Max(1, subj.maxSessions);
@@ -588,7 +573,7 @@ public class TeacherAction : InteractableAction
                 int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slotIdx1Based));
                 string timeStr = DataKeyText.FormatHM(startMin);
 
-                string examMsg = $"Chúc mừng em đã học xong môn '{subj.subjectName}'. Tuần sau em sẽ thi vào {dayVN} lúc {timeStr}. Chỉ được phép thi đúng ca này.";
+                string examMsg = $"Chúc mừng! Em đã hoàn thành tất cả buổi học môn {subj.subjectName}. Lịch thi: Ngày: {dayVN} Giờ: {timeStr}. Lưu ý: Em chỉ được phép thi vào đúng ca này!";
                 UI?.OpenDialogue(TitleText(), examMsg);
             }
             else
@@ -596,18 +581,13 @@ public class TeacherAction : InteractableAction
                 UI?.OpenDialogue(TitleText(), "Không tìm thấy lịch thi tuần sau cho môn này. Kiểm tra SemesterConfig / ScheduleResolver.");
             }
 
-            yield return new WaitForSecondsRealtime(2.0f);
+            yield return new WaitForSecondsRealtime(4.0f);
         }
 
-        // Thêm note nếu cần
-        AddNoteIfNeeded(subj);
-
-        // **QUAN TRỌNG: Đóng dialogue VÀ unbind teacher**
         UI?.CloseDialogue(unbindTeacher: true);
         yield return new WaitForSecondsRealtime(0.5f);
 
-        // **CHUYỂN SANG CA TIẾP THEO**
-        Debug.Log($"[TeacherAction] ★★★ Chuyển sang ca tiếp theo ★★★");
+        Debug.Log($"[TeacherAction] Chuyển sang ca tiếp theo");
         if (Clock) 
         {
             Clock.JumpToNextSessionStart();
@@ -625,23 +605,7 @@ public class TeacherAction : InteractableAction
 
         onClassFinished?.Invoke();
     }
-    
-    /// <summary>
-    /// **MỚI: Tăng số buổi vắng cho môn học**
-    /// </summary>
-    private void IncrementAbsenceForSubject(SubjectEntry subj)
-    {
-        int term = GetTeacherSemester();
-        string key = $"abs_T{term}_{GetStableSubjectKey(subj)}";
-        int current = PlayerPrefs.GetInt(key, 0);
-        PlayerPrefs.SetInt(key, current + 1);
-        PlayerPrefs.Save();
-        
-        Debug.Log($"[TeacherAction] Tăng vắng mặt cho môn '{subj.subjectName}': {current} -> {current + 1}");
-    }
 
-    // ===================== Exam =====================
-    // Lấy ca sớm nhất của TUẦN SAU (giữ nguyên kỳ hiện tại)
     private bool TryGetNearestExamSlotNextWeek(
         SubjectEntry subj,
         out int examTerm,
@@ -649,13 +613,13 @@ public class TeacherAction : InteractableAction
         out Weekday day,
         out int slotIdx1Based)
     {
-        int curTerm = GetTeacherSemester(); // giữ theo kỳ của giáo viên
+        int curTerm = GetTeacherSemester(); 
         int curWeek = Clock ? Mathf.Max(1, Clock.Week) : 1;
         int wpt = GetWeeksPerTerm();
 
         examTerm = curTerm;
         int nextWeek = curWeek + 1;
-        if (nextWeek > wpt) nextWeek = wpt; // không cuộn sang kỳ mới
+        if (nextWeek > wpt) nextWeek = wpt;
         examWeek = nextWeek;
 
         day = Weekday.Mon;
@@ -684,7 +648,7 @@ public class TeacherAction : InteractableAction
     {
         if (termA != termB) return termA < termB ? -1 : 1;
         if (weekA != weekB) return weekA < weekB ? -1 : 1;
-        if (dayA != dayB) return ((int)dayA) < ((int)dayA) ? -1 : 1; // (typo fix not needed because we won't hit equal branch)
+        if (dayA != dayB) return ((int)dayA) < ((int)dayA) ? -1 : 1; 
         if (slotA != slotB) return slotA < slotB ? -1 : 1;
         return 0;
     }
@@ -705,7 +669,6 @@ public class TeacherAction : InteractableAction
 
         subj.currentSessionIndex = LoadProgress(subj);
 
-        // 1) Phải hoàn thành môn
         if (!IsCourseFinished(subj))
         {
             var att = AttendanceManager.Instance;
@@ -718,10 +681,8 @@ public class TeacherAction : InteractableAction
             return;
         }
 
-        // **Tự động tạo lịch thi nếu chưa có**
         EnsureExamScheduleExists(subj);
 
-        // 2) Lấy lịch thi đã chốt
         if (!TryLoadExamAssignment(subj, out int aTerm, out int aWeek, out Weekday aDay, out int aSlot1, out bool missed))
         {
             UI?.OpenDialogue(TitleText(), "Không thể tạo lịch thi cho môn này. Kiểm tra cấu hình SemesterConfig.");
@@ -807,7 +768,6 @@ public class TeacherAction : InteractableAction
     {
         UI?.OpenDialogue(TitleText(), $"Em đủ điều kiện để thi môn '{subj.subjectName}'. Chúc may mắn!");
 
-        // Lưu trạng thái game trước khi vào thi
         GameStateManager.SavePreExamState(subj.subjectName);
 
         ExamRouteData.Set(subj.subjectName, subj.subjectKeyForNotes);
@@ -819,35 +779,5 @@ public class TeacherAction : InteractableAction
     {
         yield return new WaitForSeconds(delaySeconds);
         SceneManager.LoadScene(sceneName);
-    }
-
-    // ===================== Debug menu (optional) =====================
-    [ContextMenu("DEV: Clear current subject exam state")]
-    private void Dev_ClearExamStateForNow()
-    {
-        if (TryFindSubjectForNow(out var s))
-        {
-            ClearExamAssignment(s);
-        }
-    }
-
-    [ContextMenu("DEV: Create missing exam schedules")]
-    private void Dev_CreateMissingExamSchedules()
-    {
-        int created = 0;
-        foreach (var subj in subjects)
-        {
-            if (IsCourseFinished(subj))
-            {
-                if (!TryLoadExamAssignment(subj, out _, out _, out _, out _, out _))
-                {
-                    if (TryGetNearestExamSlotNextWeek(subj, out var examTerm, out var examWeek, out var examDayNextWeek, out var slotIdx1Based))
-                    {
-                        SaveExamAssignment(subj, examTerm, examWeek, examDayNextWeek, slotIdx1Based);
-                        created++;
-                    }
-                }
-            }
-        }
     }
 }

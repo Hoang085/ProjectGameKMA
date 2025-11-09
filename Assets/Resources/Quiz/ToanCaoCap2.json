@@ -1,0 +1,185 @@
+﻿{
+  "subjectKey": "ToanCaoCap2",
+  "questions": [
+    {
+      "id": "TCC2_1",
+      "question": "Đạo hàm riêng của hàm f(x, y) theo biến x được ký hiệu là gì?",
+      "answers": [ "df/dx (đạo hàm riêng)", "df/dx", "f'(x)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC2_2",
+      "question": "Gradient của hàm f(x, y, z) là vectơ có hướng nào?",
+      "answers": [ "Hướng giảm nhanh nhất của f", "Hướng tăng nhanh nhất của f", "Song song với trục Oz" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2_3",
+      "question": "Vi phân toàn phần của hàm z = f(x, y) được tính bằng công thức nào?",
+      "answers": [ "dz = f*dx + f*dy", "dz = fx*dx + fy*dy", "dz = x*dy + y*dx" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2_4",
+      "question": "Điều kiện cực trị của hàm hai biến là gì?",
+      "answers": [ "fxx = 0", "fx = 0 và fy = 0", "fy = 0" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2_5",
+      "question": "Ma trận Hessian dùng để làm gì?",
+      "answers": [ "Đổi biến tích phân", "Kiểm tra loại cực trị", "Tính gradient" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2_6",
+      "question": "Tích phân kép trên miền D của f(x, y) dx dy biểu diễn đại lượng nào?",
+      "answers": [ "Thể tích dưới mặt f(x, y)", "Công của lực", "Diện tích mặt phẳng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC2_7",
+      "question": "Tích phân ba lớp của f(x, y, z) theo thể tích V dùng để tính gì?",
+      "answers": [ "Diện tích mặt phẳng", "Độ cong của mặt", "Khối lượng hoặc thể tích không gian" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TCC2_8",
+      "question": "Khi đổi sang tọa độ cực, ta có công thức nào đúng?",
+      "answers": [ "x = r*sin(a), y = r*cos(a)", "x = a*cos(r), y = a*sin(r)", "x = r*cos(a), y = r*sin(a)" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TCC2_9",
+      "question": "Định lý Green liên hệ giữa hai loại tích phân nào?",
+      "answers": [ "Tích phân mặt và tích phân khối", "Tích phân đường và tích phân mặt phẳng", "Đạo hàm và tích phân" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2_10",
+      "question": "Trong định lý Gauss, đại lượng div(F) được gọi là gì?",
+      "answers": [ "Phân kỳ của trường F", "Gradient của F", "Xoáy của trường F" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC2_11",
+      "question": "Công thức rot(F) = ∇ × F biểu thị điều gì?",
+      "answers": [ "Độ xoáy của trường", "Gradient của trường", "Phân kỳ của trường" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC2_12",
+      "question": "Phương trình vi phân cấp 1 tách biến có dạng nào?",
+      "answers": [ "dy/dx = f(x)*g(y)", "dy/dx = f(x)/g(y)", "dy/dx = f(x, y)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC2_13",
+      "question": "Phương trình vi phân tuyến tính cấp 1 có dạng nào?",
+      "answers": [ "dy/dx = P(x) + Q(y)", "y'' + a*y' + b*y = 0", "y' + P(x)*y = Q(x)" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TCC2_14",
+      "question": "Nghiệm của phương trình y' + P(x)*y = Q(x) là gì?",
+      "answers": [ "y = e^(-∫Pdx) * (∫Q*e^(∫Pdx)dx + C)", "y = Q/P", "y = Cx + D" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC2_15",
+      "question": "Phương trình y'' + a*y' + b*y = 0 có phương trình đặc trưng dạng nào?",
+      "answers": [ "r^2 - a*r - b = 0", "r^2 + a*r + b = 0", "r + a + b = 0" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2_16",
+      "question": "Nếu Δ = a^2 - 4b < 0, nghiệm của phương trình vi phân bậc 2 là gì?",
+      "answers": [ "Một nghiệm kép", "Hai nghiệm thực khác nhau", "Hai nghiệm phức liên hợp" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TCC2_17",
+      "question": "Đối với hệ vi phân x' = A*x, nghiệm tổng quát có dạng nào?",
+      "answers": [ "x = e^(A*t)*C", "x = C*A*t", "x = A*t + C" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC2_18",
+      "question": "Ma trận e^(A*t) được định nghĩa bằng gì?",
+      "answers": [ "Định thức của A", "Chuỗi lũy thừa vô hạn", "Nghịch đảo của A" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2_19",
+      "question": "Giá trị riêng λ và vectơ riêng v của A thỏa mãn điều kiện nào?",
+      "answers": [ "A + v = λ", "A*v = λ*v", "A/λ = v" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2_20",
+      "question": "Phương trình đặc trưng của ma trận A là gì?",
+      "answers": [ "A = λ^2 I", "A - λI = 0", "det(A - λI) = 0" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TCC2_21",
+      "question": "Biến đổi Laplace của f(t) được viết như thế nào?",
+      "answers": [ "∫₀^∞ e^{-st} f(t) dt", "∫ e^{st} f(t) dt", "f'(t) e^{-st}" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC2_22",
+      "question": "Tính chất tuyến tính của Laplace được viết là gì?",
+      "answers": [ "L{f*g} = L{f}·L{g}", "L{a f + b g} = a L{f} + b L{g}", "L{f/g} = L{f}/L{g}" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2_23",
+      "question": "Biến đổi Fourier của f(t) được viết như thế nào?",
+      "answers": [ "F{f(t)} = e^{-st}", "∫_{-∞}^{∞} f(t) e^{-iωt} dt", "∫₀^∞ f(t) e^{st} dt" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2_24",
+      "question": "Tích phân đường loại 1 dùng để tính đại lượng nào?",
+      "answers": [ "Thể tích vật thể", "Mômen lực", "Công của lực theo đường cong" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TCC2_25",
+      "question": "Trong định lý Stokes, đường cong C là gì?",
+      "answers": [ "Đường bao của mặt S", "Đường thẳng bất kỳ", "Trục tọa độ Ox" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC2_26",
+      "question": "Dấu vi phân toàn phần df biểu diễn điều gì?",
+      "answers": [ "Giới hạn của f", "Độ cong của f", "Sự biến thiên nhỏ của f" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TCC2_27",
+      "question": "Chu kỳ T và tần số f liên hệ với nhau bằng công thức nào?",
+      "answers": [ "T = 1/f", "T = 2πf", "T = f/(2π)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TCC2_28",
+      "question": "Đạo hàm bậc hai của hàm f(x) được ký hiệu là gì?",
+      "answers": [ "d2f/dx", "f''(x)", "f'(x)^2" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TCC2_29",
+      "question": "Nếu div(F) = 0 thì trường F là gì?",
+      "answers": [ "Trường xoáy", "Trường đều", "Trường không phân kỳ" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TCC2_30",
+      "question": "Nếu rot(F) = 0 thì trường F là gì?",
+      "answers": [ "Trường thế (có hàm thế φ)", "Trường phân kỳ", "Trường xoáy" ],
+      "correctIndex": 0
+    }
+  ]
+}

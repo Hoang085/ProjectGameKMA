@@ -67,6 +67,64 @@ public class ScheduleUI : BasePopUp
     {
         LoadSubjectDisplayNames();
         RefreshAllScheduleData();
+        
+        // **MỚI: Đăng ký event để tự động refresh khi có thay đổi**
+        SubscribeToEvents();
+    }
+
+    void OnDisable()
+    {
+        UnsubscribeFromEvents();
+    }
+
+    /// <summary>
+    /// **MỚI: Đăng ký các event để tự động cập nhật UI**
+    /// </summary>
+    private void SubscribeToEvents()
+    {
+        // Tìm tất cả TeacherAction và đăng ký event onClassFinished
+        var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
+        foreach (var teacher in teachers)
+        {
+            if (teacher != null && teacher.onClassFinished != null)
+            {
+                teacher.onClassFinished.AddListener(OnClassFinishedHandler);
+            }
+        }
+    }
+
+    /// <summary>
+    /// **MỚI: Hủy đăng ký event khi disable**
+    /// </summary>
+    private void UnsubscribeFromEvents()
+    {
+        var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
+        foreach (var teacher in teachers)
+        {
+            if (teacher != null && teacher.onClassFinished != null)
+            {
+                teacher.onClassFinished.RemoveListener(OnClassFinishedHandler);
+            }
+        }
+    }
+
+    /// <summary>
+    /// **MỚI: Handler khi buổi học kết thúc - refresh toàn bộ UI**
+    /// </summary>
+    private void OnClassFinishedHandler()
+    {
+        // Delay nhỏ để đảm bảo PlayerPrefs đã được lưu
+        StartCoroutine(RefreshAfterDelay(0.5f));
+    }
+
+    /// <summary>
+    /// **MỚI: Refresh UI sau một khoảng delay**
+    /// </summary>
+    private System.Collections.IEnumerator RefreshAfterDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        RefreshAllScheduleData();
+        Debug.Log("[ScheduleUI] ✓ Đã refresh UI sau khi hoàn thành buổi học");
     }
 
     /// <summary>
@@ -368,10 +426,29 @@ public class ScheduleUI : BasePopUp
                     subjectTexts[i].text = subject.displayName;
 
                 if (attendedTexts[i] != null)
-                    attendedTexts[i].text = $"{subject.attended}/{subject.maxSessions}";
+                {
+                    // **CẢI THIỆN: Thêm màu sắc cho attended sessions**
+                    int attendedCount = subject.attended;
+                    int maxCount = subject.maxSessions;
+                    float ratio = maxCount > 0 ? (float)attendedCount / maxCount : 0f;
+                    
+                    string colorTag = ratio >= 1.0f ? "green" : (ratio >= 0.5f ? "yellow" : "white");
+                    attendedTexts[i].text = $"<color={colorTag}>{attendedCount}/{maxCount}</color>";
+                }
 
                 if (absentTexts[i] != null)
-                    absentTexts[i].text = $"{subject.absences}/{subject.maxSessions}";
+                {
+                    // **CẢI THIỆN: Thêm màu đỏ nếu vắng quá nhiều**
+                    int absenceCount = subject.absences;
+                    int maxCount = subject.maxSessions;
+                    
+                    // Lấy MaxAbsences từ SemesterConfig nếu có
+                    int maxAbsences = GetMaxAbsencesForSubject(subject);
+                    
+                    string colorTag = absenceCount > maxAbsences ? "red" : "white";
+                    string warningIcon = absenceCount > maxAbsences ? " ⚠" : "";
+                    absentTexts[i].text = $"<color={colorTag}>{absenceCount}/{maxCount}{warningIcon}</color>";
+                }
             }
             else
             {
@@ -386,6 +463,21 @@ public class ScheduleUI : BasePopUp
                     absentTexts[i].text = "—";
             }
         }
+    }
+
+    /// <summary>
+    /// **MỚI: Lấy MaxAbsences từ SemesterConfig cho subject**
+    /// </summary>
+    private int GetMaxAbsencesForSubject(SubjectDataInfo subject)
+    {
+        // Thử lấy từ SemesterConfig
+        if (subject.semesterSubject != null && subject.semesterSubject.MaxAbsences > 0)
+        {
+            return subject.semesterSubject.MaxAbsences;
+        }
+
+        // Fallback: 3 buổi (default)
+        return 3;
     }
 
     /// <summary>
@@ -534,8 +626,10 @@ public class ScheduleUI : BasePopUp
             return AttendanceManager.GetAbsences(subject.subjectName, currentTerm);
         }
 
-        // Fallback: try to get directly from PlayerPrefs if AttendanceManager not available
-        string key = $"T{currentTerm}_ABS_{NormalizeKey(subject.subjectName)}";
+        // Fallback: sử dụng ĐÚNG key pattern của AttendanceManager
+        // AttendanceManager sử dụng: $"abs_T{term}_{Normalize(subjectName)}"
+        string normalizedName = NormalizeKey(subject.subjectName);
+        string key = $"abs_T{currentTerm}_{normalizedName}";
         return PlayerPrefs.GetInt(key, 0);
     }
 
@@ -549,8 +643,10 @@ public class ScheduleUI : BasePopUp
             return AttendanceManager.GetAbsences(subjectName, currentTerm);
         }
 
-        // Fallback: try to get directly from PlayerPrefs if AttendanceManager not available
-        string key = $"T{currentTerm}_ABS_{NormalizeKey(subjectName)}";
+        // Fallback: sử dụng ĐÚNG key pattern của AttendanceManager
+        // AttendanceManager sử dụng: $"abs_T{term}_{Normalize(subjectName)}"
+        string normalizedName = NormalizeKey(subjectName);
+        string key = $"abs_T{currentTerm}_{normalizedName}";
         return PlayerPrefs.GetInt(key, 0);
     }
 
