@@ -121,28 +121,78 @@ public class GameManager : Singleton<GameManager>
         InitializeIconNotifications();
         InitializeTrackingData();
 
+        // **THÊM: Khởi tạo PlayerStatsUI sớm để hệ thống stamina hoạt động**
+        // NHƯNG đảm bảo không làm tăng _openPopupCount
+        StartCoroutine(InitializePlayerStatsUIQuietly());
+
         // **SỬA: Start TaskManager check immediately**
         StartCoroutine(DelayedTaskNotificationCheck());
-        
-        // **THÊM: Refresh IconNotificationManager in case it wasn't available during Awake**
-        StartCoroutine(DelayedIconNotificationManagerRefresh());
     }
     
     /// <summary>
-    /// **MỚI: Delayed refresh of IconNotificationManager to handle late initialization**
+    /// **MỚI: Khởi tạo PlayerStatsUI "im lặng" - không tính vào _openPopupCount**
     /// </summary>
-    private IEnumerator DelayedIconNotificationManagerRefresh()
+    private System.Collections.IEnumerator InitializePlayerStatsUIQuietly()
     {
-        // Wait for other systems to initialize
-        yield return new WaitForSeconds(0.5f);
+        Debug.Log("[GameManager] Initializing PlayerStatsUI quietly...");
         
-        if (iconNotificationManager == null)
+        // Đợi PopupManager sẵn sàng
+        yield return new WaitForSeconds(0.3f);
+        
+        if (HHH.Common.PopupManager.Ins == null)
         {
-            Debug.Log("[GameManager] IconNotificationManager was null during initialization - attempting refresh...");
-            RefreshIconNotificationManager();
+            Debug.LogWarning("[GameManager] ✗ PopupManager not found - PlayerStatsUI initialization skipped");
+            yield break;
+        }
+        
+        var popupManager = HHH.Common.PopupManager.Ins;
+        var playerStatsPopup = popupManager.GetPopup(HHH.Common.PopupName.PlayerStat);
+        
+        if (playerStatsPopup != null)
+        {
+            Debug.Log("[GameManager] ✓ PlayerStatsUI already exists");
+            yield break;
+        }
+        
+        Debug.Log("[GameManager] Creating PlayerStatsUI in background...");
+        
+        // **GIẢI PHÁP: Tạo popup nhưng đảm bảo nó KHÔNG gọi OnPopupOpened**
+        // Bằng cách disable GameObject trước khi ShowScreen
+        popupManager.OnShowScreen(HHH.Common.PopupName.PlayerStat);
+        
+        // Đợi 1 frame để popup được tạo
+        yield return null;
+        
+        // Lấy popup vừa tạo
+        playerStatsPopup = popupManager.GetPopup(HHH.Common.PopupName.PlayerStat);
+        
+        if (playerStatsPopup != null)
+        {
+            // **QUAN TRỌNG: Đóng popup NGAY LẬP TỨC và giảm _openPopupCount**
+            var basePopup = playerStatsPopup.GetComponent<HHH.Common.BasePopUp>();
+            if (basePopup != null)
+            {
+                // Gọi OnDeActived để đóng popup đúng cách
+                basePopup.OnDeActived();
+            }
+            
+            // Đảm bảo popup bị ẩn hoàn toàn
+            playerStatsPopup.SetActive(false);
+            
+            // **FIX: Giảm popup counter về 0 vì ta không muốn tính popup này**
+            if (GameUIManager.Ins != null)
+            {
+                GameUIManager.Ins.OnPopupClosed();
+            }
+            
+            Debug.Log("[GameManager] ✓ PlayerStatsUI initialized quietly - stamina system ready");
+        }
+        else
+        {
+            Debug.LogWarning("[GameManager] ✗ Failed to create PlayerStatsUI");
         }
     }
-
+    
     void Update()
     {
         CheckForNotificationTriggers();

@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba7922a32fbe54044961f18ae339bff0, type: 3}
   m_Name: VideoBadEnding1
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  pauseGameTime: 1
-  loop: 0
+  clip: {fileID: 32900000, guid: c2eed4a4219b6e34fabb759696173e6c, type: 3}
   dimBackground: 1
