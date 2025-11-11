@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using HHH.Common;
 
 public class SettingUI : BasePopUp

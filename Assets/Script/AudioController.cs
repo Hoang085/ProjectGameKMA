@@ -70,4 +70,10 @@ public class AudioController : MonoBehaviour
         bgmSource.clip = clip;
         bgmSource.Play();
     }
+
+    public void StopMusic()
+    {
+        if(bgmSource.isPlaying)
+            bgmSource.Stop();
+    }
 }
