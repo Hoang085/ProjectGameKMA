@@ -778,6 +778,6 @@ public class TeacherAction : InteractableAction
     private IEnumerator LoadExamSceneDelayed(string sceneName, float delaySeconds)
     {
         yield return new WaitForSeconds(delaySeconds);
-        SceneManager.LoadScene(sceneName);
+        SceneLoader.Load(sceneName);
     }
 }
