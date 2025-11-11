@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +16,7 @@ public class InteractableZone : MonoBehaviour
     [Header("Sự kiện UI / logic")]
     public UnityEvent onShowPrompt;   // Ví dụ: hiện label "Nhấn F: Vào trong"
     public UnityEvent onHidePrompt;   // Ẩn label
-    public UnityEvent onInteract;     // Mở UI căng tin, play SFX, v.v.
+    public UnityEvent onInteract;     // Mở UI căng tin, play SFX, v.v. (CHỈ nhận các hàm void!)
 
     [Header("Tích hợp hệ thống hành động sẵn có")]
     [SerializeField] private List<InteractableAction> actions = new List<InteractableAction>();
@@ -22,13 +24,33 @@ public class InteractableZone : MonoBehaviour
     [Header("Chống bấm lặp")]
     [SerializeField] private float interactCooldown = 0.2f;
 
+    [Header("Video (Optional)")]
+    [SerializeField] private bool playVideo = false;        // Bật/tắt phát video
+    [SerializeField] private VideoProfile videoProfile;     // Video profile để phát
+    [SerializeField] private VideoPopupUI videoPopup;       // Reference đến VideoPopupUI (có thể đang inactive)
+
+    [Header("Thể lực (Stamina)")]
+    [SerializeField] private bool restoreStamina = true;                // Bật/tắt tính năng hồi thể lực
+    [SerializeField] private int staminaRestoreAmount = 30;             // Lượng thể lực hồi phục
+    [SerializeField] private string staminaNotificationMessage = "Bạn đã được hồi thêm {0} thể lực!";
+    [SerializeField] private string staminaSaveKey = "PLAYER_STAMINA";
+    [SerializeField] private int maxStamina = 100;
+
     private bool _playerInside;
     private float _lastInteractTime;
+    private bool _waitingForVideo;
 
     private void Reset()
     {
         var col = GetComponent<Collider>();
         if (col) col.isTrigger = true;   // bắt buộc là Trigger
+    }
+
+    private void Awake()
+    {
+        // Tìm kể cả khi VideoPopupUI đang inactive
+        if (!videoPopup)
+            videoPopup = Resources.FindObjectsOfTypeAll<VideoPopupUI>().FirstOrDefault();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,11 +59,9 @@ public class InteractableZone : MonoBehaviour
 
         _playerInside = true;
 
-        // Báo cho actions biết player đã vào vùng
         if (actions != null)
             foreach (var a in actions) if (a) a.OnPlayerEnter();
 
-        // Hiện prompt "Nhấn F: Vào trong" (nếu bạn gán)
         onShowPrompt?.Invoke();
     }
 
@@ -54,13 +74,11 @@ public class InteractableZone : MonoBehaviour
         if (actions != null)
             foreach (var a in actions) if (a) a.OnPlayerExit();
 
-        // Ẩn prompt
         onHidePrompt?.Invoke();
     }
 
     private void OnDisable()
     {
-        // Nếu object bị tắt khi đang trong vùng => chắc chắn ẩn prompt
         if (_playerInside)
         {
             _playerInside = false;
@@ -70,7 +88,7 @@ public class InteractableZone : MonoBehaviour
 
     private void Update()
     {
-        if (!_playerInside) return;
+        if (!_playerInside || _waitingForVideo) return;
 
         if (Input.GetKeyDown(interactKey) && (Time.time - _lastInteractTime) >= interactCooldown)
         {
@@ -79,10 +97,10 @@ public class InteractableZone : MonoBehaviour
             // Ẩn prompt khi mở UI
             onHidePrompt?.Invoke();
 
-            // Gọi custom event: mở UI căng tin
+            // Gọi custom event: mở UI căng tin (chỉ void listeners!)
             onInteract?.Invoke();
 
-            // Gọi các InteractableAction của bạn (truyền null vì không phải NPC)
+            // Gọi các InteractableAction
             if (actions != null)
             {
                 foreach (var a in actions)
@@ -91,6 +109,132 @@ public class InteractableZone : MonoBehaviour
                     a.DoInteract(null);
                 }
             }
+
+            // Ấn F lần đầu: nếu cấu hình phát video thì phát NGAY — không cần ấn lần 2
+            if (playVideo && videoProfile != null)
+            {
+                StartCoroutine(CoPlayVideoThenRestore());
+            }
+            else
+            {
+                if (restoreStamina) RestorePlayerStamina();
+            }
         }
+    }
+
+    /// <summary>
+    /// Tùy chọn: Hàm void để bind vào UnityEvent (nếu bạn muốn gọi phát video qua onInteract).
+    /// </summary>
+    public void PlayVideoNow()
+    {
+        if (_waitingForVideo) return;
+        if (!playVideo || videoProfile == null) return;
+
+        StartCoroutine(CoPlayVideoThenRestore());
+    }
+
+    private IEnumerator CoPlayVideoThenRestore()
+    {
+        // Đảm bảo có VideoPopupUI, kể cả đang inactive
+        if (!videoPopup)
+            videoPopup = Resources.FindObjectsOfTypeAll<VideoPopupUI>().FirstOrDefault();
+
+        if (!videoPopup)
+        {
+            Debug.LogWarning($"[InteractableZone] {name}: Không tìm thấy VideoPopupUI trong scene!");
+            if (restoreStamina) RestorePlayerStamina();
+            yield break;
+        }
+
+        _waitingForVideo = true;
+
+        // BẬT GO chứa VideoPopupUI nếu đang tắt
+        bool wasInactive = !videoPopup.gameObject.activeInHierarchy;
+        if (wasInactive)
+        {
+            videoPopup.gameObject.SetActive(true);
+            // Chờ end of frame để đảm bảo Awake/Start của VideoPopupUI đã chạy
+            yield return new WaitForEndOfFrame();
+        }
+
+        // Phát video (gọi hàm code – KHÔNG dùng hàm trả về non-void trong UnityEvent)
+        videoPopup.PlayProfile_Inspector(videoProfile);
+
+        // Đợi video kết thúc đúng nghĩa
+        yield return videoPopup.WaitUntilFinished();
+
+        Debug.Log("[InteractableZone] Video đã kết thúc!");
+
+        if (restoreStamina) RestorePlayerStamina();
+
+        _waitingForVideo = false;
+    }
+
+    private void RestorePlayerStamina()
+    {
+        int currentStamina = PlayerPrefs.GetInt(staminaSaveKey, maxStamina);
+        int oldStamina = currentStamina;
+
+        currentStamina = Mathf.Clamp(currentStamina + staminaRestoreAmount, 0, maxStamina);
+
+        PlayerPrefs.SetInt(staminaSaveKey, currentStamina);
+        PlayerPrefs.Save();
+
+        int actualRestored = currentStamina - oldStamina;
+
+        Debug.Log($"[InteractableZone] Stamina: {oldStamina} → {currentStamina} (+{actualRestored})");
+        RefreshPlayerStatsUIIfOpen();
+        ShowStaminaNotification(actualRestored);
+    }
+
+    private void RefreshPlayerStatsUIIfOpen()
+    {
+        if (HHH.Common.PopupManager.Ins != null)
+        {
+            var popup = HHH.Common.PopupManager.Ins.GetPopup(HHH.Common.PopupName.PlayerStat);
+            if (popup != null && popup.activeSelf)
+            {
+                var playerStatsUI = popup.GetComponent<PlayerStatsUI>();
+                if (playerStatsUI != null)
+                {
+                    int currentStamina = PlayerPrefs.GetInt(staminaSaveKey, maxStamina);
+                    playerStatsUI.SetStamina(currentStamina, maxStamina);
+                    Debug.Log($"[InteractableZone] Đã refresh PlayerStatsUI display");
+                }
+            }
+        }
+    }
+
+    private void ShowStaminaNotification(int actualAmount)
+    {
+        if (actualAmount <= 0)
+        {
+            Debug.Log("[InteractableZone] Stamina đã đầy, không hiện thông báo");
+            return;
+        }
+
+        if (NotificationPopupSpawner.Ins != null)
+        {
+            string message = string.Format(staminaNotificationMessage, actualAmount);
+            NotificationPopupSpawner.Ins.Enqueue(message);
+            Debug.Log($"[InteractableZone] Đã gửi notification: {message}");
+        }
+        else
+        {
+            Debug.LogWarning("[InteractableZone] NotificationPopupSpawner không khả dụng!");
+        }
+    }
+
+    [ContextMenu("Test Restore Stamina")]
+    public void TestRestoreStamina()
+    {
+        RestorePlayerStamina();
+    }
+
+    [ContextMenu("Show Current Stamina")]
+    public void ShowCurrentStamina()
+    {
+        int current = PlayerPrefs.GetInt(staminaSaveKey, maxStamina);
+        Debug.Log($"[InteractableZone] Current Stamina: {current}/{maxStamina}");
     }
 }

@@ -464,7 +464,46 @@ public class TeacherAction : InteractableAction
             : MakeNoteKey(subj.subjectName);
         
         _state = State.InClass;
-        onClassStarted?.Invoke();
+        
+        Debug.Log($"[TeacherAction] ========================================");
+        Debug.Log($"[TeacherAction][{name}] UI_StartClass for subject: {subj.subjectName}");
+        Debug.Log($"[TeacherAction][{name}] onClassStarted is NULL? {(onClassStarted == null ? "YES" : "NO")}");
+        
+        // **FALLBACK: Gọi trực tiếp PlayerStatsUI nếu event không hoạt động**
+        var playerStatsUI = Object.FindFirstObjectByType<PlayerStatsUI>();
+        if (playerStatsUI != null)
+        {
+            Debug.Log($"[TeacherAction][{name}] ✓ Found PlayerStatsUI, calling ConsumeStaminaForClass directly");
+            playerStatsUI.ConsumeStaminaForClass();
+        }
+        else
+        {
+            Debug.LogWarning($"[TeacherAction][{name}] ✗ PlayerStatsUI NOT FOUND in scene!");
+        }
+        
+        if (onClassStarted != null)
+        {
+            int listenerCount = onClassStarted.GetPersistentEventCount();
+            Debug.Log($"[TeacherAction][{name}] Invoking onClassStarted event");
+            Debug.Log($"[TeacherAction][{name}] Persistent listeners count: {listenerCount}");
+            
+            // Log persistent listener info
+            for (int i = 0; i < listenerCount; i++)
+            {
+                var target = onClassStarted.GetPersistentTarget(i);
+                var methodName = onClassStarted.GetPersistentMethodName(i);
+                Debug.Log($"[TeacherAction][{name}]   Persistent[{i}]: {target?.GetType().Name}.{methodName}");
+            }
+            
+            onClassStarted.Invoke();
+            Debug.Log($"[TeacherAction][{name}] ✓ onClassStarted.Invoke() completed");
+        }
+        else
+        {
+            Debug.LogError($"[TeacherAction][{name}] ✗ onClassStarted is NULL! Cannot invoke!");
+        }
+        
+        Debug.Log($"[TeacherAction] ========================================");
         
         UI?.StartQuizForSubject(quizKey);
     }
@@ -514,10 +553,10 @@ public class TeacherAction : InteractableAction
             }
 
             string failMsg = $"Chưa đạt yêu cầu kiểm tra! Em chưa đạt điểm tối thiểu trong bài kiểm tra quá trình học. Buổi học này sẽ được tính là vắng mặt. Tài liệu buổi học đã được thêm vào Túi đồ. Lưu ý: Nếu vắng quá số buổi quy định, em sẽ bị cấm thi!";
-            
+
             UI?.OpenDialogue(TitleText(), failMsg);
             yield return new WaitForSecondsRealtime(4.5f);
-            
+
             if (att != null && att.HasExceededAbsences(subj.subjectName, GetTeacherSemester()))
             {
                 string warnMsg = $"Cảnh báo nghiêm trọng! Em đã vắng {att.GetAbsences(subj.subjectName, GetTeacherSemester())} buổi học môn {subj.subjectName}. Em đã bị cấm thi môn này do nghỉ quá số buổi quy định!";
@@ -525,7 +564,7 @@ public class TeacherAction : InteractableAction
                 UI?.OpenDialogue(TitleText(), warnMsg);
                 yield return new WaitForSecondsRealtime(3.0f);
             }
-            
+
             // **QUAN TRỌNG: Đóng dialogue VÀ unbind teacher**
             UI?.CloseDialogue(unbindTeacher: true);
             yield return new WaitForSecondsRealtime(0.5f);

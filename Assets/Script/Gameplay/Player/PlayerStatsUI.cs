@@ -40,8 +40,14 @@ public class PlayerStatsUI : BasePopUp
     public override void OnInitScreen()
     {
         base.OnInitScreen();
+        Debug.Log("[PlayerStatsUI] ========== OnInitScreen START ==========");
+        
         if (!clockUI) clockUI = FindFirstObjectByType<ClockUI>();
+        
+        // Load stamina từ PlayerPrefs
         currentStamina = PlayerPrefs.GetInt(staminaSaveKey, maxStamina);
+        Debug.Log($"[PlayerStatsUI] Loaded stamina from PlayerPrefs: {currentStamina}/{maxStamina} (key: {staminaSaveKey})");
+        
         ClampAndPaintStamina();
 
         UpdateSemesterTitle(true);
@@ -50,12 +56,38 @@ public class PlayerStatsUI : BasePopUp
             GameClock.Ins.OnTermChanged += OnTermChanged;
             GameClock.Ins.OnDayChanged += OnDayChanged;
         }
+        
+        // Đăng ký vào các TeacherAction
         RegisterToAllTeacherActions();
 
         UpdateGPA();
         SetMoney(100000);
         SetTrainingPoint(0);
         SetFriendlyPoint(0);
+        
+        Debug.Log("[PlayerStatsUI] ========== OnInitScreen END ==========");
+    }
+
+    /// <summary>
+    /// Refresh UI mỗi khi popup được mở để hiển thị giá trị mới nhất
+    /// </summary>
+    public override void OnShowScreen()
+    {
+        base.OnShowScreen();
+        Debug.Log("[PlayerStatsUI] ========== OnShowScreen START ==========");
+        
+        // Đọc lại stamina từ PlayerPrefs để đảm bảo hiển thị giá trị mới nhất
+        int oldStamina = currentStamina;
+        currentStamina = PlayerPrefs.GetInt(staminaSaveKey, maxStamina);
+        Debug.Log($"[PlayerStatsUI] Refreshed stamina: {oldStamina} -> {currentStamina}/{maxStamina}");
+        
+        ClampAndPaintStamina();
+        
+        // Refresh các thông tin khác
+        UpdateSemesterTitle(true);
+        UpdateGPA();
+        
+        Debug.Log("[PlayerStatsUI] ========== OnShowScreen END ==========");
     }
 
     void Update()
@@ -82,17 +114,42 @@ public class PlayerStatsUI : BasePopUp
     void RegisterToAllTeacherActions()
     {
         var teacherActions = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
+        Debug.Log($"[PlayerStatsUI] ========== REGISTRATION START ==========");
+        Debug.Log($"[PlayerStatsUI] Found {teacherActions.Length} TeacherAction(s) in scene");
+        
         foreach (var teacher in teacherActions)
-            if (teacher.onClassFinished != null)
-                teacher.onClassFinished.AddListener(ConsumeStaminaForClass);
+        {
+            if (teacher == null)
+            {
+                Debug.LogWarning($"[PlayerStatsUI] ✗ Null TeacherAction found!");
+                continue;
+            }
+            
+            // **SỬA: Trừ stamina ngay khi BẮT ĐẦU học, không phải khi kết thúc**
+            if (teacher.onClassStarted != null)
+            {
+                teacher.onClassStarted.AddListener(ConsumeStaminaForClass);
+                Debug.Log($"[PlayerStatsUI] ✓ Registered to {teacher.name}.onClassStarted (Total listeners: {teacher.onClassStarted.GetPersistentEventCount()})");
+            }
+            else
+            {
+                Debug.LogError($"[PlayerStatsUI] ✗ {teacher.name}.onClassStarted is NULL!");
+            }
+        }
+        
+        Debug.Log($"[PlayerStatsUI] ========== REGISTRATION END ==========");
     }
 
     void UnregisterFromAllTeacherActions()
     {
         var teacherActions = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
+        Debug.Log($"[PlayerStatsUI] Unregistering from {teacherActions.Length} TeacherAction(s)");
+        
         foreach (var teacher in teacherActions)
-            if (teacher?.onClassFinished != null)
-                teacher.onClassFinished.RemoveListener(ConsumeStaminaForClass);
+        {
+            if (teacher?.onClassStarted != null)
+                teacher.onClassStarted.RemoveListener(ConsumeStaminaForClass);
+        }
     }
 
     // ======== GPA Ranking ========
@@ -118,7 +175,7 @@ public class PlayerStatsUI : BasePopUp
     public string GetRankDescription(string rank) => rank switch
     {
         "Xuất sắc" => "GPA: 3.6 - 4.0",
-        "Giỏi" => "GPA: 3.2 - 3.59",
+        "Giởi" => "GPA: 3.2 - 3.59",
         "Khá" => "GPA: 2.5 - 3.19",
         "Trung bình" => "GPA: 2.0 - 2.49",
         "Yếu" => "GPA: Dưới 2.0",
@@ -213,33 +270,90 @@ public class PlayerStatsUI : BasePopUp
 
     public bool TrySpendStamina(int amount)
     {
+        Debug.Log($"[PlayerStatsUI] TrySpendStamina({amount}) - Current: {currentStamina}, Max: {maxStamina}");
+        
         amount = Mathf.Max(0, amount);
-        if (currentStamina < amount) return false;
+        if (currentStamina < amount)
+        {
+            Debug.LogWarning($"[PlayerStatsUI] ✗ NOT ENOUGH STAMINA! Need: {amount}, Have: {currentStamina}");
+            return false;
+        }
+        
+        int oldStamina = currentStamina;
         currentStamina -= amount;
+        
+        Debug.Log($"[PlayerStatsUI] ✓ Stamina spent! {oldStamina} -> {currentStamina} (spent: {amount})");
+        
         PaintStamina();
         SaveStamina();
+        
+        // Verify save
+        int savedValue = PlayerPrefs.GetInt(staminaSaveKey, -1);
+        Debug.Log($"[PlayerStatsUI] Verified PlayerPrefs[{staminaSaveKey}] = {savedValue}");
+        
         return true;
     }
 
     public void ConsumeStaminaForClass()
     {
-        TrySpendStamina(staminaPerClass);
+        Debug.Log("[PlayerStatsUI] ========================================");
+        Debug.Log("[PlayerStatsUI] ⚡⚡⚡ ConsumeStaminaForClass CALLED! ⚡⚡⚡");
+        Debug.Log($"[PlayerStatsUI] Current stamina BEFORE: {currentStamina}/{maxStamina}");
+        Debug.Log($"[PlayerStatsUI] Stamina per class: {staminaPerClass}");
+        Debug.Log($"[PlayerStatsUI] PlayerPrefs BEFORE: {PlayerPrefs.GetInt(staminaSaveKey, -999)}");
+        
+        // **SỬA: Luôn trừ stamina khi bắt đầu học, bất kể kết quả quiz sau này**
+        bool success = TrySpendStamina(staminaPerClass);
+        
+        Debug.Log($"[PlayerStatsUI] Stamina consumed: {(success ? "✓ SUCCESS" : "✗ FAILED - Not enough stamina")}");
+        Debug.Log($"[PlayerStatsUI] Current stamina AFTER: {currentStamina}/{maxStamina}");
+        Debug.Log($"[PlayerStatsUI] PlayerPrefs AFTER: {PlayerPrefs.GetInt(staminaSaveKey, -999)}");
+        Debug.Log($"[PlayerStatsUI] UI Text: {(numberStamina != null ? numberStamina.text : "NULL")}");
+        Debug.Log("[PlayerStatsUI] ========================================");
     }
 
     private void ClampAndPaintStamina()
     {
+        int oldStamina = currentStamina;
         currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+        
+        if (oldStamina != currentStamina)
+        {
+            Debug.Log($"[PlayerStatsUI] ClampAndPaintStamina: Clamped {oldStamina} -> {currentStamina}");
+        }
+        
         PaintStamina();
     }
 
     private void PaintStamina()
     {
-        if (numberStamina) numberStamina.text = $"{currentStamina} / {maxStamina}";
+        if (numberStamina)
+        {
+            string newText = $"{currentStamina} / {maxStamina}";
+            Debug.Log($"[PlayerStatsUI] PaintStamina: Setting text to '{newText}'");
+            numberStamina.text = newText;
+        }
+        else
+        {
+            Debug.LogError("[PlayerStatsUI] PaintStamina: numberStamina TMP_Text is NULL!");
+        }
     }
 
     private void SaveStamina()
     {
+        Debug.Log($"[PlayerStatsUI] SaveStamina: Saving {currentStamina} to key '{staminaSaveKey}'");
         PlayerPrefs.SetInt(staminaSaveKey, currentStamina);
         PlayerPrefs.Save();
+        
+        // Verify save
+        int verified = PlayerPrefs.GetInt(staminaSaveKey, -1);
+        if (verified != currentStamina)
+        {
+            Debug.LogError($"[PlayerStatsUI] ✗ SAVE FAILED! Expected: {currentStamina}, Got: {verified}");
+        }
+        else
+        {
+            Debug.Log($"[PlayerStatsUI] ✓ Save verified: {verified}");
+        }
     }
 }
