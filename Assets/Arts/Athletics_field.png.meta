@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5670e1b78d58f7845b18d485905040d9
+guid: 1aa7e830258b7b1458d804be1a6244c9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Thumbnail_0
+      name: Athletics_field_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 0
-        width: 263
-        height: 569
+        x: 19
+        y: 24
+        width: 982
+        height: 980
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f92bd0edcd9045b4fb14149165720c45
-      internalID: 25465946
+      spriteID: 6eecdfbe7bc48904382b8eebcb33d4a0
+      internalID: -2105714382
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9ba0382e08fe73043b4c53459557cdfe
+    spriteID: 64db0418e119cf047bc58475268d5186
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Thumbnail_0: 25465946
+      Athletics_field_0: -2105714382
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
