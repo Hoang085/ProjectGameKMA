@@ -20,6 +20,10 @@ public class GameClock : Singleton<GameClock>
     [Tooltip("1 phút TRONG GAME = X giây THẬT (unscaled time)")]
     [Min(0.01f)] public float secondsPerGameMinute = 30f;
 
+    [Header("Pause Control")]
+    [Tooltip("Khi true, GameClock sẽ tạm dừng (không tính thời gian)")]
+    [SerializeField] private bool _isPaused = false;
+
     [Header("Session (slot) boundaries - start minutes")]
     public int tSession1 = 7 * 60;
     public int tSession2 = 9 * 60 + 30;
@@ -38,6 +42,11 @@ public class GameClock : Singleton<GameClock>
     public DaySlot Slot => _slot;
     public int MinuteOfDay => _minuteOfDay;
     public int SlotIndex1Based => ((int)_slot) + 1;
+    
+    /// <summary>
+    /// Kiểm tra xem GameClock có đang bị tạm dừng không
+    /// </summary>
+    public bool IsPaused => _isPaused;
 
     // EVENTS
     public event Action OnSlotChanged, OnDayChanged, OnWeekChanged, OnTermChanged, OnYearChanged;
@@ -66,6 +75,12 @@ public class GameClock : Singleton<GameClock>
 
     void Update()
     {
+        // **MỚI: Kiểm tra pause trước khi tính thời gian**
+        if (_isPaused)
+        {
+            return; // Không tính thời gian khi pause
+        }
+        
         // dùng unscaled time để không bị ảnh hưởng bởi Time.timeScale
         _secAcc += Time.unscaledDeltaTime;
         if (_secAcc >= secondsPerGameMinute)
@@ -392,4 +407,35 @@ public class GameClock : Singleton<GameClock>
 
     public bool IsSchedulableSlot(DaySlot s) =>
         config != null && !((System.Collections.Generic.IReadOnlyList<DaySlot>)config.BlockedSlots).Contains(s);
+    
+    // ====== PAUSE/RESUME CONTROL ======
+    
+    /// <summary>
+    /// Tạm dừng GameClock (thời gian sẽ không chạy)
+    /// </summary>
+    public void Pause()
+    {
+        if (_isPaused) return;
+        _isPaused = true;
+        Debug.Log("[GameClock] Đã tạm dừng");
+    }
+    
+    /// <summary>
+    /// Tiếp tục chạy GameClock sau khi pause
+    /// </summary>
+    public void Resume()
+    {
+        if (!_isPaused) return;
+        _isPaused = false;
+        Debug.Log("[GameClock] Đã tiếp tục");
+    }
+    
+    /// <summary>
+    /// Set trạng thái pause/resume theo tham số
+    /// </summary>
+    public void SetPaused(bool paused)
+    {
+        if (paused) Pause();
+        else Resume();
+    }
 }
