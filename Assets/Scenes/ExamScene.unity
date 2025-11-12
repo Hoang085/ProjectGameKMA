@@ -1030,81 +1030,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232677198}
   m_CullTransparentMesh: 1
---- !u!1 &260488604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 260488605}
-  - component: {fileID: 260488607}
-  - component: {fileID: 260488606}
-  m_Layer: 5
-  m_Name: IconFeeling
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &260488605
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260488604}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1814616164}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -221, y: -109}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &260488606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260488604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 1973537373, guid: 042bae6afdf769546b48f445d6a8665b, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &260488607
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260488604}
-  m_CullTransparentMesh: 1
 --- !u!1 &265778780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,28 +1662,16 @@ MonoBehaviour:
   exams:
   - displayName: "To\xE1n Cao C\u1EA5p"
     resourcePath: Exams/ToanCaoCap
-    semesterIndex: 0
-    subjectKey: 
   - displayName: "Ti\u1EBFng Anh 1"
     resourcePath: Exams/TiengAnh1
-    semesterIndex: 0
-    subjectKey: 
   - displayName: "T\u01B0 t\u01B0\u1EDFng HCM"
     resourcePath: Exams/TuTuongHCM
-    semesterIndex: 0
-    subjectKey: 
   - displayName: "L\u1EADp Tr\xECnh C\u0103n B\u1EA3n"
     resourcePath: Exams/LapTrinhCanBan
-    semesterIndex: 1
-    subjectKey: 
   - displayName: "To\xE1n Cao C\u1EA5p 2"
     resourcePath: Exams/ToanCaoCap2
-    semesterIndex: 1
-    subjectKey: 
   - displayName: "V\u1EADt L\xFD \u0110\u1EA1i C\u01B0\u01A1ng"
     resourcePath: Exams/VatLyDaiCuong
-    semesterIndex: 1
-    subjectKey: 
   subjectIndex: 3
   examFileName: Exams/ToanCaoCap
 --- !u!4 &486868433
@@ -2365,8 +2278,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 491902220}
   m_HandleRect: {fileID: 491902219}
   m_Direction: 2
-  m_Value: -0.010204081
-  m_Size: 0.99998593
+  m_Value: -0.2244898
+  m_Size: 0.9999755
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4320,7 +4233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0030040836}
+  m_AnchoredPosition: {x: 0, y: 0.0036549524}
   m_SizeDelta: {x: 0, y: 212.34}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &907055453
@@ -7297,7 +7210,6 @@ RectTransform:
   m_Children:
   - {fileID: 288358299}
   - {fileID: 879436260}
-  - {fileID: 260488605}
   m_Father: {fileID: 1903314260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
