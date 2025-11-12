@@ -33,6 +33,7 @@ public class InteractableZone : MonoBehaviour
     [SerializeField] private bool restoreStamina = true;                // Bật/tắt tính năng hồi thể lực
     [SerializeField] private int staminaRestoreAmount = 30;             // Lượng thể lực hồi phục
     [SerializeField] private string staminaNotificationMessage = "Bạn đã được hồi thêm {0} thể lực!";
+    [SerializeField] private string staminaFullMessage = "Thể lực của bạn đã đầy!";  // **MỚI: Thông báo khi đầy**
     [SerializeField] private string staminaSaveKey = "PLAYER_STAMINA";
     [SerializeField] private int maxStamina = 100;
 
@@ -184,7 +185,16 @@ public class InteractableZone : MonoBehaviour
 
         Debug.Log($"[InteractableZone] Stamina: {oldStamina} → {currentStamina} (+{actualRestored})");
         RefreshPlayerStatsUIIfOpen();
-        ShowStaminaNotification(actualRestored);
+        
+        // **SỬA: Hiển thị thông báo phù hợp**
+        if (actualRestored > 0)
+        {
+            ShowStaminaNotification(actualRestored);
+        }
+        else
+        {
+            ShowStaminaFullNotification();
+        }
     }
 
     private void RefreshPlayerStatsUIIfOpen()
@@ -207,17 +217,27 @@ public class InteractableZone : MonoBehaviour
 
     private void ShowStaminaNotification(int actualAmount)
     {
-        if (actualAmount <= 0)
-        {
-            Debug.Log("[InteractableZone] Stamina đã đầy, không hiện thông báo");
-            return;
-        }
-
         if (NotificationPopupSpawner.Ins != null)
         {
             string message = string.Format(staminaNotificationMessage, actualAmount);
             NotificationPopupSpawner.Ins.Enqueue(message);
             Debug.Log($"[InteractableZone] Đã gửi notification: {message}");
+        }
+        else
+        {
+            Debug.LogWarning("[InteractableZone] NotificationPopupSpawner không khả dụng!");
+        }
+    }
+    
+    /// <summary>
+    /// **MỚI: Hiển thị thông báo khi thể lực đã đầy**
+    /// </summary>
+    private void ShowStaminaFullNotification()
+    {
+        if (NotificationPopupSpawner.Ins != null)
+        {
+            NotificationPopupSpawner.Ins.Enqueue(staminaFullMessage);
+            Debug.Log($"[InteractableZone] Đã gửi notification: {staminaFullMessage}");
         }
         else
         {

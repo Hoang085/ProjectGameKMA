@@ -44,6 +44,7 @@ public static class ExamResultStorageFile
             var json = JsonUtility.ToJson(db, true);
             var dir = Path.GetDirectoryName(FilePath);
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+            Debug.Log("[ExamResultStorageFile] Saving to: " + FilePath);
 
             var tmp = FilePath + ".tmp";
             File.WriteAllText(tmp, json);
@@ -85,10 +86,11 @@ public static class ExamResultStorageFile
         for (int i = 0; i < db.entries.Count; i++)
         {
             var a = db.entries[i];
+            string retakeMarker = a.isRetake ? " [THI LẠI]" : "";
             sb.AppendLine(
                 $"#{i + 1} | {a.subjectName} ({a.subjectKey}) | {a.examTitle} | " +
                 $"{a.score10:0.0}/10, {a.score4:0.0}/4, {a.letter} | " +
-                $"{a.correct}/{a.total} câu đúng | {a.takenAtIso}"
+                $"{a.correct}/{a.total} câu đúng | {a.takenAtIso}{retakeMarker}"
             );
         }
         Debug.Log(sb.ToString());
@@ -183,6 +185,70 @@ public static class ExamResultStorageFile
 
     public static float GetLatestScore10Cached(string subjectKey, float defaultValue = -1f)
         => PlayerPrefs.GetFloat(LatestScorePrefix + subjectKey, defaultValue);
+
+    /// <summary>
+    /// **MỚI: Kiểm tra xem có lần thi đầu (không phải retake) trượt (< 4.0) không**
+    /// </summary>
+    public static bool HasFailedOriginalExam(string subjectKey)
+    {
+        var allAttempts = GetAllForSubject(subjectKey);
+        
+        // Tìm lần thi đầu (isRetake = false)
+        foreach (var attempt in allAttempts)
+        {
+            if (!attempt.isRetake)
+            {
+                return attempt.score10 < 4.0f;
+            }
+        }
+        
+        return false;
+    }
+
+    /// <summary>
+    /// **MỚI: Kiểm tra xem đã thi lại chưa**
+    /// </summary>
+    public static bool HasRetakeAttempt(string subjectKey)
+    {
+        var allAttempts = GetAllForSubject(subjectKey);
+        foreach (var attempt in allAttempts)
+        {
+            if (attempt.isRetake) return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// **MỚI: Lấy kết quả thi lần đầu (không phải retake)**
+    /// </summary>
+    public static ExamAttempt GetOriginalAttempt(string subjectKey)
+    {
+        var allAttempts = GetAllForSubject(subjectKey);
+
+        // Tìm attempt không phải retake gần nhất
+        foreach (var attempt in allAttempts)
+        {
+            if (!attempt.isRetake) return attempt;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// **MỚI: Lấy kết quả thi lại (nếu có)**
+    /// </summary>
+    public static ExamAttempt GetRetakeAttempt(string subjectKey)
+    {
+        var allAttempts = GetAllForSubject(subjectKey);
+
+        // Tìm attempt là retake
+        foreach (var attempt in allAttempts)
+        {
+            if (attempt.isRetake) return attempt;
+        }
+
+        return null;
+    }
 
     public static void ClearAll()   // cẩn thận khi gọi
     {

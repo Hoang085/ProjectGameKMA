@@ -31,6 +31,10 @@ public class GameUIManager : Singleton<GameUIManager>
     [SerializeField] private Button btnScoreIcon;
     [SerializeField] private Button btnScheduleIcon; // Thêm button lịch học
     [SerializeField] private Button btnSettingIcon;  // Thêm button cài đặt
+    
+    [Header("Exam Buttons (in Dialogue)")]
+    [Tooltip("Nút 'Thi lại' - cho thi lại khi đã thi trượt")]
+    [SerializeField] private Button btnExamAgain;
 
     [Header("Backpack/Balo")]
     public BackpackUIManager backpackUIManager;
@@ -134,6 +138,18 @@ public class GameUIManager : Singleton<GameUIManager>
             return;
         }
         _activeTeacher.UI_TakeExam();
+    }
+    
+    /// <summary>
+    /// **MỚI: Xử lý nút "Thi lại" - riêng biệt với nút "Vào thi"**
+    /// </summary>
+    public void OnClick_TakeRetakeExam()
+    {
+        if (_activeTeacher == null)
+        {
+            return;
+        }
+        _activeTeacher.UI_TakeRetakeExam();
     }
 
     // Bat dau lop hoc khi nhan nut
@@ -351,11 +367,16 @@ public class GameUIManager : Singleton<GameUIManager>
         // Đăng ký sự kiện cho nút đóng dialogue
         if (btnCloseDialogue != null)
             btnCloseDialogue.onClick.AddListener(OnClick_CloseDialogue);
+        
+        // **MỚI: Đăng ký sự kiện cho nút "Thi lại"**
+        if (btnExamAgain != null)
+            btnExamAgain.onClick.AddListener(OnClick_TakeRetakeExam);
     }
 
     void Start()
     {
-
+        // **MỚI: Kiểm tra xem có cần hiển thị message sau khi thi không**
+        CheckAndShowPostExamMessage();
     }
 
     void Update()
@@ -419,6 +440,10 @@ public class GameUIManager : Singleton<GameUIManager>
 
         if (btnCloseDialogue != null)
             btnCloseDialogue.onClick.RemoveListener(OnClick_CloseDialogue);
+        
+        // **MỚI: Hủy đăng ký listener cho nút "Thi lại"**
+        if (btnExamAgain != null)
+            btnExamAgain.onClick.RemoveListener(OnClick_TakeRetakeExam);
 
         if (GameClock.Ins != null)
             GameClock.Ins.OnTermChanged -= HandleTermChanged_EOS;
@@ -570,5 +595,228 @@ public class GameUIManager : Singleton<GameUIManager>
         _openPopupCount--;
         if (_openPopupCount < 0) _openPopupCount = 0; // Safety check
         Debug.Log($"[GameUIManager] Popup closed. Total open popups: {_openPopupCount}");
+    }
+    
+    /// <summary>
+    /// **MỚI: Kiểm tra và hiển thị message sau khi thi**
+    /// </summary>
+    private void CheckAndShowPostExamMessage()
+    {
+        // Kiểm tra xem có kết quả thi nào cần hiển thị không
+        if (!PlayerPrefs.HasKey("LAST_EXAM_SUBJECT_KEY"))
+        {
+            return;
+        }
+        
+        string subjectKey = PlayerPrefs.GetString("LAST_EXAM_SUBJECT_KEY", "");
+        string subjectName = PlayerPrefs.GetString("LAST_EXAM_SUBJECT_NAME", "");
+        float score = PlayerPrefs.GetFloat("LAST_EXAM_SCORE", 0f);
+        bool isRetake = PlayerPrefs.GetInt("LAST_EXAM_IS_RETAKE", 0) == 1;
+        bool passed = PlayerPrefs.GetInt("LAST_EXAM_PASSED", 0) == 1;
+        
+        // Xóa các PlayerPrefs để không hiển thị lại
+        PlayerPrefs.DeleteKey("LAST_EXAM_SUBJECT_KEY");
+        PlayerPrefs.DeleteKey("LAST_EXAM_SUBJECT_NAME");
+        PlayerPrefs.DeleteKey("LAST_EXAM_SCORE");
+        PlayerPrefs.DeleteKey("LAST_EXAM_IS_RETAKE");
+        PlayerPrefs.DeleteKey("LAST_EXAM_PASSED");
+        PlayerPrefs.Save();
+        
+        // Xây dựng message
+        string message = "";
+        
+        if (isRetake)
+        {
+            // **MỚI: Xóa flag NEEDS_RETAKE_SCHEDULE sau khi thi lại xong (dù đạt hay không)**
+            PlayerPrefs.DeleteKey($"NEEDS_RETAKE_SCHEDULE_{subjectKey}");
+            PlayerPrefs.Save();
+            
+            // Đây là kết quả thi lại
+            if (passed)
+            {
+                message = $"Chúc mừng! Em đã đạt {score:0.0} điểm trong lần thi lại môn {subjectName}.\n\nĐiểm cuối cùng của em: {score:0.0}/10";
+            }
+            else
+            {
+                message = $"Rất tiếc! Em đã không đạt yêu cầu trong lần thi lại môn {subjectName} (Điểm: {score:0.0}/10).\n\nĐây là cơ hội cuối cùng của em và em đã không vượt qua.";
+            }
+        }
+        else
+        {
+            // Đây là lần thi đầu
+            if (passed)
+            {
+                message = $"Chúc mừng! Em đã hoàn thành kỳ thi môn {subjectName} với điểm {score:0.0}/10.";
+            }
+            else
+            {
+                // **QUAN TRỌNG: Tạo lịch thi lại NGAY và hiển thị chi tiết**
+                message = $"Em đã thi trượt môn {subjectName} với điểm {score:0.0}/10 (Yêu cầu: >= 4.0).\n\n";
+                
+                // Tạo lịch thi lại và lấy thông tin
+                string retakeScheduleInfo = CreateRetakeScheduleAndGetInfo(subjectKey, subjectName);
+                
+                if (!string.IsNullOrEmpty(retakeScheduleInfo))
+                {
+                    message += $"Em sẽ có cơ hội thi lại:{retakeScheduleInfo}. Hãy đến đúng giờ!";
+                    
+                    // Set flag để TeacherAction biết có lịch thi lại
+                    PlayerPrefs.SetInt($"NEEDS_RETAKE_SCHEDULE_{subjectKey}", 1);
+                    PlayerPrefs.Save();
+                }
+                else
+                {
+                    message += "Không thể tạo lịch thi lại tự động. Vui lòng liên hệ giảng viên.";
+                }
+            }
+        }
+        
+        // Hiển thị message với delay nhỏ
+        StartCoroutine(ShowPostExamMessageDelayed(message));
+    }
+    
+    /// <summary>
+    /// **MỚI: Hiển thị message sau khi thi với delay**
+    /// </summary>
+    private System.Collections.IEnumerator ShowPostExamMessageDelayed(string message)
+    {
+        // Đợi 1 giây để scene load xong hoàn toàn
+        yield return new WaitForSeconds(1.0f);
+        
+        OpenDialogue("Kết quả thi", message);
+    }
+    
+    /// <summary>
+    /// **MỚI: Tạo lịch thi lại và trả về thông tin để hiển thị**
+    /// </summary>
+    private string CreateRetakeScheduleAndGetInfo(string subjectKey, string subjectName)
+    {
+        int term = GameClock.Ins != null ? GameClock.Ins.Term : 1;
+        string examPrefix = $"T{term}_EXAM_{subjectKey}";
+        
+        // Lấy lịch thi lần đầu
+        int examTerm = PlayerPrefs.GetInt($"{examPrefix}_term", 0);
+        int examWeek = PlayerPrefs.GetInt($"{examPrefix}_week", 0);
+        int examDayInt = PlayerPrefs.GetInt($"{examPrefix}_day", 0);
+        int examSlot = PlayerPrefs.GetInt($"{examPrefix}_slot1Based", 0);
+        
+        if (examTerm <= 0 || examWeek <= 0)
+        {
+            Debug.LogError($"[GameUIManager] Không tìm thấy lịch thi đầu cho {subjectName}");
+            return null;
+        }
+        
+        Weekday examDay = (Weekday)examDayInt;
+        
+        // **SỬA: Tìm TeacherAction trong scene để lấy SemesterConfig**
+        SemesterConfig semesterConfig = FindSemesterConfigForTerm(examTerm);
+        if (semesterConfig == null)
+        {
+            Debug.LogError($"[GameUIManager] Không tìm thấy SemesterConfig cho kỳ {examTerm}");
+            return null;
+        }
+        
+        int weeksPerTerm = semesterConfig.Weeks > 0 ? semesterConfig.Weeks : 5;
+        
+        // Tìm ca gần nhất sau lịch thi đầu
+        bool found = false;
+        int retakeTerm = examTerm;
+        int retakeWeek = examWeek;
+        Weekday retakeDay = Weekday.Mon;
+        int retakeSlot = 1;
+        
+        for (int w = examWeek; w <= weeksPerTerm; w++)
+        {
+            int startDay = (w == examWeek) ? ((int)examDay) : (int)Weekday.Mon;
+            
+            for (int d = startDay; d <= (int)Weekday.Sun; d++)
+            {
+                int startSlot = (w == examWeek && d == (int)examDay) ? (examSlot + 1) : 1;
+                
+                for (int sIdx = startSlot; sIdx <= 5; sIdx++)
+                {
+                    if (ScheduleResolver.IsSessionMatch(semesterConfig, subjectName, (Weekday)d, sIdx))
+                    {
+                        retakeWeek = w;
+                        retakeDay = (Weekday)d;
+                        retakeSlot = sIdx;
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) break;
+            }
+            if (found) break;
+        }
+        
+        if (!found)
+        {
+            Debug.LogWarning($"[GameUIManager] Không tìm thấy ca thi lại cho {subjectName}");
+            return null;
+        }
+        
+        // Lưu lịch thi lại vào PlayerPrefs
+        string retakePrefix = $"T{term}_RETAKE_{subjectKey}";
+        PlayerPrefs.SetInt($"{retakePrefix}_term", retakeTerm);
+        PlayerPrefs.SetInt($"{retakePrefix}_week", retakeWeek);
+        PlayerPrefs.SetInt($"{retakePrefix}_day", (int)retakeDay);
+        PlayerPrefs.SetInt($"{retakePrefix}_slot1Based", retakeSlot);
+        PlayerPrefs.DeleteKey($"{retakePrefix}_missed");
+        PlayerPrefs.DeleteKey($"{retakePrefix}_taken");
+        PlayerPrefs.Save();
+        
+        // **SỬA: Xây dựng thông tin hiển thị trên 1 dòng (chỉ Thứ, Ca, Giờ)**
+        string dayVN = DataKeyText.VN_Weekday(retakeDay);
+        int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(retakeSlot));
+        string timeStr = DataKeyText.FormatHM(startMin);
+        
+        string info = $" {dayVN} - Ca {retakeSlot} ({timeStr})";
+        
+        Debug.Log($"[GameUIManager] ✓ Đã tạo lịch thi lại cho {subjectName}: {dayVN} ca {retakeSlot} ({timeStr}) - Tuần {retakeWeek}");
+        
+        return info;
+    }
+    
+    /// <summary>
+    /// **MỚI: Tìm SemesterConfig cho kỳ học từ TeacherAction trong scene**
+    /// </summary>
+    private SemesterConfig FindSemesterConfigForTerm(int term)
+    {
+        // Thử tìm trong Resources trước (nếu có cấu trúc thư mục đúng)
+        SemesterConfig config = Resources.Load<SemesterConfig>($"Semester{term}Config");
+        if (config != null)
+        {
+            Debug.Log($"[GameUIManager] ✓ Loaded SemesterConfig từ Resources: Semester{term}Config");
+            return config;
+        }
+        
+        // Fallback: Tìm TeacherAction trong scene
+        TeacherAction[] teachers = Object.FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
+        
+        foreach (var teacher in teachers)
+        {
+            // Kiểm tra xem teacher này có SemesterConfig cho kỳ hiện tại không
+            if (teacher.semesterConfig != null && teacher.semesterConfig.Semester == term)
+            {
+                Debug.Log($"[GameUIManager] ✓ Found SemesterConfig từ TeacherAction: {teacher.name}");
+                return teacher.semesterConfig;
+            }
+        }
+        
+        Debug.LogWarning($"[GameUIManager] Không tìm thấy SemesterConfig cho kỳ {term}");
+        return null;
+    }
+    
+    /// <summary>
+    /// **MỚI: Cập nhật trạng thái hiển thị nút "Thi lại"**
+    /// Nút "Vào thi" luôn hiển thị, chỉ nút "Thi lại" cần điều khiển
+    /// </summary>
+    public void UpdateExamButtonsVisibility(bool showRetake)
+    {
+        if (btnExamAgain != null)
+        {
+            btnExamAgain.gameObject.SetActive(showRetake);
+            Debug.Log($"[GameUIManager] Nút 'Thi lại': {(showRetake ? "HIỆN" : "ẨN")}");
+        }
     }
 }
