@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     private const string KEY_SAVE_EXISTS = "SaveExists";
+    private const string KEY_SHOW_TUTORIAL = "ShowTutorial"; // **MỚI: Flag để hiển thị tutorial**
+    
     [SerializeField] private GameObject continueButton;
     [SerializeField] private float delayBeforeShow = 2f;
 
@@ -45,6 +47,7 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt(KEY_SAVE_EXISTS, 2);
+        PlayerPrefs.SetInt(KEY_SHOW_TUTORIAL, 1); // **MỚI: Set flag để hiển thị tutorial khi vào game**
         PlayerPrefs.Save();
         ExamResultStorageFile.ClearAll();
         SceneLoader.Load("GameScene");

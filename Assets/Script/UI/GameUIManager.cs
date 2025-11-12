@@ -29,21 +29,19 @@ public class GameUIManager : Singleton<GameUIManager>
     [SerializeField] private Button btnBaloIcon;
     [SerializeField] private Button btnTaskIcon;
     [SerializeField] private Button btnScoreIcon;
-    [SerializeField] private Button btnScheduleIcon; // Thêm button lịch học
-    [SerializeField] private Button btnSettingIcon;  // Thêm button cài đặt
+    [SerializeField] private Button btnScheduleIcon;
+    [SerializeField] private Button btnSettingIcon; 
+    [SerializeField] private Button btnTutorialIcon; 
     
     [Header("Exam Buttons (in Dialogue)")]
     [Tooltip("Nút 'Thi lại' - cho thi lại khi đã thi trượt")]
     [SerializeField] private Button btnExamAgain;
 
-    [Header("Backpack/Balo")]
-    public BackpackUIManager backpackUIManager;
-
     [Header("Quiz System")]
     public QuizGameManager quizGameManager;
 
-    [Header("End Of Semester")]
-    [SerializeField] private EndOfSemesterNotice endOfSemesterNotice; // component trên object trên
+    [Header("Tutorial")]
+    [SerializeField] private TutorialPlayer tutorialPlayer; 
 
     // ========== THEO DÕI TRẠNG THÁI UI ==========
     /// <summary>
@@ -343,6 +341,19 @@ public class GameUIManager : Singleton<GameUIManager>
     }
 
     /// <summary>
+    /// **MỚI: Xử lý click nút Tutorial**
+    /// </summary>
+    public void OnClick_TutorialIcon()
+    {
+        if (_dialogueOpen)
+        {
+            return;
+        }
+        
+        ShowTutorial();
+    }
+
+    /// <summary>
     /// Đóng tất cả UI thống kê (trừ dialogue và interact prompt)
     /// </summary>
     public void CloseDialogUI()
@@ -377,6 +388,9 @@ public class GameUIManager : Singleton<GameUIManager>
     {
         // **MỚI: Kiểm tra xem có cần hiển thị message sau khi thi không**
         CheckAndShowPostExamMessage();
+        
+        // **MỚI: Kiểm tra và hiển thị tutorial nếu là người chơi mới**
+        CheckAndShowTutorial();
     }
 
     void Update()
@@ -413,6 +427,10 @@ public class GameUIManager : Singleton<GameUIManager>
 
         if (btnSettingIcon != null)
             btnSettingIcon.onClick.AddListener(OnClick_SettingIcon);
+
+        // **MỚI: Đăng ký sự kiện cho nút Tutorial**
+        if (btnTutorialIcon != null)
+            btnTutorialIcon.onClick.AddListener(OnClick_TutorialIcon);
     }
 
     /// <summary>
@@ -438,6 +456,10 @@ public class GameUIManager : Singleton<GameUIManager>
         if (btnSettingIcon != null)
             btnSettingIcon.onClick.RemoveListener(OnClick_SettingIcon);
 
+        // **MỚI: Hủy đăng ký sự kiện cho nút Tutorial**
+        if (btnTutorialIcon != null)
+            btnTutorialIcon.onClick.RemoveListener(OnClick_TutorialIcon);
+
         if (btnCloseDialogue != null)
             btnCloseDialogue.onClick.RemoveListener(OnClick_CloseDialogue);
         
@@ -451,8 +473,6 @@ public class GameUIManager : Singleton<GameUIManager>
 
     private void HandleTermChanged_EOS()
     {
-        if (endOfSemesterNotice == null) return;
-
         int term = GameClock.Ins != null ? GameClock.Ins.Term : 1;
         EndOfSemesterNotice.TryShowForTerm(term);
     }
@@ -818,5 +838,53 @@ public class GameUIManager : Singleton<GameUIManager>
             btnExamAgain.gameObject.SetActive(showRetake);
             Debug.Log($"[GameUIManager] Nút 'Thi lại': {(showRetake ? "HIỆN" : "ẨN")}");
         }
+    }
+    
+    /// <summary>
+    /// **MỚI: Kiểm tra và hiển thị tutorial nếu là người chơi mới**
+    /// </summary>
+    private void CheckAndShowTutorial()
+    {
+        // Kiểm tra xem có flag hiển thị tutorial không
+        if (PlayerPrefs.GetInt("ShowTutorial", 0) == 1)
+        {
+            // Xóa flag để không hiển thị lại
+            PlayerPrefs.DeleteKey("ShowTutorial");
+            PlayerPrefs.Save();
+            
+            // Hiển thị tutorial với delay nhỏ
+            StartCoroutine(ShowTutorialDelayed());
+        }
+    }
+    
+    /// <summary>
+    /// **MỚI: Hiển thị tutorial với delay**
+    /// </summary>
+    private System.Collections.IEnumerator ShowTutorialDelayed()
+    {
+        // Đợi 0.5 giây để scene load xong hoàn toàn
+        yield return new WaitForSeconds(0.5f);
+        
+        ShowTutorial();
+    }
+    
+    /// <summary>
+    /// **MỚI: Hiển thị tutorial popup**
+    /// </summary>
+    public void ShowTutorial()
+    {
+        if (tutorialPlayer == null)
+        {
+            Debug.LogWarning("[GameUIManager] TutorialPlayer chưa được gán trong Inspector!");
+            return;
+        }
+        
+        // Kích hoạt TutorialPlayer GameObject (để hoạt động ngay cả khi ban đầu tắt)
+        tutorialPlayer.gameObject.SetActive(true);
+        
+        // **QUAN TRỌNG: Đưa TutorialPlayer lên trên cùng để hiển thị đúng**
+        tutorialPlayer.transform.SetAsLastSibling();
+        
+        Debug.Log("[GameUIManager] ✓ Tutorial đã được hiển thị");
     }
 }
