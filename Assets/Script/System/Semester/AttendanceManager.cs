@@ -226,7 +226,7 @@ public class AttendanceManager : MonoBehaviour
         int v = PlayerPrefs.GetInt(k, 0) + 1;
         PlayerPrefs.SetInt(k, v);
         PlayerPrefs.Save();
-        Debug.Log($"[AttendanceManager] ⚠ Increased absence for {subjectName} (Term {term}): {v - 1} → {v}");
+        Debug.Log($"[AttendanceManager] Increased absence for {subjectName} (Term {term}): {v - 1} → {v}");
     }
 
     private string AbsKey(string subjectName, int term) =>

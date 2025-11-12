@@ -46,6 +46,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt(KEY_SAVE_EXISTS, 2);
         PlayerPrefs.Save();
+        ExamResultStorageFile.ClearAll();
         SceneLoader.Load("GameScene");
     }
 

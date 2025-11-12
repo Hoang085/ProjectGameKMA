@@ -60,21 +60,50 @@ public class ScheduleUI : BasePopUp
     public override void OnShowScreen()
     {
         base.OnShowScreen();
+        
+        // **MỚI: Đảm bảo lịch thi được tạo cho các môn đã hoàn thành**
+        CheckAndCreateMissingExamSchedules();
+        
         RefreshAllScheduleData();
     }
 
     void OnEnable()
     {
         LoadSubjectDisplayNames();
+        
+        // **MỚI: Kiểm tra và tạo lịch thi khi enable**
+        CheckAndCreateMissingExamSchedules();
+        
         RefreshAllScheduleData();
         
         // **MỚI: Đăng ký event để tự động refresh khi có thay đổi**
         SubscribeToEvents();
+        
+        // **MỚI: Đăng ký event GameClock để refresh khi đổi slot**
+        if (Clock != null)
+        {
+            Clock.OnSlotChanged += OnSlotChangedRefresh;
+        }
     }
 
     void OnDisable()
     {
         UnsubscribeFromEvents();
+        
+        // **MỚI: Hủy đăng ký event GameClock**
+        if (Clock != null)
+        {
+            Clock.OnSlotChanged -= OnSlotChangedRefresh;
+        }
+    }
+    
+    /// <summary>
+    /// **MỚI: Refresh khi đổi slot để cập nhật trạng thái môn học**
+    /// </summary>
+    private void OnSlotChangedRefresh()
+    {
+        // Delay nhỏ để đảm bảo TeacherAction đã xử lý xong
+        StartCoroutine(RefreshAfterDelay(1.0f));
     }
 
     /// <summary>
@@ -123,6 +152,10 @@ public class ScheduleUI : BasePopUp
     private System.Collections.IEnumerator RefreshAfterDelay(float delay)
     {
         yield return new WaitForSecondsRealtime(delay);
+        
+        // **MỚI: Kiểm tra và tạo lịch thi trước khi refresh**
+        CheckAndCreateMissingExamSchedules();
+        
         RefreshAllScheduleData();
         Debug.Log("[ScheduleUI] ✓ Đã refresh UI sau khi hoàn thành buổi học");
     }
@@ -175,7 +208,8 @@ public class ScheduleUI : BasePopUp
                     attended = GetAttendedFromPlayerPrefs(semSubject.Name, subjectEntry, currentTerm),
                     absences = GetAbsencesFromPlayerPrefs(semSubject.Name, currentTerm),
                     maxSessions = GetMaxSessionsForSubject(semSubject, subjectEntry),
-                    examInfo = GetExamInfoForSubject(semSubject.Name, teacherAction, subjectEntry, currentTerm)
+                    examInfo = GetExamInfoForSubject(semSubject.Name, teacherAction, subjectEntry, currentTerm),
+                    retakeExamInfo = GetRetakeExamInfoForSubject(semSubject.Name, currentTerm) // **MỚI: Lấy lịch thi lại**
                 };
 
                 allSubjects.Add(subjectData);
@@ -291,6 +325,47 @@ public class ScheduleUI : BasePopUp
         // **MỚI: Lấy trực tiếp từ PlayerPrefs**
         return GetExamInfoFromPlayerPrefs(subjectName, currentTerm);
     }
+    
+    /// <summary>
+    /// **MỚI: Lấy thông tin thi lại từ PlayerPrefs**
+    /// </summary>
+    private ExamScheduleInfo GetRetakeExamInfoForSubject(string subjectName, int currentTerm)
+    {
+        try
+        {
+            string normalizedSubjectName = NormalizeKey(subjectName);
+            string keyPrefix = $"T{currentTerm}_RETAKE_{normalizedSubjectName}";
+
+            // Kiểm tra xem có lịch thi lại không
+            if (!PlayerPrefs.HasKey(keyPrefix + "_day") || !PlayerPrefs.HasKey(keyPrefix + "_slot1Based"))
+            {
+                return null; // Không có lịch thi lại
+            }
+
+            int term = PlayerPrefs.GetInt(keyPrefix + "_term", currentTerm);
+            int week = PlayerPrefs.GetInt(keyPrefix + "_week", 0);
+            Weekday day = (Weekday)PlayerPrefs.GetInt(keyPrefix + "_day");
+            int slot = PlayerPrefs.GetInt(keyPrefix + "_slot1Based");
+            bool missed = PlayerPrefs.GetInt(keyPrefix + "_missed", 0) == 1;
+            bool taken = PlayerPrefs.GetInt(keyPrefix + "_taken", 0) == 1;
+
+            return new ExamScheduleInfo
+            {
+                subjectName = subjectName,
+                examDay = day,
+                examSlot = slot,
+                examTerm = term,
+                examWeek = week,
+                missed = missed,
+                taken = taken
+            };
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"[ScheduleUI] Could not get retake exam info from PlayerPrefs for {subjectName}: {e.Message}");
+            return null;
+        }
+    }
 
     /// <summary>
     /// **MỚI: Lấy thông tin thi trực tiếp từ PlayerPrefs**
@@ -314,6 +389,7 @@ public class ScheduleUI : BasePopUp
             Weekday day = (Weekday)PlayerPrefs.GetInt(keyPrefix + "_day");
             int slot = PlayerPrefs.GetInt(keyPrefix + "_slot1Based");
             bool missed = PlayerPrefs.GetInt(keyPrefix + "_missed", 0) == 1;
+            bool taken = PlayerPrefs.GetInt(keyPrefix + "_taken", 0) == 1;
 
             return new ExamScheduleInfo
             {
@@ -322,7 +398,8 @@ public class ScheduleUI : BasePopUp
                 examSlot = slot,
                 examTerm = term,
                 examWeek = week,
-                missed = missed
+                missed = missed,
+                taken = taken
             };
         }
         catch (System.Exception e)
@@ -427,7 +504,6 @@ public class ScheduleUI : BasePopUp
 
                 if (attendedTexts[i] != null)
                 {
-                    // **CẢI THIỆN: Thêm màu sắc cho attended sessions**
                     int attendedCount = subject.attended;
                     int maxCount = subject.maxSessions;
                     float ratio = maxCount > 0 ? (float)attendedCount / maxCount : 0f;
@@ -438,16 +514,13 @@ public class ScheduleUI : BasePopUp
 
                 if (absentTexts[i] != null)
                 {
-                    // **CẢI THIỆN: Thêm màu đỏ nếu vắng quá nhiều**
                     int absenceCount = subject.absences;
                     int maxCount = subject.maxSessions;
                     
-                    // Lấy MaxAbsences từ SemesterConfig nếu có
                     int maxAbsences = GetMaxAbsencesForSubject(subject);
                     
                     string colorTag = absenceCount > maxAbsences ? "red" : "white";
-                    string warningIcon = absenceCount > maxAbsences ? " ⚠" : "";
-                    absentTexts[i].text = $"<color={colorTag}>{absenceCount}/{maxCount}{warningIcon}</color>";
+                    absentTexts[i].text = $"<color={colorTag}>{absenceCount}/{maxCount}</color>";
                 }
             }
             else
@@ -501,25 +574,9 @@ public class ScheduleUI : BasePopUp
 
                 if (dateTexts[i] != null)
                 {
-                    if (subject.examInfo != null)
-                    {
-                        if (subject.examInfo.missed)
-                        {
-                            dateTexts[i].text = "Đã bỏ lỡ";
-                        }
-                        else
-                        {
-                            // Format exam time using TeacherAction data
-                            string dayName = DataKeyText.VN_Weekday(subject.examInfo.examDay);
-                            int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(subject.examInfo.examSlot));
-                            string timeStr = DataKeyText.FormatHM(startMin);
-                            dateTexts[i].text = $"Thời gian thi - {dayName} - Ca {subject.examInfo.examSlot}";
-                        }
-                    }
-                    else
-                    {
-                        dateTexts[i].text = "Chưa có lịch thi";
-                    }
+                    // **CẢI THIỆN: Hiển thị lịch thi hoặc lịch thi lại tùy vào trạng thái**
+                    string examText = GetExamDisplayText(subject);
+                    dateTexts[i].text = examText;
                 }
             }
             else
@@ -531,6 +588,58 @@ public class ScheduleUI : BasePopUp
                 if (dateTexts[i] != null)
                     dateTexts[i].text = "—";
             }
+        }
+    }
+    
+    /// <summary>
+    /// **MỚI: Lấy text hiển thị cho lịch thi dựa trên trạng thái**
+    /// </summary>
+    private string GetExamDisplayText(SubjectDataInfo subject)
+    {
+        // **ƯU TIÊN: Hiển thị lịch thi lại nếu có và chưa thi lại**
+        if (subject.retakeExamInfo != null)
+        {
+            if (subject.retakeExamInfo.taken)
+            {
+                return "Đã hoàn thành thi lại";
+            }
+            else if (subject.retakeExamInfo.missed)
+            {
+                return "Đã bỏ lỡ thi lại";
+            }
+            else
+            {
+                // Hiển thị lịch thi lại
+                string dayName = DataKeyText.VN_Weekday(subject.retakeExamInfo.examDay);
+                int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(subject.retakeExamInfo.examSlot));
+                string timeStr = DataKeyText.FormatHM(startMin);
+                return $"<color=orange>THI LẠI - {dayName} - Ca {subject.retakeExamInfo.examSlot} ({timeStr})</color>";
+            }
+        }
+        
+        // **THỨ HAI: Hiển thị lịch thi lần đầu**
+        if (subject.examInfo != null)
+        {
+            if (subject.examInfo.taken)
+            {
+                return "Đã hoàn thành thi";
+            }
+            else if (subject.examInfo.missed)
+            {
+                return "Đã bỏ lỡ kỳ thi";
+            }
+            else
+            {
+                // Format exam time using TeacherAction data
+                string dayName = DataKeyText.VN_Weekday(subject.examInfo.examDay);
+                int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(subject.examInfo.examSlot));
+                string timeStr = DataKeyText.FormatHM(startMin);
+                return $"Thời gian thi - {dayName} - Ca {subject.examInfo.examSlot} ({timeStr})";
+            }
+        }
+        else
+        {
+            return "Chưa có lịch thi";
         }
     }
 
@@ -663,7 +772,7 @@ public class ScheduleUI : BasePopUp
 
             if (method != null)
             {
-                object[] parameters = new object[] { subject, 0, 0, Weekday.Mon, 0, false };
+                object[] parameters = new object[] { subject, 0, 0, Weekday.Mon, 0, false, false };
                 bool hasExam = (bool)method.Invoke(teacher, parameters);
 
                 if (hasExam)
@@ -673,6 +782,7 @@ public class ScheduleUI : BasePopUp
                     Weekday day = (Weekday)parameters[3];
                     int slot = (int)parameters[4];
                     bool missed = (bool)parameters[5];
+                    bool taken = (bool)parameters[6];
 
                     return new ExamScheduleInfo
                     {
@@ -681,7 +791,8 @@ public class ScheduleUI : BasePopUp
                         examSlot = slot,
                         examTerm = term,
                         examWeek = week,
-                        missed = missed
+                        missed = missed,
+                        taken = taken
                     };
                 }
             }
@@ -719,6 +830,9 @@ public class ScheduleUI : BasePopUp
         public int absences;
         public int maxSessions;
         public ExamScheduleInfo examInfo;
+        
+        // **MỚI: Lịch thi lại**
+        public ExamScheduleInfo retakeExamInfo;
     }
 
     /// <summary>
@@ -733,5 +847,39 @@ public class ScheduleUI : BasePopUp
         public int examTerm;
         public int examWeek;
         public bool missed;
+        public bool taken; // **MỚI: Đã thi chưa**
+    }
+
+    /// <summary>
+    /// **MỚI: Kiểm tra và tạo lịch thi cho các môn đã hoàn thành nhưng chưa có lịch**
+    /// </summary>
+    private void CheckAndCreateMissingExamSchedules()
+    {
+        var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
+        foreach (var teacher in teachers)
+        {
+            if (teacher == null || teacher.subjects == null) continue;
+
+            foreach (var subject in teacher.subjects)
+            {
+                if (string.IsNullOrWhiteSpace(subject.subjectName)) continue;
+                
+                // Sử dụng reflection để gọi CheckAndCreateExamScheduleIfFinished
+                try
+                {
+                    var method = typeof(TeacherAction).GetMethod("CheckAndCreateExamScheduleIfFinished",
+                        System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    
+                    if (method != null)
+                    {
+                        method.Invoke(teacher, new object[] { subject });
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning($"[ScheduleUI] Không thể kiểm tra lịch thi cho {subject.subjectName}: {e.Message}");
+                }
+            }
+        }
     }
 }

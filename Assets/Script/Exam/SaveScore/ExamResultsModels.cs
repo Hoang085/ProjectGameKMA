@@ -20,6 +20,9 @@ public class ExamAttempt
 
     public string takenAtIso;   // ISO 8601 UTC
     public long takenAtUnix;    // dự phòng sort nhanh
+    
+    // **MỚI: Hỗ trợ thi lại - đơn giản hơn**
+    public bool isRetake = false;  // true nếu đây là lần thi lại
 }
 
 [Serializable]
