@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 3",
+  "subjectName": "Cấu Trúc Dữ Liệu Và Giải Thuật",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Cấu trúc dữ liệu hàng đợi (Queue) hoạt động theo nguyên tắc nào?",
+      "options": [ "Vào sau ra trước (LIFO)", "Vào trước ra trước (FIFO)", "Ngẫu nhiên", "Ưu tiên phần tử lớn nhất" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Ngăn xếp (Stack) là cấu trúc dữ liệu hoạt động theo nguyên tắc:",
+      "options": [ "FIFO", "Random", "LIFO", "Priority" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Độ phức tạp thời gian của thuật toán tìm kiếm tuyến tính là:",
+      "options": [ "O(1)", "O(log n)", "O(n²)", "O(n)" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Thuật toán sắp xếp nổi bọt (Bubble Sort) có độ phức tạp trung bình là:",
+      "options": [ "O(n log n)", "O(n)", "O(1)", "O(n²)" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Cấu trúc dữ liệu nào thích hợp để duyệt theo chiều sâu (DFS)?",
+      "options": [ "Queue", "Array", "Stack", "Tree" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Cây nhị phân tìm kiếm (BST) có đặc điểm:",
+      "options": [ "Giá trị bên trái nhỏ hơn nút gốc, bên phải lớn hơn", "Không có nút rỗng", "Mọi nút có tối đa ba con", "Cây luôn cân bằng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Thuật toán tìm kiếm nhị phân chỉ áp dụng cho:",
+      "options": [ "Cấu trúc đồ thị", "Cấu trúc cây", "Dãy ngẫu nhiên", "Dãy đã sắp xếp" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Trong danh sách liên kết đơn, mỗi nút chứa:",
+      "options": [ "Chỉ dữ liệu", "Hai con trỏ trái và phải", "Địa chỉ phần tử cuối", "Dữ liệu và con trỏ đến nút kế tiếp" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Độ phức tạp của việc chèn phần tử vào đầu danh sách liên kết là:",
+      "options": [ "O(n)", "O(1)", "O(n²)", "O(log n)" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Thuật toán sắp xếp chọn (Selection Sort) thực hiện:",
+      "options": [ "Đổi chỗ ngẫu nhiên", "Chọn phần tử nhỏ nhất và đưa về đầu mảng", "Chọn phần tử lớn nhất và bỏ qua", "Chia mảng thành hai phần bằng nhau" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Trong cây nhị phân, số cạnh luôn bằng:",
+      "options": [ "Số nút", "Số mức - 1", "Số lá", "Số nút - 1" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Kỹ thuật đệ quy (recursion) là gì?",
+      "options": [ "Hàm tự gọi lại chính nó", "Lặp vô hạn", "Cấu trúc rẽ nhánh", "Hàm không có tham số" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Khi sử dụng ngăn xếp để chuyển đổi biểu thức trung tố sang hậu tố, ta cần thao tác gì?",
+      "options": [ "Đưa toán tử vào ngăn xếp và xử lý theo độ ưu tiên", "Đưa toán hạng vào ngăn xếp", "So sánh giá trị của các toán hạng", "Sắp xếp lại biểu thức theo thứ tự ASCII" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Độ phức tạp tốt nhất của QuickSort là:",
+      "options": [ "O(n²)", "O(n log n)", "O(n)", "O(1)" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Khi mảng đã sắp xếp, thuật toán tìm kiếm nào nhanh nhất?",
+      "options": [ "Tìm kiếm tuyến tính", "Tìm kiếm nhị phân", "Tìm kiếm vét cạn", "Tìm kiếm ngẫu nhiên" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Cấu trúc dữ liệu hàng đợi ưu tiên (Priority Queue) sắp xếp phần tử theo:",
+      "options": [ "Thứ tự nhập vào", "Độ ưu tiên", "Chỉ số mảng", "Kích thước bộ nhớ" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Đồ thị có hướng khác đồ thị vô hướng ở điểm nào?",
+      "options": [ "Không có chu trình", "Cung có chiều xác định", "Các đỉnh không nối với nhau", "Chỉ có một đỉnh nguồn" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Độ phức tạp thời gian của thuật toán tìm kiếm nhị phân là:",
+      "options": [ "O(log n)", "O(1)", "O(n)", "O(n²)" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Khi nào cần sử dụng danh sách liên kết thay vì mảng?",
+      "options": [ "Khi kích thước cố định", "Khi cần truy cập ngẫu nhiên nhanh", "Khi cần chèn/xóa phần tử thường xuyên", "Khi lưu trữ số nguyên nhỏ" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Thuật toán Dijkstra dùng để:",
+      "options": [ "Tính giai thừa", "Duyệt cây", "Tìm đường đi ngắn nhất", "Sắp xếp mảng" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Đệ quy cần có điều kiện nào để dừng?",
+      "options": [ "Hàm phụ trợ", "Điều kiện cơ sở (base case)", "Con trỏ null", "Vòng lặp for" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Độ phức tạp của MergeSort là:",
+      "options": [ "O(1)", "O(n²)", "O(n log n)", "O(n)" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong cây, nút không có con được gọi là gì?",
+      "options": [ "Nút cha", "Nút lá", "Nút trong", "Nút gốc" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Cấu trúc dữ liệu nào phù hợp để duyệt theo chiều rộng (BFS)?",
+      "options": [ "Stack", "Tree", "Queue", "Heap" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Heap được dùng chủ yếu trong thuật toán nào?",
+      "options": [ "Sắp xếp HeapSort", "Đếm phần tử", "Tính giai thừa", "Tìm kiếm tuyến tính" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Cấu trúc dữ liệu nào là cơ sở để cài đặt đệ quy trong máy tính?",
+      "options": [ "Array", "Queue", "Stack", "Heap" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Độ phức tạp không gian của thuật toán đệ quy thường:",
+      "options": [ "Tăng theo số lần gọi hàm", "Không đổi", "Luôn bằng O(1)", "Giảm dần" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Một cây nhị phân đầy đủ (full binary tree) có đặc điểm:",
+      "options": [ "Tất cả nút có một con", "Có tối đa 3 con", "Các lá ở cùng độ cao", "Mọi nút đều có 0 hoặc 2 con" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Hash Table sử dụng để:",
+      "options": [ "Tra cứu nhanh theo khóa", "Sắp xếp dãy", "Lưu dữ liệu dạng cây", "Lưu dữ liệu theo thứ tự" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Cấu trúc dữ liệu cơ bản trong lập trình gồm:",
+      "options": [ "Mảng, danh sách, ngăn xếp, hàng đợi", "Giao diện, luồng, sự kiện", "Hàm, lớp, đối tượng", "Biểu đồ, đồ thị, mô hình" ],
+      "correctIndex": 0
+    }
+  ]
+}

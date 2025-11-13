@@ -1,0 +1,12 @@
+1.Khái niệm:
+Quản lý địa chỉ IP và định tuyến gói tin từ nguồn đến đích.
+
+2.Công thức:
+Địa chỉ IPv4: 32 bit, IPv6: 128 bit
+Subnet mask: xác định phần mạng và phần host.
+
+3.Quy tắc:
+Router định tuyến theo IP đích, sử dụng giao thức như OSPF, RIP, BGP.
+
+4.Ứng dụng:
+Kết nối mạng LAN, WAN, Internet.

@@ -1,0 +1,13 @@
+1.Khái niệm:
+Phân tích mối quan hệ giữa các biến – xem biến X ảnh hưởng đến Y ra sao.
+
+2.Công thức:
+Phương trình hồi quy: Ŷ = a + bX
+Hệ số tương quan: r = Cov(X,Y) / (σx·σy)
+
+3.Quy tắc:
+-1 ≤ r ≤ 1
+r gần 1 → quan hệ thuận, gần -1 → quan hệ nghịch.
+
+4.Ứng dụng:
+Dự đoán xu hướng, phân tích doanh thu, tăng trưởng, dữ liệu khoa học.

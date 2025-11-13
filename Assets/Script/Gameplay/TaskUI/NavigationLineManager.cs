@@ -122,11 +122,28 @@ public class NavigationLineManager : MonoBehaviour
     // ===== Public API =====
     public void CreateNavigationLine(Transform target, string targetName = "")
     {
-        if (target == null) return;
+        Debug.Log($"[NavigationLineManager] CreateNavigationLine called for: {targetName}");
+        
+        if (target == null)
+        {
+            Debug.LogError("[NavigationLineManager] Target is NULL!");
+            return;
+        }
 
         if (playerTransform == null)
+        {
+            Debug.Log("[NavigationLineManager] playerTransform is null, trying to find player...");
             playerTransform = FindPlayer();
-        if (playerTransform == null) return;
+        }
+        
+        if (playerTransform == null)
+        {
+            Debug.LogError("[NavigationLineManager] Failed to find player! Cannot create navigation line.");
+            return;
+        }
+
+        Debug.Log($"[NavigationLineManager] Player found: {playerTransform.name}");
+        Debug.Log($"[NavigationLineManager] Target: {target.name} at position {target.position}");
 
         targetTransform = target;
         _hasHiddenByProximity = false;
@@ -141,6 +158,7 @@ public class NavigationLineManager : MonoBehaviour
             autoClearCoroutine = StartCoroutine(AutoClearCoroutine());
 
         lineRenderer.enabled = true;
+        Debug.Log($"[NavigationLineManager] ✓ Navigation line enabled! Points: {lineRenderer.positionCount}");
     }
 
     public void ClearNavigationLine()
@@ -280,15 +298,32 @@ public class NavigationLineManager : MonoBehaviour
 
     private Transform FindPlayer()
     {
+        Debug.Log("[NavigationLineManager] FindPlayer() - Searching for player...");
+        
         var go = GameObject.FindGameObjectWithTag("Player");
-        if (go) return go.transform;
+        if (go)
+        {
+            Debug.Log($"[NavigationLineManager] ✓ Found player by tag: {go.name}");
+            return go.transform;
+        }
+        
+        Debug.Log("[NavigationLineManager] Player not found by tag, trying by name...");
         go = GameObject.Find("Player");
-        if (go) return go.transform;
+        if (go)
+        {
+            Debug.Log($"[NavigationLineManager] ✓ Found player by name: {go.name}");
+            return go.transform;
+        }
 
+        Debug.Log("[NavigationLineManager] Player not found by name, trying fallback search...");
         var any = FindFirstObjectByType<MonoBehaviour>();
         if (any != null && (any.GetType().Name.Contains("Player") || any.GetType().Name.Contains("Controller")))
+        {
+            Debug.Log($"[NavigationLineManager] ✓ Found player via fallback: {any.name}");
             return any.transform;
+        }
 
+        Debug.LogError("[NavigationLineManager] ✗ FAILED to find player!");
         return null;
     }
 

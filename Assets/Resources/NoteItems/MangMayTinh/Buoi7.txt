@@ -1,0 +1,12 @@
+1.Khái niệm:
+Đảm bảo dữ liệu được truyền tin cậy và đúng thứ tự.
+
+2.Công thức:
+Số hiệu cổng (Port): 16 bit (0–65535)
+
+3.Quy tắc:
+TCP: kết nối tin cậy, có xác nhận ACK.
+UDP: không xác nhận, nhanh, dùng cho video/audio.
+
+4.Ứng dụng:
+Truyền file (FTP), email (SMTP), web (HTTP).

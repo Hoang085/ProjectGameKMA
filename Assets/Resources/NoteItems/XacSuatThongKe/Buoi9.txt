@@ -1,0 +1,13 @@
+1.Khái niệm:
+Phương pháp ra quyết định về giả thuyết của tổng thể dựa trên mẫu dữ liệu.
+
+2.Công thức:
+Z = (x̄ − μ₀) / (σ/√n)
+So sánh với giá trị tới hạn Zα.
+
+3.Quy tắc:
+Nếu |Z| > Zα → bác bỏ H₀
+Nếu |Z| ≤ Zα → chấp nhận H₀
+
+4.Ứng dụng:
+Kiểm tra chất lượng sản phẩm, so sánh trung bình hai nhóm, phân tích kết quả thí nghiệm.

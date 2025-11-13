@@ -83,6 +83,7 @@ public class ScheduleUI : BasePopUp
         if (Clock != null)
         {
             Clock.OnSlotChanged += OnSlotChangedRefresh;
+            Clock.OnTermChanged += OnTermChangedRefresh;
         }
     }
 
@@ -94,7 +95,19 @@ public class ScheduleUI : BasePopUp
         if (Clock != null)
         {
             Clock.OnSlotChanged -= OnSlotChangedRefresh;
+            Clock.OnTermChanged -= OnTermChangedRefresh; // **MỚI: Hủy đăng ký**
         }
+    }
+    
+    /// <summary>
+    /// **MỚI: Refresh khi đổi kỳ học để cập nhật tên môn và dữ liệu**
+    /// </summary>
+    private void OnTermChangedRefresh()
+    {
+        Debug.Log($"[ScheduleUI] ✓ Term changed to T{Clock?.Term}, refreshing schedule data...");
+        
+        // Delay nhỏ để đảm bảo các hệ thống khác đã xử lý xong
+        StartCoroutine(RefreshAfterDelay(1.0f));
     }
     
     /// <summary>
@@ -228,23 +241,41 @@ public class ScheduleUI : BasePopUp
     /// </summary>
     private SemesterConfig GetSemesterConfig()
     {
-        // Ưu tiên SemesterConfig từ inspector
-        if (_semesterConfig != null)
+        int currentTerm = Clock != null ? Clock.Term : 1;
+        
+        // Ưu tiên SemesterConfig từ inspector NẾU đúng kỳ
+        if (_semesterConfig != null && _semesterConfig.Semester == currentTerm)
         {
             return _semesterConfig;
         }
 
-        // Tự động tìm từ TeacherAction đầu tiên
+        // **SỬA: Tìm TeacherAction có SemesterConfig ĐÚNG kỳ hiện tại**
         var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
         foreach (var teacher in teachers)
         {
-            if (teacher.semesterConfig != null)
+            if (teacher.semesterConfig != null && teacher.semesterConfig.Semester == currentTerm)
             {
-                _semesterConfig = teacher.semesterConfig; // Cache lại
+                // **KHÔNG CACHE** - để luôn lấy đúng kỳ mỗi lần gọi
                 return teacher.semesterConfig;
             }
         }
+        
+        // **FALLBACK: Thử load từ Resources theo pattern Semester{term}Config**
+        try
+        {
+            SemesterConfig config = Resources.Load<SemesterConfig>($"Semester{currentTerm}Config");
+            if (config != null && config.Semester == currentTerm)
+            {
+                Debug.Log($"[ScheduleUI] ✓ Loaded SemesterConfig từ Resources: Semester{currentTerm}Config");
+                return config;
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"[ScheduleUI] Không load được từ Resources: {e.Message}");
+        }
 
+        Debug.LogWarning($"[ScheduleUI] Không tìm thấy SemesterConfig cho kỳ {currentTerm}");
         return null;
     }
 
@@ -505,22 +536,26 @@ public class ScheduleUI : BasePopUp
                 if (attendedTexts[i] != null)
                 {
                     int attendedCount = subject.attended;
-                    int maxCount = subject.maxSessions;
-                    float ratio = maxCount > 0 ? (float)attendedCount / maxCount : 0f;
+                    int actualMaxSessions = subject.maxSessions;
+                    int displayMaxSessions = GetDisplayMaxSessions(actualMaxSessions);
+                    
+                    // **CẢI THIỆN: Tính ratio dựa trên displayMaxSessions**
+                    float ratio = displayMaxSessions > 0 ? (float)attendedCount / displayMaxSessions : 0f;
                     
                     string colorTag = ratio >= 1.0f ? "green" : (ratio >= 0.5f ? "yellow" : "white");
-                    attendedTexts[i].text = $"<color={colorTag}>{attendedCount}/{maxCount}</color>";
+                    attendedTexts[i].text = $"<color={colorTag}>{attendedCount}/{displayMaxSessions}</color>";
                 }
 
                 if (absentTexts[i] != null)
                 {
                     int absenceCount = subject.absences;
-                    int maxCount = subject.maxSessions;
+                    int actualMaxSessions = subject.maxSessions;
+                    int displayMaxSessions = GetDisplayMaxSessions(actualMaxSessions);
                     
                     int maxAbsences = GetMaxAbsencesForSubject(subject);
                     
                     string colorTag = absenceCount > maxAbsences ? "red" : "white";
-                    absentTexts[i].text = $"<color={colorTag}>{absenceCount}/{maxCount}</color>";
+                    absentTexts[i].text = $"<color={colorTag}>{absenceCount}/{displayMaxSessions}</color>";
                 }
             }
             else
@@ -551,6 +586,25 @@ public class ScheduleUI : BasePopUp
 
         // Fallback: 3 buổi (default)
         return 3;
+    }
+
+    /// <summary>
+    /// **MỚI: Lấy số buổi học tối đa để hiển thị (12 buổi -> 10, 18 buổi -> 15)**
+    /// </summary>
+    private int GetDisplayMaxSessions(int actualMaxSessions)
+    {
+        // Môn 12 buổi -> hiển thị /10
+        if (actualMaxSessions == 12)
+        {
+            return 10;
+        }
+        // Môn 18 buổi -> hiển thị /15
+        else if (actualMaxSessions == 18)
+        {
+            return 15;
+        }
+        // Các trường hợp khác giữ nguyên
+        return actualMaxSessions;
     }
 
     /// <summary>

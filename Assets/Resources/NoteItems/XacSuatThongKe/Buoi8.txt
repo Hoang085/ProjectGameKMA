@@ -1,0 +1,12 @@
+1.Khái niệm:
+Khoảng giá trị có xác suất cao chứa tham số thật của tổng thể.
+
+2.Công thức:
+CI = x̄ ± z(α/2)·(σ/√n)
+
+3.Quy tắc:
+Độ tin cậy càng cao → khoảng càng rộng.
+α là mức ý nghĩa (thường 0.05 hoặc 0.01).
+
+4.Ứng dụng:
+Xác định mức tin cậy trong dự đoán, báo cáo thống kê.

@@ -186,18 +186,37 @@ public class GameUIManager : Singleton<GameUIManager>
     {
         yield return new WaitForSecondsRealtime(delay);
         
-        if (quizGameManager != null)
+        // **SỬA: Kiểm tra QuizGameManager có null không và log chi tiết**
+        if (quizGameManager == null)
         {
-            // **QUAN TRỌNG: Đăng ký event handler TRƯỚC KHI start quiz**
-            quizGameManager.OnQuizCompleted = OnQuizCompletedHandler;
-            quizGameManager.OnQuizResult = OnQuizResultHandler; // MỚI: Đăng ký event kết quả
+            Debug.LogError("[GameUIManager] ✗ QuizGameManager is NULL! Không thể bắt đầu quiz.");
+            Debug.LogError("[GameUIManager] ✗ Vui lòng gán QuizGameManager trong Inspector của GameUIManager!");
+            OpenDialogue("Lỗi", "Lỗi: QuizGameManager chưa được cấu hình trong GameUIManager. Vui lòng kiểm tra Inspector.");
+            yield break;
+        }
+        
+        // **SỬA: Kiểm tra QuizGameManager GameObject có active không**
+        if (!quizGameManager.gameObject.activeInHierarchy)
+        {
+            Debug.LogWarning("[GameUIManager] QuizGameManager GameObject is inactive - attempting to activate...");
+            quizGameManager.gameObject.SetActive(true);
             
-            quizGameManager.StartQuiz(subjectKey);
+            // Đợi 1 frame để GameObject kích hoạt đầy đủ
+            yield return null;
         }
-        else
-        {
-            OpenDialogue("Lỗi", "Lỗi: QuizGameManager chưa được cấu hình. Không thể bắt đầu Quiz.");
-        }
+        
+        Debug.Log($"[GameUIManager] ✓ Starting quiz for subject: {subjectKey}");
+        
+        // **QUAN TRỌNG: Đăng ký event handler TRƯỚC KHI start quiz**
+        quizGameManager.OnQuizCompleted = OnQuizCompletedHandler;
+        quizGameManager.OnQuizResult = OnQuizResultHandler;
+        
+        Debug.Log("[GameUIManager] ✓ Event handlers registered, calling StartQuiz()...");
+        
+        // Bắt đầu quiz
+        quizGameManager.StartQuiz(subjectKey);
+        
+        Debug.Log("[GameUIManager] ✓ StartQuiz() called successfully");
     }
     
     /// <summary>
@@ -671,7 +690,7 @@ public class GameUIManager : Singleton<GameUIManager>
             else
             {
                 // **QUAN TRỌNG: Tạo lịch thi lại NGAY và hiển thị chi tiết**
-                message = $"Em đã thi trượt môn {subjectName} với điểm {score:0.0}/10 (Yêu cầu: >= 4.0).\n\n";
+                message = $"Em đã thi trượt môn {subjectName} với điểm {score:0.0}/10 (Yêu cầu: >= 4.0).";
                 
                 // Tạo lịch thi lại và lấy thông tin
                 string retakeScheduleInfo = CreateRetakeScheduleAndGetInfo(subjectKey, subjectName);

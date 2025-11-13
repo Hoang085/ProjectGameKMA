@@ -1,0 +1,12 @@
+1.Khái niệm:
+Cấu trúc FIFO – vào trước ra trước.
+
+2.Công thức:
+enqueue(x), dequeue()
+
+3.Quy tắc:
+Enqueue/Dequeue O(1)
+Dùng hàng đợi tròn để tiết kiệm bộ nhớ.
+
+4.Ứng dụng:
+Lập lịch CPU, xử lý tác vụ, mô phỏng hệ thống.

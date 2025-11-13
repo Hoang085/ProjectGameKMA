@@ -1,0 +1,13 @@
+1.Khái niệm:
+Gồm các node chứa dữ liệu và con trỏ đến node kế.
+
+2.Công thức:
+Node = data + next
+
+3.Quy tắc:
+
+Thêm/xóa đầu O(1)
+Truy cập phần tử thứ k O(n)
+
+4.Ứng dụng:
+Quản lý hàng đợi, danh sách, undo/redo.

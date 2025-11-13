@@ -1,0 +1,13 @@
+1.Khái niệm:
+Cấu trúc LIFO – vào sau ra trước.
+
+2.Công thức:
+push(x), pop(), peek()
+
+3.Quy tắc:
+
+Push/Pop O(1)
+Không truy cập trực tiếp phần tử giữa.
+
+4.Ứng dụng:
+Biểu thức hậu tố, kiểm tra ngoặc, quay lui.

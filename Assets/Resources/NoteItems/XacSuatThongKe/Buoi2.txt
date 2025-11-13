@@ -1,0 +1,11 @@
+1.Khái niệm:
+Biến cố là kết quả hoặc tập hợp các kết quả của một phép thử ngẫu nhiên.
+
+2.Công thức:
+P(A ∪ B) = P(A) + P(B) – P(A ∩ B)
+
+3.Quy tắc:
+Nếu A và B độc lập → P(A ∩ B) = P(A) × P(B)
+
+4.Ứng dụng:
+Tính xác suất xảy ra của nhiều sự kiện cùng lúc (ví dụ: rút bài, gieo xúc xắc).

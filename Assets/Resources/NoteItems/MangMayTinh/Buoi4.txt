@@ -1,0 +1,12 @@
+1.Khái niệm:
+Xử lý tín hiệu điện, quang, vô tuyến để truyền dữ liệu.
+
+2.Công thức:
+Tốc độ truyền bit = bps (bit per second)
+Băng thông (Bandwidth): số bit tối đa truyền được/giây
+
+3.Quy tắc:
+Chọn cáp và thiết bị phù hợp (UTP, STP, quang, sóng).
+
+4.Ứng dụng:
+Kết nối vật lý giữa thiết bị mạng: switch, router, PC.

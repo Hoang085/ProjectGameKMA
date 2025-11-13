@@ -1,0 +1,12 @@
+1.Khái niệm:
+Mạng máy tính là tập hợp các thiết bị được kết nối để chia sẻ dữ liệu, tài nguyên và dịch vụ.
+
+2.Công thức:
+Tốc độ truyền = Kích thước dữ liệu / Thời gian truyền
+
+3.Quy tắc:
+Tuân theo mô hình phân lớp (OSI, TCP/IP).
+Mỗi lớp có nhiệm vụ và giao tiếp với lớp liền kề.
+
+4.Ứng dụng:
+Trao đổi dữ liệu, truy cập Internet, kết nối các thiết bị trong tổ chức.

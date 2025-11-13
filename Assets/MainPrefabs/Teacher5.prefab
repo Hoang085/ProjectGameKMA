@@ -1,0 +1,178 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2204875987123551922
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -6689036041284674117, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      propertyPath: m_Name
+      value: Teacher5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774220344278030320, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 35.936394
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774220344278030320, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0646923
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774220344278030320, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.5372009
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774220344278030320, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.68325305
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774220344278030320, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.68325293
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774220344278030320, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.18211365
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774220344278030320, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.18211377
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774220344278030320, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774220344278030320, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774220344278030320, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -31.358
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -6689036041284674117, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6985750686417503461}
+    - targetCorrespondingSourceObject: {fileID: -6689036041284674117, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8961645479797366933}
+    - targetCorrespondingSourceObject: {fileID: -6689036041284674117, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3510305632457071296}
+    - targetCorrespondingSourceObject: {fileID: -6689036041284674117, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6823964032308792938}
+  m_SourcePrefab: {fileID: -5645937942226959685, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+--- !u!1 &4445772111851070217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6689036041284674117, guid: 7a597e1a0a3d64845a62b6b06753dac3, type: 3}
+  m_PrefabInstance: {fileID: 2204875987123551922}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6985750686417503461
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445772111851070217}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2993033, y: 1, z: 1.8534265}
+  m_Center: {x: -0.048334807, y: 3.335607e-10, z: 0.91880035}
+--- !u!65 &8961645479797366933
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445772111851070217}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.3976684, y: 2.1274996, z: 0.22716355}
+  m_Center: {x: -0.01541114, y: -0.16460145, z: 0.38641822}
+--- !u!114 &3510305632457071296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445772111851070217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0014b0a25b54c9b4490faae30f9fe9c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactKey: 102
+  autoListenKey: 1
+  interactCooldown: 0.2
+--- !u!114 &6823964032308792938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445772111851070217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79326cba34a93b4285769d6d383ff81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  semesterConfig: {fileID: 0}
+  configsByTerm:
+  - {fileID: 11400000, guid: 356a661357884794d94f7e0ba618870e, type: 2}
+  autoSyncSubjectsFromConfig: 1
+  subjects:
+  - subjectName: "C\u1EA5u Tr\xFAc DL v\xE0 GT"
+    subjectKeyForNotes: CauTrucDlVaGt
+    maxSessions: 15
+    currentSessionIndex: 0
+    examIndexInLoader: 8
+  titleText: "Th\u1EA7y Ti\u1EBFn"
+  openText: "Ch\xE0o em, h\xF4m nay em \u0111\u1EBFn \u0111\u1EC3 b\u1EAFt \u0111\u1EA7u
+    bu\u1ED5i h\u1ECDc \u0111\xFAng kh\xF4ng?"
+  confirmText: "Em \u0111\xE3 \u0111i\u1EC3m danh bu\u1ED5i h\xF4m nay, ch\xFAng
+    ta b\u1EAFt \u0111\u1EA7u v\xE0o h\u1ECDc nh\xE9"
+  wrongTimeText: "Kh\xF4ng ph\u1EA3i gi\u1EDD m\xF4n n\xE0y, quay l\u1EA1i \u0111\xFAng
+    ca nh\xE9."
+  learningText: "\u0110ang h\u1ECDc..."
+  finishedAllSessionsText: "Em \u0111\xE3 h\u1ECDc xong t\u1EA5t c\u1EA3 c\xE1c bu\u1ED5i
+    c\u1EE7a m\xF4n n\xE0y!"
+  exceededAbsenceText: "Em \u0111\xE3 ngh\u1EC9 qu\xE1 s\u1ED1 bu\u1ED5i quy \u0111\u1ECBnh
+    ho\u1EB7c kh\xF4ng v\u01B0\u1EE3t qua \u0111i\u1EC3m qu\xE1 tr\xECnh cho ph\xE9p"
+  classSeconds: 3
+  addNoteWhenFinished: 1
+  noteSessionIndex: 0
+  weeksPerTerm: 5
+  autoCreateExamSchedule: 1
+  onClassStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onClassFinished:
+    m_PersistentCalls:
+      m_Calls: []

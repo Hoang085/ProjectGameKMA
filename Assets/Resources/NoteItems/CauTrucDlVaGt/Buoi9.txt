@@ -1,0 +1,14 @@
+1.Khái niệm:
+Cây nhị phân hoàn chỉnh tuân theo quy tắc:
+Max-Heap: cha ≥ con
+Min-Heap: cha ≤ con
+
+2.Công thức:
+Cha(i)=i/2, Trái(2i), Phải(2i+1)
+
+3.Quy tắc:
+Xây heap O(n)
+Chèn/xóa O(log n)
+
+4.Ứng dụng:
+HeapSort, quản lý tiến trình, hàng đợi ưu tiên.

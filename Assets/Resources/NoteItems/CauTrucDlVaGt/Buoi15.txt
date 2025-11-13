@@ -1,0 +1,12 @@
+1.Khái niệm:
+Đánh giá và so sánh hiệu năng giữa các giải thuật.
+
+2.Công thức:
+T(n) = c₁n + c₂logn + c₃ → Big-O
+
+3.Quy tắc:
+Chọn thuật toán có độ phức tạp nhỏ nhất
+Cân đối giữa thời gian và bộ nhớ
+
+4.Ứng dụng:
+Thiết kế hệ thống nhanh, xử lý dữ liệu lớn, AI.
