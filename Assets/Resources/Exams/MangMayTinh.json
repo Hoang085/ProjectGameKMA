@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 3",
+  "subjectName": "Mạng Máy Tính",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Mô hình OSI có bao nhiêu tầng?",
+      "options": [ "7", "5", "4", "6" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tầng nào trong mô hình OSI chịu trách nhiệm định tuyến gói tin?",
+      "options": [ "Tầng Mạng (Network)", "Tầng Giao vận", "Tầng Ứng dụng", "Tầng Liên kết dữ liệu" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Giao thức TCP thuộc tầng nào trong mô hình OSI?",
+      "options": [ "Tầng Liên kết dữ liệu", "Tầng Giao vận (Transport)", "Tầng Mạng", "Tầng Ứng dụng" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Địa chỉ IP là gì?",
+      "options": [ "Địa chỉ MAC", "Địa chỉ vật lý", "Địa chỉ cổng mạng", "Địa chỉ logic dùng để định danh thiết bị trong mạng" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Cổng mặc định (default gateway) có chức năng gì?",
+      "options": [ "Truyền dữ liệu trong LAN", "Kết nối nội bộ", "Dịch tên miền", "Định tuyến gói tin ra ngoài mạng" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Giao thức DHCP dùng để làm gì?",
+      "options": [ "Cấp phát địa chỉ IP tự động", "Chuyển tệp tin", "Bảo mật dữ liệu", "Truyền thư điện tử" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Giao thức nào dùng để truyền thư điện tử?",
+      "options": [ "SMTP", "HTTP", "FTP", "SSH" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "DNS có chức năng gì?",
+      "options": [ "Mã hóa dữ liệu", "Dịch tên miền thành địa chỉ IP", "Cấp phát địa chỉ IP", "Định tuyến gói tin" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Địa chỉ IP lớp C có phần mạng mặc định là bao nhiêu bit?",
+      "options": [ "16", "8", "24", "32" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Giao thức HTTP hoạt động trên cổng nào mặc định?",
+      "options": [ "443", "25", "21", "80" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "HTTPS khác HTTP ở điểm nào?",
+      "options": [ "Sử dụng mã hóa SSL/TLS để bảo mật", "Chỉ dùng trong mạng nội bộ", "Dùng cổng 8080", "Không có khác biệt" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Thiết bị nào dùng để kết nối nhiều mạng lại với nhau?",
+      "options": [ "Switch", "Router", "Hub", "Repeater" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Giao thức ARP có nhiệm vụ:",
+      "options": [ "Chuyển đổi địa chỉ IP sang MAC", "Chuyển đổi MAC sang IP", "Phân giải tên miền", "Mã hóa dữ liệu" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Địa chỉ MAC thuộc tầng nào trong mô hình OSI?",
+      "options": [ "Tầng Liên kết dữ liệu", "Tầng Mạng", "Tầng Ứng dụng", "Tầng Giao vận" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Một địa chỉ IPv4 có độ dài bao nhiêu bit?",
+      "options": [ "16", "32", "64", "128" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Giao thức nào dùng để truyền tệp giữa hai máy tính?",
+      "options": [ "HTTP", "SMTP", "FTP", "DNS" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Ping sử dụng giao thức nào để kiểm tra kết nối mạng?",
+      "options": [ "TCP", "ICMP", "UDP", "HTTP" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Subnet mask có tác dụng gì?",
+      "options": [ "Mã hóa dữ liệu", "Xác định phần mạng và phần host của địa chỉ IP", "Giới hạn tốc độ truyền", "Kiểm tra lỗi gói tin" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Cổng 443 được dùng cho giao thức nào?",
+      "options": [ "FTP", "SMTP", "Telnet", "HTTPS" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Độ tin cậy trong truyền dữ liệu của TCP cao hơn UDP vì:",
+      "options": [ "UDP nhanh hơn", "TCP chỉ truyền trong LAN", "TCP kiểm soát lỗi và thứ tự gói tin", "UDP không dùng checksum" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Router hoạt động ở tầng nào của mô hình OSI?",
+      "options": [ "Tầng Liên kết dữ liệu", "Tầng Giao vận", "Tầng Ứng dụng", "Tầng Mạng (Network)" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Switch hoạt động chủ yếu ở tầng nào?",
+      "options": [ "Tầng Liên kết dữ liệu", "Tầng Giao vận", "Tầng Ứng dụng", "Tầng Mạng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Giao thức nào không đảm bảo độ tin cậy trong truyền dữ liệu?",
+      "options": [ "TCP", "SMTP", "FTP", "UDP" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Địa chỉ IP 127.0.0.1 được gọi là:",
+      "options": [ "Broadcast", "Subnet", "Gateway", "Loopback" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Để chia mạng con, ta cần dùng:",
+      "options": [ "Gateway", "Subnet mask", "Port", "DNS" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Mạng LAN là gì?",
+      "options": [ "Mạng toàn cầu", "Mạng diện rộng", "Mạng ảo", "Mạng cục bộ" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Giao thức Telnet dùng để:",
+      "options": [ "Kiểm tra độ trễ mạng", "Truyền tệp tin", "Gửi thư điện tử", "Truy cập máy tính từ xa qua dòng lệnh" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Mô hình TCP/IP có bao nhiêu tầng?",
+      "options": [ "6", "4", "7", "5" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Trong truyền thông mạng, băng thông (bandwidth) biểu thị:",
+      "options": [ "Tốc độ truyền dữ liệu tối đa", "Khoảng cách giữa các thiết bị", "Độ trễ trung bình", "Tần số sóng mang" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Để bảo mật khi truyền dữ liệu, người ta thường sử dụng:",
+      "options": [ "ARP", "ICMP", "FTP", "SSL/TLS" ],
+      "correctIndex": 3
+    }
+  ]
+}

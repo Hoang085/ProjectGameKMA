@@ -1,0 +1,12 @@
+1.Khái niệm:
+Đảm bảo truyền dữ liệu không lỗi giữa hai thiết bị liền kề.
+
+2.Công thức:
+Địa chỉ MAC: 48 bit (6 byte)
+Ví dụ: 00-14-22-01-23-45
+
+3.Quy tắc:
+Sử dụng khung (frame), kiểm tra lỗi CRC, điều khiển truy cập CSMA/CD.
+
+4.Ứng dụng:
+Hoạt động trong switch, card mạng, mạng LAN.

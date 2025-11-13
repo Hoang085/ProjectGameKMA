@@ -1,0 +1,14 @@
+1.Khái niệm:
+Mỗi node có tối đa 2 con: trái và phải.
+
+2.Công thức:
+Số node tối đa = 2^(h+1) - 1
+
+3.Quy tắc:
+Duyệt cây:
+  - Tiền tự (NLR)
+  - Trung tự (LNR)
+  - Hậu tự (LRN)
+
+4.Ứng dụng:
+Cấu trúc phân cấp, cây thư mục, cây cú pháp.

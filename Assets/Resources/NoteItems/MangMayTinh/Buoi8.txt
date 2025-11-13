@@ -1,0 +1,12 @@
+1.Khái niệm:
+Ba lớp trên cùng của OSI hợp nhất trong TCP/IP.
+
+2.Công thức:
+Dữ liệu người dùng → định dạng → mã hóa → truyền tải.
+
+3.Quy tắc:
+Xác lập – duy trì – kết thúc phiên.
+Mã hóa và nén dữ liệu.
+
+4.Ứng dụng:
+Trình duyệt web, ứng dụng email, truyền video, VoIP.

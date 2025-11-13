@@ -1672,6 +1672,12 @@ MonoBehaviour:
     resourcePath: Exams/ToanCaoCap2
   - displayName: "V\u1EADt L\xFD \u0110\u1EA1i C\u01B0\u01A1ng"
     resourcePath: Exams/VatLyDaiCuong
+  - displayName: "X\xE1c Su\u1EA5t Th\u1ED1ng K\xEA"
+    resourcePath: Exams/XacSuatThongKe
+  - displayName: "M\u1EA1ng M\xE1y T\xEDnh"
+    resourcePath: Exams/MangMayTinh
+  - displayName: "C\u1EA5u Tr\xFAc DL v\xE0 GT"
+    resourcePath: Exams/CauTrucDlVaGt
   subjectIndex: 3
   examFileName: Exams/ToanCaoCap
 --- !u!4 &486868433
@@ -2278,8 +2284,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 491902220}
   m_HandleRect: {fileID: 491902219}
   m_Direction: 2
-  m_Value: -0.2244898
-  m_Size: 0.9999755
+  m_Value: -0.08163265
+  m_Size: 0.99994624
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4233,7 +4239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0036549524}
+  m_AnchoredPosition: {x: 0, y: 0.003201629}
   m_SizeDelta: {x: 0, y: 212.34}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &907055453

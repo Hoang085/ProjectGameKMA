@@ -1,0 +1,237 @@
+{
+  "subjectKey": "CauTrucDuLieuGiaiThuat",
+  "questions": [
+    {
+      "id": "CTDL1",
+      "question": "Cấu trúc dữ liệu hàng đợi (Queue) hoạt động theo nguyên tắc nào?",
+      "answers": [ "Vào sau ra trước (LIFO)", "Vào trước ra trước (FIFO)", "Ngẫu nhiên" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CTDL2",
+      "question": "Ngăn xếp (Stack) là cấu trúc dữ liệu hoạt động theo nguyên tắc:",
+      "answers": [ "FIFO", "Random", "LIFO" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL3",
+      "question": "Độ phức tạp thời gian của thuật toán tìm kiếm tuyến tính là:",
+      "answers": [ "O(1)", "O(log n)", "O(n)" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL4",
+      "question": "Thuật toán sắp xếp nổi bọt (Bubble Sort) có độ phức tạp trung bình là:",
+      "answers": [ "O(n log n)", "O(n)", "O(n²)" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL5",
+      "question": "Cấu trúc dữ liệu nào thích hợp để duyệt theo chiều sâu (DFS)?",
+      "answers": [ "Queue", "Array", "Stack" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL6",
+      "question": "Cây nhị phân tìm kiếm (BST) có đặc điểm:",
+      "answers": [
+        "Giá trị bên trái nhỏ hơn nút gốc, bên phải lớn hơn",
+        "Không có nút rỗng",
+        "Mọi nút có tối đa ba con"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CTDL7",
+      "question": "Thuật toán tìm kiếm nhị phân chỉ áp dụng cho:",
+      "answers": [ "Cấu trúc đồ thị", "Cấu trúc cây", "Dãy đã sắp xếp" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL8",
+      "question": "Trong danh sách liên kết đơn, mỗi nút chứa:",
+      "answers": [ "Chỉ dữ liệu", "Hai con trỏ trái và phải", "Dữ liệu và con trỏ đến nút kế tiếp" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL9",
+      "question": "Độ phức tạp của việc chèn phần tử vào đầu danh sách liên kết là:",
+      "answers": [ "O(n)", "O(1)", "O(n²)" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CTDL10",
+      "question": "Thuật toán sắp xếp chọn (Selection Sort) thực hiện:",
+      "answers": [
+        "Đổi chỗ ngẫu nhiên",
+        "Chọn phần tử nhỏ nhất và đưa về đầu mảng",
+        "Chia mảng thành hai phần bằng nhau"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CTDL11",
+      "question": "Trong cây nhị phân, số cạnh luôn bằng:",
+      "answers": [ "Số nút", "Số mức - 1", "Số nút - 1" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL12",
+      "question": "Kỹ thuật đệ quy (recursion) là gì?",
+      "answers": [
+        "Hàm tự gọi lại chính nó",
+        "Lặp vô hạn",
+        "Cấu trúc rẽ nhánh"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CTDL13",
+      "question": "Khi sử dụng ngăn xếp để chuyển đổi biểu thức trung tố sang hậu tố, ta cần thao tác gì?",
+      "answers": [
+        "Đưa toán tử vào ngăn xếp và xử lý theo độ ưu tiên",
+        "Đưa toán hạng vào ngăn xếp",
+        "So sánh giá trị của các toán hạng"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CTDL14",
+      "question": "Độ phức tạp tốt nhất của QuickSort là:",
+      "answers": [ "O(n²)", "O(n log n)", "O(n)" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CTDL15",
+      "question": "Khi mảng đã sắp xếp, thuật toán tìm kiếm nào nhanh nhất?",
+      "answers": [ "Tìm kiếm tuyến tính", "Tìm kiếm nhị phân", "Tìm kiếm vét cạn" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CTDL16",
+      "question": "Cấu trúc dữ liệu hàng đợi ưu tiên (Priority Queue) sắp xếp phần tử theo:",
+      "answers": [ "Thứ tự nhập vào", "Độ ưu tiên", "Chỉ số mảng" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CTDL17",
+      "question": "Đồ thị có hướng khác đồ thị vô hướng ở điểm nào?",
+      "answers": [
+        "Không có chu trình",
+        "Cung có chiều xác định",
+        "Các đỉnh không nối với nhau"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CTDL18",
+      "question": "Độ phức tạp thời gian của thuật toán tìm kiếm nhị phân là:",
+      "answers": [ "O(log n)", "O(1)", "O(n)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CTDL19",
+      "question": "Khi nào cần sử dụng danh sách liên kết thay vì mảng?",
+      "answers": [
+        "Khi kích thước cố định",
+        "Khi cần truy cập ngẫu nhiên nhanh",
+        "Khi cần chèn/xóa phần tử thường xuyên"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL20",
+      "question": "Thuật toán Dijkstra dùng để:",
+      "answers": [
+        "Tính giai thừa",
+        "Duyệt cây",
+        "Tìm đường đi ngắn nhất"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL21",
+      "question": "Đệ quy cần có điều kiện nào để dừng?",
+      "answers": [
+        "Hàm phụ trợ",
+        "Điều kiện cơ sở (base case)",
+        "Con trỏ null"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CTDL22",
+      "question": "Độ phức tạp của MergeSort là:",
+      "answers": [ "O(n²)", "O(n log n)", "O(n)" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CTDL23",
+      "question": "Trong cây, nút không có con được gọi là gì?",
+      "answers": [ "Nút cha", "Nút lá", "Nút trong" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CTDL24",
+      "question": "Cấu trúc dữ liệu nào phù hợp để duyệt theo chiều rộng (BFS)?",
+      "answers": [ "Stack", "Tree", "Queue" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL25",
+      "question": "Heap được dùng chủ yếu trong thuật toán nào?",
+      "answers": [
+        "Sắp xếp HeapSort",
+        "Đếm phần tử",
+        "Tính giai thừa"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CTDL26",
+      "question": "Cấu trúc dữ liệu nào là cơ sở để cài đặt đệ quy trong máy tính?",
+      "answers": [ "Array", "Queue", "Stack" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL27",
+      "question": "Độ phức tạp không gian của thuật toán đệ quy thường:",
+      "answers": [
+        "Tăng theo số lần gọi hàm",
+        "Không đổi",
+        "Luôn bằng O(1)"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CTDL28",
+      "question": "Một cây nhị phân đầy đủ (full binary tree) có đặc điểm:",
+      "answers": [
+        "Tất cả nút có một con",
+        "Có tối đa 3 con",
+        "Mọi nút đều có 0 hoặc 2 con"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CTDL29",
+      "question": "Hash Table sử dụng để:",
+      "answers": [
+        "Tra cứu nhanh theo khóa",
+        "Sắp xếp dãy",
+        "Lưu dữ liệu dạng cây"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CTDL30",
+      "question": "Cấu trúc dữ liệu cơ bản trong lập trình gồm:",
+      "answers": [
+        "Mảng, danh sách, ngăn xếp, hàng đợi",
+        "Giao diện, luồng, sự kiện",
+        "Hàm, lớp, đối tượng"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

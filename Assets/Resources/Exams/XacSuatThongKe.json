@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 3",
+  "subjectName": "Xác Suất Và Thống Kê",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Xác suất của một biến cố luôn nằm trong khoảng nào?",
+      "options": [ "0 ≤ P(A) ≤ 1", "0 ≤ P(A) < ∞", "-1 ≤ P(A) ≤ 1", "P(A) ≥ 0" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tổng xác suất của tất cả các biến cố trong không gian mẫu bằng:",
+      "options": [ "0", "1", "100", "∞" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Nếu hai biến cố A và B độc lập, thì công thức xác suất đồng thời xảy ra là:",
+      "options": [ "P(A)·P(B)", "P(A) + P(B)", "P(A|B)", "P(A∪B)" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Công thức xác suất có điều kiện được viết là:",
+      "options": [ "P(A|B) = P(A∩B)/P(B)", "P(A|B) = P(A) + P(B)", "P(A|B) = P(B)/P(A)", "P(A|B) = P(A)·P(B)" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Xác suất của biến cố chắc chắn là:",
+      "options": [ "0", "Phụ thuộc vào không gian mẫu", "1", "Không xác định" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Xác suất của biến cố không thể là:",
+      "options": [ "< 0", "0", "1", "> 1" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Biến ngẫu nhiên rời rạc là biến có:",
+      "options": [ "Giá trị thuộc tập đếm được", "Giá trị thực liên tục", "Chỉ có giá trị âm", "Không có giới hạn" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Hàm mật độ xác suất dùng cho loại biến ngẫu nhiên nào?",
+      "options": [ "Liên tục", "Rời rạc", "Hỗn hợp", "Nhị thức" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Kỳ vọng toán học của biến ngẫu nhiên rời rạc X là:",
+      "options": [ "E(X) = Σx·P(x)", "E(X) = ∫x·P(x)dx", "E(X) = Var(X)", "E(X) = ΣP(x)" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phương sai được tính theo công thức:",
+      "options": [ "Var(X) = E(X²) - [E(X)]²", "Var(X) = E(X)", "Var(X) = X²", "Var(X) = Σ(X-E(X))" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phân phối nhị thức có công thức xác suất là:",
+      "options": [ "P(X=k)=C(n,k)p^k(1−p)^(n−k)", "P(X=k)=λ^k/k!·e^(−λ)", "P(X=k)=p·q", "f(x)=1/(σ√2π)e^(-(x−μ)²/2σ²)" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phân phối chuẩn có đặc điểm:",
+      "options": [ "Đối xứng qua giá trị trung bình", "Lệch phải", "Lệch trái", "Không xác định phương sai" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Độ lệch chuẩn là căn bậc hai của:",
+      "options": [ "Kỳ vọng", "Trung bình mẫu", "Phân phối", "Phương sai" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Luật số lớn nói rằng khi kích thước mẫu tăng, giá trị trung bình mẫu sẽ:",
+      "options": [ "Giảm về 0", "Tiến gần trung bình tổng thể", "Không đổi", "Tăng vô hạn" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Xác suất của biến cố đối Ā được tính bằng:",
+      "options": [ "P(Ā)=1−P(A)", "P(Ā)=P(A)", "P(Ā)=0", "P(Ā)=P(A)+1" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Mẫu là gì trong thống kê?",
+      "options": [ "Toàn bộ dữ liệu thu thập được", "Tập hợp con đại diện của tổng thể", "Một phần tử duy nhất", "Dữ liệu bị loại bỏ" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Sai số chuẩn của trung bình mẫu phản ánh:",
+      "options": [ "Độ dốc của đường hồi quy", "Sai số đo lường", "Số lượng mẫu", "Mức độ phân tán của giá trị trung bình mẫu" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Khoảng tin cậy 95% nghĩa là:",
+      "options": [ "Kết quả chắc chắn đúng", "Khoảng tin cậy rộng gấp đôi phương sai", "Xác suất ước lượng nằm trong khoảng là 0.95", "Sai số chuẩn bằng 5%" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Phép kiểm định giả thuyết H0: μ=μ0 dùng phân phối nào khi n lớn và σ đã biết?",
+      "options": [ "Phân phối t", "Phân phối F", "Phân phối χ²", "Phân phối chuẩn Z" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Phép kiểm định t được dùng khi:",
+      "options": [ "Phương sai đã biết", "Phương sai không biết và mẫu nhỏ", "Biến rời rạc", "Mẫu rất lớn" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Giá trị p-value trong kiểm định giả thuyết thể hiện:",
+      "options": [ "Giá trị trung bình", "Mức ý nghĩa của kiểm định", "Phương sai", "Sai lầm loại II" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Nếu p-value < α thì ta:",
+      "options": [ "Bác bỏ H0", "Chấp nhận H0", "Tăng kích thước mẫu", "Giữ nguyên giả thuyết" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phương sai càng nhỏ thì dữ liệu:",
+      "options": [ "Càng tập trung", "Càng phân tán", "Không thay đổi", "Càng khó đo" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Trong phân phối chuẩn, khoảng ±1σ chứa khoảng bao nhiêu phần trăm dữ liệu?",
+      "options": [ "95%", "68%", "99%", "50%" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Giá trị trung bình, trung vị và mode bằng nhau trong loại phân phối nào?",
+      "options": [ "Phân phối Poisson", "Phân phối lệch phải", "Phân phối chuẩn", "Phân phối đều" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Phân phối Poisson thường dùng để mô tả:",
+      "options": [ "Số lần xảy ra sự kiện hiếm trong khoảng thời gian", "Phân bố chiều cao con người", "Tốc độ tăng dân số", "Tổng giá trị giao dịch" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tổng tất cả tần suất trong một bảng phân phối bằng:",
+      "options": [ "100%", "0", "1", "n" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Nếu hai biến có hệ số tương quan r = 0, điều đó nghĩa là:",
+      "options": [ "Không có quan hệ tuyến tính giữa chúng", "Quan hệ hoàn toàn dương", "Chúng độc lập tuyệt đối", "Chúng có quan hệ ngược" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Khi tăng kích thước mẫu n, sai số chuẩn sẽ:",
+      "options": [ "Không xác định", "Không đổi", "Tăng lên", "Giảm xuống" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Thống kê mô tả dùng để:",
+      "options": [ "Kiểm định giả thuyết", "Xác định mối quan hệ nhân quả", "Dự đoán xu hướng tương lai", "Tóm tắt và trình bày dữ liệu" ],
+      "correctIndex": 3
+    }
+  ]
+}

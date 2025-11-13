@@ -1,0 +1,12 @@
+1.Khái niệm:
+IP định danh thiết bị trong mạng. Subnet chia mạng lớn thành mạng con.
+
+2.Công thức:
+Số host = 2^(32 - prefix) - 2
+Ví dụ: /24 → 254 host khả dụng.
+
+3.Quy tắc:
+Không dùng địa chỉ toàn 0 (network) và toàn 1 (broadcast).
+
+4.Ứng dụng:
+Quản lý địa chỉ trong doanh nghiệp, định tuyến hiệu quả.

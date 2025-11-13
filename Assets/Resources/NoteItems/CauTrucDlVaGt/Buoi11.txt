@@ -1,0 +1,12 @@
+1.Khái niệm:
+Gồm tập đỉnh (V) và cạnh (E), có thể có hướng.
+
+2.Công thức:
+Biểu diễn: ma trận kề hoặc danh sách kề.
+
+3.Quy tắc:
+Duyệt BFS dùng hàng đợi
+Duyệt DFS dùng ngăn xếp hoặc đệ quy
+
+4.Ứng dụng:
+Tìm đường đi, mạng xã hội, bản đồ, luồng dữ liệu.

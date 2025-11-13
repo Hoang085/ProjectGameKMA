@@ -1,0 +1,193 @@
+{
+  "subjectKey": "XacSuatThongKe",
+  "questions": [
+    {
+      "id": "XSTK1",
+      "question": "Xác suất của một biến cố luôn nằm trong khoảng nào?",
+      "answers": [ "0 ≤ P(A) ≤ 1", "0 ≤ P(A) < ∞", "-1 ≤ P(A) ≤ 1" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK2",
+      "question": "Tổng xác suất của tất cả các biến cố trong không gian mẫu bằng:",
+      "answers": [ "0", "1", "100" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "XSTK3",
+      "question": "Nếu hai biến cố A và B độc lập, thì công thức xác suất đồng thời xảy ra là:",
+      "answers": [ "P(A)·P(B)", "P(A) + P(B)", "P(A|B)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK4",
+      "question": "Công thức xác suất có điều kiện được viết là:",
+      "answers": [ "P(A|B) = P(A∩B)/P(B)", "P(A|B) = P(A) + P(B)", "P(A|B) = P(B)/P(A)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK5",
+      "question": "Xác suất của biến cố chắc chắn là:",
+      "answers": [ "0", "Phụ thuộc vào không gian mẫu", "1" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "XSTK6",
+      "question": "Xác suất của biến cố không thể là:",
+      "answers": [ "< 0", "0", "1" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK7",
+      "question": "Biến ngẫu nhiên rời rạc là biến có:",
+      "answers": [ "Giá trị thuộc tập đếm được", "Giá trị thực liên tục", "Chỉ có giá trị âm" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK8",
+      "question": "Hàm mật độ xác suất dùng cho loại biến ngẫu nhiên nào?",
+      "answers": [ "Liên tục", "Rời rạc", "Hỗn hợp" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK9",
+      "question": "Kỳ vọng toán học của biến ngẫu nhiên rời rạc X là:",
+      "answers": [ "E(X) = Σx·P(x)", "E(X) = ∫x·P(x)dx", "E(X) = Var(X)" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK10",
+      "question": "Phương sai được tính theo công thức:",
+      "answers": [ "Var(X) = E(X²) - [E(X)]²", "Var(X) = E(X)", "Var(X) = X²" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK11",
+      "question": "Phân phối nhị thức có công thức xác suất là:",
+      "answers": [
+        "P(X=k)=C(n,k)p^k(1−p)^(n−k)",
+        "P(X=k)=λ^k/k!·e^(−λ)",
+        "P(X=k)=p·q"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK12",
+      "question": "Phân phối chuẩn có đặc điểm:",
+      "answers": [ "Đối xứng qua giá trị trung bình", "Lệch phải", "Lệch trái" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK13",
+      "question": "Độ lệch chuẩn là căn bậc hai của:",
+      "answers": [ "Kỳ vọng", "Trung bình mẫu", "Phân phối" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK14",
+      "question": "Luật số lớn nói rằng khi kích thước mẫu tăng, giá trị trung bình mẫu sẽ:",
+      "answers": [ "Giảm về 0", "Tiến gần trung bình tổng thể", "Không đổi" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "XSTK15",
+      "question": "Xác suất của biến cố đối Ā được tính bằng:",
+      "answers": [ "P(Ā)=1−P(A)", "P(Ā)=P(A)", "P(Ā)=0" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK16",
+      "question": "Mẫu là gì trong thống kê?",
+      "answers": [ "Toàn bộ dữ liệu thu thập được", "Tập hợp con đại diện của tổng thể", "Một phần tử duy nhất" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "XSTK17",
+      "question": "Sai số chuẩn của trung bình mẫu phản ánh:",
+      "answers": [ "Độ dốc của đường hồi quy", "Sai số đo lường", "Số lượng mẫu" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "XSTK18",
+      "question": "Khoảng tin cậy 95% nghĩa là:",
+      "answers": [ "Kết quả chắc chắn đúng", "Khoảng tin cậy rộng gấp đôi phương sai", "Xác suất ước lượng nằm trong khoảng là 0.95" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "XSTK19",
+      "question": "Phép kiểm định giả thuyết H0: μ=μ0 dùng phân phối nào khi n lớn và σ đã biết?",
+      "answers": [ "Phân phối t", "Phân phối F", "Phân phối χ²" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK20",
+      "question": "Phép kiểm định t được dùng khi:",
+      "answers": [ "Phương sai đã biết", "Phương sai không biết và mẫu nhỏ", "Biến rời rạc" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "XSTK21",
+      "question": "Giá trị p-value trong kiểm định giả thuyết thể hiện:",
+      "answers": [ "Giá trị trung bình", "Mức ý nghĩa của kiểm định", "Phương sai" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "XSTK22",
+      "question": "Nếu p-value < α thì ta:",
+      "answers": [ "Bác bỏ H0", "Chấp nhận H0", "Tăng kích thước mẫu" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK23",
+      "question": "Phương sai càng nhỏ thì dữ liệu:",
+      "answers": [ "Càng tập trung", "Càng phân tán", "Không thay đổi" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK24",
+      "question": "Trong phân phối chuẩn, khoảng ±1σ chứa khoảng bao nhiêu phần trăm dữ liệu?",
+      "answers": [ "95%", "68%", "99%" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "XSTK25",
+      "question": "Giá trị trung bình, trung vị và mode bằng nhau trong loại phân phối nào?",
+      "answers": [ "Phân phối Poisson", "Phân phối lệch phải", "Phân phối chuẩn" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "XSTK26",
+      "question": "Phân phối Poisson thường dùng để mô tả:",
+      "answers": [
+        "Số lần xảy ra sự kiện hiếm trong khoảng thời gian",
+        "Phân bố chiều cao con người",
+        "Tốc độ tăng dân số"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK27",
+      "question": "Tổng tất cả tần suất trong một bảng phân phối bằng:",
+      "answers": [ "100%", "0", "1" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK28",
+      "question": "Nếu hai biến có hệ số tương quan r = 0, điều đó nghĩa là:",
+      "answers": [ "Không có quan hệ tuyến tính giữa chúng", "Quan hệ hoàn toàn dương", "Chúng độc lập tuyệt đối" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "XSTK29",
+      "question": "Khi tăng kích thước mẫu n, sai số chuẩn sẽ:",
+      "answers": [ "Không xác định", "Không đổi", "Tăng lên" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "XSTK30",
+      "question": "Thống kê mô tả dùng để:",
+      "answers": [ "Kiểm định giả thuyết", "Xác định mối quan hệ nhân quả", "Dự đoán xu hướng tương lai" ],
+      "correctIndex": 0
+    }
+  ]
+}

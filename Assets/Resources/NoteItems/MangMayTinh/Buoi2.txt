@@ -1,0 +1,11 @@
+1.Khái niệm:
+Mô hình gồm 7 lớp giúp chuẩn hóa truyền thông mạng.
+
+2.Công thức:
+7 lớp: Application – Presentation – Session – Transport – Network – Data Link – Physical
+
+3.Quy tắc:
+Dữ liệu đi từ lớp 7 → lớp 1 khi gửi và ngược lại khi nhận.
+
+4.Ứng dụng:
+Phân tích lỗi mạng, thiết kế giao thức, bảo mật theo từng lớp.

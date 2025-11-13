@@ -1,0 +1,13 @@
+1.Khái niệm:
+Xác suất có điều kiện cho biết khả năng xảy ra của biến cố A khi B đã xảy ra.
+
+2.Công thức:
+P(A|B) = P(A ∩ B) / P(B)
+Công thức Bayes: P(A|B) = [P(B|A) × P(A)] / P(B)
+
+3.Quy tắc:
+Tổng xác suất các biến cố rời nhau = 1
+Phải có P(B) ≠ 0
+
+4.Ứng dụng:
+Chẩn đoán y học, hệ thống khuyến nghị, nhận dạng mẫu.

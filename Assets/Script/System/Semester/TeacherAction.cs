@@ -171,10 +171,14 @@ public class TeacherAction : InteractableAction
     }
 
     private static string NormalizeKey(string s) => (s ?? "").Trim().ToLowerInvariant();
+    
+    /// <summary>
+    /// **CẢI THIỆN: Sử dụng KeyUtil.MakeKey() thay vì MakeNoteKey() cũ**
+    /// KeyUtil.MakeKey() xử lý đúng dấu tiếng Việt, đảm bảo khớp với tên thư mục Quiz
+    /// </summary>
     private static string MakeNoteKey(string name)
     {
-        string k = (name ?? "").Trim().ToLowerInvariant();
-        return k.Replace(" ", "");
+        return KeyUtil.MakeKey(name);
     }
 
     private void RebuildSubjectsFromConfig(SemesterConfig cfg)
@@ -570,7 +574,30 @@ public class TeacherAction : InteractableAction
         int attended = Mathf.Max(0, subj.currentSessionIndex);
         int abs = GetAbsencesFor(subj);
         int cap = Mathf.Max(1, subj.maxSessions);
-        return (attended + abs) >= cap;
+        
+        // **SỬA: Sử dụng số buổi hiển thị thay vì maxSessions gốc**
+        int displayCap = GetDisplayMaxSessions(cap);
+        
+        return (attended + abs) >= displayCap;
+    }
+
+    /// <summary>
+    /// **MỚI: Lấy số buổi học tối đa để hiển thị (12 buổi -> 10, 18 buổi -> 15)**
+    /// </summary>
+    private int GetDisplayMaxSessions(int actualMaxSessions)
+    {
+        // Môn 12 buổi -> hiển thị /10
+        if (actualMaxSessions == 12)
+        {
+            return 10;
+        }
+        // Môn 18 buổi -> hiển thị /15
+        else if (actualMaxSessions == 18)
+        {
+            return 15;
+        }
+        // Các trường hợp khác giữ nguyên
+        return actualMaxSessions;
     }
 
     private bool TryFindSubjectForNow(out SubjectEntry subj)
@@ -646,46 +673,27 @@ public class TeacherAction : InteractableAction
             return;
         }
         
-        string subjectKey = GetStableSubjectKey(subj);
-        
-        // **MỚI: Kiểm tra xem có flag NEEDS_RETAKE_SCHEDULE không**
-        bool needsRetakeSchedule = PlayerPrefs.GetInt($"NEEDS_RETAKE_SCHEDULE_{subjectKey}", 0) == 1;
-        
         bool showRetakeButton = false;
         
-        // **LOGIC ĐƠN GIẢN HƠN:**
-        // 1. Nếu có flag NEEDS_RETAKE_SCHEDULE -> tự động tạo lịch (nếu chưa có) và hiện nút
-        // 2. Nếu không có flag -> kiểm tra lịch thi lại có tồn tại và chưa thi/bỏ
-        
-        if (needsRetakeSchedule)
+        // **SỬA: Logic đơn giản - chỉ kiểm tra lịch thi lại có tồn tại và hợp lệ không**
+        if (TryLoadRetakeExamAssignment(subj, 
+            out int retakeTerm, out int retakeWeek, out Weekday retakeDay, out int retakeSlot, 
+            out bool retakeMissed, out bool retakeTaken))
         {
-            // **QUAN TRỌNG: Có flag -> đảm bảo có lịch thi lại bằng cách gọi CheckAndCreateRetakeSchedule**
-            CheckAndCreateRetakeSchedule(subj);
-            
-            // Kiểm tra xem đã tạo thành công chưa
-            if (TryLoadRetakeExamAssignment(subj, out _, out _, out _, out _, out _, out _))
+            // Chỉ hiện nút nếu chưa thi và chưa bỏ lỡ
+            if (!retakeTaken && !retakeMissed)
             {
                 showRetakeButton = true;
-                Debug.Log($"[TeacherAction] ✓ Hiện nút 'Thi lại' cho {subj.subjectName} (có flag NEEDS_RETAKE_SCHEDULE)");
+                Debug.Log($"[TeacherAction] ✓ Hiện nút 'Thi lại' cho {subj.subjectName} (có lịch thi lại hợp lệ)");
             }
             else
             {
-                Debug.LogWarning($"[TeacherAction] Không thể tạo lịch thi lại cho {subj.subjectName}");
+                Debug.Log($"[TeacherAction] ✗ Không hiện nút 'Thi lại' cho {subj.subjectName} - taken={retakeTaken}, missed={retakeMissed}");
             }
         }
         else
         {
-            // Không có flag -> kiểm tra lịch thi lại có tồn tại và chưa thi/bỏ
-            if (TryLoadRetakeExamAssignment(subj, 
-                out int retakeTerm, out int retakeWeek, out Weekday retakeDay, out int retakeSlot, 
-                out bool retakeMissed, out bool retakeTaken))
-            {
-                if (!retakeTaken && !retakeMissed)
-                {
-                    showRetakeButton = true;
-                    Debug.Log($"[TeacherAction] ✓ Hiện nút 'Thi lại' cho {subj.subjectName} (có lịch thi lại)");
-                }
-            }
+            Debug.Log($"[TeacherAction] ✗ Không tìm thấy lịch thi lại cho {subj.subjectName}");
         }
         
         UI?.UpdateExamButtonsVisibility(showRetake: showRetakeButton);
@@ -719,6 +727,31 @@ public class TeacherAction : InteractableAction
 
         if (IsCourseFinished(subj))
         {
+            // **MỚI: Kiểm tra xem có đang trong ca thi lại không**
+            if (TryLoadRetakeExamAssignment(subj, 
+                out int retakeTerm, out int retakeWeek, out Weekday retakeDay, out int retakeSlot, 
+                out bool retakeMissed, out bool retakeTaken))
+            {
+                // Kiểm tra xem hiện tại có đúng ca thi lại không
+                if (Clock != null)
+                {
+                    int currentTerm = GetCurrentTerm();
+                    int currentWeek = Mathf.Max(1, Clock.Week);
+                    Weekday currentDay = Clock.Weekday;
+                    int currentSlot = Clock.SlotIndex1Based;
+                    
+                    bool isRetakeTime = (currentTerm == retakeTerm && currentWeek == retakeWeek && 
+                                        currentDay == retakeDay && currentSlot == retakeSlot);
+                    
+                    if (isRetakeTime && !retakeTaken && !retakeMissed)
+                    {
+                        // Đang trong ca thi lại -> chặn không cho học
+                        UI?.OpenDialogue(TitleText(), "Đây là ca thi lại của em. Vui lòng nhấn nút 'Thi lại' để vào thi!");
+                        return;
+                    }
+                }
+            }
+            
             UI?.OpenDialogue(TitleText(), finishedAllSessionsText);
             return;
         }
@@ -781,8 +814,8 @@ public class TeacherAction : InteractableAction
         
         UI?.StartQuizForSubject(quizKey);
     }
-    
-    
+
+
     private void AddNoteIfNeeded(SubjectEntry subj)
     {
         if (!addNoteWhenFinished || NotesService.Instance == null) return;
@@ -876,7 +909,6 @@ public class TeacherAction : InteractableAction
             yield break; // Kết thúc sớm, không tính progress
         }
 
-        // **LOGIC CŨ: Đạt quiz -> confirm attendance và tiếp tục**
         if (att != null)
         {
             att.ConfirmAttendance(subj.subjectName);
@@ -888,26 +920,26 @@ public class TeacherAction : InteractableAction
         int abs = GetAbsencesFor(subj);
         int cap = Mathf.Max(1, subj.maxSessions);
         int attended = Mathf.Max(0, subj.currentSessionIndex);
-        int attendedCap = Mathf.Max(0, cap - abs);
+        
+        int displayCap = GetDisplayMaxSessions(cap);
+        int attendedCap = Mathf.Max(0, displayCap - abs); // Số buổi cần học = displayCap - vắng
 
-        // **SỬA: Tăng attended TRƯỚC khi kiểm tra justFinished**
         int newAttended = attended + 1;
         
         if (attended < attendedCap)
         {
             subj.currentSessionIndex = newAttended;
             SaveProgress(subj);
-            Debug.Log($"[TeacherAction] Tăng progress: {attended} -> {newAttended} / {attendedCap} (cap: {cap}, abs: {abs})");
+            Debug.Log($"[TeacherAction] Tăng progress: {attended} -> {newAttended} / {attendedCap} (displayCap: {displayCap}, cap: {cap}, abs: {abs})");
         }
 
-        // **SỬA: Kiểm tra justFinished dựa trên giá trị MỚI**
+        // **SỬA: Kiểm tra justFinished dựa trên displayCap**
         bool justFinished = (newAttended >= attendedCap);
         
-        Debug.Log($"[TeacherAction] justFinished check: newAttended={newAttended}, attendedCap={attendedCap}, justFinished={justFinished}");
+        Debug.Log($"[TeacherAction] justFinished check: newAttended={newAttended}, attendedCap={attendedCap}, displayCap={displayCap}, justFinished={justFinished}");
         
         if (justFinished)
         {
-            // **CẢI THIỆN: Sử dụng hàm CheckAndCreateExamScheduleIfFinished thống nhất**
             CheckAndCreateExamScheduleIfFinished(subj);
             
             // Kiểm tra và hiển thị thông báo lịch thi

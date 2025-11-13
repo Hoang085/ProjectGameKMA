@@ -1,0 +1,14 @@
+1.Khái niệm:
+Cấu trúc dữ liệu là cách tổ chức và lưu trữ dữ liệu. Giải thuật là tập hợp các bước giải bài toán.
+
+2.Công thức:
+T(n): độ phức tạp thời gian
+S(n): độ phức tạp không gian
+
+3.Quy tắc:
+
+Dùng ký hiệu Big-O: O(1), O(n), O(log n), O(n²)...
+Phân tích và tối ưu hiệu suất.
+
+4.Ứng dụng:
+Tối ưu chương trình, xử lý dữ liệu lớn.

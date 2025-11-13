@@ -1,0 +1,15 @@
+1.Khái niệm:
+Mô hình 4 lớp thực tế dựa trên Internet: Application, Transport, Internet, Network Access.
+
+2.Công thức:
+Mapping:
+Application = (L5–7 OSI)
+Transport = (L4 OSI)
+Internet = (L3 OSI)
+Network Access = (L1–2 OSI)
+
+3.Quy tắc:
+TCP đáng tin cậy, UDP nhanh hơn nhưng không đảm bảo.
+
+4.Ứng dụng:
+Truyền dữ liệu qua Internet, xây dựng mạng LAN/WAN.

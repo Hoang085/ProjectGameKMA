@@ -1,0 +1,14 @@
+1.Khái niệm:
+Các phân phối mà X nhận giá trị rời rạc như Bernoulli, Nhị thức, Poisson.
+
+2.Công thức:
+Bernoulli: P(X=1)=p, P(X=0)=1-p
+Nhị thức: P(X=k)=C(n,k)p^k(1-p)^(n-k)
+Poisson: P(X=k)= (λ^k * e^(-λ)) / k!
+
+3.Quy tắc:
+Tổng xác suất bằng 1.
+λ = trung bình số lần xảy ra trong Poisson.
+
+4.Ứng dụng:
+Đếm số lỗi, số khách đến cửa hàng, sự cố hệ thống.

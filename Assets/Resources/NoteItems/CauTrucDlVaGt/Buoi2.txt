@@ -1,0 +1,13 @@
+1.Khái niệm:
+Mảng là tập hợp các phần tử cùng kiểu, lưu liên tiếp trong bộ nhớ.
+
+2.Công thức:
+A[i] = base + i * size
+
+3.Quy tắc:
+
+Truy cập O(1)
+Chèn/xóa giữa mảng O(n)
+
+4.Ứng dụng:
+Lưu danh sách, xử lý ảnh, dữ liệu cảm biến.

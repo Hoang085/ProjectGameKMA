@@ -353,61 +353,175 @@ public class TaskManager : MonoBehaviour
 
     public void HandleTaskAction(string searchData)
     {
-        if (string.IsNullOrEmpty(searchData)) return;
+        Debug.Log($"[TaskManager] HandleTaskAction called with searchData: '{searchData}'");
+        
+        if (string.IsNullOrEmpty(searchData))
+        {
+            Debug.LogWarning("[TaskManager] searchData is null or empty!");
+            return;
+        }
 
         string[] parts = searchData.Split('|');
         string displayName = parts[0];
         string subjectKey = parts.Length > 1 ? parts[1] : displayName;
+        
+        Debug.Log($"[TaskManager] Parsed - displayName: '{displayName}', subjectKey: '{subjectKey}'");
 
         var targetTeacher = FindTeacherForSubject(displayName, subjectKey);
         if (targetTeacher != null)
+        {
+            Debug.Log($"[TaskManager] ✓ Found teacher: {targetTeacher.name}");
             NavigateToTeacher(targetTeacher, displayName);
+        }
         else
-            Debug.LogWarning($"[TaskManager] Teacher not found for subject '{displayName}'");
+        {
+            Debug.LogWarning($"[TaskManager] ✗ Teacher not found for subject '{displayName}'");
+        }
     }
 
     private TeacherAction FindTeacherForSubject(string displayName, string subjectKey)
     {
+        Debug.Log($"[TaskManager] ===== FindTeacherForSubject START =====");
+        Debug.Log($"[TaskManager] Looking for - displayName: '{displayName}', subjectKey: '{subjectKey}'");
+        
         var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
+        Debug.Log($"[TaskManager] Found {teachers.Length} teachers in scene");
+        
+        int teacherIndex = 0;
         foreach (var teacher in teachers)
         {
-            // Bỏ qua giáo viên không thuộc kỳ hiện tại
-            if (teacher.semesterConfig != null && teacher.semesterConfig.Semester != clock.Term)
+            teacherIndex++;
+            Debug.Log($"[TaskManager] [{teacherIndex}] Checking teacher: {teacher.name}");
+            
+            if (teacher.subjects == null)
+            {
+                Debug.Log($"[TaskManager]   -> [{teacherIndex}] {teacher.name} has no subjects list");
                 continue;
-
-            if (teacher.subjects == null) continue;
+            }
+            
+            Debug.Log($"[TaskManager]   -> [{teacherIndex}] {teacher.name} has {teacher.subjects.Count} subjects");
+            
+            int subjectIndex = 0;
             foreach (var subject in teacher.subjects)
             {
-                if (subject == null) continue;
+                subjectIndex++;
+                if (subject == null)
+                {
+                    Debug.Log($"[TaskManager]      -> [{teacherIndex}.{subjectIndex}] (null subject entry)");
+                    continue;
+                }
+                
+                Debug.Log($"[TaskManager]      -> [{teacherIndex}.{subjectIndex}] Subject: '{subject.subjectName}'");
+                
                 if (IsSubjectMatch(subject.subjectName, displayName, subjectKey))
+                {
+                    Debug.Log($"[TaskManager] ✓✓✓ MATCH FOUND! Teacher [{teacherIndex}]: {teacher.name}, Subject: {subject.subjectName} ✓✓✓");
                     return teacher;
+                }
             }
         }
+        
+        Debug.LogWarning($"[TaskManager] ===== ✗ NO MATCH FOUND =====");
+        Debug.LogWarning($"[TaskManager] No matching teacher found for displayName='{displayName}', subjectKey='{subjectKey}'");
         return null;
     }
 
     private bool IsSubjectMatch(string teacherSubjectName, string displayName, string subjectKey)
     {
-        if (string.IsNullOrEmpty(teacherSubjectName)) return false;
+        if (string.IsNullOrEmpty(teacherSubjectName))
+        {
+            Debug.Log($"[TaskManager]         -> IsSubjectMatch: teacherSubjectName is null/empty");
+            return false;
+        }
 
-        if (string.Equals(teacherSubjectName, displayName, StringComparison.OrdinalIgnoreCase) ||
-            string.Equals(teacherSubjectName, subjectKey, StringComparison.OrdinalIgnoreCase))
+        Debug.Log($"[TaskManager]         -> Comparing: '{teacherSubjectName}' vs displayName='{displayName}', subjectKey='{subjectKey}'");
+
+        // **SỬA: Ưu tiên exact match trước (case-insensitive)**
+        if (string.Equals(teacherSubjectName, displayName, StringComparison.OrdinalIgnoreCase))
+        {
+            Debug.Log($"[TaskManager]         -> ✓ Exact match with displayName");
             return true;
+        }
+        
+        if (string.Equals(teacherSubjectName, subjectKey, StringComparison.OrdinalIgnoreCase))
+        {
+            Debug.Log($"[TaskManager]         -> ✓ Exact match with subjectKey");
+            return true;
+        }
 
+        // **SỬA: Chỉ normalize nếu cần thiết (có dấu cách hoặc underscore)**
+        bool needsNormalization = teacherSubjectName.Contains(" ") || teacherSubjectName.Contains("_") ||
+                                  displayName.Contains(" ") || displayName.Contains("_") ||
+                                  subjectKey.Contains(" ") || subjectKey.Contains("_");
+        
+        if (!needsNormalization)
+        {
+            Debug.Log($"[TaskManager]         -> ✗ No match (exact comparison only, no spaces/underscores)");
+            return false;
+        }
+
+        // Normalized comparison (chỉ khi có dấu cách hoặc underscore)
         string nTeacher = NormalizeKey(teacherSubjectName);
         string nDisplay = NormalizeKey(displayName);
         string nKey = NormalizeKey(subjectKey);
+        
+        Debug.Log($"[TaskManager]         -> Normalized: nTeacher='{nTeacher}', nDisplay='{nDisplay}', nKey='{nKey}'");
 
-        return string.Equals(nTeacher, nDisplay, StringComparison.OrdinalIgnoreCase) ||
-               string.Equals(nTeacher, nKey, StringComparison.OrdinalIgnoreCase);
+        if (string.Equals(nTeacher, nDisplay, StringComparison.OrdinalIgnoreCase))
+        {
+            Debug.Log($"[TaskManager]         -> ✓ Normalized match with displayName");
+            return true;
+        }
+        
+        if (string.Equals(nTeacher, nKey, StringComparison.OrdinalIgnoreCase))
+        {
+            Debug.Log($"[TaskManager]         -> ✓ Normalized match with subjectKey");
+            return true;
+        }
+        
+        Debug.Log($"[TaskManager]         -> ✗ No match");
+        return false;
     }
 
     private void NavigateToTeacher(TeacherAction teacher, string subjectName)
     {
-        if (NavigationLineManager.Instance != null)
-            NavigationLineManager.Instance.CreateNavigationLine(teacher.transform, $"GV {teacher.name} - {subjectName}");
+        Debug.Log($"[TaskManager] NavigateToTeacher called - Teacher: {teacher.name}, Subject: {subjectName}");
+        Debug.Log($"[TaskManager] Teacher position: {teacher.transform.position}");
+        
+        // **THÊM: Kiểm tra và khởi tạo NavigationLineManager nếu cần**
+        if (NavigationLineManager.Instance == null)
+        {
+            Debug.LogWarning("[TaskManager] NavigationLineManager.Instance is null - attempting to create");
+            
+            // Tìm trong scene trước
+            var navManager = FindAnyObjectByType<NavigationLineManager>();
+            if (navManager == null)
+            {
+                // Tạo mới nếu không tìm thấy
+                var navGO = new GameObject("NavigationLineManager");
+                navManager = navGO.AddComponent<NavigationLineManager>();
+                Debug.Log("[TaskManager] Created new NavigationLineManager instance");
+            }
+            else
+            {
+                Debug.Log("[TaskManager] Found existing NavigationLineManager in scene");
+            }
+        }
+        else
+        {
+            Debug.Log("[TaskManager] NavigationLineManager.Instance already exists");
+        }
 
-        Debug.Log($"[TaskManager] Navigation started to teacher {teacher.name} for subject {subjectName}");
+        if (NavigationLineManager.Instance != null)
+        {
+            Debug.Log($"[TaskManager] Calling CreateNavigationLine for teacher: {teacher.name}");
+            NavigationLineManager.Instance.CreateNavigationLine(teacher.transform, $"GV {teacher.name} - {subjectName}");
+            Debug.Log($"[TaskManager] Navigation started to teacher {teacher.name} for subject {subjectName}");
+        }
+        else
+        {
+            Debug.LogError("[TaskManager] Failed to initialize NavigationLineManager - navigation cannot be created");
+        }
     }
 
     #endregion

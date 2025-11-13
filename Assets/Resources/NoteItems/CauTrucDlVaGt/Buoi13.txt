@@ -1,0 +1,13 @@
+1.Khái niệm:
+Sắp xếp dữ liệu theo thứ tự tăng/giảm.
+
+2.Công thức:
+BubbleSort: O(n²)
+QuickSort: O(n log n)
+MergeSort: O(n log n)
+
+3.Quy tắc:
+Chọn thuật toán phù hợp kích thước và yêu cầu ổn định.
+
+4.Ứng dụng:
+Tối ưu tra cứu, sắp xếp danh sách lớn.

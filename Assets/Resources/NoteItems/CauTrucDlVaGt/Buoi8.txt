@@ -1,0 +1,11 @@
+1.Khái niệm:
+BST có hiệu số chiều cao ≤ 1 ở mọi node.
+
+2.Công thức:
+BF = height(left) - height(right)
+
+3.Quy tắc:
+Quay trái, quay phải, quay kép để cân bằng.
+
+4.Ứng dụng:
+Tối ưu tìm kiếm trong hệ thống cơ sở dữ liệu.

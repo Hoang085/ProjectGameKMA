@@ -1,0 +1,11 @@
+1.Khái niệm:
+Quá trình chọn đường đi tốt nhất cho gói tin.
+
+2.Công thức:
+Chi phí đường đi = tổng metric (hop, delay, bandwidth)
+
+3.Quy tắc:
+Routing tĩnh (manual) và động (RIP, OSPF, BGP).
+
+4.Ứng dụng:
+Hệ thống Internet toàn cầu, mạng doanh nghiệp nhiều nhánh.

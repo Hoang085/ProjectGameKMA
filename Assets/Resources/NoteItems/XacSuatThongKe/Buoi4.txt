@@ -1,0 +1,13 @@
+1.Khái niệm:
+Biến ngẫu nhiên gán giá trị số cho mỗi kết quả của phép thử.
+
+2.Công thức:
+Hàm phân phối: F(x) = P(X ≤ x)
+Giá trị kỳ vọng: E(X) = Σ[x × P(x)]
+
+3.Quy tắc:
+0 ≤ P(x) ≤ 1
+Tổng xác suất các giá trị = 1
+
+4.Ứng dụng:
+Mô hình hóa kết quả ngẫu nhiên (xúc xắc, xác suất lỗi trong truyền dữ liệu).

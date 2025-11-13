@@ -1,0 +1,12 @@
+1.Khái niệm:
+Xác suất – thống kê là ngành nghiên cứu sự ngẫu nhiên, giúp mô tả và phân tích dữ liệu.
+
+2.Công thức:
+P(A) = Số kết quả thuận lợi / Tổng số kết quả có thể
+
+3.Quy tắc:
+0 ≤ P(A) ≤ 1
+P(∅) = 0, P(S) = 1
+
+4.Ứng dụng:
+Phân tích dữ liệu, mô hình hóa rủi ro, dự đoán xu hướng trong khoa học và kinh tế.

@@ -23,6 +23,18 @@
     {
       "key": "vatlydaicuong",
       "display": "Vật Lý Đại Cương"
+    },
+    {
+      "key": "xacsuatthongke",
+      "display": "Xác Suất Thống Kê"
+    },
+    {
+      "key": "mangmaytinh",
+      "display": "Mạng Máy Tính"
+    },
+    {
+      "key": "cautrucdlvagt",
+      "display": "Cấu Trúc DL và GT"
     }
   ]
 }

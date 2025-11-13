@@ -1,0 +1,14 @@
+1.Khái niệm:
+X nhận giá trị liên tục, ví dụ: Chuẩn (Normal), Uniform, Exponential.
+
+2.Công thức:
+Uniform(a,b): f(x)=1/(b−a)
+Exponential: f(x)=λe^(−λx)
+Normal: f(x)=(1/(σ√(2π)))·e^(−(x−μ)²/(2σ²))
+
+3.Quy tắc:
+P(a ≤ X ≤ b) = ∫ₐᵇ f(x)dx
+Diện tích toàn đồ thị = 1
+
+4.Ứng dụng:
+Mô hình hóa thời gian chờ, chiều cao, trọng lượng, nhiễu tín hiệu.

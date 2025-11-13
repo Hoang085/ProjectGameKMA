@@ -1,0 +1,12 @@
+1.Khái niệm:
+Mẫu là tập hợp các quan sát lấy ra từ tổng thể. Ước lượng giúp suy ra tham số tổng thể.
+
+2.Công thức:
+Trung bình mẫu: x̄ = Σxᵢ / n
+Phương sai mẫu: s² = Σ(xᵢ−x̄)² / (n−1)
+
+3.Quy tắc:
+Chọn mẫu ngẫu nhiên đại diện, không thiên lệch.
+
+4.Ứng dụng:
+Khảo sát thị trường, ước lượng dân số, độ tin cậy thiết bị.

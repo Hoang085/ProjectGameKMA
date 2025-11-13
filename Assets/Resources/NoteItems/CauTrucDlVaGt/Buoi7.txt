@@ -1,0 +1,12 @@
+1.Khái niệm:
+Cây mà node trái < node gốc < node phải.
+
+2.Công thức:
+Chiều cao trung bình: O(log n)
+
+3.Quy tắc:
+  Duyệt trung tự → tăng dần
+  Cần cân bằng cây tránh O(n)
+
+4.Ứng dụng:
+Tìm kiếm nhanh, thêm/xóa hiệu quả.

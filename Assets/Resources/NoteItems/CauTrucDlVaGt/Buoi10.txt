@@ -1,0 +1,12 @@
+1.Khái niệm:
+Lưu dữ liệu theo cặp khóa-giá trị, truy cập nhanh.
+
+2.Công thức:
+h(key) = key mod m
+
+3.Quy tắc:
+Xử lý xung đột: chaining hoặc open addressing
+Tra cứu trung bình O(1)
+
+4.Ứng dụng:
+Từ điển, cache, kiểm tra trùng dữ liệu.

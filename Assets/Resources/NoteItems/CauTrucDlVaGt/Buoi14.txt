@@ -1,0 +1,12 @@
+1.Khái niệm:
+Hàm tự gọi chính nó, có điều kiện dừng.
+
+2.Công thức:
+T(n) = T(n-1) + O(1)
+
+3.Quy tắc:
+Cần có điều kiện dừng rõ ràng
+Mỗi lời gọi dùng ngăn xếp riêng
+
+4.Ứng dụng:
+Giải tổ hợp, tìm đường mê cung, N quân hậu.

@@ -1,0 +1,225 @@
+{
+  "subjectKey": "MangMayTinh",
+  "questions": [
+    {
+      "id": "MMT1",
+      "question": "Mô hình OSI có bao nhiêu tầng?",
+      "answers": [ "7", "5", "4" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MMT2",
+      "question": "Tầng nào trong mô hình OSI chịu trách nhiệm định tuyến gói tin?",
+      "answers": [ "Tầng Mạng (Network)", "Tầng Giao vận", "Tầng Ứng dụng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MMT3",
+      "question": "Giao thức TCP thuộc tầng nào trong mô hình OSI?",
+      "answers": [ "Tầng Liên kết dữ liệu", "Tầng Giao vận (Transport)", "Tầng Mạng" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "MMT4",
+      "question": "Địa chỉ IP là gì?",
+      "answers": [
+        "Địa chỉ MAC",
+        "Địa chỉ vật lý",
+        "Địa chỉ logic dùng để định danh thiết bị trong mạng"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MMT5",
+      "question": "Cổng mặc định (default gateway) có chức năng gì?",
+      "answers": [
+        "Truyền dữ liệu trong LAN",
+        "Kết nối nội bộ",
+        "Định tuyến gói tin ra ngoài mạng"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MMT6",
+      "question": "Giao thức DHCP dùng để làm gì?",
+      "answers": [ "Cấp phát địa chỉ IP tự động", "Chuyển tệp tin", "Bảo mật dữ liệu" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MMT7",
+      "question": "Giao thức nào dùng để truyền thư điện tử?",
+      "answers": [ "SMTP", "HTTP", "FTP" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MMT8",
+      "question": "DNS có chức năng gì?",
+      "answers": [
+        "Mã hóa dữ liệu",
+        "Dịch tên miền thành địa chỉ IP",
+        "Cấp phát địa chỉ IP"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "MMT9",
+      "question": "Địa chỉ IP lớp C có phần mạng mặc định là bao nhiêu bit?",
+      "answers": [ "16", "8", "24" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MMT10",
+      "question": "Giao thức HTTP hoạt động trên cổng nào mặc định?",
+      "answers": [ "443", "25", "21" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MMT11",
+      "question": "HTTPS khác HTTP ở điểm nào?",
+      "answers": [
+        "Sử dụng mã hóa SSL/TLS để bảo mật",
+        "Chỉ dùng trong mạng nội bộ",
+        "Dùng cổng 8080"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MMT12",
+      "question": "Thiết bị nào dùng để kết nối nhiều mạng lại với nhau?",
+      "answers": [ "Switch", "Router", "Hub" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "MMT13",
+      "question": "Giao thức ARP có nhiệm vụ:",
+      "answers": [
+        "Chuyển đổi địa chỉ IP sang MAC",
+        "Chuyển đổi MAC sang IP",
+        "Phân giải tên miền"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MMT14",
+      "question": "Địa chỉ MAC thuộc tầng nào trong mô hình OSI?",
+      "answers": [ "Tầng Liên kết dữ liệu", "Tầng Mạng", "Tầng Ứng dụng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MMT15",
+      "question": "Một địa chỉ IPv4 có độ dài bao nhiêu bit?",
+      "answers": [ "16", "32", "64" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "MMT16",
+      "question": "Giao thức nào dùng để truyền tệp giữa hai máy tính?",
+      "answers": [ "HTTP", "SMTP", "FTP" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MMT17",
+      "question": "Ping sử dụng giao thức nào để kiểm tra kết nối mạng?",
+      "answers": [ "TCP", "ICMP", "UDP" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "MMT18",
+      "question": "Subnet mask có tác dụng gì?",
+      "answers": [
+        "Mã hóa dữ liệu",
+        "Xác định phần mạng và phần host của địa chỉ IP",
+        "Giới hạn tốc độ truyền"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "MMT19",
+      "question": "Cổng 443 được dùng cho giao thức nào?",
+      "answers": [ "FTP", "SMTP", "HTTPS" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MMT20",
+      "question": "Độ tin cậy trong truyền dữ liệu của TCP cao hơn UDP vì:",
+      "answers": [
+        "UDP nhanh hơn",
+        "TCP chỉ truyền trong LAN",
+        "TCP kiểm soát lỗi và thứ tự gói tin"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MMT21",
+      "question": "Router hoạt động ở tầng nào của mô hình OSI?",
+      "answers": [
+        "Tầng Liên kết dữ liệu",
+        "Tầng Giao vận",
+        "Tầng Mạng (Network)"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MMT22",
+      "question": "Switch hoạt động chủ yếu ở tầng nào?",
+      "answers": [ "Tầng Liên kết dữ liệu", "Tầng Giao vận", "Tầng Ứng dụng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MMT23",
+      "question": "Giao thức nào không đảm bảo độ tin cậy trong truyền dữ liệu?",
+      "answers": [ "TCP", "SMTP", "UDP" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MMT24",
+      "question": "Địa chỉ IP 127.0.0.1 được gọi là:",
+      "answers": [ "Broadcast", "Subnet", "Loopback" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MMT25",
+      "question": "Để chia mạng con, ta cần dùng:",
+      "answers": [ "Gateway", "Subnet mask", "Port" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "MMT26",
+      "question": "Mạng LAN là gì?",
+      "answers": [ "Mạng toàn cầu", "Mạng diện rộng", "Mạng cục bộ" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MMT27",
+      "question": "Giao thức Telnet dùng để:",
+      "answers": [
+        "Kiểm tra độ trễ mạng",
+        "Truyền tệp tin",
+        "Truy cập máy tính từ xa qua dòng lệnh"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MMT28",
+      "question": "Mô hình TCP/IP có bao nhiêu tầng?",
+      "answers": [ "6", "4", "7" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "MMT29",
+      "question": "Trong truyền thông mạng, băng thông (bandwidth) biểu thị:",
+      "answers": [
+        "Tốc độ truyền dữ liệu tối đa",
+        "Khoảng cách giữa các thiết bị",
+        "Độ trễ trung bình"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MMT30",
+      "question": "Để bảo mật khi truyền dữ liệu, người ta thường sử dụng:",
+      "answers": [ "ARP", "ICMP", "SSL/TLS" ],
+      "correctIndex": 2
+    }
+  ]
+}
