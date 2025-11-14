@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     private const string KEY_SAVE_EXISTS = "SaveExists";
-    private const string KEY_SHOW_TUTORIAL = "ShowTutorial"; // **MỚI: Flag để hiển thị tutorial**
+    private const string KEY_SHOW_TUTORIAL = "ShowTutorial";
     
     [SerializeField] private GameObject continueButton;
     [SerializeField] private float delayBeforeShow = 2f;

@@ -689,24 +689,27 @@ public class GameUIManager : Singleton<GameUIManager>
             }
             else
             {
-                // **QUAN TRỌNG: Tạo lịch thi lại NGAY và hiển thị chi tiết**
-                message = $"Em đã thi trượt môn {subjectName} với điểm {score:0.0}/10 (Yêu cầu: >= 4.0).";
+                // **SỬA: Thêm thông tin thời gian thi lại vào message**
+                message = $"Em đã thi trượt môn {subjectName} với điểm {score:0.0}/10 (Yêu cầu: >= 4.0).\n\n";
                 
-                // Tạo lịch thi lại và lấy thông tin
-                string retakeScheduleInfo = CreateRetakeScheduleAndGetInfo(subjectKey, subjectName);
-                
-                if (!string.IsNullOrEmpty(retakeScheduleInfo))
+                // **MỚI: Tìm và hiển thị thời gian thi lại ngay lập tức**
+                string retakeTimeInfo = GetRetakeScheduleInfo(subjectKey);
+                if (!string.IsNullOrEmpty(retakeTimeInfo))
                 {
-                    message += $"Em sẽ có cơ hội thi lại:{retakeScheduleInfo}. Hãy đến đúng giờ!";
-                    
-                    // Set flag để TeacherAction biết có lịch thi lại
-                    PlayerPrefs.SetInt($"NEEDS_RETAKE_SCHEDULE_{subjectKey}", 1);
-                    PlayerPrefs.Save();
+                    message += $"Lịch thi lại: {retakeTimeInfo}\n\n";
+                    message += "Xem chi tiết lịch thi lại trong Bảng lịch thi.";
                 }
                 else
                 {
-                    message += "Không thể tạo lịch thi lại tự động. Vui lòng liên hệ giảng viên.";
+                    message += "Em sẽ có cơ hội thi lại. Lịch thi lại sẽ được tự động tạo vào ca học tiếp theo của môn này.\n\n";
+                    message += "Xem chi tiết lịch thi lại trong Bảng lịch thi sau khi lịch được tạo.";
                 }
+                
+                // Set flag để TeacherAction biết cần tạo lịch thi lại
+                PlayerPrefs.SetInt($"NEEDS_RETAKE_SCHEDULE_{subjectKey}", 1);
+                PlayerPrefs.Save();
+                
+                Debug.Log($"[GameUIManager] ✓ Đã set flag NEEDS_RETAKE_SCHEDULE_{subjectKey} cho TeacherAction xử lý");
             }
         }
         
@@ -723,97 +726,6 @@ public class GameUIManager : Singleton<GameUIManager>
         yield return new WaitForSeconds(1.0f);
         
         OpenDialogue("Kết quả thi", message);
-    }
-    
-    /// <summary>
-    /// **MỚI: Tạo lịch thi lại và trả về thông tin để hiển thị**
-    /// </summary>
-    private string CreateRetakeScheduleAndGetInfo(string subjectKey, string subjectName)
-    {
-        int term = GameClock.Ins != null ? GameClock.Ins.Term : 1;
-        string examPrefix = $"T{term}_EXAM_{subjectKey}";
-        
-        // Lấy lịch thi lần đầu
-        int examTerm = PlayerPrefs.GetInt($"{examPrefix}_term", 0);
-        int examWeek = PlayerPrefs.GetInt($"{examPrefix}_week", 0);
-        int examDayInt = PlayerPrefs.GetInt($"{examPrefix}_day", 0);
-        int examSlot = PlayerPrefs.GetInt($"{examPrefix}_slot1Based", 0);
-        
-        if (examTerm <= 0 || examWeek <= 0)
-        {
-            Debug.LogError($"[GameUIManager] Không tìm thấy lịch thi đầu cho {subjectName}");
-            return null;
-        }
-        
-        Weekday examDay = (Weekday)examDayInt;
-        
-        // **SỬA: Tìm TeacherAction trong scene để lấy SemesterConfig**
-        SemesterConfig semesterConfig = FindSemesterConfigForTerm(examTerm);
-        if (semesterConfig == null)
-        {
-            Debug.LogError($"[GameUIManager] Không tìm thấy SemesterConfig cho kỳ {examTerm}");
-            return null;
-        }
-        
-        int weeksPerTerm = semesterConfig.Weeks > 0 ? semesterConfig.Weeks : 5;
-        
-        // Tìm ca gần nhất sau lịch thi đầu
-        bool found = false;
-        int retakeTerm = examTerm;
-        int retakeWeek = examWeek;
-        Weekday retakeDay = Weekday.Mon;
-        int retakeSlot = 1;
-        
-        for (int w = examWeek; w <= weeksPerTerm; w++)
-        {
-            int startDay = (w == examWeek) ? ((int)examDay) : (int)Weekday.Mon;
-            
-            for (int d = startDay; d <= (int)Weekday.Sun; d++)
-            {
-                int startSlot = (w == examWeek && d == (int)examDay) ? (examSlot + 1) : 1;
-                
-                for (int sIdx = startSlot; sIdx <= 5; sIdx++)
-                {
-                    if (ScheduleResolver.IsSessionMatch(semesterConfig, subjectName, (Weekday)d, sIdx))
-                    {
-                        retakeWeek = w;
-                        retakeDay = (Weekday)d;
-                        retakeSlot = sIdx;
-                        found = true;
-                        break;
-                    }
-                }
-                if (found) break;
-            }
-            if (found) break;
-        }
-        
-        if (!found)
-        {
-            Debug.LogWarning($"[GameUIManager] Không tìm thấy ca thi lại cho {subjectName}");
-            return null;
-        }
-        
-        // Lưu lịch thi lại vào PlayerPrefs
-        string retakePrefix = $"T{term}_RETAKE_{subjectKey}";
-        PlayerPrefs.SetInt($"{retakePrefix}_term", retakeTerm);
-        PlayerPrefs.SetInt($"{retakePrefix}_week", retakeWeek);
-        PlayerPrefs.SetInt($"{retakePrefix}_day", (int)retakeDay);
-        PlayerPrefs.SetInt($"{retakePrefix}_slot1Based", retakeSlot);
-        PlayerPrefs.DeleteKey($"{retakePrefix}_missed");
-        PlayerPrefs.DeleteKey($"{retakePrefix}_taken");
-        PlayerPrefs.Save();
-        
-        // **SỬA: Xây dựng thông tin hiển thị trên 1 dòng (chỉ Thứ, Ca, Giờ)**
-        string dayVN = DataKeyText.VN_Weekday(retakeDay);
-        int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(retakeSlot));
-        string timeStr = DataKeyText.FormatHM(startMin);
-        
-        string info = $" {dayVN} - Ca {retakeSlot} ({timeStr})";
-        
-        Debug.Log($"[GameUIManager] ✓ Đã tạo lịch thi lại cho {subjectName}: {dayVN} ca {retakeSlot} ({timeStr}) - Tuần {retakeWeek}");
-        
-        return info;
     }
     
     /// <summary>
@@ -905,5 +817,31 @@ public class GameUIManager : Singleton<GameUIManager>
         tutorialPlayer.transform.SetAsLastSibling();
         
         Debug.Log("[GameUIManager] ✓ Tutorial đã được hiển thị");
+    }
+
+    /// <summary>
+    /// **MỚI: Lấy thông tin lịch thi lại (nếu đã được tạo)**
+    /// </summary>
+    private string GetRetakeScheduleInfo(string subjectKey)
+    {
+        if (GameClock.Ins == null) return null;
+        
+        int currentTerm = GameClock.Ins.Term;
+        string prefix = $"T{currentTerm}_RETAKE_{subjectKey}";
+        
+        if (!PlayerPrefs.HasKey(prefix + "_day") || !PlayerPrefs.HasKey(prefix + "_slot1Based"))
+        {
+            return null;
+        }
+        
+        int retakeWeek = PlayerPrefs.GetInt(prefix + "_week", 0);
+        Weekday retakeDay = (Weekday)PlayerPrefs.GetInt(prefix + "_day");
+        int retakeSlot = PlayerPrefs.GetInt(prefix + "_slot1Based");
+        
+        string dayVN = DataKeyText.VN_Weekday(retakeDay);
+        int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(retakeSlot));
+        string timeStr = DataKeyText.FormatHM(startMin);
+        
+        return $"{dayVN} - Ca {retakeSlot} ({timeStr}) - Tuần {retakeWeek}";
     }
 }
