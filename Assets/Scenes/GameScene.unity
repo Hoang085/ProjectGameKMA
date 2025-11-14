@@ -21080,7 +21080,7 @@ Transform:
   m_GameObject: {fileID: 1812121510}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.2, y: 1.296, z: -8.54}
+  m_LocalPosition: {x: 71.59, y: 1.296, z: -8.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24186,7 +24186,7 @@ MonoBehaviour:
   _day: 1
   _slot: 0
   _minuteOfDay: 420
-  secondsPerGameMinute: 2
+  secondsPerGameMinute: 1
   _isPaused: 0
   tSession1: 420
   tSession2: 570

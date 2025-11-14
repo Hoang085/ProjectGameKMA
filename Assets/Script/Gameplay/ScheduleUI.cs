@@ -61,9 +61,11 @@ public class ScheduleUI : BasePopUp
     {
         base.OnShowScreen();
         
-        // **MỚI: Đảm bảo lịch thi được tạo cho các môn đã hoàn thành**
+        // **QUAN TRỌNG: Đảm bảo lịch thi được tạo cho các môn đã hoàn thành**
         CheckAndCreateMissingExamSchedules();
         
+        // **MỚI: Force refresh để hiển thị lịch thi lại mới tạo**
+        Debug.Log("[ScheduleUI] OnShowScreen - Force refresh schedule data");
         RefreshAllScheduleData();
     }
 
