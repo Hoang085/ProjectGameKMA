@@ -1,0 +1,305 @@
+{
+  "subjectKey": "ToanRoiRac",
+  "questions": [
+    {
+      "id": "TRR1",
+      "question": "Tập hợp là gì?",
+      "answers": [
+        "Một nhóm các phần tử được xác định rõ ràng",
+        "Một biểu thức logic",
+        "Một số tự nhiên"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR2",
+      "question": "Phép giao của hai tập hợp A và B ký hiệu là:",
+      "answers": [
+        "A UNION B",
+        "A INTERSECT B",
+        "A - B"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TRR3",
+      "question": "Phần bù của tập hợp A trong U là:",
+      "answers": [
+        "A INTERSECT U",
+        "A UNION U",
+        "U - A"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TRR4",
+      "question": "Phát biểu nào sau đây là mệnh đề đúng?",
+      "answers": [
+        "Hôm nay trời đẹp",
+        "Đi học chăm chỉ",
+        "x + 1 = 3"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TRR5",
+      "question": "Mệnh đề kéo theo P -> Q có phủ định là:",
+      "answers": [
+        "P AND NOT Q",
+        "NOT P -> NOT Q",
+        "NOT P AND Q"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR6",
+      "question": "Phép hội trong logic tương ứng với phép toán nào?",
+      "answers": [
+        "OR (OR)",
+        "AND (AND)",
+        "NOT (NOT)"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TRR7",
+      "question": "Hai mệnh đề P và Q được gọi là tương đương khi:",
+      "answers": [
+        "NOT P AND Q",
+        "P <-> Q",
+        "P -> Q"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TRR8",
+      "question": "Một quan hệ R trên tập A là phản xạ khi:",
+      "answers": [
+        "EXISTS x IN A, (x,x) IN R",
+        "FORALL x,y IN A, (x,y) IN R",
+        "FORALL x IN A, (x,x) IN R"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TRR9",
+      "question": "Một quan hệ là đối xứng nếu:",
+      "answers": [
+        "(x,y) IN R -> (y,x) IN R",
+        "(x,x) IN R",
+        "(x,y) IN R -> (x,z) IN R"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR10",
+      "question": "Một hàm từ A đến B là quan hệ đặc biệt sao cho:",
+      "answers": [
+        "Mỗi phần tử A ứng với đúng một phần tử B",
+        "Mỗi phần tử A ứng với ít nhất một phần tử B",
+        "Không phần tử nào trùng nhau"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR11",
+      "question": "Đồ thị vô hướng là:",
+      "answers": [
+        "Đồ thị có hướng",
+        "Đồ thị có cạnh không có hướng",
+        "Đồ thị đầy đủ"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TRR12",
+      "question": "Bậc của một đỉnh trong đồ thị vô hướng là:",
+      "answers": [
+        "Số cạnh nối với đỉnh đó",
+        "Số đỉnh con",
+        "Số đỉnh kề"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR13",
+      "question": "Chu trình Euler là đường đi:",
+      "answers": [
+        "Đi qua mỗi cạnh đúng một lần",
+        "Đi qua tất cả đỉnh",
+        "Đi qua mỗi đỉnh đúng một lần"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR14",
+      "question": "Đồ thị có đường đi giữa mọi cặp đỉnh được gọi là:",
+      "answers": [
+        "Vô hướng",
+        "Hoàn chỉnh",
+        "Liên thông"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TRR15",
+      "question": "Một cây có n đỉnh thì có bao nhiêu cạnh?",
+      "answers": [
+        "n-1",
+        "n",
+        "n+1"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR16",
+      "question": "Cây nhị phân có bao nhiêu nút lá tối đa nếu có n nút tổng cộng?",
+      "answers": [
+        "n/2 + 1",
+        "n-1",
+        "n/2"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR17",
+      "question": "Tổ hợp chập k của n phần tử được tính bằng:",
+      "answers": [
+        "P(n,k) = n!/(n-k)!",
+        "C(n,k) = n!/[k!(n-k)!]",
+        "n^k"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TRR18",
+      "question": "Nguyên lý bù trừ được áp dụng khi:",
+      "answers": [
+        "Các tập hợp giao nhau",
+        "Các tập hợp rời nhau",
+        "Có số phần tử bằng nhau"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR19",
+      "question": "Số cách sắp xếp n phần tử khác nhau là:",
+      "answers": [
+        "n!",
+        "k!",
+        "n^2"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR20",
+      "question": "Một dãy được gọi là cấp số cộng nếu:",
+      "answers": [
+        "Tỉ số giữa các phần tử liên tiếp không đổi",
+        "Các phần tử liên tiếp hơn kém nhau một hằng số d",
+        "Giá trị tăng gấp đôi"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TRR21",
+      "question": "Phương pháp quy nạp toán học gồm mấy bước?",
+      "answers": [
+        "2 bước",
+        "3 bước",
+        "4 bước"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR22",
+      "question": "Công thức truy hồi xác định dãy Fibonacci là:",
+      "answers": [
+        "F(n) = 2F(n-1)",
+        "F(n) = F(n-1) + F(n-2)",
+        "F(n) = n!"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TRR23",
+      "question": "Biểu đồ Hasse được dùng để biểu diễn:",
+      "answers": [
+        "Quan hệ thứ tự bán phần",
+        "Quan hệ tương đương",
+        "Cây nhị phân"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR24",
+      "question": "Trong ngăn xếp (stack), phần tử được lấy ra theo quy tắc:",
+      "answers": [
+        "FIFO",
+        "LILO",
+        "LIFO"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TRR25",
+      "question": "Tập hợp đếm được là tập hợp có:",
+      "answers": [
+        "Vô hạn không thể đánh số",
+        "Số phần tử hữu hạn hoặc có thể đánh số được",
+        "Không có phần tử nào"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TRR26",
+      "question": "Automata hữu hạn dùng để:",
+      "answers": [
+        "Giải phương trình",
+        "Nhận dạng ngôn ngữ hình thức",
+        "Đếm số nguyên"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TRR27",
+      "question": "Một ngôn ngữ chính quy có thể được mô tả bằng:",
+      "answers": [
+        "Ngôn ngữ lập trình",
+        "Đồ thị cây",
+        "Biểu thức chính quy"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TRR28",
+      "question": "Phép XOR giữa hai bit khác nhau cho kết quả là:",
+      "answers": [
+        "0",
+        "1",
+        "Không xác định"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TRR29",
+      "question": "Phép phủ định của mệnh đề NOT (P OR Q) tương đương với:",
+      "answers": [
+        "NOT P AND NOT Q",
+        "P AND Q",
+        "NOT P OR NOT Q"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TRR30",
+      "question": "Số đỉnh tối thiểu của cây nhị phân có chiều cao h là:",
+      "answers": [
+        "h",
+        "h+1",
+        "2^h-1"
+      ],
+      "correctIndex": 2
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+1.Khái niệm:
+  -Đường Euler: đi qua mọi cạnh đúng 1 lần.
+  -Đường Hamilton: đi qua mọi đỉnh đúng 1 lần.
+
+2.Công thức:
+Đồ thị Euler ⇔ mọi đỉnh có bậc chẵn.
+
+3.Quy tắc:
+Đồ thị liên thông có ≤2 đỉnh bậc lẻ → có đường Euler.
+
+4.Ứng dụng:
+Bài toán người đưa thư, du lịch, mạng lưới giao thông.

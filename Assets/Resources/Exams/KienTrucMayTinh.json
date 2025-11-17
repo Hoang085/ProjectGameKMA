@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 5",
+  "subjectName": "Kiến Trúc Máy Tính",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Thành phần nào của CPU chịu trách nhiệm thực hiện các phép toán số học và logic?",
+      "options": ["Thanh ghi (Registers)", "Bộ điều khiển (Control Unit)", "Bộ số học và Logic (ALU)", "Bộ nhớ đệm (Cache)"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Kiến trúc Von Neumann nổi bật với đặc điểm nào?",
+      "options": ["Sử dụng bộ nhớ riêng biệt cho lệnh và dữ liệu", "Sử dụng chung một không gian nhớ cho lệnh và dữ liệu", "Xử lý song song nhiều luồng", "Sử dụng kiến trúc RISC"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Tầng nhanh nhất và nhỏ nhất trong hệ thống phân cấp bộ nhớ là gì?",
+      "options": ["Bộ nhớ đệm (Cache)", "Ổ đĩa cứng (HDD)", "Bộ nhớ chính (RAM)", "Thanh ghi (Registers)"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Thanh ghi nào chứa địa chỉ của lệnh tiếp theo sẽ được thực thi?",
+      "options": ["Bộ đếm chương trình (PC)", "Thanh ghi lệnh (IR)", "Thanh ghi địa chỉ bộ nhớ (MAR)", "Thanh ghi dữ liệu bộ nhớ (MDR)"],
+      "correctIndex": 0
+    },
+    {
+      "text": "Độ phức tạp của tập lệnh được chia thành hai loại chính là:",
+      "options": ["I/O và CPU", "Cache và Main Memory", "CISC và RISC", "Bus và Register"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Kỹ thuật nào cho phép nhiều lệnh chồng lấp việc thực thi trong CPU?",
+      "options": ["Bộ nhớ đệm (Caching)", "Đa xử lý (Multiprocessing)", "Đường ống (Pipelining)", "Ghép kênh (Multiplexing)"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong hệ thống bus, bus nào dùng để truyền địa chỉ ô nhớ hoặc thiết bị I/O?",
+      "options": ["Bus dữ liệu (Data Bus)", "Bus địa chỉ (Address Bus)", "Bus điều khiển (Control Bus)", "Bus ngoại vi"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Phương pháp I/O nào hiệu quả nhất để truyền dữ liệu lớn mà không cần CPU can thiệp?",
+      "options": ["Programmed IO", "Interrupt-driven IO", "DMA (Direct Memory Access)", "IO tuần tự"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong biểu diễn số nguyên, phương pháp bu 2 (Two's Complement) được dùng để:",
+      "options": ["Biểu diễn số dương", "Biểu diễn số thập phân", "Biểu diễn số có dấu và thực hiện phép trừ bằng phép cộng", "Biểu diễn số không dấu"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Có bao nhiêu kiểu ánh xạ từ RAM lên Cache?",
+      "options": ["4", "2", "5", "3"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Nhược điểm của Cache ánh xạ trực tiếp (Direct Mapping) là gì?",
+      "options": ["Tỉ lệ hit cao nhưng tốc độ chậm", "Khó cài đặt", "Xung đột cache (conflict miss) cao", "Tốn chi phí phần cứng"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Thuật toán thay thế khối Cache phổ biến nhất là:",
+      "options": ["LIFO", "LRU (Least Recently Used)", "FIFO", "Random"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Đơn vị đo tốc độ xử lý của CPU là gì?",
+      "options": ["Joule", "Hertz (Hz)", "Volt", "Watt"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Chu kỳ lệnh (Instruction Cycle) có mấy bước?",
+      "options": ["4", "3", "2", "1"],
+      "correctIndex": 0
+    },
+    {
+      "text": "Bước đầu tiên của Chu kỳ lệnh là gì?",
+      "options": ["Execute", "Fetch (đọc lệnh từ bộ nhớ)", "Decode", "Write Back"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Ngôn ngữ máy (Machine Language) được biểu diễn dưới dạng:",
+      "options": ["Mã C++", "Ngôn ngữ tự nhiên", "Mã nhị phân", "Ký hiệu thập phân"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Bộ ghép kênh (Multiplexer_MUX) có chức năng gì?",
+      "options": ["Thực hiện phép toán logic", "Chọn một tín hiệu từ nhiều tín hiệu vào để đưa ra đầu ra", "Lưu trữ dữ liệu", "Điều khiển luồng dữ liệu"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Địa chỉ logic (Logical Address) được tạo ra bởi thành phần nào?",
+      "options": ["RAM", "CPU", "Thiết bị IO", "Cache"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Kiến trúc RISC có đặc điểm:",
+      "options": ["Rất phức tạp", "Tập lệnh đơn giản và độ dài cố định", "Tập lệnh dài và đa dạng", "Không dùng thanh ghi"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Tốc độ đồng hồ (Clock Speed) của CPU được tính bằng:",
+      "options": ["CPI", "Byte/s", "GHz", "MIPS"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Kiến trúc Harvard khác Von Neumann ở điểm:",
+      "options": ["Tách biệt bộ nhớ và bus cho lệnh và dữ liệu", "Dùng chung bus cho dữ liệu và lệnh", "Cache chia đôi", "Không dùng thanh ghi"],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phép cộng trong máy tính được thực hiện bởi:",
+      "options": ["Bộ điều khiển", "ALU", "Thanh ghi", "Bộ đếm chương trình"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Công thức tính thời gian thực thi chương trình (T) là:",
+      "options": ["T = I * B", "T = I * CPI * tau", "T = I + B", "T = CPI + I"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Trong biểu diễn số thực dấu phẩy động có bao nhiêu phần?",
+      "options": ["2", "1", "4", "3"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Bộ đệm dịch (Shift Register) dùng để:",
+      "options": ["Lưu trữ dữ liệu", "Thực hiện phép nhân hoặc chia", "Điều khiển IO", "Đếm clock"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Cổng logic nào cho kết quả 1 nếu và chỉ nếu hai đầu vào khác nhau?",
+      "options": ["AND", "OR", "XOR", "NOT"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Lỗi page fault xảy ra ở cấp nào của bộ nhớ?",
+      "options": ["Cache", "Thanh ghi", "RAM và bộ nhớ ảo", "Ổ đĩa cứng"],
+      "correctIndex": 2
+    },
+    {
+      "text": "ADC và DAC thuộc thành phần nào?",
+      "options": ["CPU", "Bộ nhớ", "Thiết bị IO", "Bus"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Đặc điểm của chế độ địa chỉ trực tiếp (Direct Addressing) là:",
+      "options": ["Toán hạng là hằng số", "Địa chỉ hiệu dụng nằm trong thanh ghi", "Trường địa chỉ chứa địa chỉ toán hạng", "Toán hạng nằm trong thanh ghi"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Bus hệ thống gồm:",
+      "options": ["Data Bus, Address Bus và Control Bus", "Bus RAM và Bus Cache", "Bus CPU và Bus IO", "Bus logic và Bus vật lý"],
+      "correctIndex": 0
+    }
+  ]
+}

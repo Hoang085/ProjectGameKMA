@@ -1,0 +1,16 @@
+1.Khái niệm:
+Áp dụng nguyên lý OOP trong việc phân tích, thiết kế và triển khai phần mềm.
+
+2.Công thức:
+  5 nguyên lý SOLID:
+  -S: Single Responsibility
+  -O: Open/Closed
+  -L: Liskov Substitution
+  -I: Interface Segregation
+  -D: Dependency Inversion
+
+3.Quy tắc:
+Tuân thủ SOLID giúp mã dễ bảo trì, mở rộng và tái sử dụng.
+
+4.Ứng dụng:
+Thiết kế phần mềm quy mô lớn, hệ thống quản lý, trò chơi, ứng dụng web.

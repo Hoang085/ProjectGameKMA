@@ -1,0 +1,11 @@
+1.Khái niệm:
+Khai triển lũy thừa (a+b)ⁿ thành tổng các hạng tử.
+
+2.Công thức:
+(a+b)ⁿ = Σ (Cₙᵏ·aⁿ⁻ᵏ·bᵏ), với k=0→n
+
+3.Quy tắc:
+Hệ số Cₙᵏ đọc từ tam giác Pascal.
+
+4.Ứng dụng:
+Tính nhanh biểu thức đa thức, lập trình tổ hợp, xác suất nhị thức.

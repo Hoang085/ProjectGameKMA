@@ -1,0 +1,15 @@
+1.Khái niệm:
+  -DHCP: cấp phát IP tự động.
+  -DNS: phân giải tên miền thành địa chỉ IP.
+  -NAT: chuyển đổi địa chỉ IP nội bộ thành IP công cộng.
+
+2.Công thức:
+NAT: Inside IP → Outside IP
+DNS: www.example.com
+ → 192.168.1.1
+
+3.Quy tắc:
+Chỉ có router/firewall thực hiện NAT; DNS phải hoạt động ổn định.
+
+4.Ứng dụng:
+Cấu hình mạng Internet, hosting, máy chủ nội bộ.

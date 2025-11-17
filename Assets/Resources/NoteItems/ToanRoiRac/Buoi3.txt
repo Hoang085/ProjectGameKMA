@@ -1,0 +1,19 @@
+1.Khái niệm:
+Logic mệnh đề biểu diễn các phát biểu đúng/sai bằng ký hiệu logic.
+
+2.Công thức:
+¬P: phủ định
+P ∧ Q: hội
+P ∨ Q: tuyển
+P → Q: kéo theo
+P ↔ Q: tương đương
+
+3.Quy tắc:
+Luật logic cơ bản:
+
+  -¬(¬P) = P
+  -P ∧ Q = Q ∧ P
+  -P → Q ≡ ¬P ∨ Q
+
+4.Ứng dụng:
+Phân tích điều kiện, thiết kế mạch số, lập trình điều kiện.

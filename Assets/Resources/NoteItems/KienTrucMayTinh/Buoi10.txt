@@ -1,0 +1,13 @@
+1.Khái niệm:
+Sử dụng nhiều bộ xử lý hoặc lõi để xử lý đồng thời nhiều tác vụ.
+
+2.Công thức:
+Tốc độ tăng theo định luật Amdahl:
+S = 1 / [(1−p) + (p/n)]
+(p: phần song song, n: số lõi)
+
+3.Quy tắc:
+Tối ưu song song hóa phải cân bằng tải giữa các lõi.
+
+4.Ứng dụng:
+Xử lý đa nhiệm, siêu máy tính, máy chủ, GPU, hệ thống AI.

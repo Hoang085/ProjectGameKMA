@@ -1,0 +1,12 @@
+1.Khái niệm:
+Kết hợp tất cả kiến thức về nguồn tin, mã hóa, điều chế, truyền và giải mã.
+
+2.Công thức:
+Hệ thống tổng quát:
+Nguồn tin → Mã hóa nguồn → Mã hóa kênh → Điều chế → Kênh → Giải điều chế → Giải mã → Người nhận.
+
+3.Quy tắc:
+Tối ưu hóa đồng thời 3 yếu tố: tốc độ, độ tin cậy, băng thông.
+
+4.Ứng dụng:
+Hệ thống 4G/5G, truyền hình số, Internet, thông tin vệ tinh, IoT.

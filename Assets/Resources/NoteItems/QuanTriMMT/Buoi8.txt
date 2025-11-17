@@ -1,0 +1,14 @@
+1.Khái niệm:
+An ninh mạng bảo vệ hệ thống khỏi tấn công, virus, truy cập trái phép.
+
+2.Công thức:
+Tam giác bảo mật CIA:
+C – Confidentiality
+I – Integrity
+A – Availability
+
+3.Quy tắc:
+Cấu hình firewall, IDS/IPS, cập nhật bản vá, dùng VPN cho kết nối từ xa.
+
+4.Ứng dụng:
+Bảo mật hệ thống doanh nghiệp, ngăn chặn tấn công DDoS, mã độc.

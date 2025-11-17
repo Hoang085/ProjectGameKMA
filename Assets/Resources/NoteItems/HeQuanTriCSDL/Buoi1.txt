@@ -1,0 +1,14 @@
+1.Khái niệm:
+Hệ quản trị cơ sở dữ liệu (Database Management System) là phần mềm cho phép lưu trữ, truy xuất và quản lý dữ liệu một cách hiệu quả và an toàn.
+
+2.Công thức:
+CSDL = Dữ liệu + DBMS + Người dùng + Ứng dụng
+
+3.Quy tắc:
+Phân biệt:
+  -Dữ liệu (Data): thông tin thô.
+  -CSDL (Database): dữ liệu có cấu trúc.
+  -DBMS: phần mềm quản lý (MySQL, SQL Server, Oracle...).
+
+4.Ứng dụng:
+Quản lý thông tin trong ngân hàng, trường học, bệnh viện, website.

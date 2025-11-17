@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 6",
+  "subjectName": "Hệ Quản Trị Cơ Sở Dữ Liệu ",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Mô hình dữ liệu quan hệ (Relational Model) được đề xuất bởi ai?",
+      "options": [ "Bill Gates", "Edgar F. Codd", "Larry Ellison", "James Gosling" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Ngôn ngữ được sử dụng phổ biến nhất để tương tác với cơ sở dữ liệu quan hệ là gì?",
+      "options": [ "Java", "SQL", "Python", "XML" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Khóa chính (Primary Key) có đặc điểm nào?",
+      "options": [ "Có thể có giá trị NULL", "Phải là duy nhất và không được NULL", "Chỉ dùng để liên kết các bảng", "Cho phép trùng lặp dữ liệu" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Ràng buộc toàn vẹn thực thể (Entity Integrity) áp dụng cho loại khóa nào?",
+      "options": [ "Khóa ngoại (Foreign Key)", "Khóa chính (Primary Key)", "Khóa ứng viên (Candidate Key)", "Khóa tổ hợp" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Chức năng chính của Hệ Quản Trị Cơ Sở Dữ Liệu (DBMS) là gì?",
+      "options": [ "Thiết kế giao diện người dùng", "Quản lý và truy cập cơ sở dữ liệu", "Phân tích số liệu thống kê", "Viết chương trình ứng dụng" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Mục đích của việc chuẩn hóa (Normalization) dữ liệu là gì?",
+      "options": [ "Giảm thiểu sự dư thừa và bất thường của dữ liệu", "Tăng tốc độ truy vấn", "Làm cho mô hình phức tạp hơn", "Thêm dữ liệu ảo" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Dạng chuẩn nào được coi là cơ sở để giảm sự dư thừa dữ liệu (tối thiểu)?",
+      "options": [ "1NF (Dạng chuẩn 1)", "2NF (Dạng chuẩn 2)", "3NF (Dạng chuẩn 3)", "BCNF (Dạng chuẩn Boyce-Codd)" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Trong SQL, mệnh đề nào được dùng để lọc dữ liệu dựa trên các hàm gộp (Aggregate Functions)?",
+      "options": [ "WHERE", "GROUP BY", "ORDER BY", "HAVING" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Thao tác nào sau đây KHÔNG phải là thao tác cơ bản của Đại số Quan hệ?",
+      "options": [ "Sort (Sắp xếp)", "Intersection (Giao)", "Join (Kết nối)", "Union (Hợp)" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Thực thể (Entity) trong mô hình ER (Entity-Relationship) được biểu diễn bằng hình dạng nào?",
+      "options": [ "Hình chữ nhật", "Hình thoi", "Hình oval", "Đường thẳng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Mối quan hệ (Relationship) trong mô hình ER được biểu diễn bằng hình dạng nào?",
+      "options": [ "Hình chữ nhật", "Hình thoi", "Hình oval", "Hình vuông" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Trong SQL, lệnh nào dùng để thêm bản ghi mới vào bảng?",
+      "options": [ "UPDATE", "INSERT INTO", "ADD ROW", "CREATE" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Trong SQL, lệnh nào dùng để thay đổi cấu trúc của một bảng đã tồn tại (ví dụ: thêm cột)?",
+      "options": [ "CREATE TABLE", "MODIFY TABLE", "ALTER TABLE", "UPDATE TABLE" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Khóa ngoại (Foreign Key) dùng để thiết lập mối quan hệ nào?",
+      "options": [ "Quan hệ Many-to-Many", "Quan hệ giữa hai bảng", "Quan hệ One-to-One", "Quan hệ nội bộ" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Giao tác (Transaction) trong DBMS có thuộc tính ACID nào sau đây?",
+      "options": [ "Accuracy (Chính xác)", "Consistency (Nhất quán)", "Completion (Hoàn thành)", "Concurrency (Đồng thời)" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Thuộc tính 'Isolation' (Cô lập) trong ACID đảm bảo điều gì?",
+      "options": [ "Giao tác chỉ thực hiện một phần", "Các giao tác đồng thời không ảnh hưởng lẫn nhau", "Mọi giao tác phải hoàn thành", "Dữ liệu phải đúng sau khi giao tác hoàn thành" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Chỉ mục (Index) trong CSDL được tạo ra nhằm mục đích gì?",
+      "options": [ "Bảo mật dữ liệu", "Tăng tốc độ tìm kiếm và truy vấn", "Giảm dung lượng lưu trữ", "Phân mảnh dữ liệu" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Dạng chuẩn BCNF (Boyce-Codd Normal Form) loại bỏ sự phụ thuộc hàm nào?",
+      "options": [ "Phụ thuộc toàn phần", "Phụ thuộc một phần", "Phụ thuộc bắc cầu", "Mọi phụ thuộc hàm không phải khóa ứng viên" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Lệnh nào trong SQL dùng để xóa toàn bộ dữ liệu khỏi bảng nhưng giữ lại cấu trúc bảng?",
+      "options": [ "DROP TABLE", "DELETE FROM", "REMOVE DATA", "TRUNCATE TABLE" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Lệnh nào trong SQL dùng để xóa bảng và toàn bộ dữ liệu liên quan khỏi cơ sở dữ liệu?",
+      "options": [ "DELETE FROM", "REMOVE TABLE", "DROP TABLE", "ERASE TABLE" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Chế độ xem (View) trong SQL là gì?",
+      "options": [ "Một bảng ảo được định nghĩa từ một hay nhiều bảng thực", "Một bảng vật lý", "Một file lưu trữ dữ liệu tạm thời", "Một ràng buộc toàn vẹn" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Trong kiến trúc 3 tầng của CSDL, tầng nào là tầng trong (Internal Level)?",
+      "options": [ "Tầng khái niệm (Conceptual Level)", "Tầng vật lý (Physical Level)", "Tầng ngoài (External Level)", "Tầng ứng dụng" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Data Definition Language (DDL) bao gồm các lệnh nào?",
+      "options": [ "SELECT, INSERT, UPDATE", "GRANT, REVOKE", "CREATE, ALTER, DROP", "COMMIT, ROLLBACK" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Data Manipulation Language (DML) bao gồm các lệnh nào?",
+      "options": [ "CREATE, DROP, ALTER", "SELECT, INSERT, UPDATE, DELETE", "GRANT, REVOKE", "COMMIT, ROLLBACK" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Deadlock (tắc nghẽn) trong CSDL xảy ra khi nào?",
+      "options": [ "Có quá nhiều người dùng truy cập", "Hai hoặc nhiều giao tác chờ tài nguyên mà giao tác kia đang giữ", "Hệ thống bị lỗi phần cứng", "Dữ liệu bị dư thừa" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Trong SQL, JOIN nào trả về tất cả bản ghi từ bảng bên trái và các bản ghi khớp từ bảng bên phải?",
+      "options": [ "INNER JOIN", "RIGHT JOIN", "FULL JOIN", "LEFT JOIN" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Khái niệm 'Metadata' (Siêu dữ liệu) trong CSDL là gì?",
+      "options": [ "Dữ liệu người dùng", "Dữ liệu về dữ liệu (mô tả cấu trúc)", "Dữ liệu lưu trữ tạm thời", "Dữ liệu ẩn" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Đâu là một hệ quản trị CSDL NoSQL phổ biến?",
+      "options": [ "Oracle", "Microsoft SQL Server", "MongoDB", "PostgreSQL" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Khóa ứng viên (Candidate Key) là một thuộc tính hoặc tập hợp thuộc tính:",
+      "options": [ "Là khóa chính", "Là duy nhất và tối thiểu", "Không thể là khóa chính", "Bắt buộc phải là khóa ngoại" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Phần tử nhỏ nhất có thể được truy cập trong bộ nhớ đĩa là:",
+      "options": [ "Sector (Cung từ)", "Track (Vệt từ)", "Block (Khối)", "Cylinder (Trụ)" ],
+      "correctIndex": 0
+    }
+  ]
+}

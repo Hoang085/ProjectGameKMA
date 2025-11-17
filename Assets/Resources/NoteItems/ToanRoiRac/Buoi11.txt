@@ -1,0 +1,11 @@
+1.Khái niệm:
+Quan hệ giữa các phần tử của dãy theo công thức lặp.
+
+2.Công thức:
+F(n) = F(n−1) + F(n−2) (chuỗi Fibonacci)
+
+3.Quy tắc:
+Giải bằng thay thế, phương pháp đặc trưng, hoặc quy nạp.
+
+4.Ứng dụng:
+Phân tích độ phức tạp thuật toán đệ quy, mô hình hóa tăng trưởng.

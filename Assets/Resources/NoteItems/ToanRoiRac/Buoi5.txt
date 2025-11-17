@@ -1,0 +1,14 @@
+1.Khái niệm:
+Quan hệ là tập hợp các cặp (x,y); ánh xạ là quan hệ mỗi phần tử x ánh xạ đến đúng một y.
+
+2.Công thức:
+R ⊆ A×B
+Hàm: f: A → B
+
+3.Quy tắc:
+  -Phản xạ: (a,a) ∈ R
+  -Đối xứng: (a,b) → (b,a)
+  -Bắc cầu: (a,b),(b,c) → (a,c)
+
+4.Ứng dụng:
+Mô hình hóa dữ liệu, sơ đồ quan hệ CSDL, ánh xạ hàm trong lập trình.

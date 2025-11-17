@@ -1,0 +1,17 @@
+1.Khái niệm:
+Cùng một hành động nhưng có thể thực hiện khác nhau tùy đối tượng.
+
+2.Công thức:
+class DongVat {
+  virtual void keu(){ cout << "Dong vat keu"; }
+};
+class Cho : public DongVat {
+  void keu(){ cout << "Gau gau"; }
+};
+
+
+3.Quy tắc:
+Sử dụng từ khóa virtual (C++) hoặc override (C#).
+
+4.Ứng dụng:
+Tạo linh hoạt trong thiết kế, dùng trong giao diện và API trừu tượng.

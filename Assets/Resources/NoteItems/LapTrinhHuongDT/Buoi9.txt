@@ -1,0 +1,16 @@
+1.Khái niệm:
+Bao gồm kế thừa đa cấp, lớp trừu tượng, interface, và đa hình động.
+
+2.Công thức:
+Interface (Java/C#):
+
+interface IShape {
+  double getArea();
+}
+
+
+3.Quy tắc:
+Một lớp có thể triển khai nhiều interface, nhưng chỉ kế thừa 1 lớp cha.
+
+4.Ứng dụng:
+Thiết kế module mở rộng, plugin, hệ thống đa hình.

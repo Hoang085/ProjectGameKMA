@@ -1,0 +1,11 @@
+1.Khái niệm:
+Toán rời rạc nghiên cứu các cấu trúc rời rạc như tập hợp, quan hệ, đồ thị, logic, thuật toán — nền tảng của khoa học máy tính.
+
+2.Công thức:
+Không gian rời rạc: Dữ liệu có giá trị hữu hạn, ví dụ: {0,1}, {a,b,c}.
+
+3.Quy tắc:
+Phân biệt rời rạc (discrete) và liên tục (continuous).
+
+4.Ứng dụng:
+Thiết kế thuật toán, cơ sở dữ liệu, lập trình logic, trí tuệ nhân tạo.

@@ -1,0 +1,13 @@
+1.Khái niệm:
+Điều chế là quá trình biến đổi tín hiệu số thành tín hiệu sóng mang để truyền.
+
+2.Công thức:
+AM: s(t) = Ac[1 + ka·m(t)]cos(2πfct)
+FM: s(t) = Ac·cos(2πfct + kf∫m(t)dt)
+
+3.Quy tắc:
+Có 3 loại chính: điều biên (AM), điều tần (FM), điều pha (PM).
+Tần số sóng mang cao → truyền xa hơn.
+
+4.Ứng dụng:
+Truyền hình, phát thanh, truyền dữ liệu không dây.

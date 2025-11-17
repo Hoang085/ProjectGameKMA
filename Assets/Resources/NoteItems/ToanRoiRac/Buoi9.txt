@@ -1,0 +1,14 @@
+1.Khái niệm:
+Dùng để đếm số cách sắp xếp hoặc chọn phần tử.
+
+2.Công thức:
+n! = 1×2×3×…×n
+Chỉnh hợp: Aₙᵏ = n! / (n−k)!
+Tổ hợp: Cₙᵏ = n! / [k!(n−k)!]
+
+3.Quy tắc:
+Aₙᵏ dùng khi thứ tự quan trọng,
+Cₙᵏ khi thứ tự không quan trọng.
+
+4.Ứng dụng:
+Xác suất, mật mã học, chọn mẫu, phân phối dữ liệu.

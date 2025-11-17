@@ -1,0 +1,185 @@
+{
+  "subjectKey": "TiengAnh3",
+  "questions": [
+    {
+      "id": "TA3_1",
+      "question": "The company's decision to outsource production was a highly _______ one.",
+      "answers": [ "controversy", "controversial", "contrive" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_2",
+      "question": "Please submit your reimbursement forms to the accounting department _______ the end of the month.",
+      "answers": [ "for", "by", "until" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_3",
+      "question": "The recent market research data suggests that consumer spending is _______ steadily.",
+      "answers": [ "increase", "increasing", "increased" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_4",
+      "question": "The CEO will review the budget proposals _______ the final approval is granted.",
+      "answers": [ "before", "once", "while" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_5",
+      "question": "All factory workers must wear protective gear _______ required safety regulations.",
+      "answers": [ "in accordance with", "despite", "otherwise" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA3_6",
+      "question": "The seminar was primarily attended by young entrepreneurs and _______ from technology firms.",
+      "answers": [ "represent", "representatives", "representing" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_7",
+      "question": "The deadline for submission has been _______ by one week due to unforeseen delays.",
+      "answers": [ "expired", "extended", "expanded" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_8",
+      "question": "Customers who purchase items online are asked to provide a valid e-mail address _______ their order confirmation.",
+      "answers": [ "receive", "to receive", "receiving" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_9",
+      "question": "The new security policy is intended to prevent unauthorized _______ to the confidential database.",
+      "answers": [ "access", "accessing", "accession" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA3_10",
+      "question": "The construction of the new headquarters is expected to be _______ completed by next March.",
+      "answers": [ "approximate", "approximating", "approximately" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TA3_11",
+      "question": "The training session will focus on improving time management and effective _______ skills.",
+      "answers": [ "communicate", "communication", "communicated" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_12",
+      "question": "The quality of the final product improved dramatically _______ the company upgraded its machinery.",
+      "answers": [ "due to", "as soon as", "in addition to" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_13",
+      "question": "The company's profits exceeded all _______ expectations last quarter.",
+      "answers": [ "initiate", "initial", "initially" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_14",
+      "question": "Mr. Lee is quite familiar _______ the process of filing patent applications.",
+      "answers": [ "to", "with", "for" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_15",
+      "question": "All outgoing invoices must be checked by the supervisor _______ they are sent to clients.",
+      "answers": [ "after", "before", "unless" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_16",
+      "question": "The project manager emphasized the _______ of meeting the tight production schedule.",
+      "answers": [ "important", "importance", "imported" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_17",
+      "question": "Please contact us at your earliest _______ to reschedule your appointment.",
+      "answers": [ "convenience", "convenient", "conveniently" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA3_18",
+      "question": "The restaurant is popular _______ its fresh seafood and unique atmosphere.",
+      "answers": [ "for", "to", "with" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA3_19",
+      "question": "The maintenance staff is responsible for ensuring that all office equipment is working _______.",
+      "answers": [ "functional", "functionally", "functions" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_20",
+      "question": "The annual report indicates that sales figures have risen _______ over the last fiscal year.",
+      "answers": [ "significant", "significantly", "significance" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_21",
+      "question": "Due to a technical failure, the website experienced a major network _______ this morning.",
+      "answers": [ "outset", "outage", "outtake" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_22",
+      "question": "Dr. Kim's lecture will deal _______ the latest developments in solar energy technology.",
+      "answers": [ "with", "to", "for" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA3_23",
+      "question": "The manufacturing plant is fully _______ with state-of-the-art robotic assembly lines.",
+      "answers": [ "equipment", "equipping", "equipped" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TA3_24",
+      "question": "Applicants must demonstrate a strong commitment _______ customer satisfaction.",
+      "answers": [ "for", "to", "with" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_25",
+      "question": "The company is facing intense _______ from competitors in the Asian market.",
+      "answers": [ "competitor", "compete", "competition" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TA3_26",
+      "question": "The research team was able to draw important conclusions _______ the gathered data.",
+      "answers": [ "from", "during", "around" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA3_27",
+      "question": "The customer service representative spoke slowly and _______ to ensure clarity.",
+      "answers": [ "clear", "clearly", "clearness" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_28",
+      "question": "All employees are required to _______ the company's internal confidentiality agreement.",
+      "answers": [ "conclude", "adhere to", "attribute to" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_29",
+      "question": "The newly installed machinery will operate more _______ than the older models.",
+      "answers": [ "efficient", "efficiently", "effect" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA3_30",
+      "question": "Mr. Chen was highly _______ of the team's performance during the busy holiday season.",
+      "answers": [ "critical", "criticize", "criticism" ],
+      "correctIndex": 0
+    }
+  ]
+}

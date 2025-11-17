@@ -1,0 +1,13 @@
+1.Khái niệm:
+CPU là khối điều khiển và tính toán chính của máy tính.
+
+2.Công thức:
+CPU = CU (Control Unit) + ALU (Arithmetic Logic Unit) + Registers
+
+3.Quy tắc:
+  -CU điều khiển luồng lệnh.
+  -ALU thực hiện tính toán.
+  -Thanh ghi (register) lưu tạm dữ liệu.
+
+4.Ứng dụng:
+Thiết kế vi xử lý, tối ưu tốc độ tính toán, lập trình Assembly.

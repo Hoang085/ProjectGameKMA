@@ -1,0 +1,12 @@
+1.Khái niệm:
+Địa chỉ IP xác định thiết bị trong mạng; subnet chia mạng lớn thành mạng nhỏ.
+
+2.Công thức:
+Số host = 2^(32 - prefix) - 2
+Subnet mask: ví dụ 255.255.255.0 = /24
+
+3.Quy tắc:
+Không dùng địa chỉ network (toàn 0) và broadcast (toàn 1).
+
+4.Ứng dụng:
+Quản lý địa chỉ IP, phân chia mạng phòng ban, định tuyến hiệu quả.

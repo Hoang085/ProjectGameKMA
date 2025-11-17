@@ -1,0 +1,16 @@
+1.Khái niệm:
+Tập hợp là tập các phần tử khác nhau, được biểu diễn bằng ký hiệu {}.
+
+2.Công thức:
+  -Hợp: A ∪ B = {x | x ∈ A hoặc x ∈ B}
+  -Giao: A ∩ B = {x | x ∈ A và x ∈ B}
+  -Hiệu: A \ B = {x | x ∈ A và x ∉ B}
+  -Bù: A̅ = U \ A
+
+3.Quy tắc:
+Luật De Morgan:
+(A ∪ B)̅ = A̅ ∩ B̅
+(A ∩ B)̅ = A̅ ∪ B̅
+
+4.Ứng dụng:
+Xử lý tập dữ liệu, logic mệnh đề, SQL query trong cơ sở dữ liệu.

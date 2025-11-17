@@ -1,0 +1,15 @@
+1.Khái niệm:
+Lập trình hướng đối tượng là phương pháp tổ chức chương trình dựa trên khái niệm “đối tượng” chứa dữ liệu (thuộc tính) và hành vi (phương thức).
+
+2.Công thức:
+Chương trình = Tập hợp các đối tượng tương tác với nhau.
+
+3.Quy tắc:
+  4 đặc trưng cơ bản:
+  -Tính đóng gói
+  -Tính kế thừa
+  -Tính đa hình
+  -Tính trừu tượng
+
+4.Ứng dụng:
+Xây dựng phần mềm có cấu trúc rõ ràng, dễ mở rộng và bảo trì.

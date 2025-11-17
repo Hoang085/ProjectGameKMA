@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 6",
+  "subjectName": "Tiếng Anh 3",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "The company's decision to outsource production was a highly _______ one.",
+      "options": ["controversy", "controversial", "controversially", "contrive"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Please submit your reimbursement forms to the accounting department _______ the end of the month.",
+      "options": ["for", "by", "since", "until"],
+      "correctIndex": 1
+    },
+    {
+      "text": "The recent market research data suggests that consumer spending is _______ steadily.",
+      "options": ["increase", "increasing", "increased", "increaseable"],
+      "correctIndex": 1
+    },
+    {
+      "text": "The CEO will review the budget proposals _______ the final approval is granted.",
+      "options": ["while", "before", "once", "nevertheless"],
+      "correctIndex": 2
+    },
+    {
+      "text": "All factory workers must wear protective gear _______ required safety regulations.",
+      "options": ["in accordance with", "despite", "instead of", "otherwise"],
+      "correctIndex": 0
+    },
+    {
+      "text": "The seminar was primarily attended by young entrepreneurs and _______ from technology firms.",
+      "options": ["represent", "representative", "representatives", "representing"],
+      "correctIndex": 2
+    },
+    {
+      "text": "The deadline for submission has been _______ by one week due to unforeseen delays.",
+      "options": ["expired", "extended", "expanded", "excluded"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Customers who purchase items online are asked to provide a valid e-mail address _______ their order confirmation.",
+      "options": ["receive", "to receiving", "to receive", "receiving"],
+      "correctIndex": 2
+    },
+    {
+      "text": "The new security policy is intended to prevent unauthorized _______ to the confidential database.",
+      "options": ["access", "accessing", "accessible", "accession"],
+      "correctIndex": 0
+    },
+    {
+      "text": "The construction of the new headquarters is expected to be _______ completed by next March.",
+      "options": ["approximate", "approached", "approximating", "approximately"],
+      "correctIndex": 3
+    },
+    {
+      "text": "The training session will focus on improving time management and effective _______ skills.",
+      "options": ["communicate", "communicable", "communication", "communicated"],
+      "correctIndex": 2
+    },
+    {
+      "text": "The quality of the final product improved dramatically _______ the company upgraded its machinery.",
+      "options": ["due to", "as soon as", "despite", "in addition to"],
+      "correctIndex": 1
+    },
+    {
+      "text": "The company's profits exceeded all _______ expectations last quarter.",
+      "options": ["initiate", "initial", "initially", "initiates"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Mr. Lee is quite familiar _______ the process of filing patent applications.",
+      "options": ["to", "with", "on", "for"],
+      "correctIndex": 1
+    },
+    {
+      "text": "All outgoing invoices must be checked by the supervisor _______ they are sent to clients.",
+      "options": ["after", "before", "though", "unless"],
+      "correctIndex": 1
+    },
+    {
+      "text": "The project manager emphasized the _______ of meeting the tight production schedule.",
+      "options": ["important", "importantly", "importance", "imported"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Please contact us at your earliest _______ to reschedule your appointment.",
+      "options": ["convenience", "convenient", "conveniently", "convene"],
+      "correctIndex": 0
+    },
+    {
+      "text": "The restaurant is popular _______ its fresh seafood and unique atmosphere.",
+      "options": ["for", "to", "at", "with"],
+      "correctIndex": 0
+    },
+    {
+      "text": "The maintenance staff is responsible for ensuring that all office equipment is working _______.",
+      "options": ["function", "functional", "functionally", "functions"],
+      "correctIndex": 2
+    },
+    {
+      "text": "The annual report indicates that sales figures have risen _______ over the last fiscal year.",
+      "options": ["signify", "significant", "significance", "significantly"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Due to a technical failure, the website experienced a major network _______ this morning.",
+      "options": ["outflow", "outset", "outage", "outtake"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Dr. Kim's lecture will deal _______ the latest developments in solar energy technology.",
+      "options": ["with", "to", "at", "for"],
+      "correctIndex": 0
+    },
+    {
+      "text": "The manufacturing plant is fully _______ with state-of-the-art robotic assembly lines.",
+      "options": ["equips", "equipment", "equipping", "equipped"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Applicants must demonstrate a strong commitment _______ customer satisfaction.",
+      "options": ["for", "to", "with", "on"],
+      "correctIndex": 1
+    },
+    {
+      "text": "The company is facing intense _______ from competitors in the Asian market.",
+      "options": ["competitor", "compete", "competition", "competitive"],
+      "correctIndex": 2
+    },
+    {
+      "text": "The research team was able to draw important conclusions _______ the gathered data.",
+      "options": ["from", "during", "in", "around"],
+      "correctIndex": 0
+    },
+    {
+      "text": "The customer service representative spoke slowly and _______ to ensure clarity.",
+      "options": ["clear", "clearness", "clearly", "clearing"],
+      "correctIndex": 2
+    },
+    {
+      "text": "All employees are required to _______ the company's internal confidentiality agreement.",
+      "options": ["confer", "conclude", "adhere to", "attribute to"],
+      "correctIndex": 2
+    },
+    {
+      "text": "The newly installed machinery will operate more _______ than the older models.",
+      "options": ["efficient", "efficiency", "efficiently", "effect"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Mr. Chen was highly _______ of the team's performance during the busy holiday season.",
+      "options": ["critical", "criticize", "criticism", "critics"],
+      "correctIndex": 0
+    }
+  ]
+}

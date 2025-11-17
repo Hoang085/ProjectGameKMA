@@ -1,0 +1,12 @@
+1.Khái niệm:
+Giúp phát hiện và sửa lỗi bit trong truyền tin.
+
+2.Công thức:
+Mã Hamming: dmin = 3 → sửa 1 lỗi, phát hiện 2 lỗi.
+
+3.Quy tắc:
+Dùng bit chẵn lẻ, CRC, BCH, Reed–Solomon.
+Mã có dmin càng lớn → khả năng sửa lỗi càng cao.
+
+4.Ứng dụng:
+Đĩa CD/DVD, mạng viễn thông, truyền dữ liệu vệ tinh.

@@ -1,0 +1,11 @@
+1.Khái niệm:
+Dùng để nối hai mệnh đề, tránh lặp từ.
+
+2.Công thức:
+who (người), which (vật), that (cả người và vật).
+
+3.Quy tắc:
+Có thể lược bỏ đại từ quan hệ nếu là tân ngữ.
+
+4.Ứng dụng:
+Ex: The man who lives next door is a doctor.

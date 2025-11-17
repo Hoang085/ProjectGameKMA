@@ -1,0 +1,13 @@
+1.Khái niệm:
+Biểu diễn dữ liệu bằng các hệ cơ số khác nhau.
+
+2.Công thức:
+(1011)₂ = (11)₁₀
+Chuyển hệ:
+Giá trị = Σ(digit × base^vị_trí)
+
+3.Quy tắc:
+Cơ số 2, 8, 10, 16 thường dùng nhất.
+
+4.Ứng dụng:
+Mã hóa dữ liệu, xử lý bit, lập trình máy tính.

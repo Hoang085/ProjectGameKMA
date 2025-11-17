@@ -1,0 +1,12 @@
+1.Khái niệm:
+Là trình tự CPU thực hiện từng lệnh trong chương trình.
+
+2.Công thức:
+Chu trình lệnh = Nạp (Fetch) + Giải mã (Decode) + Thực thi (Execute)
+
+3.Quy tắc:
+  -Mỗi lệnh được biểu diễn bằng opcode + toán hạng.
+  -Thanh ghi PC (Program Counter) lưu địa chỉ lệnh kế tiếp.
+
+4.Ứng dụng:
+Mô phỏng hoạt động CPU, viết trình giả lập, thiết kế vi xử lý.

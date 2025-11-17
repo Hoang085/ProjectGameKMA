@@ -1,0 +1,307 @@
+{
+  "examTitle": "Đề thi cuối kì 4",
+  "subjectName": "Cơ Sở Lý Thuyết Truyền Tin",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Tín hiệu là gì trong truyền thông?",
+      "options": [
+        "Sự thay đổi vật lý mang thông tin",
+        "Chuỗi bit không mang ý nghĩa",
+        "Dòng điện cố định",
+        "Tập hợp sóng âm thanh"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Thông tin là gì?",
+      "options": [
+        "Tín hiệu vật lý",
+        "Chuỗi ký tự ngẫu nhiên",
+        "Dữ liệu được mã hóa mang ý nghĩa",
+        "Số liệu thống kê"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Đơn vị đo lượng thông tin theo Shannon là:",
+      "options": [
+        "Joule",
+        "Byte",
+        "Bit",
+        "Hertz"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Công thức tính entropy của nguồn tin rời rạc là:",
+      "options": [
+        "H = -SUM p(x) * log2(p(x))",
+        "H = SUM p(x)",
+        "H = p(x) * log2(p(x))",
+        "H = log2(p(x))"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Entropy càng lớn thì:",
+      "options": [
+        "Nguồn tin càng ngẫu nhiên",
+        "Lượng thông tin giảm",
+        "Không có nhiễu",
+        "Nguồn tin càng đều đặn"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tín hiệu tương tự (analog) có đặc điểm:",
+      "options": [
+        "Rời rạc theo thời gian",
+        "Chỉ có hai mức điện áp",
+        "Liên tục theo thời gian và biên độ",
+        "Không truyền được xa"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Tín hiệu số (digital) được biểu diễn bởi:",
+      "options": [
+        "Các mức rời rạc",
+        "Tín hiệu analog",
+        "Đồ thị liên tục",
+        "Sóng sin"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tốc độ truyền tin được đo bằng đơn vị:",
+      "options": [
+        "Hz",
+        "bps",
+        "bit/s",
+        "Bps"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Theo định lý Nyquist, tốc độ tối đa không lỗi khi không có nhiễu là:",
+      "options": [
+        "C = M/B",
+        "C = 2 * B * log2(M)",
+        "C = B^2",
+        "C = B * log2(1 + S/N)"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Theo định lý Shannon, dung lượng kênh truyền là:",
+      "options": [
+        "C = 2 * B * log2(M)",
+        "C = S/N",
+        "C = B * log2(1 + S/N)",
+        "C = log2(B)"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Nhiễu trắng Gauss có đặc điểm:",
+      "options": [
+        "Không có phương sai",
+        "Phân bố công suất đều trên mọi tần số",
+        "Chỉ xuất hiện ở tần số thấp",
+        "Là tín hiệu điều chế"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Tỷ số tín hiệu trên nhiễu (SNR) càng cao thì:",
+      "options": [
+        "Tốc độ truyền giảm",
+        "Chất lượng tín hiệu càng tốt",
+        "Nhiễu tăng",
+        "Chất lượng tín hiệu giảm"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Quá trình biến đổi tín hiệu số thành tương tự được gọi là:",
+      "options": [
+        "Mã hóa",
+        "Giải điều chế",
+        "Giải mã",
+        "Điều chế"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Điều chế biên độ (AM) thay đổi thành phần nào của sóng mang?",
+      "options": [
+        "Pha",
+        "Tần số",
+        "Cả ba thành phần",
+        "Biên độ"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Trong điều chế tần số (FM), thông tin được biểu diễn bằng:",
+      "options": [
+        "Pha sóng mang",
+        "Biên độ sóng",
+        "Tần số sóng mang",
+        "Công suất tín hiệu"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Mã hóa nguồn tin nhằm mục đích:",
+      "options": [
+        "Giảm dư thừa dữ liệu",
+        "Tăng nhiễu tín hiệu",
+        "Thay đổi băng thông",
+        "Điều chế tín hiệu"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Mã hóa kênh nhằm:",
+      "options": [
+        "Phát hiện và sửa lỗi truyền",
+        "Tăng tốc độ truyền",
+        "Nén dữ liệu",
+        "Thay đổi tần số"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Một bit thông tin tương ứng với:",
+      "options": [
+        "Hai trạng thái có thể xảy ra",
+        "Ba trạng thái",
+        "Một trạng thái duy nhất",
+        "Vô số trạng thái"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nếu xác suất lỗi bit là Pb, thì xác suất đúng bit là:",
+      "options": [
+        "Pb^2",
+        "1 - Pb",
+        "Pb",
+        "0"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Băng thông (Bandwidth) của kênh truyền là:",
+      "options": [
+        "Công suất tín hiệu",
+        "Độ trễ của hệ thống",
+        "Tốc độ truyền dữ liệu",
+        "Hiệu giữa tần số cao nhất và thấp nhất mà kênh truyền được"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Độ lợi kênh truyền (channel gain) biểu diễn:",
+      "options": [
+        "Khả năng khuếch đại hoặc suy hao tín hiệu qua kênh",
+        "Độ trễ truyền tin",
+        "Công suất nhiễu",
+        "Tốc độ lấy mẫu"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tốc độ lấy mẫu phải thỏa mãn định lý nào để tránh méo tín hiệu?",
+      "options": [
+        "Định lý Fourier",
+        "Định lý Nyquist",
+        "Định lý Laplace",
+        "Định lý Shannon"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Tín hiệu rời rạc thu được từ tín hiệu liên tục gọi là:",
+      "options": [
+        "Tín hiệu điều chế",
+        "Tín hiệu tổng hợp",
+        "Tín hiệu lấy mẫu",
+        "Tín hiệu tương tự"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Một hệ thống truyền thông gồm có bao nhiêu khối cơ bản?",
+      "options": [
+        "5",
+        "3",
+        "7",
+        "4"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Các khối chính của hệ thống truyền thông gồm:",
+      "options": [
+        "Nguồn tin, bộ phát, kênh truyền, bộ thu, đích nhận",
+        "Nguồn âm thanh, dây nối, bộ xử lý",
+        "Máy phát, mạng, máy tính",
+        "Nguồn điện, anten, bộ lọc, CPU"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Hệ thống truyền số liệu song công (full-duplex) có thể:",
+      "options": [
+        "Truyền dữ liệu hai chiều cùng lúc",
+        "Truyền một chiều luân phiên",
+        "Chỉ nhận dữ liệu",
+        "Chỉ truyền dữ liệu"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Trong điều chế pha (PM), thông tin được truyền bằng cách thay đổi:",
+      "options": [
+        "Tần số",
+        "Pha sóng mang",
+        "Biên độ sóng",
+        "Công suất"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Tỷ lệ lỗi bit (BER) càng thấp thì:",
+      "options": [
+        "Hệ thống kém ổn định",
+        "Tốc độ giảm",
+        "Chất lượng truyền dẫn càng cao",
+        "Nhiễu càng mạnh"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Theo Shannon, khi S/N -> infinity thì dung lượng kênh C sẽ:",
+      "options": [
+        "Giảm về 0",
+        "Không đổi",
+        "Tăng không giới hạn",
+        "Bằng B"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Mục tiêu của lý thuyết thông tin là:",
+      "options": [
+        "Tăng cường công suất nguồn điện",
+        "Thiết kế mạch khuếch đại",
+        "Đo lường, mã hóa và truyền thông tin hiệu quả",
+        "Tăng nhiệt độ hệ thống"
+      ],
+      "correctIndex": 2
+    }
+  ]
+}

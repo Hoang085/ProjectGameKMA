@@ -1,0 +1,15 @@
+1.Khái niệm:
+Mô hình dữ liệu mô tả cách dữ liệu được tổ chức, lưu trữ và truy cập.
+
+2.Công thức:
+  3 mức trong DBMS:
+  -Mức vật lý (Physical level)
+  -Mức khái niệm (Conceptual level)
+  -Mức nhìn (External level)
+
+3.Quy tắc:
+Phân tách độc lập dữ liệu (data independence).
+Thay đổi ở mức vật lý không ảnh hưởng mức khái niệm.
+
+4.Ứng dụng:
+Thiết kế CSDL lớn, bảo đảm tính linh hoạt và bảo mật.

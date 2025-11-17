@@ -1,0 +1,13 @@
+1.Khái niệm:
+Kênh truyền là môi trường vật lý mà tín hiệu đi qua (dây, quang, sóng).
+
+2.Công thức:
+Theo định lý Shannon:
+C = B·log₂(1 + S/N)
+
+3.Quy tắc:
+Càng lớn khi băng thông (B) hoặc SNR tăng.
+Không thể vượt quá giới hạn Shannon.
+
+4.Ứng dụng:
+Tính toán tốc độ truyền tối đa, thiết kế hệ thống viễn thông.

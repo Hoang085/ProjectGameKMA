@@ -1,0 +1,15 @@
+1.Khái niệm:
+Thuộc tính mô tả trạng thái; phương thức mô tả hành động của đối tượng.
+
+2.Công thức:
+ class HinhTron {
+  double r;
+  double dienTich() { return 3.14 * r * r; }
+};
+
+
+3.Quy tắc:
+Phương thức có thể thay đổi giá trị thuộc tính.
+
+4.Ứng dụng:
+Mô tả hành vi thực tế: di chuyển, tính toán, hiển thị thông tin.

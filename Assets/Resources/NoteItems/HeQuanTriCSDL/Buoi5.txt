@@ -1,0 +1,14 @@
+1.Khái niệm:
+SQL là ngôn ngữ chuẩn để thao tác và truy vấn dữ liệu trong CSDL quan hệ.
+
+2.Công thức:
+  -Truy vấn dữ liệu: SELECT * FROM TableName;
+  -Thêm dữ liệu: INSERT INTO Table VALUES (...);
+  -Cập nhật: UPDATE Table SET column=value WHERE condition;
+  -Xóa: DELETE FROM Table WHERE condition;
+
+3.Quy tắc:
+Câu lệnh SQL không phân biệt chữ hoa – chữ thường, kết thúc bằng dấu “;”.
+
+4.Ứng dụng:
+Tìm kiếm và cập nhật dữ liệu trong các hệ thống phần mềm.

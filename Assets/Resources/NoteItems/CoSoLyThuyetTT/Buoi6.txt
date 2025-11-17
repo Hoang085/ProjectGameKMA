@@ -1,0 +1,12 @@
+1.Khái niệm:
+Mã hóa kênh giúp phát hiện và sửa lỗi phát sinh trong quá trình truyền.
+
+2.Công thức:
+Tỷ lệ mã: R = k/n (k bit thông tin, n bit mã hóa)
+
+3.Quy tắc:
+Thêm bit dư kiểm tra (parity, CRC, Hamming).
+Phát hiện hoặc tự sửa lỗi tùy theo mã.
+
+4.Ứng dụng:
+Truyền dữ liệu tin cậy qua mạng không dây, vệ tinh, Internet.

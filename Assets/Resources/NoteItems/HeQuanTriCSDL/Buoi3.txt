@@ -1,0 +1,14 @@
+1.Khái niệm:
+ER model mô tả các thực thể và mối quan hệ giữa chúng trong CSDL.
+
+2.Công thức:
+ER = Entity + Attribute + Relationship
+
+3.Quy tắc:
+  Ký hiệu:
+  -Hình chữ nhật: thực thể
+  -Hình thoi: quan hệ
+  -Hình elip: thuộc tính
+
+4.Ứng dụng:
+Thiết kế sơ đồ CSDL trước khi tạo bảng.

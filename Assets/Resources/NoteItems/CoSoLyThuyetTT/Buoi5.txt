@@ -1,0 +1,13 @@
+1.Khái niệm:
+Mã hóa nguồn là quá trình biến đổi dữ liệu thành dạng bit ngắn gọn nhất mà vẫn có thể phục hồi.
+
+2.Công thức:
+Hiệu suất mã: η = H(X) / Ltb
+(với Ltb là độ dài trung bình mã)
+
+3.Quy tắc:
+Mã không chồng lấn (prefix code).
+Mã Huffman đạt hiệu suất gần tối ưu.
+
+4.Ứng dụng:
+Nén dữ liệu (ZIP, MP3, JPEG), truyền thông hiệu quả.

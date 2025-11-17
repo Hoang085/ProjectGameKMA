@@ -1,0 +1,12 @@
+1.Khái niệm:
+Bus là đường truyền tín hiệu giữa các thành phần của máy tính.
+
+2.Công thức:
+Bus = Data Bus + Address Bus + Control Bus
+
+3.Quy tắc:
+Bus rộng hơn → tốc độ truyền cao hơn.
+Các thiết bị I/O được kết nối qua cổng hoặc bộ điều khiển (Controller).
+
+4.Ứng dụng:
+Thiết kế bo mạch chủ, kết nối CPU – RAM – I/O.
