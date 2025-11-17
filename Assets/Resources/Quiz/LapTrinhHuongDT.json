@@ -1,0 +1,305 @@
+{
+  "subjectKey": "LapTrinhHuongDT",
+  "questions": [
+    {
+      "id": "LTHDT1",
+      "question": "Lập trình hướng đối tượng (OOP) là gì?",
+      "answers": [
+        "Phương pháp lập trình dựa trên khái niệm 'đối tượng' (object)",
+        "Phương pháp lập trình tuyến tính",
+        "Tập trung vào các hàm và thủ tục"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTHDT2",
+      "question": "Đâu là một trong bốn tính chất cơ bản của OOP?",
+      "answers": [
+        "Vòng lặp",
+        "Kế thừa (Inheritance)",
+        "Hàm"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT3",
+      "question": "Tính đóng gói (Encapsulation) trong OOP có ý nghĩa gì?",
+      "answers": [
+        "Định nghĩa một khuôn mẫu cho các đối tượng",
+        "Giấu dữ liệu và chỉ cho phép truy cập qua các phương thức công khai",
+        "Cho phép một đối tượng có nhiều hình thái"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT4",
+      "question": "Lớp (Class) trong OOP được xem là:",
+      "answers": [
+        "Một tập hợp các phương thức",
+        "Một đối tượng đã được khởi tạo",
+        "Một bản thiết kế (blueprint) để tạo ra các đối tượng"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTHDT5",
+      "question": "Đối tượng (Object) là gì?",
+      "answers": [
+        "Một thể hiện (instance) cụ thể của lớp",
+        "Một kiểu dữ liệu cơ bản",
+        "Một hàm toàn cục"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTHDT6",
+      "question": "Tính đa hình (Polymorphism) thể hiện qua việc:",
+      "answers": [
+        "Giới hạn quyền truy cập",
+        "Đóng gói dữ liệu",
+        "Một tên phương thức có thể được thực hiện theo nhiều cách khác nhau"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTHDT7",
+      "question": "Trong kế thừa, lớp cha còn được gọi là:",
+      "answers": [
+        "Lớp cơ sở (Base/Super class)",
+        "Lớp dẫn xuất",
+        "Lớp con (Subclass)"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTHDT8",
+      "question": "Phương thức khởi tạo (Constructor) có chức năng gì?",
+      "answers": [
+        "Xóa đối tượng khỏi bộ nhớ",
+        "Khởi tạo các thuộc tính của đối tượng khi nó được tạo ra",
+        "Chỉ được gọi một lần duy nhất trong toàn bộ chương trình"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT9",
+      "question": "Thuộc tính (Attribute) của một đối tượng mô tả điều gì?",
+      "answers": [
+        "Tên lớp",
+        "Hành vi của đối tượng",
+        "Trạng thái (state) hoặc đặc điểm của đối tượng"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTHDT10",
+      "question": "Sự khác biệt chính giữa 'interface' và 'abstract class' là gì?",
+      "answers": [
+        "Interface cho phép cài đặt đầy đủ phương thức, abstract class thì không",
+        "Interface chỉ chứa các định nghĩa (hợp đồng), abstract class có thể chứa cài đặt",
+        "Không có sự khác biệt"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT11",
+      "question": "Từ khóa nào được sử dụng để chỉ định một lớp không thể được kế thừa?",
+      "answers": [
+        "static",
+        "final (hoặc sealed trong C#)",
+        "abstract"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT12",
+      "question": "Trong đa hình, 'Overloading' (Nạp chồng phương thức) là gì?",
+      "answers": [
+        "Thực hiện lại phương thức của lớp cha ở lớp con",
+        "Các phương thức cùng tên nhưng khác nhau về số lượng/kiểu tham số",
+        "Thay đổi kiểu trả về của phương thức"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT13",
+      "question": "Trong đa hình, 'Overriding' (Ghi đè phương thức) xảy ra khi nào?",
+      "answers": [
+        "Lớp con định nghĩa lại một phương thức đã có ở lớp cha",
+        "Các phương thức có tên khác nhau",
+        "Hàm không có tham số"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTHDT14",
+      "question": "Phương thức hủy (Destructor) được gọi khi nào?",
+      "answers": [
+        "Khi đối tượng được khởi tạo",
+        "Khi đối tượng không còn được sử dụng và sắp bị thu hồi bộ nhớ",
+        "Chỉ khi chương trình kết thúc"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT15",
+      "question": "Từ khóa `this` (hoặc `self` trong Python) trong một phương thức tham chiếu đến:",
+      "answers": [
+        "Lớp cơ sở",
+        "Phương thức khởi tạo",
+        "Đối tượng hiện tại (đang gọi phương thức)"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTHDT16",
+      "question": "Quyền truy cập `private` cho phép truy cập đến thành phần đó ở đâu?",
+      "answers": [
+        "Trong cùng gói (package)",
+        "Chỉ trong cùng một lớp",
+        "Bất cứ đâu trong chương trình"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT17",
+      "question": "Kế thừa (Inheritance) giúp giải quyết vấn đề gì?",
+      "answers": [
+        "Giảm tính đa hình",
+        "Tái sử dụng mã và thiết lập mối quan hệ IS-A",
+        "Tăng tính phức tạp của mã"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT18",
+      "question": "Lớp trừu tượng (Abstract Class) là lớp:",
+      "answers": [
+        "Bắt buộc phải kế thừa",
+        "Không thể được sử dụng để tạo đối tượng (không thể khởi tạo)",
+        "Không thể có bất kỳ phương thức nào"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT19",
+      "question": "Phương thức/Thuộc tính `static` thuộc về:",
+      "answers": [
+        "Từng đối tượng cụ thể",
+        "Lớp (Class) chứ không phải đối tượng",
+        "Lớp con"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT20",
+      "question": "Tính trừu tượng (Abstraction) trong OOP có nghĩa là gì?",
+      "answers": [
+        "Hiển thị tất cả chi tiết bên trong của đối tượng",
+        "Chỉ tập trung vào các chi tiết cần thiết, ẩn đi sự phức tạp",
+        "Bắt buộc sử dụng các hàm static"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT21",
+      "question": "Quyền truy cập `protected` cho phép truy cập đến thành phần đó ở đâu?",
+      "answers": [
+        "Chỉ trong cùng một lớp",
+        "Trong cùng lớp, các lớp con và cùng gói (package)",
+        "Chỉ trong các lớp con"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT22",
+      "question": "Mối quan hệ 'has-a' (có một) thường được thể hiện bằng kỹ thuật nào?",
+      "answers": [
+        "Kế thừa (Inheritance)",
+        "Thành phần hóa/Tổng hợp (Composition/Aggregation)",
+        "Ghi đè (Overriding)"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT23",
+      "question": "Trong Java/C++, 'Garbage Collector' (Bộ thu gom rác) chịu trách nhiệm cho việc gì?",
+      "answers": [
+        "Phân bổ bộ nhớ",
+        "Tự động giải phóng bộ nhớ của các đối tượng không còn được tham chiếu",
+        "Kiểm tra cú pháp"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT24",
+      "question": "Phương thức không có cài đặt (chỉ có chữ ký) trong lớp trừu tượng được gọi là gì?",
+      "answers": [
+        "Phương thức static",
+        "Phương thức abstract (trừu tượng)",
+        "Phương thức final"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT25",
+      "question": "Khi một lớp con kế thừa lớp cha, nó được quyền truy cập các thành phần nào của lớp cha (giả sử không cùng gói)?",
+      "answers": [
+        "Chỉ public",
+        "public và protected",
+        "Tất cả (public, private, protected)"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT26",
+      "question": "Mẫu thiết kế (Design Pattern) là gì?",
+      "answers": [
+        "Một khuôn mẫu tổng quát cho các giải pháp lặp đi lặp lại trong thiết kế phần mềm",
+        "Một đoạn mã bắt buộc phải dùng",
+        "Một loại cấu trúc dữ liệu"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTHDT27",
+      "question": "Trong OOP, việc kiểm tra kiểu (Type Checking) xảy ra khi chương trình đang chạy được gọi là:",
+      "answers": [
+        "Compile-time",
+        "Runtime (Dynamic)",
+        "Execution-time"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT28",
+      "question": "Đâu là một lợi ích chính của OOP?",
+      "answers": [
+        "Chỉ áp dụng cho các dự án nhỏ",
+        "Tái sử dụng mã và dễ dàng bảo trì",
+        "Làm chậm chương trình"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTHDT29",
+      "question": "Mã hóa một đối tượng thành một chuỗi byte để lưu trữ hoặc truyền đi gọi là gì?",
+      "answers": [
+        "Kế thừa",
+        "Truyền tải",
+        "Tuần tự hóa (Serialization)"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "LTHDT30",
+      "question": "Phương thức nào được gọi khi một đối tượng bị hủy khỏi bộ nhớ?",
+      "answers": [
+        "Phương thức khởi tạo",
+        "Hàm static",
+        "Phương thức hủy (Destructor)"
+      ],
+      "correctIndex": 2
+    }
+  ]
+}

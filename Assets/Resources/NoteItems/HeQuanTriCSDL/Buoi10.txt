@@ -1,0 +1,12 @@
+1.Khái niệm:
+CSDL phân tán lưu trữ dữ liệu trên nhiều máy chủ, hỗ trợ mở rộng và truy cập từ xa.
+
+2.Công thức:
+Dữ liệu = ∑(D₁, D₂, …, Dₙ)
+Hệ thống NoSQL: MongoDB, Cassandra, Redis.
+
+3.Quy tắc:
+Cân bằng giữa tính nhất quán (Consistency), sẵn sàng (Availability), và phân vùng (Partition tolerance) – theo định lý CAP.
+
+4.Ứng dụng:
+Hệ thống lớn như Facebook, Google, thương mại điện tử, AI, Big Data.

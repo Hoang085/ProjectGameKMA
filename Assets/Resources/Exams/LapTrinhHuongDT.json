@@ -1,0 +1,307 @@
+{
+  "examTitle": "Đề thi cuối kì 5",
+  "subjectName": "Lập Trình Hướng Đối Tượng",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Lập trình hướng đối tượng (OOP) là gì?",
+      "options": [
+        "Phương pháp lập trình dựa trên khái niệm 'đối tượng' (object)",
+        "Phương pháp lập trình tuyến tính",
+        "Tập trung vào các hàm và thủ tục",
+        "Tập trung vào cấu trúc dữ liệu"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Đâu là một trong bốn tính chất cơ bản của OOP?",
+      "options": [
+        "Vòng lặp",
+        "Kế thừa (Inheritance)",
+        "Biến toàn cục",
+        "Hàm"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Tính đóng gói (Encapsulation) trong OOP có ý nghĩa gì?",
+      "options": [
+        "Định nghĩa một khuôn mẫu cho các đối tượng",
+        "Giấu dữ liệu và chỉ cho phép truy cập qua các phương thức công khai",
+        "Cho phép một đối tượng có nhiều hình thái",
+        "Cho phép lớp con truy cập trực tiếp vào thuộc tính của lớp cha"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lớp (Class) trong OOP được xem là:",
+      "options": [
+        "Một tập hợp các phương thức",
+        "Một đối tượng đã được khởi tạo",
+        "Một biến đơn",
+        "Một bản thiết kế (blueprint) để tạo ra các đối tượng"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Đối tượng (Object) là gì?",
+      "options": [
+        "Một thể hiện (instance) cụ thể của lớp",
+        "Một kiểu dữ liệu cơ bản",
+        "Một hàm toàn cục",
+        "Một file văn bản"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tính đa hình (Polymorphism) thể hiện qua việc:",
+      "options": [
+        "Giới hạn quyền truy cập",
+        "Đóng gói dữ liệu",
+        "Một tên phương thức có thể được thực hiện theo nhiều cách khác nhau",
+        "Tạo các thuộc tính tĩnh"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong kế thừa, lớp cha còn được gọi là:",
+      "options": [
+        "Lớp cơ sở (Base/Super class)",
+        "Lớp cụ thể (Concrete class)",
+        "Lớp dẫn xuất",
+        "Lớp con (Subclass)"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phương thức khởi tạo (Constructor) có chức năng gì?",
+      "options": [
+        "Xóa đối tượng khỏi bộ nhớ",
+        "Thực hiện một hành động ngẫu nhiên",
+        "Khởi tạo các thuộc tính của đối tượng khi nó được tạo ra",
+        "Chỉ được gọi một lần duy nhất trong toàn bộ chương trình"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Thuộc tính (Attribute) của một đối tượng mô tả điều gì?",
+      "options": [
+        "Tên lớp",
+        "Hành vi của đối tượng",
+        "Trạng thái (state) hoặc đặc điểm của đối tượng",
+        "Giá trị của hàm trả về"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Sự khác biệt chính giữa 'interface' và 'abstract class' là gì?",
+      "options": [
+        "Interface cho phép cài đặt đầy đủ phương thức, abstract class thì không",
+        "Abstract class không thể có constructor, interface thì có",
+        "Interface chỉ chứa các định nghĩa (hợp đồng), abstract class có thể chứa cài đặt",
+        "Không có sự khác biệt"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Từ khóa nào được sử dụng để chỉ định một lớp không thể được kế thừa?",
+      "options": [
+        "static",
+        "public",
+        "final (hoặc sealed trong C#)",
+        "abstract"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong đa hình, 'Overloading' (Nạp chồng phương thức) là gì?",
+      "options": [
+        "Thực hiện lại phương thức của lớp cha ở lớp con",
+        "Các phương thức cùng tên nhưng khác nhau về số lượng/kiểu tham số",
+        "Thay đổi kiểu trả về của phương thức",
+        "Kế thừa đa cấp"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Trong đa hình, 'Overriding' (Ghi đè phương thức) xảy ra khi nào?",
+      "options": [
+        "Lớp con định nghĩa lại một phương thức đã có ở lớp cha",
+        "Các phương thức có tên khác nhau",
+        "Hàm không có tham số",
+        "Phương thức là static"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phương thức hủy (Destructor) được gọi khi nào?",
+      "options": [
+        "Khi đối tượng được khởi tạo",
+        "Khi đối tượng không còn được sử dụng và sắp bị thu hồi bộ nhớ",
+        "Chỉ khi chương trình kết thúc",
+        "Trong các hàm static"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Từ khóa `this` (hoặc `self` trong Python) trong một phương thức tham chiếu đến:",
+      "options": [
+        "Lớp cơ sở",
+        "Phương thức khởi tạo",
+        "Đối tượng hiện tại (đang gọi phương thức)",
+        "Một biến toàn cục"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Quyền truy cập `private` cho phép truy cập đến thành phần đó ở đâu?",
+      "options": [
+        "Trong cùng gói (package)",
+        "Chỉ trong cùng một lớp",
+        "Bất cứ đâu trong chương trình",
+        "Chỉ trong các lớp con"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Kế thừa (Inheritance) giúp giải quyết vấn đề gì?",
+      "options": [
+        "Giảm tính đa hình",
+        "Tái sử dụng mã và thiết lập mối quan hệ IS-A",
+        "Tăng tính phức tạp của mã",
+        "Bắt buộc phải cài đặt lại mọi thứ"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lớp trừu tượng (Abstract Class) là lớp:",
+      "options": [
+        "Bắt buộc phải kế thừa",
+        "Không thể được sử dụng để tạo đối tượng (không thể khởi tạo)",
+        "Không thể có bất kỳ phương thức nào",
+        "Có tất cả các phương thức được cài đặt đầy đủ"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Phương thức/Thuộc tính `static` thuộc về:",
+      "options": [
+        "Từng đối tượng cụ thể",
+        "Lớp (Class) chứ không phải đối tượng",
+        "Lớp con",
+        "Đối tượng sau khi được hủy"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Tính trừu tượng (Abstraction) trong OOP có nghĩa là gì?",
+      "options": [
+        "Hiển thị tất cả chi tiết bên trong của đối tượng",
+        "Chỉ tập trung vào các chi tiết cần thiết, ẩn đi sự phức tạp",
+        "Bắt buộc sử dụng các hàm static",
+        "Không sử dụng kế thừa"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Quyền truy cập `protected` cho phép truy cập đến thành phần đó ở đâu?",
+      "options": [
+        "Chỉ trong cùng một lớp",
+        "Bất cứ đâu trong chương trình",
+        "Trong cùng lớp, các lớp con và cùng gói (package)",
+        "Chỉ trong các lớp con"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Mối quan hệ 'has-a' (có một) thường được thể hiện bằng kỹ thuật nào?",
+      "options": [
+        "Kế thừa (Inheritance)",
+        "Đa hình (Polymorphism)",
+        "Thành phần hóa/Tổng hợp (Composition/Aggregation)",
+        "Ghi đè (Overriding)"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong Java/C++, 'Garbage Collector' (Bộ thu gom rác) chịu trách nhiệm cho việc gì?",
+      "options": [
+        "Phân bổ bộ nhớ",
+        "Quản lý luồng",
+        "Tự động giải phóng bộ nhớ của các đối tượng không còn được tham chiếu",
+        "Kiểm tra cú pháp"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Phương thức không có cài đặt (chỉ có chữ ký) trong lớp trừu tượng được gọi là gì?",
+      "options": [
+        "Phương thức static",
+        "Phương thức private",
+        "Phương thức abstract (trừu tượng)",
+        "Phương thức final"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Khi một lớp con kế thừa lớp cha, nó được quyền truy cập các thành phần nào của lớp cha (giả sử không cùng gói)?",
+      "options": [
+        "Chỉ private",
+        "Chỉ public",
+        "public và protected",
+        "Tất cả (public, private, protected)"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Mẫu thiết kế (Design Pattern) là gì?",
+      "options": [
+        "Một khuôn mẫu tổng quát cho các giải pháp lặp đi lặp lại trong thiết kế phần mềm",
+        "Một đoạn mã bắt buộc phải dùng",
+        "Một lỗi trong OOP",
+        "Một loại cấu trúc dữ liệu"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Trong OOP, việc kiểm tra kiểu (Type Checking) xảy ra khi chương trình đang chạy được gọi là:",
+      "options": [
+        "Compile-time",
+        "Design-time",
+        "Runtime (Dynamic)",
+        "Execution-time"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Đâu là một lợi ích chính của OOP?",
+      "options": [
+        "Chỉ áp dụng cho các dự án nhỏ",
+        "Tái sử dụng mã và dễ dàng bảo trì",
+        "Làm chậm chương trình",
+        "Bắt buộc sử dụng hàm goto"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Mã hóa một đối tượng thành một chuỗi byte để lưu trữ hoặc truyền đi gọi là gì?",
+      "options": [
+        "Kế thừa",
+        "Đa hình hóa",
+        "Truyền tải",
+        "Tuần tự hóa (Serialization)"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Phương thức nào được gọi khi một đối tượng bị hủy khỏi bộ nhớ?",
+      "options": [
+        "Phương thức khởi tạo",
+        "Hàm main",
+        "Hàm static",
+        "Phương thức hủy (Destructor)"
+      ],
+      "correctIndex": 3
+    }
+  ]
+}

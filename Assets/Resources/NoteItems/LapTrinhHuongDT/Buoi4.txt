@@ -1,0 +1,15 @@
+1.Khái niệm:
+Giấu dữ liệu bên trong đối tượng, chỉ cho phép truy cập qua phương thức công khai.
+
+2.Công thức:
+private:
+  int tuoi;
+public:
+  void setTuoi(int t){ tuoi = t; }
+  int getTuoi(){ return tuoi; }
+
+3.Quy tắc:
+Sử dụng private, protected, public để kiểm soát truy cập.
+
+4.Ứng dụng:
+Tăng tính bảo mật, giảm lỗi do truy cập sai dữ liệu.

@@ -1,0 +1,185 @@
+{
+  "subjectKey": "TiengAnh2",
+  "questions": [
+    {
+      "id": "TA2_1",
+      "question": "They decided to postpone _______ the house until next year.",
+      "answers": [ "to rebuild", "rebuilding", "rebuild" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA2_2",
+      "question": "The government is determined to _______ inflation.",
+      "answers": [ "bring down", "get over", "put up" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_3",
+      "question": "He is very anxious _______ the result of the examination.",
+      "answers": [ "about", "for", "with" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_4",
+      "question": "If she _______, she would have certainly come to the party.",
+      "answers": [ "was invited", "has been invited", "had been invited" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TA2_5",
+      "question": "They worked hard _______ they might pass the final exam.",
+      "answers": [ "so that", "because", "although" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_6",
+      "question": "The proposal was eventually _______ down by the committee.",
+      "answers": [ "turned", "passed", "taken" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_7",
+      "question": "The more you practise speaking, _______ your fluency will be.",
+      "answers": [ "the better", "better", "best" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_8",
+      "question": "We were delayed by a _______ traffic jam.",
+      "answers": [ "heavy", "dense", "thick" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA2_9",
+      "question": "The meeting was cancelled because of the chairman's sudden _______.",
+      "answers": [ "absence", "present", "presence" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_10",
+      "question": "The new manager is very polite and _______ to his staff.",
+      "answers": [ "considerate", "considerable", "considering" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_11",
+      "question": "The students are looking forward _______ their summer holiday.",
+      "answers": [ "to having", "having", "to be having" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_12",
+      "question": "They offered her the job _______ her lack of experience.",
+      "answers": [ "in spite of", "though", "even if" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_13",
+      "question": "He asked me _______ the previous day.",
+      "answers": [ "what I was doing", "what I had been doing", "what was I doing" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA2_14",
+      "question": "The children found the story very _______.",
+      "answers": [ "amusing", "amused", "amusement" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_15",
+      "question": "Mark: “What a beautiful dress you have!” – Helen: “_______”",
+      "answers": [ "Thank you. I’m glad you like it.", "Oh, really?", "You are welcome." ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_16",
+      "question": "Peter: “Do you mind if I borrow your bike?” – Jane: “_______”",
+      "answers": [ "Not at all.", "Yes, I do.", "I'm sorry." ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_17",
+      "question": "Synonym: The 18th Asian Games was a **memorable** event.",
+      "answers": [ "unforgettable", "unimportant", "significant" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_18",
+      "question": "Synonym: He was **fully aware** of the implications.",
+      "answers": [ "well-informed", "badly affected", "capable of deciding" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_19",
+      "question": "Antonym: Due to the **scarcity** of food...",
+      "answers": [ "abundance", "lack", "plenty" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_20",
+      "question": "Antonym: The manager **turned down** the request.",
+      "answers": [ "approved", "rejected", "ignored" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_21",
+      "question": "Tìm lỗi sai: Despite being warned..., **but** the divers continued",
+      "answers": [ "Despite", "but", "their" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA2_22",
+      "question": "Tìm lỗi sai: The boy is always playing games after he **has finished** his homework.",
+      "answers": [ "is", "after", "has finished" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TA2_23",
+      "question": "Tìm lỗi sai: Neither her mother **or** her father knows...",
+      "answers": [ "Neither", "or", "knows" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TA2_24",
+      "question": "She bought a _______ dress for the party.",
+      "answers": [ "beautiful long white", "long white beautiful", "beautiful white long" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_25",
+      "question": "The heavy rain has led to widespread _______.",
+      "answers": [ "flooding", "floods", "flood" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_26",
+      "question": "If I were you, I _______ that old car immediately.",
+      "answers": [ "would sell", "sell", "sold" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_27",
+      "question": "It is obligatory for you to submit the report by Friday.",
+      "answers": [ "You must submit the report by Friday.", "You may submit the report by Friday.", "You should submit the report by Friday." ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_28",
+      "question": "The last time she visited her grandparents was three months ago.",
+      "answers": [ "She hasn’t visited her grandparents for three months.", "She last visited her grandparents since three months.", "She visited her grandparents since three months." ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TA2_29",
+      "question": "Phát âm khác: cat, hat, man, wash",
+      "answers": [ "cat", "man", "wash" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TA2_30",
+      "question": "Trọng âm khác: comfortable, develop, environment, familiar",
+      "answers": [ "comfortable", "develop", "environment" ],
+      "correctIndex": 0
+    }
+  ]
+}

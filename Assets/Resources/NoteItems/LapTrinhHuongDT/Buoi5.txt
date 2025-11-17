@@ -1,0 +1,17 @@
+1.Khái niệm:
+Cho phép lớp con thừa hưởng thuộc tính và phương thức từ lớp cha.
+
+2.Công thức:
+class NhanVien {
+  string ten;
+};
+class GiaoVien : public NhanVien {
+  string monDay;
+};
+
+
+3.Quy tắc:
+Lớp con có thể mở rộng hoặc ghi đè phương thức của lớp cha.
+
+4.Ứng dụng:
+Tái sử dụng mã, tổ chức phân cấp đối tượng.

@@ -1,0 +1,13 @@
+1.Khái niệm:
+Chỉ thời gian, nơi chốn, hướng, mối quan hệ.
+
+2.Công thức:
+  -in (tháng, năm, không gian lớn)
+  -on (ngày, bề mặt)
+  -at (thời điểm, vị trí cụ thể)
+
+3.Quy tắc:
+Không dùng “in/on/at” với trạng từ chỉ thời gian như “today, tomorrow”.
+
+4.Ứng dụng:
+Ex: in 2024, on Monday, at school.

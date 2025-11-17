@@ -1,0 +1,14 @@
+1.Khái niệm:
+Bảo mật và sao lưu giúp bảo vệ CSDL khỏi mất mát và truy cập trái phép.
+
+2.Công thức:
+ Backup:
+  -BACKUP DATABASE dbname TO DISK='path.bak';
+ Restore:
+  -RESTORE DATABASE dbname FROM DISK='path.bak';
+
+3.Quy tắc:
+Phân quyền người dùng (GRANT, REVOKE), sao lưu định kỳ.
+
+4.Ứng dụng:
+Bảo vệ dữ liệu doanh nghiệp, phục hồi khi có sự cố.

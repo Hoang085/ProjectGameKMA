@@ -1,0 +1,13 @@
+1.Khái niệm:
+  -Von Neumann: chương trình và dữ liệu dùng chung bộ nhớ.
+  -Harvard: chương trình và dữ liệu dùng bộ nhớ riêng biệt.
+
+2.Công thức:
+Thành phần chính:
+CPU + Memory + I/O + Bus
+
+3.Quy tắc:
+Von Neumann dễ thiết kế nhưng có "nút thắt cổ chai" khi truy cập bộ nhớ.
+
+4.Ứng dụng:
+Cấu trúc Von Neumann dùng trong máy tính PC; Harvard dùng trong vi điều khiển (microcontroller).

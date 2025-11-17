@@ -1,0 +1,11 @@
+1.Khái niệm:
+Phân quyền giúp kiểm soát người dùng, đảm bảo an toàn truy cập tài nguyên mạng.
+
+2.Công thức:
+Nguyên tắc 3A: Authentication – Authorization – Accounting
+
+3.Quy tắc:
+Người dùng chỉ được cấp quyền cần thiết (nguyên tắc “least privilege”).
+
+4.Ứng dụng:
+Quản trị người dùng trong Windows Server, Linux, Active Directory.

@@ -1,0 +1,12 @@
+1.Khái niệm:
+Suy luận logic là quá trình rút ra kết luận từ các mệnh đề đã biết.
+
+2.Công thức:
+Modus Ponens:
+Nếu (P → Q) và P đúng → Q đúng.
+
+3.Quy tắc:
+Chứng minh trực tiếp, phản chứng, quy nạp toán học.
+
+4.Ứng dụng:
+Chứng minh tính đúng của thuật toán, kiểm định logic chương trình.

@@ -1,0 +1,11 @@
+1.Khái niệm:
+Kiến trúc máy tính nghiên cứu cấu trúc, tổ chức và hoạt động của các thành phần phần cứng trong máy tính.
+
+2.Công thức:
+Máy tính = Phần cứng (Hardware) + Phần mềm (Software) + Dữ liệu (Data)
+
+3.Quy tắc:
+Tuân theo mô hình Von Neumann: bộ xử lý, bộ nhớ, thiết bị nhập/xuất, bus truyền dữ liệu.
+
+4.Ứng dụng:
+Thiết kế hệ thống máy tính, vi xử lý, tối ưu hiệu năng phần cứng.

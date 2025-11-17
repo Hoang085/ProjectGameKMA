@@ -1,0 +1,11 @@
+1.Khái niệm:
+Ảo hóa cho phép chạy nhiều máy chủ ảo trên một phần cứng vật lý.
+
+2.Công thức:
+Hiệu suất = (Tài nguyên sử dụng / Tài nguyên tổng) × 100%
+
+3.Quy tắc:
+Cân bằng tài nguyên giữa máy ảo, tránh quá tải CPU/RAM.
+
+4.Ứng dụng:
+Triển khai VMware, Hyper-V, Proxmox; tiết kiệm chi phí phần cứng.

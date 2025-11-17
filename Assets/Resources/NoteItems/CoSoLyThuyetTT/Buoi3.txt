@@ -1,0 +1,13 @@
+1.Khái niệm:
+Nhiễu là tín hiệu không mong muốn làm sai lệch thông tin khi truyền.
+
+2.Công thức:
+SNR = Psignal / Pnoise
+SNR(dB) = 10·log₁₀(SNR)
+
+3.Quy tắc:
+SNR càng cao → chất lượng tín hiệu càng tốt.
+Nếu SNR thấp → dễ bị lỗi bit.
+
+4.Ứng dụng:
+Đánh giá chất lượng đường truyền, thiết kế bộ lọc và kênh truyền.

@@ -1,0 +1,15 @@
+1.Khái niệm:
+Cùng tên hàm nhưng khác tham số; hoặc định nghĩa lại cách hoạt động của toán tử.
+
+2.Công thức:
+
+int cong(int a, int b);
+double cong(double a, double b);
+A operator+(A a1, A a2);
+
+
+3.Quy tắc:
+Phải khác số hoặc kiểu tham số; không thể chỉ khác kiểu trả về.
+
+4.Ứng dụng:
+Tăng tính linh hoạt cho hàm và đối tượng.

@@ -1,0 +1,12 @@
+1.Khái niệm:
+Dữ liệu được lưu trữ và xử lý dưới dạng nhị phân (bit 0 và 1).
+
+2.Công thức:
+Giá trị số:
+(1011)₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 11₁₀
+
+3.Quy tắc:
+Sử dụng hệ cơ số 2, 8, 16. Dấu được biểu diễn theo bit cao nhất (MSB).
+
+4.Ứng dụng:
+Xử lý dữ liệu nhị phân, lập trình cấp thấp, mã hóa thông tin.

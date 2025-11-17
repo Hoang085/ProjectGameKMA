@@ -1,0 +1,189 @@
+{
+  "subjectKey": "QuanTriMMT",
+  "questions": [
+    {
+      "id": "QTM_1",
+      "question": "Mô hình OSI có bao nhiêu tầng?",
+      "answers": [ "6", "7", "5" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_2",
+      "question": "Địa chỉ IP nào dùng để kiểm tra cấu hình mạng cục bộ (Loopback Address)?",
+      "answers": [ "192.168.1.1", "127.0.0.1", "10.0.0.1" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_3",
+      "question": "Thiết bị nào hoạt động ở Tầng 3 (Network Layer) của mô hình OSI?",
+      "answers": [ "Switch", "Router", "Hub" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_4",
+      "question": "Giao thức nào được sử dụng để phân giải tên miền thành địa chỉ IP?",
+      "answers": [ "DHCP", "DNS", "HTTP" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_5",
+      "question": "Subnet Mask có chức năng gì?",
+      "answers": [
+        "Xác định phần mạng và phần máy chủ (host) của địa chỉ IP",
+        "Xác định địa chỉ MAC",
+        "Thực hiện định tuyến"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "QTM_6",
+      "question": "Trong mô hình TCP/IP, Giao thức TCP thuộc tầng nào?",
+      "answers": [ "Tầng Ứng dụng", "Tầng Giao vận (Transport)", "Tầng Mạng" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_7",
+      "question": "Mục đích chính của Firewall là gì?",
+      "answers": [ "Tăng tốc độ mạng", "Phòng chống truy cập trái phép và bảo mật", "Quản lý tên miền" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_8",
+      "question": "Công cụ nào kiểm tra kết nối và thời gian phản hồi giữa hai máy?",
+      "answers": [ "Netstat", "ARP", "Ping" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "QTM_9",
+      "question": "Giao thức nào cấp phát địa chỉ IP tự động?",
+      "answers": [ "DNS", "DHCP", "ICMP" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_10",
+      "question": "Thiết bị nào mở rộng LAN bằng cách chuyển tiếp frame dựa trên MAC?",
+      "answers": [ "Hub", "Router", "Switch" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "QTM_11",
+      "question": "Địa chỉ MAC có độ dài bao nhiêu bit?",
+      "answers": [ "32", "48", "64" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_12",
+      "question": "Giao thức định tuyến động là:",
+      "answers": [ "Static Routing", "RIP", "ARP" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_13",
+      "question": "Cổng (Port) 80 dùng cho giao thức nào?",
+      "answers": [ "FTP", "SMTP", "HTTP" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "QTM_14",
+      "question": "Lệnh xem cấu hình IP trên Windows?",
+      "answers": [ "netstat", "ipconfig", "tracert" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_15",
+      "question": "Giao thức truyền tệp không an toàn?",
+      "answers": [ "SFTP", "SSH", "FTP" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "QTM_16",
+      "question": "VPN được dùng để:",
+      "answers": [ "Tạo kênh truyền an toàn", "Tăng tốc mạng", "Cấp IP tĩnh" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "QTM_17",
+      "question": "Địa chỉ IP lớp A có Subnet Mask mặc định:",
+      "answers": [ "255.0.0.0", "255.255.0.0", "255.255.255.0" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "QTM_18",
+      "question": "Công nghệ ánh xạ Private IP sang Public IP:",
+      "answers": [ "DNS", "NAT", "DHCP" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_19",
+      "question": "Tầng nào trong OSI quản lý phiên làm việc?",
+      "answers": [ "Tầng Mạng", "Tầng Phiên (Session)", "Tầng Trình diễn" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_20",
+      "question": "Subnetting dùng để:",
+      "answers": [ "Gộp mạng nhỏ", "Mã hóa dữ liệu", "Chia mạng lớn thành mạng con" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "QTM_21",
+      "question": "QoS trong mạng có nghĩa là:",
+      "answers": [ "Đảm bảo chất lượng dịch vụ", "Kiểm tra lỗi", "Xác định băng thông" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "QTM_22",
+      "question": "Tín hiệu truyền trên cáp quang là:",
+      "answers": [ "Điện", "Ánh sáng", "Radio" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_23",
+      "question": "Địa chỉ Broadcast được dùng để:",
+      "answers": [ "Gửi đến nhóm", "Gửi đến tất cả thiết bị", "Gửi đến một thiết bị" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_24",
+      "question": "Giao thức ánh xạ IP sang MAC:",
+      "answers": [ "RARP", "ARP", "DHCP" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_25",
+      "question": "Proxy Server dùng để:",
+      "answers": [ "Làm Gateway", "Lưu Cache và làm trung gian", "Cấp IP" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_26",
+      "question": "Mạng MAN có phạm vi:",
+      "answers": [ "Tòa nhà", "Khu vực nhỏ", "Một thành phố" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "QTM_27",
+      "question": "Giao thức dòng lệnh từ xa không bảo mật:",
+      "answers": [ "SSH", "Telnet", "HTTPS" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "QTM_28",
+      "question": "Địa chỉ IPv6 dài bao nhiêu bit?",
+      "answers": [ "64", "32", "128" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "QTM_29",
+      "question": "Băng thông mạng đo:",
+      "answers": [ "Thời gian phản hồi", "Độ trễ", "Tốc độ truyền dữ liệu tối đa" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "QTM_30",
+      "question": "Giao thức không kết nối thuộc tầng giao vận:",
+      "answers": [ "TCP", "ICMP", "UDP" ],
+      "correctIndex": 2
+    }
+  ]
+}

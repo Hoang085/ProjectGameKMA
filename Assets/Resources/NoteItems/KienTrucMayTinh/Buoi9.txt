@@ -1,0 +1,15 @@
+1.Khái niệm:
+Kỹ thuật thực thi song song các giai đoạn của lệnh để tăng tốc CPU.
+
+2.Công thức:
+Hiệu suất ≈ Số giai đoạn pipeline
+Tốc độ tăng ≈ k lần nếu có k giai đoạn.
+
+3.Quy tắc:
+  -Tránh xung đột:
+  -Data hazard
+  -Control hazard
+  -Structural hazard
+
+4.Ứng dụng:
+CPU hiện đại (RISC, superscalar), GPU, vi xử lý ARM.

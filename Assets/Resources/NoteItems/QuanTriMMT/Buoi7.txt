@@ -1,0 +1,12 @@
+1.Khái niệm:
+ Sao lưu dữ liệu giúp khôi phục khi xảy ra sự cố; giám sát giúp phát hiện sớm lỗi.
+
+2.Công thức:
+  -RPO (Recovery Point Objective): lượng dữ liệu tối đa có thể mất.
+  -RTO (Recovery Time Objective): thời gian phục hồi chấp nhận được.
+
+3.Quy tắc:
+Thực hiện backup định kỳ và lưu bản sao tại vị trí an toàn.
+
+4.Ứng dụng:
+Giám sát bằng phần mềm như Zabbix, PRTG, SolarWinds; backup bằng Veeam, Acronis.

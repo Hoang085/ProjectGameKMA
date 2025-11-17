@@ -1,0 +1,20 @@
+1.Khái niệm:
+DDL dùng để định nghĩa cấu trúc CSDL (tạo, thay đổi, xóa bảng, ràng buộc).
+
+2.Công thức:
+
+Tạo bảng:
+
+CREATE TABLE SinhVien(
+  MaSV CHAR(10) PRIMARY KEY,
+  HoTen NVARCHAR(50),
+  NamSinh INT
+);
+
+
+3.Quy tắc:
+Tên bảng và cột phải duy nhất trong CSDL.
+Ràng buộc: PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE.
+
+4.Ứng dụng:
+Thiết kế và khởi tạo cấu trúc CSDL trong dự án thực tế.

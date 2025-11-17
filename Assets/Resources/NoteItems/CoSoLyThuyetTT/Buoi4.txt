@@ -1,0 +1,12 @@
+1.Khái niệm:
+Entropy là đại lượng đo độ bất định trung bình của nguồn tin.
+
+2.Công thức:
+H(X) = –Σ P(xᵢ)·log₂P(xᵢ)
+
+3.Quy tắc:
+0 ≤ H(X) ≤ log₂(n)
+Nguồn càng ngẫu nhiên → Entropy càng lớn.
+
+4.Ứng dụng:
+Đo lượng thông tin, tối ưu mã hóa dữ liệu, thiết kế hệ thống nén tin.

@@ -1,0 +1,307 @@
+{
+  "examTitle": "Đề thi cuối kì 4",
+  "subjectName": "Toán Rời Rạc",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Tập hợp là gì?",
+      "options": [
+        "Một nhóm các phần tử được xác định rõ ràng",
+        "Một biểu thức logic",
+        "Một số tự nhiên",
+        "Một đồ thị có hướng"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phép giao của hai tập hợp A và B ký hiệu là:",
+      "options": [
+        "A UNION B",
+        "A INTERSECT B",
+        "A - B",
+        "A x B"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Phần bù của tập hợp A trong U là:",
+      "options": [
+        "A INTERSECT U",
+        "A UNION U",
+        "U - A",
+        "A - U"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Phát biểu nào sau đây là mệnh đề đúng?",
+      "options": [
+        "Hôm nay trời đẹp",
+        "Đi học chăm chỉ",
+        "Một tập hợp là vô hạn",
+        "x + 1 = 3"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Mệnh đề kéo theo P -> Q có phủ định là:",
+      "options": [
+        "P AND NOT Q",
+        "NOT P -> NOT Q",
+        "NOT P AND Q",
+        "NOT (P OR Q)"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phép hội trong logic tương ứng với phép toán nào?",
+      "options": [
+        "OR (OR)",
+        "AND (AND)",
+        "NOT (NOT)",
+        "XOR (XOR)"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Hai mệnh đề P và Q được gọi là tương đương khi:",
+      "options": [
+        "NOT P AND Q",
+        "P <-> Q",
+        "P -> Q",
+        "P OR Q"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Một quan hệ R trên tập A là phản xạ khi:",
+      "options": [
+        "EXISTS x IN A, (x,x) IN R",
+        "FORALL x,y IN A, (x,y) IN R",
+        "(x,y) -> (y,x)",
+        "FORALL x IN A, (x,x) IN R"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Một quan hệ là đối xứng nếu:",
+      "options": [
+        "(x,y) IN R -> (y,x) IN R",
+        "(x,x) IN R",
+        "(x,y) IN R -> (x,z) IN R",
+        "(y,x) NOTIN R"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Một hàm từ A đến B là quan hệ đặc biệt sao cho:",
+      "options": [
+        "Mỗi phần tử A ứng với đúng một phần tử B",
+        "Mỗi phần tử A ứng với ít nhất một phần tử B",
+        "Không phần tử nào trùng nhau",
+        "Mỗi phần tử A ứng với nhiều phần tử B"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Đồ thị vô hướng là:",
+      "options": [
+        "Đồ thị có hướng",
+        "Đồ thị có cạnh không có hướng",
+        "Đồ thị đầy đủ",
+        "Đồ thị có trọng số"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Bậc của một đỉnh trong đồ thị vô hướng là:",
+      "options": [
+        "Số cạnh nối với đỉnh đó",
+        "Số đỉnh con",
+        "Số đỉnh kề",
+        "Số chu trình đi qua"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Chu trình Euler là đường đi:",
+      "options": [
+        "Đi qua mỗi cạnh đúng một lần",
+        "Đi qua tất cả đỉnh",
+        "Đi qua mỗi đỉnh đúng một lần",
+        "Không có cạnh lặp lại"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Đồ thị có đường đi giữa mọi cặp đỉnh được gọi là:",
+      "options": [
+        "Vô hướng",
+        "Hoàn chỉnh",
+        "Liên thông",
+        "Cây"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Một cây có n đỉnh thì có bao nhiêu cạnh?",
+      "options": [
+        "n-1",
+        "n",
+        "n+1",
+        "2n"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Cây nhị phân có bao nhiêu nút lá tối đa nếu có n nút tổng cộng?",
+      "options": [
+        "n/2 + 1",
+        "n-1",
+        "n/2",
+        "n+1"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Tổ hợp chập k của n phần tử được tính bằng:",
+      "options": [
+        "P(n,k) = n!/(n-k)!",
+        "C(n,k) = n!/[k!(n-k)!]",
+        "A(n,k) = k!/n!",
+        "n^k"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nguyên lý bù trừ được áp dụng khi:",
+      "options": [
+        "Các tập hợp giao nhau",
+        "Các tập hợp rời nhau",
+        "Có số phần tử bằng nhau",
+        "Không có giao nhau"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Số cách sắp xếp n phần tử khác nhau là:",
+      "options": [
+        "n!",
+        "k!",
+        "n^2",
+        "nCk"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Một dãy được gọi là cấp số cộng nếu:",
+      "options": [
+        "Tỉ số giữa các phần tử liên tiếp không đổi",
+        "Các phần tử liên tiếp hơn kém nhau một hằng số d",
+        "Giá trị tăng gấp đôi",
+        "Tổng các phần tử bằng nhau"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Phương pháp quy nạp toán học gồm mấy bước?",
+      "options": [
+        "2 bước",
+        "3 bước",
+        "4 bước",
+        "5 bước"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Công thức truy hồi xác định dãy Fibonacci là:",
+      "options": [
+        "F(n) = 2F(n-1)",
+        "F(n) = F(n-1) + F(n-2)",
+        "F(n) = n!",
+        "F(n) = F(n-1) - F(n-2)"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Biểu đồ Hasse được dùng để biểu diễn:",
+      "options": [
+        "Quan hệ thứ tự bán phần",
+        "Quan hệ tương đương",
+        "Cây nhị phân",
+        "Đồ thị có hướng"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong ngăn xếp (stack), phần tử được lấy ra theo quy tắc:",
+      "options": [
+        "FIFO",
+        "LILO",
+        "Random",
+        "LIFO"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Tập hợp đếm được là tập hợp có:",
+      "options": [
+        "Vô hạn không thể đánh số",
+        "Số phần tử hữu hạn hoặc có thể đánh số được",
+        "Không có phần tử nào",
+        "Phần tử trùng nhau"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Automata hữu hạn dùng để:",
+      "options": [
+        "Giải phương trình",
+        "Nhận dạng ngôn ngữ hình thức",
+        "Đếm số nguyên",
+        "Sắp xếp dữ liệu"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Một ngôn ngữ chính quy có thể được mô tả bằng:",
+      "options": [
+        "Ngôn ngữ lập trình",
+        "Đồ thị cây",
+        "Biểu thức chính quy",
+        "Ngôn ngữ tự nhiên"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Phép XOR giữa hai bit khác nhau cho kết quả là:",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "Không xác định"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phép phủ định của mệnh đề NOT (P OR Q) tương đương với:",
+      "options": [
+        "NOT P AND NOT Q",
+        "P AND Q",
+        "NOT P OR NOT Q",
+        "P OR Q"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Số đỉnh tối thiểu của cây nhị phân có chiều cao h là:",
+      "options": [
+        "h",
+        "h+1",
+        "2^h-1",
+        "2^(h+1)-1"
+      ],
+      "correctIndex": 2
+    }
+  ]
+}

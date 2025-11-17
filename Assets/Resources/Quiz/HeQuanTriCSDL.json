@@ -1,0 +1,277 @@
+{
+  "subjectKey": "HeQuanTriCSDL",
+  "questions": [
+    {
+      "id": "HQTCSDL_1",
+      "question": "Mô hình dữ liệu quan hệ (Relational Model) được đề xuất bởi ai?",
+      "answers": [ "Bill Gates", "Edgar F. Codd", "Larry Ellison" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_2",
+      "question": "Ngôn ngữ được sử dụng phổ biến nhất để tương tác với cơ sở dữ liệu quan hệ là gì?",
+      "answers": [ "Java", "SQL", "Python" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_3",
+      "question": "Khóa chính (Primary Key) có đặc điểm nào?",
+      "answers": [
+        "Có thể có giá trị NULL",
+        "Phải là duy nhất và không được NULL",
+        "Cho phép trùng lặp dữ liệu"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_4",
+      "question": "Ràng buộc toàn vẹn thực thể (Entity Integrity) áp dụng cho loại khóa nào?",
+      "answers": [
+        "Khóa ngoại (Foreign Key)",
+        "Khóa chính (Primary Key)",
+        "Khóa ứng viên (Candidate Key)"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_5",
+      "question": "Chức năng chính của Hệ Quản Trị Cơ Sở Dữ Liệu (DBMS) là gì?",
+      "answers": [
+        "Thiết kế giao diện người dùng",
+        "Quản lý và truy cập cơ sở dữ liệu",
+        "Phân tích số liệu thống kê"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_6",
+      "question": "Mục đích của việc chuẩn hóa (Normalization) dữ liệu là gì?",
+      "answers": [
+        "Giảm thiểu sự dư thừa và bất thường của dữ liệu",
+        "Tăng tốc độ truy vấn",
+        "Làm cho mô hình phức tạp hơn"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "HQTCSDL_7",
+      "question": "Dạng chuẩn nào được coi là cơ sở để giảm sự dư thừa dữ liệu (tối thiểu)?",
+      "answers": [
+        "1NF (Dạng chuẩn 1)",
+        "2NF (Dạng chuẩn 2)",
+        "3NF (Dạng chuẩn 3)"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "HQTCSDL_8",
+      "question": "Trong SQL, mệnh đề nào được dùng để lọc dữ liệu dựa trên các hàm gộp (Aggregate Functions)?",
+      "answers": [ "WHERE", "GROUP BY", "HAVING" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "HQTCSDL_9",
+      "question": "Thao tác nào sau đây KHÔNG phải là thao tác cơ bản của Đại số Quan hệ?",
+      "answers": [
+        "Sort (Sắp xếp)",
+        "Join (Kết nối)",
+        "Union (Hợp)"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "HQTCSDL_10",
+      "question": "Thực thể (Entity) trong mô hình ER (Entity-Relationship) được biểu diễn bằng hình dạng nào?",
+      "answers": [ "Hình chữ nhật", "Hình thoi", "Hình oval" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "HQTCSDL_11",
+      "question": "Mối quan hệ (Relationship) trong mô hình ER được biểu diễn bằng hình dạng nào?",
+      "answers": [ "Hình chữ nhật", "Hình thoi", "Hình oval" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_12",
+      "question": "Trong SQL, lệnh nào dùng để thêm bản ghi mới vào bảng?",
+      "answers": [ "UPDATE", "INSERT INTO", "CREATE" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_13",
+      "question": "Trong SQL, lệnh nào dùng để thay đổi cấu trúc của một bảng đã tồn tại (ví dụ: thêm cột)?",
+      "answers": [
+        "CREATE TABLE",
+        "ALTER TABLE",
+        "UPDATE TABLE"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_14",
+      "question": "Khóa ngoại (Foreign Key) dùng để thiết lập mối quan hệ nào?",
+      "answers": [
+        "Quan hệ Many-to-Many",
+        "Quan hệ giữa hai bảng",
+        "Quan hệ One-to-One"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_15",
+      "question": "Giao tác (Transaction) trong DBMS có thuộc tính ACID nào sau đây?",
+      "answers": [
+        "Accuracy (Chính xác)",
+        "Consistency (Nhất quán)",
+        "Concurrency (Đồng thời)"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_16",
+      "question": "Thuộc tính 'Isolation' (Cô lập) trong ACID đảm bảo điều gì?",
+      "answers": [
+        "Các giao tác đồng thời không ảnh hưởng lẫn nhau",
+        "Mọi giao tác phải hoàn thành",
+        "Dữ liệu phải đúng sau khi giao tác hoàn thành"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "HQTCSDL_17",
+      "question": "Chỉ mục (Index) trong CSDL được tạo ra nhằm mục đích gì?",
+      "answers": [
+        "Bảo mật dữ liệu",
+        "Tăng tốc độ tìm kiếm và truy vấn",
+        "Giảm dung lượng lưu trữ"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_18",
+      "question": "Dạng chuẩn BCNF (Boyce-Codd Normal Form) loại bỏ sự phụ thuộc hàm nào?",
+      "answers": [
+        "Phụ thuộc một phần",
+        "Phụ thuộc bắc cầu",
+        "Mọi phụ thuộc hàm không phải khóa ứng viên"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "HQTCSDL_19",
+      "question": "Lệnh nào trong SQL dùng để xóa toàn bộ dữ liệu khỏi bảng nhưng giữ lại cấu trúc bảng?",
+      "answers": [
+        "DELETE FROM",
+        "DROP TABLE",
+        "TRUNCATE TABLE"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "HQTCSDL_20",
+      "question": "Lệnh nào trong SQL dùng để xóa bảng và toàn bộ dữ liệu liên quan khỏi cơ sở dữ liệu?",
+      "answers": [
+        "DELETE FROM",
+        "DROP TABLE",
+        "ERASE TABLE"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_21",
+      "question": "Chế độ xem (View) trong SQL là gì?",
+      "answers": [
+        "Một bảng ảo được định nghĩa từ một hay nhiều bảng thực",
+        "Một bảng vật lý",
+        "Một file lưu trữ dữ liệu tạm thời"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "HQTCSDL_22",
+      "question": "Trong kiến trúc 3 tầng của CSDL, tầng nào là tầng trong (Internal Level)?",
+      "answers": [
+        "Tầng khái niệm (Conceptual Level)",
+        "Tầng vật lý (Physical Level)",
+        "Tầng ngoài (External Level)"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_23",
+      "question": "Data Definition Language (DDL) bao gồm các lệnh nào?",
+      "answers": [
+        "GRANT, REVOKE",
+        "CREATE, ALTER, DROP",
+        "COMMIT, ROLLBACK"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_24",
+      "question": "Data Manipulation Language (DML) bao gồm các lệnh nào?",
+      "answers": [
+        "SELECT, INSERT, UPDATE, DELETE",
+        "CREATE, DROP, ALTER",
+        "COMMIT, ROLLBACK"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "HQTCSDL_25",
+      "question": "Deadlock (tắc nghẽn) trong CSDL xảy ra khi nào?",
+      "answers": [
+        "Có quá nhiều người dùng truy cập",
+        "Hai hoặc nhiều giao tác chờ tài nguyên mà giao tác kia đang giữ",
+        "Hệ thống bị lỗi phần cứng"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_26",
+      "question": "Trong SQL, JOIN nào trả về tất cả bản ghi từ bảng bên trái và các bản ghi khớp từ bảng bên phải?",
+      "answers": [
+        "INNER JOIN",
+        "RIGHT JOIN",
+        "LEFT JOIN"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "HQTCSDL_27",
+      "question": "Khái niệm 'Metadata' (Siêu dữ liệu) trong CSDL là gì?",
+      "answers": [
+        "Dữ liệu người dùng",
+        "Dữ liệu về dữ liệu (mô tả cấu trúc)",
+        "Dữ liệu ẩn"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_28",
+      "question": "Đâu là một hệ quản trị CSDL NoSQL phổ biến?",
+      "answers": [ "Oracle", "MongoDB", "PostgreSQL" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_29",
+      "question": "Khóa ứng viên (Candidate Key) là một thuộc tính hoặc tập hợp thuộc tính:",
+      "answers": [
+        "Là khóa chính",
+        "Là duy nhất và tối thiểu",
+        "Không thể là khóa chính"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "HQTCSDL_30",
+      "question": "Phần tử nhỏ nhất có thể được truy cập trong bộ nhớ đĩa là:",
+      "answers": [
+        "Sector (Cung từ)",
+        "Track (Vệt từ)",
+        "Block (Khối)"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+1.Khái niệm:
+Tín hiệu là đại lượng vật lý mang thông tin (điện áp, dòng, sóng).
+Có hai loại: tín hiệu tương tự và tín hiệu số.
+
+2.Công thức:
+Tín hiệu điều hòa: s(t) = A·cos(2πft + φ)
+
+3.Quy tắc:
+Tín hiệu tương tự: liên tục theo thời gian.
+Tín hiệu số: rời rạc theo biên độ và thời gian.
+
+4.Ứng dụng:
+Biểu diễn dữ liệu âm thanh, hình ảnh, và dữ liệu nhị phân trong truyền thông.

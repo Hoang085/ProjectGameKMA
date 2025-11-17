@@ -1,0 +1,15 @@
+1.Khái niệm:
+Giao dịch là đơn vị công việc gồm nhiều thao tác SQL, được thực hiện toàn bộ hoặc không.
+
+2.Công thức:
+  ACID:
+  -Atomicity
+  -Consistency
+  -Isolation
+  -Durability
+
+3.Quy tắc:
+Bắt đầu bằng BEGIN TRANSACTION, kết thúc bằng COMMIT hoặc ROLLBACK.
+
+4.Ứng dụng:
+Đảm bảo dữ liệu không bị lỗi khi hệ thống mất điện hoặc lỗi truy cập.

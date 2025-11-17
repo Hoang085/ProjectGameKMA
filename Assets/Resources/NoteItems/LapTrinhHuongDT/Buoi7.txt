@@ -1,0 +1,15 @@
+1.Khái niệm:
+Chỉ hiển thị các đặc điểm quan trọng, giấu đi chi tiết thực thi.
+
+2.Công thức:
+
+class Hinh {
+  public: virtual double dienTich() = 0; // lớp trừu tượng
+};
+
+
+3.Quy tắc:
+Lớp trừu tượng không thể khởi tạo trực tiếp; phải kế thừa để cài đặt.
+
+4.Ứng dụng:
+Thiết kế khung chương trình, module mở rộng dễ dàng.

@@ -1,0 +1,16 @@
+1.Khái niệm:
+Đại số hai giá trị {0,1} mô tả logic trong mạch số.
+
+2.Công thức:
+A·B = AND
+A + B = OR
+A̅ = NOT
+
+3.Quy tắc:
+  - A + 0 = A
+  - A·1 = A
+  - A + A̅ = 1
+  - A·A̅ = 0
+
+4.Ứng dụng:
+Thiết kế mạch logic, tối giản biểu thức logic, mạch điện tử.

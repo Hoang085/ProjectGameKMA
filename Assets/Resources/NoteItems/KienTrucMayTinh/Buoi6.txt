@@ -1,0 +1,12 @@
+1.Khái niệm:
+Lưu trữ dữ liệu và chương trình cho CPU truy cập.
+
+2.Công thức:
+Thời gian truy cập trung bình (AMAT):
+AMAT = Hit time + Miss rate × Miss penalty
+
+3.Quy tắc:
+Phân cấp bộ nhớ: Thanh ghi → Cache → RAM → Ổ cứng.
+
+4.Ứng dụng:
+Tăng tốc độ truy cập dữ liệu, thiết kế bộ nhớ đệm Cache.

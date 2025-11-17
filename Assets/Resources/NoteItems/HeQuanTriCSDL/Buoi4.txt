@@ -1,0 +1,13 @@
+1.Khái niệm:
+CSDL quan hệ tổ chức dữ liệu thành các bảng (table), mỗi bảng gồm các hàng (record) và cột (field).
+
+2.Công thức:
+Bảng = Tập hợp các bộ (tuple)
+Khóa chính (Primary key): định danh duy nhất mỗi hàng.
+
+3.Quy tắc:
+Không trùng lặp giá trị khóa chính.
+Khóa ngoại (Foreign key) dùng để liên kết bảng.
+
+4.Ứng dụng:
+Thiết kế bảng trong SQL Server, MySQL, PostgreSQL.

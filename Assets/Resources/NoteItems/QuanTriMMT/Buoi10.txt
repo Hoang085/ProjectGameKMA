@@ -1,0 +1,12 @@
+1.Khái niệm:
+Bao gồm toàn bộ quá trình duy trì, kiểm tra, tối ưu hiệu suất mạng.
+
+2.Công thức:
+MTBF (Mean Time Between Failures): thời gian trung bình giữa 2 lần hỏng.
+MTTR (Mean Time To Repair): thời gian trung bình để khắc phục.
+
+3.Quy tắc:
+Giám sát liên tục – phản ứng nhanh – bảo trì định kỳ.
+
+4.Ứng dụng:
+Duy trì mạng ổn định cho công ty, trung tâm dữ liệu, hệ thống dịch vụ trực tuyến.

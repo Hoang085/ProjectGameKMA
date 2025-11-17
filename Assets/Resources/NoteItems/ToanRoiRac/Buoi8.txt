@@ -1,0 +1,13 @@
+1.Khái niệm:
+Xác định số cách chọn, sắp xếp phần tử.
+
+2.Công thức:
+  -Nguyên lý cộng: n(A ∪ B) = n(A) + n(B)
+  -Nguyên lý nhân: n(A×B) = n(A)×n(B)
+
+3.Quy tắc:
+Nếu công việc gồm 2 bước độc lập → nhân.
+Nếu công việc có nhiều lựa chọn loại trừ → cộng.
+
+4.Ứng dụng:
+Tính số tổ hợp, lập lịch, bài toán đếm trong xác suất.

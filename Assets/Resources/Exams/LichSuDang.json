@@ -1,0 +1,212 @@
+{
+  "examTitle": "Đề thi cuối kì 4",
+  "subjectName": "Lịch Sử Đảng Cộng Sản Việt Nam",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Đảng Cộng sản Việt Nam được thành lập vào ngày nào?",
+      "options": ["3/2/1930", "2/9/1945", "1/5/1930", "19/8/1945"],
+      "correctIndex": 0
+    },
+    {
+      "text": "Ai là người chủ trì Hội nghị thành lập Đảng Cộng sản Việt Nam?",
+      "options": ["Trần Phú", "Nguyễn Ái Quốc", "Lê Hồng Phong", "Phạm Văn Đồng"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Hội nghị hợp nhất các tổ chức cộng sản diễn ra tại đâu?",
+      "options": ["Hà Nội", "Quảng Châu", "Hồng Kông (Trung Quốc)", "Thượng Hải"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Cương lĩnh chính trị đầu tiên của Đảng do ai soạn thảo?",
+      "options": ["Trần Phú", "Hà Huy Tập", "Lê Hồng Phong", "Nguyễn Ái Quốc"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Mục tiêu cách mạng Việt Nam được nêu trong Cương lĩnh đầu tiên là:",
+      "options": [
+        "Làm tư sản dân quyền cách mạng và thổ địa cách mạng để đi tới xã hội cộng sản",
+        "Giải phóng dân tộc",
+        "Xây dựng chủ nghĩa xã hội",
+        "Đánh đổ thực dân Pháp"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Đại hội Đảng toàn quốc lần thứ II (1951) đã quyết định đổi tên Đảng thành:",
+      "options": ["Đảng Cộng sản Đông Dương", "Đảng Nhân dân Cách mạng", "Đảng Lao động Việt Nam", "Đảng Cộng sản Việt Nam"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Ai là Tổng Bí thư đầu tiên của Đảng Cộng sản Việt Nam?",
+      "options": ["Trần Phú", "Nguyễn Ái Quốc", "Lê Duẩn", "Hà Huy Tập"],
+      "correctIndex": 0
+    },
+    {
+      "text": "Cách mạng Tháng Tám năm 1945 đã giành được thắng lợi vào ngày:",
+      "options": ["2/9/1945", "25/8/1945", "3/9/1945", "19/8/1945"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Tuyên ngôn Độc lập được Chủ tịch Hồ Chí Minh đọc tại Quảng trường Ba Đình vào ngày:",
+      "options": ["2/9/1945", "19/8/1945", "1/9/1945", "3/9/1945"],
+      "correctIndex": 0
+    },
+    {
+      "text": "Đường lối đổi mới đất nước được thông qua tại Đại hội nào?",
+      "options": ["Đại hội V (1982)", "Đại hội VI (1986)", "Đại hội VII (1991)", "Đại hội VIII (1996)"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Đại hội VII (1991) đã thông qua Cương lĩnh gì?",
+      "options": [
+        "Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên CNXH",
+        "Cương lĩnh công nghiệp hóa",
+        "Cương lĩnh đổi mới chính trị",
+        "Cương lĩnh đại đoàn kết dân tộc"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tư tưởng Hồ Chí Minh được Đảng khẳng định là nền tảng tư tưởng cùng với chủ nghĩa Mác - Lênin tại Đại hội nào?",
+      "options": ["Đại hội VI (1986)", "Đại hội VII (1991)", "Đại hội VIII (1996)", "Đại hội IX (2001)"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Chủ trương xây dựng nền kinh tế nhiều thành phần được nêu ra lần đầu tại Đại hội:",
+      "options": ["Đại hội IV (1976)", "Đại hội IX (2001)", "Đại hội VIII (1996)", "Đại hội VI (1986)"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Nghị quyết Trung ương 5 khóa VII đề cập đến vấn đề:",
+      "options": ["Giáo dục", "Kinh tế", "Quốc phòng", "Văn hóa"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Đại hội IX (2001) đề ra mục tiêu:",
+      "options": [
+        "Công nghiệp hóa, hiện đại hóa",
+        "Đưa nước ta ra khỏi tình trạng kém phát triển",
+        "Ổn định kinh tế",
+        "Phát triển giáo dục"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Chiến lược công nghiệp hóa - hiện đại hóa được khẳng định tại Đại hội:",
+      "options": ["VII (1991)", "VIII (1996)", "IX (2001)", "X (2006)"],
+      "correctIndex": 2
+    },
+    {
+      "text": "Khẩu hiệu 'Dân biết, dân bàn, dân làm, dân kiểm tra' được nhấn mạnh trong thời kỳ:",
+      "options": ["Kháng chiến chống Mỹ", "Thời kỳ bao cấp", "Thời kỳ kháng chiến chống Pháp", "Đổi mới"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Công cuộc đổi mới được bắt đầu từ năm:",
+      "options": ["1986", "1975", "1991", "2000"],
+      "correctIndex": 0
+    },
+    {
+      "text": "Đại hội X (2006) xác định nhiệm vụ trung tâm của thời kỳ quá độ là:",
+      "options": ["Phát triển nông nghiệp", "Công nghiệp hóa, hiện đại hóa", "Ổn định chính trị", "Đổi mới giáo dục"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Đại hội XI (2011) khẳng định mục tiêu tổng quát đến năm 2020 là:",
+      "options": [
+        "Giảm nghèo bền vững",
+        "Trở thành nước công nghiệp theo hướng hiện đại",
+        "Phát triển nông nghiệp bền vững",
+        "Tăng trưởng kinh tế ổn định"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Đại hội XII (2016) của Đảng xác định phương châm hành động là:",
+      "options": [
+        "Đổi mới - Sáng tạo - Hội nhập",
+        "Đoàn kết - Tiến bước",
+        "Đoàn kết - Dân chủ - Kỷ cương - Đổi mới - Phát triển",
+        "Dân chủ - Đổi mới - Phát triển"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Đại hội XIII (2021) xác định mục tiêu đến năm 2045 là:",
+      "options": [
+        "Trở thành nước phát triển, thu nhập cao",
+        "Phát triển toàn diện văn hóa",
+        "Ổn định chính trị lâu dài",
+        "Xây dựng xã hội chủ nghĩa hoàn chỉnh"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Đường lối kháng chiến chống Mỹ cứu nước được khẳng định tại:",
+      "options": ["Đại hội IV (1976)", "Đại hội V (1982)", "Đại hội II (1951)", "Đại hội III (1960)"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Sau năm 1975, nhiệm vụ lịch sử của cách mạng Việt Nam là:",
+      "options": [
+        "Thống nhất đất nước, xây dựng CNXH",
+        "Giải phóng miền Nam",
+        "Đấu tranh giai cấp",
+        "Kháng chiến chống Mỹ"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Trong giai đoạn 1930-1945, nhiệm vụ cách mạng hàng đầu là:",
+      "options": ["Xây dựng CNXH", "Giải phóng dân tộc", "Phát triển kinh tế", "Đấu tranh giai cấp"],
+      "correctIndex": 1
+    },
+    {
+      "text": "Đại hội IV (1976) xác định đường lối chung của cách mạng là:",
+      "options": [
+        "Đổi mới toàn diện",
+        "Phát triển kinh tế thị trường",
+        "Hội nhập quốc tế",
+        "Xây dựng CNXH và bảo vệ Tổ quốc"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Nghị quyết Trung ương 8 khóa XI (2013) tập trung về lĩnh vực:",
+      "options": ["Khoa học - Công nghệ", "Y tế", "Văn hóa", "Giáo dục - Đào tạo"],
+      "correctIndex": 3
+    },
+    {
+      "text": "Tư tưởng 'lấy dân làm gốc' được Đảng nhấn mạnh nhằm mục tiêu:",
+      "options": [
+        "Phát huy sức mạnh đại đoàn kết dân tộc",
+        "Cải cách hành chính",
+        "Tăng trưởng kinh tế",
+        "Phát triển khoa học"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nền tảng tư tưởng của Đảng Cộng sản Việt Nam là:",
+      "options": [
+        "Chủ nghĩa xã hội khoa học",
+        "Chủ nghĩa duy vật biện chứng",
+        "Đường lối cách mạng vô sản",
+        "Chủ nghĩa Mác - Lênin và Tư tưởng Hồ Chí Minh"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Sự kiện nào đánh dấu Việt Nam hoàn toàn giải phóng, thống nhất đất nước?",
+      "options": [
+        "Chiến thắng Điện Biên Phủ (1954)",
+        "Hội nghị Paris (1973)",
+        "Tổng tiến công và nổi dậy Mùa Xuân 1975",
+        "Đại hội IV của Đảng (1976)"
+      ],
+      "correctIndex": 2
+    }
+  ]
+}

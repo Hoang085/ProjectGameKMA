@@ -1,0 +1,20 @@
+1.Khái niệm:
+  -Lớp (class): bản thiết kế mô tả thuộc tính và hành vi.
+  -Đối tượng (object): thể hiện cụ thể của lớp.
+
+2.Công thức:
+Cú pháp (C++/Java):
+
+  class SinhVien {
+    string ten;
+    int tuoi;
+    void hienThi();
+   };
+  SinhVien sv1;
+
+
+3.Quy tắc:
+Đối tượng được tạo từ lớp, có thể có nhiều đối tượng cùng lớp.
+
+4.Ứng dụng:
+Mô hình hóa thực thể trong phần mềm: sinh viên, nhân viên, sản phẩm…

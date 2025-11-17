@@ -1,0 +1,305 @@
+{
+  "subjectKey": "CoSoLyThuyetTT",
+  "questions": [
+    {
+      "id": "CSLTT1",
+      "question": "Tín hiệu là gì trong truyền thông?",
+      "answers": [
+        "Sự thay đổi vật lý mang thông tin",
+        "Chuỗi bit không mang ý nghĩa",
+        "Dòng điện cố định"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CSLTT2",
+      "question": "Thông tin là gì?",
+      "answers": [
+        "Tín hiệu vật lý",
+        "Chuỗi ký tự ngẫu nhiên",
+        "Dữ liệu được mã hóa mang ý nghĩa"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CSLTT3",
+      "question": "Đơn vị đo lượng thông tin theo Shannon là:",
+      "answers": [
+        "Joule",
+        "Byte",
+        "Bit"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CSLTT4",
+      "question": "Công thức tính entropy của nguồn tin rời rạc là:",
+      "answers": [
+        "H = -SUM p(x) * log2(p(x))",
+        "H = SUM p(x)",
+        "H = p(x) * log2(p(x))"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CSLTT5",
+      "question": "Entropy càng lớn thì:",
+      "answers": [
+        "Nguồn tin càng ngẫu nhiên",
+        "Lượng thông tin giảm",
+        "Không có nhiễu"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CSLTT6",
+      "question": "Tín hiệu tương tự (analog) có đặc điểm:",
+      "answers": [
+        "Rời rạc theo thời gian",
+        "Chỉ có hai mức điện áp",
+        "Liên tục theo thời gian và biên độ"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CSLTT7",
+      "question": "Tín hiệu số (digital) được biểu diễn bởi:",
+      "answers": [
+        "Các mức rời rạc",
+        "Tín hiệu analog",
+        "Đồ thị liên tục"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CSLTT8",
+      "question": "Tốc độ truyền tin được đo bằng đơn vị:",
+      "answers": [
+        "Hz",
+        "bps",
+        "bit/s"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CSLTT9",
+      "question": "Theo định lý Nyquist, tốc độ tối đa không lỗi khi không có nhiễu là:",
+      "answers": [
+        "C = M/B",
+        "C = 2 * B * log2(M)",
+        "C = B^2"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CSLTT10",
+      "question": "Theo định lý Shannon, dung lượng kênh truyền là:",
+      "answers": [
+        "C = 2 * B * log2(M)",
+        "C = S/N",
+        "C = B * log2(1 + S/N)"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CSLTT11",
+      "question": "Nhiễu trắng Gauss có đặc điểm:",
+      "answers": [
+        "Không có phương sai",
+        "Phân bố công suất đều trên mọi tần số",
+        "Chỉ xuất hiện ở tần số thấp"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CSLTT12",
+      "question": "Tỷ số tín hiệu trên nhiễu (SNR) càng cao thì:",
+      "answers": [
+        "Tốc độ truyền giảm",
+        "Chất lượng tín hiệu càng tốt",
+        "Nhiễu tăng"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CSLTT13",
+      "question": "Quá trình biến đổi tín hiệu số thành tương tự được gọi là:",
+      "answers": [
+        "Mã hóa",
+        "Giải điều chế",
+        "Điều chế"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CSLTT14",
+      "question": "Điều chế biên độ (AM) thay đổi thành phần nào của sóng mang?",
+      "answers": [
+        "Pha",
+        "Tần số",
+        "Biên độ"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CSLTT15",
+      "question": "Trong điều chế tần số (FM), thông tin được biểu diễn bằng:",
+      "answers": [
+        "Pha sóng mang",
+        "Biên độ sóng",
+        "Tần số sóng mang"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CSLTT16",
+      "question": "Mã hóa nguồn tin nhằm mục đích:",
+      "answers": [
+        "Giảm dư thừa dữ liệu",
+        "Tăng nhiễu tín hiệu",
+        "Thay đổi băng thông"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CSLTT17",
+      "question": "Mã hóa kênh nhằm:",
+      "answers": [
+        "Phát hiện và sửa lỗi truyền",
+        "Tăng tốc độ truyền",
+        "Nén dữ liệu"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CSLTT18",
+      "question": "Một bit thông tin tương ứng với:",
+      "answers": [
+        "Hai trạng thái có thể xảy ra",
+        "Ba trạng thái",
+        "Một trạng thái duy nhất"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CSLTT19",
+      "question": "Nếu xác suất lỗi bit là Pb, thì xác suất đúng bit là:",
+      "answers": [
+        "Pb^2",
+        "1 - Pb",
+        "Pb"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CSLTT20",
+      "question": "Băng thông (Bandwidth) của kênh truyền là:",
+      "answers": [
+        "Công suất tín hiệu",
+        "Độ trễ của hệ thống",
+        "Hiệu giữa tần số cao nhất và thấp nhất mà kênh truyền được"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CSLTT21",
+      "question": "Độ lợi kênh truyền (channel gain) biểu diễn:",
+      "answers": [
+        "Khả năng khuếch đại hoặc suy hao tín hiệu qua kênh",
+        "Độ trễ truyền tin",
+        "Công suất nhiễu"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CSLTT22",
+      "question": "Tốc độ lấy mẫu phải thỏa mãn định lý nào để tránh méo tín hiệu?",
+      "answers": [
+        "Định lý Fourier",
+        "Định lý Nyquist",
+        "Định lý Laplace"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CSLTT23",
+      "question": "Tín hiệu rời rạc thu được từ tín hiệu liên tục gọi là:",
+      "answers": [
+        "Tín hiệu điều chế",
+        "Tín hiệu tổng hợp",
+        "Tín hiệu lấy mẫu"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CSLTT24",
+      "question": "Một hệ thống truyền thông gồm có bao nhiêu khối cơ bản?",
+      "answers": [
+        "5",
+        "3",
+        "7"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CSLTT25",
+      "question": "Các khối chính của hệ thống truyền thông gồm:",
+      "answers": [
+        "Nguồn tin, bộ phát, kênh truyền, bộ thu, đích nhận",
+        "Nguồn âm thanh, dây nối, bộ xử lý",
+        "Máy phát, mạng, máy tính"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CSLTT26",
+      "question": "Hệ thống truyền số liệu song công (full-duplex) có thể:",
+      "answers": [
+        "Truyền dữ liệu hai chiều cùng lúc",
+        "Truyền một chiều luân phiên",
+        "Chỉ nhận dữ liệu"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "CSLTT27",
+      "question": "Trong điều chế pha (PM), thông tin được truyền bằng cách thay đổi:",
+      "answers": [
+        "Tần số",
+        "Pha sóng mang",
+        "Biên độ sóng"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "CSLTT28",
+      "question": "Tỷ lệ lỗi bit (BER) càng thấp thì:",
+      "answers": [
+        "Hệ thống kém ổn định",
+        "Tốc độ giảm",
+        "Chất lượng truyền dẫn càng cao"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CSLTT29",
+      "question": "Theo Shannon, khi S/N -> infinity thì dung lượng kênh C sẽ:",
+      "answers": [
+        "Giảm về 0",
+        "Không đổi",
+        "Tăng không giới hạn"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "CSLTT30",
+      "question": "Mục tiêu của lý thuyết thông tin là:",
+      "answers": [
+        "Tăng cường công suất nguồn điện",
+        "Thiết kế mạch khuếch đại",
+        "Đo lường, mã hóa và truyền thông tin hiệu quả"
+      ],
+      "correctIndex": 2
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+1.Khái niệm:
+Máy tính chỉ thực hiện phép toán trên số nhị phân, sử dụng các mạch logic.
+
+2.Công thức:
+Phép cộng nhị phân:
+0+0=0, 0+1=1, 1+0=1, 1+1=10
+
+3.Quy tắc:
+Số bù 2 (Two’s complement) dùng để biểu diễn số âm.
+
+4.Ứng dụng:
+Cộng, trừ, nhân, chia trong CPU; mạch cộng ALU.

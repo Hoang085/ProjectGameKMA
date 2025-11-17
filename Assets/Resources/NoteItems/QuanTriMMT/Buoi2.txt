@@ -1,0 +1,12 @@
+1.Khái niệm:
+LAN (Local Area Network) là mạng cục bộ; WAN (Wide Area Network) là mạng diện rộng kết nối nhiều LAN.
+
+2.Công thức:
+LAN tốc độ cao (100 Mbps – 10 Gbps), phạm vi < 1 km.
+WAN kết nối qua Internet hoặc VPN.
+
+3.Quy tắc:
+LAN dùng switch/router nội bộ; WAN dùng đường truyền thuê ngoài.
+
+4.Ứng dụng:
+Triển khai mạng nội bộ doanh nghiệp, kết nối chi nhánh qua Internet.

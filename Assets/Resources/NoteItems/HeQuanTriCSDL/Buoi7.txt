@@ -1,0 +1,14 @@
+1.Khái niệm:
+Chuẩn hóa là quá trình loại bỏ dư thừa dữ liệu và đảm bảo tính toàn vẹn.
+
+2.Công thức:
+  Các dạng chuẩn:
+  -1NF: không có thuộc tính đa trị
+  -2NF: phụ thuộc đầy đủ vào khóa
+  -3NF: không phụ thuộc bắc cầu
+
+3.Quy tắc:
+Luôn thiết kế CSDL đạt ít nhất 3NF.
+
+4.Ứng dụng:
+Giảm lỗi trùng dữ liệu, tăng hiệu suất cập nhật.

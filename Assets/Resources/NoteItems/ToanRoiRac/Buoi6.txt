@@ -1,0 +1,12 @@
+1.Khái niệm:
+Đồ thị G = (V,E) gồm tập đỉnh V và cạnh E nối các đỉnh.
+
+2.Công thức:
+Bậc đỉnh: deg(v) = số cạnh kề v.
+
+3.Quy tắc:
+Đồ thị vô hướng: (u,v) = (v,u)
+Đồ thị có hướng: (u,v) ≠ (v,u)
+
+4.Ứng dụng:
+Mạng xã hội, tìm đường đi, cấu trúc liên kết web, tối ưu hóa mạng.

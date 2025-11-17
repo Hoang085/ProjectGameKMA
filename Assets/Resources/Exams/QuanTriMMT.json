@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 6",
+  "subjectName": "Quản Trị Mạng Máy Tính",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Mô hình OSI có bao nhiêu tầng?",
+      "options": [ "6", "7", "5", "4" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Địa chỉ IP nào dùng để kiểm tra cấu hình mạng cục bộ (Loopback Address)?",
+      "options": [ "192.168.1.1", "127.0.0.1", "255.255.255.255", "10.0.0.1" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Thiết bị nào hoạt động ở Tầng 3 (Network Layer) của mô hình OSI?",
+      "options": [ "Switch", "Router", "Hub", "Repeater" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Giao thức nào được sử dụng để phân giải tên miền thành địa chỉ IP?",
+      "options": [ "DHCP", "FTP", "DNS", "HTTP" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Subnet Mask có chức năng gì trong quản trị mạng?",
+      "options": [ "Xác định cổng mặc định", "Xác định địa chỉ MAC", "Xác định phần mạng và phần máy chủ (host) của địa chỉ IP", "Thực hiện định tuyến" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong mô hình TCP/IP, Giao thức TCP thuộc tầng nào?",
+      "options": [ "Tầng Ứng dụng", "Tầng Giao vận (Transport)", "Tầng Mạng", "Tầng Liên kết dữ liệu" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Mục đích chính của việc triển khai Firewall là gì?",
+      "options": [ "Tăng tốc độ mạng", "Phòng chống truy cập trái phép và bảo mật", "Quản lý địa chỉ IP", "Quản lý tên miền" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Công cụ nào được dùng để kiểm tra khả năng kết nối và thời gian phản hồi giữa hai máy tính trong mạng?",
+      "options": [ "Telnet", "ARP", "Netstat", "Ping" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Giao thức nào cấp phát địa chỉ IP, Subnet Mask, Gateway một cách tự động?",
+      "options": [ "DNS", "DHCP", "ARP", "ICMP" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Thiết bị nào dùng để mở rộng mạng LAN bằng cách chuyển tiếp frame dựa trên địa chỉ MAC?",
+      "options": [ "Hub", "Router", "Switch", "Repeater" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Địa chỉ MAC có độ dài bao nhiêu bit?",
+      "options": [ "32", "48", "64", "128" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Giao thức nào là giao thức định tuyến động (Dynamic Routing Protocol)?",
+      "options": [ "Static Routing", "RIP (Routing Information Protocol)", "ARP", "ICMP" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Cổng (Port) 80 được sử dụng mặc định cho giao thức nào?",
+      "options": [ "FTP", "SMTP", "Telnet", "HTTP" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Lệnh nào trong Windows dùng để xem cấu hình IP hiện tại của máy tính?",
+      "options": [ "netstat", "ipconfig", "ping", "tracert" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Giao thức nào cung cấp dịch vụ truyền tệp tin không an toàn?",
+      "options": [ "SFTP", "SSH", "FTP", "HTTPS" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "VPN (Virtual Private Network) được sử dụng để làm gì?",
+      "options": [ "Tăng tốc độ internet", "Tạo kênh truyền an toàn qua mạng công cộng", "Quản lý máy in", "Cấp phát địa chỉ IP tĩnh" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Địa chỉ IP lớp A có Subnet Mask mặc định là:",
+      "options": [ "255.0.0.0", "255.255.0.0", "255.255.255.0", "255.255.255.255" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Công nghệ nào được dùng để ánh xạ Địa chỉ IP riêng (Private IP) sang Địa chỉ IP công cộng (Public IP)?",
+      "options": [ "DHCP", "NAT (Network Address Translation)", "DNS", "ARP" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Tầng nào trong mô hình OSI chịu trách nhiệm quản lý phiên làm việc?",
+      "options": [ "Tầng Mạng", "Tầng Giao vận", "Tầng Phiên (Session)", "Tầng Trình diễn" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Kỹ thuật Subnetting dùng để làm gì?",
+      "options": [ "Gộp các mạng nhỏ lại", "Tăng tốc độ truy cập web", "Chia một mạng lớn thành các mạng con nhỏ", "Mã hóa dữ liệu" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "QoS (Quality of Service) trong mạng máy tính có ý nghĩa gì?",
+      "options": [ "Đảm bảo chất lượng dịch vụ (ưu tiên lưu lượng)", "Xác định băng thông tối đa", "Kiểm tra lỗi gói tin", "Quản lý tài khoản người dùng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tín hiệu truyền dẫn trên cáp quang là gì?",
+      "options": [ "Tín hiệu điện", "Tín hiệu ánh sáng", "Tín hiệu radio", "Tín hiệu âm thanh" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Địa chỉ Broadcast của một mạng được sử dụng để:",
+      "options": [ "Gửi dữ liệu đến một máy chủ duy nhất", "Gửi dữ liệu đến một nhóm máy tính", "Gửi dữ liệu đến tất cả máy tính trong mạng", "Gửi dữ liệu đến Router" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Giao thức nào dùng để ánh xạ Địa chỉ IP sang Địa chỉ MAC?",
+      "options": [ "RARP", "DNS", "ARP (Address Resolution Protocol)", "DHCP" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong quản trị hệ thống, máy chủ Proxy (Proxy Server) dùng để:",
+      "options": [ "Phân giải tên miền", "Lưu trữ Cache và làm trung gian giữa Client và Internet", "Làm cổng mặc định", "Cấp phát địa chỉ IP" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Mạng MAN (Metropolitan Area Network) có phạm vi địa lý như thế nào?",
+      "options": [ "Trong một tòa nhà", "Trong một khu vực địa lý nhỏ", "Trong một thành phố hoặc khu vực đô thị", "Trong toàn bộ quốc gia/toàn cầu" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Giao thức nào cung cấp kết nối từ xa qua giao diện dòng lệnh không bảo mật?",
+      "options": [ "FTP", "SSH", "Telnet", "HTTPS" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Phần mở rộng của Địa chỉ IPv6 là bao nhiêu bit?",
+      "options": [ "64", "32", "128", "256" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Băng thông (Bandwidth) mạng máy tính đo lường điều gì?",
+      "options": [ "Thời gian phản hồi", "Khoảng cách truyền tín hiệu", "Độ trễ (Latency)", "Tốc độ truyền dữ liệu tối đa trên một đường truyền" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Giao thức không kết nối (Connectionless) thuộc Tầng Giao vận là:",
+      "options": [ "TCP", "IP", "ICMP", "UDP" ],
+      "correctIndex": 3
+    }
+  ]
+}

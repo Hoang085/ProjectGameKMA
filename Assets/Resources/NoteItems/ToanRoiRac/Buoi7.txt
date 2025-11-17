@@ -1,0 +1,11 @@
+1.Khái niệm:
+Cây là đồ thị liên thông không có chu trình.
+
+2.Công thức:
+Nếu có n đỉnh → có (n−1) cạnh.
+
+3.Quy tắc:
+Cây nhị phân: mỗi đỉnh có tối đa 2 con.
+
+4.Ứng dụng:
+Cấu trúc dữ liệu (BST, Heap), cây quyết định, tổ chức phân cấp.

@@ -1,0 +1,13 @@
+1.Khái niệm:
+Lý thuyết truyền tin nghiên cứu cách biểu diễn, mã hóa, truyền và xử lý thông tin trong các hệ thống truyền thông.
+
+2.Công thức:
+Thông tin đo bằng bit:
+I = log₂(1/P(x))
+
+3.Quy tắc:
+Xác suất xảy ra càng thấp → thông tin càng nhiều.
+Truyền tin gồm 3 giai đoạn: mã hóa – truyền – giải mã.
+
+4.Ứng dụng:
+Truyền dữ liệu số, viễn thông, mã hóa thông tin, xử lý tín hiệu.

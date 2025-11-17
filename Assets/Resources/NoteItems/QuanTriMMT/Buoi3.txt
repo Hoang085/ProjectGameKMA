@@ -1,0 +1,13 @@
+1.Khái niệm:
+  -Switch: chuyển mạch trong LAN.
+  -Router: định tuyến giữa các mạng.
+  -Firewall: kiểm soát lưu lượng vào/ra.
+
+2.Công thức:
+Switch hoạt động ở lớp 2, Router ở lớp 3 mô hình OSI.
+
+3.Quy tắc:
+Luôn đặt firewall giữa mạng nội bộ và Internet để bảo vệ.
+
+4.Ứng dụng:
+Thiết kế hệ thống mạng an toàn, tối ưu lưu lượng.

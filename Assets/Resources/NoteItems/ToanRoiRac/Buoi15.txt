@@ -1,0 +1,12 @@
+1.Khái niệm:
+Tìm đường đi, cây bao trùm, hoặc chi phí tối thiểu trên đồ thị.
+
+2.Công thức:
+  -Dijkstra: tìm đường đi ngắn nhất.
+  -Kruskal, Prim: tìm cây khung nhỏ nhất.
+
+3.Quy tắc:
+Ưu tiên cạnh nhỏ nhất nhưng không tạo chu trình.
+
+4.Ứng dụng:
+Tối ưu mạng máy tính, định tuyến, lập kế hoạch vận tải.

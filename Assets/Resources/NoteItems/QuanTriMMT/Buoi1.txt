@@ -1,0 +1,14 @@
+1.Khái niệm:
+Quản trị mạng là quá trình cài đặt, giám sát, bảo trì và bảo vệ hệ thống mạng máy tính để đảm bảo hoạt động ổn định và an toàn.
+
+2.Công thức:
+Hệ thống mạng = Thiết bị phần cứng + Phần mềm mạng + Chính sách quản trị.
+
+3.Quy tắc:
+  Quản trị viên cần đảm bảo:
+  -Hiệu suất (Performance)
+  -Tính sẵn sàng (Availability)
+  -Bảo mật (Security)
+
+4.Ứng dụng:
+Vận hành hệ thống mạng doanh nghiệp, trường học, trung tâm dữ liệu.
