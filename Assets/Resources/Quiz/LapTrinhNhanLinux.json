@@ -1,0 +1,188 @@
+{
+  "subjectKey": "LapTrinhNhanLinux",
+  "questions": [
+    {
+      "id": "LTNL1",
+      "question": "Kernel Linux thuộc loại kiến trúc nào?",
+      "answers": [ "Monolithic Kernel", "Microkernel", "Hybrid Kernel" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL2",
+      "question": "Lệnh nào dùng để biên dịch nhân Linux?",
+      "answers": [ "make", "gcc kernel.c", "make kernel" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL3",
+      "question": "Module trong Linux Kernel có thể được nạp bằng lệnh nào?",
+      "answers": [ "insmod", "modsave", "loadmod" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL4",
+      "question": "File nào chứa thông tin về các module đang nạp?",
+      "answers": [ "/proc/modules", "/proc/cpuinfo", "/proc/meminfo" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL5",
+      "question": "Hàm nào được gọi khi module kernel được nạp?",
+      "answers": [ "init_module()", "module_start()", "kernel_init()" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL6",
+      "question": "Hàm nào được gọi khi module kernel bị gỡ?",
+      "answers": [ "cleanup_module()", "module_remove()", "exit_kernel()" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL7",
+      "question": "Thiết bị ký tự (character device) được truy cập qua cơ chế nào?",
+      "answers": [ "File Operations", "DMA", "Buffer Cache" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL8",
+      "question": "Major number trong device file dùng để làm gì?",
+      "answers": [ "Xác định driver thiết bị", "Chỉ loại tệp", "Xác định phiên bản kernel" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL9",
+      "question": "Minor number trong device file dùng để làm gì?",
+      "answers": [ "Xác định thiết bị con cụ thể", "Xác định driver", "Xác định module" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL10",
+      "question": "File nào dùng để tạo node thiết bị?",
+      "answers": [ "mknod", "mkdev", "mkfile" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL11",
+      "question": "Spinlock được sử dụng để:",
+      "answers": [ "Bảo vệ tài nguyên chia sẻ trong môi trường đa lõi", "Dừng tiến trình", "Tạo tiến trình mới" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL12",
+      "question": "Kernel sử dụng cơ chế nào để lập lịch tiến trình?",
+      "answers": [ "CFS Scheduler", "Round Robin", "FIFO Scheduler" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL13",
+      "question": "Tập tin cấu hình kernel chính nằm ở đâu?",
+      "answers": [ "/boot/config", "/etc/kernel", "/usr/kernel/conf" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL14",
+      "question": "Để xem log kernel, dùng lệnh nào?",
+      "answers": [ "dmesg", "syslog", "logview" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL15",
+      "question": "Hàm copy_to_user() dùng để:",
+      "answers": [ "Sao chép dữ liệu từ kernel space ra user space", "Tạo tiến trình mới", "Gỡ module" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL16",
+      "question": "User space và kernel space khác nhau ở điểm nào?",
+      "answers": [ "Kernel space có quyền truy cập đặc quyền", "User space chạy nhanh hơn", "Cùng quyền truy cập bộ nhớ" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL17",
+      "question": "Kernel Panic là gì?",
+      "answers": [ "Crash nghiêm trọng trong nhân hệ điều hành", "Ứng dụng không phản hồi", "Lỗi RAM" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL18",
+      "question": "sysfs chủ yếu được mount ở đâu?",
+      "answers": [ "/sys", "/mnt/sys", "/system" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL19",
+      "question": "procfs chủ yếu được mount ở đâu?",
+      "answers": [ "/proc", "/system/proc", "/run/proc" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL20",
+      "question": "Interrupt (ngắt) là gì?",
+      "answers": [ "Tín hiệu từ phần cứng hoặc phần mềm yêu cầu CPU xử lý", "Lỗi hệ thống", "Bản vá kernel" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL21",
+      "question": "SoftIRQ là gì?",
+      "answers": [ "Tầng xử lý ngắt mềm", "Ngắt phần cứng", "Lỗi kernel" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL22",
+      "question": "DMA được dùng để:",
+      "answers": [ "Truy cập bộ nhớ trực tiếp không qua CPU", "Tăng tốc mạng", "Tăng dung lượng RAM" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL23",
+      "question": "Kernel module có thể biên dịch dạng:",
+      "answers": [ "Builtin và Loadable", "Binary Only", "Static Only" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL24",
+      "question": "Kernel thread khác user thread ở điểm nào?",
+      "answers": [ "Kernel thread chạy trong kernel space", "User thread chạy trong kernel space", "Kernel thread có UI riêng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL25",
+      "question": "Lệnh rmmod dùng để:",
+      "answers": [ "Gỡ module kernel", "Khởi động lại kernel", "Xem log" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL26",
+      "question": "Mutex dùng để:",
+      "answers": [ "Đồng bộ dữ liệu giữa nhiều thread", "Tạo tiến trình", "Tăng tốc bộ nhớ" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL27",
+      "question\": \"File" "Operations",
+      "trong" "driver",
+      "cung": null,
+      "cấp": ",,
+      "answers": [ "Các hàm thao tác file: open, read, write, release", "Danh sách module", "Dữ liệu mạng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL28",
+      "question": "Kernel sử dụng cấu trúc dữ liệu nào cho scheduler?",
+      "answers": [ "Red-Black Tree", "Priority Queue", "Linked List" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL29",
+      "question": "Syscall là gì?",
+      "answers": [ "Giao diện giữa user space và kernel", "Lệnh biên dịch", "Cấu trúc bộ nhớ" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTNL30",
+      "question": "Lệnh modinfo dùng để:",
+      "answers": [ "Xem thông tin module kernel", "Chỉnh sửa module", "Xóa module" ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+1. Vì Sao Cần Tối Ưu RTOS?
+– RTOS chạy nhiều task → dễ bị trễ nếu cấu hình không tốt.
+– Scheduler quá tải → mất deadline realtime.
+– Giảm CPU load giúp hệ thống hoạt động ổn định hơn.
+
+2. Tối Ưu Task
+– Không tạo quá nhiều task → chia nhỏ không cần thiết.
+– Mỗi task phải có nhiệm vụ rõ ràng.
+– Tránh while(1) rỗng → luôn dùng delay hoặc block API.
+– Không xử lý nặng trong task → chuyển sang queue hoặc DMA.
+
+3. Tối Ưu Priority
+– Ưu tiên cao cho nhiệm vụ realtime (sensor, motor).
+– Ưu tiên thấp cho task UI/communication.
+– Tránh tình trạng priority inversion.
+– Dùng mutex có priority inheritance khi cần.
+
+4. Tối Ưu Stack Cho Task
+– Mỗi task có stack riêng → rất tốn RAM.
+– Dùng công cụ trace stack để tìm stack dư.
+– Giảm stack từng task → tăng RAM hệ thống.
+– Không đặt mảng lớn trong task stack.
+
+5. Tối Ưu IPC (Message Queue, Semaphore)
+– Queue lớn → tốn RAM.
+– Gửi message nhỏ (byte/struct nhỏ) → nhanh và tiết kiệm.
+– Không gửi message quá thường xuyên → gây load scheduler.
+– Dùng event group nếu chỉ cần báo hiệu (flag).

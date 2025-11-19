@@ -1,0 +1,32 @@
+1. KHÁI NIỆM RỦI RO TRONG DỰ ÁN
+- Rủi ro là các sự kiện có thể xảy ra và gây ảnh hưởng tiêu cực đến tiến độ, chi phí hoặc chất lượng dự án.
+- Rủi ro có thể xảy ra bất cứ lúc nào trong vòng đời dự án.
+- Quản lý rủi ro giúp giảm thiểu các vấn đề trước khi chúng xảy ra.
+
+2. CÁC LOẠI RỦI RO PHỔ BIẾN
+- Rủi ro kỹ thuật: công nghệ mới, lỗi hệ thống, thiếu kinh nghiệm.
+- Rủi ro yêu cầu: thay đổi yêu cầu, yêu cầu không rõ ràng.
+- Rủi ro tiến độ: chậm deadline, thiếu nhân lực.
+- Rủi ro nhân sự: thành viên nghỉ việc, thiếu kỹ năng.
+- Rủi ro khách hàng: phản hồi chậm, không xác nhận tài liệu.
+- Rủi ro kinh doanh: ngân sách hạn chế, thay đổi chiến lược.
+
+3. QUY TRÌNH QUẢN LÝ RỦI RO
+- Xác định rủi ro bằng cách phân tích kỹ thuật, yêu cầu và con người.
+- Đánh giá mức độ ảnh hưởng và khả năng xảy ra.
+- Xếp thứ tự ưu tiên rủi ro.
+- Lên kế hoạch phản ứng: tránh, giảm thiểu, chuyển giao hoặc chấp nhận.
+- Theo dõi rủi ro trong suốt quá trình phát triển.
+
+4. CÔNG CỤ & KỸ THUẬT QUẢN LÝ RỦI RO
+- Ma trận rủi ro (Risk Matrix).
+- Danh sách rủi ro (Risk Register).
+- Phân tích định tính và định lượng.
+- Họp đánh giá rủi ro theo từng giai đoạn dự án.
+- Giao tiếp báo cáo rủi ro định kỳ với khách hàng và đội ngũ.
+
+5. PHẢN ỨNG VỚI RỦI RO
+- Tránh (Avoid): thay đổi kế hoạch để loại bỏ rủi ro.
+- Giảm thiểu (Mitigate): giảm khả năng hoặc mức độ ảnh hưởng.
+- Chuyển giao (Transfer): giao rủi ro cho bên thứ ba như thuê dịch vụ ngoài.
+- Chấp nhận (Accept): chấp nhận rủi ro nếu chi phí xử lý cao hơn thiệt hại.

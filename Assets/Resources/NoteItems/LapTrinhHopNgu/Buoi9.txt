@@ -1,0 +1,34 @@
+1. CẶP THANH GHI CHUYÊN DỤNG (SI VÀ DI)
+   Các lệnh xử lý chuỗi luôn mặc định sử dụng hai thanh ghi chỉ số này:
+   - SI (Source Index): Luôn trỏ vào địa chỉ của chuỗi Nguồn.
+   - DI (Destination Index): Luôn trỏ vào địa chỉ của chuỗi Đích.
+   - Nguyên tắc: Các lệnh chuỗi sẽ tự động tăng hoặc giảm giá trị SI và DI sau mỗi lần thực hiện để trỏ sang phần tử tiếp theo.
+
+2. CỜ HƯỚNG (DIRECTION FLAG - DF) VÀ LỆNH CLD/STD
+   Quyết định xem việc xử lý chuỗi sẽ chạy xuôi hay chạy ngược.
+   - CLD (Clear Direction Flag): Đặt DF = 0. Chuỗi xử lý từ trái sang phải (Địa chỉ tăng dần). Đây là mặc định thường dùng.
+   - STD (Set Direction Flag): Đặt DF = 1. Chuỗi xử lý từ phải sang trái (Địa chỉ giảm dần). Dùng khi muốn copy ngược.
+
+3. TIỀN TỐ LẶP (REP - REPEAT)
+   Đây là sức mạnh thực sự. Nó biến một lệnh đơn lẻ thành một vòng lặp `for`.
+   - REP: Lặp lại lệnh đi kèm và giảm thanh ghi CX đi 1. Dừng lại khi CX = 0.
+   - REPE (Repeat Equal): Lặp khi so sánh thấy Bằng nhau (dùng để so sánh 2 chuỗi).
+   - REPNE (Repeat Not Equal): Lặp khi thấy Không bằng (dùng để tìm kiếm một ký tự lạ trong chuỗi).
+
+4. NĂM LỆNH XỬ LÝ CHUỖI CỐT LÕI (CÓ THỂ DÙNG SUFFIX 'B' CHO BYTE HOẶC 'W' CHO WORD)
+   - MOVSB (Move String Byte): Copy 1 byte từ [SI] sang [DI].
+   - STOSB (Store String Byte): Lấy giá trị trong AL ghi vào địa chỉ [DI]. (Dùng để tô màu màn hình hoặc xóa mảng).
+   - LODSB (Load String Byte): Lấy giá trị tại [SI] bỏ vào AL.
+   - CMPSB (Compare String Byte): So sánh giá trị tại [SI] và [DI].
+   - SCASB (Scan String Byte): So sánh giá trị trong AL với [DI] (Dùng để tìm kiếm ký tự).
+
+5. VÍ DỤ KINH ĐIỂN: COPY CHUỖI (MEMCPY)
+   Bài toán: Copy 100 bytes từ vùng nhớ SOURCE sang DEST.
+   
+   MOV CX, 100      ; Số lần lặp (100 bytes)
+   LEA SI, SOURCE   ; SI trỏ vào nguồn
+   LEA DI, DEST     ; DI trỏ vào đích
+   CLD              ; Xóa cờ DF để chạy xuôi (tăng địa chỉ)
+   REP MOVSB        ; "Lặp lại việc di chuyển byte cho đến khi hết 100 lần"
+   
+   ; -> Chỉ 5 dòng lệnh Assembly thay thế cho cả một vòng lặp phức tạp.

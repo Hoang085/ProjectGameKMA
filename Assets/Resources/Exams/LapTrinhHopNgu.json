@@ -1,0 +1,157 @@
+﻿{
+  "examTitle": "Đề thi cuối kì 7",
+  "subjectName": "Lập Trình Hợp Ngữ",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Thanh ghi nào được dùng làm bộ đếm trong các vòng lặp LOOP của Intel x86?",
+      "options": [ "AX", "CX", "DX", "BX" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh MOV trong hợp ngữ dùng để làm gì?",
+      "options": [ "So sánh giá trị", "Sao chép dữ liệu", "Cộng hai số", "Nhảy có điều kiện" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh JMP thuộc nhóm lệnh nào?",
+      "options": [ "Lệnh số học", "Lệnh logic", "Lệnh điều khiển", "Lệnh ngăn xếp" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Thanh ghi AX trong kiến trúc x86 có kích thước bao nhiêu bit?",
+      "options": [ "4 bit", "8 bit", "16 bit", "32 bit" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Địa chỉ hiệu dụng (Effective Address) được dùng để làm gì?",
+      "options": [ "Xác định vị trí bộ nhớ cần truy cập", "Tính nhị phân", "Chọn thanh ghi", "Quản lý ngắt" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh PUSH thực hiện điều gì?",
+      "options": [ "Lấy dữ liệu từ stack", "Đưa dữ liệu vào stack", "So sánh dữ liệu", "Nhảy vô điều kiện" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh POP thực hiện điều gì?",
+      "options": [ "Đưa dữ liệu vào stack", "Nhảy có điều kiện", "Lấy dữ liệu ra khỏi stack", "So sánh 2 thanh ghi" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Cờ Zero (ZF) được bật khi nào?",
+      "options": [ "Khi kết quả bằng 0", "Khi tràn số", "Khi kết quả âm", "Khi chuyển hướng lệnh" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh CMP dùng để:",
+      "options": [ "Cộng hai số", "So sánh hai toán hạng", "Nhân hai số", "Sao chép dữ liệu" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh INC có chức năng gì?",
+      "options": [ "Tăng 1 đơn vị", "Giảm 1 đơn vị", "Nhảy có điều kiện", "Xóa giá trị thanh ghi" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Hợp ngữ là ngôn ngữ:",
+      "options": [ "Bậc cao", "Gần với máy", "Chỉ dùng cho web", "Chỉ dùng trên Linux" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Một chương trình hợp ngữ phải có chỉ thị nào để khai báo đoạn mã?",
+      "options": [ ".CODE", ".DATA", ".STACK", ".MODEL" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh JZ thực hiện nhảy khi:",
+      "options": [ "Kết quả bằng 0", "Kết quả âm", "Kết quả lớn hơn 0", "Kết quả dương" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh JNZ thực hiện nhảy khi:",
+      "options": [ "ZF = 1", "ZF = 0", "CF = 1", "CF = 0" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Thanh ghi SP dùng để:",
+      "options": [ "Lưu chỉ số mảng", "Trỏ tới đỉnh stack", "Lưu dữ liệu tạm", "Chỉ thị lệnh tiếp theo" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh XOR có tác dụng gì?",
+      "options": [ "Cộng hai giá trị", "Phép hoặc logic", "Phép và logic", "Phép loại trừ hoặc" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Lệnh AND dùng để:",
+      "options": [ "Thực hiện phép AND logic", "Thực hiện phép OR logic", "So sánh", "Chia hai số" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh OR dùng để:",
+      "options": [ "Thực hiện phép OR logic", "Phép NOT", "Phép SHIFT", "Hoán đổi thanh ghi" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Cặp thanh ghi nào tạo thành con trỏ đoạn dữ liệu DS:SI?",
+      "options": [ "DS và SP", "SS và BP", "DS và SI", "CS và IP" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "IP là thanh ghi chứa gì?",
+      "options": [ "Địa chỉ đoạn dữ liệu", "Địa chỉ lệnh tiếp theo", "Địa chỉ con trỏ stack", "Địa chỉ ngắt" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh RET dùng để:",
+      "options": [ "Kết thúc chương trình", "Trở về từ thủ tục", "Tạo vòng lặp", "Nhảy vô điều kiện" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh CALL làm gì?",
+      "options": [ "Nhảy đến thủ tục và lưu địa chỉ trở về", "Dừng chương trình", "So sánh dữ liệu", "Chuyển đổi dữ liệu" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh SHR dịch bit theo hướng nào?",
+      "options": [ "Trái", "Phải", "Ngẫu nhiên", "Đảo bit" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh SHL dịch bit theo hướng nào?",
+      "options": [ "Trái", "Phải", "Lưu vào stack", "Đảo bit" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Cờ CF biểu thị:",
+      "options": [ "Kết quả bằng 0", "Dấu âm", "Cờ nhớ (carry)", "Cờ tràn" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Cờ OF biểu thị:",
+      "options": [ "Tràn số", "Zero", "Carry", "Parity" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Directive .DATA dùng để:",
+      "options": [ "Khai báo dữ liệu", "Khai báo mã lệnh", "Khai báo ngắt", "Khai báo stack" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh TEST dùng để:",
+      "options": [ "Kiểm tra bit AND mà không lưu kết quả", "So sánh số nguyên", "Chia hai số", "Nhân hai số" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh LEA dùng để làm gì?",
+      "options": [ "Tải địa chỉ hiệu dụng", "Tải dữ liệu", "Nhảy đến địa chỉ", "Xóa thanh ghi" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "INT 21h trong DOS được dùng để:",
+      "options": [ "Gọi API Windows", "Gọi dịch vụ hệ thống DOS", "Truy cập BIOS", "Xử lý bộ nhớ" ],
+      "correctIndex": 1
+    }
+  ]
+}

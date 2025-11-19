@@ -1,0 +1,32 @@
+1. Lý Do Hiệu Suất UI Quan Trọng
+– UI lag khiến người dùng đánh giá app kém chất lượng.
+– Android/iOS đều yêu cầu 60 FPS (16ms mỗi frame).
+– Mọi xử lý vượt quá 16ms → drop frame → giật, lag.
+
+2. Giảm Độ Phức Tạp Layout
+– Hạn chế layout lồng nhau sâu.
+– Dùng ConstraintLayout thay LinearLayout chồng liên tục.
+– Tránh inflate layout lớn trong thời gian ngắn.
+– Ưu tiên View tái sử dụng (RecyclerView).
+
+3. Tối Ưu Hình Ảnh
+– Resize hình ảnh trước khi load vào UI.
+– Dùng WebP hoặc AVIF giảm kích thước.
+– Dùng thư viện Glide/Picasso/Fresco với memory cache.
+– Không load ảnh 4K vào ImageView nhỏ.
+
+4. Giảm Công Việc Ở UI Thread
+– Không thực hiện:
+– Tính toán nặng
+– Truy vấn database lớn
+– Gọi API
+– Vòng lặp phức tạp
+– Luôn đưa sang:
+– Coroutine (Android/Kotlin)
+– DispatchQueue/AsyncTask (iOS/Swift)
+
+5. Tối Ưu RecyclerView
+– Dùng ViewHolder đúng cách.
+– Dùng DiffUtil để update danh sách nhanh.
+– Tránh notifyDataSetChanged() toàn bộ.
+– Dùng pagination nếu danh sách dài.

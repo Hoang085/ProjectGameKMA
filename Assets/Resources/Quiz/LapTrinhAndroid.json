@@ -1,0 +1,185 @@
+{
+  "subjectKey": "LapTrinhAndroid",
+  "questions": [
+    {
+      "id": "AND1",
+      "question": "Ngôn ngữ lập trình chính thức được Google khuyến nghị cho Android hiện nay là gì?",
+      "answers": [ "Java", "Kotlin", "C#" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND2",
+      "question": "Thành phần nào đại diện cho một màn hình trong Android?",
+      "answers": [ "Service", "Activity", "Intent" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND3",
+      "question": "File AndroidManifest.xml dùng để:",
+      "answers": [ "Lưu mật khẩu", "Khai báo các thành phần của ứng dụng", "Chứa layout UI" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND4",
+      "question": "Intent dùng để làm gì?",
+      "answers": [ "Lưu dữ liệu", "Gửi yêu cầu giữa các component", "Tạo layout" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND5",
+      "question": "RecyclerView được dùng để:",
+      "answers": [ "Phát nhạc", "Hiển thị danh sách tối ưu hiệu năng", "Lưu dữ liệu vào ROM" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND6",
+      "question": "Lifecycle method nào được gọi khi Activity hiển thị lên màn hình?",
+      "answers": [ "onPause()", "onStart()", "onDestroy()" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND7",
+      "question": "ViewModel trong Android Architecture Components dùng để:",
+      "answers": [ "Chứa UI layout", "Chứa logic và dữ liệu sống sót qua xoay màn hình", "Quản lý network" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND8",
+      "question": "LiveData dùng để:",
+      "answers": [ "Chạy background", "Quan sát dữ liệu theo vòng đời (lifecycle-aware)", "Lưu file" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND9",
+      "question": "Room Database là thư viện dùng để:",
+      "answers": [ "Lưu trữ dữ liệu SQLite với API thuận tiện", "Kết nối Internet", "Xử lý ảnh" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "AND10",
+      "question": "Gradle trong Android Studio dùng để:",
+      "answers": [ "Thiết kế giao diện", "Tự động build và quản lý phụ thuộc", "Tạo icon" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND11",
+      "question": "Fragment dùng để:",
+      "answers": [ "Tạo ứng dụng nền", "Tạo UI có thể tái sử dụng trong Activity", "Lưu dữ liệu" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND12",
+      "question": "Service trong Android chạy trong trường hợp nào?",
+      "answers": [ "Chạy nền không cần UI", "Chỉ chạy khi mở Activity", "Dùng để vẽ UI" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "AND13",
+      "question": "BroadcastReceiver dùng để:",
+      "answers": [ "Xử lý signal trong Java", "Nhận sự kiện hệ thống hoặc ứng dụng (broadcast)", "Lưu dữ liệu" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND14",
+      "question": "API dùng để giao tiếp HTTP phổ biến trong Android là:",
+      "answers": [ "Retrofit", "SQLite", "Glide" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "AND15",
+      "question": "Glide thường được dùng để:",
+      "answers": [ "Tải và hiển thị hình ảnh", "Đọc file JSON", "Chạy service" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "AND16",
+      "question": "Activity có trạng thái nào sau đây?",
+      "answers": [ "Loading", "Paused", "Freezed" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND17",
+      "question": "MVVM là viết tắt của:",
+      "answers": [ "Model–View–Video–Module", "Main–View–Model", "Model–View–ViewModel" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "AND18",
+      "question": "Jetpack Compose được dùng cho:",
+      "answers": [ "Xử lý mạng", "UI khai báo (declarative UI)", "Tạo activity" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND19",
+      "question": "Permission nhạy cảm (dangerous permission) cần:",
+      "answers": [ "Khai báo trong manifest và yêu cầu runtime", "Tự động cấp", "Không cần khai báo" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "AND20",
+      "question": "ADB dùng để:",
+      "answers": [ "Biên dịch APK", "Giao tiếp giữa PC và thiết bị Android", "Thiết kế UI layout" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND21",
+      "question": "Khi muốn chạy tác vụ lâu (long-running task), ta dùng:",
+      "answers": [ "Broadcast", "Service hoặc WorkManager", "ViewModel" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND22",
+      "question": "SharedPreferences dùng để:",
+      "answers": [ "Lưu file lớn", "Lưu key-value đơn giản", "Lưu ảnh" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND23",
+      "question": "ANR trong Android là gì?",
+      "answers": [ "App Not Responding", "Android Network Reset", "Auto Notification Refresh" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "AND24",
+      "question": "Context trong Android dùng để:",
+      "answers": [ "Truy cập tài nguyên, hệ thống, service", "Quản lý database", "Xử lý ảnh" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "AND25",
+      "question": "WorkManager phù hợp cho:",
+      "answers": [ "Tác vụ nền cần đảm bảo chạy dù app đóng lại", "Xử lý UI", "Hiển thị thông báo" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "AND26",
+      "question": "AsyncTask (cũ) được thay thế bởi:",
+      "answers": [ "Threads", "Coroutines", "Services" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND27",
+      "question": "Navigation Component dùng để:",
+      "answers": [ "Quản lý API", "Quản lý điều hướng giữa các màn hình", "Quản lý database" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND28",
+      "question": "XML layout trong Android dùng để:",
+      "answers": [ "Định nghĩa giao diện UI", "Biên dịch Java", "Lưu dữ liệu" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "AND29",
+      "question": "Manifest có vai trò gì với permission?",
+      "answers": [ "Không liên quan", "Khai báo permission mà ứng dụng cần", "Tự động cấp permission" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "AND30",
+      "question": "APK là gì?",
+      "answers": [ "Android Package", "Application Key", "Android Kernel" ],
+      "correctIndex": 0
+    }
+  ]
+}

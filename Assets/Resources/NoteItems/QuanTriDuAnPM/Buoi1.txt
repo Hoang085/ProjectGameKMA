@@ -1,0 +1,33 @@
+1. KHÁI NIỆM CƠ BẢN
+- Dự án (Project): Một tập hợp công việc có mục tiêu rõ ràng, có thời gian bắt đầu – kết thúc, có nguồn lực và ràng buộc.
+- Dự án phần mềm (Software Project): Dự án tập trung vào phát triển, bảo trì hoặc mở rộng một hệ thống phần mềm.
+- Quản trị dự án phần mềm (Software Project Management – SPM): Lập kế hoạch, tổ chức, giám sát và kiểm soát để dự án phần mềm đạt mục tiêu về chất lượng – tiến độ – chi phí.
+- Vai trò của quản lý dự án (Project Manager – PM): Người chịu trách nhiệm toàn bộ vòng đời dự án, điều phối nhóm, theo dõi tiến độ, xử lý rủi ro và giao tiếp với khách hàng.
+
+2. ĐẶC ĐIỂM & THÁCH THỨC CỦA DỰ ÁN PHẦN MỀM
+- Tính vô hình (intangible): Phần mềm không nhìn thấy được, khó đo lường tiến độ bằng vật lý.
+- Yêu cầu dễ thay đổi: Khách hàng thường thay đổi yêu cầu trong quá trình phát triển.
+- Độ phức tạp cao: Liên quan nhiều module, nhiều công nghệ, nhiều nhóm khác nhau.
+- Khó ước lượng: Thời gian – chi phí – nguồn lực khó chính xác, dễ phát sinh.
+- Rủi ro cao: Lỗi hệ thống, trễ tiến độ, thiếu nhân lực, yêu cầu mơ hồ.
+
+3. THÀNH PHẦN CHÍNH CỦA MỘT DỰ ÁN PHẦN MỀM
+- Mục tiêu dự án: Chất lượng, chức năng phải đạt được.
+- Phạm vi (Scope): Giới hạn những gì dự án làm và không làm.
+- Nguồn lực (Resources): Con người, thời gian, tài chính, thiết bị.
+- Lịch trình (Schedule): Các mốc thời gian, timeline, phân chia giai đoạn.
+- Rủi ro (Risks): Dự đoán vấn đề và cách giảm thiểu.
+- Các bên liên quan (Stakeholders): Khách hàng, PM, team dev, tester, QA…
+
+4. VAI TRÒ CỦA QUẢN LÝ DỰ ÁN
+- Lập kế hoạch (Planning): Ước lượng thời gian – chi phí, phân tích yêu cầu.
+- Tổ chức đội ngũ (Organizing): Phân công nhiệm vụ, thiết lập vai trò.
+- Giám sát (Monitoring): Theo dõi tiến độ, trao đổi với nhóm, báo cáo.
+- Kiểm soát (Control): Điều chỉnh kế hoạch, quản lý thay đổi.
+- Giao tiếp (Communication): Cầu nối giữa khách hàng – team phát triển.
+
+5. BÀI TẬP THAM KHẢO BUỔI 1
+- Dự án phần mềm khác gì so với các dự án xây dựng, cơ khí?
+- Lấy một ví dụ về dự án phần mềm và xác định phạm vi cơ bản của nó.
+- Nêu 3 rủi ro thường gặp trong dự án phần mềm.
+- Theo bạn, vai trò quan trọng nhất của PM là gì? Vì sao?

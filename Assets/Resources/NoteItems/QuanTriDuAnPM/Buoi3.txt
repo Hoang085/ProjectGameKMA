@@ -1,0 +1,29 @@
+1. KHÁI NIỆM YÊU CẦU PHẦN MỀM
+- Yêu cầu phần mềm là tập hợp những gì hệ thống phải làm hoặc cách hệ thống hoạt động.
+- Yêu cầu là nền tảng cho thiết kế, lập trình và kiểm thử.
+- Chất lượng yêu cầu ảnh hưởng trực tiếp đến thành công của dự án.
+
+2. CÁC LOẠI YÊU CẦU
+- Yêu cầu chức năng (Functional Requirements): mô tả tính năng hệ thống.
+- Yêu cầu phi chức năng (Non-functional Requirements): mô tả hiệu năng, bảo mật, độ tin cậy, giao diện…
+- Yêu cầu nghiệp vụ (Business Requirements): mô tả mục tiêu kinh doanh và giá trị cần đạt.
+- Yêu cầu người dùng (User Requirements): mô tả nhu cầu của người sử dụng cuối.
+
+3. KỸ THUẬT THU THẬP YÊU CẦU
+- Phỏng vấn khách hàng để ghi nhận thông tin trực tiếp.
+- Quan sát quy trình thực tế của doanh nghiệp.
+- Phân tích tài liệu sẵn có, quy trình cũ.
+- Workshop, họp nhóm với khách hàng và các bên liên quan.
+- Xây dựng Use Case, User Story để mô tả luồng xử lý.
+
+4. TÀI LIỆU ĐẶC TẢ YÊU CẦU
+- SRS (Software Requirement Specification) ghi lại toàn bộ yêu cầu hệ thống.
+- SRS phải rõ ràng, dễ hiểu, đo lường được và có thể kiểm thử.
+- Tài liệu yêu cầu cần được xác nhận bởi khách hàng trước khi phát triển.
+
+5. LỖI THƯỜNG GẶP KHI THU THẬP YÊU CẦU
+- Yêu cầu mơ hồ, không đo được.
+- Khách hàng không rõ mình muốn gì.
+- Thay đổi yêu cầu liên tục trong quá trình phát triển.
+- Không thống nhất yêu cầu giữa các bên.
+- Ghi chép thiếu hoặc sai thông tin.

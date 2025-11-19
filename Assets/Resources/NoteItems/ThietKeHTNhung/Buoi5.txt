@@ -1,0 +1,32 @@
+1. KHÁI NIỆM CẢM BIẾN
+- Cảm biến là thiết bị chuyển đổi tín hiệu vật lý (nhiệt độ, ánh sáng, chuyển động…) thành tín hiệu điện.
+- Cảm biến là thành phần quan trọng trong hệ thống nhúng để thu thập dữ liệu môi trường.
+- Tín hiệu từ cảm biến có thể ở dạng tương tự (analog) hoặc số (digital).
+
+2. CÁC LOẠI CẢM BIẾN PHỔ BIẾN
+- Cảm biến nhiệt độ: LM35, DHT11, DS18B20.
+- Cảm biến ánh sáng: LDR, BH1750.
+- Cảm biến chuyển động: PIR, cảm biến hồng ngoại LM393.
+- Cảm biến khoảng cách: Ultrasonic HC-SR04.
+- Cảm biến khí: MQ-x (MQ-2, MQ-7…).
+- Cảm biến độ ẩm đất, cảm biến lửa, cảm biến âm thanh…
+
+3. TÍN HIỆU ANALOG & DIGITAL
+- Tín hiệu analog liên tục, cần ADC để chuyển sang dạng số.
+- Tín hiệu digital chỉ có hai mức: HIGH hoặc LOW.
+- Các vi điều khiển có ADC tích hợp để đọc tín hiệu analog.
+- Tín hiệu digital dễ đọc nhưng ít thông tin hơn analog.
+
+4. KỸ THUẬT XỬ LÝ TÍN HIỆU CẢM BIẾN
+- Lọc nhiễu bằng trung bình cộng (moving average).
+- Lọc nhiễu bằng bộ lọc Kalman cho ứng dụng phức tạp.
+- Chuẩn hóa tín hiệu để tránh sai lệch.
+- Xử lý debouncing cho nút nhấn hoặc cảm biến thay đổi nhanh.
+- Sử dụng timer để lấy mẫu tín hiệu định kỳ.
+
+5. KẾT NỐI CẢM BIẾN VỚI VI ĐIỀU KHIỂN
+- Cảm biến digital → kết nối trực tiếp vào chân digital I/O.
+- Cảm biến analog → kết nối vào chân ADC.
+- Cảm biến I2C hoặc SPI → dùng giao thức tương ứng.
+- Đảm bảo cấp nguồn đúng theo datasheet (3.3V hoặc 5V).
+- Kiểm tra mass chung (GND) giữa các thiết bị để tránh nhiễu.

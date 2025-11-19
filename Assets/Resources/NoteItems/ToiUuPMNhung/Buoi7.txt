@@ -1,0 +1,24 @@
+1. Tránh Kiến Trúc Chương Trình Rối
+– Code spaghetti làm tăng độ trễ, khó tối ưu.
+– Tách phần cứng – logic – ứng dụng (Modular).
+– Đảm bảo mỗi module có 1 nhiệm vụ rõ ràng (Single Responsibility).
+
+2. Tránh Polling Không Cần Thiết
+– Polling liên tục → CPU 100% → tiêu thụ cao.
+– Thay bằng event-driven: interrupt, callback, timer.
+– ISR → set flag → xử lý ở main loop hoặc task.
+
+3. State Machine (FSM)
+– Giúp quản lý logic phức tạp hiệu quả.
+– Giảm if-else/switch-case lồng nhau.
+– Dễ mở rộng & tối ưu đường đi xử lý.
+
+4. Ưu Tiên Nhiệm Vụ
+– Xác định task quan trọng nhất (sensor read, comm…).
+– Nhiệm vụ phụ chạy tần suất thấp hơn.
+– Tránh hai task nặng chạy cùng lúc.
+
+5. Thiết Kế Buffer & Queue
+– Tránh xử lý trực tiếp trong ISR.
+– Dùng queue/buffer để lưu tạm rồi xử lý khi rảnh.
+– Giảm khả năng bỏ miss dữ liệu hoặc nghẽn CPU.

@@ -1,0 +1,30 @@
+1. NHÓM LỆNH CỘNG TRỪ (ADD, SUB)
+   - Cú pháp: ADD [Đích], [Nguồn]  |  SUB [Đích], [Nguồn]
+   - Hoạt động:
+     + ADD A, B -> A = A + B
+     + SUB A, B -> A = A - B
+   - Lưu ý: Kết quả phép tính sẽ đè lên toán hạng [Đích]. Các cờ (CF, ZF, SF) sẽ thay đổi tùy kết quả.
+
+2. NHÓM LỆNH TĂNG GIẢM (INC, DEC)
+   - Cú pháp: INC [Đích]  |  DEC [Đích]
+   - Hoạt động:
+     + INC A -> Tăng A lên 1 đơn vị (Giống A++ trong C).
+     + DEC A -> Giảm A đi 1 đơn vị (Giống A-- trong C).
+   - Ưu điểm: Tốc độ xử lý nhanh hơn ADD/SUB, thường dùng để điều khiển vòng lặp.
+
+3. NHÓM LỆNH LOGIC (AND, OR, XOR, NOT)
+   - Tác động lên từng bit (0 hoặc 1) của dữ liệu.
+   - AND: Dùng để xóa bit hoặc kiểm tra bit (Masking).
+   - OR: Dùng để bật bit lên 1.
+   - XOR: Dùng để đảo bit. Đặc biệt: XOR một số với chính nó sẽ bằng 0 (XOR AX, AX -> AX = 0).
+   - NOT: Đảo ngược tất cả các bit (0 thành 1, 1 thành 0).
+
+4. LỆNH SO SÁNH (CMP - COMPARE)
+   - Cú pháp: CMP [Đích], [Nguồn]
+   - Bản chất: Thực hiện phép trừ (Đích - Nguồn) nhưng KHÔNG lưu kết quả vào Đích.
+   - Mục đích: Chỉ để cập nhật các cờ trạng thái (ZF, CF, SF) làm căn cứ cho các lệnh rẽ nhánh (IF/ELSE) sau này.
+
+5. VÍ DỤ THỰC TẾ NGẮN GỌN
+   - Để gán AX = 0: Dùng "XOR AX, AX" (nhanh hơn và tốn ít bộ nhớ hơn lệnh "MOV AX, 0").
+   - Để kiểm tra số chẵn/lẻ: Dùng "AND AL, 1". Nếu kết quả = 0 là số Chẵn, = 1 là số Lẻ.
+   - Chuyển chữ thường thành hoa: Dùng lệnh AND với mask (Ví dụ: AND AL, 11011111b).

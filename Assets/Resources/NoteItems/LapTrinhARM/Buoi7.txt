@@ -1,0 +1,28 @@
+1. GPIO Là Gì?
+– Chân vào/ra số của vi điều khiển ARM.
+– Dùng để đọc trạng thái nút nhấn hoặc điều khiển LED, relay, cảm biến…
+– Mỗi GPIO có thể cấu hình mode và tốc độ riêng.
+
+2. Các Chế Độ GPIO
+– Input: đọc tín hiệu nút nhấn, cảm biến.
+– Output: điều khiển LED, motor driver.
+– Pull-up / Pull-down: chống nhiễu khi input thả nổi.
+– Alternate Function: dùng cho UART, I2C, SPI…
+
+3. Cấu Hình GPIO
+– Chọn port (GPIOA, GPIOB…).
+– Chọn pin (PA0, PA1…).
+– Chọn mode: input/output/AF.
+– Chọn speed & pull-up/down.
+– Ghi/đọc trạng thái qua thanh ghi ODR/IDR.
+
+4. Thao Tác GPIO
+– Xuất mức cao/thấp: GPIOx->ODR |= hoặc &=.
+– Đọc trạng thái: GPIOx->IDR & PIN.
+– Toggle pin: GPIOx->ODR ^= PIN.
+
+5. Lưu Ý Khi Dùng GPIO
+– Tránh để input thả nổi (floating).
+– Dùng debounce cho nút nhấn.
+– Không cấp dòng quá lớn trực tiếp cho LED/motor.
+– Dùng transistor hoặc driver khi tải lớn.

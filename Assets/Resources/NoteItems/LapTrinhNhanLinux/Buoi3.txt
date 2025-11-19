@@ -1,0 +1,27 @@
+1. Khái Niệm Bộ Nhớ Trong Kernel
+– Kernel dùng bộ nhớ riêng (Kernel Space).
+– Không dùng malloc/free, thay bằng API của kernel.
+– Không có bảo vệ bộ nhớ như user-space, lỗi dễ gây crash.
+
+2. Cấp Phát Bộ Nhớ
+– kmalloc(size, flags): cấp phát bộ nhớ liên tục.
+– kfree(ptr): giải phóng bộ nhớ.
+– vmalloc(size): cấp phát vùng nhớ không liên tục.
+– Cần chọn GFP flags (thường dùng GFP_KERNEL).
+
+3. Quản Lý Bộ Nhớ Kernel
+– Slab Allocator: hệ thống quản lý object hiệu quả.
+– /proc/meminfo dùng để xem trạng thái bộ nhớ.
+– Không được giữ con trỏ sau khi module unload.
+
+4. Lỗi Thường Gặp
+– Leak bộ nhớ khi quên gọi kfree.
+– Truy cập vùng nhớ Null → Kernel Panic.
+– Gọi kmalloc ở ngữ cảnh không cho phép.
+– Dùng bộ nhớ sau khi module đã gỡ.
+
+5. Bài Tập Thực Hành
+– Viết module cấp phát 256 bytes bằng kmalloc.
+– In địa chỉ bộ nhớ qua printk.
+– Giải phóng bộ nhớ ở module_exit.
+– Test lỗi cố tình: quên kfree và xem cảnh báo trong dmesg.

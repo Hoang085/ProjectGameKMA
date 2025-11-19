@@ -1,0 +1,33 @@
+1. Vì Sao Kích Thước App Quan Trọng?
+– Giảm thời gian tải app từ store.
+– Giảm tỉ lệ uninstall do bộ nhớ thấp.
+– Tối ưu update OTA nhanh hơn.
+– Store ưu tiên app nhẹ, hiệu quả.
+
+2. Tối Ưu Resource (Ảnh, Âm thanh, Layout)
+– Chuyển PNG/JPG → WebP.
+– Dùng Vector Drawable thay cho ảnh bitmap.
+– Xóa file layout/hình ảnh không dùng.
+– Tách resources theo density (hdpi/xhdpi/xxhdpi).
+
+3. Tối Ưu Code & Thư Viện
+– Loại bỏ thư viện không dùng.
+– Tránh đưa cả SDK lớn chỉ để dùng 1 chức năng nhỏ.
+– Dùng ProGuard/R8 để:
+– Obfuscate code
+– Loại bỏ method/class không dùng
+– Giảm 20–60% kích thước APK
+– ShrinkResources để xóa resource thừa.
+
+4. Tối Ưu Native Library (NDK)
+– Chỉ giữ lại kiến trúc CPU cần thiết:
+– arm64-v8a
+– armeabi-v7a
+– Xóa x86 nếu không cần → giảm 10–30 MB.
+
+5. Tối Ưu Đóng Gói App Bundle (AAB)
+– AAB tự động chia APK theo thiết bị:
+– Ngôn ngữ
+– DPI
+– Kiến trúc CPU
+– Giảm đáng kể kích thước tải về cho người dùng.

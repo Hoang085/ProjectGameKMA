@@ -1,0 +1,30 @@
+1. KHÁI NIỆM PCB (PRINTED CIRCUIT BOARD)
+- PCB là bảng mạch in giúp kết nối linh kiện bằng các lớp đồng thay cho dây dẫn.
+- PCB giúp hệ thống gọn gàng, ổn định và phù hợp sản xuất hàng loạt.
+- Dùng trong hầu hết thiết bị điện tử từ đơn giản đến phức tạp.
+
+2. CÁC LOẠI PCB
+- PCB 1 lớp: đơn giản, dùng cho mạch nhỏ, ít tín hiệu.
+- PCB 2 lớp: phổ biến nhất, linh kiện gọn hơn, routing linh hoạt.
+- PCB nhiều lớp (4–12 lớp): dùng cho thiết bị phức tạp như máy tính, router.
+- PCB linh hoạt (Flexible PCB): dùng trong smartwatch, camera module.
+
+3. QUY TẮC BỐ TRÍ LINH KIỆN
+- Đặt MCU ở vị trí trung tâm để giảm chiều dài dây.
+- Đặt tụ lọc gần chân nguồn của mỗi IC.
+- Tách riêng phần nguồn và phần tín hiệu để giảm nhiễu.
+- Đặt các linh kiện dễ nóng tách nhau để tản nhiệt tốt hơn.
+- Module giao tiếp (RF, WiFi) cần không gian thoáng ở cạnh board để tăng bắt sóng.
+
+4. NGUYÊN TẮC ĐI DÂY (ROUTING)
+- Đường nguồn nên to hơn đường tín hiệu để giảm sụt áp.
+- Đường tín hiệu tốc độ cao phải ngắn và thẳng.
+- Tránh đi dây song song quá lâu để giảm nhiễu xuyên âm.
+- Đường GND nên trải rộng hoặc dùng plane để chống nhiễu.
+- Tín hiệu analog tách riêng khỏi tín hiệu digital nếu có thể.
+
+5. THIẾT KẾ MẠCH NGUỒN TRONG PCB
+- Đặt diode bảo vệ nếu dùng nguồn ngoài.
+- Dùng tụ 100nF + 10µF ở đầu vào và đầu ra của ổn áp.
+- Tránh đi dây nguồn gần motor hoặc cuộn cảm để giảm nhiễu.
+- Bố trí IC nguồn ở gần đầu vào năng lượng chính.

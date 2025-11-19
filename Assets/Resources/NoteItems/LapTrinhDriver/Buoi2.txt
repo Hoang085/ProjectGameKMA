@@ -1,0 +1,28 @@
+1. Thành Phần Chính Của Driver
+– File mã nguồn C chứa init/exit.
+– Makefile Kbuild để biên dịch module.
+– Struct file_operations để khai báo hàm xử lý.
+– Module info: license, author, description.
+
+2. Hàm Khởi Tạo & Kết Thúc
+– module_init() chạy khi driver được nạp.
+– module_exit() chạy khi driver được gỡ.
+– Dùng để đăng ký thiết bị, cấp phát tài nguyên.
+
+3. Khởi Tạo file_operations
+– Định nghĩa các hàm:
+– open()
+– read()
+– write()
+– release()
+– Gán vào struct file_operations để kernel gọi tự động.
+
+4. Đăng Ký Driver Với Kernel
+– register_chrdev() để lấy major number.
+– Tạo file node trong /dev.
+– Hủy bằng unregister_chrdev() khi gỡ driver.
+
+5. Kiểm Tra Log
+– Ghi log bằng printk(KERN_INFO "msg").
+– Dùng dmesg để xem thông báo.
+– Kiểm tra lỗi khi nạp/gỡ module.

@@ -1,0 +1,43 @@
+1. KHÁI NIỆM THỦ TỤC (PROCEDURE)
+   - Định nghĩa: Là một đoạn mã độc lập thực hiện một chức năng cụ thể (như tính tổng, in chuỗi) và có thể được gọi đi gọi lại nhiều lần.
+   - Tương đương: Giống như hàm "void Function()" trong C/C++.
+   - Cú pháp cơ bản (MASM/TASM):
+     TEN_THU_TUC PROC
+        ; Code xử lý ở đây
+        RET
+     TEN_THU_TUC ENDP
+
+2. LỆNH GỌI HÀM (CALL)
+   - Cú pháp: CALL [Tên_Thủ_Tục]
+   - Hoạt động ngầm định (Rất quan trọng):
+     1. CPU tự động PUSH địa chỉ của lệnh kế tiếp (IP) vào Stack (để biết đường quay về).
+     2. Nhảy (Jump) đến địa chỉ của thủ tục đó để bắt đầu chạy.
+
+3. LỆNH TRẢ VỀ (RET - RETURN)
+   - Cú pháp: Đặt lệnh RET ở cuối thủ tục.
+   - Hoạt động ngầm định:
+     1. CPU tự động POP giá trị trên đỉnh Stack ra và gán ngược lại vào thanh ghi IP.
+     2. Nhờ đó, chương trình nhảy quay lại đúng dòng lệnh ngay sau lệnh CALL ban đầu.
+   - Lưu ý: Nếu Stack bị sai lệch (do PUSH mà quên POP), lệnh RET sẽ lấy nhầm địa chỉ rác -> Chương trình bị Crash.
+
+4. TRUYỀN THAM SỐ (PASSING PARAMETERS)
+   Làm sao để gửi dữ liệu vào hàm (như func(a, b))?
+   - Cách 1 (Qua thanh ghi): Nhanh và phổ biến nhất. VD: Gán AX=5, BX=10 rồi mới CALL TINH_TONG. Trong thủ tục sẽ lấy AX, BX ra dùng.
+   - Cách 2 (Qua Stack): Dùng cho các hàm phức tạp hoặc nhiều tham số (giống cách C compiler làm).
+   - Cách 3 (Qua biến toàn cục): Dễ dùng nhưng khó quản lý bộ nhớ, ít được khuyến khích.
+
+5. QUY TẮC BẢO TOÀN THANH GHI
+   - Vấn đề: Thủ tục con có thể dùng chung thanh ghi (VD: AX, CX) với chương trình chính, làm mất dữ liệu cũ đang có trong đó.
+   - Giải pháp:
+     Dùng cặp lệnh PUSH/POP ngay đầu và cuối thủ tục để "mượn tạm" rồi "trả lại" nguyên vẹn.
+     
+     VIDU_PROC PROC
+        PUSH AX      ; Cất giá trị cũ của AX đi
+        PUSH CX      ; Cất giá trị cũ của CX đi
+        
+        ; --- Làm gì thì làm, thoải mái thay đổi AX, CX ---
+        
+        POP CX       ; Khôi phục CX (Lấy ra theo thứ tự ngược lại)
+        POP AX       ; Khôi phục AX
+        RET
+     VIDU_PROC ENDP

@@ -1,0 +1,27 @@
+1. Character Device Là Gì?
+– Thiết bị giao tiếp dạng đọc/ghi tuần tự.
+– Xuất hiện trong /dev (ví dụ: /dev/tty, /dev/random).
+– Driver quản lý thông qua file operations.
+
+2. Các Hàm File Operations Cơ Bản
+– open() – mở thiết bị.
+– read() – đọc dữ liệu từ thiết bị.
+– write() – ghi dữ liệu vào thiết bị.
+– release() – đóng thiết bị.
+– Tất cả được khai báo trong struct file_operations.
+
+3. Đăng Ký Character Device
+– Dùng register_chrdev() để đăng ký major number.
+– Tạo file node trong /dev bằng mknod.
+– Hủy driver bằng unregister_chrdev().
+
+4. Giao Tiếp User-Space ↔ Kernel
+– User truy cập bằng open("/dev/..."), read, write.
+– Kernel nhận request tương ứng qua hàm file ops.
+– Cho phép xây dựng giao tiếp đơn giản không cần sysfs/procfs.
+
+5. Bài Tập Thực Hành
+– Tạo driver có open, read, write.
+– read trả về chuỗi “Hello from driver”.
+– write in log dữ liệu ghi từ user-space.
+– Tạo node: sudo mknod /dev/mydev c <major> 0.

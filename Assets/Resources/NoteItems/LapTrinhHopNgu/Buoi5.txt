@@ -1,0 +1,42 @@
+1. KHÁI NIỆM RẼ NHÁNH (JUMP)
+   - Mặc định, CPU chạy lệnh tuần tự từ trên xuống dưới.
+   - Rẽ nhánh là hành động yêu cầu CPU "nhảy" đến một dòng lệnh khác (được đánh dấu bằng Nhãn/Label) để thực thi.
+   - Có 2 loại: Nhảy không điều kiện (bắt buộc nhảy) và Nhảy có điều kiện (xét đúng sai mới nhảy).
+
+2. LỆNH NHẢY KHÔNG ĐIỀU KIỆN (JMP)
+   - Cú pháp: JMP [Tên_Nhãn]
+   - Tác dụng: Giống lệnh "goto" trong C/C++. Bất kể chuyện gì xảy ra, chương trình sẽ nhảy ngay lập tức tới vị trí Nhãn.
+   - Ứng dụng: Thường dùng để tạo vòng lặp vô tận hoặc nhảy bỏ qua phần "Else" trong cấu trúc IF-ELSE.
+
+3. CÁC LỆNH NHẢY CÓ ĐIỀU KIỆN (JE, JNE, JA, JB...)
+   - Luôn đi sau lệnh so sánh CMP (hoặc các lệnh tính toán có ảnh hưởng cờ).
+   - JE (Jump if Equal): Nhảy nếu bằng nhau (Cờ ZF=1).
+   - JNE (Jump if Not Equal): Nhảy nếu không bằng nhau (Cờ ZF=0).
+   - JA (Jump if Above) / JB (Jump if Below): Nhảy nếu Lớn hơn / Nhỏ hơn (Dùng cho số KHÔNG dấu).
+   - JG (Jump if Greater) / JL (Jump if Less): Nhảy nếu Lớn hơn / Nhỏ hơn (Dùng cho số CÓ dấu).
+
+4. CẤU TRÚC "IF - ELSE" TRONG ASSEMBLY
+   Logic viết code sẽ ngược một chút so với suy nghĩ thông thường:
+   
+   ; Giả sử: IF (AX == 5) thì làm A, ELSE thì làm B
+   CMP AX, 5        ; So sánh AX với 5
+   JE  LAM_VIEC_A   ; Nếu bằng 5 thì nhảy tới nhãn A
+   JMP LAM_VIEC_B   ; (Nếu không nhảy A thì dòng này sẽ chạy): Nhảy tới B
+   
+   LAM_VIEC_A:
+     ; Code của trường hợp đúng
+     JMP KET_THUC   ; Làm xong phải nhảy bỏ qua phần B
+   LAM_VIEC_B:
+     ; Code của trường hợp sai
+   KET_THUC:
+
+5. CẤU TRÚC VÒNG LẶP CƠ BẢN
+   Thay vì dùng `for` hay `while`, Assembly dùng nhãn và lệnh nhảy để quay lại dòng code cũ.
+   
+   MOV CX, 10       ; Muốn lặp 10 lần (CX là bộ đếm)
+   LAP_LAI:
+     ; --- Code cần lặp viết ở đây ---
+     
+     DEC CX         ; Giảm bộ đếm đi 1
+     CMP CX, 0      ; So sánh xem đếm về 0 chưa?
+     JNE LAP_LAI    ; Nếu chưa bằng 0 (Not Equal) thì nhảy quay lại đầu

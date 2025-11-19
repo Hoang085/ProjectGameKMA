@@ -1,0 +1,28 @@
+1. Vì Sao Bảo Mật Cũng Là Tối Ưu?
+– App bị leak dữ liệu → mất uy tín.
+– Hacker gây crash → giảm hiệu suất.
+– Tối ưu bảo mật giúp app ổn định, ít lỗi runtime, ít exception.
+
+2. Tối Ưu Quyền Truy Cập (Permissions)
+– Chỉ xin quyền khi cần thật sự.
+– Tránh xin quá nhiều quyền khi mở app → người dùng thoát.
+– Với Android 12+: quyền location, microphone, bluetooth nhạy cảm hơn.
+– Với iOS: giải thích rõ lý do xin quyền qua Info.plist.
+
+3. Tối Ưu Quản Lý Token & API Key
+– Không lưu API key trong code dạng plaintext.
+– Mã hóa key hoặc dùng backend để lấy key theo phiên.
+– Lưu token trong SecureStorage / Keychain thay SharedPreferences thường.
+– Tự động refresh token khi hết hạn.
+
+4. Tối Ưu Bảo Mật Database & File
+– Mã hoá dữ liệu nhạy cảm trong SQLite.
+– Không ghi log chứa thông tin cá nhân.
+– Dùng keystore để mã hóa file.
+– Tránh lưu ảnh/video private vào thư mục public.
+
+5. Ngăn Chặn Reverse Engineering
+– Sử dụng ProGuard / R8 để:
+– Obfuscate code
+– Tối ưu & giảm kích thước APK
+– Không lưu logic quan trọng trên client (Android/iOS).

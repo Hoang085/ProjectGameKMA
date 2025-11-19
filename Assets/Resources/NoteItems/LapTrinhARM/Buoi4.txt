@@ -1,0 +1,24 @@
+1. Sơ Đồ Nhớ Cơ Bản
+– Gồm các vùng: Code, Data, BSS, Heap, Stack.
+– Mỗi vùng có quyền truy cập khác nhau.
+– Địa chỉ RAM/Flash khác nhau giữa từng dòng ARM (Cortex-M vs Cortex-A).
+
+2. Vùng Flash & RAM
+– Flash: chứa code, hằng số, dữ liệu không đổi.
+– RAM: chứa biến toàn cục, biến cục bộ, stack, heap.
+– Khi chạy, code có thể copy 1 phần từ Flash → RAM để tối ưu tốc độ.
+
+3. Data & BSS
+– Data: biến global/ static có giá trị khởi tạo.
+– BSS: biến global/ static chưa khởi tạo → khởi tạo 0 khi boot.
+– Trình liên kết (linker) quyết định vị trí của từng vùng.
+
+4. Stack & Heap
+– Stack: LIFO, chứa biến cục bộ & return address.
+– Heap: cấp phát động (malloc/new trong C).
+– Trên ARM Cortex-M, stack quan trọng vì dùng trong ISR (ngắt).
+
+5. Linker Script
+– File .ld mô tả bố trí bộ nhớ.
+– Quy định Flash dùng cho text, RAM dùng cho data/BSS.
+– Rất quan trọng khi viết firmware ARM hoặc bare-metal.

@@ -1,0 +1,32 @@
+1. TẦM QUAN TRỌNG CỦA NHÂN SỰ TRONG DỰ ÁN
+- Nhân sự là yếu tố quyết định trực tiếp đến chất lượng và tiến độ dự án.
+- Một đội ngũ mạnh có thể giảm rủi ro và cải thiện năng suất.
+- PM cần hiểu rõ năng lực từng thành viên để phân công phù hợp.
+
+2. CÁC VAI TRÒ PHỔ BIẾN TRONG DỰ ÁN PHẦN MỀM
+- Project Manager: lãnh đạo, lập kế hoạch, giám sát toàn dự án.
+- Business Analyst: phân tích yêu cầu và viết tài liệu.
+- Developer: lập trình, xây dựng chức năng.
+- Tester/QA: kiểm thử và đảm bảo chất lượng.
+- Designer/UI-UX: thiết kế giao diện và trải nghiệm người dùng.
+- DevOps: triển khai và vận hành hệ thống.
+
+3. KỸ NĂNG CẦN THIẾT CHO MỘT ĐỘI NGŨ HIỆU QUẢ
+- Kỹ năng giao tiếp rõ ràng và minh bạch.
+- Khả năng phối hợp và hỗ trợ lẫn nhau.
+- Kỷ luật và tuân thủ quy trình dự án.
+- Tinh thần chủ động giải quyết vấn đề.
+- Trách nhiệm trong từng nhiệm vụ được giao.
+
+4. PHÂN CÔNG CÔNG VIỆC
+- Phân công dựa trên khả năng, kinh nghiệm và điểm mạnh của từng thành viên.
+- Tránh giao quá nhiều nhiệm vụ cho một cá nhân.
+- Sử dụng WBS và lịch trình để phân nhiệm rõ ràng.
+- Theo dõi và đánh giá tiến độ công việc thường xuyên.
+
+5. QUẢN LÝ ĐỘNG LỰC & TINH THẦN LÀM VIỆC
+- Ghi nhận đóng góp của từng thành viên.
+- Tạo môi trường làm việc thoải mái và công bằng.
+- Cung cấp phản hồi tích cực và đúng thời điểm.
+- Đảm bảo sự minh bạch trong quyết định và phân chia nhiệm vụ.
+- Tổ chức buổi họp trao đổi để giải quyết mâu thuẫn.

@@ -1,0 +1,26 @@
+1. TẦM QUAN TRỌNG CỦA GIAO TIẾP KHÔNG DÂY
+- Giúp hệ thống nhúng trao đổi dữ liệu mà không cần dây kết nối.
+- Phù hợp cho IoT, điều khiển từ xa và giám sát môi trường.
+- Giảm chi phí dây dẫn, dễ triển khai ở nhiều môi trường.
+
+2. BLUETOOTH
+- Tầm truyền khoảng 5–20 mét tùy phiên bản.
+- Tiêu thụ năng lượng thấp, phù hợp thiết bị di động.
+- Dễ kết nối với điện thoại, laptop.
+- Dùng trong các module như HC-05, HC-06, BLE (Bluetooth Low Energy).
+
+3. WIFI
+- Tốc độ truyền dữ liệu cao hơn Bluetooth.
+- Kết nối qua router, phù hợp mô hình IoT dùng server.
+- Tầm truyền ~30 mét trong nhà và hơn 50 mét ngoài trời.
+- Module phổ biến: ESP8266, ESP32.
+
+4. RF 315/433MHz
+- Tầm truyền xa, giá rẻ, tiêu thụ năng lượng thấp.
+- Tín hiệu đơn giản, dùng cho remote cửa cuốn, cảm biến khoảng cách xa.
+- Không truyền được dữ liệu lớn, chủ yếu truyền tín hiệu điều khiển.
+
+5. LORA
+- Tầm truyền cực xa (1–10 km), tiêu thụ năng lượng rất thấp.
+- Tốc độ truyền chậm nhưng phù hợp cảm biến IoT ngoài trời.
+- Dùng trong nông nghiệp thông minh, giám sát môi trường, tracking.

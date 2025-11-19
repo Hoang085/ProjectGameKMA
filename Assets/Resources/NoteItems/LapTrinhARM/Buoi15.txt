@@ -1,0 +1,33 @@
+1. Bare-metal Là Gì?
+– Lập trình trực tiếp trên phần cứng không dùng hệ điều hành.
+– Tự quản lý bộ nhớ, stack, ngắt, ngoại vi.
+– Dùng cho hệ nhúng tốc độ cao, dự đoán được, không cần OS.
+
+2. Thành Phần Của Một Chương Trình Bare-metal
+– Startup code: thiết lập stack pointer, gọi hàm reset.
+– Vector table: danh sách ISR cho ngắt.
+– Linker script (.ld): định nghĩa bản đồ bộ nhớ.
+– Main loop: vòng lặp chính điều khiển logic.
+– Các driver tự viết: GPIO, Timer, UART, I2C...
+
+3. Kiểm Soát Phần Cứng Trực Tiếp
+– Truy cập thanh ghi ngoại vi bằng địa chỉ cố định.
+– Dùng *(volatile uint32_t *)address.
+– Hiểu datasheet là bắt buộc.
+– Cho phép tối ưu hiệu năng tối đa.
+
+4. Ưu & Nhược Điểm
+Ưu điểm:
+– Tốc độ nhanh nhất.
+– Kiểm soát tuyệt đối phần cứng.
+– Phù hợp hệ realtime và thiết bị nhỏ.
+Nhược điểm:
+– Không có đa nhiệm nếu không tự cài.
+– Khó debug hơn OS.
+– Tốn thời gian phát triển khi dự án lớn.
+
+5. Ứng Dụng Bare-metal
+– IoT, robot, drone, cảm biến tốc độ cao.
+– Hệ thống điều khiển công nghiệp.
+– Thiết bị tiêu thụ điện năng thấp.
+– Bootloader tuỳ chỉnh.

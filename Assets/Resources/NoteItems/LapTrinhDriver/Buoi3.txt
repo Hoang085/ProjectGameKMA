@@ -1,0 +1,26 @@
+1. Các Kiểu Cấp Phát Bộ Nhớ
+– kmalloc() → cấp phát liên tục, dùng nhiều nhất.
+– kfree() → giải phóng bộ nhớ.
+– vmalloc() → cấp phát không liên tục, dùng cho buffer lớn.
+– kzalloc() → giống kmalloc nhưng tự zero bộ nhớ.
+
+2. Ngữ Cảnh Khi Cấp Phát
+– Dùng GFP_KERNEL trong process context (được sleep).
+– Dùng GFP_ATOMIC trong interrupt context (không được sleep).
+– Tránh cấp phát dung lượng lớn trong handler.
+
+3. Buffer Trong Driver
+– Driver thường có buffer nội bộ để lưu dữ liệu read/write.
+– Không dùng pointer user-space trực tiếp.
+– Quản lý offset khi đọc ghi để tránh tràn.
+
+4. copy_to_user & copy_from_user
+– copy_to_user() → gửi dữ liệu ra user.
+– copy_from_user() → nhận dữ liệu từ user.
+– Luôn kiểm tra giá trị trả về để tránh crash.
+
+5. Lỗi Thường Gặp
+– Leak bộ nhớ do quên kfree.
+– Dùng bộ nhớ đã giải phóng → crash kernel.
+– Cấp phát ở context không phù hợp.
+– Buffer overflow khi ghi dữ liệu.

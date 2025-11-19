@@ -1,0 +1,185 @@
+{
+  "subjectKey": "ThietKeHTNhung",
+  "questions": [
+    {
+      "id": "ES1",
+      "question": "Hệ thống nhúng là gì?",
+      "answers": [ "Máy tính bàn phục vụ đa mục tiêu", "Hệ thống chuyên dụng tích hợp phần cứng và phần mềm", "Thiết bị mạng" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES2",
+      "question": "Vi điều khiển (Microcontroller) là gì?",
+      "answers": [ "CPU hiệu năng cao", "Thiết bị lưu trữ", "Chip tích hợp CPU, RAM, ROM và ngoại vi" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "ES3",
+      "question": "Thiết bị nào sau đây là ví dụ của hệ thống nhúng?",
+      "answers": [ "Máy tính desktop", "Tivi thông minh", "Laptop" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES4",
+      "question": "Bộ nhớ Flash trong vi điều khiển được dùng để lưu trữ:",
+      "answers": [ "Dữ liệu tạm thời", "Chương trình", "Ngăn xếp" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES5",
+      "question": "GPIO là viết tắt của:",
+      "answers": [ "General Purpose Input/Output", "Global Pin Interface Option", "Generic Port Input Only" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES6",
+      "question": "ADC dùng để làm gì trong hệ thống nhúng?",
+      "answers": [ "Chuyển đổi số sang tương tự", "Đo tốc độ xử lý", "Chuyển đổi tương tự sang số" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "ES7",
+      "question": "PWM được dùng để:",
+      "answers": [ "Điều khiển tốc độ động cơ", "Ghi dữ liệu vào Flash", "Tăng tốc độ CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES8",
+      "question": "UART thuộc loại giao tiếp nào?",
+      "answers": [ "Song song", "Nối tiếp", "Quang học" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES9",
+      "question": "I2C sử dụng bao nhiêu đường tín hiệu chính?",
+      "answers": [ "1", "2", "4" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES10",
+      "question": "SPI có bao nhiêu đường tín hiệu cơ bản?",
+      "answers": [ "2", "3", "4" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "ES11",
+      "question": "Ngắt (Interrupt) dùng để:",
+      "answers": [ "Tạm dừng CPU và xử lý sự kiện", "Xóa bộ nhớ", "Tăng RAM" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES12",
+      "question": "RTOS là viết tắt của:",
+      "answers": [ "Real-Time Operating System", "Runtime OS", "Real-Time Output Service" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES13",
+      "question": "Watchdog Timer có chức năng:",
+      "answers": [ "Đếm thời gian thực", "Reset hệ thống khi treo", "Điều chỉnh điện áp" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES14",
+      "question": "Bus dữ liệu dùng để:",
+      "answers": [ "Truyền địa chỉ", "Chọn thiết bị", "Truyền dữ liệu giữa các thành phần" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "ES15",
+      "question": "EEPROM dùng để lưu trữ:",
+      "answers": [ "Dữ liệu chỉ đọc", "Dữ liệu có thể ghi/xóa nhiều lần", "Dữ liệu mất khi mất điện" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES16",
+      "question": "Một hệ thống nhúng thời gian thực cần đáp ứng:",
+      "answers": [ "Đúng thời gian và đúng chức năng", "Không cần chính xác", "Không cần độ trễ thấp" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES17",
+      "question": "DMA giúp CPU:",
+      "answers": [ "Truyền dữ liệu mà không cần CPU can thiệp", "Giảm điện năng", "Tăng RAM" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES18",
+      "question": "Lập trình hệ thống nhúng thường sử dụng ngôn ngữ nào?",
+      "answers": [ "Python", "C/C++", "PHP" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES19",
+      "question": "Bộ định thời (Timer) dùng để:",
+      "answers": [ "Xử lý ngắt", "Tạo delay hoặc đếm thời gian", "Lưu dữ liệu" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES20",
+      "question": "Kiến trúc Harvard đặc trưng bởi:",
+      "answers": [ "Bộ nhớ dữ liệu và chương trình tách biệt", "Chỉ dùng 1 bộ nhớ", "Không có thanh ghi" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES21",
+      "question": "MCU khác với MPU ở điểm nào?",
+      "answers": [ "MCU tích hợp nhiều ngoại vi", "MCU không có RAM", "MCU không chạy chương trình" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES22",
+      "question": "Thiết kế hệ thống nhúng bao gồm các bước:",
+      "answers": [ "Phân tích yêu cầu, thiết kế phần cứng, lập trình, kiểm thử", "Chỉ lập trình", "Tạo giao diện" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES23",
+      "question": "Hệ thống nhúng tiêu thụ điện năng thấp vì:",
+      "answers": [ "Không có CPU", "Tối ưu cho nhiệm vụ cụ thể", "Không có bộ nhớ" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES24",
+      "question": "Lỗi phần mềm trong hệ thống nhúng có thể gây:",
+      "answers": [ "Giảm FPS", "Hệ thống treo hoặc mất an toàn", "Lỗi mạng" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES25",
+      "question": "Module cảm biến thường giao tiếp với MCU qua:",
+      "answers": [ "GPIO, ADC, I2C, SPI", "USB", "HDMI" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES26",
+      "question": "Thiết bị nào là ví dụ của hệ thống nhúng thời gian thực?",
+      "answers": [ "Máy giặt", "Hệ thống phanh ABS", "Smart TV" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ES27",
+      "question": "Low-power mode giúp:",
+      "answers": [ "Giảm tiêu thụ năng lượng", "Tăng dung lượng Flash", "Tạo xung PWM" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES28",
+      "question": "Lệnh điều khiển servo thường dùng tín hiệu:",
+      "answers": [ "PWM", "ADC", "UART" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES29",
+      "question": "Bảng mạch PCB là viết tắt của:",
+      "answers": [ "Printed Circuit Board", "Program Circuit Base", "Pulse Controller Base" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ES30",
+      "question": "Thiết kế nhúng yêu cầu quan trọng nhất là:",
+      "answers": [ "Giao diện đẹp", "Độ ổn định và thời gian thực", "Chạy đa nền tảng" ],
+      "correctIndex": 1
+    }
+  ]
+}

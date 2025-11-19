@@ -1,0 +1,31 @@
+1. MVVM Là Gì?
+– Kiến trúc hiện đại giúp tách UI (View) và logic (ViewModel).
+– Dữ liệu quan sát được (LiveData/StateFlow) giúp UI cập nhật tự động.
+– Giảm code lặp, dễ test, dễ mở rộng.
+
+2. ViewModel
+– Lưu trữ và quản lý dữ liệu cho màn hình.
+– Không bị xoá khi xoay màn hình (giữ state tốt hơn).
+– Không chứa context của Activity để tránh leak.
+class HomeViewModel : ViewModel() {
+    val count = MutableLiveData(0)
+}
+
+3. LiveData
+– Đối tượng dữ liệu quan sát được.
+– UI tự update khi LiveData thay đổi.
+– Tránh crash do lifecycle (theo dõi theo Activity/Fragment).
+viewModel.count.observe(this) {
+    textView.text = it.toString()
+}
+
+4. Kết Hợp ViewModel + LiveData + UI
+– UI đọc dữ liệu từ LiveData.
+– ViewModel xử lý logic: tăng số, gọi API, lưu cache.
+– Không để Activity xử lý logic nặng.
+
+5. Ưu Điểm MVVM
+– Rõ ràng, dễ bảo trì.
+– Không bị mất dữ liệu khi xoay màn hình.
+– Tách biệt UI – logic – dữ liệu.
+– Tuân theo cấu trúc chuẩn của Google.

@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 8",
+  "subjectName": "Lập Trình Nhân Linux",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Kernel Linux thuộc loại kiến trúc nào?",
+      "options": [ "Monolithic Kernel", "Microkernel", "Hybrid Kernel", "Nano Kernel" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh nào dùng để biên dịch nhân Linux?",
+      "options": [ "make kernel", "make", "gcc kernel.c", "build-kernel" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Module trong Linux Kernel có thể được nạp bằng lệnh nào?",
+      "options": [ "insmod", "modsave", "loadmod", "upload" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "File nào chứa thông tin về các module đang nạp?",
+      "options": [ "/proc/cpuinfo", "/proc/meminfo", "/proc/modules", "/proc/sys" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Hàm nào được gọi khi module kernel được nạp?",
+      "options": [ "kernel_init()", "module_start()", "init_module()", "mod_onload()" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Hàm nào được gọi khi module kernel bị gỡ?",
+      "options": [ "cleanup_module()", "exit_kernel()", "module_remove()", "mod_exit()" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Thiết bị ký tự (character device) được truy cập qua cơ chế nào?",
+      "options": [ "Buffer Cache", "File Operations", "DMA", "Swap" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Major number trong device file dùng để làm gì?",
+      "options": [ "Chỉ loại tệp", "Xác định driver thiết bị", "Xác định phiên bản kernel", "Chỉ kích thước thiết bị" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Minor number trong device file dùng để làm gì?",
+      "options": [ "Xác định thiết bị con cụ thể", "Xác định driver", "Xác định module", "Xác định CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "File nào dùng để tạo node thiết bị?",
+      "options": [ "mkfile", "mknod", "mkdev", "touchdev" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Spinlock được sử dụng để:",
+      "options": [ "Tăng tốc CPU", "Dừng tiến trình", "Bảo vệ tài nguyên chia sẻ trong môi trường đa lõi", "Tạo tiến trình mới" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Kernel sử dụng cơ chế nào để lập lịch tiến trình?",
+      "options": [ "CFS Scheduler", "Round Robin", "FIFO Scheduler", "Priority Boost" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tập tin cấu hình kernel chính nằm ở đâu?",
+      "options": [ "/boot/config", "/etc/kernel", "/usr/kernel/conf", "/sys/kernel/setup" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Để xem log kernel, dùng lệnh nào?",
+      "options": [ "logview", "syslog", "dmesg", "klog" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Hàm copy_to_user() dùng để:",
+      "options": [ "Sao chép dữ liệu từ user space vào kernel", "Tạo tiến trình mới", "Sao chép dữ liệu từ kernel space ra user space", "Gỡ module" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "User space và kernel space khác nhau ở điểm nào?",
+      "options": [ "Cùng quyền truy cập bộ nhớ", "Kernel space có quyền truy cập đặc quyền", "User space chạy nhanh hơn", "Kernel space không thể gọi hàm" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Kernel Panic là gì?",
+      "options": [ "Lỗi CPU vật lý", "Crash nghiêm trọng trong nhân hệ điều hành", "Ứng dụng không phản hồi", "Lỗi RAM" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "sysfs chủ yếu được mount ở đâu?",
+      "options": [ "/mnt/sys", "/system", "/sys", "/kernel" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "procfs chủ yếu được mount ở đâu?",
+      "options": [ "/proc", "/system/proc", "/run/proc", "/kernel/proc" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Interrupt (ngắt) là gì?",
+      "options": [ "Một dạng bộ nhớ", "Tín hiệu từ phần cứng hoặc phần mềm yêu cầu CPU xử lý", "Bản vá kernel", "Lỗi hệ thống" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "SoftIRQ là gì?",
+      "options": [ "Ngắt phần cứng", "Tầng xử lý ngắt mềm", "Lỗi kernel", "Giao thức mạng" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "DMA được dùng để:",
+      "options": [ "Tăng tốc mạng", "Truy cập bộ nhớ trực tiếp không qua CPU", "Tăng dung lượng RAM", "Tối ưu file system" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Kernel module có thể biên dịch dạng:",
+      "options": [ "Builtin và Loadable", "Single File", "Binary Only", "Static Only" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Kernel thread khác user thread ở điểm nào?",
+      "options": [ "Kernel thread chạy trong kernel space", "User thread chạy trong kernel space", "Kernel thread có UI riêng", "Kernel thread không cần CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh rmmod dùng để:",
+      "options": [ "Xóa file", "Gỡ module kernel", "Khởi động lại kernel", "Xem log" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Mutex dùng để:",
+      "options": [ "Tạo tiến trình", "Đồng bộ dữ liệu giữa nhiều thread", "Tăng tốc bộ nhớ", "Tạo đường truyền TCP" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "File Operations trong driver cung cấp:",
+      "options": [ "Danh sách module", "Các hàm thao tác file: open, read, write, release", "Dữ liệu mạng", "Cấu hình kernel" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Kernel sử dụng cấu trúc dữ liệu nào cho scheduler?",
+      "options": [ "Priority Queue", "Red-Black Tree", "Linked List", "B-Tree" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Syscall là gì?",
+      "options": [ "Giao diện giữa user space và kernel", "Module mạng", "Lệnh biên dịch", "Cấu trúc bộ nhớ" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh modinfo dùng để:",
+      "options": [ "Xem thông tin module kernel", "Chỉnh sửa module", "Tải module", "Xóa module" ],
+      "correctIndex": 0
+    }
+  ]
+}

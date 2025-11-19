@@ -1,0 +1,28 @@
+1. UART Là Gì?
+– Giao thức truyền thông nối tiếp phổ biến nhất trên ARM.
+– Dùng để debug, giao tiếp module GPS, ESP, cảm biến…
+– Truyền theo dạng từng byte với tốc độ baud.
+
+2. Tham Số Cấu Hình UART
+– Baud rate: 9600, 115200…
+– Data bits: 8-bit (phổ biến).
+– Parity: None / Even / Odd.
+– Stop bits: 1 hoặc 2.
+– Flow control: RTS/CTS (tuỳ nhu cầu).
+
+3. Cách Hoạt Động
+– UART gửi dữ liệu theo dạng: Start bit → Data → Optional parity → Stop bit.
+– Không cần clock chung → dễ triển khai.
+– Buffer RX/TX thường có FIFO tránh mất dữ liệu.
+
+4. Cấu Hình UART Trên ARM
+– Bật clock cho UART và GPIO liên quan.
+– Chọn chân TX/RX ở chế độ Alternate Function.
+– Thiết lập baud rate trong thanh ghi BRR.
+– Enable transmitter, receiver.
+– Dùng polling, interrupt hoặc DMA để truyền dữ liệu.
+
+5. Những Cách Gửi/Nhận Dữ Liệu
+– Polling: kiểm tra cờ TXE/RXNE → đơn giản nhưng tốn CPU.
+– Interrupt: nhận dữ liệu khi ISR kích hoạt.
+– DMA: truyền số lượng lớn dữ liệu không dùng CPU.

@@ -1,0 +1,27 @@
+1. Compiler Optimization Level
+– O0: không tối ưu, dễ debug nhưng chậm.
+– O1: tối ưu nhẹ.
+– O2: tối ưu cân bằng giữa tốc độ và kích thước.
+– O3: tối ưu mạnh, thao tác nâng cao.
+– Os: ưu tiên giảm kích thước code.
+
+2. Tác Động Của Tối Ưu Compiler
+– Giảm số chu kỳ CPU cho vòng lặp.
+– Inline hàm nhỏ → giảm overhead khi gọi hàm.
+– Bỏ biến không dùng → giảm RAM/Flash.
+– Tối ưu thứ tự lệnh → tăng tốc pipeline.
+
+3. Inline Functions
+– inline cho hàm ngắn giúp giảm overhead.
+– Thường dùng trong getters/setters hoặc hàm đơn giản.
+– Không nên inline hàm lớn → tăng Flash.
+
+4. Link Time Optimization (LTO)
+– Tính toán tối ưu toàn chương trình (không chỉ từng file).
+– Giảm biến global thừa, inline liên file.
+– Đặc biệt hữu ích cho vi điều khiển Flash nhỏ.
+
+5. Volatile & Tối Ưu
+– Biến dùng trong ISR, ngoại vi phải dùng volatile.
+– Compiler không được bỏ qua quá trình đọc/ghi.
+– Dùng sai volatile → giảm tối ưu & gây lỗi logic.

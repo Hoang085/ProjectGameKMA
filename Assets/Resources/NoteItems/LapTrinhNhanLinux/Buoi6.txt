@@ -1,0 +1,26 @@
+1. Khái Niệm Ngắt
+– Ngắt xảy ra khi phần cứng yêu cầu CPU xử lý ngay.
+– Kernel dùng interrupt handler để phản hồi sự kiện.
+– Ngắt chạy trong interrupt context → không được sleep.
+
+2. Bottom-Half & Top-Half
+– Top-Half: chạy ngay khi có ngắt, xử lý nhanh.
+– Bottom-Half: xử lý phần còn lại, chạy sau → dùng tasklet/workqueue.
+– Giúp tránh treo hệ thống do xử lý ngắt quá lâu.
+
+3. Đăng Ký Interrupt Handler
+– Sử dụng request_irq(irq, handler, flags, name, dev).
+– Trả về handler khi có ngắt từ thiết bị.
+– Gỡ bằng free_irq(irq, dev).
+
+4. Quy Tắc Khi Xử Lý Ngắt
+– Không dùng hàm có thể sleep.
+– Không cấp phát bộ nhớ lớn.
+– Ghi log vừa đủ, tránh spam printk.
+– Thời gian xử lý phải cực ngắn.
+
+5. Bài Tập Thực Hành
+– Tạo handler in log “IRQ Triggered”.
+– Dùng workqueue để xử lý hậu kỳ.
+– Gỡ thử module để kiểm tra free_irq.
+– Quan sát log qua dmesg.

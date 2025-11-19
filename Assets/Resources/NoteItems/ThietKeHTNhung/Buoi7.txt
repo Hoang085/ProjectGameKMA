@@ -1,0 +1,27 @@
+1. TẦM QUAN TRỌNG CỦA BỘ NHỚ TRONG HỆ NHÚNG
+- Bộ nhớ quyết định khả năng lưu trữ chương trình, dữ liệu và tốc độ xử lý.
+- Từng loại bộ nhớ có đặc tính khác nhau và được dùng cho mục đích riêng.
+- Lựa chọn đúng loại bộ nhớ giúp tối ưu hóa hiệu năng và chi phí.
+
+2. RAM (RANDOM ACCESS MEMORY)
+- Dùng để lưu dữ liệu tạm thời khi MCU đang chạy chương trình.
+- Mất dữ liệu khi mất điện.
+- RAM càng lớn thì chương trình xử lý càng mượt và linh hoạt hơn.
+- Dùng cho biến tạm, stack, buffer dữ liệu.
+
+3. ROM / FLASH
+- ROM hoặc Flash lưu chương trình cố định và không mất khi tắt nguồn.
+- Được dùng để lưu firmware, code nhúng.
+- Flash có thể ghi xóa nhiều lần, phù hợp cho cập nhật OTA.
+- Dung lượng Flash quyết định độ dài và độ phức tạp của chương trình.
+
+4. EEPROM (ELECTRICALLY ERASABLE PROGRAMMABLE ROM)
+- EEPROM lưu dữ liệu vĩnh viễn và có thể ghi từng byte.
+- Không mất dữ liệu khi tắt nguồn.
+- Thường dùng để lưu cài đặt hệ thống, thông số, mật khẩu, cấu hình.
+- Chu kỳ ghi có giới hạn, thường khoảng 100.000 lần ghi.
+
+5. SRAM VS DRAM VS FRAM
+- SRAM: nhanh, ổn định, tiêu thụ thấp → dùng nhiều trong MCU
+- DRAM: rẻ nhưng phức tạp, ít dùng trong MCU nhỏ.
+- FRAM: bền, ghi nhanh, không mất dữ liệu → dùng trong ứng dụng công nghiệp

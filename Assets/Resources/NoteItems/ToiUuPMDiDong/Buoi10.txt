@@ -1,0 +1,31 @@
+1. Vì Sao Xử Lý Nền Gây Hao Pin & Lag?
+– Tác vụ chạy liên tục → CPU luôn hoạt động.
+– App sync dữ liệu quá thường xuyên.
+– Service chạy nền không tắt → hệ thống kill app.
+– Scheduler chạy sai chu kỳ → tạo nhiều wakeup.
+
+2. Android – WorkManager
+– API chính thức cho tác vụ nền bền vững.
+– Tối ưu theo điều kiện:
+– Chỉ chạy khi có mạng
+– Sạc pin
+– Không chạy liên tục
+– Gom nhóm công việc để tránh đánh thức CPU nhiều lần.
+
+3. Foreground Service
+– Chỉ dùng khi thật sự cần tác vụ lâu dài (GPS, nhạc, upload…).
+– Bắt buộc có notification.
+– Không lạm dụng để tránh hao pin.
+
+4. iOS – Background Fetch & Tasks
+– iOS hạn chế nền hơn Android.
+– Chỉ cho phép chạy ngắn hạn.
+– Sử dụng:
+– BGAppRefreshTask
+– BGProcessingTask
+
+5. Tối Ưu Đồng Bộ Hóa (Sync)
+– Không sync mỗi vài giây.
+– Sync theo sự kiện (event-driven).
+– Dùng incremental sync (chỉ gửi phần thay đổi).
+– Cache local để giảm tần suất sync.

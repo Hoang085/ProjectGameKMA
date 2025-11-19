@@ -1,0 +1,26 @@
+1. Timer Là Gì?
+– Phần cứng tạo ra xung định kỳ.
+– Dùng để đo thời gian, tạo delay, sinh PWM, hoặc kích hoạt ngắt.
+– Rất quan trọng trong lập trình nhúng ARM.
+
+2. Các Loại Timer Trên ARM
+– SysTick: timer hệ thống tích hợp, dùng để tạo tick 1ms.
+– General Timer: timer đa năng (TIM2, TIM3 trên STM32).
+– Advanced Timer: hỗ trợ PWM phức tạp (TIM1, TIM8…).
+– Watchdog Timer: reset hệ thống khi treo.
+
+3. Cách Hoạt Động
+– Timer đếm lên hoặc đếm xuống theo clock.
+– Khi đạt giá trị ARR (Auto Reload), timer reset và tạo interrupt.
+– Có thể chia clock bằng prescaler.
+
+4. SysTick Timer
+– Tick mặc định 1ms.
+– Dùng để tạo delay, đo khoảng thời gian.
+– ISR của SysTick tăng biến system_tick để dùng trong OS hoặc scheduler.
+
+5. Cấu Hình Timer Cơ Bản
+– Chọn clock timer.
+– Chọn prescaler để giảm tần số.
+– Chọn ARR để định nghĩa chu kỳ.
+– Kích hoạt interrupt nếu cần.

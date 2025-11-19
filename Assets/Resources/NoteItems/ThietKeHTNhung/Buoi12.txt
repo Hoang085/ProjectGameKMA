@@ -1,0 +1,30 @@
+1. KHÁI NIỆM IoT TRONG HỆ THỐNG NHÚNG
+- IoT cho phép thiết bị thu thập dữ liệu và gửi lên server hoặc cloud. 
+- Thiết bị IoT thường dùng vi điều khiển có kết nối mạng như ESP8266, ESP32.
+- IoT giúp giám sát từ xa, điều khiển thiết bị và phân tích dữ liệu theo thời gian thực.
+
+2. GIAO THỨC HTTP
+- Giao thức phổ biến nhất để gửi dữ liệu lên server.
+- Gửi dữ liệu qua GET, POST, PUT, DELETE.
+- Dễ lập trình, phù hợp gửi dữ liệu không quá thường xuyên.
+- Chi phí truyền cao hơn MQTT, thời gian phản hồi lâu hơn.
+- Dùng nhiều trong web API, RESTful server.
+
+3. GIAO THỨC MQTT
+- MQTT là giao thức nhắn tin nhẹ, tối ưu cho IoT.
+- Hoạt động theo mô hình publish–subscribe thông qua MQTT Broker.
+- Tốc độ nhanh, độ trễ thấp, phù hợp truyền dữ liệu liên tục.
+- Tiêu thụ năng lượng ít, dùng tốt cho thiết bị chạy pin.
+- Broker phổ biến: Mosquitto, EMQX, HiveMQ.
+
+4. SO SÁNH HTTP & MQTT
+- HTTP: dễ lập trình, tốc độ chậm hơn, phù hợp gửi dữ liệu định kỳ.
+- MQTT: nhanh, nhẹ, truyền liên tục tốt, phù hợp IoT thời gian thực.
+- HTTP theo dạng “client–server”, MQTT theo dạng “topic–subscriber”.
+- MQTT ổn định hơn trong điều kiện mạng yếu.
+
+5. KẾT NỐI THIẾT BỊ IoT
+- ESP32 kết nối WiFi qua SSID và Password.
+- Gửi dữ liệu cảm biến lên cloud như Firebase hoặc MQTT Broker.
+- Tải dữ liệu xuống để điều khiển thiết bị đầu ra (relay, LED…).
+- Kiểm tra tình trạng WiFi để tránh bị treo kết nối

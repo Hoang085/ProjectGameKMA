@@ -1,0 +1,30 @@
+1. TẦM QUAN TRỌNG CỦA MẠCH NGUỒN
+- Mạch nguồn quyết định độ ổn định và độ tin cậy của toàn hệ thống nhúng.
+- Nguồn không ổn định có thể gây reset liên tục hoặc hỏng linh kiện.
+- Thiết kế nguồn đúng chuẩn giúp kéo dài tuổi thọ và tránh nhiễu.
+
+2. CÁC LOẠI NGUỒN THƯỜNG DÙNG
+- Nguồn DC 5V, 12V dùng adapter hoặc nguồn tổ ong.
+- Pin Lithium (Li-ion / Li-Po) cho thiết bị di động.
+- Pin AA, AAA cho cảm biến nhỏ.
+- Buck converter để giảm áp (ví dụ: 12V → 5V).
+- Boost converter để tăng áp (ví dụ: 3.7V → 5V).
+
+3. ỔN ÁP TUYẾN TÍNH (LDO)
+- LDO giữ điện áp ổn định nhưng dễ tỏa nhiệt.
+- Dùng cho tải nhỏ như cảm biến và MCU tiêu thụ thấp.
+- LDO 3.3V thường dùng cho ESP32, STM32, cảm biến I2C.
+- Yêu cầu chênh lệch điện áp đầu vào – đầu ra đủ lớn.
+
+4. ỔN ÁP XUNG (BUCK/BOOST)
+- Hiệu suất cao hơn nhiều so với LDO.
+- Tỏa nhiệt ít, phù hợp tải lớn như motor hoặc WiFi module.
+- Buck converter giảm điện áp từ nguồn cao xuống thấp.
+- Boost converter tăng điện áp từ nguồn thấp lên cao.
+
+5. QUẢN LÝ NĂNG LƯỢNG
+- Dùng sleep mode để giảm tiêu thụ điện của MCU.
+- Tắt các ngoại vi không cần thiết khi hệ thống rảnh.
+- Dùng cảm biến năng lượng thấp cho IoT chạy pin lâu dài.
+- Đo điện áp pin bằng ADC để kiểm tra trạng thái pin.
+- Tối ưu code để giảm chu kỳ CPU không cần thiết.

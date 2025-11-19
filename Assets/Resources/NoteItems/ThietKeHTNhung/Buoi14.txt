@@ -1,0 +1,33 @@
+1. TẦM QUAN TRỌNG CỦA KIỂM THỬ PHẦN CỨNG
+- Kiểm thử giúp phát hiện lỗi mạch trước khi đưa vào sử dụng thực tế.
+- Đảm bảo hệ thống hoạt động đúng như thiết kế.
+- Giảm nguy cơ cháy nổ, chập mạch hoặc hỏng linh kiện.
+- Là bước quyết định để đảm bảo độ tin cậy của thiết bị.
+
+2. QUY TRÌNH KIỂM THỬ PHẦN CỨNG
+- Kiểm tra mắt thường để phát hiện hàn lỗi, chập chân, sai hướng linh kiện.
+- Kiểm tra nguồn bằng đo VCC, GND, mức áp ổn định không.
+- Kiểm tra tín hiệu bằng oscilloscope hoặc logic analyzer.
+- Kiểm tra từng module riêng lẻ trước khi kết nối toàn hệ thống.
+- Kiểm tra tải và các điều kiện hoạt động thực tế.
+
+3. DỤNG CỤ DEBUG QUAN TRỌNG
+- Multimeter để đo điện áp và kiểm tra tiếp xúc.
+- Oscilloscope để quan sát tín hiệu analog, PWM.
+- Logic Analyzer để phân tích UART, SPI, I2C.
+- Bộ nạp ISP hoặc USB–TTL để flash firmware và debug lỗi.
+- Bộ giả lập mạch khi test tải.
+
+4. KỸ THUẬT DEBUG TRONG HỆ NHÚNG
+- In log qua UART để kiểm tra giá trị biến trong runtime.
+- Tách module: kiểm thử từng thành phần như cảm biến, relay, WiFi…
+- Dùng LED báo trạng thái để debug nhanh.
+- Dùng watchdog để phát hiện treo hệ thống.
+- Reset từng phần mạch để tìm vị trí gây lỗi.
+
+5. LỖI THƯỜNG GẶP KHI DEBUG
+- Lỗi tiếp xúc do hàn không chắc hoặc oxy hóa chân.
+- Cấp sai điện áp gây cháy linh kiện.
+- Lỗi firmware khiến MCU reset liên tục.
+- Lỗi xung đột chân do dùng chung pin I/O.
+- Nhiễu từ nguồn hoặc motor ảnh hưởng cảm biến

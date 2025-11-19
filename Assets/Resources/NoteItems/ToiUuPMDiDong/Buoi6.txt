@@ -1,0 +1,28 @@
+1. Vì Sao Cần Tối Ưu Lưu Trữ?
+– Đọc/ghi file chậm → ảnh hưởng UI.
+– Database truy vấn nặng → tốn CPU & pin.
+– Cache hợp lý giúp app nhanh hơn gấp nhiều lần.
+– Giảm số API call → tiết kiệm dữ liệu mạng.
+
+2. Tối Ưu Cache
+– Cache API response (Room, SharedPreferences).
+– Cache ảnh (Glide/Coil/Fresco).
+– Cache theo thời gian:
+– 1 phút, 5 phút, 1 giờ tùy dữ liệu.
+– Dọn cache định kỳ để tránh chiếm dung lượng.
+
+3. Tối Ưu Database
+– Index các cột truy vấn nhiều.
+– Giảm join phức tạp → tách bảng hoặc dùng query nhẹ hơn.
+– Hạn chế load toàn bộ bảng vào RAM.
+– Dùng Flow/LiveData thay vì update cả list lớn.
+
+4. Tối Ưu Truy Vấn Room (Android)
+– Sử dụng LIMIT khi không cần tất cả bản ghi.
+– Tránh gọi database trong Main thread.
+– Dùng transaction khi ghi nhiều dòng → nhanh hơn.
+
+5. Tối Ưu Đọc/Ghi File
+– Không đọc file lớn vào RAM 1 lần → đọc theo chunk.
+– Dùng streaming cho ảnh/video.
+– Nén file JSON hoặc log nếu dung lượng lớn.

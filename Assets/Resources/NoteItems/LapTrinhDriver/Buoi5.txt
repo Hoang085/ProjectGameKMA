@@ -1,0 +1,24 @@
+1. Major Number & Minor Number
+– Major: xác định driver nào xử lý thiết bị.
+– Minor: phân biệt nhiều thiết bị thuộc cùng driver.
+– Kernel dùng hai số này để định tuyến request.
+
+2. Cấp Phát Số Thiết Bị
+– alloc_chrdev_region() → kernel tự cấp major/minor.
+– register_chrdev_region() → tự chọn major thủ công.
+– Giải phóng bằng unregister_chrdev_region().
+
+3. class_create & device_create
+– Tạo class để xuất hiện trong /sys/class/<tên class>/.
+– device_create() tự tạo file /dev/<tên thiết bị>.
+– Không cần dùng mknod thủ công nữa.
+
+4. Tập Tin Thiết Bị Trong /dev
+– Là cổng giao tiếp để user-space truy cập driver.
+– User mở bằng open("/dev/mydev"), đọc/ghi bằng read/write.
+– Khi open/write/read → Kernel tự gọi hàm file_operations.
+
+5. Quy Trình Tạo Driver Đầy Đủ
+– Cấp phát số thiết bị → tạo class → tạo node thiết bị.
+– Gắn file_operations vào struct cdev.
+– Khởi tạo bằng cdev_init() và cdev_add().

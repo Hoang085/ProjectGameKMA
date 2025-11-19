@@ -1,0 +1,30 @@
+1. ĐỊNH NGHĨA CƠ BẢN
+   - Ngôn ngữ máy (Machine Code): Dạng ngôn ngữ duy nhất CPU hiểu trực tiếp (chuỗi bit 0 và 1).
+   - Hợp ngữ (Assembly Language): Ngôn ngữ lập trình bậc thấp, sử dụng các từ gợi nhớ (mnemonics) để thay thế cho mã máy (ví dụ: dùng ADD thay vì 00100101).
+   - Assembler: Chương trình dịch mã nguồn Assembly sang mã máy để CPU thực thi.
+   - Quan hệ: Phần mềm bậc cao (C/Java) -> Hợp ngữ -> Mã máy -> Phần cứng.
+
+2. CÁC THÀNH PHẦN PHẦN CỨNG CỐT LÕI
+   - CPU (Bộ xử lý trung tâm): "Bộ não" thực hiện các lệnh.
+   - Thanh ghi (Registers): Bộ nhớ siêu nhanh nằm ngay trong CPU. Đây là nơi chứa dữ liệu ĐANG được xử lý (ví dụ: AX, BX, CX, DX trong x86 hoặc R0-R15 trong ARM).
+   - ALU (Arithmetic Logic Unit): Khối làm nhiệm vụ tính toán cộng, trừ, logic (AND, OR, XOR).
+   - Bus hệ thống: Đường truyền tín hiệu kết nối CPU - RAM - I/O (gồm Bus địa chỉ, Bus dữ liệu, Bus điều khiển).
+
+3. QUY TẮC SỐ HỌC MÁY TÍNH (CƠ SỞ DỮ LIỆU)
+   - Bit: Đơn vị nhỏ nhất (0 hoặc 1).
+   - Byte: 1 Byte = 8 Bits (biểu diễn số từ 0-255).
+   - Word: Thường là 2 Bytes (16 bits) hoặc 4 Bytes (32 bits) tùy kiến trúc.
+   - Hệ nhị phân (Binary): Chỉ dùng 0 và 1 (VD: 101_2 = 5_10).
+   - Hệ thập lục phân (Hexadecimal): Dùng 0-9 và A-F để viết gọn cho nhị phân (VD: 1111_2 = F_16 = 15_10).
+
+4. ỨNG DỤNG CỦA HỢP NGỮ
+   - Lập trình vi điều khiển, hệ thống nhúng (IoT, Driver).
+   - Tối ưu hóa tốc độ xử lý cho các thuật toán quan trọng.
+   - Reverse Engineering (Dịch ngược phần mềm, phân tích mã độc).
+   - Hiểu sâu về cách máy tính hoạt động ở mức thấp nhất.
+
+5. BÀI TẬP THAM KHẢO BUỔI 1
+   - Đổi số 45 (hệ 10) sang hệ nhị phân và hệ thập lục phân (Hex).
+   - Tính tổng của hai số nhị phân: 0110_2 + 0101_2.
+   - Giải thích vai trò của thanh ghi PC (Program Counter) hoặc IP (Instruction Pointer) trong việc chạy chương trình.
+   - Một thanh ghi 8-bit có thể lưu giá trị lớn nhất là bao nhiêu?

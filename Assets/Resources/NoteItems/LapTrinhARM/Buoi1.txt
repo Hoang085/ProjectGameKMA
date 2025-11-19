@@ -1,0 +1,28 @@
+1. ARM Là Gì?
+– Kiến trúc CPU RISC phổ biến nhất trên thiết bị nhúng.
+– Dùng trong điện thoại, router, IoT, vi điều khiển, Raspberry Pi…
+– Nổi tiếng vì tiêu thụ điện thấp và hiệu năng ổn định.
+
+2. Đặc Điểm Chính Của ARM
+– Tập lệnh RISC đơn giản, tốc độ cao.
+– Có nhiều chế độ hoạt động (User, System, IRQ, FIQ…).
+– Hỗ trợ pipeline giúp tăng tốc thực thi.
+– Có SIMD, Thumb mode (nén lệnh 16-bit).
+
+3. Các Dòng ARM Thông Dụng
+– ARM Cortex-M: cho vi điều khiển (STM32, NRF52).
+– ARM Cortex-A: xử lý cao cấp (Android, Linux ARM).
+– ARM Cortex-R: realtime, công nghiệp.
+– ARMv7 / ARMv8: kiến trúc 32-bit và 64-bit.
+
+4. Thành Phần Chính Trong CPU ARM
+– Thanh ghi: R0–R12, SP, LR, PC.
+– Program Counter (PC): giữ địa chỉ lệnh tiếp theo.
+– Link Register (LR): lưu địa chỉ khi gọi hàm.
+– Stack Pointer (SP): quản lý stack.
+
+5. Môi Trường Lập Trình ARM
+– Keil uVision / STM32CubeIDE (Cortex-M).
+– ARM GCC + Makefile.
+– QEMU giả lập CPU ARM.
+– Board thực: STM32, Raspberry Pi, ESP-ARM…

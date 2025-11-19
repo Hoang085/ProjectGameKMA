@@ -1,0 +1,26 @@
+1. KHÁI NIỆM ADC (ANALOG-TO-DIGITAL CONVERTER)
+- ADC là bộ chuyển đổi tín hiệu analog thành số để vi điều khiển có thể xử lý.
+- ADC cần thiết cho cảm biến nhiệt độ, ánh sáng, âm thanh, điện áp…
+- Giá trị ADC thường được biểu diễn theo độ phân giải: 8-bit, 10-bit, 12-bit, 16-bit.
+
+2. CÁCH HOẠT ĐỘNG CỦA ADC
+- ADC đọc mức điện áp analog tại chân vào.
+- So sánh điện áp đó với điện áp tham chiếu (Vref).
+- Chuyển giá trị điện áp thành một số nguyên tương ứng.
+- Tốc độ chuyển đổi phụ thuộc vào tần số clock ADC.
+
+3. ĐỘ PHÂN GIẢI ADC
+- Độ phân giải càng cao thì độ chính xác càng tốt.
+- ADC 10-bit → 1024 mức (0–1023).
+- ADC 12-bit → 4096 mức, mượt hơn và ít nhiễu hơn.
+- Độ phân giải quyết định độ chi tiết khi đọc cảm biến.
+
+4. KHÁI NIỆM DAC (DIGITAL-TO-ANALOG CONVERTER)
+- DAC chuyển tín hiệu số thành tín hiệu analog.
+- Dùng để tạo điện áp điều khiển thiết bị như loa, analog actuator.
+- Một số vi điều khiển có DAC tích hợp (như ESP32).
+
+5. ỨNG DỤNG ADC & DAC TRONG HỆ NHÚNG
+- ADC: đo điện áp pin, cảm biến nhiệt độ, cảm biến âm thanh, ánh sáng.
+- DAC: phát tiếng beep, điều khiển khuếch đại, tạo dạng sóng analog.
+- ADC và DAC giúp hệ nhúng tương tác với thế giới vật lý.

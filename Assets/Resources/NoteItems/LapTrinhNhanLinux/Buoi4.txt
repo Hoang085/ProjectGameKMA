@@ -1,0 +1,26 @@
+1. Tiến Trình Trong Kernel
+– Mỗi tiến trình được quản lý qua struct task_struct.
+– Kernel theo dõi PID, trạng thái, ưu tiên, CPU time của tiến trình.
+– Có thể duyệt toàn bộ tiến trình bằng vòng lặp for_each_process.
+
+2. Bộ Lập Lịch (Scheduler)
+– Linux dùng Completely Fair Scheduler (CFS).
+– Mục tiêu: chia CPU công bằng dựa trên thời gian ảo.
+– Ưu tiên (nice value) ảnh hưởng đến thứ tự lập lịch.
+– Hỗ trợ nhiều chính sách: NORMAL, FIFO, RR…
+
+3. Ngữ Cảnh Kernel
+– Process Context: có thể sleep và dùng schedule().
+– Interrupt Context: không được sleep, xử lý ngắn gọn.
+– Ngữ cảnh ảnh hưởng đến việc dùng API kernel.
+
+4. API Liên Quan
+– current: trỏ đến tiến trình hiện tại.
+– schedule(): kích hoạt bộ lập lịch.
+– Hàm duyệt process: for_each_process(task).
+
+5. Bài Tập Thực Hành
+– Viết module in ra tên + PID tiến trình hiện tại (current->comm).
+– In danh sách 5 tiến trình đầu tiên trong hệ thống.
+– Thay đổi mức nice của một process và quan sát log.
+– Kiểm tra tiến trình trong top hoặc htop.

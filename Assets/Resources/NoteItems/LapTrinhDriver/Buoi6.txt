@@ -1,0 +1,25 @@
+1. Ngắt Là Gì?
+– Tín hiệu từ phần cứng yêu cầu kernel xử lý ngay.
+– Driver đăng ký hàm xử lý ngắt → kernel gọi khi IRQ xảy ra.
+– Chạy trong interrupt context, không được sleep.
+
+2. Đăng Ký Handler
+– Dùng request_irq(irq, handler, flags, name, dev).
+– Trả về lỗi nếu IRQ đang bị dùng hoặc không hợp lệ.
+– Gỡ bằng free_irq(irq, dev) khi module rời đi.
+
+3. Top-Half & Bottom-Half
+– Top-Half: hàm handler chạy ngay, xử lý thật nhanh.
+– Bottom-Half: dùng tasklet/workqueue để xử lý nặng hơn.
+– Giảm tải xử lý để tránh treo hệ thống.
+
+4. Quy Tắc Khi Xử Lý Ngắt
+– Không dùng hàm có thể sleep.
+– Không cấp phát buffer lớn.
+– Không ghi log quá nhiều.
+– Giữ handler càng ngắn càng tốt.
+
+5. Kiểm Tra IRQ Trong Hệ Thống
+– Xem danh sách IRQ bằng cat /proc/interrupts.
+– Có thể kiểm tra interrupt count tăng khi thiết bị kích hoạt.
+– Dùng dmesg để xem log của handler.

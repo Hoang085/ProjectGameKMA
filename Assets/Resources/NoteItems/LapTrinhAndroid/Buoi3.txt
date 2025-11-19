@@ -1,0 +1,30 @@
+1. Layout Là Gì?
+– Cách tổ chức và sắp xếp giao diện trong Android.
+– Viết bằng XML hoặc xây bằng code.
+– Giao diện được load bằng setContentView().
+
+2. Các Loại Layout Phổ Biến
+– LinearLayout: sắp xếp theo hàng hoặc cột.
+– RelativeLayout: sắp xếp tương quan giữa các view.
+– ConstraintLayout: mạnh nhất, linh hoạt, dùng nhiều nhất.
+– FrameLayout: đặt view chồng lên nhau.
+– ScrollView: cho phép cuộn nội dung.
+
+3. Các View Cơ Bản
+– TextView: hiển thị text.
+– EditText: nhập liệu.
+– Button: nút bấm.
+– ImageView: hiển thị hình ảnh.
+– RecyclerView: danh sách nâng cao.
+
+4. Kết Nối View Với Code (Kotlin)
+val btn = findViewById<Button>(R.id.btnSubmit)
+btn.setOnClickListener {
+    // xử lý khi click
+}
+
+5. Thiết Kế UI Đẹp
+– Dùng margin và padding hợp lý.
+– Dùng dp cho kích thước, sp cho chữ.
+– Dùng ConstraintLayout để giao diện linh hoạt trên mọi màn hình.
+– Hạn chế lồng layout quá sâu.

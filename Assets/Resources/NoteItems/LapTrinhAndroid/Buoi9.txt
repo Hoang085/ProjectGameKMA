@@ -1,0 +1,29 @@
+1. Notification Là Gì?
+– Thông báo hệ thống hiển thị ở thanh status.
+– Dùng để nhắc lịch, cảnh báo, cập nhật từ app.
+– Bắt buộc tạo Notification Channel từ Android 8+.
+
+2. Tạo Notification Channel
+val channel = NotificationChannel(
+    "channel_id",
+    "MyChannel",
+    NotificationManager.IMPORTANCE_DEFAULT
+)
+manager.createNotificationChannel(channel)
+
+3. Tạo Notification
+val builder = NotificationCompat.Builder(this, "channel_id")
+    .setContentTitle("Thông báo")
+    .setContentText("Nội dung...")
+    .setSmallIcon(R.drawable.ic_notify)
+– Gửi thông báo bằng NotificationManager.
+
+4. Foreground Service
+– Service chạy nền nhưng bắt buộc có Notification.
+– Dùng cho nhạc nền, định vị GPS, upload/download dài hơi.
+– Hạn chế bị hệ thống kill.
+
+5. Khởi Chạy Foreground Service
+startForegroundService(Intent(this, MyService::class.java))
+Trong MyService:
+startForeground(1, notification)

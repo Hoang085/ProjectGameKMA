@@ -1,0 +1,26 @@
+1. Workqueue Là Gì?
+– Cơ chế xử lý tác vụ trong process context.
+– Cho phép sleep và xử lý lâu hơn interrupt.
+– Thường dùng để xử lý phần “bottom-half” của ngắt.
+
+2. Sử Dụng Workqueue
+– Tạo work: INIT_WORK(&work, handler).
+– Xếp work vào queue: schedule_work(&work).
+– Có thể tạo workqueue riêng: create_workqueue().
+– Huỷ bằng flush_workqueue() và destroy_workqueue().
+
+3. Tasklet Là Gì?
+– Cơ chế xử lý nền chạy trong interrupt context.
+– Không được sleep, chạy rất nhanh.
+– Dùng cho xử lý ngắn phát sinh từ ngắt.
+
+4. Sử Dụng Tasklet
+– Khởi tạo: tasklet_init(&t, handler, data).
+– Kích hoạt: tasklet_schedule(&t).
+– Dừng: tasklet_kill(&t).
+
+5. Bài Tập Thực Hành
+– Tạo module có tasklet in log “Tasklet executed”.
+– Tạo workqueue xử lý nhiệm vụ dài hơn (vd in 5 lần).
+– Gọi tasklet + work từ cùng một handler.
+– Quan sát hành vi bằng dmesg.

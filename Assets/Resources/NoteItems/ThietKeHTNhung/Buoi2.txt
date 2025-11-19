@@ -1,0 +1,30 @@
+1. KHÁI NIỆM VI ĐIỀU KHIỂN (MICROCONTROLLER)
+- Vi điều khiển là một chip tích hợp gồm CPU, bộ nhớ và các ngoại vi I/O trên cùng một mạch.
+- Được tối ưu cho các ứng dụng nhúng có chi phí thấp và tiêu thụ điện năng nhỏ.
+- Phù hợp cho các hệ thống tự động hóa, IoT và điều khiển thiết bị.
+
+2. CÁC LOẠI VI ĐIỀU KHIỂN PHỔ BIẾN
+- AVR: như ATmega328P (Arduino Uno).
+- PIC: dòng phổ biến cho công nghiệp và giáo dục.
+- ARM Cortex-M: hiệu năng cao, tiêu thụ thấp (STM32, ESP32).
+- ESP8266/ESP32: tích hợp WiFi/Bluetooth, dùng nhiều cho IoT.
+- MSP430: nổi bật về tiết kiệm năng lượng.
+
+3. KIẾN TRÚC BÊN TRONG VI ĐIỀU KHIỂN
+- CPU xử lý lệnh và điều khiển hoạt động hệ thống.
+- RAM lưu dữ liệu tạm thời.
+- ROM/Flash lưu chương trình và dữ liệu tĩnh.
+- Bộ định thời (Timer) dùng cho đo thời gian và tạo xung.
+- Các ngoại vi tích hợp: UART, SPI, I2C, PWM, ADC, DAC.
+
+4. KIẾN TRÚC HARVARD VS VON NEUMANN
+- Harvard: tách bộ nhớ chương trình và bộ nhớ dữ liệu → nhanh và an toàn hơn.
+- Von Neumann: chung bus giữa chương trình và dữ liệu → đơn giản nhưng chậm hơn.
+- Phần lớn vi điều khiển hiện đại dùng kiến trúc Harvard cải tiến.
+
+5. TIÊU CHÍ CHỌN VI ĐIỀU KHIỂN
+- Số lượng chân I/O đáp ứng yêu cầu thiết kế.
+- Tần số CPU và tốc độ xử lý.
+- Bộ nhớ RAM/Flash đủ cho chương trình.
+- Ngoại vi tích hợp như ADC, PWM, UART, I2C.
+- Công suất tiêu thụ và chi phí linh kiện

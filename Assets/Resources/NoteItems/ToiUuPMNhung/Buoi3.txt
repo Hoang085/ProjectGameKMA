@@ -1,0 +1,29 @@
+1. Xác Định Đoạn Code Chậm
+– Dùng profiling thủ công bằng đo thời gian qua GPIO toggle.
+– Dùng timer nội bộ (SysTick / DWT CYCCNT trên ARM Cortex-M).
+– Dùng log UART có timestamp.
+– Tìm “nút thắt cổ chai” (bottleneck).
+
+2. Tối Ưu Vòng Lặp
+– Giảm số phép toán trong vòng lặp.
+– Tránh dùng phép chia, ưu tiên nhân/shift.
+– Tránh khởi tạo biến trong vòng lặp.
+– Unroll loop (mở rộng vòng lặp) nếu cần tốc độ cao.
+
+3. Tối Ưu Toán Học
+– Dùng toán bit thay toán học nặng:
+– Thay %2 bằng &1.
+– Thay nhân 2 bằng shift <<1.
+– Tránh dùng float nếu không cần thiết.
+– Ưu tiên fixed-point (số nguyên có scale).
+
+4. Tối Ưu Memory Access
+– Truy cập biến liên tục (local variable) nhanh hơn biến global.
+– Tránh mảng lớn trong stack.
+– Hạn chế truy cập Flash nhiều lần → copy hàm quan trọng vào RAM.
+
+5. Tối Ưu ISR (Interrupt Service Routine)
+– ISR phải nhỏ, gọn, cực nhanh.
+– Không xử lý logic nặng trong ISR.
+– Không dùng printf/log trong ISR.
+– Chuyển phần nặng sang task (RTOS) hoặc flag.

@@ -1,0 +1,28 @@
+1. Vì Sao Phải Tối Ưu Năng Lượng?
+– Thiết bị IoT dùng pin nhiều tháng/năm.
+– Tiêu thụ điện thấp giúp giảm nhiệt, tăng tuổi thọ linh kiện.
+– Một số ứng dụng yêu cầu chạy 24/7 nhưng pin rất nhỏ.
+
+2. Các Chế Độ Tiết Kiệm Năng Lượng
+– Sleep mode: CPU dừng, ngoại vi vẫn chạy.
+– Deep sleep / Stop mode: hầu hết ngoại vi tắt.
+– Standby mode: tiêu thụ siêu thấp, RAM có thể mất.
+– Low-power run: CPU chạy với clock thấp hơn.
+
+3. Tối Ưu Clock & Ngoại Vi
+– Giảm tần số CPU khi không cần thiết.
+– Tắt GPIO clock, UART, I2C, SPI khi không dùng.
+– Tắt ADC, Timer, DMA idle → giảm đáng kể công suất.
+– Dùng PLL hợp lý để giảm điện năng.
+
+4. Tối Ưu Vòng Lặp Chính
+– Tránh polling liên tục gây hao CPU.
+– Thay polling → dùng interrupt-based.
+– Dùng WFI (Wait For Interrupt) để CPU tự ngủ.
+– Xử lý nhanh trong ISR rồi quay về sleep.
+
+5. Tối Ưu Giao Tiếp Không Dây
+– Bluetooth/WiFi tiêu tốn năng lượng rất lớn.
+– Bật radio chỉ khi cần gửi/nhận dữ liệu.
+– Dùng burst transmission thay vì gửi từng gói nhỏ.
+– Giảm độ mạnh tín hiệu nếu không cần thiết.

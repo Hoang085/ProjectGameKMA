@@ -1,0 +1,31 @@
+1. VAI TRÒ CỦA GIAO TIẾP TRONG DỰ ÁN
+- Giao tiếp là yếu tố quan trọng quyết định sự phối hợp hiệu quả giữa các thành viên.
+- Giao tiếp tốt giúp giảm hiểu lầm và tăng tốc độ xử lý vấn đề.
+- PM phải đảm bảo mọi thông tin đi đúng người, đúng thời điểm.
+
+2. CÁC LOẠI GIAO TIẾP TRONG DỰ ÁN
+- Giao tiếp nội bộ giữa các thành viên của đội phát triển.
+- Giao tiếp với khách hàng để xác nhận yêu cầu và phản hồi.
+- Giao tiếp với các bên liên quan như quản lý cấp cao hoặc đối tác.
+- Giao tiếp qua văn bản như tài liệu, email, báo cáo.
+- Giao tiếp trực tiếp qua họp, trao đổi nhanh hoặc gọi video.
+
+3. KỸ NĂNG GIAO TIẾP HIỆU QUẢ
+- Lắng nghe chủ động và không ngắt lời người khác.
+- Diễn đạt rõ ràng, ngắn gọn và đúng trọng tâm.
+- Minh bạch khi có vấn đề phát sinh để xử lý sớm.
+- Sử dụng ngôn từ phù hợp với đối tượng nghe.
+- Xác nhận lại thông tin quan trọng để tránh sai sót.
+
+4. CÔNG CỤ HỖ TRỢ GIAO TIẾP
+- Email và tài liệu để truyền tải thông tin có tính lâu dài.
+- Phần mềm quản lý dự án như Jira, Trello để cập nhật tiến độ.
+- Chat và trao đổi nhanh qua Slack, Messenger, Teams.
+- Họp video qua Zoom, Google Meet.
+- Các biểu mẫu báo cáo để theo dõi thông tin quan trọng.
+
+5. LẬP KẾ HOẠCH TRUYỀN THÔNG TRONG DỰ ÁN
+- Xác định ai cần nhận thông tin nào.
+- Quy định rõ tần suất cập nhật tiến độ.
+- Lập format báo cáo thống nhất cho cả nhóm.
+- Chọn kênh giao tiếp phù hợp với từng mục đích.

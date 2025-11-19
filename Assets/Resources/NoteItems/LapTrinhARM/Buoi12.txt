@@ -1,0 +1,27 @@
+1. ADC Là Gì?
+– Bộ chuyển đổi tín hiệu analog thành giá trị số (0–4095 cho 12-bit).
+– Dùng cho cảm biến nhiệt độ, ánh sáng, biến trở, đo điện áp…
+
+2. Cách Hoạt Động
+– ADC lấy mẫu điện áp tại chân analog.
+– So sánh với điện áp tham chiếu (Vref).
+– Trả về giá trị số tương ứng → dùng trong tính toán.
+
+3. Tham Số Quan Trọng
+– Độ phân giải: 8-bit, 10-bit, 12-bit…
+– Sampling time: thời gian lấy mẫu (càng lớn → ổn định).
+– Clock ADC: ảnh hưởng tốc độ đo.
+– Vref: chuẩn đo (thường 3.3V).
+
+4. Cấu Hình ADC Trên ARM
+– Bật clock ADC & cấu hình chân analog.
+– Chọn channel (ADC1_CH0, CH1…).
+– Chọn resolution (10–12-bit).
+– Enable ADC, start conversion.
+– Đọc dữ liệu từ thanh ghi DR khi conversion xong.
+
+5. Chế Độ Đo
+– Single conversion: đo 1 lần rồi dừng.
+– Continuous mode: đo liên tục.
+– Injected mode: ưu tiên đo đặc biệt.
+– DMA mode: đọc ADC tốc độ cao mà không dùng CPU.

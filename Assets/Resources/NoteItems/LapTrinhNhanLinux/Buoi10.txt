@@ -1,0 +1,29 @@
+1. Quản Lý Bộ Nhớ Trong Driver
+– Dùng buffer riêng cho thiết bị (kmalloc/vmalloc).
+– Kiểm soát vị trí đọc/ghi bằng file offset.
+– Giải phóng buffer khi gỡ module.
+
+2. Sử Dụng copy_to_user / copy_from_user
+– copy_to_user() để gửi dữ liệu ra user-space.
+– copy_from_user() để nhận dữ liệu từ user-space.
+– Kiểm tra lỗi trả về để tránh crash.
+– Không truy cập trực tiếp con trỏ user-space.
+
+3. Tạo Device Number & Class Tự Động
+– Dùng alloc_chrdev_region() thay vì register_chrdev.
+– Tạo class bằng class_create().
+– Tạo node tự động bằng device_create().
+– Tiện hơn nhiều so với mknod thủ công.
+
+4. Đồng Bộ Hóa Trong Driver
+– Tránh race conditions khi nhiều tiến trình truy cập.
+– Sử dụng mutex, spinlock tùy ngữ cảnh.
+– Spinlock dùng cho vùng không được sleep (interrupt).
+– Mutex dùng trong process context, cho phép sleep.
+
+5. Bài Tập Thực Hành
+– Tạo driver có buffer riêng 1 KB.
+– Dùng copy_to_user/copy_from_user để giao tiếp.
+– Tự tạo device node bằng alloc_chrdev_region + device_create.
+– Thử đọc/ghi từ user bằng echo và cat /dev/mydev.
+– Kiểm tra log khi nhiều tiến trình truy cập.

@@ -1,0 +1,26 @@
+1. Procfs Là Gì?
+– Hệ thống file ảo cung cấp thông tin về kernel & tiến trình.
+– Dữ liệu trong /proc được tạo động khi đọc file.
+– Thường dùng để xem CPU, RAM, tiến trình, module.
+
+2. Tạo File Trong /proc
+– Sử dụng proc_create() để tạo file ảo.
+– Dữ liệu trả về qua hàm read callback.
+– Không lưu dữ liệu thật trên ổ cứng.
+– Xoá file bằng remove_proc_entry() khi module gỡ.
+
+3. Sysfs Là Gì?
+– Hệ thống file ảo dùng để giao tiếp giữa kernel và user.
+– Thường nằm trong /sys/module, /sys/class.
+– Hỗ trợ đọc/ghi thuộc tính để cấu hình driver.
+
+4. Tạo Thuộc Tính Sysfs
+– Dùng kobject_create_and_add().
+– Tạo attribute bằng sysfs_create_file().
+– Hỗ trợ read/write để điều khiển giá trị trong module.
+
+5. Bài Tập Thực Hành
+– Tạo file /proc/hellokernel in chữ “Hello from kernel”.
+– Tạo 1 biến số trong sysfs cho phép user thay đổi giá trị.
+– Kiểm tra bằng: cat /proc/... và echo 123 > /sys/....
+– Gỡ module và đảm bảo file tự xoá.

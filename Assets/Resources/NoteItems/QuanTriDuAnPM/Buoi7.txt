@@ -1,0 +1,32 @@
+1. TẦM QUAN TRỌNG CỦA QUẢN LÝ TIẾN ĐỘ
+- Tiến độ quyết định khả năng hoàn thành dự án đúng thời gian.
+- Theo dõi tiến độ giúp phát hiện sớm các vấn đề chậm trễ.
+- Quản lý tiến độ tốt giúp giảm chi phí và tăng sự hài lòng của khách hàng.
+
+2. CÔNG CỤ THEO DÕI TIẾN ĐỘ
+- Gantt Chart để biểu diễn thời gian và thứ tự công việc.
+- Bảng Kanban để theo dõi trạng thái từng task (To Do, Doing, Done).
+- Burndown Chart trong Agile để xem tốc độ hoàn thành sprint.
+- Checklist để kiểm soát các công việc nhỏ.
+- Hệ thống quản lý công việc như Jira, Trello, Asana.
+
+3. CHỈ SỐ ĐÁNH GIÁ TIẾN ĐỘ (KPIs)
+- Tỷ lệ hoàn thành công việc theo ngày hoặc theo sprint.
+- Số lỗi phát sinh và số lỗi đã xử lý.
+- Thời gian còn lại so với kế hoạch ban đầu.
+- Số lượng yêu cầu thay đổi.
+- Mức độ đáp ứng deadline của từng thành viên.
+
+4. XỬ LÝ KHI CHẬM TIẾN ĐỘ
+- Xác định nguyên nhân gây chậm: kỹ thuật, nhân lực, yêu cầu thay đổi.
+- Ưu tiên lại các công việc quan trọng.
+- Tăng nhân sự hoặc hỗ trợ thêm tài nguyên nếu cần.
+- Điều chỉnh lịch trình, bổ sung buffer time.
+- Giao tiếp rõ ràng với khách hàng về tình trạng dự án.
+
+5. KỸ NĂNG CẦN CÓ ĐỂ THEO DÕI TIẾN ĐỘ HIỆU QUẢ
+- Theo dõi thường xuyên thay vì đợi đến cuối giai đoạn.
+- Báo cáo ngắn gọn nhưng đầy đủ thông tin cần thiết.
+- Minh bạch khi có vấn đề để nhận hỗ trợ kịp thời.
+- Sử dụng công cụ phù hợp với quy mô dự án.
+- Kết hợp kiểm thử sớm để giảm nguy cơ dồn lỗi vào cuối dự án.

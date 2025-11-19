@@ -1,0 +1,29 @@
+1. KHÁI NIỆM NGĂN XẾP (STACK)
+   - Định nghĩa: Là một vùng nhớ đặc biệt trong RAM hoạt động theo cơ chế LIFO (Last In, First Out - Vào sau thì ra trước).
+   - Ví dụ thực tế: Giống như một chồng đĩa. Bạn đặt đĩa mới lên trên cùng (Vào sau), và khi lấy thì phải lấy đĩa trên cùng ra trước (Ra trước).
+   - Mục đích: Lưu trữ tạm thời giá trị các thanh ghi, biến cục bộ, và địa chỉ trở về khi gọi hàm.
+
+2. LỆNH PUSH (ĐẨY VÀO)
+   - Cú pháp: PUSH [Nguồn]
+   - Hoạt động:
+     1. Giảm thanh ghi SP (Stack Pointer) xuống (thường là giảm 2 byte trong chế độ 16-bit).
+     2. Sao chép giá trị từ [Nguồn] vào vị trí đỉnh Stack mới đó.
+   - Ví dụ: PUSH AX ; Cất giá trị của AX vào Stack.
+
+3. LỆNH POP (LẤY RA)
+   - Cú pháp: POP [Đích]
+   - Hoạt động:
+     1. Sao chép giá trị từ đỉnh Stack hiện tại vào [Đích].
+     2. Tăng thanh ghi SP lên (để giải phóng ô nhớ đó).
+   - Ví dụ: POP BX ; Lấy giá trị từ đỉnh Stack đưa vào BX.
+
+4. THANH GHI QUẢN LÝ STACK (SS VÀ SP)
+   - SS (Stack Segment): Chứa địa chỉ đoạn bắt đầu của vùng nhớ Stack.
+   - SP (Stack Pointer): Luôn luôn trỏ tới "Đỉnh" hiện tại của ngăn xếp (ô nhớ chứa dữ liệu mới nhất).
+   - Nguyên tắc: Khi Stack đầy lên (PUSH), địa chỉ SP sẽ giảm xuống (về phía địa chỉ thấp). Khi Stack vơi đi (POP), SP tăng lên.
+
+5. QUY TẮC VÀNG: CÂN BẰNG STACK
+   - Nguyên tắc sống còn: "Vào bao nhiêu, ra bấy nhiêu".
+   - Nếu bạn PUSH 3 lần, bạn bắt buộc phải POP 3 lần trước khi kết thúc chương trình con.
+   - Thứ tự ngược: PUSH A -> PUSH B thì khi lấy ra phải là POP B -> POP A.
+   - Hậu quả nếu sai: Chương trình sẽ bị treo hoặc nhảy lung tung (Crash) vì lấy nhầm địa chỉ trả về.

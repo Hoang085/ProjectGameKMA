@@ -1,0 +1,31 @@
+1. Các Thanh Ghi Cơ Bản
+– R0–R12: thanh ghi đa dụng (general purpose).
+– SP (Stack Pointer): quản lý stack.
+– LR (Link Register): giữ địa chỉ trở về khi gọi hàm.
+– PC (Program Counter): trỏ đến lệnh đang/chuẩn bị chạy.
+– CPSR: thanh ghi trạng thái (flag Z, C, N, V…).
+
+2. Thumb & ARM Instruction Set
+– ARM: lệnh 32-bit, mạnh và đầy đủ.
+– Thumb: lệnh 16-bit, tiết kiệm bộ nhớ, chạy nhanh hơn.
+– CPU có thể chuyển đổi giữa ARM ↔ Thumb.
+
+3. Chế Độ Hoạt Động
+– User mode: chạy ứng dụng thông thường.
+– System mode: giống user nhưng có quyền cao hơn.
+– Supervisor mode: xử lý exception/hệ thống.
+– IRQ mode & FIQ mode: xử lý ngắt nhanh.
+– Each mode có SP và LR riêng.
+
+4. Cấu Trúc Stack
+– ARM dùng stack kiểu Full Descending.
+– SP giảm khi push và tăng khi pop.
+– Dùng LR + Stack để trở về từ function.
+
+5. Trạng Thái CPSR
+– Chứa các flag:
+– Z (Zero)
+– N (Negative)
+– C (Carry)
+– V (Overflow)
+– Điều khiển IRQ enable/disable.

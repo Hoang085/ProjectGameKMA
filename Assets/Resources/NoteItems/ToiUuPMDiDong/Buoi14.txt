@@ -1,0 +1,32 @@
+1. Vì Sao Cần Tối Ưu Build?
+– Build chậm → giảm hiệu suất làm việc của team.
+– CI/CD chạy lâu → tốn tài nguyên server.
+– Dễ gây “bottleneck” khi nhiều dev commit cùng lúc.
+– Rút ngắn thời gian build giúp release nhanh hơn.
+
+2. Tối Ưu Build Cho Android
+– Bật Gradle Daemon (mặc định có).
+– Dùng Configuration Cache để giảm thời gian config.
+– Enable parallel build.
+– Giảm sử dụng Kotlin annotation processor (kapt).
+– Chuyển sang KSP (Kotlin Symbol Processing) nếu có thể.
+
+3. Tối Ưu Build Cho iOS
+– Dùng Incremental Build trong Xcode.
+– Tắt architectures không cần thiết.
+– Giảm thời gian compile Swift bằng cách:
+– Tránh file Swift quá lớn.
+– Tách module thành nhiều package.
+– Loại bỏ bridging header nếu không dùng.
+
+4. Tối Ưu CI/CD Pipeline
+– Cache dependency (Gradle cache, CocoaPods cache).
+– Chỉ chạy test liên quan thay vì toàn bộ.
+– Dùng build matrix hợp lý (nhiều job song song).
+– Tự động lint/format code trước khi build.
+– Build Release riêng, Build Debug riêng → tránh lặp.
+
+5. Giảm Kích Thước Artifact
+– Xoá symbol debug nếu không cần.
+– Dùng AAB (Android) và App Thinning (iOS).
+– Dọn resource không dùng trong build script.

@@ -1,0 +1,185 @@
+{
+  "subjectKey": "ToiUuPMNhung",
+  "questions": [
+    {
+      "id": "OPT1",
+      "question": "Mục tiêu chính của tối ưu phần mềm nhúng là gì?",
+      "answers": [ "Giảm kích thước mã và tăng hiệu suất", "Giảm tốc độ CPU", "Tăng dung lượng RAM" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT2",
+      "question": "Trong hệ thống nhúng, yếu tố nào thường bị hạn chế nhất?",
+      "answers": [ "CPU, RAM và bộ nhớ", "Đồ họa", "Ổ cứng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT3",
+      "question": "Tối ưu vòng lặp (loop optimization) nhằm mục đích:",
+      "answers": [ "Giảm số lần lặp và số lệnh thực thi", "Tăng số vòng lặp", "Tăng tiêu thụ năng lượng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT4",
+      "question": "Inlining function giúp:",
+      "answers": [ "Giảm overhead gọi hàm", "Tăng bộ nhớ RAM", "Giảm hiệu suất CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT5",
+      "question": "Việc dùng biến volatile nhằm:",
+      "answers": [ "Tối ưu tốc độ", "Không tối ưu gì, chỉ tránh lỗi tối ưu hóa của compiler", "Giảm RAM" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "OPT6",
+      "question": "DMA giúp giảm tải CPU bằng cách:",
+      "answers": [ "Tự truyền dữ liệu không qua CPU", "Tăng tốc xung nhịp", "Xử lý đồ họa" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT7",
+      "question": "Interrupt (ngắt) giúp tối ưu gì?",
+      "answers": [ "Phản ứng nhanh với sự kiện thay vì polling liên tục", "Làm CPU chạy chậm", "Tăng RAM" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT8",
+      "question": "Polling liên tục gây:",
+      "answers": [ "Tốn CPU", "Giảm tiêu thụ điện", "Tối ưu năng lượng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT9",
+      "question": "Code tối ưu cần tránh điều gì?",
+      "answers": [ "Nhánh điều kiện phức tạp", "Vòng lặp đơn giản", "Sử dụng biến cục bộ" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT10",
+      "question": "Tối ưu bộ nhớ stack giúp:",
+      "answers": [ "Giảm nguy cơ tràn stack", "Tăng độ trễ CPU", "Tăng dung lượng flash" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT11",
+      "question": "Khi tối ưu mức tiêu thụ năng lượng vi điều khiển, ta cần:",
+      "answers": [ "Dùng sleep mode", "Luôn chạy full speed", "Tắt watchdog" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT12",
+      "question": "Compiler optimization level -O2 thường dùng nhằm:",
+      "answers": [ "Tối ưu hiệu năng cân bằng với kích thước", "-O0 nhanh nhất", "Tăng dung lượng mã tối đa" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT13",
+      "question": "Lookup table giúp tối ưu bằng cách:",
+      "answers": [ "Thay tính toán phức tạp bằng tra cứu nhanh", "Tăng RAM", "Tăng số chu kỳ CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT14",
+      "question": "Cắt giảm số phép nhân, chia trong xử lý số giúp tối ưu vì:",
+      "answers": [ "Nhân và chia rất tốn chu kỳ CPU", "Chia nhanh hơn cộng", "CPU không hỗ trợ cộng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT15",
+      "question": "Tối ưu đường truyền I/O chủ yếu nhằm:",
+      "answers": [ "Giảm độ trễ I/O", "Giảm kích thước CPU", "Tăng điện áp" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT16",
+      "question": "Sử dụng fixed-point thay vì floating-point giúp:",
+      "answers": [ "Tăng tốc xử lý đáng kể trên MCU không có FPU", "Giảm độ chính xác xuống 0", "Tăng kích thước code" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT17",
+      "question": "Cache locality giúp tối ưu vì:",
+      "answers": [ "CPU đọc bộ nhớ liên tục ở vùng gần nhau nhanh hơn", "Giảm RAM", "Giảm flash" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT18",
+      "question": "Branch prediction (dự đoán nhánh) ảnh hưởng đến:",
+      "answers": [ "Tốc độ xử lý khi có if - else", "Dung lượng flash", "Mạch nguồn" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT19",
+      "question": "Tối ưu pipeline phụ thuộc vào:",
+      "answers": [ "Giảm hazard và tránh nhảy lệnh thường xuyên", "Giảm RAM", "Tắt timer" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT20",
+      "question": "Unrolling loop giúp:",
+      "answers": [ "Giảm số lần kiểm tra điều kiện", "Tăng số vòng lặp", "Giảm tốc CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT21",
+      "question": "Dead code elimination giúp:",
+      "answers": [ "Xóa mã không bao giờ chạy", "Tăng flash", "Tăng điện năng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT22",
+      "question": "Khi tối ưu stack, nên tránh:",
+      "answers": [ "Mảng lớn trên stack", "Biến nhỏ", "Con trỏ" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT23",
+      "question": "Tối ưu phần mềm nhúng thường chú trọng nhất vào:",
+      "answers": [ "Timing, Memory, Power", "Đồ họa 3D", "Game Engine" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT24",
+      "question": "Công cụ profiler giúp:",
+      "answers": [ "Đo thời gian chạy của từng đoạn code", "Tăng xung CPU", "Gỡ lỗi phần cứng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT25",
+      "question": "Memory fragmentation là:",
+      "answers": [ "Bộ nhớ bị chia nhỏ dẫn đến không cấp phát được liên tục", "RAM bị xóa sạch", "CPU quá tải" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT26",
+      "question": "Double buffering dùng để:",
+      "answers": [ "Giảm nhấp nháy khi xử lý hiển thị", "Tăng băng thông mạng", "Làm CPU chạy chậm hơn" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT27",
+      "question": "Watchdog timer dùng để:",
+      "answers": [ "Reset hệ thống khi phần mềm treo", "Tối ưu bộ nhớ", "Tối ưu hiển thị" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT28",
+      "question": "Trong tối ưu năng lượng, kỹ thuật quan trọng nhất là:",
+      "answers": [ "Giảm thời gian CPU active", "Chạy full speed liên tục", "Dùng nhiều interrupt hơn polling" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT29",
+      "question": "Việc tối ưu dùng interrupt thay polling giúp:",
+      "answers": [ "Giảm đáng kể tiêu thụ điện và tăng responsivity", "Giảm băng thông mạng", "Giảm độ chính xác" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "OPT30",
+      "question": "Tối ưu code C trong nhúng thường cần hạn chế:",
+      "answers": [ "Đệ quy", "Vòng lặp for", "Switch-case" ],
+      "correctIndex": 0
+    }
+  ]
+}

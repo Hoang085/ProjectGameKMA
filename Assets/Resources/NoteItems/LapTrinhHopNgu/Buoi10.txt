@@ -1,0 +1,19 @@
+1. KHUNG CHƯƠNG TRÌNH CHUẨN
+   - .MODEL SMALL : Khai báo mô hình bộ nhớ.
+   - .STACK 100h  : Tạo ngăn xếp (quan trọng để gọi hàm).
+   - .DATA        : Chứa biến/chuỗi.
+   - .CODE        : Chứa lệnh chạy.
+
+2. DỰ ÁN MẪU: ĐỔI CHỮ THƯỜNG -> HOA
+   - Nguyên lý: Mã ASCII của 'a' (97) và 'A' (65) lệch nhau 32 đơn vị.
+   - Công thức: Muốn có chữ Hoa, lấy chữ Thường TRỪ đi 32.
+
+3. QUY TRÌNH CODE (3 BƯỚC)
+   - B1 (Nhập): MOV AH, 01h -> INT 21h (Ký tự vào AL).
+   - B2 (Xử lý): SUB AL, 32 (Trừ 32 để ra chữ hoa).
+   - B3 (Xuất): MOV DL, AL -> MOV AH, 02h -> INT 21h.
+
+4. 3 TỪ KHÓA CẦN NHỚ KHI THI
+   - MOV: Sao chép dữ liệu.
+   - CMP + JE/JNE: So sánh và Nhảy (IF-ELSE).
+   - INT 21h: Nhờ hệ điều hành nhập/xuất.

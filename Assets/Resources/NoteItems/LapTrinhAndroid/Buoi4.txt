@@ -1,0 +1,29 @@
+1. Adapter Là Gì?
+– Lớp trung gian để đưa dữ liệu vào ListView/RecyclerView.
+– Chuyển đổi dữ liệu (String, Object…) thành View hiển thị.
+
+2. ListView
+– Dễ dùng nhưng cũ.
+– Tự động cuộn, tái sử dụng view.
+– Dùng với ArrayAdapter hoặc Custom Adapter.
+
+3. RecyclerView
+– Phiên bản nâng cấp mạnh hơn ListView.
+– Tối ưu hiệu năng, hỗ trợ layout linh hoạt.
+– Dùng kèm:
+– Adapter
+– ViewHolder
+– LayoutManager (Linear, Grid, Staggered)
+
+4. RecyclerView Adapter (Cơ Bản)
+class MyAdapter(val list: List<String>): RecyclerView.Adapter<MyHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder { ... }
+    override fun onBindViewHolder(holder: MyHolder, position: Int) { ... }
+    override fun getItemCount() = list.size
+}
+
+5. Ưu Điểm RecyclerView
+– Cuộn mượt, hiệu năng cao.
+– Tách biệt dữ liệu – giao diện – logic.
+– Hỗ trợ animations.
+– Dễ tuỳ biến item layout.
