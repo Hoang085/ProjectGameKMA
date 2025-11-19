@@ -1,0 +1,30 @@
+1. Firebase Là Gì?
+– Nền tảng Backend-as-a-Service của Google.
+– Hỗ trợ đăng nhập, lưu trữ dữ liệu, gửi thông báo, lưu file…
+– Tích hợp rất dễ với Android.
+
+2. Firebase Authentication
+– Hỗ trợ đăng nhập bằng:
+– Email/Password
+– Google
+– Facebook
+– Phone number
+– Lấy user hiện tại:
+val user = FirebaseAuth.getInstance().currentUser
+
+3. Firebase Realtime Database
+– Lưu dữ liệu dạng JSON thời gian thực.
+– Tự động đồng bộ giữa các thiết bị.
+– Ghi dữ liệu:
+db.ref("users").child(uid).setValue(userObj)
+
+4. Firebase Firestore
+– Database mới hơn, mạnh hơn Realtime.
+– Hỗ trợ collection → document → field.
+– Query nâng cao, tìm kiếm dễ dàng.
+
+5. Firebase Storage
+– Lưu file: ảnh, video, PDF…
+– Dùng URL để tải file sau khi upload.
+– Upload file:
+storage.ref("images/$uid.png").putBytes(data)

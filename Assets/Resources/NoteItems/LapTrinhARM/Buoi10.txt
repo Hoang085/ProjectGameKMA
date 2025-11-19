@@ -1,0 +1,28 @@
+1. SPI Là Gì?
+– Giao thức truyền thông tốc độ cao 4 dây: MOSI, MISO, SCK, CS.
+– Master tạo clock, slave trả lời theo clock.
+– Dùng cho màn hình TFT, cảm biến tốc độ cao, Flash SPI…
+
+2. Cơ Chế Hoạt Động
+– Master kéo CS xuống LOW để chọn thiết bị.
+– Gửi/nhận dữ liệu song song qua MOSI/MISO.
+– Truyền theo frame 8-bit hoặc 16-bit.
+– Không có ACK như I2C → nhanh nhưng kém ổn định hơn nếu dây dài.
+
+3. Chế Độ SPI (Mode 0–3)
+– Xác định bởi 2 yếu tố:
+– CPOL: mức clock khi idle.
+– CPHA: cạnh dùng để lấy dữ liệu.
+– Thiết bị master & slave phải dùng cùng mode.
+
+4. Cấu Hình SPI Trên ARM
+– Bật clock cho SPI và GPIO.
+– Chọn chân theo chức năng AF: MOSI / MISO / SCK.
+– Set baud rate prescaler (tốc độ).
+– Chọn chế độ CPOL/CPHA.
+– Enable SPI, chọn master/slave.
+
+5. Cách Gửi & Nhận Dữ Liệu
+– Gửi 1 byte: ghi vào thanh ghi DR → chờ TXE.
+– Nhận 1 byte: đọc DR khi RXNE set.
+– Có thể dùng DMA để truyền lượng lớn dữ liệu.

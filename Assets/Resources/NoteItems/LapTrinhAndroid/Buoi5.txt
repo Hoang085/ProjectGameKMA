@@ -1,0 +1,27 @@
+1. Fragment Là Gì?
+– Thành phần giao diện nhỏ nằm trong Activity.
+– Có lifecycle riêng (giống Activity thu nhỏ).
+– Dễ tái sử dụng UI giữa nhiều Activity.
+– Thích hợp cho ứng dụng nhiều màn hình, tab, hoặc giao diện động.
+
+2. Khi Nào Dùng Fragment
+– Ứng dụng có navbar hoặc tab layout.
+– Một Activity chứa nhiều khu vực nội dung khác nhau.
+– Dùng Navigation Component để điều hướng.
+
+3. Lifecycle Của Fragment
+– onCreateView() → tạo giao diện (giống setContentView).
+– onViewCreated() → xử lý UI sau khi view tạo xong.
+– onStart() → fragment hiển thị.
+– onDestroyView() → hủy view khi rời màn hình.
+
+4. Thêm Fragment Vào Activity
+supportFragmentManager.beginTransaction()
+    .replace(R.id.container, HomeFragment())
+    .commit()
+
+5. Navigation Component
+– Hệ thống điều hướng chính thức của Google.
+– Dùng NavHostFragment + nav_graph.xml.
+– Tự động quản lý back stack.
+– Giao diện trực quan, dễ chuyển giữa Fragment.

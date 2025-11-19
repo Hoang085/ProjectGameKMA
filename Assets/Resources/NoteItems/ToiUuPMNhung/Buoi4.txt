@@ -1,0 +1,26 @@
+1. RAM Trong Hệ Nhúng Rất Hạn Chế
+– Vi điều khiển thường chỉ có 2 KB → 64 KB → 512 KB RAM.
+– Tối ưu RAM giúp tránh tràn stack và tăng ổn định.
+
+2. Tối Ưu Biến Toàn Cục & Static
+– Dùng kiểu dữ liệu nhỏ nhất có thể (uint8_t, uint16_t).
+– Hạn chế dùng int 32-bit nếu không cần.
+– Gom nhóm biến vào struct để dễ quản lý.
+– Tránh global không cần thiết → giảm mức tiêu thụ RAM.
+
+3. Tối Ưu Stack
+– Tránh khai báo mảng lớn trong hàm.
+– Tránh đệ quy (recursion) – rất tốn stack.
+– Dùng biến static thay vì biến local lớn.
+– Dùng phân tích stack depth bằng compiler hoặc tool.
+
+4. Tối Ưu Heap
+– Hạn chế malloc/free trong hệ nhúng nhỏ.
+– Không cấp phát động trong ISR.
+– Nếu phải dùng, dùng memory pool để tránh phân mảnh RAM.
+– Với hệ thống realtime → tốt nhất tránh heap.
+
+5. Giảm RAM Bằng Cách Lưu Dữ Liệu Vào Flash
+– Đối với hằng số lớn → dùng const.
+– Trong ARM: dùng __attribute__((section(".rodata"))).
+– Tránh copy dữ liệu hằng vào RAM.

@@ -1,0 +1,30 @@
+1. Quy Trình Tối Ưu Toàn Diện
+– Xác định vấn đề: UI chậm, RAM cao, API chậm, pin hao…
+– Đo đạc bằng profiler (CPU, Memory, Network, GPU).
+– Dùng dữ liệu đo được → chọn chiến lược tối ưu.
+– Lặp lại quy trình tối ưu theo vòng tròn:
+Đo → Phân tích → Tối ưu → Đo lại → Ổn định.
+
+2. Kiểm Định UI & Người Dùng
+– Đo FPS bằng GPU rendering profiler.
+– Kiểm tra animation mượt hay giật.
+– Test stress UI: scroll nhanh danh sách, load ảnh liên tục.
+– Dùng A/B Test để so sánh giao diện tối ưu vs giao diện cũ.
+
+3. Kiểm Định Mức Tiêu Thụ RAM
+– Kiểm tra GC chạy bao nhiêu lần mỗi phút.
+– Dùng Memory Profiler & LeakCanary tìm leak còn sót.
+– Test xoay màn hình, chuyển nhiều màn → kiểm tra sự ổn định.
+– Tối ưu Fragment/Adapter để không giữ reference sai.
+
+4. Kiểm Định API & Mạng
+– Đo thời gian response trung bình.
+– Kiểm tra retry, timeout, tốc độ tải media.
+– Đo số request giảm sau khi cache.
+– Dùng mạng 3G yếu để test worst-case.
+
+5. Kiểm Định Tiêu Thụ Pin
+– Battery Historian (Android).
+– Xcode Energy Log (iOS).
+– Đo khi chạy app 10 phút, 30 phút, 1 giờ → tìm bất thường.
+– Kiểm tra wakelock & service chạy nền.

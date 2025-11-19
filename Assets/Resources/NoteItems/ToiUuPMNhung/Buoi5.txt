@@ -1,0 +1,25 @@
+1. Hạn Chế Flash Trong Hệ Nhúng
+– Các MCU thường chỉ có 16 KB → 512 KB Flash.
+– Code càng nhỏ → cập nhật OTA nhanh hơn, giảm chi phí bộ nhớ.
+
+2. Tối Ưu Kích Thước Code
+– Bật compiler flag Os (optimize for size).
+– Giảm số lượng thư viện sử dụng.
+– Tránh dùng printf vì rất nặng.
+– Dùng hàm inline hợp lý (tránh inline hàm lớn).
+
+3. Giảm Kích Thước Bảng Lookup & Hằng Số
+– Đưa hằng lớn vào Flash bằng const.
+– Dùng kiểu dữ liệu nhỏ như uint8_t thay vì int.
+– Nén dữ liệu nếu cần (RLE, Huffman…).
+
+4. Tối Ưu Code Cấu Trúc
+– Tránh switch-case quá lớn.
+– Tránh dùng float → thay bằng fixed-point.
+– Xóa code không dùng bằng static hoặc LTO.
+– Gom hàm giống nhau lại để giảm duplication.
+
+5. Kiểm Soát Kích Thước Firmware
+– Dùng file .map để xem phần nào chiếm Flash.
+– Loại bỏ phần không cần thiết trong startup code.
+– Khi build nhiều module → kiểm tra code sinh ra từ thư viện.

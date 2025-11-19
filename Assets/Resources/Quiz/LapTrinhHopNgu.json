@@ -1,0 +1,185 @@
+﻿{
+  "subjectKey": "LapTrinhHopNgu",
+  "questions": [
+    {
+      "id": "ASM1",
+      "question": "Thanh ghi nào được dùng làm bộ đếm trong các vòng lặp LOOP của Intel x86?",
+      "answers": [ "AX", "CX", "DX" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM2",
+      "question": "Lệnh MOV trong hợp ngữ dùng để làm gì?",
+      "answers": [ "So sánh giá trị", "Sao chép dữ liệu", "Cộng hai số" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM3",
+      "question": "Lệnh JMP thuộc nhóm lệnh nào?",
+      "answers": [ "Lệnh số học", "Lệnh điều khiển", "Lệnh ngăn xếp" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM4",
+      "question": "Thanh ghi AX trong kiến trúc x86 có kích thước bao nhiêu bit?",
+      "answers": [ "8 bit", "16 bit", "32 bit" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM5",
+      "question": "Địa chỉ hiệu dụng (Effective Address) được dùng để làm gì?",
+      "answers": [ "Xác định vị trí bộ nhớ cần truy cập", "Chọn thanh ghi", "Quản lý ngắt" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM6",
+      "question": "Lệnh PUSH thực hiện điều gì?",
+      "answers": [ "Lấy dữ liệu từ stack", "Đưa dữ liệu vào stack", "So sánh dữ liệu" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM7",
+      "question": "Lệnh POP thực hiện điều gì?",
+      "answers": [ "Đưa dữ liệu vào stack", "Nhảy có điều kiện", "Lấy dữ liệu ra khỏi stack" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "ASM8",
+      "question": "Cờ Zero (ZF) được bật khi nào?",
+      "answers": [ "Khi kết quả bằng 0", "Khi tràn số", "Khi kết quả âm" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM9",
+      "question": "Lệnh CMP dùng để:",
+      "answers": [ "Cộng hai số", "So sánh hai toán hạng", "Nhân hai số" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM10",
+      "question": "Lệnh INC có chức năng gì?",
+      "answers": [ "Tăng 1 đơn vị", "Giảm 1 đơn vị", "Xóa giá trị thanh ghi" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM11",
+      "question": "Hợp ngữ là ngôn ngữ:",
+      "answers": [ "Bậc cao", "Gần với máy", "Chỉ dùng trên Linux" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM12",
+      "question": "Một chương trình hợp ngữ phải có chỉ thị nào để khai báo đoạn mã?",
+      "answers": [ ".CODE", ".DATA", ".STACK" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM13",
+      "question": "Lệnh JZ thực hiện nhảy khi:",
+      "answers": [ "Kết quả bằng 0", "Kết quả âm", "Kết quả lớn hơn 0" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM14",
+      "question": "Lệnh JNZ thực hiện nhảy khi:",
+      "answers": [ "ZF = 1", "ZF = 0", "CF = 1" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM15",
+      "question": "Thanh ghi SP dùng để:",
+      "answers": [ "Lưu chỉ số mảng", "Trỏ tới đỉnh stack", "Lưu dữ liệu tạm" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM16",
+      "question": "Lệnh XOR có tác dụng gì?",
+      "answers": [ "Cộng hai giá trị", "Phép hoặc logic", "Phép loại trừ hoặc" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "ASM17",
+      "question": "Lệnh AND dùng để:",
+      "answers": [ "Thực hiện phép AND logic", "Thực hiện phép OR logic", "So sánh" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM18",
+      "question": "Lệnh OR dùng để:",
+      "answers": [ "Thực hiện phép OR logic", "Phép NOT", "Phép SHIFT" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM19",
+      "question": "Cặp thanh ghi nào tạo thành con trỏ đoạn dữ liệu DS:SI?",
+      "answers": [ "DS và SP", "DS và SI", "CS và IP" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM20",
+      "question": "IP là thanh ghi chứa gì?",
+      "answers": [ "Địa chỉ đoạn dữ liệu", "Địa chỉ lệnh tiếp theo", "Địa chỉ con trỏ stack" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM21",
+      "question": "Lệnh RET dùng để:",
+      "answers": [ "Kết thúc chương trình", "Trở về từ thủ tục", "Nhảy vô điều kiện" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM22",
+      "question": "Lệnh CALL làm gì?",
+      "answers": [ "Nhảy đến thủ tục và lưu địa chỉ trở về", "Dừng chương trình", "So sánh dữ liệu" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM23",
+      "question": "Lệnh SHR dịch bit theo hướng nào?",
+      "answers": [ "Trái", "Phải", "Đảo bit" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "ASM24",
+      "question": "Lệnh SHL dịch bit theo hướng nào?",
+      "answers": [ "Trái", "Phải", "Đảo bit" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM25",
+      "question": "Cờ CF biểu thị:",
+      "answers": [ "Kết quả bằng 0", "Dấu âm", "Cờ nhớ (carry)" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "ASM26",
+      "question": "Cờ OF biểu thị:",
+      "answers": [ "Tràn số", "Zero", "Parity" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM27",
+      "question": "Directive .DATA dùng để:",
+      "answers": [ "Khai báo dữ liệu", "Khai báo mã lệnh", "Khai báo stack" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM28",
+      "question": "Lệnh TEST dùng để:",
+      "answers": [ "Kiểm tra bit AND mà không lưu kết quả", "So sánh số nguyên", "Nhân hai số" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM29",
+      "question": "Lệnh LEA dùng để làm gì?",
+      "answers": [ "Tải địa chỉ hiệu dụng", "Tải dữ liệu", "Xóa thanh ghi" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "ASM30",
+      "question": "INT 21h trong DOS được dùng để:",
+      "answers": [ "Gọi dịch vụ hệ thống DOS", "Gọi API Windows", "Truy cập BIOS" ],
+      "correctIndex": 0
+    }
+  ]
+}

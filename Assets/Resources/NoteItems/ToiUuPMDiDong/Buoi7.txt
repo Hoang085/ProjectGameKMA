@@ -1,0 +1,27 @@
+1. Hình Ảnh Là Nguyên Nhân Nặng Nhất
+– Chiếm nhiều RAM nhất (Bitmap).
+– Chiếm nhiều dung lượng app.
+– Tốn nhiều băng thông khi tải từ mạng.
+
+2. Tối Ưu Hình Ảnh (Image Optimization)
+– Dùng WebP/AVIF thay JPG/PNG.
+– Resize ảnh trước khi load vào ImageView.
+– Dùng Glide/Coil với memory cache + disk cache.
+– Không giữ nhiều Bitmap full-size trong RAM.
+
+3. Lazy Loading & Pagination
+– Tải ảnh khi người dùng cuộn đến (RecyclerView).
+– Không tải toàn bộ 1000 ảnh một lúc.
+– Dùng placeholder để UI mượt mà hơn.
+
+4. Tối Ưu Video
+– Dùng định dạng tối ưu: H.264 hoặc H.265.
+– Chọn độ phân giải phù hợp với màn hình.
+– Prefetch buffer video ngắn trước khi Play.
+– Sử dụng ExoPlayer (Android) hoặc AVPlayer (iOS).
+
+5. Giảm Dung Lượng App
+– Nén ảnh assets bằng WebP.
+– Dùng Vector Drawable thay PNG khi có thể.
+– Tách resource theo loại màn hình (hdpi/xhdpi/xxhdpi).
+– Xóa file media không dùng.

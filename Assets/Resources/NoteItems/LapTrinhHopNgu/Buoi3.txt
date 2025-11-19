@@ -1,0 +1,35 @@
+1. KHÁI NIỆM CHẾ ĐỘ ĐỊA CHỈ
+   - Định nghĩa: Là cách thức mà lập trình viên chỉ định vị trí của toán hạng (dữ liệu) trong một câu lệnh.
+   - Vai trò: Cho CPU biết dữ liệu cần xử lý đang nằm ở đâu: ngay trong lệnh, trong thanh ghi, hay ở một địa chỉ nào đó trong bộ nhớ RAM.
+   - Tại sao quan trọng: Hiểu rõ chế độ địa chỉ giúp bạn thao tác mảng, con trỏ và tối ưu hóa chương trình hiệu quả.
+
+2. CHẾ ĐỘ ĐỊA CHỈ TỨC THÌ (IMMEDIATE ADDRESSING)
+   - Đặc điểm: Giá trị (hằng số) nằm ngay trong câu lệnh. Không cần truy cập bộ nhớ RAM để lấy dữ liệu.
+   - Cú pháp: MOV [Thanh ghi], [Hằng số]
+   - Ví dụ: 
+     MOV AX, 100    ; Nạp ngay giá trị 100 vào AX.
+     ADD BL, 5      ; Cộng thêm 5 vào BL.
+   - Ưu điểm: Nhanh nhất. Nhược điểm: Giá trị cố định, không linh hoạt.
+
+3. CHẾ ĐỘ ĐỊA CHỈ THANH GHI (REGISTER ADDRESSING)
+   - Đặc điểm: Cả nguồn và đích đều là thanh ghi. CPU chỉ làm việc nội bộ bên trong các thanh ghi.
+   - Cú pháp: MOV [Thanh ghi], [Thanh ghi]
+   - Ví dụ: 
+     MOV AX, BX     ; Sao chép giá trị từ BX sang AX.
+     SUB CX, DX     ; Lấy CX trừ DX.
+   - Lưu ý: Hai thanh ghi phải có cùng kích thước (cùng 8-bit hoặc cùng 16-bit).
+
+4. CHẾ ĐỘ ĐỊA CHỈ TRỰC TIẾP (DIRECT ADDRESSING)
+   - Đặc điểm: Lệnh chứa địa chỉ cụ thể của ô nhớ trong RAM. CPU phải ra RAM để lấy dữ liệu. Thường dùng khi truy cập các biến toàn cục.
+   - Cú pháp: MOV [Thanh ghi], [Địa chỉ hoặc Tên biến]
+   - Ví dụ:
+     MOV AX, [1234] ; Đi đến ô nhớ có địa chỉ 1234, lấy giá trị đưa vào AX.
+     MOV AL, VAR1   ; Lấy giá trị của biến VAR1 đưa vào AL.
+
+5. CHẾ ĐỘ ĐỊA CHỈ GIÁN TIẾP (INDIRECT ADDRESSING)
+   - Đặc điểm: Địa chỉ ô nhớ không viết trực tiếp mà được lưu trong một thanh ghi (thường là BX, SI, DI). Đây chính là khái niệm "Con trỏ" (Pointer).
+   - Cú pháp: MOV [Thanh ghi], [Thanh_ghi_chứa_địa_chỉ]
+   - Ví dụ:
+     MOV BX, 1000   ; BX đang giữ địa chỉ 1000.
+     MOV AX, [BX]   ; CPU đọc BX thấy số 1000 -> ra ô nhớ 1000 lấy dữ liệu -> bỏ vào AX.
+   - Ứng dụng: Dùng để duyệt mảng bằng vòng lặp (tăng BX để trỏ sang phần tử tiếp theo).

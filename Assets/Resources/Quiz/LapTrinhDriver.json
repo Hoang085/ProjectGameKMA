@@ -1,0 +1,305 @@
+{
+  "subjectKey": "LapTrinhDriver",
+  "questions": [
+    {
+      "id": "LTD1",
+      "question": "Driver trong hệ điều hành dùng để làm gì?",
+      "answers": [
+        "Tối ưu mạng",
+        "Kết nối phần mềm với phần cứng",
+        "Tăng tốc CPU"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD2",
+      "question": "Driver trong Linux thường được phát triển dưới dạng nào?",
+      "answers": [
+        "User program",
+        "Kernel module",
+        "Python script"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD3",
+      "question": "Hàm init_module() được dùng để làm gì?",
+      "answers": [
+        "Gỡ driver",
+        "Khởi tạo và nạp driver",
+        "Đọc file cấu hình"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD4",
+      "question": "Hàm cleanup_module() dùng để:",
+      "answers": [
+        "Khởi tạo driver",
+        "Gỡ driver khỏi kernel",
+        "Tạo thiết bị"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD5",
+      "question": "Major number trong device driver xác định:",
+      "answers": [
+        "Kích thước thiết bị",
+        "Driver nào sẽ xử lý thiết bị",
+        "Số lượng module"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD6",
+      "question": "Minor number xác định:",
+      "answers": [
+        "Loại driver",
+        "Thiết bị con cụ thể",
+        "Dung lượng thiết bị"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD7",
+      "question": "Lệnh nào dùng để tạo file thiết bị?",
+      "answers": [
+        "touch",
+        "mknod",
+        "newdev"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD8",
+      "question": "Character driver xử lý dữ liệu theo:",
+      "answers": [
+        "Khối",
+        "Dòng ký tự liên tục",
+        "Gói tin"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD9",
+      "question": "Block driver xử lý dữ liệu theo:",
+      "answers": [
+        "Từng ký tự",
+        "Từng khối dữ liệu",
+        "Theo package"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD10",
+      "question": "File operations trong driver chứa:",
+      "answers": [
+        "Thông tin mạng",
+        "Các hàm open, read, write, release",
+        "Bản vá kernel"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD11",
+      "question": "copy_to_user() dùng để:",
+      "answers": [
+        "Copy từ kernel tới user space",
+        "Copy từ user tới kernel",
+        "Ghi vào ổ đĩa"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTD12",
+      "question": "copy_from_user() dùng để:",
+      "answers": [
+        "Copy dữ liệu từ kernel",
+        "Copy dữ liệu từ user vào kernel",
+        "Xóa bộ nhớ"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD13",
+      "question": "Mutex trong driver dùng để:",
+      "answers": [
+        "Tạo thread",
+        "Đồng bộ truy cập tài nguyên",
+        "Tăng xung nhịp CPU"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD14",
+      "question": "Spinlock trong driver phù hợp khi:",
+      "answers": [
+        "Có sleep",
+        "Không được phép sleep",
+        "Nhiều tiến trình idle"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD15",
+      "question": "interrupt handler (ISR) là:",
+      "answers": [
+        "Hàm xử lý khi có ngắt phần cứng",
+        "Một module",
+        "Một tiến trình"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTD16",
+      "question": "SoftIRQ được dùng khi:",
+      "answers": [
+        "Xử lý nặng cần chia nhỏ sau ISR",
+        "Xử lý I/O nhẹ",
+        "Xử lý giao diện đồ họa"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTD17",
+      "question": "Phần nào của driver chạy trong kernel space?",
+      "answers": [
+        "Application",
+        "Kernel module",
+        "User library"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD18",
+      "question": "Syscall dùng để:",
+      "answers": [
+        "Giao tiếp giữa user space và kernel",
+        "Tải driver",
+        "Ghi log"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTD19",
+      "question": "procfs dùng để:",
+      "answers": [
+        "Lưu dữ liệu tạm",
+        "Hiển thị thông tin kernel cho user space",
+        "Lưu file driver"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD20",
+      "question": "sysfs dùng để:",
+      "answers": [
+        "Quản lý kernel module",
+        "Expose thông tin device theo dạng file",
+        "Tạo tiến trình"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD21",
+      "question": "Lệnh insmod dùng để:",
+      "answers": [
+        "Tạo file",
+        "Nạp driver vào kernel",
+        "Gỡ driver"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD22",
+      "question": "Lệnh rmmod dùng để:",
+      "answers": [
+        "Nạp module",
+        "Gỡ module khỏi kernel",
+        "Xem danh sách module"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD23",
+      "question": "Lệnh modinfo dùng để:",
+      "answers": [
+        "Xem thông tin module",
+        "Biên dịch module",
+        "Xóa module"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "LTD24",
+      "question": "dev_t là kiểu dữ liệu chứa:",
+      "answers": [
+        "PID và UID",
+        "Major và Minor number",
+        "RAM info"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD25",
+      "question": "Platform driver dùng cho loại thiết bị nào?",
+      "answers": [
+        "Thiết bị PCI",
+        "Thiết bị không tự nhận dạng (non-discoverable)",
+        "Card mạng"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD26",
+      "question": "USB driver hoạt động dựa trên:",
+      "answers": [
+        "IRQ độc quyền",
+        "Giao thức USB và enumeration",
+        "Socket"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD27",
+      "question": "PCI driver cần đọc thông tin thiết bị từ:",
+      "answers": [
+        "Network table",
+        "PCI config space",
+        "syslog"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD28",
+      "question": "open() trong character driver được gọi khi:",
+      "answers": [
+        "System boot",
+        "User mở file device",
+        "Driver load"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD29",
+      "question": "read() trong driver dùng để:",
+      "answers": [
+        "Đọc dữ liệu từ ổ cứng",
+        "Đọc dữ liệu từ thiết bị để trả về user space",
+        "Nạp module"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "LTD30",
+      "question": "write() trong driver dùng để:",
+      "answers": [
+        "Copy kernel sang user",
+        "Ghi dữ liệu từ user vào thiết bị",
+        "Khởi tạo driver"
+      ],
+      "correctIndex": 1
+    }
+  ]
+}

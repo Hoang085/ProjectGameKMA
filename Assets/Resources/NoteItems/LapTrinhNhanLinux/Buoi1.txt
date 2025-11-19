@@ -1,0 +1,31 @@
+1. Khái Niệm Cơ Bản
+– Linux Kernel: Phần lõi quản lý tài nguyên hệ thống.
+– Kernel Space vs User Space: Hai vùng thực thi tách biệt.
+– Lập trình Kernel: Viết module mở rộng chức năng nhân.
+– Module Kernel (LKM): Có thể nạp/rút bằng insmod, rmmod.
+
+2. Đặc Điểm & Thách Thức
+– Không có thư viện chuẩn như user-space.
+– Debug khó, lỗi có thể làm treo hệ thống.
+– Yêu cầu hiểu về bộ nhớ, tiến trình, thiết bị.
+– Phát triển dựa vào kernel headers.
+
+3. Thành Phần Chính
+– File mã nguồn module .c.
+– Hàm module_init và module_exit.
+– Makefile kiểu Kbuild.
+– Log kiểm tra bằng dmesg.
+– Giao tiếp qua /proc hoặc /sys.
+
+4. Công Cụ Cần Chuẩn Bị
+– Linux + kernel headers.
+– GCC và Make.
+– Terminal + quyền sudo.
+– Virtual Machine để test.
+
+5. Bài Tập Khởi Động
+– Kiểm tra kernel: uname -r.
+– Cài headers.
+– Tạo module “Hello Kernel”.
+– Nạp/rút module bằng insmod, rmmod.
+– Xem log bằng dmesg.

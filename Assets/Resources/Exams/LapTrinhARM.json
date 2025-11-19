@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 8",
+  "subjectName": "Lập Trình ARM",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Tập lệnh ARM sử dụng kiến trúc nào?",
+      "options": [ "CISC", "RISC", "VLIW", "Hybrid" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Thanh ghi PC trong ARM dùng để:",
+      "options": [ "Lưu dữ liệu tạm thời", "Chỉ địa chỉ lệnh kế tiếp", "Lưu kết quả phép tính", "Điều khiển ngắt" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Thanh ghi LR (Link Register) dùng để:",
+      "options": [ "Lưu giá trị trả về của hàm", "Lưu địa chỉ quay lại khi gọi hàm", "Lưu dữ liệu RAM", "Lưu cờ trạng thái" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Thanh ghi SP (Stack Pointer) dùng để:",
+      "options": [ "Chỉ tới đỉnh stack", "Lưu trạng thái CPU", "Chọn chế độ CPU", "Lưu địa chỉ ngắt" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Thumb mode trong ARM là gì?",
+      "options": [ "Chế độ chạy 64-bit", "Tập lệnh 16-bit", "Chế độ debug", "Chế độ nạp ROM" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh MOV trong ARM dùng để:",
+      "options": [ "Di chuyển dữ liệu giữa 2 thanh ghi", "Gọi hàm", "Sinh ngắt", "Tăng xung CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh LDR dùng để:",
+      "options": [ "Đọc dữ liệu từ bộ nhớ vào thanh ghi", "Ghi vào bộ nhớ", "Nhảy vô điều kiện", "Lưu vào stack" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh STR dùng để:",
+      "options": [ "Lưu dữ liệu từ thanh ghi ra bộ nhớ", "So sánh 2 thanh ghi", "Chia số", "Gọi hàm" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Cờ Z trong CPSR biểu thị:",
+      "options": [ "Kết quả âm", "Kết quả bằng 0", "Kết quả tràn", "Kết quả dương" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Cờ N trong CPSR biểu thị:",
+      "options": [ "Kết quả âm", "Kết quả dương", "Kết quả bằng 0", "Ngắt được bật" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh B trong ARM dùng để:",
+      "options": [ "Cộng số", "Nhảy đến nhãn", "Gọi hàm", "Lặp lại lệnh" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh BL trong ARM dùng để:",
+      "options": [ "Nhảy và ghi địa chỉ quay lại vào LR", "Tạo vòng lặp", "Nhảy vô điều kiện", "Dừng CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Pipeline của ARM giúp:",
+      "options": [ "Giảm mức tiêu thụ RAM", "Tăng hiệu suất xử lý lệnh", "Tăng dung lượng ROM", "Giảm tốc độ CPU" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "ARM hỗ trợ bao nhiêu chế độ CPU?",
+      "options": [ "3", "5", "7", "10" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "IRQ là:",
+      "options": [ "Ngắt thông thường", "Ngắt nhanh", "Ngắt hệ thống", "Chế độ boot" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "FIQ là:",
+      "options": [ "Ngắt chậm", "Ngắt nhanh với mức ưu tiên cao", "Ngắt debug", "Lệnh nhảy nhanh" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh PUSH trong ARM dùng để:",
+      "options": [ "Lưu thanh ghi vào stack", "Lưu vào RAM", "Gọi hàm", "Nhảy đến địa chỉ" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lệnh POP dùng để:",
+      "options": [ "Lấy dữ liệu từ stack", "Ghi vào stack", "Tạo ngắt", "Reset CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Bus AMBA gồm các chuẩn phổ biến nào?",
+      "options": [ "SPI, I2C", "AHB, APB", "PCI, PCIe", "MIPI, CSI" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh CMP dùng để:",
+      "options": [ "So sánh 2 giá trị", "Cộng số", "Nhảy đến nhãn", "Đọc RAM" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Cortex-M thuộc loại bộ xử lý nào?",
+      "options": [ "ARM ứng dụng", "ARM vi điều khiển", "ARM server", "ARM GPU" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "NVIC trong ARM Cortex-M dùng để:",
+      "options": [ "Quản lý ngắt", "Tăng xung CPU", "Nạp chương trình", "Quản lý PWM" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Flash memory trên vi điều khiển ARM dùng để:",
+      "options": [ "Lưu chương trình", "Lưu biến tạm", "Cache CPU", "Stack" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "SRAM trên ARM dùng để:",
+      "options": [ "Lưu chương trình", "Lưu biến, stack, heap", "Lưu data ROM", "Lưu bootloader" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Bootloader trên ARM có nhiệm vụ:",
+      "options": [ "Chạy hệ điều hành", "Nạp chương trình vào flash và khởi chạy ứng dụng", "Quản lý ngắt", "Xử lý đồ họa" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Cờ C trong CPSR biểu thị:",
+      "options": [ "Carry (nhớ)", "Zero", "Overflow", "Negative" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Overflow xảy ra khi:",
+      "options": [ "Phép tính vượt khả năng biểu diễn", "RAM đầy", "Flash đầy", "Không có ngắt" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Bit enable của ngoại vi trong ARM thường được điều khiển qua:",
+      "options": [ "GPIO", "Clock gating trong RCC", "DMA", "NVIC" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "DMA trong ARM dùng để:",
+      "options": [ "Giao tiếp UART", "Truyền dữ liệu không qua CPU", "Tăng xung nhịp", "Tạo ngắt" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "GPIO trong ARM viết tắt của:",
+      "options": [ "General Purpose Input/Output", "General Program IO", "Global Peripheral IO", "Generic Power IO" ],
+      "correctIndex": 0
+    }
+  ]
+}

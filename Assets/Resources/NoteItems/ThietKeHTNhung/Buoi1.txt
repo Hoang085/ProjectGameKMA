@@ -1,0 +1,32 @@
+1. KHÁI NIỆM HỆ THỐNG NHÚNG
+- Hệ thống nhúng là hệ thống máy tính chuyên dụng được tích hợp vào thiết bị để thực hiện một nhiệm vụ cụ thể.
+- Hệ thống nhúng thường hoạt động trong thời gian thực và có yêu cầu cao về độ ổn định.
+- Được ứng dụng trong điện tử tiêu dùng, công nghiệp, ô tô, y tế, IoT…
+
+2. ĐẶC ĐIỂM CỦA HỆ THỐNG NHÚNG
+- Kích thước nhỏ gọn và tiêu thụ năng lượng thấp.
+- Tối ưu cho một nhiệm vụ cụ thể thay vì đa nhiệm.
+- Yêu cầu hoạt động liên tục, độ tin cậy cao.
+- Tích hợp chặt chẽ giữa phần cứng và phần mềm.
+- Thường dùng vi điều khiển hoặc vi xử lý chuyên dụng.
+
+3. THÀNH PHẦN CƠ BẢN
+- Bộ xử lý (MCU hoặc MPU).
+- Bộ nhớ RAM, ROM/Flash.
+- Cảm biến để thu thập dữ liệu từ môi trường.
+- Thiết bị chấp hành như LED, động cơ, relay.
+- Giao tiếp I/O như UART, SPI, I2C, ADC, PWM.
+
+4. VAI TRÒ CỦA PHẦN MỀM NHÚNG
+- Điều khiển phần cứng theo yêu cầu của hệ thống.
+- Xử lý tín hiệu từ cảm biến.
+- Quản lý thời gian thực và luồng dữ liệu.
+- Giao tiếp với thiết bị ngoại vi.
+- Đảm bảo hệ thống hoạt động ổn định và an toàn.
+
+5. ỨNG DỤNG CỦA HỆ THỐNG NHÚNG
+- Điện thoại thông minh, TV, router, smartwatch.
+- Thiết bị IoT như cảm biến thông minh, khóa cửa thông minh.
+- Robot, máy bay không người lái, thiết bị điều khiển công nghiệp.
+- Ô tô hiện đại với ECU, ABS, hệ thống cảm biến.
+- Thiết bị y tế: máy đo nhịp tim, máy bơm insulin.

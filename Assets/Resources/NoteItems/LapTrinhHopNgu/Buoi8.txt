@@ -1,0 +1,59 @@
+1. KHÁI NIỆM NGẮT (INTERRUPT)
+   - Định nghĩa: Là tín hiệu báo cho CPU tạm dừng công việc hiện tại để chuyển sang thực hiện một nhiệm vụ ưu tiên khác (gọi là Trình phục vụ ngắt - ISR).
+   - Phân loại:
+     + Ngắt cứng: Do thiết bị phần cứng gửi (VD: Bấm bàn phím, chuột di chuyển).
+     + Ngắt mềm: Do lập trình viên gọi bằng lệnh trong code để nhờ hệ điều hành làm giúp việc gì đó.
+
+2. LỆNH INT (SOFTWARE INTERRUPT)
+   - Cú pháp: INT [Số_hiệu_ngắt]
+   - Phổ biến nhất trong Lập trình Hợp ngữ 16-bit (DOS) là: INT 21h.
+   - Cơ chế hoạt động "Chìa khóa - Ổ khóa":
+     + INT 21h là "Ổ khóa" (Cánh cửa vào các dịch vụ của DOS).
+     + Thanh ghi AH là nơi bạn chọn "Chìa khóa" (Chọn hàm chức năng cụ thể).
+
+3. CÁCH SỬ DỤNG INT 21H (QUY TRÌNH 3 BƯỚC)
+   - Bước 1: Chọn chức năng (Nạp số hiệu hàm vào thanh ghi AH).
+   - Bước 2: Chuẩn bị dữ liệu (Nạp các tham số vào các thanh ghi khác như DX, DL... tùy theo yêu cầu của hàm đó).
+   - Bước 3: Gọi lệnh INT 21h để thực thi.
+
+4. CÁC HÀM QUAN TRỌNG CẦN THUỘC LÒNG (CỦA INT 21H)
+   a. In một ký tự ra màn hình (Hàm 02h):
+      - MOV AH, 02h
+      - MOV DL, 'A'   ; Ký tự cần in để trong DL
+      - INT 21h
+
+   b. In một chuỗi ký tự (Hàm 09h):
+      - MOV AH, 09h
+      - MOV DX, OFFSET TEN_CHUOI ; Địa chỉ chuỗi để trong DX
+      - INT 21h
+      - Lưu ý: Chuỗi trong bộ nhớ PHẢI kết thúc bằng dấu '$'.
+
+   c. Nhập một ký tự từ bàn phím (Hàm 01h):
+      - MOV AH, 01h
+      - INT 21h
+      - Kết quả: Ký tự vừa nhập sẽ được lưu vào thanh ghi AL.
+
+   d. Thoát chương trình về DOS (Hàm 4Ch):
+      - MOV AH, 4Ch
+      - INT 21h
+      - (Bắt buộc phải có ở cuối mọi chương trình để tránh bị treo máy).
+
+5. VÍ DỤ TỔNG HỢP: CHƯƠNG TRÌNH "HELLO WORLD"
+   .DATA
+       MSG DB 'Hello World!$'  ; Khai báo chuỗi, nhớ dấu $ ở cuối
+   .CODE
+   MAIN PROC
+       ; 1. Khởi tạo DS (bắt buộc khi dùng dữ liệu)
+       MOV AX, @DATA
+       MOV DS, AX
+
+       ; 2. In chuỗi
+       MOV AH, 09h      ; Chọn chức năng in chuỗi
+       LEA DX, MSG      ; Lấy địa chỉ biến MSG đưa vào DX
+       INT 21h          ; Gọi ngắt
+
+       ; 3. Thoát chương trình
+       MOV AH, 4Ch
+       INT 21h
+   MAIN ENDP
+   END MAIN

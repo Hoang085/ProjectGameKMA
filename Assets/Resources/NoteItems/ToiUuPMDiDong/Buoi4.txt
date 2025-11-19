@@ -1,0 +1,32 @@
+1. Vì Sao Mạng Là Bottleneck Lớn Nhất?
+– API chậm → UI đứng.
+– Gửi/nhận quá nhiều dữ liệu → tốn pin & data 4G/5G.
+– Request lặp lại không cần thiết → nghẽn server.
+– Tối ưu mạng giúp app nhanh hơn gấp nhiều lần.
+
+2. Tối Ưu Request
+– Gộp nhiều request thành 1 request nếu có thể.
+– Tránh gọi API liên tục mỗi lần mở màn hình.
+– Cache dữ liệu (Room/LocalStorage) → tránh gọi lại.
+– Dùng retry hợp lý (exponential backoff).
+
+3. Tối Ưu Response
+– Giảm kích thước JSON → xoá field thừa.
+– Dùng định dạng hiệu quả hơn:
+– Protobuf
+– MsgPack
+– GZIP
+– Chỉ map các trường cần thiết vào model.
+
+4. Tối Ưu Ảnh & Media Qua Mạng
+– Resize ảnh từ server trước khi client tải.
+– Dùng CDN để tăng tốc độ.
+– Nén ảnh WebP/JPEG80.
+– Tải ảnh theo từng trang (pagination, lazy load).
+
+5. Tránh Block UI Khi Gọi API
+– Luôn dùng:
+– Coroutine (Android)
+– Async/Await (iOS)
+– Không dùng blocking I/O trên main thread.
+– Hiển thị loading hợp lý (shimmer, skeleton).

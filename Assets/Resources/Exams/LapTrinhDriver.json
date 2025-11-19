@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 8",
+  "subjectName": "Lập Trình Driver",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Driver trong hệ điều hành dùng để làm gì?",
+      "options": [ "Tối ưu mạng", "Kết nối phần mềm với phần cứng", "Tăng tốc CPU", "Quản lý RAM" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Driver trong Linux thường được phát triển dưới dạng nào?",
+      "options": [ "User program", "Shell script", "Kernel module", "Python script" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Hàm init_module() được dùng để làm gì?",
+      "options": [ "Gỡ driver", "Khởi tạo và nạp driver", "Đọc file cấu hình", "Khởi động CPU" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Hàm cleanup_module() dùng để:",
+      "options": [ "Khởi tạo driver", "Gỡ driver khỏi kernel", "Tạo thiết bị", "Ghi dữ liệu" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Major number trong device driver xác định:",
+      "options": [ "Kích thước thiết bị", "Driver nào sẽ xử lý thiết bị", "Số lượng module", "Phiên bản kernel" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Minor number xác định:",
+      "options": [ "Loại driver", "Thiết bị con cụ thể", "Dung lượng thiết bị", "Kích thước bộ nhớ" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh nào dùng để tạo file thiết bị?",
+      "options": [ "touch", "mkfile", "mknod", "newdev" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Character driver xử lý dữ liệu theo:",
+      "options": [ "Khối", "Dòng ký tự liên tục", "Giao thức mạng", "Gói tin" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Block driver xử lý dữ liệu theo:",
+      "options": [ "Từng ký tự", "Từng bit", "Từng khối dữ liệu", "Theo package" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "File operations trong driver chứa:",
+      "options": [ "Thông tin mạng", "Các hàm open, read, write, release", "Bản vá kernel", "Hàm khởi tạo thiết bị" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "copy_to_user() dùng để:",
+      "options": [ "Copy từ kernel tới user space", "Copy từ user tới kernel", "Ghi vào ổ đĩa", "Tạo module" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "copy_from_user() dùng để:",
+      "options": [ "Copy dữ liệu từ kernel", "Copy dữ liệu từ user vào kernel", "Xóa bộ nhớ", "Lưu file driver" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Mutex trong driver dùng để:",
+      "options": [ "Tạo thread", "Đồng bộ truy cập tài nguyên", "Tăng xung nhịp CPU", "Quản lý mạng" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Spinlock trong driver phù hợp khi:",
+      "options": [ "Có sleep", "Không được phép sleep", "Nhiều tiến trình idle", "I/O chậm" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "interrupt handler (ISR) là:",
+      "options": [ "Hàm xử lý khi có ngắt phần cứng", "Một module", "Một tiến trình", "Một syscall mới" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "SoftIRQ được dùng khi:",
+      "options": [ "Xử lý nặng cần chia nhỏ sau ISR", "Xử lý I/O nhẹ", "Xử lý giao diện đồ họa", "Khởi động lại kernel" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Phần nào của driver chạy trong kernel space?",
+      "options": [ "Application", "Shell", "Kernel module", "User library" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Syscall dùng để:",
+      "options": [ "Giao tiếp giữa user space và kernel", "Tải driver", "Ghi log", "Quét bộ nhớ" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "procfs dùng để:",
+      "options": [ "Lưu dữ liệu tạm", "Hiển thị thông tin kernel cho user space", "Lưu file driver", "Quản lý RAM" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "sysfs dùng để:",
+      "options": [ "Quản lý kernel module", "Expose thông tin device theo dạng file", "Tạo tiến trình", "Tăng tốc driver" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh insmod dùng để:",
+      "options": [ "Tạo file", "Nạp driver vào kernel", "Gỡ driver", "Xem log" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh rmmod dùng để:",
+      "options": [ "Nạp module", "Gỡ module khỏi kernel", "Xem danh sách module", "Tạo module" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lệnh modinfo dùng để:",
+      "options": [ "Xem thông tin module", "Biên dịch module", "Xóa module", "Chỉnh sửa module" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "dev_t là kiểu dữ liệu chứa:",
+      "options": [ "PID và UID", "Major và Minor number", "RAM info", "CPU info" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Platform driver dùng cho loại thiết bị nào?",
+      "options": [ "Thiết bị PCI", "USB Storage", "Thiết bị không tự nhận dạng (non-discoverable)", "Card mạng" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "USB driver hoạt động dựa trên:",
+      "options": [ "IRQ độc quyền", "Giao thức USB và enumeration", "Socket", "DMA-only" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "PCI driver cần đọc thông tin thiết bị từ:",
+      "options": [ "Network table", "PCI config space", "syslog", "Kernel timer" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "open() trong character driver được gọi khi:",
+      "options": [ "System boot", "User mở file device", "Driver load", "Shutdown" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "read() trong driver dùng để:",
+      "options": [ "Đọc dữ liệu từ ổ cứng", "Đọc dữ liệu từ thiết bị để trả về user space", "Nạp module", "Xóa file" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "write() trong driver dùng để:",
+      "options": [ "Copy kernel sang user", "Ghi dữ liệu từ user vào thiết bị", "Khởi tạo driver", "Tạo major number" ],
+      "correctIndex": 1
+    }
+  ]
+}

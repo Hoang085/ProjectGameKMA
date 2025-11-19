@@ -1,0 +1,29 @@
+1. Nhóm Lệnh Dịch Chuyển Dữ Liệu
+– MOV: copy giá trị giữa các thanh ghi.
+– LDR: tải dữ liệu từ RAM vào thanh ghi.
+– STR: lưu dữ liệu từ thanh ghi xuống RAM.
+– LDRB/STRB: thao tác với byte.
+
+2. Nhóm Lệnh Tính Toán
+– ADD, SUB: cộng, trừ.
+– MUL: nhân.
+– AND, ORR, EOR: thao tác logic.
+– CMP: so sánh hai thanh ghi (cập nhật flag trong CPSR).
+
+3. Nhóm Lệnh Rẽ Nhánh
+– B label: nhảy không điều kiện.
+– BL label: nhảy kèm lưu địa chỉ trở về vào LR.
+– BX reg: nhảy theo giá trị trong thanh ghi (dùng để thoát khỏi hàm).
+– Nhảy có điều kiện: BEQ, BNE, BGT, BLT, BGE, BLE dựa trên CPSR.
+
+4. Nhóm Lệnh Dịch Bit & Rotate
+– LSL: shift trái.
+– LSR: shift phải logic.
+– ASR: shift phải số học.
+– ROR: xoay bit sang phải.
+– Thường dùng để xử lý bit, mask, tính toán nhanh.
+
+5. Gọi Hàm & Stack
+– BL gọi hàm (lưu địa chỉ vào LR).
+– Dùng PUSH {reg} / POP {reg} để bảo toàn thanh ghi.
+– Trở về bằng BX LR.

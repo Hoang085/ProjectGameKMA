@@ -1,0 +1,24 @@
+1. USB Driver Là Gì?
+– Driver cho thiết bị giao tiếp qua bus USB.
+– Kernel tự động dò thiết bị khi cắm vào.
+– Driver được gắn theo Vendor ID (VID) và Product ID (PID).
+
+2. Cấu Trúc USB Driver
+– Định nghĩa bảng thiết bị hỗ trợ: usb_device_id.
+– Hàm probe() → gọi khi thiết bị USB phù hợp được cắm vào.
+– Hàm disconnect() → gọi khi rút USB.
+
+3. Đăng Ký USB Driver
+– Dùng usb_register() để đăng ký.
+– Dùng usb_deregister() khi unload.
+– Kernel tự động quản lý theo VID/PID.
+
+4. Giao Tiếp Với Thiết Bị USB
+– Dùng URB (USB Request Block) để gửi/nhận dữ liệu.
+– Có 4 kiểu truyền: Control, Bulk, Interrupt, Isochronous.
+– Driver chọn kiểu phù hợp tuỳ loại thiết bị.
+
+5. Xử Lý Dữ Liệu
+– Gửi dữ liệu bằng usb_bulk_msg() hoặc URB async.
+– Nhận dữ liệu từ endpoint của USB device.
+– Kiểm tra lỗi: timeout, stall, disconnect.

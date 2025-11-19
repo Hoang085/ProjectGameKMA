@@ -1,0 +1,47 @@
+1. SQLite Là Gì?
+– Hệ quản trị cơ sở dữ liệu nhúng trong Android.
+– Lưu trữ dữ liệu dạng bảng ngay trên thiết bị.
+– Dùng cho ứng dụng offline, ghi nhớ thông tin cục bộ.
+
+2. Nhược Điểm Khi Dùng SQLite Thuần
+– Viết SQL thủ công.
+– Dễ lỗi khi thiếu cột, sai kiểu dữ liệu.
+– Khó bảo trì khi ứng dụng lớn.
+
+→ Vì vậy Google khuyến nghị dùng Room.
+
+3. Room Database Là Gì?
+– ORM chính thức của Android.
+– Tự động tạo SQLite bên dưới nhưng dễ dùng hơn.
+– Gồm 3 phần:
+– Entity: mô tả bảng.
+– DAO: chứa hàm truy vấn.
+– Database: quản lý cơ sở dữ liệu.
+
+4. Ví Dụ Entity & DAO
+Entity:
+@Entity
+data class User(
+    @PrimaryKey val id: Int,
+    val name: String
+)
+DAO:
+@Dao
+interface UserDao {
+    @Query("SELECT * FROM User")
+    fun getAll(): List<User>
+    @Insert
+    fun insert(user: User)
+}
+
+5. Tạo Database
+@Database(entities = [User::class], version = 1)
+abstract class AppDB : RoomDatabase() {
+    abstract fun userDao(): UserDao
+}
+Khởi tạo:
+val db = Room.databaseBuilder(
+    context,
+    AppDB::class.java,
+    "app.db"
+).build()

@@ -1,0 +1,32 @@
+1. Quy Trình Tối Ưu Hoàn Chỉnh
+– Xác định bottleneck: CPU, RAM, Flash hay năng lượng.
+– Dùng đo đạc thực tế (GPIO toggle, profiler, logic analyzer).
+– Chỉ tối ưu khi cần, tránh over-optimization.
+
+2. Tối Ưu Theo Từng Tầng
+Tầng code:
+– Giảm phép tính nặng, tránh float, dùng bitwise.
+Tầng kiến trúc:
+– State machine, giảm polling, ưu tiên interrupt.
+Tầng driver:
+– DMA, double-buffer, tăng tốc UART/I2C/SPI.
+Tầng hệ thống:
+– Config RTOS hợp lý, giảm task & stack.
+
+3. Checklist Tối Ưu Chung
+– RAM dưới mức cảnh báo (<80%).
+– Flash còn đủ cho OTA (nếu dùng).
+– CPU load <70% khi chạy full tính năng.
+– ISR ngắn <50 µs (tuỳ MCU).
+– Truyền thông ổn định, không miss dữ liệu.
+
+4. Kỹ Thuật Giảm Crash & Treo
+– Dùng watchdog để reset khi lỗi.
+– Validate dữ liệu trước khi dùng.
+– Tránh malloc/free liên tục → dùng memory pool.
+– Kiểm tra overflow trong buffer & queue.
+
+5. Kiểm Tra Năng Lượng & Thời Gian
+– Đo dòng tiêu thụ ở sleep/full load.
+– Dùng timer hoặc oscilloscope đo timing thuật toán.
+– Kiểm tra độ trễ của từng module (latency test).

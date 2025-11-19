@@ -1,0 +1,29 @@
+1. DMA Là Gì?
+– Phần cứng cho phép truyền dữ liệu trực tiếp giữa RAM ↔ ngoại vi.
+– Không cần CPU xử lý từng byte → giảm tải rất lớn.
+– Dùng trong UART, SPI, ADC, I2C, Memory copy.
+
+2. Ưu Điểm Của DMA
+– Tăng tốc độ truyền dữ liệu.
+– Giảm sử dụng CPU (CPU làm việc khác).
+– Ổn định hơn so với polling hoặc interrupt liên tục.
+
+3. Cách Hoạt Động Cơ Bản
+– Cấu hình nguồn (SRC) và đích (DST).
+– Chọn số lượng dữ liệu (length).
+– Chọn kiểu tăng địa chỉ: tăng hoặc cố định.
+– Kích hoạt DMA channel → tự động chạy.
+– Gửi interrupt khi hoàn thành.
+
+4. DMA Trong ARM Cortex-M
+– Mỗi ngoại vi có thể gắn với 1 kênh DMA tương ứng (DMA1, DMA2…).
+– Dùng cho:
+– UART RX/TX liên tục
+– SPI tốc độ cao
+– ADC sampling nhanh
+– Truyền block dữ liệu lớn
+
+5. Các Kiểu Transfer
+– Memory → Peripheral (ví dụ: gửi UART).
+– Peripheral → Memory (nhận UART hoặc ADC).
+– Memory → Memory (copy nhanh).

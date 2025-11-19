@@ -1,0 +1,33 @@
+1. Vì Sao Cần Tối Ưu Ứng Dụng Đa Nền Tảng?
+– Flutter, React Native, Xamarin… giúp tăng tốc phát triển.
+– Nhưng hiệu năng không tối ưu như native nếu cấu trúc sai.
+– Tối ưu đúng cách giúp app đa nền tảng mượt như native.
+
+2. Các Vấn Đề Thường Gặp
+– UI redraw quá nhiều (Flutter rebuilding, RN re-render).
+– Bridge giữa JS ↔ Native quá nhiều lần (React Native).
+– Plugin bên thứ 3 nặng hoặc không tối ưu.
+– Asset lớn → tăng kích thước app.
+
+3. Tối Ưu Flutter
+– Dùng const widget để tránh rebuild.
+– Ít setState, chuyển sang:
+– Provider
+– Bloc
+– Riverpod
+– Giảm số lượng widget cây lồng nhau.
+– Dùng RepaintBoundary khi cần ngăn việc redraw toàn bộ.
+
+4. Tối Ưu React Native
+– Giảm số lần render bằng memoization:
+– React.memo
+– useCallback, useMemo
+– Giảm gọi API qua JS bridge.
+– Dùng FlatList thay ListView.
+– Hạn chế các module native không cần thiết.
+
+5. Tối Ưu Kích Thước App Cross-Platform
+– Chuyển ảnh → WebP / SVG / vector.
+– Xóa plugin không sử dụng.
+– Tách asset theo nền tảng Android/iOS.
+– Sử dụng code splitting cho bundle JS (RN).

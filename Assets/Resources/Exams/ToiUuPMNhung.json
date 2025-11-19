@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 9",
+  "subjectName": "Tối Ưu Phần Mềm Nhúng",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Mục tiêu chính của tối ưu phần mềm nhúng là gì?",
+      "options": [ "Giảm kích thước mã và tăng hiệu suất", "Giảm tốc độ CPU", "Tăng dung lượng RAM", "Tự động cập nhật firmware" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Trong hệ thống nhúng, yếu tố nào thường bị hạn chế nhất?",
+      "options": [ "CPU, RAM và bộ nhớ", "Đồ họa", "Ổ cứng", "Mạng LAN" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tối ưu vòng lặp (loop optimization) nhằm mục đích:",
+      "options": [ "Giảm số lần lặp và số lệnh thực thi", "Tăng số vòng lặp", "Tăng tiêu thụ năng lượng", "Làm code dài hơn" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Inlining function giúp:",
+      "options": [ "Giảm overhead gọi hàm", "Tăng bộ nhớ RAM", "Giảm hiệu suất CPU", "Giảm tốc độ xử lý" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Việc dùng biến volatile nhằm:",
+      "options": [ "Tối ưu tốc độ", "Không tối ưu gì, chỉ tránh lỗi tối ưu hóa của compiler", "Giảm RAM", "Tắt ngắt" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "DMA giúp giảm tải CPU bằng cách:",
+      "options": [ "Tự truyền dữ liệu không qua CPU", "Tăng tốc xung nhịp", "Xử lý đồ họa", "Nén dữ liệu" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Interrupt (ngắt) giúp tối ưu gì?",
+      "options": [ "Phản ứng nhanh với sự kiện thay vì polling liên tục", "Làm CPU chạy chậm", "Tăng RAM", "Giảm khả năng đáp ứng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Polling liên tục gây:",
+      "options": [ "Tốn CPU", "Giảm tiêu thụ điện", "Tối ưu năng lượng", "Tăng băng thông mạng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Code tối ưu cần tránh điều gì?",
+      "options": [ "Nhánh điều kiện phức tạp", "Vòng lặp đơn giản", "Sử dụng biến cục bộ", "Dùng timer" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tối ưu bộ nhớ stack giúp:",
+      "options": [ "Giảm nguy cơ tràn stack", "Tăng độ trễ CPU", "Tăng dung lượng flash", "Giảm tốc độ xử lý" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Khi tối ưu mức tiêu thụ năng lượng vi điều khiển, ta cần:",
+      "options": [ "Dùng sleep mode", "Luôn chạy full speed", "Tắt watchdog", "Tăng kích thước file" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Compiler optimization level -O2 thường dùng nhằm:",
+      "options": [ "Tối ưu hiệu năng cân bằng với kích thước", "-O0 nhanh nhất", "Tăng dung lượng mã tối đa", "Tắt debug" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Lookup table giúp tối ưu bằng cách:",
+      "options": [ "Thay tính toán phức tạp bằng tra cứu nhanh", "Tăng RAM", "Tăng số chu kỳ CPU", "Tăng độ trễ" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Cắt giảm số phép nhân, chia trong xử lý số giúp tối ưu vì:",
+      "options": [ "Nhân và chia rất tốn chu kỳ CPU", "Chia nhanh hơn cộng", "CPU không hỗ trợ cộng", "RAM giảm xuống" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tối ưu đường truyền I/O chủ yếu nhằm:",
+      "options": [ "Giảm độ trễ I/O", "Giảm kích thước CPU", "Tăng điện áp", "Tăng ROM" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Sử dụng fixed-point thay vì floating-point giúp:",
+      "options": [ "Tăng tốc xử lý đáng kể trên MCU không có FPU", "Giảm độ chính xác xuống 0", "Tăng kích thước code", "Không có lợi ích" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Cache locality giúp tối ưu vì:",
+      "options": [ "CPU đọc bộ nhớ liên tục ở vùng gần nhau nhanh hơn", "Giảm RAM", "Giảm flash", "Tăng độ trễ" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Branch prediction (dự đoán nhánh) ảnh hưởng đến:",
+      "options": [ "Tốc độ xử lý khi có if - else", "Dung lượng flash", "Mạch nguồn", "Kích thước thanh ghi" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tối ưu pipeline phụ thuộc vào:",
+      "options": [ "Giảm hazard và tránh nhảy lệnh thường xuyên", "Giảm RAM", "Tắt timer", "Giảm tốc CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Unrolling loop giúp:",
+      "options": [ "Giảm số lần kiểm tra điều kiện", "Tăng số vòng lặp", "Giảm tốc CPU", "Giảm hiệu suất" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Dead code elimination giúp:",
+      "options": [ "Xóa mã không bao giờ chạy", "Tăng flash", "Tăng điện năng", "Giảm hiệu suất compiler" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Khi tối ưu stack, nên tránh:",
+      "options": [ "Mảng lớn trên stack", "Biến nhỏ", "Con trỏ", "Struct nhỏ" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tối ưu phần mềm nhúng thường chú trọng nhất vào:",
+      "options": [ "Timing, Memory, Power", "Đồ họa 3D", "Game Engine", "Cloud API" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Công cụ profiler giúp:",
+      "options": [ "Đo thời gian chạy của từng đoạn code", "Tăng xung CPU", "Gỡ lỗi phần cứng", "Nén lại file bin" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Memory fragmentation là:",
+      "options": [ "Bộ nhớ bị chia nhỏ dẫn đến không cấp phát được liên tục", "RAM bị xóa sạch", "CPU quá tải", "Flash bị hỏng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Double buffering dùng để:",
+      "options": [ "Giảm nhấp nháy khi xử lý hiển thị", "Tăng băng thông mạng", "Làm CPU chạy chậm hơn", "Giảm dung lượng flash" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Watchdog timer dùng để:",
+      "options": [ "Reset hệ thống khi phần mềm treo", "Tối ưu bộ nhớ", "Tối ưu hiển thị", "Chơi nhạc" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Trong tối ưu năng lượng, kỹ thuật quan trọng nhất là:",
+      "options": [ "Giảm thời gian CPU active", "Chạy full speed liên tục", "Dùng nhiều interrupt hơn polling", "Giảm dung lượng flash" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Việc tối ưu dùng interrupt thay polling giúp:",
+      "options": [ "Giảm đáng kể tiêu thụ điện và tăng responsivity", "Giảm băng thông mạng", "Giảm độ chính xác", "Làm code khó chạy" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tối ưu code C trong nhúng thường cần hạn chế:",
+      "options": [ "Đệ quy", "Vòng lặp for", "Switch-case", "Struct" ],
+      "correctIndex": 0
+    }
+  ]
+}

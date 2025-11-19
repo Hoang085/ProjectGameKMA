@@ -1,0 +1,27 @@
+1. Vì Sao Startup Chậm Là Vấn Đề Lớn?
+– Người dùng rời app nếu mở > 3 giây.
+– App bị đánh giá xấu trên Store.
+– Hệ thống có thể kill app nếu block main thread quá lâu.
+
+2. Các Nguyên Nhân Làm App Khởi Động Chậm
+– Quá nhiều code chạy trong Application.onCreate().
+– Load hình ảnh lớn, file JSON nặng lúc startup.
+– Tạo object, View, hoặc database quá sớm.
+– Khởi tạo nhiều SDK cùng lúc.
+
+3. Tối Ưu Application & Initializer
+– Chỉ khởi tạo SDK thật sự cần ngay.
+– Dời các SDK phụ sang background thread.
+– Dùng App Startup Library (Android) để quản lý initializer.
+– Tránh chạy logic nặng trong constructor.
+
+4. Tối Ưu Main Thread
+– Không đọc file lớn trong main thread.
+– Không truy vấn database lúc mở app.
+– Không inflate layout phức tạp quá sớm.
+– Tách logic sang coroutine Dispatchers.IO.
+
+5. SplashScreen Tối Ưu
+– Dùng splash nhẹ, đơn giản.
+– Không để splash kéo dài để che giấu startup chậm.
+– Chỉ dùng để tạo cảm giác mượt, không xử lý nặng trong splash.

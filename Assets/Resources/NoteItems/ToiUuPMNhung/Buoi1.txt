@@ -1,0 +1,29 @@
+1. Phần Mềm Nhúng Là Gì?
+– Chạy trực tiếp trên vi điều khiển hoặc SoC.
+– Tài nguyên hạn chế: RAM ít, Flash ít, CPU yếu.
+– Yêu cầu realtime, ổn định, tiêu thụ điện thấp.
+
+2. Vì Sao Cần Tối Ưu?
+– Cải thiện tốc độ xử lý.
+– Giảm tiêu thụ RAM/Flash.
+– Kéo dài tuổi thọ pin.
+– Tăng độ ổn định khi chạy 24/7.
+
+3. Các Mảng Tối Ưu Quan Trọng
+– Tối ưu tốc độ (execution time).
+– Tối ưu RAM.
+– Tối ưu Flash.
+– Tối ưu mức tiêu thụ năng lượng.
+– Tối ưu kiến trúc & luồng xử lý.
+
+4. Công Cụ Hỗ Trợ Tối Ưu
+– Compiler optimization flags (O1/O2/O3).
+– Static Analyzer: Cppcheck, clang-tidy.
+– Profiler: đo thời gian chạy của từng hàm.
+– Logic Analyzer / Oscilloscope để đo timing thực tế.
+
+5. Lỗi Thường Gặp Trong Phần Mềm Nhúng
+– Vòng lặp nặng chạy liên tục → ngốn CPU.
+– Biến global quá nhiều → tốn RAM.
+– Không tắt ngoại vi không dùng → hao pin.
+– ISR quá dài → gây trễ nhiệm vụ chính.

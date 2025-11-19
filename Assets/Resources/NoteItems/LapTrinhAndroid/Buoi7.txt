@@ -1,0 +1,28 @@
+1. Retrofit Là Gì?
+– Thư viện mạnh nhất để gọi API trong Android.
+– Chuyển JSON ↔ Object tự động (nhờ Gson/Moshi).
+– Dễ dùng, dễ bảo trì, hỗ trợ async.
+
+2. Cách Retrofit Hoạt Động
+– Khai báo interface chứa API.
+– Retrofit tự build client HTTP (dựa trên OkHttp).
+– Trả về dữ liệu dạng object hoặc list.
+
+3. Khai Báo API Interface
+interface ApiService {
+    @GET("users")
+    suspend fun getUsers(): List<User>
+}
+
+4. Tạo Retrofit Instance
+val retrofit = Retrofit.Builder()
+    .baseUrl("https://example.com/api/")
+    .addConverterFactory(GsonConverterFactory.create())
+    .build()
+val api = retrofit.create(ApiService::class.java)
+
+5. Gọi API Trong Coroutine
+lifecycleScope.launch {
+    val data = api.getUsers()
+    // cập nhật UI
+}

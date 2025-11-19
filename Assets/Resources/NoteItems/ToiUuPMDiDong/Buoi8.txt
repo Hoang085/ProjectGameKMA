@@ -1,0 +1,29 @@
+1. Vì Sao App Hao Pin?
+– CPU chạy liên tục trong nền.
+– Gọi API nhiều lần không cần thiết.
+– GPS, Bluetooth, WiFi bật quá lâu.
+– WakeLock giữ CPU không ngủ được.
+– Gửi notification/push quá nhiều.
+
+2. Tối Ưu CPU & Background Work
+– Dùng WorkManager cho tác vụ nền.
+– Gom nhiều công việc lại 1 lần chạy thay vì rải rác.
+– Tránh chạy timer liên tục mỗi vài giây.
+– Tắt dịch vụ nền khi không cần.
+
+3. Tối Ưu Mạng Cho Tiết Kiệm Pin
+– Gửi dữ liệu theo batch thay vì gửi liên tục.
+– Dùng cache để giảm số request.
+– Hạn chế retry liên tục khi mất mạng.
+– Dùng WebSocket chỉ khi thực sự cần realtime.
+
+4. Tối Ưu GPS & Location
+– Không bật GPS liên tục.
+– Lấy vị trí theo khoảng thời gian hợp lý (1–10 phút).
+– Dùng API fused location để giảm mức tiêu thụ.
+– Tắt location khi người dùng không còn dùng màn hình đó.
+
+5. WakeLock – Thủ Phạm Hao Pin
+– Tránh giữ wakelock quá lâu.
+– Giải phóng wakelock ngay sau khi xong việc.
+– Chỉ dùng PARTIAL_WAKE_LOCK khi thực sự phải giữ CPU thức.

@@ -1,0 +1,30 @@
+1. PWM Là Gì?
+– Tín hiệu xung vuông có thể thay đổi độ rộng xung (duty cycle).
+– Dùng để điều khiển độ sáng LED, tốc độ motor, servo, âm thanh…
+– Tạo ra bằng timer có chức năng PWM.
+
+2. Tham Số PWM Quan Trọng
+– Tần số (Frequency): số chu kỳ mỗi giây.
+– Duty cycle (%): phần trăm thời gian xung mức cao.
+– ARR (Auto-reload): xác định chu kỳ PWM.
+– CCR (Compare): xác định độ rộng xung.
+
+3. Cách PWM Hoạt Động
+– Timer đếm từ 0 → ARR.
+– Khi CNT < CCR → output = HIGH.
+– Khi CNT ≥ CCR → output = LOW.
+– Thay đổi CCR = thay đổi duty cycle.
+
+4. Cấu Hình PWM Trên ARM
+– Bật clock cho timer + GPIO.
+– Chọn chân Output ở chế độ Alternate Function.
+– Set prescaler + ARR để đạt tần số mong muốn.
+– Set CCR ban đầu (ví dụ 50%).
+– Enable chế độ PWM mode 1/2.
+– Start timer.
+
+5. Ứng Dụng PWM
+– Điều khiển LED mờ sáng.
+– Điều khiển tốc độ motor DC.
+– Điều khiển servo 50Hz (1–2ms pulse).
+– Phát âm thanh bằng buzzer.

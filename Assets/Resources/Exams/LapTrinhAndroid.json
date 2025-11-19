@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 9",
+  "subjectName": "Lập Trình Android",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Ngôn ngữ lập trình chính thức được Google khuyến nghị cho Android hiện nay là gì?",
+      "options": [ "Java", "Kotlin", "C#", "Python" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Thành phần nào đại diện cho một màn hình trong Android?",
+      "options": [ "Service", "Activity", "Intent", "Broadcast" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "File AndroidManifest.xml dùng để:",
+      "options": [ "Lưu mật khẩu", "Khai báo các thành phần của ứng dụng", "Chứa layout UI", "Chứa mã nguồn" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Intent dùng để làm gì?",
+      "options": [ "Lưu dữ liệu", "Gửi yêu cầu giữa các component", "Tạo layout", "Sao chép file" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "RecyclerView được dùng để:",
+      "options": [ "Phát nhạc", "Hiển thị danh sách tối ưu hiệu năng", "Lưu dữ liệu vào ROM", "Chạy tác vụ nền" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lifecycle method nào được gọi khi Activity hiển thị lên màn hình?",
+      "options": [ "onPause()", "onStart()", "onDestroy()", "onStop()" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "ViewModel trong Android Architecture Components dùng để:",
+      "options": [ "Chứa UI layout", "Chứa logic và dữ liệu sống sót qua xoay màn hình", "Quản lý network", "Chứa theme" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "LiveData dùng để:",
+      "options": [ "Chạy background", "Quan sát dữ liệu theo vòng đời (lifecycle-aware)", "Lưu file", "Tạo Activity" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Room Database là thư viện dùng để:",
+      "options": [ "Lưu trữ dữ liệu SQLite với API thuận tiện", "Kết nối Internet", "Xử lý ảnh", "Đọc file PDF" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Gradle trong Android Studio dùng để:",
+      "options": [ "Thiết kế giao diện", "Tự động build và quản lý phụ thuộc", "Tạo icon", "Tạo APK thủ công" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Fragment dùng để:",
+      "options": [ "Tạo ứng dụng nền", "Tạo UI có thể tái sử dụng trong Activity", "Lưu dữ liệu", "Gửi Intent" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Service trong Android chạy trong trường hợp nào?",
+      "options": [ "Chạy nền không cần UI", "Chỉ chạy khi mở Activity", "Dùng để vẽ UI", "Chỉ chạy trên Android 4.x" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "BroadcastReceiver dùng để:",
+      "options": [ "Xử lý signal trong Java", "Nhận sự kiện hệ thống hoặc ứng dụng (broadcast)", "Lưu dữ liệu", "Resize UI" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "API dùng để giao tiếp HTTP phổ biến trong Android là:",
+      "options": [ "Retrofit", "SQLite", "Glide", "Okio" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Glide thường được dùng để:",
+      "options": [ "Tải và hiển thị hình ảnh", "Đọc file JSON", "Chạy service", "Quản lý âm thanh" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Activity có trạng thái nào sau đây?",
+      "options": [ "Loading", "Paused", "Freezed", "Compiled" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "MVVM là viết tắt của:",
+      "options": [ "Model–View–Video–Module", "Main–View–Model", "Model–View–ViewModel", "Module–Variable–Model" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Jetpack Compose được dùng cho:",
+      "options": [ "Xử lý mạng", "UI khai báo (declarative UI)", "Tạo activity", "Tạo database" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Permission nhạy cảm (dangerous permission) cần:",
+      "options": [ "Khai báo trong manifest và yêu cầu runtime", "Tự động cấp", "Không cần khai báo", "Cấp khi build" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "ADB dùng để:",
+      "options": [ "Biên dịch APK", "Giao tiếp giữa PC và thiết bị Android", "Thiết kế UI layout", "Gỡ lỗi XML" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Khi muốn chạy tác vụ lâu (long-running task), ta dùng:",
+      "options": [ "Broadcast", "Service hoặc WorkManager", "ViewModel", "Activity" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "SharedPreferences dùng để:",
+      "options": [ "Lưu file lớn", "Lưu key-value đơn giản", "Lưu ảnh", "Lưu database" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "ANR trong Android là gì?",
+      "options": [ "App Not Responding", "Android Network Reset", "Auto Notification Refresh", "Advanced Navigation Route" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Context trong Android dùng để:",
+      "options": [ "Truy cập tài nguyên, hệ thống, service", "Quản lý database", "Xử lý ảnh", "Khởi động CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "WorkManager phù hợp cho:",
+      "options": [ "Tác vụ nền cần đảm bảo chạy dù app đóng lại", "Xử lý UI", "Hiển thị thông báo", "Giảm lag ứng dụng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "AsyncTask (cũ) được thay thế bởi:",
+      "options": [ "Threads", "Coroutines", "Services", "Broadcast" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Navigation Component dùng để:",
+      "options": [ "Quản lý API", "Quản lý điều hướng giữa các màn hình", "Quản lý database", "Tối ưu mạng" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "XML layout trong Android dùng để:",
+      "options": [ "Định nghĩa giao diện UI", "Biên dịch Java", "Lưu dữ liệu", "Tạo RAM ảo" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Manifest có vai trò gì với permission?",
+      "options": [ "Không liên quan", "Khai báo permission mà ứng dụng cần", "Tự động cấp permission", "Xóa permission hệ thống" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "APK là gì?",
+      "options": [ "Android Package", "Application Key", "Android Kernel", "App Kotlin Package" ],
+      "correctIndex": 0
+    }
+  ]
+}

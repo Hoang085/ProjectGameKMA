@@ -1,0 +1,35 @@
+1. Vì Sao Cần Tối Ưu Ứng Dụng Di Động?
+– Tăng tốc độ phản hồi UI.
+– Giảm tiêu thụ pin và dữ liệu mạng.
+– Giảm crash, tăng độ ổn định.
+– Cải thiện trải nghiệm người dùng (UX).
+– Được ưu tiên hơn trên Store (Google Play/App Store).
+
+2. Các Mảng Tối Ưu Quan Trọng
+– Tối ưu hiệu suất UI.
+– Tối ưu bộ nhớ (RAM).
+– Tối ưu mạng & API.
+– Tối ưu xử lý nền.
+– Tối ưu kích thước APK/IPA.
+– Tối ưu bảo mật & quyền truy cập.
+
+3. Các Nguyên Nhân Khiến App Chậm
+– Quá nhiều phép tính trong main thread.
+– Render UI nặng: layout lồng nhau, hình ảnh quá lớn.
+– Object tạo liên tục → GC chạy liên tục.
+– API chậm, retry sai cách.
+– Không cache dữ liệu hợp lý.
+– Rò rỉ bộ nhớ (memory leak).
+
+4. Công Cụ Để Tối Ưu
+– Android Profiler (CPU, Memory, Network).
+– Xcode Instruments (Time Profiler, Leaks).
+– LeakCanary (Android).
+– Firebase Performance Monitoring.
+– Charles / Postman để test API.
+
+5. Quy Tắc Chung Khi Tối Ưu
+– Không thực thi tác vụ nặng ở UI Thread.
+– Sử dụng coroutine/thread/async hợp lý.
+– Cache dữ liệu thay vì gọi mạng liên tục.
+– Hạn chế render UI quá mức.

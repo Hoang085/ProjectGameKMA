@@ -1,0 +1,31 @@
+1. TẦM QUAN TRỌNG CỦA GIAO TIẾP TRONG HỆ NHÚNG
+- Các vi điều khiển cần giao tiếp để trao đổi dữ liệu với cảm biến, module hoặc thiết bị ngoại vi.
+- Giao tiếp quyết định tốc độ, độ ổn định và khả năng mở rộng của hệ thống.
+- Việc chọn giao thức phù hợp giúp giảm lỗi và tối ưu hiệu năng.
+
+2. UART (UNIVERSAL ASYNCHRONOUS RECEIVER TRANSMITTER)
+- Là giao thức truyền nối tiếp không đồng bộ.
+- Dùng 2 dây chính: TX và RX.
+- Tốc độ truyền được cấu hình bằng baud rate.
+- Phù hợp cho giao tiếp đơn giản như module GPS, Bluetooth, Serial Monitor.
+- Không hỗ trợ nhiều thiết bị trên cùng một bus.
+
+3. SPI (SERIAL PERIPHERAL INTERFACE)
+- Là giao thức truyền đồng bộ tốc độ cao.
+- Dùng 4 dây: MISO, MOSI, SCK và SS.
+- Cho phép kết nối nhiều thiết bị bằng nhiều chân SS.
+- Tốc độ truyền cao hơn UART và I2C.
+- Thường dùng cho màn hình TFT, thẻ SD, cảm biến tốc độ cao.
+
+4. I2C (INTER-INTEGRATED CIRCUIT)
+- Giao thức hai dây: SDA và SCL.
+- Cho phép kết nối nhiều thiết bị trên cùng một bus bằng địa chỉ I2C.
+- Tốc độ thấp hơn SPI nhưng wiring đơn giản hơn.
+- Phù hợp cho cảm biến môi trường, màn hình OLED, EEPROM.
+- Dễ mở rộng vì chỉ cần thêm địa chỉ mới.
+
+5. SO SÁNH UART – SPI – I2C
+- UART: đơn giản, dùng cho giao tiếp 1–1.
+- SPI: nhanh nhất, dùng cho thiết bị tốc độ cao.
+- I2C: ít dây nhất, kết nối nhiều thiết bị tốt nhất.
+- Chọn giao thức theo nhu cầu tốc độ và số lượng thiết bị.

@@ -1,0 +1,31 @@
+1. KHÁI NIỆM CHẤT LƯỢNG PHẦN MỀM
+- Chất lượng phần mềm là mức độ phần mềm đáp ứng yêu cầu và mong đợi của người dùng.
+- Chất lượng gồm tính đúng đắn, độ ổn định, hiệu năng, dễ sử dụng và bảo mật.
+- Quản lý chất lượng giúp giảm lỗi và tăng độ tin cậy của hệ thống.
+
+2. CÁC HOẠT ĐỘNG QUẢN LÝ CHẤT LƯỢNG
+- Lập kế hoạch chất lượng ngay từ đầu dự án.
+- Xác định tiêu chí chất lượng cho từng module.
+- Kiểm thử liên tục trong quá trình phát triển.
+- Đánh giá code bằng review, pair programming.
+- Theo dõi lỗi trong suốt vòng đời dự án.
+
+3. CÁC LOẠI KIỂM THỬ PHỔ BIẾN
+- Kiểm thử đơn vị (Unit Test) để kiểm tra từng hàm nhỏ.
+- Kiểm thử tích hợp (Integration Test) để kiểm tra sự kết hợp giữa các module.
+- Kiểm thử hệ thống (System Test) để kiểm tra toàn bộ hệ thống.
+- Kiểm thử chấp nhận (UAT) để khách hàng đánh giá sản phẩm.
+- Kiểm thử hiệu năng, bảo mật và khả năng chịu tải.
+
+4. TIÊU CHÍ ĐẢM BẢO CHẤT LƯỢNG
+- Yêu cầu rõ ràng và đầy đủ.
+- Code sạch, dễ đọc, có tài liệu đi kèm.
+- Quy trình kiểm thử rõ ràng và có phương pháp.
+- Tỷ lệ lỗi giảm theo thời gian.
+- Người dùng hài lòng qua các lần kiểm thử UAT.
+
+5. CÔNG CỤ HỖ TRỢ KIỂM THỬ & CHẤT LƯỢNG
+- Selenium để kiểm thử tự động giao diện web.
+- JUnit, NUnit để kiểm thử đơn vị.
+- Postman để kiểm thử API.
+- SonarQube để phân tích chất lượng mã nguồn.

@@ -1,0 +1,24 @@
+1. Kernel Thread Là Gì?
+– Tiến trình chạy trong kernel space.
+– Dùng cho tác vụ chạy nền lâu dài.
+– Hoạt động song song giống tiến trình user-space nhưng không có user context.
+
+2. Tạo Kernel Thread
+– Dùng kthread_create() để tạo thread.
+– Dùng wake_up_process() để khởi chạy.
+– Hàm chính của thread chạy trong vòng lặp kiểm tra kthread_should_stop().
+
+3. Dừng Kernel Thread
+– Gọi kthread_stop() để yêu cầu dừng.
+– Thread nên return một giá trị khi kết thúc.
+– Không tự huỷ thread trong thân hàm.
+
+4. Quy Tắc Khi Viết kthread
+– Có thể sleep → tránh vòng lặp chiếm 100% CPU.
+– Dùng msleep() hoặc schedule() để nhường CPU.
+– Tránh ghi log liên tục gây flood dmesg.
+
+5. Ứng Dụng Kthread
+– Theo dõi trạng thái thiết bị định kỳ.
+– Xử lý background thay vì poll thiết bị từ user-space.
+– Kết hợp với workqueue khi cần chia nhỏ tác vụ.

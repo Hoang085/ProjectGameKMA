@@ -1,0 +1,31 @@
+1. Android Là Gì?
+– Hệ điều hành di động dựa trên Linux Kernel.
+– Dùng Java/Kotlin để phát triển ứng dụng.
+– Hỗ trợ đa nền tảng: điện thoại, tablet, TV, smartwatch.
+
+2. Kiến Trúc Android
+– Application Layer: ứng dụng người dùng.
+– Framework Layer: Activity, Service, View, Resource…
+– Libraries & Runtime: ART (Android Runtime).
+– Linux Kernel: quản lý bộ nhớ, driver, tiến trình.
+
+3. Công Cụ Phát Triển
+– Android Studio (IDE chính).
+– SDK Manager để cài API level.
+– AVD Manager để tạo máy ảo.
+– Debug bằng Logcat & adb.
+
+4. Thành Phần Cơ Bản Của App Android
+– Activity: màn hình giao diện.
+– Intent: chuyển màn hình, truyền dữ liệu.
+– Layout XML: thiết kế giao diện.
+– Manifest: khai báo permission & component.
+
+5. Chu Kỳ Hoạt Động Của Activity
+– onCreate()
+– onStart()
+– onResume()
+– onPause()
+– onStop()
+– onDestroy()
+– Hiểu lifecycle giúp quản lý UI và dữ liệu tốt hơn.

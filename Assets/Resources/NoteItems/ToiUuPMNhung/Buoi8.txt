@@ -1,0 +1,28 @@
+1. Giao Tiếp Ngoại Vi Ảnh Hưởng Hiệu Năng
+– Truyền dữ liệu chậm → nghẽn hệ thống.
+– ISR dài của UART/I2C → giảm tốc độ xử lý task chính.
+– Tối ưu ngoại vi giúp tăng tốc toàn bộ ứng dụng.
+
+2. Tối Ưu UART
+– Dùng DMA thay vì interrupt từng byte.
+– Tăng baud rate nếu có thể (115200 → 921600).
+– Dùng ring-buffer để tránh miss dữ liệu.
+– Tránh dùng printf → rất nặng và chậm.
+
+3. Tối Ưu I2C
+– Dùng Fast Mode 400 kHz hoặc Fast Mode Plus nếu chip hỗ trợ.
+– Giảm số lần START/STOP không cần thiết.
+– Gộp nhiều byte truyền trong 1 transaction.
+– Tránh I2C trong ISR vì dễ gây treo.
+
+4. Tối Ưu SPI
+– SPI nhanh hơn I2C rất nhiều → ưu tiên dùng nếu phù hợp.
+– Tăng clock SPI (1–10 MHz tùy thiết bị).
+– Dùng DMA cho truyền block dữ liệu lớn (LCD, cảm biến IMU).
+– Sử dụng burst-transfer thay vì từng byte.
+
+5. Tối Ưu Theo Phần Cứng
+– Rút ngắn dây để giảm nhiễu (đặc biệt I2C).
+– Dùng điện trở pull-up phù hợp (I2C 2.2k–4.7k).
+– Chọn tốc độ SPI phù hợp để tránh lỗi đọc.
+– Dùng buffer chống nhiễu cho đường UART dài.

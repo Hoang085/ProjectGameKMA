@@ -1,0 +1,31 @@
+1. TẦM QUAN TRỌNG CỦA THIẾT KẾ VỎ
+- Vỏ bảo vệ linh kiện khỏi bụi, nước, va đập và nhiễu điện từ.
+- Giúp sản phẩm gọn gàng và tăng tính thẩm mỹ.
+- Ảnh hưởng trực tiếp đến độ bền và tuổi thọ thiết bị nhúng.
+
+2. CÁC CHẤT LIỆU THƯỜNG DÙNG
+- Nhựa ABS: nhẹ, bền, dễ in 3D, giá rẻ.
+- Nhựa PLA: phổ biến cho in 3D, dễ gia công.
+- Kim loại nhôm: tản nhiệt tốt, chống nhiễu cao.
+- Acrylic: trong suốt, dùng làm hộp demo.
+- Cao su hoặc silicone: chống nước, chống rung.
+
+3. NGUYÊN TẮC KHI THIẾT KẾ VỎ
+- Chừa lỗ cho các cổng kết nối như USB, antenna, nút nhấn.
+- Tạo khe tản nhiệt cho MCU, module WiFi hoặc buck converter.
+- Giữ khoảng cách an toàn giữa linh kiện và thành vỏ.
+- Cố định PCB bằng vít hoặc chân đỡ để tránh rung lắc.
+- Không che anten WiFi/Bluetooth để tránh giảm tín hiệu.
+
+4. TÍCH HỢP PHẦN CỨNG
+- Cố định cảm biến ở vị trí phù hợp với môi trường đo.
+- Đảm bảo dây nối ngắn và chắc chắn để tránh nhiễu.
+- Tách riêng phần nguồn và phần xử lý để giảm rung và nhiễu.
+- Kiểm tra kết cấu chịu lực cho mạch motor hoặc relay.
+- Dùng connector để dễ tháo lắp khi bảo trì.
+
+5. TẢN NHIỆT CHO HỆ NHÚNG
+- MCU chạy tốc độ cao hoặc module WiFi sẽ sinh nhiệt.
+- Dùng keo tản nhiệt, heatsink hoặc lỗ thông gió.
+- Đặt các linh kiện nóng cách xa cảm biến nhiệt độ.
+- Tản nhiệt tốt giúp hệ thống bền và ổn định trong thời gian dài.

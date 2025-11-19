@@ -1,0 +1,185 @@
+{
+  "subjectKey": "ToiUuPMDiDong",
+  "questions": [
+    {
+      "id": "MOPT1",
+      "question": "Mục tiêu chính của tối ưu phần mềm di động là gì?",
+      "answers": [ "Giảm tiêu thụ pin, tăng hiệu suất và mượt mà", "Tăng độ trễ mạng", "Tăng kích thước ứng dụng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT2",
+      "question": "Nguyên nhân phổ biến gây lag UI trên mobile là:",
+      "answers": [ "Tăng frame rate", "Dùng ít hình ảnh", "Chạy tác vụ nặng trên main thread" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MOPT3",
+      "question": "Tối ưu hóa layout nhằm:",
+      "answers": [ "Tăng kích thước ứng dụng", "Giảm số lần đo vẽ (measure/layout/draw)", "Giảm FPS" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "MOPT4",
+      "question": "Memory leak thường gây:",
+      "answers": [ "Ứng dụng crash hoặc chậm dần", "Tăng tốc UI", "Không ảnh hưởng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT5",
+      "question": "Kỹ thuật lazy loading giúp:",
+      "answers": [ "Giảm hiệu suất", "Chỉ tải dữ liệu khi cần thiết", "Làm app nặng hơn" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "MOPT6",
+      "question": "Tối ưu ảnh trong mobile quan trọng vì:",
+      "answers": [ "Ảnh chiếm nhiều RAM và băng thông", "Ảnh nén sẽ làm app crash", "Ảnh không ảnh hưởng hiệu suất" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT7",
+      "question": "Sử dụng caching nhằm:",
+      "answers": [ "Giảm hiệu suất", "Xóa toàn bộ dữ liệu", "Giảm số lần tải dữ liệu và tăng tốc độ" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MOPT8",
+      "question": "Tối ưu network nên tránh:",
+      "answers": [ "Gửi request liên tục không cần thiết", "Nén dữ liệu", "Dùng batch request" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT9",
+      "question": "FPS thấp chủ yếu do:",
+      "answers": [ "Camera bật", "GPU quá mạnh", "UI thread bị block" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MOPT10",
+      "question": "Battery drain xảy ra khi:",
+      "answers": [ "Ứng dụng sử dụng CPU/background quá nhiều", "Tăng kích thước icon", "Ram trống quá nhiều" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT11",
+      "question": "Sử dụng ThreadPool giúp:",
+      "answers": [ "Quản lý thread hiệu quả hơn", "Ngăn không cho chạy song song", "Tăng số thread vô hạn" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT12",
+      "question": "Đối với ảnh độ phân giải cao, cần:",
+      "answers": [ "Load full size", "Tăng số lượng ảnh", "Resize trước khi hiển thị" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MOPT13",
+      "question": "Tại sao batching nhiều request thành một request lại tốt?",
+      "answers": [ "Giảm overhead mạng", "Tăng tiêu thụ pin", "Giảm độ ổn định" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT14",
+      "question": "Database query chậm gây ảnh hưởng gì?",
+      "answers": [ "Block UI thread", "Tăng FPS", "Giảm pin" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT15",
+      "question": "Kỹ thuật pagination dùng để:",
+      "answers": [ "Tạo hiệu ứng UI", "Tải tất cả 1 lần", "Xóa dữ liệu cũ" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT16",
+      "question": "Cần tránh alloc object quá nhiều vì:",
+      "answers": [ "Tăng tốc GPU", "Giảm kích thước app", "Gây nhiều garbage collection" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MOPT17",
+      "question": "Garbage Collection xảy ra quá thường xuyên dẫn đến:",
+      "answers": [ "Giật lag ứng dụng", "Không ảnh hưởng", "Tăng thời lượng pin" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT18",
+      "question": "Proguard / R8 giúp:",
+      "answers": [ "Giảm kích thước APK và tối ưu code", "Tăng CPU load", "Xóa UI" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT19",
+      "question": "Tối ưu CPU giúp:",
+      "answers": [ "Render UI chậm hơn", "Tăng RAM", "Giảm tiêu thụ pin" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MOPT20",
+      "question": "RecyclerView tốt hơn ListView vì:",
+      "answers": [ "Nặng hơn", "Không scroll được", "Cơ chế ViewHolder tái sử dụng view tốt hơn" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MOPT21",
+      "question": "Splash screen nên:",
+      "answers": [ "Tải mạng nặng", "Đợi 10 giây rồi vào app", "Hiển thị nhanh, không chạy logic nặng" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MOPT22",
+      "question": "Animations trong mobile nên:",
+      "answers": [ "Làm bằng ảnh GIF nặng", "Tối ưu bằng GPU", "Chạy trên CPU" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "MOPT23",
+      "question": "Prefetching dữ liệu là:",
+      "answers": [ "Ngắt kết nối mạng", "Giảm FPS", "Tải trước dữ liệu dự đoán sẽ cần" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MOPT24",
+      "question": "Deep link giúp:",
+      "answers": [ "Đi thẳng đến nội dung cần thiết, giảm thao tác", "Tăng pin tiêu thụ", "Làm app chậm" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT25",
+      "question": "Dark mode có lợi cho pin khi:",
+      "answers": [ "Chỉ iPhone mới có", "Không thiết bị nào được lợi", "Màn hình OLED" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "MOPT26",
+      "question": "Tối ưu tốc độ scroll cần:",
+      "answers": [ "Load ảnh gốc 4K", "Không cache gì cả", "Tạo nhiều view phức tạp" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT27",
+      "question": "Architecture MVVM giúp tối ưu vì:",
+      "answers": [ "Tách logic khỏi UI, dễ test và dễ maintain", "Làm code rối", "Tăng kích thước app" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT28",
+      "question": "Sử dụng WebP thay PNG giúp:",
+      "answers": [ "Giảm kích thước ảnh", "Không khác gì nhau", "Tăng dung lượng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT29",
+      "question": "Tối ưu build time trong Android Studio bằng cách:",
+      "answers": [ "Tắt SSD", "Dùng CPU yếu hơn", "Tắt WiFi" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "MOPT30",
+      "question": "Kỹ thuật tối ưu quan trọng nhất trong mobile là:",
+      "answers": [ "Không block main thread", "Không dùng caching", "Load toàn bộ ảnh cùng lúc" ],
+      "correctIndex": 0
+    }
+  ]
+}

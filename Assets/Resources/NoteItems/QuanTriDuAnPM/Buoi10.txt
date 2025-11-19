@@ -1,0 +1,32 @@
+1. KHÁI NIỆM KẾT THÚC DỰ ÁN
+- Kết thúc dự án là giai đoạn đóng lại toàn bộ hoạt động sau khi sản phẩm đã được bàn giao.
+- Mục tiêu là đánh giá dự án, rút kinh nghiệm và hoàn thiện tài liệu.
+- Đây là bước quan trọng để đảm bảo sản phẩm vận hành ổn định sau triển khai.
+
+2. HOÀN THIỆN SẢN PHẨM & BÀN GIAO
+- Bàn giao mã nguồn, tài liệu kỹ thuật, tài liệu hướng dẫn sử dụng.
+- Đảm bảo hệ thống hoạt động ổn định tại môi trường của khách hàng.
+- Kiểm tra lại đầy đủ tính năng đã cam kết trong yêu cầu ban đầu.
+- Cung cấp tài khoản quản trị hoặc quyền truy cập cần thiết.
+- Hỗ trợ khách hàng kiểm tra lần cuối.
+
+3. TÀI LIỆU CẦN HOÀN THIỆN KHI KẾT THÚC DỰ ÁN
+- Tài liệu yêu cầu (SRS) bản cuối cùng.
+- Tài liệu thiết kế và kiến trúc hệ thống.
+- Tài liệu kiểm thử và kết quả kiểm thử.
+- Tài liệu hướng dẫn sử dụng và vận hành.
+- Báo cáo tổng kết dự án của PM.
+
+4. ĐÁNH GIÁ HIỆU QUẢ DỰ ÁN
+- Đánh giá mức độ hoàn thành mục tiêu ban đầu.
+- Đánh giá tiến độ, chi phí và chất lượng thực tế.
+- Ghi nhận thành công và điểm cần cải thiện.
+- Đối chiếu phản hồi từ khách hàng.
+- Tổng kết mức độ hài lòng của người dùng.
+
+5. RÚT KINH NGHIỆM & CẢI TIẾN
+- Xác định những vấn đề gây ảnh hưởng tiến độ hoặc chất lượng.
+- Đưa ra biện pháp phòng tránh cho dự án sau.
+- Cải thiện quy trình làm việc của nhóm.
+- Ghi nhận lại các bài học kinh nghiệm (Lessons Learned).
+- Đề xuất cải tiến cho tương lai.

@@ -1,0 +1,25 @@
+1. Ngắt Là Gì?
+– Tín hiệu từ phần cứng yêu cầu CPU xử lý ngay.
+– Tạm dừng chương trình chính → nhảy vào hàm ISR.
+– Rất quan trọng trong ARM để xử lý timer, UART, sensor…
+
+2. Exception Trong ARM
+– Bao gồm Reset, Undefined Instruction, SVC, Prefetch Abort…
+– Mỗi exception nhảy vào vector tương ứng trong vector table.
+– Chạy ở chế độ đặc biệt (IRQ/FIQ/Supervisor).
+
+3. IRQ & FIQ
+– IRQ: ngắt chuẩn, tốc độ thường.
+– FIQ: ưu tiên cao, xử lý nhanh hơn.
+– Cortex-M gom tất cả vào NVIC nhưng vẫn có ưu tiên.
+
+4. Vector Table
+– Bảng chứa địa chỉ các ISR.
+– Ở Cortex-M: nằm ở đầu Flash (địa chỉ 0x00000000).
+– Có thể remap sang RAM nếu muốn sửa lúc chạy.
+
+5. Quy Tắc Viết ISR
+– Xử lý nhanh, không được delay lâu.
+– Không dùng hàm phức tạp hoặc malloc.
+– Xóa cờ ngắt trước khi thoát ISR.
+– Dùng volatile cho biến dùng chung.

@@ -1,0 +1,26 @@
+1. Watchdog Là Gì?
+– Bộ đếm an toàn giúp reset hệ thống khi chương trình bị treo.
+– Cơ chế “nếu không được làm mới → reset CPU”.
+– Dùng trong hệ thống IoT, công nghiệp yêu cầu ổn định cao.
+
+2. Loại Watchdog Trên ARM
+– IWDG (Independent WDG): chạy bằng clock riêng → rất an toàn.
+– WWDG (Window WDG): phải reset trong khoảng thời gian cho phép.
+– Một số chip ARM có nhiều watchdog song song.
+
+3. Cách Hoạt Động
+– Watchdog đếm ngược từ giá trị nạp.
+– Chương trình phải “kick” hoặc “refresh” định kỳ.
+– Nếu hết thời gian → MCU reset → hệ thống chạy lại từ đầu.
+
+4. Cấu Hình Watchdog
+– Chọn prescaler → chọn tốc độ đếm.
+– Chọn giá trị reload (timeout).
+– Enable watchdog (thường không thể tắt sau khi bật).
+– Gọi hàm refresh trong vòng lặp chính.
+
+5. Lưu Ý Khi Dùng Watchdog
+– Refresh quá muộn → reset.
+– Refresh quá sớm (với WWDG) → lỗi window → reset.
+– ISR dài phải chú ý vì có thể làm chương trình không refresh kịp.
+– Dùng watchdog để phát hiện treo logic hoặc lỗi kẹt vòng lặp.

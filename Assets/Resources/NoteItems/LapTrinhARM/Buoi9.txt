@@ -1,0 +1,28 @@
+1. I2C Là Gì?
+– Giao thức truyền thông 2 dây: SCL (clock) và SDA (data).
+– Hỗ trợ nhiều thiết bị trên cùng bus (địa chỉ 7-bit hoặc 10-bit).
+– Dùng cho cảm biến: MPU6050, EEPROM, OLED, RTC DS3231…
+
+2. Cơ Chế Hoạt Động
+– Master điều khiển clock & bắt đầu frame.
+– Gửi địa chỉ thiết bị → thiết bị ACK nếu tồn tại.
+– Truyền dữ liệu theo byte với ACK sau mỗi byte.
+– Kết thúc bằng STOP condition.
+
+3. Các Thành Phần Quan Trọng
+– Start / Stop bit.
+– ACK / NACK.
+– Địa chỉ thiết bị (Address).
+– Register pointer (vị trí cần đọc/ghi).
+– Data byte.
+
+4. Cấu Hình I2C Trên ARM
+– Bật clock cho module I2C.
+– Cấu hình chân SDA/SCL ở chế độ AF Open-Drain.
+– Set tốc độ: Standard (100kHz) hoặc Fast (400kHz).
+– Enable I2C và kiểm tra flags (TXE, RXNE, BTF…).
+
+5. Thao Tác Cơ Bản
+– Ghi 1 byte: START → Address + Write → Register → Data → STOP.
+– Đọc 1 byte: START → Address + Write → Register → RESTART → Address + Read → Data → STOP.
+– Luôn kiểm tra ACK để biết thiết bị có trả lời không.

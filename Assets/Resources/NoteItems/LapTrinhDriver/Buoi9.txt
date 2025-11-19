@@ -1,0 +1,25 @@
+1. Platform Device Là Gì?
+– Thiết bị tích hợp trên SoC, không giao tiếp qua bus như PCI/USB.
+– Thông tin thiết bị được mô tả qua Device Tree hoặc ACPI.
+– Thường gặp trên board nhúng: ARM, Raspberry Pi, ESP-Linux…
+
+2. Cấu Trúc Platform Driver
+– Gồm hai thành phần:
+– Platform Device: mô tả tài nguyên (GPIO, IRQ, memory).
+– Platform Driver: code xử lý logic và đăng ký vào kernel.
+– Gắn kết dựa trên name hoặc Device Tree.
+
+3. Hàm Chính Trong Platform Driver
+– probe() → gọi khi driver khớp với thiết bị.
+– remove() → gọi khi thiết bị bị gỡ hoặc driver unload.
+– Có thể nhận tài nguyên: IRQ, IO memory, GPIO…
+
+4. Đăng Ký Platform Driver
+– Đăng ký bằng platform_driver_register().
+– Gỡ bằng platform_driver_unregister().
+– Tự động kích hoạt khi tìm thấy thiết bị khớp.
+
+5. Ứng Dụng Thực Tế
+– Driver cho cảm biến trên mainboard.
+– Driver cho thiết bị I2C/SPI được mô tả trong Device Tree.
+– Các thiết bị có địa chỉ hoặc tài nguyên cố định.

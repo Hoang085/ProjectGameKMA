@@ -1,0 +1,28 @@
+1. VÒNG ĐỜI DỰ ÁN PHẦN MỀM (SDLC)
+- SDLC là chuỗi giai đoạn từ khi hình thành yêu cầu đến khi vận hành phần mềm.
+- Mục tiêu SDLC: quản lý tiến độ, chất lượng và giảm rủi ro.
+- Các giai đoạn chính: Phân tích yêu cầu, Thiết kế, Lập trình, Kiểm thử, Triển khai, Bảo trì.
+
+2. CÁC MÔ HÌNH PHÁT TRIỂN PHỔ BIẾN
+- Waterfall: mô hình tuyến tính, ít thay đổi, dùng cho dự án nhỏ.
+- V-Model: song song giữa thiết kế và kiểm thử, mức an toàn cao.
+- Iterative/Incremental: phát triển từng phần, dễ kiểm thử sớm.
+- Agile/Scrum: linh hoạt, chia sprint ngắn, ưu tiên giá trị thực tế.
+- Spiral: tập trung quản lý rủi ro, phù hợp dự án lớn và phức tạp.
+
+3. SO SÁNH AGILE VÀ WATERFALL
+- Waterfall yêu cầu rõ từ đầu, khó thay đổi, phù hợp dự án nhỏ.
+- Agile linh hoạt, dễ thay đổi, phản hồi nhanh, phù hợp dự án hiện đại.
+- Agile giúp giảm rủi ro và tạo sản phẩm sớm hơn so với Waterfall.
+
+4. LỰA CHỌN MÔ HÌNH PHÙ HỢP
+- Dựa trên quy mô, độ phức tạp và thay đổi yêu cầu của dự án.
+- Dự án nhỏ, yêu cầu cố định → Waterfall hoặc Iterative.
+- Dự án linh hoạt, thay đổi liên tục → Agile/Scrum.
+- Dự án lớn, rủi ro cao → Spiral hoặc V-Model.
+
+5. BÀI TẬP THAM KHẢO BUỔI 2
+- Nêu 6 giai đoạn cơ bản trong SDLC.
+- So sánh ưu – nhược điểm của Waterfall và Agile.
+- Chọn mô hình phù hợp cho dự án yêu cầu thay đổi liên tục.
+- Ví dụ dự án phù hợp mô hình Incremental.

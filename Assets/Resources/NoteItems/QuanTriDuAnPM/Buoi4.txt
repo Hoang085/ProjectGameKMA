@@ -1,0 +1,29 @@
+1. KHÁI NIỆM LẬP KẾ HOẠCH DỰ ÁN
+- Lập kế hoạch dự án là quá trình xác định công việc, thời gian, chi phí và nguồn lực cần thiết để hoàn thành dự án.
+- Kế hoạch dự án là tài liệu quan trọng nhất mà PM sử dụng để điều hành dự án.
+- Một kế hoạch tốt giúp giảm rủi ro và đảm bảo tiến độ.
+
+2. CÁC THÀNH PHẦN CHÍNH CỦA KẾ HOẠCH DỰ ÁN
+- Mục tiêu và phạm vi dự án.
+- Phân rã công việc (WBS – Work Breakdown Structure).
+- Lịch trình (Timeline, Gantt Chart).
+- Nguồn lực: nhân sự, thiết bị, tài chính.
+- Dự tính chi phí và ngân sách.
+- Rủi ro và cách xử lý rủi ro.
+
+3. WORK BREAKDOWN STRUCTURE (WBS)
+- WBS là kỹ thuật chia dự án thành các công việc nhỏ hơn, dễ quản lý.
+- WBS giúp ước lượng thời gian và chi phí chính xác hơn.
+- Việc chia nhỏ công việc giúp theo dõi tiến độ rõ ràng và tránh bỏ sót nhiệm vụ.
+
+4. LẬP LỊCH DỰ ÁN
+- Gantt Chart là công cụ trực quan để theo dõi tiến độ từng nhiệm vụ.
+- Lịch trình dự án cần thể hiện thứ tự công việc, thời gian bắt đầu – kết thúc.
+- Lập lịch phải tính đến phụ thuộc giữa các công việc.
+- Tiến độ cần được cập nhật thường xuyên để kịp thời điều chỉnh.
+
+5. ƯỚC LƯỢNG CÔNG VIỆC
+- Ước lượng dựa trên kinh nghiệm từ dự án cũ.
+- Ước lượng theo đội (Planning Poker trong Agile).
+- Ước lượng theo kích thước phần mềm (Function Point, Story Point).
+- Ước lượng chính xác giúp kiểm soát chi phí và tiến độ.

@@ -1,0 +1,27 @@
+1. Activity Là Gì?
+– Thành phần đại diện cho một màn hình giao diện.
+– Chứa logic + layout XML.
+– Là entrypoint chính khi chạy ứng dụng.
+
+2. Lifecycle Cơ Bản
+– onCreate() → khởi tạo layout, biến.
+– onStart() → chuẩn bị hiển thị.
+– onResume() → người dùng tương tác.
+– onPause() → tạm dừng.
+– onStop() → không còn hiển thị.
+– onDestroy() → huỷ Activity.
+
+3. Intent Là Gì?
+– Dùng để chuyển màn hình hoặc gọi thành phần khác.
+– Có 2 loại:
+– Explicit Intent: chuyển đến Activity cụ thể.
+– Implicit Intent: dùng action, ví dụ mở camera, gọi điện.
+
+4. Chuyển Màn Hình Bằng Intent
+val intent = Intent(this, SecondActivity::class.java)
+startActivity(intent)
+– Có thể truyền dữ liệu đi kèm bằng putExtra.
+
+5. Nhận Dữ Liệu Ở Màn Hình Khác
+val name = intent.getStringExtra("username")
+– Hỗ trợ kiểu String, Int, Boolean, Parcelable…

@@ -1,0 +1,28 @@
+1. BỘ ĐỊNH THỜI (TIMER)
+- Timer là phần cứng trong vi điều khiển dùng để đếm xung và đo thời gian.
+- Timer giúp tạo độ trễ chính xác và đo khoảng thời gian giữa hai sự kiện.
+- Timer có nhiều chế độ hoạt động khác nhau tùy vào MCU.
+- Timer thường dùng để tạo ngắt định kỳ hoặc sinh tín hiệu PWM.
+2. NGẮT (INTERRUPT)
+- Ngắt là cơ chế cho phép vi điều khiển tạm dừng chương trình chính để xử lý sự kiện khẩn cấp.
+- Ngắt giúp hệ thống phản ứng nhanh mà không cần kiểm tra liên tục (polling).
+- Có hai loại ngắt chính: ngắt ngoài (External Interrupt) và ngắt trong (Internal Interrupt).
+- Ngắt được kích hoạt khi có tín hiệu từ cảm biến hoặc timer.
+- Phải lập trình cẩn thận để tránh ngắt lặp liên tục gây treo hệ thống.
+
+3. PWM (PULSE WIDTH MODULATION)
+- PWM là kỹ thuật điều chỉnh độ rộng xung để điều khiển công suất trung bình.
+- PWM dùng để điều khiển độ sáng LED, tốc độ motor, servo.
+- Tần số và chu kỳ xung quyết định mức điều khiển.
+- PWM được tạo từ Timer trong hầu hết các MCU.
+
+4. MỐI QUAN HỆ GIỮA TIMER – NGẮT – PWM
+- Timer tạo ra sự kiện định kỳ → tạo ngắt → ngắt cập nhật giá trị PWM.
+- PWM thường sử dụng Timer để tạo chu kỳ ổn định.
+- Ngắt giúp PWM hoạt động chính xác ngay cả khi chương trình chính đang bận.
+
+5. ỨNG DỤNG THỰC TẾ
+- Điều khiển motor DC bằng PWM để thay đổi tốc độ.
+- Dùng Timer để đo tốc độ vòng quay của cảm biến encoder.
+- Dùng ngắt để xử lý Input từ nút nhấn ngay lập tức.
+- Tạo chu kỳ LED nhấp nháy đều bằng Timer và ngắt

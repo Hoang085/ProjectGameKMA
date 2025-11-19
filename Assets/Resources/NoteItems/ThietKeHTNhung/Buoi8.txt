@@ -1,0 +1,29 @@
+1. KHÁI NIỆM RTOS (REAL-TIME OPERATING SYSTEM)
+- RTOS là hệ điều hành dành cho hệ thống nhúng yêu cầu phản hồi nhanh và ổn định.
+- RTOS quản lý đa nhiệm, lập lịch tác vụ chính xác theo thời gian.
+- Thường dùng cho robot, thiết bị y tế, IoT công nghiệp, điều khiển tự động.
+
+2. ƯU ĐIỂM CỦA RTOS
+- Đảm bảo thời gian phản hồi cố định, tránh độ trễ không dự đoán.
+- Hỗ trợ đa nhiệm, giúp chương trình tách thành nhiều task rõ ràng.
+- Tăng độ ổn định và dễ bảo trì hệ thống.
+- Giảm tải CPU bằng các cơ chế chờ hiệu quả.
+
+3. CÁC THÀNH PHẦN CHÍNH CỦA RTOS
+- Task (nhiệm vụ) là các luồng chạy độc lập trong chương trình.
+- Scheduler (bộ lập lịch) quyết định task nào được chạy.
+- Semaphore dùng để đồng bộ giữa các task.
+- Queue dùng truyền thông tin giữa các task.
+- Timer để kích hoạt nhiệm vụ theo chu kỳ.
+
+4. CÁC LOẠI LẬP LỊCH TRONG RTOS
+- Round Robin: chia CPU theo thời gian đều cho từng task.
+- Priority-Based: task quan trọng có độ ưu tiên cao hơn.
+- Preemptive Scheduling: task ưu tiên cao có thể ngắt task thấp.
+- Cooperative Scheduling: mỗi task tự nhường CPU khi xong việc.
+
+5. KHI NÀO CẦN DÙNG RTOS
+- Hệ thống có nhiều tác vụ chạy đồng thời.
+- Nhiệm vụ yêu cầu độ chính xác thời gian cao.
+- Ứng dụng phức tạp: robot, drone, thiết bị y tế.
+- Mạch cần sắp xếp tác vụ rõ ràng thay vì dùng delay thủ công.

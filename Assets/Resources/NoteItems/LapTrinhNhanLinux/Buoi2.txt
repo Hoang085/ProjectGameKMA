@@ -1,0 +1,30 @@
+1. Cấu Trúc Một Module Kernel
+– File .c gồm phần include, init, exit.
+– Hàm module_init() chạy khi nạp module.
+– Hàm module_exit() chạy khi gỡ module.
+– Dùng macro MODULE_LICENSE, MODULE_AUTHOR, MODULE_DESCRIPTION.
+– Build qua Makefile kiểu Kbuild.
+
+2. Printk & Log Hệ Thống
+– printk() là hàm in log trong kernel.
+– Các mức log: KERN_INFO, KERN_WARNING, KERN_ERR…
+– Log lưu trong dmesg.
+– Không dùng printf hay thư viện stdio trong kernel.
+
+3. Quy Trình Biên Dịch Module
+– Tạo file module.c.
+– Tạo Makefile với obj-m += module.o.
+– Chạy lệnh: make -C /lib/modules/$(uname -r)/build M=$(pwd) modules.
+– Sinh ra file .ko để nạp vào kernel.
+
+4. Nạp & Gỡ Module
+– Nạp: sudo insmod module.ko.
+– Gỡ: sudo rmmod module.
+– Kiểm tra module đang chạy: lsmod.
+– Xem lỗi khi nạp: dmesg | tail.
+
+5. Bài Tập Thực Hành
+– Viết module in ra “Module Loaded” và “Module Removed”.
+– Thêm thông tin tác giả và mô tả module.
+– Nạp thử module và kiểm tra log.
+– Thử gây lỗi cú pháp để xem log lỗi hiển thị ra sao.

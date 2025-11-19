@@ -1,0 +1,22 @@
+1. Vì Sao Cần Đồng Bộ Hóa?
+– Nhiều tiến trình có thể truy cập driver cùng lúc.
+– Tránh race condition, data corruption.
+– Tránh crash do truy cập song song không an toàn.
+
+2. Mutex
+– Dùng trong process context (được sleep).
+– Phù hợp cho read/write buffer trong driver.
+– API chính: mutex_init(), mutex_lock(), mutex_unlock().
+
+3. Spinlock
+– Dùng trong interrupt context (không sleep).
+– Thích hợp cho vùng code ngắn, tốc độ cao.
+– API: spin_lock(), spin_unlock().
+
+4. Semaphore
+– Giống mutex nhưng hỗ trợ nhiều quyền truy cập đồng thời hơn.
+– Dùng khi có nhiều reader nhưng ít writer.
+
+5. Atomic Variable
+– Dùng cho tăng/giảm giá trị đơn giản.
+– API: atomic_inc(), atomic_read(), atomic_set().

@@ -1,0 +1,33 @@
+1. Vì Sao Phải Tối Ưu Bộ Nhớ?
+– App dùng RAM cao → hệ điều hành kill app.
+– GC (Android) chạy liên tục → lag UI.
+– iOS cũng sẽ “terminate due to memory pressure”.
+– Tối ưu RAM giúp app mượt, ổn định, không crash.
+
+2. Tránh Rò Rỉ Bộ Nhớ (Memory Leak)
+Nguyên nhân phổ biến:
+– Lưu tham chiếu Activity/Fragment trong singleton.
+– Adapter giữ context sai cách.
+– Listener không được hủy.
+– Coroutine/Thread vẫn chạy sau khi UI bị destroy.
+Cách kiểm tra:
+– Android: LeakCanary, Memory Profiler.
+– iOS: Instruments → Leaks.
+
+3. Tối Ưu Đối Tượng Khởi Tạo
+– Hạn chế tạo object trong vòng lặp.
+– Sử dụng object pool (nếu cần).
+– Tái sử dụng Bitmap với inBitmap (Android).
+– Dùng lazy để chỉ tạo khi cần.
+
+4. Quản Lý Hình Ảnh (Bitmap)
+– Bitmap là thủ phạm ngốn RAM nhất.
+– Dùng đúng kích thước so với ImageView.
+– Dùng library (Glide/Coil/Fresco) để tự quản lý cache.
+– Hạn chế giữ nhiều ảnh chất lượng cao trong RAM.
+
+5. Tối Ưu Collection & Data Structure
+– Dùng kiểu dữ liệu nhỏ nhất có thể.
+– Tránh List quá nhiều object phức tạp.
+– Ưu tiên MutableList thay vì List + copy.
+– Gộp object có cấu trúc lặp.

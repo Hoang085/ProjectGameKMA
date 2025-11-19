@@ -1,0 +1,24 @@
+1. Tại Sao Cần Workqueue/Tasklet?
+– Handler ngắt phải thật nhanh.
+– Khi cần xử lý lâu hơn → chuyển qua cơ chế “bottom-half”.
+– Tránh treo hệ thống hoặc mất IRQ.
+
+2. Tasklet
+– Chạy trong interrupt context → không được sleep.
+– Phù hợp xử lý rất nhanh.
+– Tạo bằng tasklet_init() và kích hoạt bằng tasklet_schedule().
+
+3. Workqueue
+– Chạy trong process context → cho phép sleep.
+– Phù hợp khi cần xử lý dài hoặc chờ.
+– Tạo bằng INIT_WORK() hoặc alloc_workqueue().
+
+4. So Sánh Tasklet vs Workqueue
+– Tasklet: nhanh, không sleep, chạy ngay sau ngắt.
+– Workqueue: linh hoạt hơn, có thể sleep, chạy độc lập.
+– Nên dùng tasklet cho việc nhẹ, workqueue cho việc nặng.
+
+5. Quy Ước Sử Dụng
+– Không spam printk trong bottom-half.
+– Luôn cleanup: tasklet_kill() hoặc destroy_workqueue().
+– Tránh tạo quá nhiều work gây nghẽn hệ thống.

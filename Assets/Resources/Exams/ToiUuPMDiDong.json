@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 9",
+  "subjectName": "Tối Ưu Phần Mềm Di Động",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Mục tiêu chính của tối ưu phần mềm di động là gì?",
+      "options": [ "Giảm tiêu thụ pin, tăng hiệu suất và mượt mà", "Tăng độ trễ mạng", "Tăng kích thước ứng dụng", "Giảm tốc độ UI" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nguyên nhân phổ biến gây lag UI trên mobile là:",
+      "options": [ "Tăng frame rate", "Dùng ít hình ảnh", "Chạy tác vụ nặng trên main thread", "Dùng ít view" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Tối ưu hóa layout nhằm:",
+      "options": [ "Tăng kích thước ứng dụng", "Giảm số lần đo vẽ (measure/layout/draw)", "Giảm FPS", "Tăng số class" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Memory leak thường gây:",
+      "options": [ "Ứng dụng crash hoặc chậm dần", "Tăng tốc UI", "Không ảnh hưởng", "Giảm dung lượng RAM" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Kỹ thuật lazy loading giúp:",
+      "options": [ "Giảm hiệu suất", "Chỉ tải dữ liệu khi cần thiết", "Làm app nặng hơn", "Tải toàn bộ dữ liệu ngay từ đầu" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Tối ưu ảnh trong mobile quan trọng vì:",
+      "options": [ "Ảnh chiếm nhiều RAM và băng thông", "Ảnh nén sẽ làm app crash", "Ảnh không ảnh hưởng hiệu suất", "Ảnh luôn nhẹ" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Sử dụng caching nhằm:",
+      "options": [ "Giảm hiệu suất", "Xóa toàn bộ dữ liệu", "Giảm số lần tải dữ liệu và tăng tốc độ", "Làm app chậm hơn" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Tối ưu network nên tránh:",
+      "options": [ "Gửi request liên tục không cần thiết", "Nén dữ liệu", "Dùng batch request", "Dùng cache" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "FPS thấp chủ yếu do:",
+      "options": [ "Camera bật", "GPU quá mạnh", "UI thread bị block", "Pin yếu" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Battery drain xảy ra khi:",
+      "options": [ "Ứng dụng sử dụng CPU/background quá nhiều", "Tăng kích thước icon", "Ram trống quá nhiều", "Chưa cấp quyền camera" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Sử dụng ThreadPool giúp:",
+      "options": [ "Quản lý thread hiệu quả hơn", "Ngăn không cho chạy song song", "Tăng số thread vô hạn", "Giảm hiệu suất" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Đối với ảnh độ phân giải cao, cần:",
+      "options": [ "Load full size", "Tăng số lượng ảnh", "Resize trước khi hiển thị", "Tắt GPU" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Tại sao batching nhiều request thành một request lại tốt?",
+      "options": [ "Giảm overhead mạng", "Tăng tiêu thụ pin", "Giảm độ ổn định", "Tăng thời gian tải" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Database query chậm gây ảnh hưởng gì?",
+      "options": [ "Block UI thread", "Tăng FPS", "Giảm pin", "Tăng tốc độ" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Kỹ thuật pagination dùng để:",
+      "options": [ "Tạo hiệu ứng UI", "Tải tất cả 1 lần", "Xóa dữ liệu cũ", "Tải dữ liệu theo từng trang để giảm tải" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Cần tránh alloc object quá nhiều vì:",
+      "options": [ "Tăng tốc GPU", "Giảm kích thước app", "Gây nhiều garbage collection", "Tăng hiệu suất" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Garbage Collection xảy ra quá thường xuyên dẫn đến:",
+      "options": [ "Giật lag ứng dụng", "Không ảnh hưởng", "Tăng thời lượng pin", "Tốc độ cao hơn" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Proguard / R8 giúp:",
+      "options": [ "Giảm kích thước APK và tối ưu code", "Tăng CPU load", "Xóa UI", "Tăng dung lượng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tối ưu CPU giúp:",
+      "options": [ "Render UI chậm hơn", "Tăng RAM", "Giảm tiêu thụ pin", "Tắt GPU" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "RecyclerView tốt hơn ListView vì:",
+      "options": [ "Nặng hơn", "Không scroll được", "Cơ chế ViewHolder tái sử dụng view tốt hơn", "Tăng tiêu thụ pin" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Splash screen nên:",
+      "options": [ "Tải mạng nặng", "Đợi 10 giây rồi vào app", "Hiển thị nhanh, không chạy logic nặng", "Chạy tất cả tác vụ" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Animations trong mobile nên:",
+      "options": [ "Làm bằng ảnh GIF nặng", "Tối ưu bằng GPU", "Chạy trên CPU", "Luôn chạy tối đa 120 FPS" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Prefetching dữ liệu là:",
+      "options": [ "Ngắt kết nối mạng", "Giảm FPS", "Tải trước dữ liệu dự đoán sẽ cần", "Xóa cache" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Deep link giúp:",
+      "options": [ "Đi thẳng đến nội dung cần thiết, giảm thao tác", "Tăng pin tiêu thụ", "Làm app chậm", "Tăng kích thước APK" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Dark mode có lợi cho pin khi:",
+      "options": [ "Chỉ iPhone mới có", "Không thiết bị nào được lợi", "Màn hình OLED", "Màn hình LCD" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Tối ưu tốc độ scroll cần:",
+      "options": [ "Load ảnh gốc 4K", "Không cache gì cả", "Tạo nhiều view phức tạp", "Hạn chế bind dữ liệu nặng trên onBindViewHolder" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Architecture MVVM giúp tối ưu vì:",
+      "options": [ "Tách logic khỏi UI, dễ test và dễ maintain", "Làm code rối", "Tăng kích thước app", "Không hỗ trợ LiveData" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Sử dụng WebP thay PNG giúp:",
+      "options": [ "Giảm kích thước ảnh", "Không khác gì nhau", "Tăng dung lượng", "Làm crash app" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tối ưu build time trong Android Studio bằng cách:",
+      "options": [ "Tắt SSD", "Dùng CPU yếu hơn", "Tắt WiFi", "Bật Gradle daemon và caching" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Kỹ thuật tối ưu quan trọng nhất trong mobile là:",
+      "options": [ "Không block main thread", "Không dùng caching", "Load toàn bộ ảnh cùng lúc", "Chạy toàn bộ trên main thread" ],
+      "correctIndex": 0
+    }
+  ]
+}

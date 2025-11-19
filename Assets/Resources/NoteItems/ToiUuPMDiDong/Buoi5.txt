@@ -1,0 +1,26 @@
+1. Vì Sao Phải Xử Lý Bất Đồng Bộ (Async)?
+– Tránh block UI Thread → app lag, đứng.
+– Tăng hiệu suất cho tác vụ nặng: đọc file, API, DB.
+– Giúp ứng dụng mượt và phản hồi tức thời.
+
+2. Thread Truyền Thống
+– Mạnh nhưng dễ lỗi nếu quản lý sai.
+– Tốn tài nguyên khi tạo nhiều thread.
+– Dễ dẫn đến race condition nếu dùng chung biến.
+
+3. Coroutine (Android / Kotlin)
+– Nhẹ hơn thread rất nhiều.
+– Tự quản lý lifecycle nếu dùng với ViewModel.
+– Hỗ trợ async/await đơn giản.
+– Dùng Dispatchers.IO cho tác vụ nền, Dispatchers.Main cập nhật UI.
+
+4. Best Practice Khi Dùng Coroutine
+– Không chạy tính toán nặng trong Main.
+– Không tạo nhiều coroutine không cần thiết.
+– Hủy coroutine khi Activity/Fragment destroy.
+– Dùng Flow/LiveData để stream dữ liệu tối ưu.
+
+5. iOS (Swift) – async/await
+– Code gọn, rõ ràng, không callback hell.
+– Dễ tách luồng xử lý nặng: file, mạng, JSON.
+– Hỗ trợ Task ưu tiên và cancel.

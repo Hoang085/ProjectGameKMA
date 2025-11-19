@@ -1,0 +1,28 @@
+1. Driver Là Gì?
+– Phần mềm trung gian giữa hệ điều hành và phần cứng.
+– Giúp OS giao tiếp được với thiết bị: bàn phím, chuột, USB, cảm biến…
+– Chạy ở kernel space nên phải tuân thủ nghiêm ngặt.
+
+2. Vai Trò Quan Trọng Của Driver
+– Cho phép mở rộng hệ thống mà không sửa kernel.
+– Kết nối phần cứng mới vào hệ thống Linux.
+– Hỗ trợ tính năng custom: thiết bị ảo, giao tiếp IPC, module quản lý tài nguyên.
+
+3. Các Loại Driver Trong Linux
+– Character driver: đọc/ghi tuần tự, thiết bị đơn giản.
+– Block driver: thiết bị lưu trữ có block (SSD, HDD).
+– Network driver: xử lý gói tin, card mạng.
+– USB driver: giao tiếp USB và thiết bị ngoại vi.
+– Platform driver: điều khiển thiết bị tích hợp SoC.
+
+4. Kiến Thức Tiền Đề
+– Lập trình C, con trỏ, cấp phát bộ nhớ.
+– Kiến thức Linux kernel cơ bản.
+– Hiểu file operations (read, write, open).
+– Biết biên dịch module bằng Makefile Kbuild.
+
+5. Môi Trường Phát Triển Driver
+– Linux (Ubuntu khuyến nghị).
+– Kernel headers và GCC.
+– Công cụ: dmesg, lsmod, insmod, rmmod.
+– Máy ảo để test tránh crash hệ thống.

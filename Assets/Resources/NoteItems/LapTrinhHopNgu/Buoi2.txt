@@ -1,0 +1,41 @@
+1. CẤU TRÚC MỘT DÒNG LỆNH ASSEMBLY
+   Một câu lệnh đầy đủ thường có 4 phần:
+   [Nhãn:]  [Mã lệnh]  [Toán hạng]  [;Chú thích]
+
+   - Nhãn (Label): Đánh dấu vị trí trong bộ nhớ (thường dùng cho lệnh nhảy/vòng lặp). Kết thúc bằng dấu hai chấm ":".
+   - Mã lệnh (Opcode): Từ gợi nhớ hành động (VD: MOV, ADD, SUB, INC).
+   - Toán hạng (Operands): Dữ liệu hoặc địa chỉ mà lệnh tác động lên. Có thể có 0, 1 hoặc 2 toán hạng.
+   - Chú thích (Comment): Bắt đầu bằng dấu chấm phẩy ";", trình biên dịch sẽ bỏ qua phần này.
+
+   Ví dụ:
+   LOOP_START:  MOV  AX, 5      ; Gán giá trị 5 vào thanh ghi AX
+
+2. CHI TIẾT CÁC THANH GHI ĐA NĂNG (Ví dụ trên kiến trúc x86 16-bit)
+   Các thanh ghi này đều 16-bit, nhưng có thể tách thành 2 phần 8-bit (High - H và Low - L).
+   
+   - AX (Accumulator - Tích lũy): Dùng chính trong các phép tính toán học (nhân, chia) và nhập xuất dữ liệu. (Gồm AH và AL).
+   - BX (Base - Cơ sở): Thường dùng để giữ địa chỉ cơ sở của bộ nhớ (truy cập mảng).
+   - CX (Count - Đếm): Dùng làm bộ đếm trong các vòng lặp (lệnh LOOP).
+   - DX (Data - Dữ liệu): Phối hợp với AX trong các phép nhân/chia số lớn hoặc lưu địa chỉ cổng I/O.
+
+3. CÁC THANH GHI QUẢN LÝ VÀ CON TRỎ
+   - IP (Instruction Pointer) hoặc PC (Program Counter): Chứa địa chỉ của lệnh TIẾP THEO sẽ được thực thi. Bạn không thể đổi giá trị IP trực tiếp bằng lệnh MOV.
+   - SP (Stack Pointer): Trỏ tới đỉnh của ngăn xếp (Stack).
+   - BP (Base Pointer): Dùng để tham chiếu các biến hoặc tham số trong Stack.
+
+4. THANH GHI CỜ (FLAGS REGISTER) - RẤT QUAN TRỌNG
+   Thanh ghi này không lưu dữ liệu mà lưu TRẠNG THÁI sau mỗi phép tính. Dùng để quyết định rẽ nhánh (lệnh IF).
+   
+   - ZF (Zero Flag): Bật lên 1 nếu kết quả phép tính bằng 0.
+   - CF (Carry Flag): Bật lên 1 nếu phép cộng bị nhớ (tràn số không dấu) hoặc phép trừ phải mượn.
+   - SF (Sign Flag): Bật lên 1 nếu kết quả là số âm (bit cao nhất là 1).
+   - OF (Overflow Flag): Bật lên 1 nếu bị tràn số có dấu (VD: Số dương cộng số dương ra số âm).
+
+5. LỆNH CƠ BẢN ĐẦU TIÊN: MOV (DI CHUYỂN DỮ LIỆU)
+   Cú pháp: MOV [Đích], [Nguồn]
+   Ý nghĩa: Sao chép giá trị từ Nguồn sang Đích.
+   
+   Quy tắc bắt buộc:
+   - Hai toán hạng phải cùng kích thước (8-bit với 8-bit, 16-bit với 16-bit).
+   - Không được di chuyển trực tiếp từ Bộ nhớ sang Bộ nhớ (phải qua trung gian thanh ghi).
+   - Không được gán giá trị trực tiếp vào thanh ghi đoạn (DS, ES).
