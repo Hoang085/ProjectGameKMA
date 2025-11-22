@@ -1,0 +1,26 @@
+1. Level Design Là Gì?
+– Nghệ thuật và kỹ thuật tạo bố cục màn chơi.
+– Sắp xếp chướng ngại vật, đường đi, độ khó, nhịp độ game.
+– Quyết định trải nghiệm của người chơi nhiều hơn cả đồ họa.
+
+2. Quy Tắc Vàng Trong Level Design
+– Dẫn hướng người chơi bằng ánh sáng, màu sắc, vật thể.
+– Giới thiệu cơ chế mới từ dễ → khó.
+– Checkpoint hợp lý, không quá xa nhau.
+– Không gian rõ ràng: đường đi, vật cản, mục tiêu.
+
+3. Blockout / Prototype Level
+– Làm level thô bằng hình khối (block, cube).
+– Test gameplay trước khi đưa đồ họa thật vào.
+– Giúp sửa lỗi đường đi, camera, platform nhanh chóng.
+
+4. Cân Bằng Độ Khó
+– Đặt enemy/obstacle tăng dần.
+– Vị trí item, máu, vũ khí hợp lý.
+– Dùng thống kê thử nghiệm: người chơi chết ở đâu nhiều?
+– Điều chỉnh pacing: lúc nhanh, lúc chậm.
+
+5. Ánh Sáng & Màu Sắc
+– Dùng ánh sáng để dẫn mắt người chơi.
+– Dùng contrast để phân biệt nền – vật thể.
+– Sử dụng ambient light hợp lý tránh làm game mờ hoặc cháy sáng.

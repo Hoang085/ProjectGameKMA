@@ -1,0 +1,29 @@
+1. Gameplay Loop Là Gì?
+– Là chu trình lặp lại trong game:
+Input → Update logic → Render → Repeat
+– Là “xương sống” của mọi trò chơi, từ 2D đơn giản đến 3D lớn.
+– Tốc độ update thường 30–60 lần/giây (Unity/Unreal).
+
+2. Input (Điều Khiển Người Chơi)
+– Nhận tín hiệu từ bàn phím, chuột, mobile touch, controller.
+– Unity: Input.GetKey, Input.GetAxis, Input System.
+– Unreal: Bind action & axis trong Project Settings.
+– Là nền tảng để tạo chuyển động nhân vật, nhảy, tấn công…
+
+3. Update Logic
+– Xử lý vật lý, AI, animation, item, nhiệm vụ…
+– Unity: Update(), FixedUpdate(), LateUpdate().
+– Unreal: Tick(float DeltaTime).
+– Đây là nơi game quyết định mọi hành động.
+
+4. Render (Hiển Thị)
+– Engine cập nhật camera, ánh sáng, shader, sprite, UI…
+– Phần này do engine tối ưu, nhưng cần:
+– Giảm số lượng object không cần thiết.
+– Giảm polygon (đối với 3D).
+– Bật batching để tối ưu draw calls.
+
+5. Loop Phụ: Event & State Machine
+– Game thường có nhiều trạng thái: Menu → Playing → Pause → GameOver.
+– Dùng FSM (Finite State Machine) để quản lý.
+– Tránh viết code rối bằng if-else nested.

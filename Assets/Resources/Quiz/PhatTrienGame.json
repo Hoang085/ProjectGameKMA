@@ -1,0 +1,185 @@
+{
+  "subjectKey": "PhatTrienGame",
+  "questions": [
+    {
+      "id": "GAME1",
+      "question": "Game Loop có chức năng chính gì?",
+      "answers": [ "Lưu dữ liệu người chơi", "Cập nhật logic và render liên tục", "Tạo âm thanh" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "GAME2",
+      "question": "Engine game nào phổ biến nhất hiện nay?",
+      "answers": [ "Illustrator", "Unity", "Photoshop" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "GAME3",
+      "question": "FPS trong game là gì?",
+      "answers": [ "File Processing System", "Full Power Setup", "Frames Per Second" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "GAME4",
+      "question": "Collider trong game dùng để:",
+      "answers": [ "Tạo ánh sáng", "Giảm RAM", "Xử lý va chạm" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "GAME5",
+      "question": "Trong Unity, Rigidbody dùng để:",
+      "answers": [ "Tạo UI", "Thêm vật lý cho object", "Giảm lag" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "GAME6",
+      "question": "Lý do gây lag phổ biến nhất trong game là:",
+      "answers": [ "Ít texture", "Không bật full screen", "Ít âm thanh" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME7",
+      "question": "Shader dùng để:",
+      "answers": [ "Xử lý hiệu ứng đồ họa", "Điều khiển AI", "Lưu dữ liệu" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME8",
+      "question": "Sprite là gì?",
+      "answers": [ "UI button", "Bản đồ 3D", "Hình ảnh 2D trong game" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "GAME9",
+      "question": "NavMesh dùng để:",
+      "answers": [ "Giảm ping", "Lưu map", "Tạo animation" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME10",
+      "question": "Tweening trong game chủ yếu dùng để:",
+      "answers": [ "Giảm FPS", "Chỉnh âm thanh", "Tăng tốc CPU" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME11",
+      "question": "Animation curve giúp:",
+      "answers": [ "Thay đổi shader", "Điều khiển tốc độ animation theo biểu đồ", "Tăng dung lượng game" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "GAME12",
+      "question": "Game 2D thường dùng hệ tọa độ:",
+      "answers": [ "W và Z", "R và T", "X và Y" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "GAME13",
+      "question": "Game 3D thường dùng hệ tọa độ:",
+      "answers": [ "X, Y, Z", "1, 2, 3", "A, B, C" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME14",
+      "question": "LOD (Level of Detail) dùng để:",
+      "answers": [ "Giảm chi phí render ở vật thể xa", "Tạo UI", "Lưu dữ liệu" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME15",
+      "question": "Occlusion Culling giúp:",
+      "answers": [ "Không render vật thể bị che khuất", "Sinh map ngẫu nhiên", "Tạo collider" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME16",
+      "question": "Input System trong game dùng để:",
+      "answers": [ "Lưu file", "Nhận thao tác người chơi", "Render ánh sáng" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "GAME17",
+      "question": "AI trong game thường gồm:",
+      "answers": [ "Compiler, Linker", "RAM, ROM", "Pathfinding, Behavior Tree, State Machine" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "GAME18",
+      "question": "State Machine (FSM) giúp:",
+      "answers": [ "Quản lý trạng thái AI", "Tối ưu RAM", "Tăng FPS" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME19",
+      "question": "Particle System dùng để tạo:",
+      "answers": [ "Menu", "HUD", "FPS counter" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME20",
+      "question": "VSync dùng để:",
+      "answers": [ "Đồng bộ FPS với tần số màn hình", "Bật blur", "Tăng độ sáng" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME21",
+      "question": "Bottleneck trong game là:",
+      "answers": [ "Điểm nghẽn làm giảm hiệu suất", "Shader bị tắt", "Lỗi âm thanh" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME22",
+      "question": "Profiler dùng để:",
+      "answers": [ "Sinh terrain", "Đo hiệu suất game", "Tăng dung lượng" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "GAME23",
+      "question": "Prefab trong Unity là:",
+      "answers": [ "File audio", "File shader", "Texture atlas" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME24",
+      "question": "Lightmap dùng để:",
+      "answers": [ "Lưu dữ liệu người chơi", "Chỉnh màu shader", "Bake ánh sáng sẵn để tăng hiệu suất" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "GAME25",
+      "question": "Tiled map chủ yếu dùng trong:",
+      "answers": [ "Game 3D AAA", "Game VR", "Game 2D" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "GAME26",
+      "question": "Gameplay là gì?",
+      "answers": [ "Cách người chơi tương tác với game", "Đồ họa 3D", "Server" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME27",
+      "question": "Physics engine dùng để:",
+      "answers": [ "Lưu save", "Render UI", "Chạy âm thanh" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME28",
+      "question": "Frame time là:",
+      "answers": [ "Thời gian animation", "Thời gian kết nối server", "Thời gian render một frame" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "GAME29",
+      "question": "Mesh là gì?",
+      "answers": [ "Một dạng UI", "Engine âm thanh", "Cấu trúc AI" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "GAME30",
+      "question": "Hitbox là:",
+      "answers": [ "UI anchor", "Vùng xác định để phát hiện trúng đòn", "File log game" ],
+      "correctIndex": 1
+    }
+  ]
+}

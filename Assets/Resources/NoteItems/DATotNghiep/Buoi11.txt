@@ -1,0 +1,39 @@
+1. Tại Sao Báo Cáo Quan Trọng?
+– Là tài liệu chính hội đồng dùng để chấm điểm.
+– Chứng minh quá trình làm việc, tư duy và sản phẩm của bạn.
+– Một báo cáo rõ ràng → dễ bảo vệ → dễ đạt điểm cao.
+– Giúp lưu lại kiến thức & quy trình triển khai dự án.
+
+2. Cấu Trúc Báo Cáo Chuẩn
+- Một báo cáo đồ án thường gồm:
+- Trang bìa + Lời cảm ơn
+- Tóm tắt nội dung (Abstract)
+- Giới thiệu đề tài
+- Cơ sở lý thuyết
+- Phân tích yêu cầu (SRS)
+- Thiết kế hệ thống (Architecture, ERD, UI/UX)
+- Triển khai (Implementation)
+- Kiểm thử (Test Cases & Kết quả)
+- Đánh giá – Ưu điểm – Hạn chế
+- Định hướng phát triển
+- Tài liệu tham khảo
+
+3. Cách Viết Báo Cáo Dễ Hiểu
+– Viết rõ ràng, mạch lạc, mỗi mục 3–10 dòng.
+– Dùng hình ảnh minh họa: sơ đồ, giao diện, code, biểu đồ.
+– Không viết dài dòng, lan man.
+– Có tiêu đề rõ, đánh số chương chính xác.
+– Tránh lỗi chính tả, lỗi format, font chữ lộn xộn.
+
+4. Ghi Lại Quá Trình Triển Khai
+– Công nghệ sử dụng (Flutter, Unity, Laravel, ESP32…).
+– Cách thiết kế database & API.
+– Các module đã xây dựng.
+– Luồng dữ liệu chính.
+– Những xử lý đặc biệt hoặc thuật toán quan trọng.
+
+5. Phần Kiểm Thử Trong Báo Cáo
+– Đính test case (bảng TC01–TC10).
+– Ảnh chụp kết quả test.
+– Các lỗi đã sửa.
+– Đánh giá mức độ hoàn thiện của hệ thống.

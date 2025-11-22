@@ -1,0 +1,31 @@
+1. Player Controller Là Gì?
+– Hệ thống điều khiển nhân vật trong game.
+– Xử lý di chuyển, nhảy, va chạm, tấn công…
+– Là phần quan trọng nhất trong gameplay.
+
+2. Di Chuyển 2D / 3D
+Unity:
+– 2D: Rigidbody2D + Collider2D + velocity.
+– 3D: CharacterController hoặc Rigidbody.
+Unreal:
+– CharacterMovementComponent hỗ trợ sẵn:
+– Walking, Falling, Jumping, Sprint.
+
+3. Camera Follow
+– Camera đi theo player nhưng có độ trễ nhẹ (smooth).
+– Unity: Cinemachine (tối ưu, dễ dùng).
+– Unreal: SpringArm + Camera Component.
+
+4. Animation Cơ Bản
+– Chạy, đứng, nhảy… gắn với parameters:
+– speed
+– isGrounded
+– isJumping
+– Unity: Animator Controller.
+– Unreal: Animation Blueprint.
+
+5. Collision & Physics
+– Kiểm tra va chạm để ngăn xuyên tường, rơi xuyên map.
+– 2D: BoxCollider2D / CircleCollider2D.
+– 3D: CapsuleCollider, MeshCollider.
+– Kiểm tra mặt đất bằng raycast.

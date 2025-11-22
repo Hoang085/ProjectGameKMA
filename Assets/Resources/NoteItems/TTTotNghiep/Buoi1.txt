@@ -1,0 +1,32 @@
+1. Mục Tiêu Của Thực Tập
+– Áp dụng kiến thức đã học vào môi trường thực tế.
+– Làm quen quy trình làm việc của doanh nghiệp.
+– Tăng kinh nghiệm, kỹ năng mềm và khả năng giải quyết vấn đề.
+– Chuẩn bị cho công việc sau khi tốt nghiệp.
+
+2. Yêu Cầu Chung Của Học Phần
+– Tham gia đầy đủ thời gian thực tập tại đơn vị.
+– Hoàn thành nhiệm vụ được giao.
+– Báo cáo tiến độ hằng tuần.
+– Viết báo cáo cuối kỳ và tham gia buổi bảo vệ.
+
+3. Các Vị Trí Thực Tập Phổ Biến
+– Lập trình viên (Backend / Frontend / Mobile / Game).
+– Tester / QA.
+– IoT / Embedded Developer.
+– IT Helpdesk / System Support.
+– Data Analyst / AI Intern.
+
+4. Kỹ Năng Cần Chuẩn Bị
+– Ngôn ngữ lập trình bạn mạnh nhất.
+– Kỹ năng giao tiếp & teamwork.
+– Kỹ năng viết báo cáo kỹ thuật.
+– Thái độ chủ động và chịu trách nhiệm.
+
+5. Quy Trình Thực Tập
+- Chọn nơi thực tập phù hợp.
+- Ký xác nhận và lập kế hoạch làm việc.
+- Nhận nhiệm vụ từ mentor.
+- Báo cáo tiến độ hằng tuần.
+- Hoàn thành sản phẩm hoặc module được giao.
+- Viết báo cáo tổng kết và bảo vệ.

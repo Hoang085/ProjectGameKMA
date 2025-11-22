@@ -1,0 +1,38 @@
+1. Vai Trò Của Slide Thuyết Trình
+– Là công cụ chính để trình bày trước hội đồng.
+– Giúp bạn tóm tắt toàn bộ đồ án trong 5–10 phút.
+– Slide tốt = hội đồng hiểu nhanh = tăng điểm.
+
+2. Cấu Trúc Slide Chuẩn
+- Một bộ slide 8–12 trang là vừa đủ, gồm:
+- Giới thiệu bản thân & đề tài
+- Vấn đề và mục tiêu
+- Kiến trúc hệ thống
+- Database & API (nếu có)
+- Giao diện & chức năng chính
+- Demo ứng dụng
+- Kết quả đạt được
+- Hạn chế & hướng phát triển
+- Kết luận & cảm ơn
+
+3. Nguyên Tắc Thiết Kế Slide
+– Ít chữ, nhiều hình minh họa.
+– Tiêu đề to – nội dung ngắn – hình ảnh rõ.
+– Không dùng quá nhiều màu hoặc hiệu ứng animation.
+– Font rõ ràng: Roboto, Arial, Inter.
+– Chỉ giữ lại nội dung quan trọng nhất.
+
+4. Chuẩn Bị Nội Dung Thuyết Trình
+– 30–45 giây: Giới thiệu bản thân + đề tài.
+– 1 phút: Trình bày vấn đề & mục tiêu.
+– 1–2 phút: Kiến trúc, database, flow.
+– 2 phút: Demo sản phẩm.
+– 30 giây: Ưu điểm – hạn chế – phát triển.
+– 10 giây cuối: Cảm ơn hội đồng.
+Tổng thời gian: 5–7 phút là tốt nhất.
+
+5. Chuẩn Bị Demo
+– Chuẩn bị video dự phòng phòng khi lỗi mạng/máy.
+– Test demo trước buổi bảo vệ 2–3 lần.
+– Đánh dấu sẵn các case quan trọng để show.
+– Đảm bảo dữ liệu, API, server hoạt động ổn định.

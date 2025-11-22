@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 10",
+  "subjectName": "Phát Triển Game",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Game Loop có chức năng chính gì?",
+      "options": [ "Lưu dữ liệu người chơi", "Cập nhật logic và render liên tục", "Tạo âm thanh", "Gửi request mạng" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Engine game nào phổ biến nhất hiện nay?",
+      "options": [ "Illustrator", "Unity", "Photoshop", "After Effects" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "FPS trong game là gì?",
+      "options": [ "File Processing System", "Full Power Setup", "Frames Per Second", "Frame Pixel Scale" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Collider trong game dùng để:",
+      "options": [ "Tạo ánh sáng", "Giảm RAM", "Xử lý va chạm", "Tăng FPS" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong Unity, Rigidbody dùng để:",
+      "options": [ "Tạo UI", "Thêm vật lý cho object", "Giảm lag", "Phát âm thanh" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Lý do gây lag phổ biến nhất trong game là:",
+      "options": [ "Ít texture", "Không bật full screen", "Ít âm thanh", "Quá nhiều object hoặc update nặng mỗi frame" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Shader dùng để:",
+      "options": [ "Xử lý hiệu ứng đồ họa", "Điều khiển AI", "Lưu dữ liệu", "Tăng tốc độ mạng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Sprite là gì?",
+      "options": [ "UI button", "Bản đồ 3D", "Hình ảnh 2D trong game", "File âm thanh" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "NavMesh dùng để:",
+      "options": [ "Giảm ping", "Lưu map", "Tạo animation", "Điều hướng AI" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Tweening trong game chủ yếu dùng để:",
+      "options": [ "Giảm FPS", "Chỉnh âm thanh", "Tăng tốc CPU", "Tạo chuyển động mượt" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Animation curve giúp:",
+      "options": [ "Thay đổi shader", "Điều khiển tốc độ animation theo biểu đồ", "Tăng dung lượng game", "Tắt hiệu ứng" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Game 2D thường dùng hệ tọa độ:",
+      "options": [ "W và Z", "R và T", "X và Y", "Y và Z" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Game 3D thường dùng hệ tọa độ:",
+      "options": [ "X, Y, Z", "1, 2, 3", "A, B, C", "W, U, V" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "LOD (Level of Detail) dùng để:",
+      "options": [ "Giảm chi phí render ở vật thể xa", "Tạo UI", "Lưu dữ liệu", "Tăng tiếng động" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Occlusion Culling giúp:",
+      "options": [ "Không render vật thể bị che khuất", "Sinh map ngẫu nhiên", "Tạo collider", "Tăng độ sáng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Input System trong game dùng để:",
+      "options": [ "Lưu file", "Nhận thao tác người chơi", "Render ánh sáng", "Nén dữ liệu" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "AI trong game thường gồm:",
+      "options": [ "Compiler, Linker", "RAM, ROM", "Pathfinding, Behavior Tree, State Machine", "Shader, Texture, Mesh" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "State Machine (FSM) giúp:",
+      "options": [ "Quản lý trạng thái AI", "Tối ưu RAM", "Tăng FPS", "Xóa texture" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Particle System dùng để tạo:",
+      "options": [ "Menu", "HUD", "FPS counter", "Hiệu ứng như lửa, khói, bụi" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "VSync dùng để:",
+      "options": [ "Đồng bộ FPS với tần số màn hình", "Bật blur", "Tăng độ sáng", "Thay đổi shader" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Bottleneck trong game là:",
+      "options": [ "Điểm nghẽn làm giảm hiệu suất", "Shader bị tắt", "Lỗi âm thanh", "Điểm spawn quái vật" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Profiler dùng để:",
+      "options": [ "Sinh terrain", "Đo hiệu suất game", "Tăng dung lượng", "Tạo NPC" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Prefab trong Unity là:",
+      "options": [ "File audio", "File shader", "Texture atlas", "Mẫu object có thể tái sử dụng" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Lightmap dùng để:",
+      "options": [ "Lưu dữ liệu người chơi", "Chỉnh màu shader", "Bake ánh sáng sẵn để tăng hiệu suất", "Tăng FPS bằng cách tắt UI" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Tiled map chủ yếu dùng trong:",
+      "options": [ "Game 3D AAA", "Game VR", "Game 2D", "Game FPS" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Gameplay là gì?",
+      "options": [ "Cách người chơi tương tác với game", "Đồ họa 3D", "Server", "Màn hình loading" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Physics engine dùng để:",
+      "options": [ "Lưu save", "Render UI", "Chạy âm thanh", "Mô phỏng vật lý" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Frame time là:",
+      "options": [ "Thời gian animation", "Thời gian kết nối server", "Thời gian render một frame", "Thời gian load game" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Mesh là gì?",
+      "options": [ "Một dạng UI", "Engine âm thanh", "Cấu trúc AI", "Tập hợp các điểm (vertices) tạo thành mô hình 3D" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Hitbox là:",
+      "options": [ "UI anchor", "Vùng xác định để phát hiện trúng đòn", "File log game", "Renderer" ],
+      "correctIndex": 1
+    }
+  ]
+}

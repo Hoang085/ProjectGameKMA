@@ -1,0 +1,30 @@
+1. Tại Sao Báo Cáo Tiến Độ Quan Trọng?
+– Mentor nắm được tình hình của bạn.
+– Giúp điều chỉnh nhiệm vụ đúng hướng.
+– Tránh làm sai yêu cầu trong thời gian dài.
+– Tạo sự tin tưởng và chuyên nghiệp.
+
+2. Cách Viết Báo Cáo Tiến Độ
+Báo cáo nên có 3 phần ngắn gọn:
+– Đã hoàn thành: các task đã xong.
+– Đang làm: tiến độ %, vấn đề gặp phải.
+– Kế hoạch tiếp theo: dự định làm gì ngày/sprint tiếp theo.
+Bonus: đính kèm ảnh, link commit, link tài liệu.
+
+3. Cách Làm Việc Hiệu Quả Với Mentor
+– Trao đổi rõ ràng: hỏi đúng trọng tâm.
+– Gửi câu hỏi có ngữ cảnh (ảnh, code, lỗi cụ thể).
+– Báo sớm khi task có nguy cơ trễ deadline.
+– Tôn trọng thời gian của mentor (hạn chế spam, hỏi ngoài giờ).
+
+4. Nhận Feedback
+– Lắng nghe và ghi nhận đầy đủ.
+– Không phản ứng tiêu cực nếu bị phê bình.
+– Xem feedback như cơ hội nâng trình.
+– Hỏi lại nếu chưa hiểu cách sửa.
+
+5. Cách Xử Lý Khi Gặp Vấn Đề
+– Tự thử 2–3 hướng giải quyết trước khi hỏi.
+– Ghi log, test từng bước để khoanh vùng lỗi.
+– Đề xuất giải pháp thay vì hỏi “giờ sao anh?”.
+– Nếu lỗi quá lớn → xin hỗ trợ ngay.

@@ -1,0 +1,48 @@
+1. Xác Định Chức Năng Cốt Lõi
+Mỗi đồ án đều có tính năng trọng tâm quyết định 70% chất lượng sản phẩm.
+Ví dụ theo từng loại đề tài:
+Web/App: đăng nhập, quản lý dữ liệu, dashboard.
+IoT: đọc sensor, gửi dữ liệu lên server, điều khiển thiết bị.
+Game: player controller, enemy logic, inventory.
+AI: huấn luyện, nhận diện, phân tích dữ liệu.
+Chọn đúng tính năng lõi giúp bạn tập trung vào phần quan trọng nhất.
+
+2. Chia Nhỏ Chức Năng Thành Module
+Ví dụ 1 module → nhiều phần nhỏ:
+Ví dụ: Module “Đăng nhập”
+– Form nhập email/password
+– API kiểm tra thông tin đăng nhập
+– Xử lý token, phân quyền
+– Chuyển trang sau khi login
+Ví dụ: Module “Sensor ESP32”
+– Đọc giá trị cảm biến
+– Mã hoá dữ liệu
+– Gửi HTTP/MQTT
+– Nhận phản hồi server
+
+3. Luồng Dữ Liệu (Data Flow)
+Ở bước này cần xác định:
+– Dữ liệu đi từ đâu → đến đâu
+– Ai xử lý dữ liệu
+– Kết quả trả về cho người dùng
+Ví dụ luồng API:
+User → Gửi request → Server xử lý → Truy vấn DB → Trả JSON → UI hiển thị
+Ví dụ luồng IoT:
+Sensor → ESP32 → HTTP/MQTT → Server → Lưu DB → Dashboard
+
+4. Kiểm Tra Tính Hoàn Chỉnh Của Chức Năng
+Mỗi chức năng phải đạt:
+– Hoạt động đúng theo yêu cầu
+– Không lỗi nghiêm trọng
+– Có giao diện hoặc API đầy đủ
+– Có log/debug để dễ kiểm tra
+– Có dữ liệu mẫu để test
+
+5. Tài Liệu Hoá Chức Năng
+Nên ghi lại:
+– Mục tiêu của chức năng
+– Luồng xử lý
+– Input – Output
+– API sử dụng (nếu có)
+– Hình ảnh minh họa
+– Ghi chú các case đặc biệt

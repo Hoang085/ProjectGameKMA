@@ -1,0 +1,305 @@
+{
+  "subjectKey": "DATotNghiep",
+  "questions": [
+    {
+      "id": "DATN1",
+      "question": "Mục tiêu quan trọng nhất của đồ án tốt nghiệp là gì?",
+      "answers": [
+        "Tạo slide đẹp",
+        "Hoàn thiện một sản phẩm hoặc nghiên cứu có giá trị thực tế",
+        "Sao chép tài liệu"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "DATN2",
+      "question": "Đồ án tốt nghiệp thường yêu cầu sinh viên phải:",
+      "answers": [
+        "Sao chép 100% bài cũ",
+        "Tự nghiên cứu và phát triển sản phẩm",
+        "Chỉ chờ giáo viên làm hộ"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "DATN3",
+      "question": "Phần mở đầu của báo cáo đồ án thường gồm gì?",
+      "answers": [
+        "Danh sách bạn bè",
+        "Lý do chọn đề tài",
+        "Nội dung không liên quan"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "DATN4",
+      "question": "Trong quá trình làm đồ án, sinh viên cần:",
+      "answers": [
+        "Không liên hệ ai cả",
+        "Tự ý đổi đề tài",
+        "Chủ động trao đổi với giáo viên hướng dẫn"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN5",
+      "question": "Tiến độ đồ án được dùng để:",
+      "answers": [
+        "Theo dõi quá trình thực hiện",
+        "Tăng điểm",
+        "Trang trí báo cáo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "DATN6",
+      "question": "Nội dung quan trọng nhất của đồ án tốt nghiệp là:",
+      "answers": [
+        "Chất lượng sản phẩm/giải pháp",
+        "Số lượng trang báo cáo",
+        "Màu sắc bìa"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "DATN7",
+      "question": "Báo cáo đồ án yêu cầu trích dẫn tài liệu nhằm:",
+      "answers": [
+        "Trang trí cho đẹp",
+        "Làm báo cáo dài hơn",
+        "Thể hiện tính khoa học và minh bạch"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN8",
+      "question": "Khi gặp khó khăn trong đồ án, sinh viên nên:",
+      "answers": [
+        "Bỏ mặc không làm",
+        "Trao đổi với giáo viên hoặc tìm tài liệu",
+        "Ngừng làm đồ án"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "DATN9",
+      "question": "Một sản phẩm tốt nghiệp đạt yêu cầu khi:",
+      "answers": [
+        "Không cần test",
+        "Chỉ cần có giao diện đẹp",
+        "Đạt mục tiêu ban đầu và chạy ổn định"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN10",
+      "question": "Trong phần phương pháp thực hiện, sinh viên cần trình bày:",
+      "answers": [
+        "Hình nền đẹp",
+        "Ảnh selfie",
+        "Cách tiếp cận và công nghệ sử dụng"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN11",
+      "question": "Thiết kế hệ thống trong đồ án gồm:",
+      "answers": [
+        "Hình trang trí",
+        "File PDF bất kỳ",
+        "Sơ đồ phân tích, kiến trúc hệ thống, luồng dữ liệu"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN12",
+      "question": "Bài báo cáo đồ án cần tuân thủ:",
+      "answers": [
+        "Chuẩn và quy định của khoa",
+        "Không cần mục lục",
+        "Tùy ý trình bày"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "DATN13",
+      "question": "Demo sản phẩm trong buổi bảo vệ nhằm:",
+      "answers": [
+        "Kéo dài thời gian",
+        "Tăng số slide",
+        "Chứng minh sản phẩm hoạt động thực tế"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN14",
+      "question": "Giáo viên hướng dẫn đánh giá cao sinh viên khi:",
+      "answers": [
+        "Không gặp giáo viên",
+        "Chậm deadline liên tục",
+        "Chủ động và có tiến độ rõ ràng"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN15",
+      "question": "Phần đánh giá kết quả đồ án cần:",
+      "answers": [
+        "Không cần số liệu",
+        "Chỉ viết lý thuyết",
+        "So sánh mục tiêu và kết quả hoàn thành"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN16",
+      "question": "Kiểm thử (Testing) trong đồ án cần để:",
+      "answers": [
+        "Giảm thời gian làm việc",
+        "Tăng số trang báo cáo",
+        "Đảm bảo sản phẩm ổn định và đúng yêu cầu"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN17",
+      "question": "Bảo vệ đồ án là dịp để sinh viên:",
+      "answers": [
+        "Nộp bài trắng",
+        "Thuyết trình và phản biện về sản phẩm",
+        "Chỉ đọc slide"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "DATN18",
+      "question": "Slide bảo vệ cần:",
+      "answers": [
+        "Ngắn gọn, súc tích, đầy đủ nội dung chính",
+        "Không cần nội dung",
+        "Thật nhiều hiệu ứng"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "DATN19",
+      "question": "Sản phẩm có tính ứng dụng cao giúp:",
+      "answers": [
+        "Không có lợi ích",
+        "Giảm điểm",
+        "Tăng cơ hội việc làm cho sinh viên"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN20",
+      "question": "Sinh viên cần chuẩn bị gì trước buổi bảo vệ?",
+      "answers": [
+        "Không cần chuẩn bị",
+        "Mang thật nhiều slide",
+        "Ôn tập nội dung, kiểm tra sản phẩm, luyện thuyết trình"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN21",
+      "question": "Một lỗi lớn trong đồ án là:",
+      "answers": [
+        "Sử dụng hình vẽ",
+        "Có minh chứng đầy đủ",
+        "Sao chép nội dung từ nguồn không rõ ràng"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN22",
+      "question": "Sản phẩm cần có tài liệu hướng dẫn để:",
+      "answers": [
+        "Không cần thiết",
+        "Giảm chất lượng đồ án",
+        "Người dùng dễ sử dụng"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN23",
+      "question": "Phát biểu nào đúng về tiến độ đồ án?",
+      "answers": [
+        "Tiến độ giúp sinh viên không bị dồn việc cuối kỳ",
+        "Không cần trình bày",
+        "Tiến độ không quan trọng"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "DATN24",
+      "question": "Khi chọn đề tài đồ án, sinh viên nên:",
+      "answers": [
+        "Chọn đề tài phù hợp với năng lực và sở thích",
+        "Chọn đề tài quá khó",
+        "Chọn đề tài không liên quan ngành"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "DATN25",
+      "question": "Một trong các mục tiêu chính của báo cáo đồ án là:",
+      "answers": [
+        "Copy tài liệu",
+        "Trình bày rõ ràng quá trình và kết quả",
+        "Dùng nhiều hình nền"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "DATN26",
+      "question": "Khi giáo viên góp ý, sinh viên nên:",
+      "answers": [
+        "Không cần phản hồi",
+        "Chỉnh sửa theo hướng dẫn",
+        "Bỏ qua"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "DATN27",
+      "question": "Đồ án tốt được đánh giá qua:",
+      "answers": [
+        "Màu slide",
+        "Số lượng hình ảnh",
+        "Tính hoàn thiện, sáng tạo và giá trị ứng dụng"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN28",
+      "question": "Kết quả đồ án ảnh hưởng đến:",
+      "answers": [
+        "Điểm tốt nghiệp và cơ hội việc làm",
+        "Học phí",
+        "Thời khóa biểu"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "DATN29",
+      "question": "Một sản phẩm không được chấp nhận nếu:",
+      "answers": [
+        "Nhiều hình ảnh",
+        "Có giao diện đẹp",
+        "Không chạy được hoặc sai mục tiêu hoàn toàn"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "DATN30",
+      "question": "Buổi bảo vệ đồ án là cơ hội để:",
+      "answers": [
+        "Không trả lời câu hỏi",
+        "Khẳng định năng lực của sinh viên",
+        "Chỉ đứng im"
+      ],
+      "correctIndex": 1
+    }
+  ]
+}

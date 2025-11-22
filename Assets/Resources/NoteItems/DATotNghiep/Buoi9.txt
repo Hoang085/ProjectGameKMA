@@ -1,0 +1,51 @@
+1. Tại Sao Kiểm Thử Quan Trọng?
+– Giúp phát hiện lỗi trước khi nộp đồ án.
+– Tăng độ ổn định và tính chuyên nghiệp của sản phẩm.
+– Hội đồng đánh giá rất cao những đồ án ít lỗi, chạy mượt.
+– Tránh lỗi nghiêm trọng khi demo trước hội đồng.
+
+2. Các Loại Kiểm Thử Cần Có
+Functional Testing – Kiểm thử chức năng
+– Kiểm tra từng chức năng chạy đúng yêu cầu.
+– Test với dữ liệu thật và dữ liệu lỗi.
+UI/UX Testing – Kiểm thử giao diện
+– Kiểm tra bố cục, kích thước, màu sắc, thao tác.
+– Test trên nhiều kích thước màn hình (mobile/web).
+Integration Testing – Kiểm thử tích hợp
+– Kiểm tra hệ thống khi các module kết hợp với nhau.
+– API ↔ Database ↔ UI có hoạt động trơn tru không?
+Performance Testing – Kiểm thử hiệu năng
+– Tốc độ tải trang/screen.
+– Mức tiêu thụ CPU/RAM (web/mobile).
+– Độ trễ API hoặc luồng IoT.
+Security Testing – (Nếu cần)
+– Test phân quyền người dùng.
+– Test đăng nhập, token, dữ liệu nhạy cảm.
+
+3. Quy Trình Test Chuẩn
+- Chuẩn bị danh sách test case
+- Chạy từng test case
+- Ghi kết quả (Pass/Fail)
+- Sửa lỗi
+- Test lại (Re-test)
+- Test toàn hệ thống (Regression)
+
+4. Tạo Test Case
+Một test case chuẩn có:
+– Mã test (TC01, TC02…)
+– Mô tả
+– Input
+– Các bước thực hiện
+– Expected result
+– Actual result
+Ví dụ:
+TC05 – Đăng nhập sai mật khẩu → báo lỗi "Sai thông tin"
+
+5. Ghi Log & Debug
+– In log (console, debug screen).
+– Dùng try/catch để tránh crash.
+– Dùng tool:
+– Web: Developer Tools
+– Mobile: Logcat
+– IoT: Serial Monitor
+– Game: Console + Debug UI

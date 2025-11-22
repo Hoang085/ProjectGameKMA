@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 10",
+  "subjectName": "Thực Tập Tốt Nghiệp",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Mục tiêu chính của học phần Thực Tập Tốt Nghiệp là gì?",
+      "options": [ "Thi học kì", "Áp dụng kiến thức thực tế", "Viết báo cáo tùy ý", "Học thêm môn mới" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Sinh viên cần làm gì trước khi bắt đầu thực tập?",
+      "options": [ "Hoàn thành luận văn", "Tìm đơn vị thực tập phù hợp", "Nộp báo cáo cuối kỳ", "Xin điểm" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Báo cáo thực tập phải chứa phần nào?",
+      "options": [ "Tài liệu copy", "Chỉ có hình ảnh", "Nhận xét của đơn vị thực tập", "Dữ liệu ngẫu nhiên" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Tác phong khi thực tập tại doanh nghiệp cần:",
+      "options": [ "Ăn mặc tùy tiện", "Đi muộn thường xuyên", "Không cần báo cáo", "Chuyên nghiệp và đúng giờ" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Trong thực tập, sinh viên nên:",
+      "options": [ "Tự ý nghỉ", "Không hỏi ai", "Chờ giao việc", "Chủ động học hỏi" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Bản kế hoạch thực tập cần có:",
+      "options": [ "Điểm trung bình", "Mục tiêu, nội dung, tiến độ", "Danh sách bạn bè", "Các môn đại cương" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Thời gian thực tập thường kéo dài:",
+      "options": [ "1 tháng nghỉ", "1 năm", "4–12 tuần", "1 ngày" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong quá trình thực tập, sinh viên cần báo cáo ai?",
+      "options": [ "Bạn bè", "Người thân", "Giáo viên hướng dẫn và người chịu trách nhiệm tại doanh nghiệp", "Sinh viên khác" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Kỹ năng quan trọng nhất khi thực tập là:",
+      "options": [ "Thuộc công thức", "Giải trí", "Chơi game", "Giao tiếp và làm việc nhóm" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Thực tập tốt nghiệp giúp sinh viên:",
+      "options": [ "Không cần học thêm", "Tích lũy kinh nghiệm thực tế", "Miễn đồ án", "Được nghỉ dài hạn" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Sinh viên phải làm gì khi gặp vấn đề tại nơi thực tập?",
+      "options": [ "Không nói ai", "Tự ý bỏ về", "Giấu kín", "Báo cho giáo viên hướng dẫn" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Nhà tuyển dụng đánh giá cao sinh viên thực tập khi:",
+      "options": [ "Không hỏi gì", "Chủ động và có trách nhiệm", "Luôn im lặng", "Không tham gia công việc" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Nội dung chính của nhật ký thực tập là:",
+      "options": [ "Hình ảnh cá nhân", "Công việc mỗi ngày", "Thông tin không liên quan", "Kế hoạch ăn uống" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Báo cáo thực tập cần tuân thủ:",
+      "options": [ "Không cần số liệu", "Tùy thích", "Không cần hình ảnh", "Bố cục và quy định của khoa" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Một trong các lợi ích lớn nhất của thực tập là:",
+      "options": [ "Không làm đồ án", "Không cần đến trường", "Hiểu môi trường làm việc thực tế", "Được nghỉ học" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Sinh viên nên thể hiện thái độ như thế nào với người hướng dẫn?",
+      "options": [ "Tranh luận gay gắt", "Không trao đổi", "Tôn trọng và hợp tác", "Nói chuyện riêng tư" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Kết quả thực tập phụ thuộc vào:",
+      "options": [ "Số ngày nghỉ lễ", "Bài kiểm tra 15 phút", "Nỗ lực và mức độ tham gia của sinh viên", "Điểm trung học" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Đơn vị thực tập mong đợi sinh viên:",
+      "options": [ "Không hợp tác", "Từ chối công việc", "Luôn yêu cầu nghỉ", "Có tinh thần cầu tiến" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Thái độ nào sau đây bị đánh giá thấp?",
+      "options": [ "Đi làm đúng giờ", "Thiếu chủ động", "Làm việc nhóm tốt", "Hỗ trợ đồng nghiệp" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Thực tập tốt nghiệp giúp cải thiện kỹ năng nào?",
+      "options": [ "Kỹ năng đồ họa", "Kỹ năng chơi game", "Kỹ năng chuyên môn và kỹ năng mềm", "Kỹ năng giải toán" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Sinh viên cần làm gì sau khi hoàn thành thực tập?",
+      "options": [ "Không cần báo cáo", "Giấu kết quả", "Nộp báo cáo và minh chứng đầy đủ", "Đi chơi ngay" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong báo cáo thực tập, phần đánh giá cá nhân cần nêu:",
+      "options": [ "Số lần đi muộn", "Tên bạn bè", "Điểm mạnh và điểm cần cải thiện", "Thông tin không liên quan" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Email gửi doanh nghiệp phải:",
+      "options": [ "Không cần chủ đề", "Dùng icon nhiều", "Viết tắt tối đa", "Lịch sự, rõ ràng" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Khi được giao nhiệm vụ mới, sinh viên nên:",
+      "options": [ "Không cần hỏi", "Làm tùy ý", "Từ chối", "Hỏi rõ yêu cầu và thực hiện đầy đủ" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Kỹ năng sử dụng tài liệu (Documentation) giúp:",
+      "options": [ "Không cần thiết", "Gây rối", "Làm việc hiệu quả hơn", "Giảm chất lượng công việc" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Sinh viên nên lưu ý điều gì khi ký biên bản thực tập?",
+      "options": [ "Ký đại", "Nhờ người ký hộ", "Kiểm tra nội dung trước khi ký", "Không cần xem" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Giáo viên hướng dẫn có vai trò:",
+      "options": [ "Theo dõi và hỗ trợ sinh viên", "Không liên quan", "Không cần thiết", "Chỉ cho điểm" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Tinh thần trách nhiệm thể hiện ở:",
+      "options": [ "Nghỉ tùy ý", "Hoàn thành nhiệm vụ đúng hạn", "Không báo cáo", "Đổ lỗi người khác" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Sinh viên cần phản hồi doanh nghiệp theo cách:",
+      "options": [ "Viết cộc lốc", "Không phản hồi", "Lịch sự, rõ ràng, đủ thông tin", "Gây khó chịu" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Kết quả thực tập tốt giúp:",
+      "options": [ "Không có lợi ích", "Điểm giảm", "Khó xin việc hơn", "Tăng cơ hội việc làm" ],
+      "correctIndex": 3
+    }
+  ]
+}

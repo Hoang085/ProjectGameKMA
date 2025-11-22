@@ -1,0 +1,29 @@
+1. Kỹ Năng Sử Dụng Công Cụ Làm Việc
+– Git/GitHub/GitLab: pull, commit, push, branch, merge.
+– Task management: Trello, Jira, Notion.
+– Chat/meeting: Slack, Teams, Zoom, Google Meet.
+– Document: Google Docs, Confluence, README.
+
+2. Cách Viết Code Trong Dự Án
+– Viết code rõ ràng, có comment khi cần.
+– Theo format chung của team (lint, naming convention).
+– Tách module, chia file, không viết code quá dài.
+– Commit nhỏ, rõ nội dung, tránh commit "fix bug".
+
+3. Review Code (Code Review)
+– Gửi pull request gọn gàng, mô tả rõ thay đổi.
+– Lắng nghe góp ý của reviewer.
+– Sửa lỗi dựa trên feedback, không tranh cãi vô lý.
+– Học hỏi từ review để nâng trình độ nhanh hơn.
+
+4. Cách Giải Quyết Vấn Đề
+– Khi gặp lỗi: thử đọc log, test lại, tìm nguyên nhân.
+– Nếu vượt quá 30 phút → hỏi mentor để không lãng phí thời gian.
+– Đề xuất giải pháp thay vì chỉ hỏi “làm cái này sao anh?”.
+– Ghi lại lỗi đã gặp để tránh lặp lại.
+
+5. Kỹ Năng Giao Tiếp Trong Công Việc
+– Trao đổi trực tiếp, rõ ràng, lịch sự.
+– Báo cáo tiến độ mỗi ngày hoặc mỗi sprint.
+– Không im lặng khi gặp vấn đề.
+– Luôn tôn trọng đồng nghiệp và khách hàng.

@@ -1,0 +1,32 @@
+1. Physics Engine Là Gì?
+– Mô phỏng chuyển động, trọng lực, va chạm, lực đẩy.
+– Unity dùng PhysX, Unreal dùng Chaos Physics.
+– Giúp game chân thật, đúng quy luật vật lý.
+
+2. Rigidbody & Collider
+Unity:
+– Rigidbody / Rigidbody2D: áp lực, lực đẩy, trọng lực.
+– Collider: Box, Sphere, Capsule, Mesh.
+– Trigger: va chạm không chặn mà chỉ nhận sự kiện.
+Unreal:
+– Static Mesh / Skeletal Mesh có collision.
+– Physics Asset cho nhân vật.
+
+3. Lực (Force), Tốc Độ (Velocity) & Trọng Lực (Gravity)
+– AddForce: đẩy nhân vật, vật thể.
+– SetVelocity: thay đổi tốc độ trực tiếp.
+– Gravity: bật/tắt tùy gameplay (platformer, space game…).
+
+4. Kiểm Tra Va Chạm
+Unity:
+– OnCollisionEnter, OnTriggerEnter.
+– Raycast để kiểm tra chướng ngại vật phía trước.
+Unreal:
+– OnComponentHit, OnOverlapBegin.
+– Line Trace.
+
+5. Tối Ưu Physics
+– Tránh dùng quá nhiều Rigidbody.
+– Chỉ bật simulation cho vật cần thiết.
+– Dùng layer collision matrix để giảm tính toán.
+– Giảm tần số physics (Fixed Timestep) nếu không cần chính xác cao.

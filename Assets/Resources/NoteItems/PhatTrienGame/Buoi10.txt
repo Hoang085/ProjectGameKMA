@@ -1,0 +1,35 @@
+1. Tối Ưu Hiệu Suất Game
+– Giảm số lượng đối tượng không cần thiết trong scene.
+– Dùng occlusion culling để ẩn vật thể ngoài tầm nhìn.
+– Giảm polygon của model 3D.
+– Giảm số lượng light realtime → ưu tiên baked light.
+– Dùng LOD (Level of Detail) cho mô hình xa – gần.
+
+2. Tối Ưu Code & Gameplay
+– Tránh tạo object liên tục mỗi frame → dùng object pooling.
+– Tối ưu AI bằng giảm tần suất update.
+– Không đặt hàng trăm script Update() chạy liên tục.
+– Gom event thay vì gọi nhiều lần nhỏ lẻ.
+
+3. Tối Ưu Tài Nguyên (Asset)
+– Dùng Texture Compression.
+– Chuyển PNG/JPG → WebP, hoặc giảm kích thước.
+– Giảm dung lượng âm thanh bằng OGG.
+– Xóa asset không dùng.
+
+4. Kiểm Tra & Fix Bug
+– Test FPS ở nhiều khu vực.
+– Test trên thiết bị yếu, cấu hình thấp.
+– Chạy profiler tìm bottleneck (CPU, GPU, RAM).
+– Tìm lỗi logic, lỗi va chạm, âm thanh trùng, animation lỗi.
+
+5. Chuẩn Bị Xuất Bản
+PC/Steam:
+– Build Windows/Mac/Linux.
+– Tạo cover, trailer gameplay, icon.
+– Viết mô tả game ngắn, rõ ràng.
+Android/iOS:
+– Tạo splash screen và icon chuẩn store.
+– Tối ưu kích thước APK/AAB.
+– Ký app (keystore, bundle ID).
+– Upload qua Google Play / App Store Connect.

@@ -1,0 +1,31 @@
+1. Tại Sao Âm Thanh Quan Trọng?
+– Tăng cảm xúc, tăng độ chân thật.
+– Giúp người chơi phản xạ tốt hơn (âm báo, tiếng quái, tiếng súng).
+– Một game hay nhưng thiếu âm thanh → cảm giác “rỗng”, kém hấp dẫn.
+
+2. Các Loại Âm Thanh
+– SFX (Sound Effects): tiếng bước chân, chém kiếm, explosion.
+– BGM (Background Music): nhạc nền theo khu vực, theo boss.
+– UI Sound: click, mở menu, thông báo.
+– Voice-over: lời thoại nhân vật.
+
+3. Tích Hợp Âm Thanh
+Unity:
+– AudioSource + AudioClip.
+– Mixer để điều chỉnh âm lượng nhóm.
+– 3D Sound: âm thay đổi theo khoảng cách.
+Unreal:
+– Sound Cue, Sound Mix, Attenuation.
+– Trigger âm thanh theo sự kiện (Overlap, Attack…).
+
+4. Kỹ Thuật Tối Ưu Âm Thanh
+– Dùng định dạng nén: OGG, MP3 cho nhạc nền.
+– WAV chỉ dùng cho âm ngắn, độ chính xác cao.
+– Giảm sample rate nếu không cần chất lượng Hi-Res.
+– Hạn chế phát nhiều âm giống nhau liên tục (tiếng súng tự động).
+
+5. Âm Thanh Theo Sự Kiện (Event-Driven Audio)
+– Chạy âm khi player nhặt item.
+– Phát nhạc combat khi enemy phát hiện người chơi.
+– Thay nhạc khi vào zone mới.
+– UI select → play click SFX.

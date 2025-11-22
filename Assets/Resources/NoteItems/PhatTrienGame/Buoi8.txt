@@ -1,0 +1,36 @@
+1. UI Trong Game Bao Gồm Những Gì?
+– HUD (Health, Mana, Score, Minimap…).
+– Menu (Main Menu, Settings, Pause).
+– Popup (Thông báo, cửa hàng, nhiệm vụ).
+– Inventory UI, thanh skill, thanh vũ khí…
+– UI luôn phải rõ ràng, dễ hiểu, trực quan.
+
+2. Công Cụ UI
+Unity:
+– Canvas, Panel, Image, TextMeshPro, Button.
+– UI Toolkit (mới hơn), Animator UI.
+Unreal:
+– UMG (Widget Blueprint), Text, Button, ProgressBar.
+– Animation widget, binding dữ liệu.
+
+3. HUD (Heads-Up Display)
+– Hiển thị thông tin quan trọng trong lúc chơi:
+– Thanh máu
+– Năng lượng / stamina
+– Số đạn
+– Mini-map
+– Quest tracker
+– Không được chiếm quá nhiều màn hình.
+
+4. UI Logic vs UI Data
+– UI Logic: hiệu ứng, animate, chuyển màn.
+– UI Data: máu, tiền, mana, nhiệm vụ.
+– Nên tách biệt → dễ sửa, dễ mở rộng.
+– Dùng event để cập nhật UI mỗi khi giá trị thay đổi.
+
+5. Animation Cho UI
+– Scale nhỏ → lớn khi hiện.
+– Fade in / fade out.
+– Move từ mép màn hình.
+– Unity: Animator hoặc DOTween.
+– Unreal: Animation trong UMG.

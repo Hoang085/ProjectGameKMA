@@ -1,0 +1,44 @@
+1. Tại Sao Cần Thiết Kế Kiến Trúc?
+– Để đảm bảo hệ thống hoạt động ổn định và dễ mở rộng.
+– Giúp bạn hiểu rõ các thành phần phối hợp với nhau như thế nào.
+– Là phần hội đồng đánh giá rất kỹ trong đồ án.
+
+2. Chọn Mô Hình Kiến Trúc Phù Hợp
+Tùy loại đồ án bạn làm:
+Web / Mobile App
+– MVC, MVP, MVVM
+– Client – Server
+– REST API / GraphQL
+IoT / Embedded
+– Kiến trúc cảm biến → xử lý → server → dashboard
+– Giao thức MQTT/HTTP/WebSocket
+– Luồng dữ liệu thời gian thực
+Game
+– Game Loop
+– ECS (Entity Component System)
+– Module phân tách: Player – Enemy – UI – Audio – Save System
+
+3. Vẽ Sơ Đồ Kiến Trúc (Architecture Diagram)
+Một sơ đồ chuẩn thường gồm:
+– Các module chính
+– Server/API/back-end
+– Database
+– Front-end / mobile / game client
+– Giao tiếp giữa các module (mũi tên, protocol, request/response)
+Dạng phổ biến:
+– Block diagram
+– Layered architecture
+– 3-tier: Presentation – Logic – Data
+
+4. Thiết Kế Database
+– Xác định bảng dữ liệu cần có.
+– Chọn khóa chính (primary key).
+– Xác định quan hệ: 1–n, n–n.
+– Tối ưu index, tránh dư dữ liệu.
+– Với IoT/game: lưu log, trạng thái, config tách riêng.
+
+5. Thiết Kế API (Nếu Có)
+– Danh sách endpoint: URL – method – input – output.
+– Chuẩn hóa status code: 200, 400, 401, 500…
+– Xác định phân quyền và token nếu cần bảo mật.
+– Tránh thiết kế API quá phức tạp hoặc sai RESTful.

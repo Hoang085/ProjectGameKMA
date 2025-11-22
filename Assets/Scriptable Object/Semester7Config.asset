@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de8d45c9ad6c8d24baf584ab1f756db2, type: 3}
-  m_Name: Semester5Config
+  m_Name: Semester7Config
   m_EditorClassIdentifier: 
-  Semester: 5
+  Semester: 7
   Weeks: 6
   Subjects:
-  - Name: "Ki\u1EBFn Tr\xFAc M\xE1y T\xEDnh"
-    MaxAbsences: 3
-    Sessions:
-    - Day: Mon
-      Slot: 2
-    - Day: Wed
-      Slot: 1
-  - Name: "L\u1EADp Tr\xECnh H\u01B0\u1EDBng \u0110T"
+  - Name: "L\u1EADp Tr\xECnh H\u1EE3p Ng\u1EEF"
     MaxAbsences: 3
     Sessions:
     - Day: Tue
       Slot: 2
+    - Day: Wed
+      Slot: 3
+  - Name: "Qu\u1EA3n Tr\u1ECB D\u1EF1 \xC1n PM"
+    MaxAbsences: 3
+    Sessions:
+    - Day: Mon
+      Slot: 2
     - Day: Thu
       Slot: 2
-  - Name: "Ti\u1EBFng Anh 2"
+  - Name: "Thi\u1EBFt K\u1EBF HT Nh\xFAng"
     MaxAbsences: 4
     Sessions:
     - Day: Mon
       Slot: 3
-    - Day: Thu
+    - Day: Tue
       Slot: 3
     - Day: Fri
-      Slot: 2
+      Slot: 1

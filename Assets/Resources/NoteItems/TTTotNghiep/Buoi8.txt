@@ -1,0 +1,33 @@
+1. Tại Sao Viết Báo Cáo Quan Trọng?
+– Là minh chứng công việc bạn đã làm.
+– Giúp giảng viên và doanh nghiệp đánh giá năng lực.
+– Là tài liệu tham khảo khi xin việc sau này.
+– Rèn luyện kỹ năng trình bày và tư duy chuyên nghiệp.
+
+2. Cấu Trúc Báo Cáo Thực Tập Chuẩn
+- Một báo cáo tốt thường gồm:
+- Trang bìa & Lời cảm ơn
+- Giới thiệu doanh nghiệp
+- Vị trí thực tập & nhiệm vụ
+- Mô tả công việc đã thực hiện
+- Kết quả đạt được
+- Khó khăn & hướng giải quyết
+- Kết luận & đề xuất
+
+3. Cách Mô Tả Công Việc Đúng Cách
+– Viết rõ: Công việc → Mục tiêu → Cách thực hiện → Kết quả.
+– Có thể thêm hình ảnh minh họa: màn hình, code, sản phẩm.
+– Kể lại quy trình giải quyết vấn đề bạn từng xử lý.
+– Không viết quá chung chung (ví dụ: “em làm một chút code”).
+
+4. Ghi Nhận Kết Quả & Thành Tựu
+– Đo kết quả bằng số liệu: số task hoàn thành, tốc độ xử lý, sản phẩm demo.
+– Nhấn mạnh kỹ năng bạn đã học được: Git, teamwork, thiết kế, tối ưu…
+– Ghi lại các module, chức năng bạn đã đóng góp trong dự án.
+
+5. Trình Bày Báo Cáo Chuyên Nghiệp
+– Font chữ dễ đọc: Times New Roman, Arial.
+– Cỡ chữ: 13–14, giãn dòng 1.2–1.5.
+– Hình ảnh rõ, chú thích đầy đủ.
+– Bố cục sạch, không lỗi chính tả.
+– Xuất bản dạng PDF trước khi nộp.
