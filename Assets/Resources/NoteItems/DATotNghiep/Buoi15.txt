@@ -1,0 +1,44 @@
+1. Mục Tiêu Buổi Cuối
+– Nhìn lại toàn bộ quá trình làm đồ án.
+– Đánh giá mức độ hoàn thành mục tiêu ban đầu.
+– Rút kinh nghiệm để áp dụng vào dự án thực tế trong tương lai.
+– Chuẩn bị tư duy & kỹ năng cho môi trường đi làm.
+
+2. Đánh Giá Kết Quả Đồ Án
+Tự đánh giá theo 4 tiêu chí lớn:
+Mức độ hoàn thiện sản phẩm
+– Hoàn thiện bao nhiêu % chức năng?
+– Sản phẩm có chạy ổn định khi demo không?
+– Giao diện có rõ ràng – đồng bộ – dễ dùng?
+Kỹ thuật & kiến trúc
+– Kiến trúc có rõ ràng, dễ mở rộng không?
+– Database/API có hợp lý?
+– Các lỗi đã được xử lý triệt để chưa?
+Quy trình làm việc
+– Có theo đúng timeline không?
+– Có test đầy đủ hay không?
+– Có viết tài liệu rõ ràng không?
+
+3. Rút Kinh Nghiệm Sau Đồ Án
+– Không để sát deadline mới làm.
+– Chia task nhỏ giúp tiến độ dễ kiểm soát hơn.
+– Code cần tách module từ đầu để tránh rối.
+– Test thường xuyên thay vì test dồn cuối.
+– Ghi tài liệu song song với quá trình làm.
+
+4. Định Hướng Phát Triển Tương Lai
+– Hoàn thiện phiên bản tiếp theo của sản phẩm.
+– Xuất bản lên GitHub, Portfolio, CV.
+– Xây dựng thêm các tính năng nâng cao.
+– Triển khai thực tế nếu đề tài có tính ứng dụng cao.
+– Tìm cơ hội thực tập/việc làm liên quan đến công nghệ đã dùng.
+
+5. Tự Đánh Giá Cá Nhân
+Hãy đánh giá bản thân theo thang điểm 1–10 ở các mục sau:
+– Kỹ năng kỹ thuật (coding, database, API…)
+– UI/UX
+– Kỹ năng phân tích yêu cầu
+– Kỹ năng teamwork
+– Khả năng trình bày & phản biện
+– Tính kỷ luật, đúng deadline
+– Khả năng tự học & giải quyết vấn đề

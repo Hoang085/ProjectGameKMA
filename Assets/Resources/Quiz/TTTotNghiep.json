@@ -1,0 +1,185 @@
+{
+  "subjectKey": "TTTotNghiep",
+  "questions": [
+    {
+      "id": "TTTN1",
+      "question": "Mục tiêu chính của học phần Thực Tập Tốt Nghiệp là gì?",
+      "answers": [ "Thi học kì", "Áp dụng kiến thức thực tế", "Viết báo cáo tùy ý" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TTTN2",
+      "question": "Sinh viên cần làm gì trước khi bắt đầu thực tập?",
+      "answers": [ "Hoàn thành luận văn", "Tìm đơn vị thực tập phù hợp", "Nộp báo cáo cuối kỳ" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TTTN3",
+      "question": "Báo cáo thực tập phải chứa phần nào?",
+      "answers": [ "Tài liệu copy", "Chỉ có hình ảnh", "Nhận xét của đơn vị thực tập" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN4",
+      "question": "Tác phong khi thực tập tại doanh nghiệp cần:",
+      "answers": [ "Ăn mặc tùy tiện", "Đi muộn thường xuyên", "Không cần báo cáo" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TTTN5",
+      "question": "Trong thực tập, sinh viên nên:",
+      "answers": [ "Tự ý nghỉ", "Không hỏi ai", "Chờ giao việc" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TTTN6",
+      "question": "Bản kế hoạch thực tập cần có:",
+      "answers": [ "Điểm trung bình", "Mục tiêu, nội dung, tiến độ", "Danh sách bạn bè" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TTTN7",
+      "question": "Thời gian thực tập thường kéo dài:",
+      "answers": [ "1 tháng nghỉ", "1 năm", "4–12 tuần" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN8",
+      "question": "Trong quá trình thực tập, sinh viên cần báo cáo ai?",
+      "answers": [ "Bạn bè", "Người thân", "Giáo viên hướng dẫn và người chịu trách nhiệm tại doanh nghiệp" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN9",
+      "question": "Kỹ năng quan trọng nhất khi thực tập là:",
+      "answers": [ "Thuộc công thức", "Giải trí", "Chơi game" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TTTN10",
+      "question": "Thực tập tốt nghiệp giúp sinh viên:",
+      "answers": [ "Không cần học thêm", "Tích lũy kinh nghiệm thực tế", "Miễn đồ án" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TTTN11",
+      "question": "Sinh viên phải làm gì khi gặp vấn đề tại nơi thực tập?",
+      "answers": [ "Không nói ai", "Tự ý bỏ về", "Giấu kín" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TTTN12",
+      "question": "Nhà tuyển dụng đánh giá cao sinh viên thực tập khi:",
+      "answers": [ "Không hỏi gì", "Chủ động và có trách nhiệm", "Luôn im lặng" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TTTN13",
+      "question": "Nội dung chính của nhật ký thực tập là:",
+      "answers": [ "Hình ảnh cá nhân", "Công việc mỗi ngày", "Thông tin không liên quan" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TTTN14",
+      "question": "Báo cáo thực tập cần tuân thủ:",
+      "answers": [ "Không cần số liệu", "Tùy thích", "Không cần hình ảnh" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TTTN15",
+      "question": "Một trong các lợi ích lớn nhất của thực tập là:",
+      "answers": [ "Không làm đồ án", "Không cần đến trường", "Hiểu môi trường làm việc thực tế" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN16",
+      "question": "Sinh viên nên thể hiện thái độ như thế nào với người hướng dẫn?",
+      "answers": [ "Tranh luận gay gắt", "Không trao đổi", "Tôn trọng và hợp tác" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN17",
+      "question": "Kết quả thực tập phụ thuộc vào:",
+      "answers": [ "Số ngày nghỉ lễ", "Bài kiểm tra 15 phút", "Nỗ lực và mức độ tham gia của sinh viên" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN18",
+      "question": "Đơn vị thực tập mong đợi sinh viên:",
+      "answers": [ "Không hợp tác", "Từ chối công việc", "Luôn yêu cầu nghỉ" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TTTN19",
+      "question": "Thái độ nào sau đây bị đánh giá thấp?",
+      "answers": [ "Đi làm đúng giờ", "Thiếu chủ động", "Làm việc nhóm tốt" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TTTN20",
+      "question": "Thực tập tốt nghiệp giúp cải thiện kỹ năng nào?",
+      "answers": [ "Kỹ năng đồ họa", "Kỹ năng chơi game", "Kỹ năng chuyên môn và kỹ năng mềm" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN21",
+      "question": "Sinh viên cần làm gì sau khi hoàn thành thực tập?",
+      "answers": [ "Không cần báo cáo", "Giấu kết quả", "Nộp báo cáo và minh chứng đầy đủ" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN22",
+      "question": "Trong báo cáo thực tập, phần đánh giá cá nhân cần nêu:",
+      "answers": [ "Số lần đi muộn", "Tên bạn bè", "Điểm mạnh và điểm cần cải thiện" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN23",
+      "question": "Email gửi doanh nghiệp phải:",
+      "answers": [ "Không cần chủ đề", "Dùng icon nhiều", "Viết tắt tối đa" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TTTN24",
+      "question": "Khi được giao nhiệm vụ mới, sinh viên nên:",
+      "answers": [ "Không cần hỏi", "Làm tùy ý", "Từ chối" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TTTN25",
+      "question": "Kỹ năng sử dụng tài liệu (Documentation) giúp:",
+      "answers": [ "Không cần thiết", "Gây rối", "Làm việc hiệu quả hơn" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN26",
+      "question": "Sinh viên nên lưu ý điều gì khi ký biên bản thực tập?",
+      "answers": [ "Ký đại", "Nhờ người ký hộ", "Kiểm tra nội dung trước khi ký" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN27",
+      "question": "Giáo viên hướng dẫn có vai trò:",
+      "answers": [ "Theo dõi và hỗ trợ sinh viên", "Không liên quan", "Không cần thiết" ],
+      "correctIndex": 0
+    },
+    {
+      "id": "TTTN28",
+      "question": "Tinh thần trách nhiệm thể hiện ở:",
+      "answers": [ "Nghỉ tùy ý", "Hoàn thành nhiệm vụ đúng hạn", "Không báo cáo" ],
+      "correctIndex": 1
+    },
+    {
+      "id": "TTTN29",
+      "question": "Sinh viên cần phản hồi doanh nghiệp theo cách:",
+      "answers": [ "Viết cộc lốc", "Không phản hồi", "Lịch sự, rõ ràng, đủ thông tin" ],
+      "correctIndex": 2
+    },
+    {
+      "id": "TTTN30",
+      "question": "Kết quả thực tập tốt giúp:",
+      "answers": [ "Không có lợi ích", "Điểm giảm", "Khó xin việc hơn" ],
+      "correctIndex": 0
+    }
+  ]
+}

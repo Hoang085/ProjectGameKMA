@@ -1,0 +1,37 @@
+1. Tại Sao Cần Tối Ưu Ở Giai Đoạn Này?
+– Bạn đã xây xong chức năng chính & phụ → giờ là lúc làm sản phẩm mượt hơn.
+– Giúp hệ thống chạy nhanh, ổn định, ít lỗi khi demo trước hội đồng.
+– Tối ưu tốt = điểm cộng rất lớn khi bảo vệ đồ án.
+
+2. Tối Ưu Giao Diện (UI/UX)
+– Đồng bộ màu sắc, font, icon.
+– Nhóm các component cho gọn gàng.
+– Tối ưu layout để không bị lệch trên nhiều màn hình.
+– Giảm số lần load lại màn hình không cần thiết.
+
+3. Tối Ưu Hiệu Năng
+Web/Mobile:
+– Cache dữ liệu hợp lý.
+– Giảm số API call.
+– Nén ảnh, dùng CDN nếu có.
+– Giảm re-render UI.
+IoT:
+– Giảm tốc độ gửi dữ liệu nếu không cần realtime.
+– Tối ưu định dạng dữ liệu (JSON nhỏ, hoặc binary).
+– Giảm reboot/timeout không cần thiết.
+Game:
+– Tối ưu FPS, batching, giảm draw call.
+– Giảm số lượng object, giảm polygon.
+– Tối ưu AI và physics.
+
+4. Tối Ưu Backend (Nếu Có)
+– Tối ưu truy vấn database.
+– Thêm index đúng chỗ.
+– Giảm độ trễ API, xử lý lỗi đầy đủ.
+– Log nhẹ nhàng, không spam I/O.
+
+5. Tối Ưu Bảo Mật
+– Kiểm tra phân quyền: user → admin → guest.
+– Mã hóa token, cookie, dữ liệu nhạy cảm.
+– Kiểm tra injection / lỗi quyền truy cập.
+– Hạn chế lỗi logic gây lộ dữ liệu.

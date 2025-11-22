@@ -1,0 +1,31 @@
+1. Rà Soát Toàn Bộ Chức Năng
+– Kiểm tra lại toàn bộ chức năng chính & phụ.
+– Đảm bảo không còn lỗi gây crash.
+– Test dữ liệu thật, dữ liệu sai, thao tác ngẫu nhiên.
+– Đảm bảo giao diện sạch, đồng bộ, không bị lệch bố cục.
+
+2. Làm Sạch Code (Code Clean Up)
+– Xóa file thừa, ảnh thừa, đoạn code không dùng.
+– Gom các hàm trùng lặp thành hàm chung.
+– Thêm comment cho phần logic phức tạp.
+– Đặt lại tên biến, hàm cho dễ đọc.
+– Tối ưu cấu trúc thư mục (modules, components, api, utils…).
+
+3. Chuẩn Bị Bản Demo Ổn Định
+– Chuẩn bị bản chạy ổn định nhất, không thêm tính năng phút chót.
+– Nếu dùng server/API → đảm bảo chạy 24/7 trong ngày bảo vệ.
+– Nếu là IoT -> kiểm tra nguồn, kết nối, tốc độ mạng, cảm biến.
+– Nếu là Game -> đảm bảo FPS ổn định, không lag trong demo.
+
+4. Chuẩn Bị Tài Liệu Đi Kèm
+– Báo cáo PDF hoàn chỉnh.
+– Slide thuyết trình.
+– Source code bản cuối (github, zip).
+– Video demo dự phòng khi mạng lỗi.
+– Bộ test case + kết quả test.
+
+5. Chuẩn Bị Tinh Thần & Kỹ Năng Trình Bày
+– Tập thuyết trình 2–3 lần liên tục.
+– Luyện nói chậm, rõ, đúng trọng tâm.
+– Chuẩn bị cách xử lý nếu gặp câu hỏi khó.
+– Ghi lại những điểm mạnh của đồ án để nhấn khi trình bày.

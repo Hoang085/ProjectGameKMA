@@ -1,0 +1,39 @@
+1. Vì Sao Phải Chuẩn Bị Phản Biện?
+– Hội đồng luôn đặt câu hỏi để kiểm tra mức độ hiểu sâu của bạn.
+– Trả lời tốt giúp tăng điểm rất mạnh.
+– Giúp bạn tự tin khi bảo vệ và không bị “khớp”.
+
+2. Câu hỏi về demo & chức năng
+– Tính năng A hoạt động ra sao?
+– Nếu người dùng làm sai thao tác thì xử lý thế nào?
+– API này trả về dữ liệu gì?
+
+3. Câu hỏi về xử lý lỗi
+– Bạn đã gặp lỗi gì lớn nhất trong quá trình làm đồ án?
+– Bạn đã sửa nó như thế nào?
+– Làm sao để hệ thống ổn định hơn?
+
+4. Câu hỏi về mở rộng
+– Nếu có thêm 3 tháng, bạn sẽ làm gì?
+– Phiên bản tiếp theo dự định cải tiến gì?
+
+3. Kỹ Năng Trả Lời Phản Biện
+– Ngắn gọn – tập trung vào trọng tâm.
+– Trả lời trực tiếp, không vòng vo.
+– Nếu không biết: nêu hướng nghiên cứu hoặc giải pháp dự định.
+– Không tranh luận gay gắt, luôn giữ thái độ lịch sự.
+– Khi trả lời kỹ thuật: dùng hình vẽ hoặc flow để minh họa.
+
+4. Chuẩn Bị Trước Khi Phản Biện
+– Lập danh sách 20 câu hỏi dự đoán.
+– Nhờ bạn bè hoặc mentor hỏi thử.
+– Luyện nói trước gương hoặc ghi âm để nghe lại.
+– Kiểm tra lại toàn bộ code, database, API.
+– Chuẩn bị tài liệu dự phòng phòng khi hội đồng yêu cầu.
+
+5. Các Sai Lầm Thường Gặp Khi Phản Biện
+– Nói quá dài → hội đồng mất kiên nhẫn.
+– Không hiểu rõ code của chính mình.
+– Bảo vệ cảm tính, không có bằng chứng hoặc số liệu.
+– Hoảng loạn khi gặp câu hỏi khó.
+– Nói sai kiến thức cơ bản (rất dễ bị trừ điểm).

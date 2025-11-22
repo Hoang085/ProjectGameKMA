@@ -1,0 +1,32 @@
+1. Hệ Thống Item Là Gì?
+– Cho phép người chơi nhặt, dùng, vứt, trang bị vật phẩm.
+– Là phần quan trọng trong RPG, survival, action, open-world.
+– Gồm item hiển thị (model), dữ liệu (script), và logic (sử dụng).
+
+2. Phân Loại Item
+– Consumable: hồi máu, hồi mana, buff tạm thời.
+– Weapon: kiếm, súng, gậy phép.
+– Equipment: áo giáp, nón, phụ kiện.
+– Quest item: vật phẩm nhiệm vụ.
+– Resource: gỗ, đá, vàng, nguyên liệu chế đồ.
+
+3. Tương Tác (Interaction System)
+– Cho phép người chơi nhặt đồ, mở cửa, bật công tắc…
+– Dùng raycast hoặc trigger để phát hiện vật tương tác.
+– Hiện UI khi đến gần: “Nhấn E để nhặt / mở cửa”.
+Unity:
+– OnTriggerEnter → add item vào inventory.
+– Raycast từ Camera kiểm tra object trước mặt.
+Unreal:
+– Overlap Event + Interface để xử lý tương tác.
+
+4. Xây Dựng Inventory
+– Dùng list/array lưu thông tin item.
+– Tách ItemData (ScriptableObject) và ItemBehavior.
+– Có thể thêm: stack, số lượng tối đa, độ hiếm (rarity), icon.
+
+5. UI Inventory
+– Grid layout: ô trống → đặt item vào.
+– Drag & drop để di chuyển vật phẩm.
+– Tooltip khi rê chuột.
+– Tự động cập nhật khi nhặt hoặc dùng item.

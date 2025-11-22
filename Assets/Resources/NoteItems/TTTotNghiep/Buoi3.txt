@@ -1,0 +1,28 @@
+1. Ngày Đầu Tiên Đi Thực Tập
+– Gặp mentor/người quản lý trực tiếp.
+– Giới thiệu team, phòng ban, công cụ làm việc.
+– Nhận tài khoản: email công ty, Git, quản lý dự án…
+– Tìm hiểu văn hóa công ty và nội quy.
+
+2. Cách Nhận Nhiệm Vụ
+– Mentor sẽ giao task nhỏ → task lớn theo khả năng.
+– Task thường gồm: mô tả, deadline, yêu cầu kỹ thuật.
+– Hãy luôn hỏi lại nếu chưa hiểu 100%.
+– Ghi chú lại mọi yêu cầu để tránh sai sót.
+
+3. Quy Trình Làm Việc
+– Nhiệm vụ → thực hiện → báo tiến độ → review → sửa → hoàn thành.
+– Luôn cập nhật task trên công cụ (Trello, Jira, GitHub…).
+– Mỗi ngày nên có báo cáo ngắn: đã làm gì? gặp khó khăn gì? dự định làm gì tiếp?
+
+4. Làm Việc Trong Mô Hình Agile/Scrum
+– Daily stand-up: báo cáo tiến độ 1 phút.
+– Sprint 1–2 tuần: chia nhiệm vụ theo giai đoạn.
+– Sprint review: báo cáo kết quả.
+– Sprint retrospective: rút kinh nghiệm.
+
+5. Thái Độ Khi Nhận Task
+– Không nhận bừa nếu không hiểu hoặc đang quá tải.
+– Chủ động đề xuất giải pháp.
+– Hỏi mentor khi gặp lỗi khó.
+– Tôn trọng deadline: nếu trễ phải báo sớm.

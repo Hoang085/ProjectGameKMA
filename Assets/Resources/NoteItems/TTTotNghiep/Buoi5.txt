@@ -1,0 +1,31 @@
+1. Tại Sao Quản Lý Thời Gian Quan Trọng?
+– Giúp hoàn thành task đúng deadline.
+– Giảm stress khi workload tăng.
+– Tăng hiệu quả và thể hiện sự chuyên nghiệp.
+– Tránh để nhiệm vụ tồn đọng hoặc bị trễ kéo theo cả team.
+
+2. Cách Lập Kế Hoạch Công Việc
+– Chia task lớn thành nhiều task nhỏ.
+– Dự đoán thời gian cần thiết cho mỗi phần.
+– Ưu tiên công việc theo mức quan trọng (High – Medium – Low).
+– Lập checklist mỗi ngày sáng → kiểm tra vào cuối ngày.
+
+3. Công Cụ Quản Lý Thời Gian
+– Trello/Jira: theo dõi tiến độ & trạng thái task.
+– Google Calendar: đặt nhắc nhở, deadline.
+– Notion: ghi chép, quản lý mục tiêu.
+– Pomodoro Timer: làm việc tập trung theo chu kỳ 25 phút.
+
+4. Kỹ Thuật Làm Việc Hiệu Quả
+– Tập trung vào 1 task tại một thời điểm.
+– Giảm phân tâm: tắt thông báo không cần thiết.
+– Phân bố thời gian: 70% làm – 20% học – 10% báo cáo.
+– Hạn chế OT (overtime) trừ khi thật sự cần thiết.
+
+5. Cách Báo Cáo Tiến Độ
+– Báo cáo ngắn gọn:
+– Hôm nay làm gì
+– Gặp khó khăn gì
+– Ngày mai làm gì
+– Gửi đúng thời gian mentor yêu cầu.
+– Có thể kèm link commit hoặc hình ảnh kết quả.

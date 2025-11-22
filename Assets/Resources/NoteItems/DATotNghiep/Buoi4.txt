@@ -1,0 +1,34 @@
+1. Tại Sao Cần Lập Kế Hoạch?
+– Giúp bạn triển khai đồ án đúng deadline của trường.
+– Theo dõi tiến độ từng tuần.
+– Tránh tình trạng “nước đến chân mới nhảy”.
+– Thuyết phục hội đồng rằng bạn làm việc có tổ chức.
+
+2. Chia Đồ Án Thành Các Giai Đoạn
+- Thông thường chia thành 4 phase:
+- Week 1–3: Phân tích yêu cầu & thiết kế hệ thống
+- Week 4–8: Lập trình & triển khai chức năng
+- Week 9–11: Kiểm thử & tối ưu
+- Week 12–15: Viết báo cáo & chuẩn bị bảo vệ
+
+3. Lập Timeline Chi Tiết
+- Ví dụ timeline theo tuần:
+- Tuần 1: Hoàn thiện đề tài + SRS
+- Tuần 2–3: Thiết kế kiến trúc + database + UI sơ bộ
+- Tuần 4–6: Lập trình chức năng chính
+- Tuần 7–8: Hoàn thiện tất cả module
+- Tuần 9–10: Test + sửa lỗi
+- Tuần 11: Tối ưu hiệu năng / giao diện
+- Tuần 12–14: Viết báo cáo chi tiết
+- Tuần 15: Chuẩn bị slide + tập thuyết trình
+
+4. Quản Lý Tiến Độ Bằng Công Cụ
+– Trello / Jira để chia task theo cột: TODO – Doing – Review – Done.
+– Google Sheet để theo dõi checklist từng tuần.
+– Git/GitHub để bám theo lịch commit đúng timeline.
+
+5. Cách Đảm Bảo Không Trễ Tiến Độ
+– Cuối mỗi tuần phải có kết quả cụ thể (demo, màn hình, API…).
+– Không để backlog dồn qua tuần sau.
+– Báo sớm cho GVHD khi gặp vấn đề lớn.
+– Làm đều mỗi ngày 1–2 tiếng thay vì dồn vào cuối tháng.

@@ -1,0 +1,33 @@
+1. AI Trong Game Là Gì?
+– Điều khiển hành vi của quái, NPC, đồng minh.
+– Giúp game sống động, khó đoán, hấp dẫn hơn.
+– Không cần quá thông minh → chỉ cần “đủ thuyết phục”.
+
+2. Các Loại AI Phổ Biến
+– Patrol AI: đi tuần theo đường cố định.
+– Chase AI: đuổi theo người chơi khi phát hiện.
+– Attack AI: tấn công khi trong phạm vi.
+– Flee AI: bỏ chạy khi yếu máu.
+– Idle AI: đứng yên, quan sát, nói chuyện.
+
+3. Công Cụ Xây AI
+Unity:
+– NavMesh + NavMeshAgent để đi lại thông minh.
+– State Machine để điều khiển hành vi.
+– Raycast để phát hiện player.
+Unreal:
+– Behavior Tree + Blackboard để tách logic.
+– NavMesh Volume để AI định hướng đường đi.
+– Perception System (sight/hearing).
+
+4. State Machine Cho AI
+Ví dụ trạng thái AI:
+– Idle → Patrol → Chase → Attack → Return.
+– Tránh if-else rối → dùng enum + switch hoặc state class.
+– Chuyển trạng thái khi đủ điều kiện (player gần, bị tấn công…).
+
+5. Các Yếu Tố Ảnh Hưởng AI
+– Tầm nhìn (FOV – field of view).
+– Khoảng cách nghe.
+– Vật cản che tầm nhìn (raycast).
+– Độ thông minh: phản ứng nhanh hay chậm.

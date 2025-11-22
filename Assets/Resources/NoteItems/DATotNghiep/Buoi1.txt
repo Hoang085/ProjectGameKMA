@@ -1,0 +1,39 @@
+1. Đồ Án Tốt Nghiệp Là Gì?
+– Là dự án quan trọng nhất của toàn khóa học.
+– Đánh giá khả năng tự nghiên cứu, tự triển khai và giải quyết vấn đề.
+– Thể hiện kỹ năng chuyên môn, tư duy hệ thống và cách làm việc chuyên nghiệp.
+
+2. Mục Tiêu Của Đồ Án
+– Xây dựng một sản phẩm hoàn chỉnh (Web, Mobile, IoT, Game, AI…).
+– Áp dụng toàn bộ kiến thức đã học.
+– Thể hiện khả năng phân tích – thiết kế – triển khai – kiểm thử.
+– Rèn kỹ năng làm việc nhóm, viết báo cáo, thuyết trình.
+
+3. Cách Chọn Đề Tài
+– Phù hợp với chuyên ngành của bạn (CNTT, IoT, Game, Phần mềm…).
+– Không quá lớn nhưng cũng không quá đơn giản.
+– Có tính ứng dụng thực tế.
+– Có phạm vi và mục tiêu rõ ràng.
+– Ví dụ nhóm đề tài phổ biến:
+– Ứng dụng di động
+– Hệ thống IoT/nhúng
+– Game 2D/3D
+– Website quản lý
+– AI nhận diện hình ảnh/giọng nói
+– Hệ thống quản trị dữ liệu
+
+4. Phân Tích Đề Tài (Project Vision)
+Mỗi đề tài cần trả lời được 5 câu hỏi:
+– Sản phẩm của bạn giải quyết vấn đề gì?
+– Ai là người sử dụng?
+– Chức năng chính gồm những gì?
+– Phạm vi thực hiện trong thời gian 2–3 tháng là bao nhiêu?
+– Dự kiến công nghệ sử dụng?
+
+5. Kế Hoạch Tổng Quan
+– Chia đồ án thành 4 giai đoạn:
+Phân tích – Đặc tả yêu cầu
+Thiết kế hệ thống
+Triển khai & kiểm thử
+Hoàn thiện báo cáo & bảo vệ
+– Lập timeline theo tuần để theo dõi tiến độ.

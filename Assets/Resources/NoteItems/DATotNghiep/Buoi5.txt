@@ -1,0 +1,29 @@
+1. Vai Trò Của UI/UX Trong Đồ Án
+– Quyết định trải nghiệm người dùng.
+– Dễ sử dụng → hội đồng đánh giá cao.
+– UI/UX tốt giúp sản phẩm chuyên nghiệp dù chức năng chưa quá phức tạp.
+
+2. Nguyên Tắc UI/UX Cơ Bản
+– Đơn giản – rõ ràng – nhất quán.
+– Người dùng phải hiểu ngay chức năng.
+– Không nhồi nhét quá nhiều thông tin vào một màn hình.
+– Màu sắc thống nhất, font chữ dễ đọc.
+
+3. Quy Trình Thiết Kế UI/UX
+- Wireframe: phác layout bằng bản vẽ đen trắng.
+- Mockup: chọn màu sắc, font, hình ảnh.
+- Prototype: mô phỏng thao tác, chuyển trang.
+- Kiểm thử người dùng: nhờ bạn bè, mentor thử.
+
+4. Công Cụ Thiết Kế
+– Figma (phổ biến nhất).
+– Adobe XD.
+– Sketch (MacOS).
+– Notion / Whimsical / Canva cho flow chart & wireframe đơn giản.
+
+5. Những Quy Tắc Quan Trọng
+– Màn hình phải rõ mục tiêu: đăng nhập, dashboard, thêm dữ liệu…
+– Nút hành động chính phải nổi bật.
+– Tránh dùng quá nhiều màu và hiệu ứng.
+– Icon rõ nghĩa, kích thước hợp lý.
+– Căn chỉnh layout theo grid.

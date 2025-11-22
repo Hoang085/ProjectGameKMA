@@ -1,0 +1,32 @@
+1. Hồ Sơ Cần Chuẩn Bị
+– CV chuyên nghiệp: ngắn gọn, rõ kỹ năng & dự án.
+– Portfolio (nếu có): project cá nhân, sản phẩm đã làm.
+– Thư ứng tuyển (Email/Letter) giới thiệu bản thân.
+– Giấy giới thiệu thực tập từ trường (nếu yêu cầu).
+
+2. Cách Viết CV Dành Cho Intern
+– Tập trung vào kỹ năng & dự án, không cần kinh nghiệm nhiều.
+– Mục tiêu nghề nghiệp 1–2 dòng.
+– Kỹ năng: ngôn ngữ lập trình, framework, công cụ bạn biết.
+– Dự án: mô tả ngắn dự án đã làm (Unity, Web, IoT, Mobile…).
+– Tránh viết CV dài hơn 1 trang.
+
+3. Kỹ Năng Mềm Quan Trọng
+– Giao tiếp & trao đổi khi gặp vấn đề.
+– Tôn trọng deadline.
+– Biết nhận feedback và cải thiện.
+– Làm việc nhóm và báo cáo rõ ràng.
+
+4. Chuẩn Bị Kiến Thức Chuyên Môn
+Tuỳ lĩnh vực bạn chọn, cần ôn lại:
+– Lập trình: OOP, API, Database, Git.
+– Game: Unity/Unreal, UI, Animation, Script.
+– IoT/Embedded: C/C++, Arduino/ESP, kết nối sensor.
+– Tester: Test case, quy trình Agile/Scrum.
+– Data/AI: Python, Pandas, model cơ bản.
+
+5. Thái Độ & Tác Phong
+– Luôn đúng giờ.
+– Chủ động hỏi khi không hiểu.
+– Không giấu lỗi, báo sớm để sửa.
+– Giữ thái độ tích cực, lịch sự với mọi người.

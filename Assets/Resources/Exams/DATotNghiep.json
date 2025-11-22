@@ -1,0 +1,157 @@
+{
+  "examTitle": "Đề thi cuối kì 10",
+  "subjectName": "Đồ Án Tốt Nghiệp",
+  "durationSeconds": 120,
+  "questions": [
+    {
+      "text": "Mục tiêu quan trọng nhất của đồ án tốt nghiệp là gì?",
+      "options": [ "Tạo slide đẹp", "Hoàn thiện một sản phẩm hoặc nghiên cứu có giá trị thực tế", "Nộp bài sớm nhất", "Sao chép tài liệu" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Đồ án tốt nghiệp thường yêu cầu sinh viên phải:",
+      "options": [ "Sao chép 100% bài cũ", "Tự nghiên cứu và phát triển sản phẩm", "Không cần tài liệu tham khảo", "Chỉ chờ giáo viên làm hộ" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Phần mở đầu của báo cáo đồ án thường gồm gì?",
+      "options": [ "Danh sách bạn bè", "Hình ảnh giải trí", "Lý do chọn đề tài", "Nội dung không liên quan" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Trong quá trình làm đồ án, sinh viên cần:",
+      "options": [ "Không liên hệ ai cả", "Để cuối kỳ mới làm", "Tự ý đổi đề tài", "Chủ động trao đổi với giáo viên hướng dẫn" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Tiến độ đồ án được dùng để:",
+      "options": [ "Theo dõi quá trình thực hiện", "Tăng điểm", "Thay đổi mục tiêu", "Trang trí báo cáo" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Nội dung quan trọng nhất của đồ án tốt nghiệp là:",
+      "options": [ "Chất lượng sản phẩm/giải pháp", "Kích thước ảnh", "Số lượng trang báo cáo", "Màu sắc bìa" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Báo cáo đồ án yêu cầu trích dẫn tài liệu nhằm:",
+      "options": [ "Trang trí cho đẹp", "Làm báo cáo dài hơn", "Thể hiện tính khoa học và minh bạch", "Giảm nội dung chính" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Khi gặp khó khăn trong đồ án, sinh viên nên:",
+      "options": [ "Bỏ mặc không làm", "Trao đổi với giáo viên hoặc tìm tài liệu", "Ngừng làm đồ án", "Sao chép bài của người khác" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Một sản phẩm tốt nghiệp đạt yêu cầu khi:",
+      "options": [ "Không cần test", "Chỉ cần có giao diện đẹp", "Không chạy vẫn được", "Đạt mục tiêu ban đầu và chạy ổn định" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Trong phần phương pháp thực hiện, sinh viên cần trình bày:",
+      "options": [ "Danh sách bạn bè", "Hình nền đẹp", "Ảnh selfie", "Cách tiếp cận và công nghệ sử dụng" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Thiết kế hệ thống trong đồ án gồm:",
+      "options": [ "Hình trang trí", "File PDF bất kỳ", "Danh sách tài khoản mạng xã hội", "Sơ đồ phân tích, kiến trúc hệ thống, luồng dữ liệu" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Bài báo cáo đồ án cần tuân thủ:",
+      "options": [ "Không cần đánh số hình", "Chuẩn và quy định của khoa", "Không cần mục lục", "Tùy ý trình bày" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Demo sản phẩm trong buổi bảo vệ nhằm:",
+      "options": [ "Kéo dài thời gian", "Tăng số slide", "Chứng minh sản phẩm hoạt động thực tế", "Trình bày hình ảnh cá nhân" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Giáo viên hướng dẫn đánh giá cao sinh viên khi:",
+      "options": [ "Không gặp giáo viên", "Chậm deadline liên tục", "Chủ động và có tiến độ rõ ràng", "Không đóng góp" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Phần đánh giá kết quả đồ án cần:",
+      "options": [ "Không cần số liệu", "Chỉ viết lý thuyết", "So sánh mục tiêu và kết quả hoàn thành", "Chỉ trình bày giao diện" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Kiểm thử (Testing) trong đồ án cần để:",
+      "options": [ "Giảm thời gian làm việc", "Trang trí báo cáo", "Tăng số trang báo cáo", "Đảm bảo sản phẩm ổn định và đúng yêu cầu" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Bảo vệ đồ án là dịp để sinh viên:",
+      "options": [ "Nộp bài trắng", "Thuyết trình và phản biện về sản phẩm", "Chỉ đọc slide", "Chờ người khác trình bày hộ" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Slide bảo vệ cần:",
+      "options": [ "Ngắn gọn, súc tích, đầy đủ nội dung chính", "Không cần nội dung", "Chỉ có hình ảnh", "Thật nhiều hiệu ứng" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Sản phẩm có tính ứng dụng cao giúp:",
+      "options": [ "Không có lợi ích", "Giảm điểm", "Không được chấp nhận", "Tăng cơ hội việc làm cho sinh viên" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Sinh viên cần chuẩn bị gì trước buổi bảo vệ?",
+      "options": [ "Không cần chuẩn bị", "Mang thật nhiều slide", "Ôn tập nội dung, kiểm tra sản phẩm, luyện thuyết trình", "Chỉ mang báo cáo" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Một lỗi lớn trong đồ án là:",
+      "options": [ "Sử dụng hình vẽ", "Có minh chứng đầy đủ", "Viết đúng yêu cầu", "Sao chép nội dung từ nguồn không rõ ràng" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Sản phẩm cần có tài liệu hướng dẫn để:",
+      "options": [ "Không cần thiết", "Giảm chất lượng đồ án", "Người dùng dễ sử dụng", "Tải game nhanh hơn" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Phát biểu nào đúng về tiến độ đồ án?",
+      "options": [ "Không cần cập nhật", "Tiến độ giúp sinh viên không bị dồn việc cuối kỳ", "Không cần trình bày", "Tiến độ không quan trọng" ],
+      "correctIndex": 1
+    },
+    {
+      "text": "Khi chọn đề tài đồ án, sinh viên nên:",
+      "options": [ "Chọn đề tài phù hợp với năng lực và sở thích", "Chọn đề tài quá khó", "Chọn ngẫu nhiên", "Chọn đề tài không liên quan ngành" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Một trong các mục tiêu chính của báo cáo đồ án là:",
+      "options": [ "Copy tài liệu", "Tăng số trang tối đa", "Trình bày rõ ràng quá trình và kết quả", "Dùng nhiều hình nền" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Khi giáo viên góp ý, sinh viên nên:",
+      "options": [ "Không cần phản hồi", "Tranh luận vô lý", "Chỉnh sửa theo hướng dẫn", "Bỏ qua" ],
+      "correctIndex": 2
+    },
+    {
+      "text": "Đồ án tốt được đánh giá qua:",
+      "options": [ "Màu slide", "Font chữ", "Số lượng hình ảnh", "Tính hoàn thiện, sáng tạo và giá trị ứng dụng" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Kết quả đồ án ảnh hưởng đến:",
+      "options": [ "Điểm tốt nghiệp và cơ hội việc làm", "Học phí", "Số môn đại cương", "Thời khóa biểu" ],
+      "correctIndex": 0
+    },
+    {
+      "text": "Một sản phẩm không được chấp nhận nếu:",
+      "options": [ "Nhiều hình ảnh", "Trình bày nhiều hiệu ứng", "Có giao diện đẹp", "Không chạy được hoặc sai mục tiêu hoàn toàn" ],
+      "correctIndex": 3
+    },
+    {
+      "text": "Buổi bảo vệ đồ án là cơ hội để:",
+      "options": [ "Không trả lời câu hỏi", "Khẳng định năng lực của sinh viên", "Xin giảng viên bỏ qua chấm điểm", "Chỉ đứng im" ],
+      "correctIndex": 1
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+1. Tầm Quan Trọng Của Làm Việc Nhóm
+– Dự án thực tế luôn có nhiều người cùng tham gia.
+– Hợp tác tốt giúp tiến độ nhanh hơn và chất lượng cao hơn.
+– Giảm xung đột, giảm sai sót và tăng hiệu quả công việc.
+
+2. Các Quy Tắc Làm Việc Nhóm
+– Tôn trọng ý kiến người khác.
+– Không áp đặt, không tranh cãi vô lý.
+– Có trách nhiệm với phần việc của mình.
+– Hỗ trợ thành viên khi họ cần.
+– Luôn minh bạch trong trao đổi.
+
+3. Phân Chia Công Việc Trong Team
+– Chia task theo thế mạnh mỗi người.
+– Rõ deadline và kết quả mong muốn.
+– Ưu tiên công việc quan trọng trước.
+– Kiểm tra tiến độ bằng daily hoặc weekly meeting.
+
+4. Công Cụ Hỗ Trợ Làm Việc Nhóm
+– Git/GitHub: đồng bộ code, merge, pull request.
+– Slack/Teams/Discord: trao đổi nhanh.
+– Jira/Trello/Notion: quản lý workflow.
+– Google Docs/Sheet: làm tài liệu chung.
+
+5. Giải Quyết Mâu Thuẫn Trong Team
+– Trao đổi riêng, thẳng thắn nhưng lịch sự.
+– Tìm nguyên nhân, tránh đổ lỗi.
+– Tập trung vào giải pháp chứ không trách nhiệm.
+– Hỏi mentor/leader nếu mâu thuẫn vượt khả năng tự xử lý.

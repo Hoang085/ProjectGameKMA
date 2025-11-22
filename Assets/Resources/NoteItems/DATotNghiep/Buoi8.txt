@@ -1,0 +1,50 @@
+1. Vai Trò Của Chức Năng Phụ
+– Hoàn thiện trải nghiệm tổng thể của sản phẩm.
+– Hỗ trợ chức năng cốt lõi hoạt động mượt mà hơn.
+– Giúp đồ án đầy đủ, chuyên nghiệp và có chiều sâu.
+– Bổ sung tính năng nâng cao để tăng điểm cộng khi bảo vệ.
+
+2. Các Loại Chức Năng Phụ Phổ Biến
+Tùy theo loại đồ án:
+Web/App
+– Tìm kiếm, lọc dữ liệu
+– Export PDF/Excel
+– Gửi email thông báo
+– Biểu đồ thống kê
+IoT/Embedded
+– Lịch sử sensor
+– Điều khiển tự động (automation)
+– Biểu đồ thời gian thực
+– Cảnh báo qua Telegram/Zalo
+Game
+– Menu cài đặt
+– Nhiệm vụ/quà tặng hàng ngày
+– Lưu/Load game
+– Bảng xếp hạng (leaderboard)
+AI
+– Lưu lịch sử nhận diện
+– Giao diện review dữ liệu
+– Dashboard accuracy
+– Xuất báo cáo kết quả
+
+3. Nguyên Tắc Khi Tạo Chức Năng Phụ
+– Không được ảnh hưởng đến chức năng cốt lõi.
+– Code phải tách riêng module → dễ quản lý.
+– Giao diện đồng bộ phong cách.
+– Chỉ thêm tính năng thực sự cần thiết, tránh quá tải.
+
+4. Cách Ưu Tiên Chức Năng Phụ
+Ưu tiên theo 3 cấp:
+Must-have → liên quan trực tiếp đến core.
+Should-have → cải thiện trải nghiệm.
+Nice-to-have → thêm vào nếu còn thời gian.
+Ví dụ:
+– Lọc tìm kiếm = Should-have
+– Theme UI sáng/tối = Nice-to-have
+– Reset mật khẩu = Must-have (nếu đồ án có login)
+
+5. Kiểm Thử Tính Năng Phụ
+– Test từng module riêng biệt.
+– Test kết hợp với chức năng chính để tránh xung đột.
+– Kiểm tra UI trên nhiều kích thước màn hình (mobile/web).
+– Kiểm tra độ ổn định khi nhiều dữ liệu.

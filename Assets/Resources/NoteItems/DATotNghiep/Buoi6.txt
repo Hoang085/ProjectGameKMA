@@ -1,0 +1,41 @@
+1. Tại Sao Database Quan Trọng Trong Đồ Án?
+– Là nơi lưu trữ toàn bộ dữ liệu của hệ thống.
+– Thiết kế đúng ngay từ đầu giúp tránh lỗi nghiêm trọng.
+– Hội đồng thường xem rất kỹ phần này để đánh giá tính logic.
+
+2. Các Bước Thiết Kế Database
+Xác định bảng (entities) cần thiết
+– User, Device, Product, Sensor, Score, Task…
+Xác định thuộc tính (fields)
+Xác định khóa chính (PK)
+Xác định quan hệ
+– 1–n, n–n, hoặc 1–1
+Chuẩn hóa dữ liệu
+– Tránh lặp dữ liệu, đảm bảo dễ mở rộng
+
+3. Công Cụ Thiết Kế ERD
+– Draw.io
+– Figma
+– MySQL Workbench
+– Lucidchart
+– Dbdiagram.io (dễ dùng và xuất code SQL)
+Dạng ERD cần có: bảng → field → kiểu dữ liệu → khóa chính → khóa ngoại.
+
+4. Chọn Hệ Quản Trị CSDL
+Tùy đồ án của bạn:
+Web/Mobile:
+– MySQL, PostgreSQL, MongoDB, Firebase
+IoT/Embedded:
+– Cloud Database (Firebase, Supabase)
+– Local SQLite hoặc MySQL trên server
+Game:
+– SQLite, JSON, PlayerPrefs (nhỏ), hoặc Cloud Save
+
+5. Thiết Kế API Truy Xuất Database (nếu có Backend)
+– Tạo danh sách API:
+– GET /users
+– POST /login
+– POST /device/register
+– GET /sensor/data
+– Trả dữ liệu dạng JSON chuẩn hoá.
+– Thêm xác thực bằng Token/JWT nếu cần.

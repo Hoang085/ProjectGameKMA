@@ -1,0 +1,40 @@
+1. Phân Tích Yêu Cầu Là Gì?
+– Là bước quan trọng để xác định sản phẩm cần làm gì.
+– Tránh trường hợp làm sai hướng hoặc thiếu chức năng.
+– Giúp giảng viên và hội đồng hiểu đúng phạm vi đồ án.
+
+2. Yêu Cầu Chức Năng (Functional Requirements)
+– Liệt kê những chức năng mà hệ thống cần có.
+– Mỗi chức năng trả lời: có tác dụng gì → ai dùng → khi nào dùng.
+– Ví dụ:
+– Đăng nhập/đăng ký
+– Quản lý người dùng
+– Thêm – sửa – xoá dữ liệu
+– Dashboard thống kê
+– Module nhận diện / xử lý dữ liệu / gameplay…
+
+3. Yêu Cầu Phi Chức Năng (Non-Functional Requirements)
+– Về hiệu năng: tốc độ xử lý, thời gian phản hồi.
+– Về bảo mật: phân quyền, mã hóa, backup.
+– Về giao diện: đơn giản, dễ dùng, hiển thị rõ ràng.
+– Về khả năng mở rộng: dễ nâng cấp, dễ bảo trì.
+
+4. Use Case & Flow Hoạt Động
+– Vẽ sơ đồ Use Case để mô tả các tác nhân và chức năng.
+– Xây User Flow mô tả đường đi của dữ liệu và thao tác người dùng.
+– Mỗi Use Case cần có:
+– Mục tiêu
+– Tác nhân
+– Điều kiện trước
+– Các bước thực hiện
+– Kết quả đầu ra
+
+5. Tạo Tài Liệu SRS (Software Requirement Specification)
+Một SRS chuẩn sẽ gồm:
+- Giới thiệu hệ thống
+- Từ vựng & khái niệm
+- Yêu cầu chức năng
+- Yêu cầu phi chức năng
+- Use Case Detail
+- Giới hạn hệ thống
+- Rủi ro & giả định

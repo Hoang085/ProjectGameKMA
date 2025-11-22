@@ -1,0 +1,32 @@
+1. Game Development Là Gì?
+– Quy trình tạo ra trò chơi từ ý tưởng → thiết kế → lập trình → đồ họa → âm thanh → xuất bản.
+– Gồm cả kỹ thuật (code) và sáng tạo (nhân vật, âm thanh, gameplay).
+
+2. Các Mảng Chính Trong Làm Game
+– Gameplay Programming: viết logic nhân vật, quái, AI.
+– Game Design: thiết kế luật chơi, map, độ khó, item.
+– Art & Animation: 2D/3D model, texture, rigging, animation.
+– UI/UX: giao diện, thao tác người chơi.
+– Audio: nhạc nền, âm thanh hiệu ứng.
+– Optimization: tối ưu hiệu suất và tài nguyên.
+
+3. Các Engine Làm Game Phổ Biến
+– Unity: dễ học, mạnh, đa nền tảng.
+– Unreal Engine: đồ họa mạnh, AAA.
+– Godot: open-source, nhẹ.
+– Construct/Roblox Studio: dễ cho người mới.
+
+4. Quy Trình Làm Game Chuẩn
+- Ý tưởng → tạo concept.
+- Prototype → thử nghiệm gameplay nhanh.
+- Production → làm asset, code hệ thống.
+- Testing → tìm lỗi gameplay & bug.
+- Optimization.
+- Publish (Steam, Android, iOS…).
+- Update → sửa lỗi, thêm tính năng.
+
+5. Kỹ Năng Cần Có
+– Lập trình (C#, C++, GDScript…).
+– Kiến thức vật lý cơ bản & toán ứng dụng.
+– Tư duy logic và thiết kế gameplay.
+– Kỹ năng làm việc nhóm và quản lý dự án.
