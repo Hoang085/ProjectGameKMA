@@ -35,6 +35,90 @@
     {
       "key": "cautrucdlvagt",
       "display": "Cấu Trúc DL và GT"
+    },
+    {
+      "key": "cosolythuyettt",
+      "display": "Cơ Sở Lý Thuyết TT"
+    },
+    {
+      "key": "lichsudang",
+      "display": "Lịch Sử Đảng"
+    },
+    {
+      "key": "toanroirac",
+      "display": "Toán Rời Rạc"
+    },
+    {
+      "key": "kientrucmaytinh",
+      "display": "Kiến Trúc Máy Tính"
+    },
+    {
+      "key": "laptrinhhuongdt",
+      "display": "Lập Trình Hướng ĐT"
+    },
+    {
+      "key": "tienganh2",
+      "display": "Tiếng Anh 2"
+    },
+    {
+      "key": "hequantricsdl",
+      "display": "Hệ Quản Trị CSDL"
+    },
+    {
+      "key": "quantrimmt",
+      "display": "Quản Trị MMMT"
+    },
+    {
+      "key": "tienganh3",
+      "display": "Tiếng Anh 3"
+    },
+    {
+      "key": "laptrinhhopngu",
+      "display": "Lập Trình Hợp Ngữ"
+    },
+    {
+      "key": "quantriduanpm",
+      "display": "Quản Trị Dự Án PM"
+    },
+    {
+      "key": "thietkehtnhung",
+      "display": "Thiết Kế HT Nhúng"
+    },
+    {
+      "key": "laptrinharm",
+      "display": "Lập Trình ARM"
+    },
+    {
+      "key": "laptrinhdriver",
+      "display": "Lập Trình Driver"
+    },
+    {
+      "key": "laptrinhnhanlinux",
+      "display": "Lập Trình Nhân Linux"
+    },
+    {
+      "key": "laptrinhandroid",
+      "display": "Lập Trình Android"
+    },
+    {
+      "key": "toiuupmdidong",
+      "display": "Tối Ưu PM Di Động"
+    },
+    {
+      "key": "toiuupmnhung",
+      "display": "Tối Ưu PM Nhúng"
+    },
+    {
+      "key": "phattriengame",
+      "display": "Phát Triển Game"
+    },
+    {
+      "key": "tttotnghiep",
+      "display": "TT Tốt Nghiệp"
+    },
+    {
+      "key": "datotnghiep",
+      "display": "ĐA Tốt Nghiệp"
     }
   ]
 }
