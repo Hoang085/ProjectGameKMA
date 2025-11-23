@@ -1662,10 +1662,10 @@ MonoBehaviour:
   exams:
   - displayName: "To\xE1n Cao C\u1EA5p"
     resourcePath: Exams/ToanCaoCap
-  - displayName: "Ti\u1EBFng Anh 1"
-    resourcePath: Exams/TiengAnh1
   - displayName: "T\u01B0 t\u01B0\u1EDFng HCM"
     resourcePath: Exams/TuTuongHCM
+  - displayName: "Ti\u1EBFng Anh 1"
+    resourcePath: Exams/TiengAnh1
   - displayName: "L\u1EADp Tr\xECnh C\u0103n B\u1EA3n"
     resourcePath: Exams/LapTrinhCanBan
   - displayName: "To\xE1n Cao C\u1EA5p 2"
@@ -1678,7 +1678,49 @@ MonoBehaviour:
     resourcePath: Exams/MangMayTinh
   - displayName: "C\u1EA5u Tr\xFAc DL v\xE0 GT"
     resourcePath: Exams/CauTrucDlVaGt
-  subjectIndex: 3
+  - displayName: "C\u01A1 S\u1EDF L\xFD Thuy\u1EBFt TT"
+    resourcePath: Exams/CoSoLyThuyetTT
+  - displayName: "L\u1ECBch S\u1EED \u0110\u1EA3ng"
+    resourcePath: Exams/LichSuDang
+  - displayName: "To\xE1n R\u1EDDi R\u1EA1c"
+    resourcePath: Exams/ToanRoiRac
+  - displayName: "Ki\u1EBFn Tr\xFAc M\xE1y T\xEDnh"
+    resourcePath: Exams/KienTrucMayTinh
+  - displayName: "L\u1EADp Tr\xECnh H\u01B0\u1EDBng \u0110T"
+    resourcePath: Exams/LapTrinhHuongDT
+  - displayName: "Ti\u1EBFng Anh 2"
+    resourcePath: Exams/TiengAnh2
+  - displayName: "H\u1EC7 Qu\u1EA3n Tr\u1ECB CSDL"
+    resourcePath: Exams/HeQuanTriCSDL
+  - displayName: "Qu\u1EA3n Tr\u1ECB MMT"
+    resourcePath: Exams/QuanTriMMT
+  - displayName: "Ti\u1EBFng Anh 3"
+    resourcePath: Exams/TiengAnh3
+  - displayName: "L\u1EADp Tr\xECnh H\u1EE3p Ng\u1EEF"
+    resourcePath: Exams/LapTrinhHopNgu
+  - displayName: "Qu\u1EA3n Tr\u1ECB D\u1EF1 \xC1n PM"
+    resourcePath: Exams/QuanTriDuAnPM
+  - displayName: "Thi\u1EBFt K\u1EBF HT Nh\xFAng"
+    resourcePath: Exams/ThietKeHTNhung
+  - displayName: "L\u1EADp Tr\xECnh ARM"
+    resourcePath: Exams/LapTrinhARM
+  - displayName: "L\u1EADp Tr\xECnh Driver"
+    resourcePath: Exams/LapTrinhDriver
+  - displayName: "L\u1EADp Tr\xECnh Nh\xE2n Linux"
+    resourcePath: Exams/LapTrinhNhanLinux
+  - displayName: "L\u1EADp Tr\xECnh Android"
+    resourcePath: Exams/LapTrinhAndroid
+  - displayName: "T\u1ED1i \u01AFu PM Di \u0110\u1ED9ng"
+    resourcePath: Exams/ToiUuPMDiDong
+  - displayName: "T\u1ED1i \u01AFu PM Nh\xFAng"
+    resourcePath: Exams/ToiUuPMNhung
+  - displayName: "Ph\xE1t Tri\u1EC3n Game"
+    resourcePath: Exams/PhatTrienGame
+  - displayName: "TT T\u1ED1t Nghi\u1EC7p"
+    resourcePath: Exams/TTTotNghiep
+  - displayName: "\u0110A T\u1ED1t Nghi\u1EC7p"
+    resourcePath: DATotNghiep
+  subjectIndex: 2
   examFileName: Exams/ToanCaoCap
 --- !u!4 &486868433
 Transform:
@@ -2284,8 +2326,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 491902220}
   m_HandleRect: {fileID: 491902219}
   m_Direction: 2
-  m_Value: -0.08163265
-  m_Size: 0.99994624
+  m_Value: 0
+  m_Size: 0.99997926
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4239,7 +4281,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.003201629}
+  m_AnchoredPosition: {x: 0, y: 0.002972736}
   m_SizeDelta: {x: 0, y: 212.34}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &907055453
