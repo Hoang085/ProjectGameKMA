@@ -222,7 +222,7 @@ public class ScheduleUI : BasePopUp
                     displayName = GetSubjectDisplayName(semSubject.Name),
                     attended = GetAttendedFromPlayerPrefs(semSubject.Name, subjectEntry, currentTerm),
                     absences = GetAbsencesFromPlayerPrefs(semSubject.Name, currentTerm),
-                    maxSessions = GetMaxSessionsForSubject(semSubject, subjectEntry),
+                    maxSessions = GetMaxSessionsForSubject(subjectEntry),
                     examInfo = GetExamInfoForSubject(semSubject.Name, teacherAction, subjectEntry, currentTerm),
                     retakeExamInfo = GetRetakeExamInfoForSubject(semSubject.Name, currentTerm) // **MỚI: Lấy lịch thi lại**
                 };
@@ -244,40 +244,25 @@ public class ScheduleUI : BasePopUp
     private SemesterConfig GetSemesterConfig()
     {
         int currentTerm = Clock != null ? Clock.Term : 1;
-        
-        // Ưu tiên SemesterConfig từ inspector NẾU đúng kỳ
+
         if (_semesterConfig != null && _semesterConfig.Semester == currentTerm)
-        {
             return _semesterConfig;
+
+        if (AttendanceManager != null && AttendanceManager.semesterConfigs != null)
+        {
+            foreach (var cfg in AttendanceManager.semesterConfigs)
+            {
+                if (cfg != null && cfg.Semester == currentTerm)
+                    return cfg;
+            }
         }
 
-        // **SỬA: Tìm TeacherAction có SemesterConfig ĐÚNG kỳ hiện tại**
         var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
         foreach (var teacher in teachers)
         {
             if (teacher.semesterConfig != null && teacher.semesterConfig.Semester == currentTerm)
-            {
-                // **KHÔNG CACHE** - để luôn lấy đúng kỳ mỗi lần gọi
                 return teacher.semesterConfig;
-            }
         }
-        
-        // **FALLBACK: Thử load từ Resources theo pattern Semester{term}Config**
-        try
-        {
-            SemesterConfig config = Resources.Load<SemesterConfig>($"Semester{currentTerm}Config");
-            if (config != null && config.Semester == currentTerm)
-            {
-                Debug.Log($"[ScheduleUI] ✓ Loaded SemesterConfig từ Resources: Semester{currentTerm}Config");
-                return config;
-            }
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogWarning($"[ScheduleUI] Không load được từ Resources: {e.Message}");
-        }
-
-        Debug.LogWarning($"[ScheduleUI] Không tìm thấy SemesterConfig cho kỳ {currentTerm}");
         return null;
     }
 
@@ -322,21 +307,13 @@ public class ScheduleUI : BasePopUp
     /// <summary>
     /// **MỚI: Lấy maxSessions từ SubjectData hoặc SubjectEntry**
     /// </summary>
-    private int GetMaxSessionsForSubject(SubjectData semSubject, SubjectEntry subjectEntry)
+    private int GetMaxSessionsForSubject(SubjectEntry subjectEntry)
     {
-        // Ưu tiên từ SubjectEntry nếu có
         if (subjectEntry != null && subjectEntry.maxSessions > 0)
         {
             return subjectEntry.maxSessions;
         }
 
-        // Fallback: đếm số sessions trong SubjectData
-        if (semSubject?.Sessions != null)
-        {
-            return semSubject.Sessions.Length;
-        }
-
-        // Default fallback
         return 10;
     }
 
