@@ -62,11 +62,11 @@ public class ScheduleUI : BasePopUp
         base.OnShowScreen();
         
         // **QUAN TRỌNG: Đảm bảo lịch thi được tạo cho các môn đã hoàn thành**
+        Debug.Log("[ScheduleUI] OnShowScreen - Checking for missing exam schedules...");
         CheckAndCreateMissingExamSchedules();
         
-        // **MỚI: Force refresh để hiển thị lịch thi lại mới tạo**
-        Debug.Log("[ScheduleUI] OnShowScreen - Force refresh schedule data");
-        RefreshAllScheduleData();
+        // **THÊM: Đợi 1 frame để đảm bảo PlayerPrefs đã được lưu**
+        StartCoroutine(RefreshAfterDelay(0.1f));
     }
 
     void OnEnable()
@@ -176,6 +176,23 @@ public class ScheduleUI : BasePopUp
     }
 
     /// <summary>
+    /// **MỚI: Phương thức public để TeacherAction gọi khi hoàn thành buổi học**
+    /// Đảm bảo lịch thi được tạo và UI được refresh ngay lập tức
+    /// </summary>
+    public void RefreshExamScheduleImmediately()
+    {
+        Debug.Log("[ScheduleUI] RefreshExamScheduleImmediately - Creating missing exam schedules...");
+        
+        // Kiểm tra và tạo lịch thi nếu cần
+        CheckAndCreateMissingExamSchedules();
+        
+        // Refresh UI ngay lập tức
+        RefreshAllScheduleData();
+        
+        Debug.Log("[ScheduleUI] ✓ Exam schedule refresh complete");
+    }
+
+    /// <summary>
     /// **CẢI THIỆN: Load subject display names and refresh all schedule data - bao gồm cả môn không học**
     /// </summary>
     public void RefreshAllScheduleData()
@@ -190,9 +207,6 @@ public class ScheduleUI : BasePopUp
         var semesterConfig = GetSemesterConfig();
         if (semesterConfig == null)
         {
-            Debug.LogWarning("[ScheduleUI] Không tìm thấy SemesterConfig để lấy danh sách tất cả môn học");
-            // Fallback về phương thức cũ chỉ lấy môn đang học
-            RefreshAllScheduleDataLegacy();
             return;
         }
 
@@ -447,49 +461,7 @@ public class ScheduleUI : BasePopUp
             }
         }
 
-        return 0; // Không tìm thấy dữ liệu attended
-    }
-
-    /// <summary>
-    /// **Phương thức cũ được giữ lại cho fallback**
-    /// </summary>
-    private void RefreshAllScheduleDataLegacy()
-    {
-        // Get all teachers and their subjects (phương thức cũ)
-        var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
-        var allSubjects = new List<SubjectDataInfo>();
-
-        int currentTerm = Clock != null ? Clock.Term : 1;
-
-        // Collect all subject data
-        foreach (var teacher in teachers)
-        {
-            if (teacher.subjects == null) continue;
-
-            foreach (var subject in teacher.subjects)
-            {
-                if (string.IsNullOrWhiteSpace(subject.subjectName)) continue;
-
-                var subjectData = new SubjectDataInfo
-                {
-                    subjectEntry = subject,
-                    teacher = teacher,
-                    displayName = GetSubjectDisplayName(subject.subjectName),
-                    attended = GetAttendedFromPlayerPrefs(subject, currentTerm),
-                    absences = GetAbsencesFromPlayerPrefs(subject, currentTerm),
-                    maxSessions = subject.maxSessions,
-                    examInfo = GetExamInfoFromTeacherAction(teacher, subject)
-                };
-
-                allSubjects.Add(subjectData);
-            }
-        }
-
-        // Fill the UI with data (max 3 subjects)
-        FillAttendanceTable(allSubjects);
-        FillExamTable(allSubjects);
-
-        Debug.Log($"[ScheduleUI] Refreshed schedule data for {allSubjects.Count} subjects (legacy mode)");
+        return 0; 
     }
 
     /// <summary>
@@ -517,12 +489,12 @@ public class ScheduleUI : BasePopUp
                     int attendedCount = subject.attended;
                     int actualMaxSessions = subject.maxSessions;
                     int displayMaxSessions = GetDisplayMaxSessions(actualMaxSessions);
-                    
-                    // **CẢI THIỆN: Tính ratio dựa trên displayMaxSessions**
-                    float ratio = displayMaxSessions > 0 ? (float)attendedCount / displayMaxSessions : 0f;
-                    
+                    int displayAttended = Mathf.Min(attendedCount, displayMaxSessions);
+
+                    float ratio = displayMaxSessions > 0 ? (float)displayAttended / displayMaxSessions : 0f;
+
                     string colorTag = ratio >= 1.0f ? "green" : (ratio >= 0.5f ? "yellow" : "white");
-                    attendedTexts[i].text = $"<color={colorTag}>{attendedCount}/{displayMaxSessions}</color>";
+                    attendedTexts[i].text = $"<color={colorTag}>{displayAttended}/{displayMaxSessions}</color>";
                 }
 
                 if (absentTexts[i] != null)
@@ -530,11 +502,12 @@ public class ScheduleUI : BasePopUp
                     int absenceCount = subject.absences;
                     int actualMaxSessions = subject.maxSessions;
                     int displayMaxSessions = GetDisplayMaxSessions(actualMaxSessions);
-                    
+                    int displayAbsence = Mathf.Min(absenceCount, displayMaxSessions);
                     int maxAbsences = GetMaxAbsencesForSubject(subject);
-                    
+
                     string colorTag = absenceCount > maxAbsences ? "red" : "white";
-                    absentTexts[i].text = $"<color={colorTag}>{absenceCount}/{displayMaxSessions}</color>";
+
+                    absentTexts[i].text = $"<color={colorTag}>{displayAbsence}/{displayMaxSessions}</color>";
                 }
             }
             else
@@ -889,6 +862,12 @@ public class ScheduleUI : BasePopUp
     private void CheckAndCreateMissingExamSchedules()
     {
         var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
+        if (teachers == null || teachers.Length == 0)
+        {
+            Debug.LogWarning("[ScheduleUI] No TeacherAction found in scene!");
+            return;
+        }
+
         foreach (var teacher in teachers)
         {
             if (teacher == null || teacher.subjects == null) continue;
@@ -896,23 +875,67 @@ public class ScheduleUI : BasePopUp
             foreach (var subject in teacher.subjects)
             {
                 if (string.IsNullOrWhiteSpace(subject.subjectName)) continue;
+
+                // **QUAN TRỌNG: Load currentSessionIndex từ PlayerPrefs TRƯỚC KHI check**
+                // Nếu không load, IsCourseFinished() sẽ nhận attended = 0 → không tạo lịch
+                subject.currentSessionIndex = LoadProgressForSubject(subject);
                 
-                // Sử dụng reflection để gọi CheckAndCreateExamScheduleIfFinished
-                try
-                {
-                    var method = typeof(TeacherAction).GetMethod("CheckAndCreateExamScheduleIfFinished",
-                        System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                    
-                    if (method != null)
-                    {
-                        method.Invoke(teacher, new object[] { subject });
-                    }
-                }
-                catch (System.Exception e)
-                {
-                    Debug.LogWarning($"[ScheduleUI] Không thể kiểm tra lịch thi cho {subject.subjectName}: {e.Message}");
-                }
+                Debug.Log($"[ScheduleUI] Loading {subject.subjectName}: currentSessionIndex = {subject.currentSessionIndex}");
+                
+                // Giờ CheckAndCreateExamScheduleIfFinished() sẽ có dữ liệu đúng
+                teacher.CheckAndCreateExamScheduleIfFinished(subject);
             }
         }
+
+        Debug.Log("[ScheduleUI] ✓ Checked and created missing exam schedules");
+    }
+
+    /// <summary>
+    /// **MỚI: Load progress cho subject - sử dụng logic TeacherAction**
+    /// </summary>
+    private int LoadProgressForSubject(SubjectEntry subject)
+    {
+        int currentTerm = Clock != null ? Clock.Term : 1;
+        int best = 0;
+
+        // Key chính
+        string stableKey = GetStableSubjectKey(subject);
+        string kNew = $"T{currentTerm}_SUBJ_{stableKey}_session";
+        if (PlayerPrefs.HasKey(kNew))
+        {
+            int vNew = PlayerPrefs.GetInt(kNew, 0);
+            if (vNew > best) best = vNew;
+        }
+
+        // Legacy key 1
+        string kLegacy1 = $"T{currentTerm}_SUBJ_{NormalizeKey(subject.subjectName)}_session";
+        if (PlayerPrefs.HasKey(kLegacy1))
+        {
+            int v = PlayerPrefs.GetInt(kLegacy1, 0);
+            if (v > best) best = v;
+        }
+
+        // Legacy key 2
+        string kLegacy2 = $"SUBJ_{NormalizeKey(subject.subjectName)}_session";
+        if (PlayerPrefs.HasKey(kLegacy2))
+        {
+            int v = PlayerPrefs.GetInt(kLegacy2, 0);
+            if (v > best) best = v;
+        }
+
+        return best;
+    }
+
+    /// <summary>
+    /// **MỚI: Get absences cho subject**
+    /// </summary>
+    private int GetAbsencesForSubject(SubjectEntry subject)
+    {
+        if (AttendanceManager != null)
+        {
+            int currentTerm = Clock != null ? Clock.Term : 1;
+            return AttendanceManager.GetAbsences(subject.subjectName, currentTerm);
+        }
+        return 0;
     }
 }
