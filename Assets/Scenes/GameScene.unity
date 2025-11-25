@@ -7509,8 +7509,16 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4294368750080800279, guid: 5a6fc207378617b4f8a0266627d27189, type: 3}
+      propertyPath: autoCreateExamSchedule
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294368750080800279, guid: 5a6fc207378617b4f8a0266627d27189, type: 3}
       propertyPath: configsByTerm.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294368750080800279, guid: 5a6fc207378617b4f8a0266627d27189, type: 3}
+      propertyPath: autoSyncSubjectsFromConfig
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4294368750080800279, guid: 5a6fc207378617b4f8a0266627d27189, type: 3}
       propertyPath: 'configsByTerm.Array.data[2]'
@@ -9209,8 +9217,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+      propertyPath: autoCreateExamSchedule
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
       propertyPath: configsByTerm.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+      propertyPath: autoSyncSubjectsFromConfig
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
       propertyPath: 'configsByTerm.Array.data[2]'
@@ -28443,8 +28459,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
+      propertyPath: autoCreateExamSchedule
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
       propertyPath: configsByTerm.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
+      propertyPath: autoSyncSubjectsFromConfig
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
       propertyPath: 'configsByTerm.Array.data[1]'
@@ -33018,8 +33042,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
+      propertyPath: autoCreateExamSchedule
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
       propertyPath: configsByTerm.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
+      propertyPath: autoSyncSubjectsFromConfig
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
       propertyPath: 'configsByTerm.Array.data[2]'
@@ -34335,7 +34367,7 @@ MonoBehaviour:
   _day: 1
   _slot: 0
   _minuteOfDay: 420
-  secondsPerGameMinute: 1
+  secondsPerGameMinute: 2
   _isPaused: 0
   tSession1: 420
   tSession2: 570
@@ -34756,8 +34788,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
+      propertyPath: autoCreateExamSchedule
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
       propertyPath: configsByTerm.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
+      propertyPath: autoSyncSubjectsFromConfig
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
       propertyPath: 'configsByTerm.Array.data[1]'
@@ -34893,7 +34933,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 80d18f66000a50246b48ef50ca675766, type: 2}
   - {fileID: 11400000, guid: a7a49bc902c748746873f2fe53c37a68, type: 2}
   - {fileID: 11400000, guid: 696a58bb2a1327d449189dc841c6e911, type: 2}
-  autoSyncSubjectsFromConfig: 1
   subjects:
   - subjectName: "C\u01A1 S\u1EDF L\xFD Thuy\u1EBFt TT"
     subjectKeyForNotes: CoSoLyThuyetTT
@@ -35011,8 +35050,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
+      propertyPath: autoCreateExamSchedule
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
       propertyPath: configsByTerm.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
+      propertyPath: autoSyncSubjectsFromConfig
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
       propertyPath: 'configsByTerm.Array.data[1]'
@@ -35153,7 +35200,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1eac0b6fdde8f9247932029b21821d94, type: 2}
   - {fileID: 11400000, guid: 0ce0ebd556c09414fb141203b03c2584, type: 2}
   - {fileID: 11400000, guid: 796c722d015a5c44896eb2349fb27c23, type: 2}
-  autoSyncSubjectsFromConfig: 1
   subjects:
   - subjectName: "To\xE1n R\u1EDDi R\u1EA1c"
     subjectKeyForNotes: ToanRoiRac
@@ -35305,7 +35351,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1eac0b6fdde8f9247932029b21821d94, type: 2}
   - {fileID: 11400000, guid: 0ce0ebd556c09414fb141203b03c2584, type: 2}
   - {fileID: 11400000, guid: 796c722d015a5c44896eb2349fb27c23, type: 2}
-  autoSyncSubjectsFromConfig: 1
   subjects:
   - subjectName: "L\u1ECBch S\u1EED \u0110\u1EA3ng"
     subjectKeyForNotes: LichSuDang
