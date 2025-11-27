@@ -22,10 +22,11 @@ public class GameManager : Singleton<GameManager>
 
     private bool taskNotificationEnabled = false;
 
-    // **THÊM: Biến theo dõi scene để tránh duplicate check**
+    // Biến theo dõi scene để tránh duplicate check
     private string lastSceneName = "";
+    // Track exam completion để tránh xử lý trùng
+    private int lastProcessedExamTimestamp = 0;
 
-    // **SỬA: Improved TaskManager availability tracking**
     private float taskManagerCheckTimer = 0f;
     private const float TASK_MANAGER_CHECK_INTERVAL = 0.5f; // Check every 0.5 seconds - more responsive
     private bool taskManagerWasNull = true; // Start as true to detect initial connection
@@ -35,8 +36,6 @@ public class GameManager : Singleton<GameManager>
     public override void Awake()
     {
         base.Awake();
-
-        // **QUAN TRỌNG: Đăng ký sự kiện scene load**
         MakeSingleton(true);
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -53,14 +52,13 @@ public class GameManager : Singleton<GameManager>
     // **TỐI ƪU: Kiểm tra ngay lập tức không delay**
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Reset TaskManager tracking on scene load
-        taskManagerWasNull = true;
-        taskManagerRetryCount = 0;
-        taskManagerCheckTimer = 0f;
-
-        // Chỉ xử lý khi load GameScene
+        // **SỬA: Reset lastSceneName nếu không phải GameScene để cho phép xử lý lần tiếp theo**
         if (scene.name != "GameScene")
+        {
+            lastSceneName = "";
+            Debug.Log($"[GameManager] Scene '{scene.name}' loaded - reset lastSceneName for next GameScene load");
             return;
+        }
 
         // Lưới an toàn: nếu trước đó MiniGame có pause, bảo đảm về GameScene luôn chạy bình thường
         Time.timeScale = 1f;
@@ -79,13 +77,19 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
-        // Tránh xử lý lặp nhiều lần cho cùng một lần load GameScene
-        if (lastSceneName == scene.name)
+        // **SỬA: Sử dụng timestamp để tránh xử lý lặp thay vì dùng lastSceneName**
+        int currentTimestamp = PlayerPrefs.GetInt("EXAM_COMPLETED_TIMESTAMP", 0);
+        if (currentTimestamp > 0 && currentTimestamp == lastProcessedExamTimestamp)
         {
-            Debug.Log("[GameManager] Bỏ qua vì đã xử lý cho lần load hiện tại.");
+            Debug.Log($"[GameManager] Bỏ qua vì đã xử lý exam timestamp {currentTimestamp}.");
             return;
         }
-        lastSceneName = scene.name;
+
+        // **MỚI: Lưu timestamp để tránh xử lý lặp**
+        if (currentTimestamp > 0)
+        {
+            lastProcessedExamTimestamp = currentTimestamp;
+        }
 
         Debug.Log($"[GameManager] Phát hiện cờ khôi phục: RestoreExam={shouldRestoreExam}, RestoreMiniGame={shouldRestoreMiniGame}, Advance={shouldAdvance}");
 
@@ -436,9 +440,8 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("[GameManager] FastWait cho components...");
 
         float startTime = Time.unscaledTime;
-        const float maxWait = 1f; // Chỉ đợi tối đa 1 giây
+        const float maxWait = 1f;
 
-        // **TỐI ƪU: Check song song thay vì tuần tự**
         while (Time.unscaledTime - startTime < maxWait)
         {
             bool hasGameClock = GameClock.Ins != null;
@@ -450,16 +453,12 @@ public class GameManager : Singleton<GameManager>
                 yield break;
             }
 
-            yield return null; // Check mỗi frame
+            yield return null;
         }
 
         Debug.LogWarning($"[GameManager] ⚠ Timeout after {maxWait}s - proceeding anyway");
     }
 
-    // **THÊM: Public method để GameStateManager có thể gọi để sync notification**
-    /// <summary>
-    /// Public method for GameStateManager to trigger notification system sync
-    /// </summary>
     public void SyncNotificationSystemAfterRestore()
     {
         Debug.Log("[GameManager] Syncing notification system after GameStateManager restore...");
@@ -1355,53 +1354,32 @@ public class GameManager : Singleton<GameManager>
         GameStateManager.ClearSavedState();
         Debug.Log("[GameManager] Đã xóa trạng thái đã lưu");
     }
-
+    
     /// <summary>
-    /// **MỚI: Test exam return functionality**
+    /// **MỚI: Clear exam timestamp để test lại flow**
     /// </summary>
-    [ContextMenu("TEST: Simulate Exam Return to GameScene")]
-    public void TestExamReturnToGameScene()
+    [ContextMenu("TEST: Clear Exam Timestamp")]
+    public void TestClearExamTimestamp()
     {
-        // Simulate what ExamUIManager.CloseFinalDialog() does
-        PlayerPrefs.SetInt("ShouldRestoreStateAfterExam", 1);
+        lastProcessedExamTimestamp = 0;
+        PlayerPrefs.DeleteKey("EXAM_COMPLETED_TIMESTAMP");
         PlayerPrefs.Save();
-        
-        Debug.Log("[GameManager] Simulated exam return - flag set, triggering state restore...");
-        CheckAndHandlePostExamStateRestore();
+        Debug.Log("[GameManager] Đã xóa exam timestamp - có thể test lại exam flow");
     }
-
+    
     /// <summary>
-    /// **MỚI: Test IconNotificationManager status**
+    /// **MỚI: Kiểm tra exam timestamp hiện tại**
     /// </summary>
-    [ContextMenu("TEST: Check IconNotificationManager Status")]
-    public void TestCheckIconNotificationManagerStatus()
+    [ContextMenu("TEST: Check Exam Timestamp Status")]
+    public void TestCheckExamTimestampStatus()
     {
-        Debug.Log("=== ICON NOTIFICATION MANAGER STATUS ===");
-        Debug.Log($"[GameManager] iconNotificationManager: {(iconNotificationManager != null ? "FOUND" : "NULL")}");
-        
-        if (iconNotificationManager != null)
-        {
-            Debug.Log($"[GameManager] IconNotificationManager name: {iconNotificationManager.name}");
-            Debug.Log($"[GameManager] IconNotificationManager active: {iconNotificationManager.gameObject.activeInHierarchy}");
-        }
-        
-        // Try to find it manually
-        var found = FindFirstObjectByType<IconNotificationManager>();
-        Debug.Log($"[GameManager] Manual search result: {(found != null ? "FOUND" : "NULL")}");
-        
-        if (found != null)
-        {
-            Debug.Log($"[GameManager] Found IconNotificationManager: {found.name}");
-        }
-        
-        // Show current notification states
-        Debug.Log("=== CURRENT NOTIFICATION STATES ===");
-        foreach (var kvp in iconNotificationStates)
-        {
-            Debug.Log($"[GameManager] {kvp.Key}: {(kvp.Value ? "ACTIVE" : "INACTIVE")}");
-        }
+        int savedTimestamp = PlayerPrefs.GetInt("EXAM_COMPLETED_TIMESTAMP", 0);
+        Debug.Log("=== EXAM TIMESTAMP STATUS ===");
+        Debug.Log($"[GameManager] Saved timestamp: {savedTimestamp}");
+        Debug.Log($"[GameManager] Last processed timestamp: {lastProcessedExamTimestamp}");
+        Debug.Log($"[GameManager] Will process next exam: {(savedTimestamp != lastProcessedExamTimestamp)}");
     }
-
+    
     /// <summary>
     /// **MỚI: Validate NotificationPopupSpawner and attempt recovery if needed**
     /// </summary>
@@ -1423,7 +1401,7 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
-
+    
     /// <summary>
     /// **MỚI: Manual method để force validate NotificationPopupSpawner**
     /// </summary>
@@ -1433,6 +1411,23 @@ public class GameManager : Singleton<GameManager>
         ValidateNotificationPopupSpawner();
     }
 
+    // Legacy flag: chỉ chuyển ca (không khôi phục vị trí)
+    private void CheckAndHandlePostExamTimeAdvance()
+    {
+        if (PlayerPrefs.GetInt("ShouldAdvanceTimeAfterExam", 0) == 1)
+        {
+            PlayerPrefs.DeleteKey("ShouldAdvanceTimeAfterExam");
+            PlayerPrefs.Save();
+            StartCoroutine(AdvanceTimeAfterExamCoroutine());
+        }
+    }
+
+    private IEnumerator AdvanceTimeAfterExamCoroutine()
+    {
+        yield return null;
+        AdvanceToNextSession();
+    }
+    
     private void AdvanceToNextSession()
     {
         Debug.Log("[GameManager] Thực hiện chuyển ca...");
@@ -1452,23 +1447,6 @@ public class GameManager : Singleton<GameManager>
         {
             Debug.LogError("[GameManager] ✗ Không thể chuyển ca - thiếu ClockUI/GameClock");
         }
-    }
-
-    // Legacy flag: chỉ chuyển ca (không khôi phục vị trí)
-    private void CheckAndHandlePostExamTimeAdvance()
-    {
-        if (PlayerPrefs.GetInt("ShouldAdvanceTimeAfterExam", 0) == 1)
-        {
-            PlayerPrefs.DeleteKey("ShouldAdvanceTimeAfterExam");
-            PlayerPrefs.Save();
-            StartCoroutine(AdvanceTimeAfterExamCoroutine());
-        }
-    }
-
-    private IEnumerator AdvanceTimeAfterExamCoroutine()
-    {
-        yield return null;
-        AdvanceToNextSession();
     }
 }
 

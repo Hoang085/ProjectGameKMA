@@ -238,7 +238,7 @@ public class ScheduleUI : BasePopUp
                     absences = GetAbsencesFromPlayerPrefs(semSubject.Name, currentTerm),
                     maxSessions = GetMaxSessionsForSubject(subjectEntry),
                     examInfo = GetExamInfoForSubject(semSubject.Name, teacherAction, subjectEntry, currentTerm),
-                    retakeExamInfo = GetRetakeExamInfoForSubject(semSubject.Name, currentTerm) // **MỚI: Lấy lịch thi lại**
+                    retakeExamInfo = GetRetakeExamInfoForSubject(semSubject.Name, subjectEntry, currentTerm)
                 };
 
                 allSubjects.Add(subjectData);
@@ -349,23 +349,52 @@ public class ScheduleUI : BasePopUp
         // **MỚI: Lấy trực tiếp từ PlayerPrefs**
         return GetExamInfoFromPlayerPrefs(subjectName, currentTerm);
     }
-    
+
     /// <summary>
     /// **MỚI: Lấy thông tin thi lại từ PlayerPrefs**
     /// </summary>
-    private ExamScheduleInfo GetRetakeExamInfoForSubject(string subjectName, int currentTerm)
+    private ExamScheduleInfo GetRetakeExamInfoForSubject(string subjectName, SubjectEntry subjectEntry, int currentTerm)
     {
         try
         {
-            string normalizedSubjectName = NormalizeKey(subjectName);
-            string keyPrefix = $"T{currentTerm}_RETAKE_{normalizedSubjectName}";
+            // 1. Cố gắng tạo key chuẩn giống TeacherAction (ưu tiên subjectKeyForNotes)
+            string stableKey = "";
 
-            // Kiểm tra xem có lịch thi lại không
-            if (!PlayerPrefs.HasKey(keyPrefix + "_day") || !PlayerPrefs.HasKey(keyPrefix + "_slot1Based"))
+            if (subjectEntry != null)
             {
-                return null; // Không có lịch thi lại
+                stableKey = GetStableSubjectKey(subjectEntry);
+            }
+            else
+            {
+                stableKey = NormalizeKey(subjectName);
             }
 
+            string keyPrefix = $"T{currentTerm}_RETAKE_{stableKey}";
+
+            // 2. Nếu không tìm thấy với key chuẩn, thử fallback về key chỉ dùng tên (cho các môn không có SubjectEntry)
+            if (!PlayerPrefs.HasKey(keyPrefix + "_day") || !PlayerPrefs.HasKey(keyPrefix + "_slot1Based"))
+            {
+                // Fallback logic: Thử dùng tên subjectName thuần túy nếu key trên thất bại
+                string fallbackKey = NormalizeKey(subjectName);
+                if (fallbackKey != stableKey)
+                {
+                    string fallbackPrefix = $"T{currentTerm}_RETAKE_{fallbackKey}";
+                    if (PlayerPrefs.HasKey(fallbackPrefix + "_day"))
+                    {
+                        keyPrefix = fallbackPrefix;
+                    }
+                    else
+                    {
+                        return null; // Không tìm thấy ở cả 2 trường hợp
+                    }
+                }
+                else
+                {
+                    return null; // Key giống nhau và đều không tìm thấy
+                }
+            }
+
+            // Phần đọc dữ liệu giữ nguyên
             int term = PlayerPrefs.GetInt(keyPrefix + "_term", currentTerm);
             int week = PlayerPrefs.GetInt(keyPrefix + "_week", 0);
             Weekday day = (Weekday)PlayerPrefs.GetInt(keyPrefix + "_day");
@@ -598,11 +627,11 @@ public class ScheduleUI : BasePopUp
     }
     
     /// <summary>
-    /// **MỚI: Lấy text hiển thị cho lịch thi dựa trên trạng thái**
+    /// **SỬA: Lấy text hiển thị cho lịch thi dựa trên trạng thái - KIỂM TRA ĐÃ THI TRƯỚC**
     /// </summary>
     private string GetExamDisplayText(SubjectDataInfo subject)
     {
-        // **ƯU TIÊN: Hiển thị lịch thi lại nếu có và chưa thi lại**
+        // **ƯU TIÊN 1: Hiển thị lịch thi lại nếu có và chưa thi lại**
         if (subject.retakeExamInfo != null)
         {
             if (subject.retakeExamInfo.taken)
@@ -623,7 +652,7 @@ public class ScheduleUI : BasePopUp
             }
         }
         
-        // **THỨ HAI: Hiển thị lịch thi lần đầu**
+        // **ƯU TIÊN 2: Hiển thị lịch thi lần đầu - KIỂM TRA ĐÃ THI TRƯỚC**
         if (subject.examInfo != null)
         {
             if (subject.examInfo.taken)
@@ -636,6 +665,12 @@ public class ScheduleUI : BasePopUp
             }
             else
             {
+                // **CHƯA THI: Bây giờ mới kiểm tra bị cấm thi**
+                if (IsSubjectBanned(subject))
+                {
+                    return "<color=red>Bạn bị cấm thi</color>";
+                }
+                
                 // Format exam time using TeacherAction data
                 string dayName = DataKeyText.VN_Weekday(subject.examInfo.examDay);
                 int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(subject.examInfo.examSlot));
@@ -645,8 +680,52 @@ public class ScheduleUI : BasePopUp
         }
         else
         {
+            // **CHƯA CÓ LỊCH THI: Kiểm tra xem có bị cấm không**
+            if (IsSubjectBanned(subject))
+            {
+                return "<color=red>Bạn bị cấm thi</color>";
+            }
+            
             return "Chưa có lịch thi";
         }
+    }
+    
+    /// <summary>
+    /// **MỚI: Kiểm tra xem môn học có bị cấm thi do nghỉ quá số buổi không**
+    /// </summary>
+    private bool IsSubjectBanned(SubjectDataInfo subject)
+    {
+        if (subject == null || string.IsNullOrWhiteSpace(subject.displayName))
+            return false;
+        
+        // Lấy số buổi nghỉ tối đa cho phép
+        int maxAbsences = GetMaxAbsencesForSubject(subject);
+        
+        // Nếu số buổi nghỉ > số buổi cho phép → bị cấm thi
+        if (subject.absences > maxAbsences)
+        {
+            Debug.Log($"[ScheduleUI] {subject.displayName} bị cấm thi: nghỉ {subject.absences}/{maxAbsences} buổi");
+            return true;
+        }
+        
+        // Kiểm tra thông qua AttendanceManager (nếu có)
+        if (AttendanceManager != null)
+        {
+            int currentTerm = Clock != null ? Clock.Term : 1;
+            string subjectName = subject.semesterSubject?.Name ?? subject.subjectEntry?.subjectName;
+            
+            if (!string.IsNullOrWhiteSpace(subjectName))
+            {
+                bool exceeded = AttendanceManager.HasExceededAbsences(subjectName, currentTerm);
+                if (exceeded)
+                {
+                    Debug.Log($"[ScheduleUI] {subject.displayName} bị cấm thi theo AttendanceManager");
+                    return true;
+                }
+            }
+        }
+        
+        return false;
     }
 
     /// <summary>

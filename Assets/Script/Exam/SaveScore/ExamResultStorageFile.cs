@@ -125,6 +125,60 @@ public static class ExamResultStorageFile
         }
     }
 
+    /// <summary>
+    /// **MỚI: Ghi nhận môn bị cấm thi - tự động điểm 0**
+    /// Gọi hàm này khi học sinh bị cấm thi (vắng quá nhiều, vi phạm...)
+    /// </summary>
+    public static void RecordBannedExam(string subjectKey, string subjectName, int semesterIndex = 0)
+    {
+        // Đảm bảo semesterIndex hợp lệ
+        if (semesterIndex <= 0)
+        {
+            semesterIndex = GetCurrentTermOrDefault1();
+        }
+
+        // Kiểm tra xem đã có bản ghi bị cấm chưa (tránh trùng)
+        var existing = GetAllForSubject(subjectKey);
+        foreach (var e in existing)
+        {
+            if (e.isBanned && e.semesterIndex == semesterIndex)
+            {
+                Debug.LogWarning($"[ExamResultStorageFile] Môn {subjectName} kì {semesterIndex} đã có bản ghi cấm thi rồi!");
+                return;
+            }
+        }
+
+        // Tạo bản ghi điểm 0 với flag isBanned
+        var bannedAttempt = new ExamAttempt
+        {
+            semesterIndex = semesterIndex,
+            subjectKey = subjectKey,
+            subjectName = subjectName,
+            examTitle = "Bị Cấm Thi",
+            
+            // Điểm 0
+            score10 = 0f,
+            score4 = 0f,
+            letter = "F",
+            
+            correct = 0,
+            total = 0,
+            durationSeconds = 0,
+            
+            // Timestamp hiện tại
+            takenAtIso = DateTime.UtcNow.ToString("o"),
+            takenAtUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
+            
+            isRetake = false,
+            isBanned = true  // ← Đánh dấu bị cấm thi
+        };
+
+        // Lưu vào database
+        AddAttempt(bannedAttempt);
+
+        Debug.Log($"[ExamResultStorageFile] ✘ Đã ghi nhận môn '{subjectName}' BỊ CẤM THI - Điểm 0.0 (Kì {semesterIndex})");
+    }
+
     static int GetCurrentTermOrDefault1()
     {
         try
@@ -250,12 +304,52 @@ public static class ExamResultStorageFile
         return null;
     }
 
+    /// <summary>
+    /// **MỚI: Kiểm tra xem môn này đã bị cấm thi chưa trong kì hiện tại**
+    /// </summary>
+    public static bool IsSubjectBanned(string subjectKey, int semesterIndex = 0)
+    {
+        if (semesterIndex <= 0)
+        {
+            semesterIndex = GetCurrentTermOrDefault1();
+        }
+
+        var attempts = GetAllForSubject(subjectKey);
+        foreach (var a in attempts)
+        {
+            if (a.isBanned && a.semesterIndex == semesterIndex)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// **MỚI: Xóa cache PlayerPrefs của tất cả điểm đã lưu**
+    /// </summary>
+    public static void ClearCache()
+    {
+        var db = Load();
+        if (db?.entries != null)
+        {
+            // Xóa cache của từng môn
+            foreach (var entry in db.entries)
+            {
+                PlayerPrefs.DeleteKey(LatestScorePrefix + entry.subjectKey);
+                PlayerPrefs.DeleteKey(LatestScore4Prefix + entry.subjectKey);
+                PlayerPrefs.DeleteKey(LatestLetterPrefix + entry.subjectKey);
+            }
+        }
+        PlayerPrefs.Save();
+    }
+
     public static void ClearAll()   // cẩn thận khi gọi
     {
         // Xoá file lịch sử
         try { if (File.Exists(FilePath)) File.Delete(FilePath); } catch { }
 
-        // Không xoá PlayerPrefs ở đây để an toàn
-        // (tuỳ bạn có thể thêm hàm ClearCache nếu muốn)
+        // **SỬA: Xóa luôn PlayerPrefs cache để đồng bộ**
+        ClearCache();
     }
 }
