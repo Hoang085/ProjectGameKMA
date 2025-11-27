@@ -24,7 +24,6 @@ public static class ExamRouteData
         PlayerPrefs.SetString("LastExam_SubjectKey", subjectKey);
     }
 
-    // >>> Thêm mới:
     public static void SetIndex(int index)
     {
         subjectIndexOverride = index;

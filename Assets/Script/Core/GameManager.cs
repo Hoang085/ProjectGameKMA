@@ -391,8 +391,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    // **TỐI ƪU: Fast restore với minimal delay**
-    // GameManager.cs
     private IEnumerator FastRestoreStateCoroutine()
     {
         Debug.Log("[GameManager] Bắt đầu fast restore...");
@@ -400,36 +398,39 @@ public class GameManager : Singleton<GameManager>
         bool needWait = (GameClock.Ins == null) || (FindFirstObjectByType<ClockUI>() == null);
         if (needWait)
         {
-            Debug.Log("[GameManager] Cần đợi components...");
             yield return StartCoroutine(FastWaitForComponents());
         }
 
         bool hasStateToRestore = GameStateManager.HasSavedState();
-        Debug.Log($"[GameManager] Có trạng thái cần khôi phục: {hasStateToRestore}");
 
         if (hasStateToRestore)
         {
-            GameStateManager.RestorePostExamState();
-
-            // Đợi GameStateManager chạy xong + làm mới thông báo
-            yield return new WaitForSeconds(1f);
+            yield return StartCoroutine(GameStateManager.RestorePostExamState());
+            if (GameClock.Ins != null)
+            {
+                GameClock.Ins.JumpToNextSessionStart();
+                Debug.Log("[GameManager] Đã chuyển sang ca tiếp theo (Chốt hạ)");
+            }
             RefreshAllNotificationStatesAfterRestore();
+            yield return null;
 
-            // ★ Sau khi khôi phục xong thì CHUYỂN CA
-            yield return null;                    // cho mọi thứ settle 1 frame
-            AdvanceToNextSession();               // ★ chính là nhảy sang ca kế tiếp
-            Debug.Log("[GameManager] Post-exam: đã khôi phục state và chuyển sang ca tiếp theo");
+            if (GameUIManager.Ins != null)
+            {
+                if (GameUIManager.Ins.dialogueRoot != null)
+                    GameUIManager.Ins.dialogueRoot.SetActive(true);
+
+                Debug.Log("[GameManager] Trigger hiển thị kết quả thi...");
+                GameUIManager.Ins.CheckAndShowPostExamMessage();
+            }
         }
         else
         {
-            // Không có state thì vẫn chỉ chuyển ca như cũ
-            Debug.Log("[GameManager] Không có trạng thái cần khôi phục, chỉ chuyển ca");
-            AdvanceToNextSession();
+            if (GameClock.Ins != null) GameClock.Ins.JumpToNextSessionStart();
+            yield return new WaitForSeconds(0.5f);
+            if (GameUIManager.Ins != null) GameUIManager.Ins.CheckAndShowPostExamMessage();
         }
     }
 
-
-    // **MỚI: Fast waiting với timeout ngắn**
     private IEnumerator FastWaitForComponents()
     {
         Debug.Log("[GameManager] FastWait cho components...");
