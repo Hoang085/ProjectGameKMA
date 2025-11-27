@@ -11,7 +11,6 @@ public class QuizGameManager : MonoBehaviour
     public TMP_Text titleText;
     public TMP_Text questionText;
     public Button[] answerButtons;
-    public TMP_Text resultText;
     public GameObject root;
 
     [Header("Config")]
@@ -38,7 +37,6 @@ public class QuizGameManager : MonoBehaviour
     void Awake()
     {
         if (!root) root = gameObject;
-        resultText?.gameObject.SetActive(false);
         foreach (var b in answerButtons) b.onClick.RemoveAllListeners();
         root.SetActive(false);
     }
@@ -74,7 +72,6 @@ public class QuizGameManager : MonoBehaviour
         }
 
         root.SetActive(true);
-        resultText?.gameObject.SetActive(false);
         ShowCurrent();
         
         if (pauseGameDuringQuiz)
@@ -117,15 +114,6 @@ public class QuizGameManager : MonoBehaviour
 
         if (correct) correctAnswers++;
 
-        if (resultText)
-        {
-            // Use rich text instead of Unicode symbols
-            resultText.text = correct 
-                ? "Chính xác!" 
-                : $"Sai! Đáp án đúng: {(char)('A' + q.correctIndex)}";
-            resultText.gameObject.SetActive(true);
-        }
-
         foreach (var b in answerButtons) b.interactable = false;
 
         if (delayCoroutine != null) StopCoroutine(delayCoroutine);
@@ -141,7 +129,6 @@ public class QuizGameManager : MonoBehaviour
 
     void NextStep()
     {
-        resultText?.gameObject.SetActive(false);
         sessionCursor++;
 
         if (sessionCursor < questionsPerSession)

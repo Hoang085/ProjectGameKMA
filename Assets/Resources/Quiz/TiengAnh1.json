@@ -23,7 +23,7 @@
       "id": "TA1_4",
       "question": "Choose the correct question: ____ you like pizza?",
       "answers": [ "Do", "Does", "Did" ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": "TA1_5",
@@ -53,7 +53,7 @@
       "id": "TA1_9",
       "question": "Choose the correct future form: I ____ visit my grandma tomorrow.",
       "answers": [ "will", "am", "did" ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": "TA1_10",
@@ -77,7 +77,7 @@
       "id": "TA1_13",
       "question": "Choose the correct preposition: I am good ____ English.",
       "answers": [ "at", "in", "on" ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": "TA1_14",
@@ -112,7 +112,7 @@
     {
       "id": "TA1_19",
       "question": "Which is a correct negative sentence?",
-      "answers": [ "He don’t like coffee.", "He doesn’t like coffee.", "He isn’t likes coffee." ],
+      "answers": [ "He don t like coffee.", "He doesn t like coffee.", "He isn t likes coffee." ],
       "correctIndex": 1
     },
     {
@@ -125,7 +125,7 @@
       "id": "TA1_21",
       "question": "Complete: I usually ____ up at 7 a.m.",
       "answers": [ "get", "gets", "getting" ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": "TA1_22",
@@ -137,7 +137,7 @@
       "id": "TA1_23",
       "question": "What is the opposite of 'early'?",
       "answers": [ "late", "fast", "quick" ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": "TA1_24",
@@ -149,13 +149,13 @@
       "id": "TA1_25",
       "question": "Complete: There ____ a cat under the table.",
       "answers": [ "is", "are", "were" ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": "TA1_26",
       "question": "What is the past tense of 'take'?",
       "answers": [ "took", "taken", "takes" ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": "TA1_27",

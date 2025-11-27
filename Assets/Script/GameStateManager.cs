@@ -63,50 +63,56 @@ public static class GameStateManager
             Debug.LogError($"[GameStateManager] Lỗi lưu trạng thái: {ex.Message}");
         }
     }
-    
+
     /// <summary>
     /// Khôi phục trạng thái sau khi thi xong
     /// </summary>
-    public static void RestorePostExamState()
+    // Trong GameStateManager.cs
+
+    // 1. Đổi từ 'public static void' thành 'public static IEnumerator'
+    public static System.Collections.IEnumerator RestorePostExamState()
     {
         if (!HasSavedState())
         {
             Debug.LogWarning("[GameStateManager] Không có trạng thái để khôi phục");
-            return;
+            yield break;
         }
-        
+
+        GameState state = null;
         try
         {
             string json = PlayerPrefs.GetString(SAVE_KEY);
-            var state = JsonUtility.FromJson<GameState>(json);
-            
+            state = JsonUtility.FromJson<GameState>(json);
+
             if (state == null)
             {
                 Debug.LogError("[GameStateManager] Không thể parse dữ liệu");
-                return;
+                yield break;
             }
-            
-            // Kiểm tra thời gian hợp lệ (không quá 2 giờ)
+
             long currentTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             if (currentTime - state.saveTime > 7200)
             {
-                Debug.LogWarning("[GameStateManager] Dữ liệu quá cũ, bỏ qua khôi phục");
+                Debug.LogWarning("[GameStateManager] Dữ liệu quá cũ");
                 ClearSavedState();
-                return;
+                yield break;
             }
-            
+
             Debug.Log($"[GameStateManager] Bắt đầu khôi phục trạng thái từ thi '{state.examSubject}'");
-            
-            // Khôi phục theo thứ tự
-            GameManager.Ins.StartCoroutine(RestoreStateCoroutine(state));
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[GameStateManager] Lỗi khôi phục: {ex.Message}");
+            Debug.LogError($"[GameStateManager] Lỗi chuẩn bị khôi phục: {ex.Message}");
             ClearSavedState();
+            yield break;
+        }
+
+        if (state != null)
+        {
+            yield return RestoreStateCoroutine(state);
         }
     }
-    
+
     /// <summary>
     /// Coroutine khôi phục trạng thái
     /// </summary>
