@@ -134,6 +134,10 @@ public class ScoreSubjectUI : BasePopUp
 
     string GetStatusText(ExamAttempt at)
     {
+        // **MỚI: Ưu tiên kiểm tra bị cấm thi**
+        if (at.isBanned)
+            return "BỊ CẤM THI";
+
         if (!string.IsNullOrEmpty(at.letter))
             return at.letter.Trim().ToUpperInvariant() == "F" ? "Trượt" : "Đạt";
         return (at.score10 >= 4.0f) ? "Đạt" : "Trượt";

@@ -151,7 +151,6 @@ public class GameUIManager : Singleton<GameUIManager>
     {
         if (string.IsNullOrWhiteSpace(subjectKey))
         {
-            OpenDialogue("Lỗi", "Lỗi: Không tìm thấy môn học cho ca này. Vui lòng kiểm tra cấu hình.");
             return;
         }
         
@@ -164,25 +163,21 @@ public class GameUIManager : Singleton<GameUIManager>
         yield return new WaitForSecondsRealtime(delay);
         if (quizGameManager == null)
         {
-            Debug.LogError("[GameUIManager] QuizGameManager is NULL! Không thể bắt đầu quiz.");
-            Debug.LogError("[GameUIManager] Vui lòng gán QuizGameManager trong Inspector của GameUIManager!");
-            OpenDialogue("Lỗi", "Lỗi: QuizGameManager chưa được cấu hình trong GameUIManager. Vui lòng kiểm tra Inspector.");
             yield break;
         }
         if (!quizGameManager.gameObject.activeInHierarchy)
         {
-            Debug.LogWarning("[GameUIManager] QuizGameManager GameObject is inactive - attempting to activate...");
             quizGameManager.gameObject.SetActive(true);
             yield return null;
         }
         
-        Debug.Log($"[GameUIManager] ✓ Starting quiz for subject: {subjectKey}");
+        Debug.Log($"[GameUIManager] Starting quiz for subject: {subjectKey}");
         quizGameManager.OnQuizCompleted = OnQuizCompletedHandler;
         quizGameManager.OnQuizResult = OnQuizResultHandler;
         
-        Debug.Log("[GameUIManager] ✓ Event handlers registered, calling StartQuiz()...");
+        Debug.Log("[GameUIManager] Event handlers registered, calling StartQuiz()...");
         quizGameManager.StartQuiz(subjectKey);
-        Debug.Log("[GameUIManager] ✓ StartQuiz() called successfully");
+        Debug.Log("[GameUIManager] StartQuiz() called successfully");
     }
     
     private void OnQuizCompletedHandler(int correctCount, int totalCount)
@@ -200,47 +195,6 @@ public class GameUIManager : Singleton<GameUIManager>
         Debug.Log($"[GameUIManager] Quiz result: {(passed ? "PASSED" : "FAILED")}");
     }
     
-    /*private string GetCurrentSubjectKeyFromTeacher()
-    {
-        if (_activeTeacher == null)
-        {
-            return null;
-        }
-
-        if (_activeTeacher.subjects == null || _activeTeacher.subjects.Count == 0)
-        {
-            return null;
-        }
-
-        if (_activeTeacher.semesterConfig != null && GameClock.Ins != null)
-        {
-            var today = GameClock.Ins.Weekday;
-            var slot1Based = GameClock.Ins.SlotIndex1Based;
-
-            foreach (var subj in _activeTeacher.subjects)
-            {
-                if (string.IsNullOrWhiteSpace(subj.subjectName)) continue;
-                
-                if (ScheduleResolver.IsSessionMatch(_activeTeacher.semesterConfig, subj.subjectName, today, slot1Based))
-                {
-                    string key = !string.IsNullOrWhiteSpace(subj.subjectKeyForNotes) 
-                        ? subj.subjectKeyForNotes 
-                        : MakeQuizKey(subj.subjectName);
-                    
-                    return key;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    private string MakeQuizKey(string subjectName)
-    {
-        if (string.IsNullOrWhiteSpace(subjectName)) return "ToanCaoCap";
-        return subjectName.Trim().Replace(" ", "").ToLowerInvariant();
-    }*/
-
     public void OnClick_PlayerIcon()
     {
         if (_dialogueOpen)
@@ -357,6 +311,11 @@ public class GameUIManager : Singleton<GameUIManager>
 
     void Update()
     {
+        if (PlayerPrefs.GetInt("HAS_SEEN_TUTORIAL", 0) == 0)
+        {
+            return;
+        }
+
         if (_dialogueOpen)
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
@@ -574,7 +533,6 @@ public class GameUIManager : Singleton<GameUIManager>
     
     public void CheckAndShowPostExamMessage()
     {
-        // Kiểm tra xem có kết quả thi nào cần hiển thị không
         if (!PlayerPrefs.HasKey("LAST_EXAM_SUBJECT_KEY"))
         {
             return;
@@ -586,7 +544,6 @@ public class GameUIManager : Singleton<GameUIManager>
         bool isRetake = PlayerPrefs.GetInt("LAST_EXAM_IS_RETAKE", 0) == 1;
         bool passed = PlayerPrefs.GetInt("LAST_EXAM_PASSED", 0) == 1;
         
-        // Xóa các PlayerPrefs để không hiển thị lại
         PlayerPrefs.DeleteKey("LAST_EXAM_SUBJECT_KEY");
         PlayerPrefs.DeleteKey("LAST_EXAM_SUBJECT_NAME");
         PlayerPrefs.DeleteKey("LAST_EXAM_SCORE");
@@ -594,7 +551,6 @@ public class GameUIManager : Singleton<GameUIManager>
         PlayerPrefs.DeleteKey("LAST_EXAM_PASSED");
         PlayerPrefs.Save();
         
-        // Xây dựng message
         string message = "";
         
         if (isRetake)
@@ -602,7 +558,6 @@ public class GameUIManager : Singleton<GameUIManager>
             PlayerPrefs.DeleteKey($"NEEDS_RETAKE_SCHEDULE_{subjectKey}");
             PlayerPrefs.Save();
             
-            // Đây là kết quả thi lại
             if (passed)
             {
                 message = $"Chúc mừng! Em đã đạt {score:0.0} điểm trong lần thi lại môn {subjectName}.Điểm cuối cùng của em: {score:0.0}/10";
@@ -614,7 +569,6 @@ public class GameUIManager : Singleton<GameUIManager>
         }
         else
         {
-            // Đây là lần thi đầu
             if (passed)
             {
                 message = $"Chúc mừng! Em đã hoàn thành kỳ thi môn {subjectName} với điểm {score:0.0}/10.";
@@ -622,32 +576,23 @@ public class GameUIManager : Singleton<GameUIManager>
             else
             {
                 message = $"Em đã thi trượt môn {subjectName} với điểm {score:0.0}/10 (Yêu cầu: >= 4.0).";
-                
-                // 1. Thử lấy lịch nếu đã có sẵn trong PlayerPrefs
                 string retakeTimeInfo = GetRetakeScheduleInfo(subjectKey);
-                
-                // 2. Nếu chưa có, TÍNH TOÁN NGAY từ SemesterConfig
                 if (string.IsNullOrEmpty(retakeTimeInfo))
                 {
                     Debug.Log($"[GameUIManager] Lịch thi lại chưa có trong PlayerPrefs, tính toán từ SemesterConfig...");
                     retakeTimeInfo = GetNextSessionDescription(subjectKey, subjectName);
                 }
                 
-                // 3. Hiển thị kết quả
                 if (!string.IsNullOrEmpty(retakeTimeInfo) && retakeTimeInfo != "Chưa xác định" && retakeTimeInfo != "Chưa có lịch (Hết môn)")
                 {
-                    message += $"Lịch thi lại: <color=yellow>{retakeTimeInfo}</color>";
-                    message += "Xem chi tiết lịch thi lại trong Bảng lịch thi.";
+                    message += $" Lịch thi lại: {retakeTimeInfo}";
                 }
                 else
                 {
-                    message += "Em sẽ có cơ hội thi lại. Lịch thi lại sẽ được tự động tạo vào ca học tiếp theo của môn này.\n\n";
+                    message += "Em sẽ có cơ hội thi lại. Lịch thi lại sẽ được tự động tạo vào ca học tiếp theo của môn này.";
                     message += "Xem chi tiết lịch thi lại trong Bảng lịch thi sau khi lịch được tạo.";
                 }
                 
-                message += "Lưu ý: Nếu vắng quá số buổi quy định, em sẽ bị cấm thi!";
-                
-                // Đánh dấu để TeacherAction tạo dữ liệu thật sau này
                 PlayerPrefs.SetInt($"NEEDS_RETAKE_SCHEDULE_{subjectKey}", 1);
                 PlayerPrefs.Save();
                 
@@ -655,7 +600,6 @@ public class GameUIManager : Singleton<GameUIManager>
             }
         }
         
-        // Hiển thị message với delay nhỏ
         StartCoroutine(ShowPostExamMessageDelayed(message));
     }
 
@@ -671,8 +615,7 @@ public class GameUIManager : Singleton<GameUIManager>
         
         int currentTerm = GameClock.Ins.Term;
         string keyPrefix = $"T{currentTerm}_RETAKE_{subjectKey}";
-        
-        // Kiểm tra xem có lịch thi lại không
+
         if (!PlayerPrefs.HasKey(keyPrefix + "_day") || !PlayerPrefs.HasKey(keyPrefix + "_slot1Based"))
         {
             return null;
@@ -737,13 +680,10 @@ public class GameUIManager : Singleton<GameUIManager>
             return "Chưa xác định";
         }
 
-        // Tìm ca GẦN NHẤT trong tương lai
-        // Quét từ tuần hiện tại cho đến hết kỳ
         int maxWeeks = config.Weeks;
         
         for (int week = curWeek; week <= maxWeeks; week++)
         {
-            // Nếu đang ở tuần hiện tại, chỉ xét các ngày/ca sau thời điểm hiện tại
             int startDay = (week == curWeek) ? curDayInt : (int)Weekday.Mon;
             
             for (int d = startDay; d <= (int)Weekday.Sun; d++)
@@ -752,17 +692,13 @@ public class GameUIManager : Singleton<GameUIManager>
                 
                 for (int s = startSlot; s <= 5; s++)
                 {
-                    // Kiểm tra xem có session nào khớp với ngày/ca này không
                     foreach (var session in targetSubject.Sessions)
                     {
                         if (session == null) continue;
-                        
-                        // Parse ngày từ SessionData
                         if (ScheduleResolver.TryParseWeekday(session.Day, out Weekday sessionDay))
                         {
                             if ((int)sessionDay == d && session.Slot == s)
                             {
-                                // Tìm thấy ca gần nhất!
                                 return FormatSessionString(sessionDay, s, week);
                             }
                         }
@@ -776,7 +712,7 @@ public class GameUIManager : Singleton<GameUIManager>
     }
     
     /// <summary>
-    /// **MỚI: Format chuỗi hiển thị thông tin ca học**
+    /// Format chuỗi hiển thị thông tin ca học
     /// </summary>
     private string FormatSessionString(Weekday day, int slot, int week)
     {
@@ -787,7 +723,7 @@ public class GameUIManager : Singleton<GameUIManager>
     }
     
     /// <summary>
-    /// **MỚI: Kiểm tra và hiển thị tutorial nếu là người chơi mới**
+    /// Kiểm tra và hiển thị tutorial nếu là người chơi mới
     /// </summary>
     private void CheckAndShowTutorial()
     {
@@ -797,12 +733,12 @@ public class GameUIManager : Singleton<GameUIManager>
         if (!hasSeenTutorial)
         {
             // Delay nhỏ để UI load xong
-            StartCoroutine(ShowTutorialDelayed(1.0f));
+            StartCoroutine(ShowTutorialDelayed(0.1f));
         }
     }
     
     /// <summary>
-    /// **MỚI: Hiển thị tutorial với delay**
+    /// Hiển thị tutorial với delay
     /// </summary>
     private IEnumerator ShowTutorialDelayed(float delay)
     {
@@ -811,7 +747,7 @@ public class GameUIManager : Singleton<GameUIManager>
     }
     
     /// <summary>
-    /// **MỚI: Hiển thị tutorial**
+    /// Hiển thị tutorial
     /// </summary>
     public void ShowTutorial()
     {
@@ -821,18 +757,15 @@ public class GameUIManager : Singleton<GameUIManager>
             return;
         }
         
+        // Đánh dấu tutorial đang hiển thị NGAY LẬP TỨC để block popups
         // Kích hoạt tutorial
         tutorialPlayer.gameObject.SetActive(true);
-        
-        // Đánh dấu đã xem tutorial
-        PlayerPrefs.SetInt("HAS_SEEN_TUTORIAL", 1);
-        PlayerPrefs.Save();
         
         Debug.Log("[GameUIManager] ✓ Đã hiển thị tutorial");
     }
     
     /// <summary>
-    /// **MỚI: Cập nhật hiển thị nút thi (Thi lại) - được gọi từ TeacherAction**
+    /// Cập nhật hiển thị nút thi (Thi lại) - được gọi từ TeacherAction
     /// </summary>
     public void UpdateExamButtonsVisibility(bool showRetake)
     {

@@ -262,6 +262,18 @@ public class NotificationPopupSpawner : MonoBehaviour
         _running = true;
         while (_queue.Count > 0)
         {
+            // Chờ nếu tutorial đang chạy
+            while (PlayerPrefs.GetInt("HAS_SEEN_TUTORIAL", 0) == 0)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+            
+            // Kiểm tra thêm nếu GameUIManager có IsAnyUIOpen
+            while (GameUIManager.Ins != null && GameUIManager.Ins.IsAnyUIOpen)
+            {
+                yield return new WaitForSeconds(0.3f);
+            }
+
             var (msg, icon) = _queue.Dequeue();
 
             if (_targetCanvas == null || popupParent == null) FindValidCanvas();

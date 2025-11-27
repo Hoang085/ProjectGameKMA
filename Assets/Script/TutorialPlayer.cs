@@ -17,7 +17,7 @@ public class TutorialPlayer : MonoBehaviour
     private Coroutine transitionRoutine;
     
     /// <summary>
-    /// **MỚI: Lưu trạng thái GameClock trước khi pause để khôi phục**
+    /// Lưu trạng thái GameClock trước khi pause để khôi phục
     /// </summary>
     private bool _wasClockPausedBefore = false;
 
@@ -29,7 +29,7 @@ public class TutorialPlayer : MonoBehaviour
 
         UpdateButtonVisibility();
         
-        // **MỚI: Đăng ký sự kiện cho nút Close**
+        // Đăng ký sự kiện cho nút Close
         if (btnClose != null)
         {
             btnClose.onClick.AddListener(OnClose);
@@ -38,7 +38,7 @@ public class TutorialPlayer : MonoBehaviour
     
     private void OnDestroy()
     {
-        // **MỚI: Hủy đăng ký sự kiện**
+        // Hủy đăng ký sự kiện
         if (btnClose != null)
         {
             btnClose.onClick.RemoveListener(OnClose);
@@ -101,7 +101,7 @@ public class TutorialPlayer : MonoBehaviour
     }
     
     /// <summary>
-    /// **MỚI: Được gọi khi TutorialPlayer được kích hoạt**
+    /// Được gọi khi TutorialPlayer được kích hoạt
     /// </summary>
     private void OnEnable()
     {
@@ -109,7 +109,7 @@ public class TutorialPlayer : MonoBehaviour
     }
     
     /// <summary>
-    /// **MỚI: Tạm dừng GameClock khi tutorial hiển thị**
+    /// Tạm dừng GameClock khi tutorial hiển thị
     /// </summary>
     private void PauseGameClock()
     {
@@ -129,7 +129,7 @@ public class TutorialPlayer : MonoBehaviour
     }
     
     /// <summary>
-    /// **MỚI: Tiếp tục GameClock khi đóng tutorial**
+    /// Tiếp tục GameClock khi đóng tutorial
     /// </summary>
     private void ResumeGameClock()
     {
@@ -148,11 +148,15 @@ public class TutorialPlayer : MonoBehaviour
     }
     
     /// <summary>
-    /// **MỚI: Xử lý khi nhấn nút Close**
+    /// Xử lý khi nhấn nút Close
     /// </summary>
     private void OnClose()
     {
         ResumeGameClock();
+        PlayerPrefs.SetInt("HAS_SEEN_TUTORIAL", 1);
+        PlayerPrefs.Save();
+        
+        Debug.Log("[TutorialPlayer] ✓ Đã đánh dấu hoàn thành tutorial");
         
         // Đóng tutorial (tắt GameObject)
         gameObject.SetActive(false);

@@ -262,10 +262,8 @@ public class ExamUIManager : MonoBehaviour
         string letter = _pointConversion.LetterFrom10(score10);
         bool pass = score10 >= 4.0f;
 
-        // ====== LƯU LỊCH SỬ VÀ CACHE ======
         string subjectKey = KeyUtil.MakeKey(_exam.subjectName);
         
-        // **MỚI: Kiểm tra xem đây có phải là lần thi lại không**
         bool isRetake = PlayerPrefs.GetInt("EXAM_IS_RETAKE", 0) == 1;
         
         var attempt = new ExamAttempt
@@ -281,22 +279,25 @@ public class ExamUIManager : MonoBehaviour
             durationSeconds = Mathf.Max(0, _exam.durationSeconds),
             takenAtIso = DateTime.UtcNow.ToString("o"),
             takenAtUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
-            isRetake = isRetake  // **MỚI: Lưu flag thi lại**
+            isRetake = isRetake 
         };
         
         ExamResultStorageFile.AddAttempt(attempt);
         ExamResultStorageFile.DebugPrintAll();
+
+        int examTimestamp = (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         
-        // **MỚI: Lưu kết quả để hiển thị message khi về GameScene**
         PlayerPrefs.SetString("LAST_EXAM_SUBJECT_KEY", subjectKey);
         PlayerPrefs.SetString("LAST_EXAM_SUBJECT_NAME", _exam.subjectName);
         PlayerPrefs.SetFloat("LAST_EXAM_SCORE", score10);
         PlayerPrefs.SetInt("LAST_EXAM_IS_RETAKE", isRetake ? 1 : 0);
         PlayerPrefs.SetInt("LAST_EXAM_PASSED", pass ? 1 : 0);
+        PlayerPrefs.SetInt("EXAM_COMPLETED_TIMESTAMP", examTimestamp); 
         
-        // **MỚI: Xóa flag thi lại sau khi lưu**
         PlayerPrefs.DeleteKey("EXAM_IS_RETAKE");
         PlayerPrefs.Save();
+        
+        Debug.Log($"[ExamUIManager] Exam completed with timestamp: {examTimestamp}");
         // ===================================
 
         if (btnPrev) btnPrev.interactable = false;
@@ -324,13 +325,12 @@ public class ExamUIManager : MonoBehaviour
     {
         if (finalDialog) finalDialog.SetActive(false);
         
-        // **THÊM: Return to GameScene after closing exam**
         Debug.Log("[ExamUIManager] Closing exam and returning to GameScene...");
         StartCoroutine(ReturnToGameScene());
     }
     
     /// <summary>
-    /// **MỚI: Return to GameScene with proper state management**
+    /// Return to GameScene with proper state management
     /// </summary>
     private IEnumerator ReturnToGameScene()
     {
