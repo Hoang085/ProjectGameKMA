@@ -49,7 +49,7 @@ public class GameManager : Singleton<GameManager>
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // **TỐI ƪU: Kiểm tra ngay lập tức không delay**
+    // **TỐI ƯU: Kiểm tra ngay lập tức không delay**
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // **SỬA: Reset lastSceneName nếu không phải GameScene để cho phép xử lý lần tiếp theo**
@@ -102,10 +102,21 @@ public class GameManager : Singleton<GameManager>
             PlayerPrefs.DeleteKey("ShouldAdvanceTimeAfterExam");
         PlayerPrefs.Save();
 
-        // Ưu tiên khôi phục state nếu có (khôi phục xong sẽ tự chuyển ca)
-        if (shouldRestoreExam || shouldRestoreMiniGame)
+        // -------------------------------------------------------------------------
+        // SỬA: Tách luồng xử lý Exam và MiniGame để quyết định hiển thị Dialogue
+        // -------------------------------------------------------------------------
+
+        // TRƯỜNG HỢP 1: Về từ ExamScene (Đi thi) -> Restore + HIỆN Dialogue
+        if (shouldRestoreExam)
         {
-            StartCoroutine(FastRestoreStateCoroutine());
+            StartCoroutine(FastRestoreStateCoroutine(showResultDialog: true));
+            return;
+        }
+
+        // TRƯỜNG HỢP 2: Về từ MiniGame (Game1, Game2...) -> Restore + ẨN Dialogue
+        if (shouldRestoreMiniGame)
+        {
+            StartCoroutine(FastRestoreStateCoroutine(showResultDialog: false));
             return;
         }
 
@@ -386,7 +397,8 @@ public class GameManager : Singleton<GameManager>
             PlayerPrefs.Save();
 
             Debug.Log("[GameManager] Đã xóa flag và bắt đầu khôi phục...");
-            StartCoroutine(FastRestoreStateCoroutine());
+            // Đây là flow Exam -> showResultDialog = true
+            StartCoroutine(FastRestoreStateCoroutine(showResultDialog: true));
         }
         else
         {
@@ -395,10 +407,14 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private IEnumerator FastRestoreStateCoroutine()
+    // -------------------------------------------------------------------------
+    // HÀM KHÔI PHỤC TRẠNG THÁI (ĐÃ CẬP NHẬT LOGIC TRỪ THỂ LỰC)
+    // -------------------------------------------------------------------------
+    private IEnumerator FastRestoreStateCoroutine(bool showResultDialog)
     {
-        Debug.Log("[GameManager] Bắt đầu fast restore...");
+        Debug.Log($"[GameManager] Bắt đầu fast restore (Hiện Dialogue: {showResultDialog})...");
 
+        // 1. Chờ các component load xong
         bool needWait = (GameClock.Ins == null) || (FindFirstObjectByType<ClockUI>() == null);
         if (needWait)
         {
@@ -409,16 +425,56 @@ public class GameManager : Singleton<GameManager>
 
         if (hasStateToRestore)
         {
+            // 2. Khôi phục vị trí và thời gian
             yield return StartCoroutine(GameStateManager.RestorePostExamState());
+
+            // 3. Chuyển ca học
             if (GameClock.Ins != null)
             {
                 GameClock.Ins.JumpToNextSessionStart();
                 Debug.Log("[GameManager] Đã chuyển sang ca tiếp theo (Chốt hạ)");
             }
+
+            // 4. Refresh icon
             RefreshAllNotificationStatesAfterRestore();
             yield return null;
 
-            if (GameUIManager.Ins != null)
+            // =====================================================================
+            // **SỬA: LOGIC TRỪ THỂ LỰC - Trực tiếp thao tác với PlayerPrefs**
+            // =====================================================================
+            if (PlayerPrefs.GetInt("DEDUCT_STAMINA_AFTER_MINIGAME", 0) == 1)
+            {
+                // Xóa cờ ngay để tránh trừ lặp lại
+                PlayerPrefs.DeleteKey("DEDUCT_STAMINA_AFTER_MINIGAME");
+                PlayerPrefs.Save();
+
+                // **SỬA: Trừ trực tiếp vào PlayerPrefs thay vì tìm PlayerStatsUI**
+                const string staminaSaveKey = "PLAYER_STAMINA";
+                const int maxStamina = 100;
+                const int staminaCost = 30;
+
+                int currentStamina = PlayerPrefs.GetInt(staminaSaveKey, maxStamina);
+                int oldStamina = currentStamina;
+                
+                // Trừ stamina (không cho âm)
+                currentStamina = Mathf.Max(0, currentStamina - staminaCost);
+                
+                // Lưu vào PlayerPrefs
+                PlayerPrefs.SetInt(staminaSaveKey, currentStamina);
+                PlayerPrefs.Save();
+                
+                Debug.Log($"[GameManager] ✓ Đã trừ {staminaCost} thể lực từ MiniGame: {oldStamina} -> {currentStamina}");
+                Debug.Log($"[GameManager] PlayerPrefs[{staminaSaveKey}] = {PlayerPrefs.GetInt(staminaSaveKey, -1)}");
+                
+                // **BONUS: Hiển thị thông báo nếu có NotificationPopupSpawner**
+                if (NotificationPopupSpawner.Ins != null)
+                {
+                    NotificationPopupSpawner.Ins.Enqueue($"Bạn đã tiêu tốn {staminaCost} thể lực!");
+                }
+            }
+
+            // 5. Hiển thị bảng kết quả (Chỉ hiện nếu showResultDialog = true)
+            if (showResultDialog && GameUIManager.Ins != null)
             {
                 if (GameUIManager.Ins.dialogueRoot != null)
                     GameUIManager.Ins.dialogueRoot.SetActive(true);
@@ -426,12 +482,19 @@ public class GameManager : Singleton<GameManager>
                 Debug.Log("[GameManager] Trigger hiển thị kết quả thi...");
                 GameUIManager.Ins.CheckAndShowPostExamMessage();
             }
+            else
+            {
+                Debug.Log("[GameManager] Bỏ qua hiển thị kết quả (Do MiniGame hoặc không yêu cầu)");
+            }
         }
         else
         {
+            // Logic dự phòng khi không có file save
             if (GameClock.Ins != null) GameClock.Ins.JumpToNextSessionStart();
             yield return new WaitForSeconds(0.5f);
-            if (GameUIManager.Ins != null) GameUIManager.Ins.CheckAndShowPostExamMessage();
+
+            if (showResultDialog && GameUIManager.Ins != null)
+                GameUIManager.Ins.CheckAndShowPostExamMessage();
         }
     }
 
@@ -1250,6 +1313,52 @@ public class GameManager : Singleton<GameManager>
     }
 
     /// <summary>
+    /// **MỚI: Manual method để force validate NotificationPopupSpawner**
+    /// </summary>
+    [ContextMenu("Force Validate NotificationPopupSpawner")]
+    public void ForceValidateNotificationPopupSpawner()
+    {
+        ValidateNotificationPopupSpawner();
+    }
+
+    /// <summary>
+    /// **DEBUG: Test trừ stamina sau MiniGame**
+    /// </summary>
+    [ContextMenu("TEST: Simulate Return From MiniGame")]
+    public void TestSimulateReturnFromMiniGame()
+    {
+        Debug.Log("[GameManager] ===== TEST: Simulating return from MiniGame =====");
+        
+        // Kiểm tra stamina trước khi test
+        const string staminaSaveKey = "PLAYER_STAMINA";
+        int staminaBefore = PlayerPrefs.GetInt(staminaSaveKey, 100);
+        Debug.Log($"[GameManager] Stamina BEFORE test: {staminaBefore}");
+        
+        // Set các cờ giống như khi về từ MiniGame
+        PlayerPrefs.SetInt("ShouldRestoreStateAfterMiniGame", 1);
+        PlayerPrefs.SetInt("DEDUCT_STAMINA_AFTER_MINIGAME", 1);
+        PlayerPrefs.Save();
+        
+        Debug.Log("[GameManager] Đã set flags - Đang trigger restore...");
+        
+        // Trigger restore flow
+        StartCoroutine(FastRestoreStateCoroutine(showResultDialog: false));
+        
+        // Sau 2 giây kiểm tra lại stamina
+        StartCoroutine(CheckStaminaAfterDelay());
+    }
+    
+    private IEnumerator CheckStaminaAfterDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        const string staminaSaveKey = "PLAYER_STAMINA";
+        int staminaAfter = PlayerPrefs.GetInt(staminaSaveKey, 100);
+        Debug.Log($"[GameManager] Stamina AFTER test: {staminaAfter}");
+        Debug.Log("[GameManager] ===== TEST COMPLETED =====");
+    }
+
+    /// <summary>
     /// **MỚI: Manually refresh IconNotificationManager reference**
     /// </summary>
     [ContextMenu("Refresh IconNotificationManager Reference")]
@@ -1315,72 +1424,6 @@ public class GameManager : Singleton<GameManager>
     }
 
     /// <summary>
-    /// **DEBUG METHODS cho việc kiểm tra post-exam flow**
-    /// </summary>
-    [ContextMenu("TEST: Giả lập quay về từ ExamScene với State Restore")]
-    public void TestReturnFromExamSceneWithStateRestore()
-    {
-        PlayerPrefs.SetInt("ShouldRestoreStateAfterExam", 1);
-        PlayerPrefs.Save();
-        CheckAndHandlePostExamStateRestore();
-        Debug.Log("[GameManager] Đã kích hoạt test khôi phục trạng thái sau thi");
-    }
-
-    [ContextMenu("TEST: Giả lập quay về từ ExamScene (Legacy)")]
-    public void TestReturnFromExamScene()
-    {
-        PlayerPrefs.SetInt("ShouldAdvanceTimeAfterExam", 1);
-        PlayerPrefs.Save();
-        CheckAndHandlePostExamTimeAdvance();
-        Debug.Log("[GameManager] Đã kích hoạt test chuyển ca sau thi (legacy)");
-    }
-
-    [ContextMenu("TEST: Kiểm tra trạng thái đã lưu")]
-    public void TestCheckSavedState()
-    {
-        bool hasSavedState = GameStateManager.HasSavedState();
-        string examSubject = GameStateManager.GetSavedExamSubject();
-
-        Debug.Log($"[GameManager] Có trạng thái đã lưu: {hasSavedState}");
-        if (hasSavedState)
-        {
-            Debug.Log($"[GameManager] Môn thi: {examSubject}");
-        }
-    }
-
-    [ContextMenu("TEST: Xóa trạng thái đã lưu")]
-    public void TestClearSavedState()
-    {
-        GameStateManager.ClearSavedState();
-        Debug.Log("[GameManager] Đã xóa trạng thái đã lưu");
-    }
-
-    /// <summary>
-    /// **MỚI: Clear exam timestamp để test lại flow**
-    /// </summary>
-    [ContextMenu("TEST: Clear Exam Timestamp")]
-    public void TestClearExamTimestamp()
-    {
-        lastProcessedExamTimestamp = 0;
-        PlayerPrefs.DeleteKey("EXAM_COMPLETED_TIMESTAMP");
-        PlayerPrefs.Save();
-        Debug.Log("[GameManager] Đã xóa exam timestamp - có thể test lại exam flow");
-    }
-
-    /// <summary>
-    /// **MỚI: Kiểm tra exam timestamp hiện tại**
-    /// </summary>
-    [ContextMenu("TEST: Check Exam Timestamp Status")]
-    public void TestCheckExamTimestampStatus()
-    {
-        int savedTimestamp = PlayerPrefs.GetInt("EXAM_COMPLETED_TIMESTAMP", 0);
-        Debug.Log("=== EXAM TIMESTAMP STATUS ===");
-        Debug.Log($"[GameManager] Saved timestamp: {savedTimestamp}");
-        Debug.Log($"[GameManager] Last processed timestamp: {lastProcessedExamTimestamp}");
-        Debug.Log($"[GameManager] Will process next exam: {(savedTimestamp != lastProcessedExamTimestamp)}");
-    }
-
-    /// <summary>
     /// **MỚI: Validate NotificationPopupSpawner and attempt recovery if needed**
     /// </summary>
     private void ValidateNotificationPopupSpawner()
@@ -1400,15 +1443,6 @@ public class GameManager : Singleton<GameManager>
                 spawner.ForceReregisterWithGameManager();
             }
         }
-    }
-
-    /// <summary>
-    /// **MỚI: Manual method để force validate NotificationPopupSpawner**
-    /// </summary>
-    [ContextMenu("Force Validate NotificationPopupSpawner")]
-    public void ForceValidateNotificationPopupSpawner()
-    {
-        ValidateNotificationPopupSpawner();
     }
 
     // Legacy flag: chỉ chuyển ca (không khôi phục vị trí)

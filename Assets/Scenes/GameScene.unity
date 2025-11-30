@@ -32427,6 +32427,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactPlayingUI: {fileID: 194109470}
   dialogueFriendUI: {fileID: 1773972032}
+  playGameButton: {fileID: 36775384}
+  targetGameScene: Game1
   titleText: {fileID: 645454354}
   contentText: {fileID: 963977082}
   npcDisplayName: "B\u1EA1n Qu\u1EF3nh"

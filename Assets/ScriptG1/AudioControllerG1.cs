@@ -19,6 +19,11 @@ public class AudioControllerG1 : SingletonG1<AudioControllerG1>
     public AudioClip lose;
     public AudioClip[] bgMusic;
 
+    public override void Awake()
+    {
+        MakeSingleton(false);
+    }
+
     public void Start()
     {
         PlayMusic(bgMusic);

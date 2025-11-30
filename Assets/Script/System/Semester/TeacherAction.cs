@@ -1291,7 +1291,7 @@ public class TeacherAction : InteractableAction
             Debug.Log($"[TeacherAction] Tăng progress: {attended} -> {newAttended} / {attendedCap} (threshold={threshold})");
 
             int verified = LoadProgress(subj);
-            if (verified != newAttended) Debug.LogError($"[TeacherAction] ✗ SAVE FAILED! Expected: {newAttended}, Got: {verified}");
+            if (verified != newAttended) Debug.LogError($"[TeacherAction] SAVE FAILED! Expected: {newAttended}, Got: {verified}");
         }
 
         bool justFinished = (subj.currentSessionIndex >= attendedCap);

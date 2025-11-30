@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -81,8 +81,14 @@ public class GameGUIManagerG1 : SingletonG1<GameGUIManagerG1>
 
     public void BackToScene()
     {
-        ResumeGame();
+        Debug.Log("[GameGUIManagerG1] Saving state before returning to GameScene...");
+        GameStateManager.SavePreMiniGameState("Game1");
+        PlayerPrefs.SetInt("ShouldRestoreStateAfterMiniGame", 1);
+        PlayerPrefs.SetInt("ADVANCE_SLOT_AFTER_EXAM", 1);
+        PlayerPrefs.SetInt("DEDUCT_STAMINA_AFTER_MINIGAME", 1);
+        PlayerPrefs.Save();
 
+        Debug.Log("[GameGUIManagerG1] ✓ State saved and flags set");
         SceneLoader.Load("GameScene");
     }
 }
