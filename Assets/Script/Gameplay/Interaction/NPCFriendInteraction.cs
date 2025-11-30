@@ -8,12 +8,17 @@ public class NPCFriendInteraction : MonoBehaviour
     public GameObject interactPlayingUI;
     public GameObject dialogueFriendUI;
 
+    [Header("UI Controls - Setup Nút Bấm")]
+
+    public Button playGameButton;
+    public string targetGameScene = "Game1";
+
     [Header("UI Text Bên Trong Dialogue")]
-    public Text titleText;   
-    public Text contentText;  
+    public Text titleText;
+    public Text contentText;
 
     [Header("Dữ liệu hội thoại (nhập trong Inspector)")]
-    public string npcDisplayName;     
+    public string npcDisplayName;
     [TextArea(3, 10)]
     public string npcDialogueContent;
 
@@ -21,9 +26,8 @@ public class NPCFriendInteraction : MonoBehaviour
     public string playerTag = "Player";
 
     private bool _playerInRange = false;
-    private bool _dialogueOpen = false; // Track dialogue state
+    private bool _dialogueOpen = false;
 
-    // Public property to check if dialogue is open
     public bool IsDialogueOpen => _dialogueOpen;
 
     private void Start()
@@ -33,6 +37,24 @@ public class NPCFriendInteraction : MonoBehaviour
 
         if (dialogueFriendUI != null)
             dialogueFriendUI.SetActive(false);
+
+        if (playGameButton != null)
+        {
+            playGameButton.onClick.RemoveAllListeners();
+            playGameButton.onClick.AddListener(OnPlayGameBtnClick);
+        }
+        else
+        {
+            Debug.LogWarning($"[NPCFriendInteraction] Chưa gán Button cho NPC: {gameObject.name}");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (playGameButton != null)
+        {
+            playGameButton.onClick.RemoveListener(OnPlayGameBtnClick);
+        }
     }
 
     private void Update()
@@ -42,7 +64,6 @@ public class NPCFriendInteraction : MonoBehaviour
             OpenDialogue();
         }
 
-        // Allow closing dialogue with ESC or right-click
         if (_dialogueOpen && (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)))
         {
             OnCloseDialog();
@@ -54,7 +75,6 @@ public class NPCFriendInteraction : MonoBehaviour
         if (other.CompareTag(playerTag))
         {
             _playerInRange = true;
-
             if (interactPlayingUI != null && !_dialogueOpen)
                 interactPlayingUI.SetActive(true);
         }
@@ -65,10 +85,8 @@ public class NPCFriendInteraction : MonoBehaviour
         if (other.CompareTag(playerTag))
         {
             _playerInRange = false;
-
             if (interactPlayingUI != null)
                 interactPlayingUI.SetActive(false);
-
             if (_dialogueOpen)
                 OnCloseDialog();
         }
@@ -90,11 +108,10 @@ public class NPCFriendInteraction : MonoBehaviour
         if (contentText != null)
             contentText.text = npcDialogueContent;
 
-        // Notify GameUIManager that a dialogue is open
         if (GameUIManager.Ins != null)
             GameUIManager.Ins.IsAnyStatUIOpen = true;
 
-        Debug.Log("[NPCFriendInteraction] Dialogue opened - Camera and player movement locked");
+        Debug.Log("[NPCFriendInteraction] Dialogue opened");
     }
 
     public void OnCloseDialog()
@@ -106,14 +123,26 @@ public class NPCFriendInteraction : MonoBehaviour
         if (dialogueFriendUI != null)
             dialogueFriendUI.SetActive(false);
 
-        // Re-show interact prompt if player is still in range
         if (interactPlayingUI != null && _playerInRange)
             interactPlayingUI.SetActive(true);
 
-        // Notify GameUIManager that dialogue is closed
         if (GameUIManager.Ins != null)
             GameUIManager.Ins.IsAnyStatUIOpen = false;
 
-        Debug.Log("[NPCFriendInteraction] Dialogue closed - Camera and player movement unlocked");
+        Debug.Log("[NPCFriendInteraction] Dialogue closed");
+    }
+
+    public void OnPlayGameBtnClick()
+    {
+        if (string.IsNullOrEmpty(targetGameScene))
+        {
+            Debug.LogError("[NPCFriendInteraction] Chưa nhập tên Scene (targetGameScene) trong Inspector!");
+            return;
+        }
+
+        Debug.Log($"[NPCFriendInteraction] Chuẩn bị vào {targetGameScene}...");
+        GameStateManager.SavePreExamState(targetGameScene);
+        OnCloseDialog();
+        SceneLoader.Load(targetGameScene);
     }
 }

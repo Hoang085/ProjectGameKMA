@@ -294,4 +294,11 @@ public static class GameStateManager
         PlayerPrefs.Save();
         Debug.Log("[GameStateManager] Đã xóa dữ liệu trạng thái");
     }
+
+    public static void SavePreMiniGameState(string gameName)
+    {
+        // Tận dụng lại logic lưu trữ đã có vì logic Restore dùng chung key SAVE_KEY
+        SavePreExamState(gameName);
+        Debug.Log($"[GameStateManager] Đã lưu trạng thái trước khi chơi MiniGame: {gameName}");
+    }
 }
