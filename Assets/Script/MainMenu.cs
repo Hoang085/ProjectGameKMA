@@ -45,18 +45,11 @@ public class MainMenu : MonoBehaviour
 
     public void OnNewGame()
     {
-        // **BƯỚC 1: Xóa file điểm thi trước**
         ExamResultStorageFile.ClearAll();
-        
-        // **BƯỚC 2: Xóa toàn bộ PlayerPrefs (bao gồm cache điểm)**
         PlayerPrefs.DeleteAll();
-        
-        // **BƯỚC 3: Khôi phục các key cần thiết**
         PlayerPrefs.SetInt(KEY_SAVE_EXISTS, 2);
         PlayerPrefs.SetInt(KEY_SHOW_TUTORIAL, 1); 
         PlayerPrefs.Save();
-        
-        // **BƯỚC 4: Load game mới**
         SceneLoader.Load("GameScene");
     }
 

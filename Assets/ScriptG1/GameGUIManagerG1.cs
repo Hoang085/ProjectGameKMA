@@ -88,7 +88,7 @@ public class GameGUIManagerG1 : SingletonG1<GameGUIManagerG1>
         PlayerPrefs.SetInt("DEDUCT_STAMINA_AFTER_MINIGAME", 1);
         PlayerPrefs.Save();
 
-        Debug.Log("[GameGUIManagerG1] ✓ State saved and flags set");
+        Debug.Log("[GameGUIManagerG1]  State saved and flags set");
         SceneLoader.Load("GameScene");
     }
 }

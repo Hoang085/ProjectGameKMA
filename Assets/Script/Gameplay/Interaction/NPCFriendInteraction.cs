@@ -11,6 +11,7 @@ public class NPCFriendInteraction : MonoBehaviour
     [Header("UI Controls - Setup Nút Bấm")]
 
     public Button playGameButton;
+    public Button closeGameButton;
     public string targetGameScene = "Game1";
 
     [Header("UI Text Bên Trong Dialogue")]
@@ -37,24 +38,6 @@ public class NPCFriendInteraction : MonoBehaviour
 
         if (dialogueFriendUI != null)
             dialogueFriendUI.SetActive(false);
-
-        if (playGameButton != null)
-        {
-            playGameButton.onClick.RemoveAllListeners();
-            playGameButton.onClick.AddListener(OnPlayGameBtnClick);
-        }
-        else
-        {
-            Debug.LogWarning($"[NPCFriendInteraction] Chưa gán Button cho NPC: {gameObject.name}");
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (playGameButton != null)
-        {
-            playGameButton.onClick.RemoveListener(OnPlayGameBtnClick);
-        }
     }
 
     private void Update()
@@ -108,6 +91,19 @@ public class NPCFriendInteraction : MonoBehaviour
         if (contentText != null)
             contentText.text = npcDialogueContent;
 
+        // 🔹 CHỈ NPC đang mở hộp thoại mới gắn listener cho nút
+        if (playGameButton != null)
+        {
+            playGameButton.onClick.RemoveAllListeners();
+            playGameButton.onClick.AddListener(OnPlayGameBtnClick);
+        }
+
+        if (closeGameButton != null)
+        {
+            closeGameButton.onClick.RemoveAllListeners();
+            closeGameButton.onClick.AddListener(OnCloseGameBtnClick);
+        }
+
         if (GameUIManager.Ins != null)
             GameUIManager.Ins.IsAnyStatUIOpen = true;
 
@@ -129,8 +125,16 @@ public class NPCFriendInteraction : MonoBehaviour
         if (GameUIManager.Ins != null)
             GameUIManager.Ins.IsAnyStatUIOpen = false;
 
+        // 🔹 Option: clear luôn listener, để NPC khác set lại khi mở
+        if (playGameButton != null)
+            playGameButton.onClick.RemoveAllListeners();
+
+        if (closeGameButton != null)
+            closeGameButton.onClick.RemoveAllListeners();
+
         Debug.Log("[NPCFriendInteraction] Dialogue closed");
     }
+
 
     public void OnPlayGameBtnClick()
     {
@@ -144,5 +148,10 @@ public class NPCFriendInteraction : MonoBehaviour
         GameStateManager.SavePreExamState(targetGameScene);
         OnCloseDialog();
         SceneLoader.Load(targetGameScene);
+    }
+
+    public void OnCloseGameBtnClick()
+    {
+        OnCloseDialog();
     }
 }
