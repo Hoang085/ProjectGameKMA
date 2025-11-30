@@ -132,44 +132,44 @@ public class GameManager : Singleton<GameManager>
         // **SỬA: Start TaskManager check immediately**
         StartCoroutine(DelayedTaskNotificationCheck());
     }
-    
+
     /// <summary>
     /// **MỚI: Khởi tạo PlayerStatsUI "im lặng" - không tính vào _openPopupCount**
     /// </summary>
     private System.Collections.IEnumerator InitializePlayerStatsUIQuietly()
     {
         Debug.Log("[GameManager] Initializing PlayerStatsUI quietly...");
-        
+
         // Đợi PopupManager sẵn sàng
         yield return new WaitForSeconds(0.3f);
-        
+
         if (HHH.Common.PopupManager.Ins == null)
         {
             Debug.LogWarning("[GameManager] ✗ PopupManager not found - PlayerStatsUI initialization skipped");
             yield break;
         }
-        
+
         var popupManager = HHH.Common.PopupManager.Ins;
         var playerStatsPopup = popupManager.GetPopup(HHH.Common.PopupName.PlayerStat);
-        
+
         if (playerStatsPopup != null)
         {
             Debug.Log("[GameManager] ✓ PlayerStatsUI already exists");
             yield break;
         }
-        
+
         Debug.Log("[GameManager] Creating PlayerStatsUI in background...");
-        
+
         // **GIẢI PHÁP: Tạo popup nhưng đảm bảo nó KHÔNG gọi OnPopupOpened**
         // Bằng cách disable GameObject trước khi ShowScreen
         popupManager.OnShowScreen(HHH.Common.PopupName.PlayerStat);
-        
+
         // Đợi 1 frame để popup được tạo
         yield return null;
-        
+
         // Lấy popup vừa tạo
         playerStatsPopup = popupManager.GetPopup(HHH.Common.PopupName.PlayerStat);
-        
+
         if (playerStatsPopup != null)
         {
             // **QUAN TRỌNG: Đóng popup NGAY LẬP TỨC và giảm _openPopupCount**
@@ -179,16 +179,16 @@ public class GameManager : Singleton<GameManager>
                 // Gọi OnDeActived để đóng popup đúng cách
                 basePopup.OnDeActived();
             }
-            
+
             // Đảm bảo popup bị ẩn hoàn toàn
             playerStatsPopup.SetActive(false);
-            
+
             // **FIX: Giảm popup counter về 0 vì ta không muốn tính popup này**
             if (GameUIManager.Ins != null)
             {
                 GameUIManager.Ins.OnPopupClosed();
             }
-            
+
             Debug.Log("[GameManager] ✓ PlayerStatsUI initialized quietly - stamina system ready");
         }
         else
@@ -196,7 +196,7 @@ public class GameManager : Singleton<GameManager>
             Debug.LogWarning("[GameManager] ✗ Failed to create PlayerStatsUI");
         }
     }
-    
+
     void Update()
     {
         CheckForNotificationTriggers();
@@ -335,11 +335,11 @@ public class GameManager : Singleton<GameManager>
     public void RefreshAllNotificationStatesAfterRestore()
     {
         Debug.Log("[GameManager] Refreshing all notification states after GameStateManager restoration...");
-        
+
         // Force re-check all notification types
         StartCoroutine(DelayedNotificationRefreshAfterRestore());
     }
-    
+
     /// <summary>
     /// Delayed refresh để đảm bảo tất cả systems đã sẵn sàng sau restoration
     /// </summary>
@@ -347,17 +347,17 @@ public class GameManager : Singleton<GameManager>
     {
         // Đợi một chút để các systems khác hoàn thành initialization
         yield return new WaitForSeconds(0.5f);
-        
+
         // Re-initialize tracking data để đảm bảo có baseline đúng
         InitializeTrackingData();
-        
+
         yield return new WaitForSeconds(0.1f);
-        
+
         // Force check tất cả notification types
         CheckScoreNotification();
-        CheckBaloNotification(); 
+        CheckBaloNotification();
         CheckPlayerStatsNotification();
-        
+
         // TaskManager cần special handling
         if (TaskManager.Instance != null)
         {
@@ -365,7 +365,7 @@ public class GameManager : Singleton<GameManager>
             taskManagerWasNull = false;
             CheckTaskNotification();
         }
-        
+
         Debug.Log("[GameManager] Completed notification refresh after restoration");
     }
 
@@ -462,17 +462,17 @@ public class GameManager : Singleton<GameManager>
     public void SyncNotificationSystemAfterRestore()
     {
         Debug.Log("[GameManager] Syncing notification system after GameStateManager restore...");
-        
+
         // Force refresh IconNotificationManager reference
         RefreshIconNotificationManager();
-        
+
         // Re-enable task notifications if TaskManager is available
         if (TaskManager.Instance != null)
         {
             taskNotificationEnabled = true;
             taskManagerWasNull = false;
             taskManagerRetryCount = 0;
-            
+
             try
             {
                 bool hasActiveTasks = TaskManager.Instance.HasPendingTasks();
@@ -485,12 +485,12 @@ public class GameManager : Singleton<GameManager>
                 SetIconNotification(IconType.Task, false);
             }
         }
-        
+
         // Force check other notifications
         CheckScoreNotification();
         CheckBaloNotification();
         CheckPlayerStatsNotification();
-        
+
         Debug.Log("[GameManager] Notification system sync completed");
     }
 
@@ -507,7 +507,7 @@ public class GameManager : Singleton<GameManager>
         {
             // Try multiple methods to find IconNotificationManager
             iconNotificationManager = FindFirstObjectByType<IconNotificationManager>();
-            
+
             if (iconNotificationManager == null)
             {
                 // Try finding in GameUIManager as well
@@ -517,7 +517,7 @@ public class GameManager : Singleton<GameManager>
                     iconNotificationManager = gameUIManager.GetComponentInChildren<IconNotificationManager>(true);
                 }
             }
-            
+
             if (iconNotificationManager == null)
             {
                 // Try finding in the entire scene including inactive objects
@@ -528,7 +528,7 @@ public class GameManager : Singleton<GameManager>
                     Debug.Log($"[GameManager] Found IconNotificationManager in inactive objects: {iconNotificationManager.name}");
                 }
             }
-            
+
             if (iconNotificationManager != null)
             {
                 Debug.Log($"[GameManager] IconNotificationManager found: {iconNotificationManager.name}");
@@ -832,7 +832,7 @@ public class GameManager : Singleton<GameManager>
             {
                 // **SỬA: Try to find IconNotificationManager if it's null**
                 iconNotificationManager = FindFirstObjectByType<IconNotificationManager>();
-                
+
                 if (iconNotificationManager != null)
                 {
                     try
@@ -1256,10 +1256,10 @@ public class GameManager : Singleton<GameManager>
     public void RefreshIconNotificationManager()
     {
         var oldManager = iconNotificationManager;
-        
+
         // Try multiple methods to find IconNotificationManager
         iconNotificationManager = FindFirstObjectByType<IconNotificationManager>();
-        
+
         if (iconNotificationManager == null)
         {
             // Try finding in GameUIManager as well
@@ -1269,7 +1269,7 @@ public class GameManager : Singleton<GameManager>
                 iconNotificationManager = gameUIManager.GetComponentInChildren<IconNotificationManager>(true);
             }
         }
-        
+
         if (iconNotificationManager == null)
         {
             // Try finding in the entire scene including inactive objects
@@ -1279,13 +1279,13 @@ public class GameManager : Singleton<GameManager>
                 iconNotificationManager = allIconManagers[0];
             }
         }
-        
+
         if (iconNotificationManager != null)
         {
             if (oldManager != iconNotificationManager)
             {
                 Debug.Log($"[GameManager] IconNotificationManager reference updated: {iconNotificationManager.name}");
-                
+
                 // Refresh all current notification states
                 foreach (var kvp in iconNotificationStates)
                 {
@@ -1354,7 +1354,7 @@ public class GameManager : Singleton<GameManager>
         GameStateManager.ClearSavedState();
         Debug.Log("[GameManager] Đã xóa trạng thái đã lưu");
     }
-    
+
     /// <summary>
     /// **MỚI: Clear exam timestamp để test lại flow**
     /// </summary>
@@ -1366,7 +1366,7 @@ public class GameManager : Singleton<GameManager>
         PlayerPrefs.Save();
         Debug.Log("[GameManager] Đã xóa exam timestamp - có thể test lại exam flow");
     }
-    
+
     /// <summary>
     /// **MỚI: Kiểm tra exam timestamp hiện tại**
     /// </summary>
@@ -1379,7 +1379,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log($"[GameManager] Last processed timestamp: {lastProcessedExamTimestamp}");
         Debug.Log($"[GameManager] Will process next exam: {(savedTimestamp != lastProcessedExamTimestamp)}");
     }
-    
+
     /// <summary>
     /// **MỚI: Validate NotificationPopupSpawner and attempt recovery if needed**
     /// </summary>
@@ -1391,7 +1391,7 @@ public class GameManager : Singleton<GameManager>
         if (NotificationPopupSpawner.Ins == null)
         {
             Debug.LogWarning("[GameManager] NotificationPopupSpawner.Ins is null - attempting recovery...");
-            
+
             // Try to find NotificationPopupSpawner in scene
             var spawner = FindFirstObjectByType<NotificationPopupSpawner>();
             if (spawner != null)
@@ -1401,7 +1401,7 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
-    
+
     /// <summary>
     /// **MỚI: Manual method để force validate NotificationPopupSpawner**
     /// </summary>
@@ -1427,7 +1427,7 @@ public class GameManager : Singleton<GameManager>
         yield return null;
         AdvanceToNextSession();
     }
-    
+
     private void AdvanceToNextSession()
     {
         Debug.Log("[GameManager] Thực hiện chuyển ca...");
