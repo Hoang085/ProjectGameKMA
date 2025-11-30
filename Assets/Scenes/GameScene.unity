@@ -999,19 +999,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 36775385}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &36775385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1927,6 +1915,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -6689036041284674117, guid: d129b07260cc72d46a736d9a35d240f2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1210445546}
+    - targetCorrespondingSourceObject: {fileID: -6689036041284674117, guid: d129b07260cc72d46a736d9a35d240f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1210445548}
+    - targetCorrespondingSourceObject: {fileID: -6689036041284674117, guid: d129b07260cc72d46a736d9a35d240f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1210445547}
   m_SourcePrefab: {fileID: -5645937942226959685, guid: d129b07260cc72d46a736d9a35d240f2, type: 3}
 --- !u!1 &91412952
 GameObject:
@@ -3188,7 +3182,7 @@ Camera:
   m_Depth: 100
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1056
+    m_Bits: 32
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -21226,6 +21220,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5641315, y: 0.43752354, z: 1.6369673}
   m_Center: {x: 0.1500795, y: -0.024886426, z: 0.85119617}
+--- !u!114 &1210445547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210445544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395704213fd9f234688b7111229bd88f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactPlayingUI: {fileID: 194109470}
+  dialogueFriendUI: {fileID: 1773972032}
+  playGameButton: {fileID: 36775384}
+  closeGameButton: {fileID: 1694959368}
+  targetGameScene: Game2
+  titleText: {fileID: 645454354}
+  contentText: {fileID: 963977082}
+  npcDisplayName: "B\u1EA1n Nh\u01B0"
+  npcDialogueContent: "Hello C\u1EADu, C\u1EADu mu\u1ED1n ch\u01A1i c\xF9ng t\u1EDB
+    kh\xF4ng ?"
+  playerTag: Player
+--- !u!65 &1210445548
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210445544}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.4142833, y: 1.6418618, z: 0.26140347}
+  m_Center: {x: 0.10124064, y: -0.32093334, z: 0.1411811}
 --- !u!1001 &1214830199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29053,19 +29091,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1694959369}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1927120037}
-        m_TargetAssemblyTypeName: NPCFriendInteraction, Assembly-CSharp
-        m_MethodName: OnCloseDialog
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1694959369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32428,6 +32454,7 @@ MonoBehaviour:
   interactPlayingUI: {fileID: 194109470}
   dialogueFriendUI: {fileID: 1773972032}
   playGameButton: {fileID: 36775384}
+  closeGameButton: {fileID: 1694959368}
   targetGameScene: Game1
   titleText: {fileID: 645454354}
   contentText: {fileID: 963977082}
