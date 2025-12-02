@@ -510,19 +510,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7315482501426401494}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -471514790933958702}
-        m_TargetAssemblyTypeName: SettingUI, Assembly-CSharp
-        m_MethodName: OnMainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1274182695112634856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2807,6 +2795,10 @@ MonoBehaviour:
   sfxIconImage: {fileID: 959984925665073752}
   soundOnSprite: {fileID: -1488772730, guid: 5c9b49f43354dfb42b804f7ccadd2f65, type: 3}
   soundOffSprite: {fileID: 546707859, guid: 71ab4473ce97dd147aec5e1a48f309e7, type: 3}
+  onclickMenu: {fileID: 1322668069693443131}
+  cheatGamePb: {fileID: 4890106427971966020, guid: 7973e15b81ad10d4eb8c3fa890641f3d, type: 3}
+  cheatGame: {fileID: 5512882741753684831}
+  uiParent: {fileID: 0}
 --- !u!1 &6430604926843975777
 GameObject:
   m_ObjectHideFlags: 0
