@@ -21,8 +21,22 @@ public class SettingUI : BasePopUp
     [SerializeField] private Sprite soundOnSprite;  
     [SerializeField] private Sprite soundOffSprite;
 
+    [Header("Button")]
+    [SerializeField] private Button onclickMenu;
+    [SerializeField] private GameObject cheatGamePb;
+    [SerializeField] private Button cheatGame;
+    [SerializeField] private Transform uiParent;
+
     private const string MUSIC_VOLUME_KEY = "MusicVolume";
     private const string SFX_VOLUME_KEY = "SFXVolume";
+
+    private void Start()
+    {
+        if (onclickMenu != null)
+            onclickMenu.onClick.AddListener(OnClickMenu);
+        if (cheatGame != null)
+            cheatGame.onClick.AddListener(OnClickCheatGame);
+    }
 
     public override void OnInitScreen()
     {
@@ -111,5 +125,28 @@ public class SettingUI : BasePopUp
     {
         base.OnCloseScreen();
         PlayerPrefs.Save();
+    }
+
+    public void OnClickMenu()
+    {
+        SceneLoader.Load("MainMenu");
+    }
+
+    public void OnClickCheatGame()
+    {
+        if (cheatGamePb == null)
+        {
+            return;
+        }
+
+        Transform parent = uiParent;
+        if (parent == null)
+        {
+            Canvas canvas = FindAnyObjectByType<Canvas>();
+            if (canvas != null)
+                parent = canvas.transform;
+        }
+
+        Instantiate(cheatGamePb, parent);
     }
 }
