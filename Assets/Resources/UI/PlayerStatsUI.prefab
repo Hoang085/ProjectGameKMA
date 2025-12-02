@@ -99,9 +99,7 @@ MonoBehaviour:
   currentScreen: 0
   tittleNameText: {fileID: 3928319108530166661}
   numberStamina: {fileID: 5838618066878717715}
-  numberMoney: {fileID: 0}
   numberGPA: {fileID: 4203505323517006382}
-  numberTraining: {fileID: 0}
   numberFriendly: {fileID: 3106130165803207250}
   clockUI: {fileID: 0}
   termsPerYear: 2

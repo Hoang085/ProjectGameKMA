@@ -6281,6 +6281,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -6689036041284674117, guid: 64e4daef238cf9c4b98e46dc947f773b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 929569819}
+    - targetCorrespondingSourceObject: {fileID: -6689036041284674117, guid: 64e4daef238cf9c4b98e46dc947f773b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 929569818}
     - targetCorrespondingSourceObject: {fileID: 642361337552185074, guid: 64e4daef238cf9c4b98e46dc947f773b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 246536399}
@@ -15211,6 +15217,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929552025}
   m_CullTransparentMesh: 1
+--- !u!1 &929569817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6689036041284674117, guid: 64e4daef238cf9c4b98e46dc947f773b, type: 3}
+  m_PrefabInstance: {fileID: 327706820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &929569818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929569817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85228d12f9a17da4bb1e8903f897e28b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactPlayingUI: {fileID: 1228638627}
+  playerTag: Player
+  interactKey: 102
+  interactCooldown: 0.2
+  playVideo: 1
+  videoProfile: {fileID: 11400000, guid: 72caa6f68ef1535498f00dae515965b0, type: 2}
+  videoPopup: {fileID: 827705193}
+  consumeStamina: 1
+  staminaConsumeAmount: 30
+  staminaNotificationMessage: "B\u1EA1n \u0111\xE3 ti\xEAu hao {0} th\u1EC3 l\u1EF1c!"
+  notEnoughStaminaMessage: "Kh\xF4ng \u0111\u1EE7 th\u1EC3 l\u1EF1c \u0111\u1EC3
+    th\u1EF1c hi\u1EC7n!"
+  staminaSaveKey: PLAYER_STAMINA
+  maxStamina: 100
+  addFriendlyPoint: 1
+  friendlyPointReward: 10
+  advanceSlotAfterComplete: 1
+  delayBeforeSlotAdvance: 1
+--- !u!65 &929569819
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929569817}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 22.744448, y: 20.981434, z: 1.7830753}
+  m_Center: {x: -5.8840103, y: 0.6481041, z: 2.0766096}
 --- !u!1 &942425177 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 245282082037941862, guid: fc63228bc1c841643ad1f0abc3b81c78, type: 3}
@@ -17792,6 +17854,7 @@ GameObject:
   - component: {fileID: 1051082635}
   - component: {fileID: 1051082634}
   - component: {fileID: 1051082633}
+  - component: {fileID: 1051082636}
   m_Layer: 0
   m_Name: AudioController
   m_TagString: Untagged
@@ -17810,8 +17873,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: c713d8760db814c418be158adf862e8d, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -17908,9 +17971,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f851c25d49d64944f8c48ad0b9b1e478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSource: {fileID: 1051082633}
-  gameSceneMusic: {fileID: 8300000, guid: c713d8760db814c418be158adf862e8d, type: 3}
-  loop: 1
+  musicSource: {fileID: 1051082633}
+  sfxSource: {fileID: 1051082636}
+  backgroundMusic: {fileID: 8300000, guid: c713d8760db814c418be158adf862e8d, type: 3}
+  onClickSound: {fileID: 8300000, guid: 6c1bfdb6376769b42820e586d7c59956, type: 3}
+  loopMusic: 1
 --- !u!4 &1051082635
 Transform:
   m_ObjectHideFlags: 0
@@ -17926,6 +17991,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1051082636
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051082632}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1055286647 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3871749857129529560, guid: b71c7d6c29d78a943977a1eb8c510888, type: 3}
@@ -21243,6 +21405,13 @@ MonoBehaviour:
   npcDialogueContent: "Hello C\u1EADu, C\u1EADu mu\u1ED1n ch\u01A1i c\xF9ng t\u1EDB
     kh\xF4ng ?"
   playerTag: Player
+  minStaminaRequired: 30
+  notEnoughStaminaMessage: "Kh\xF4ng \u0111\u1EE7 th\u1EC3 l\u1EF1c \u0111\u1EC3
+    ch\u01A1i! B\u1EA1n c\u1EA7n \xEDt nh\u1EA5t {0} th\u1EC3 l\u1EF1c."
+  staminaSaveKey: PLAYER_STAMINA
+  maxStamina: 100
+  addFriendlyPoint: 1
+  friendlyPointReward: 5
 --- !u!65 &1210445548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24850,6 +25019,13 @@ MonoBehaviour:
   npcDialogueContent: "C\u1EADu \u0111\xF3 \xE0, r\u1EA5t vui \u0111\u01B0\u1EE3c
     g\u1EB7p c\u1EADu, c\u1EADu mu\u1ED1n ch\u01A1i v\u1EDBi t\u1EDB kh\xF4ng ?"
   playerTag: Player
+  minStaminaRequired: 30
+  notEnoughStaminaMessage: "Kh\xF4ng \u0111\u1EE7 th\u1EC3 l\u1EF1c \u0111\u1EC3
+    ch\u01A1i! B\u1EA1n c\u1EA7n \xEDt nh\u1EA5t {0} th\u1EC3 l\u1EF1c."
+  staminaSaveKey: PLAYER_STAMINA
+  maxStamina: 100
+  addFriendlyPoint: 1
+  friendlyPointReward: 5
 --- !u!65 &1447655949
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27853,6 +28029,8 @@ MonoBehaviour:
   staminaFullMessage: "Th\u1EC3 l\u1EF1c c\u1EE7a b\u1EA1n \u0111\xE3 \u0111\u1EA7y!"
   staminaSaveKey: PLAYER_STAMINA
   maxStamina: 100
+  advanceSlotAfterComplete: 1
+  delayBeforeSlotAdvance: 1
 --- !u!4 &1627350255 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7861350953103440092, guid: efe06c0608269fb45a852b9c1aff7526, type: 3}
@@ -32512,6 +32690,13 @@ MonoBehaviour:
   npcDialogueContent: "Ch\xE0o c\u1EADu. H\xF4m nay c\u1EADu \u0111\u1EBFn \u0111\u1EC3
     ch\u01A1i v\u1EDBi t\u1EDB \xE0 ?"
   playerTag: Player
+  minStaminaRequired: 30
+  notEnoughStaminaMessage: "Kh\xF4ng \u0111\u1EE7 th\u1EC3 l\u1EF1c \u0111\u1EC3
+    ch\u01A1i! B\u1EA1n c\u1EA7n \xEDt nh\u1EA5t {0} th\u1EC3 l\u1EF1c."
+  staminaSaveKey: PLAYER_STAMINA
+  maxStamina: 100
+  addFriendlyPoint: 1
+  friendlyPointReward: 5
 --- !u!65 &1927120038
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36193,6 +36378,11 @@ MonoBehaviour:
     c\u1EE7a m\xF4n n\xE0y!"
   exceededAbsenceText: "Em \u0111\xE3 ngh\u1EC9 qu\xE1 s\u1ED1 bu\u1ED5i quy \u0111\u1ECBnh
     ho\u1EB7c kh\xF4ng v\u01B0\u1EE3t qua \u0111i\u1EC3m qu\xE1 tr\xECnh cho ph\xE9p"
+  minStaminaRequired: 30
+  notEnoughStaminaMessage: "Kh\xF4ng \u0111\u1EE7 th\u1EC3 l\u1EF1c \u0111\u1EC3
+    h\u1ECDc! Em c\u1EA7n \xEDt nh\u1EA5t {0} th\u1EC3 l\u1EF1c."
+  staminaSaveKey: PLAYER_STAMINA
+  maxStamina: 100
   classSeconds: 3
   addNoteWhenFinished: 1
   noteSessionIndex: 0
@@ -36465,6 +36655,11 @@ MonoBehaviour:
     c\u1EE7a m\xF4n n\xE0y!"
   exceededAbsenceText: "Em \u0111\xE3 ngh\u1EC9 qu\xE1 s\u1ED1 bu\u1ED5i quy \u0111\u1ECBnh
     ho\u1EB7c kh\xF4ng v\u01B0\u1EE3t qua \u0111i\u1EC3m qu\xE1 tr\xECnh cho ph\xE9p"
+  minStaminaRequired: 30
+  notEnoughStaminaMessage: "Kh\xF4ng \u0111\u1EE7 th\u1EC3 l\u1EF1c \u0111\u1EC3
+    h\u1ECDc! Em c\u1EA7n \xEDt nh\u1EA5t {0} th\u1EC3 l\u1EF1c."
+  staminaSaveKey: PLAYER_STAMINA
+  maxStamina: 100
   classSeconds: 3
   addNoteWhenFinished: 1
   noteSessionIndex: 0
@@ -36616,6 +36811,11 @@ MonoBehaviour:
     c\u1EE7a m\xF4n n\xE0y!"
   exceededAbsenceText: "Em \u0111\xE3 ngh\u1EC9 qu\xE1 s\u1ED1 bu\u1ED5i quy \u0111\u1ECBnh
     ho\u1EB7c kh\xF4ng v\u01B0\u1EE3t qua \u0111i\u1EC3m qu\xE1 tr\xECnh cho ph\xE9p"
+  minStaminaRequired: 30
+  notEnoughStaminaMessage: "Kh\xF4ng \u0111\u1EE7 th\u1EC3 l\u1EF1c \u0111\u1EC3
+    h\u1ECDc! Em c\u1EA7n \xEDt nh\u1EA5t {0} th\u1EC3 l\u1EF1c."
+  staminaSaveKey: PLAYER_STAMINA
+  maxStamina: 100
   classSeconds: 3
   addNoteWhenFinished: 1
   noteSessionIndex: 0

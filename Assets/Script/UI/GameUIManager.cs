@@ -204,7 +204,7 @@ public class GameUIManager : Singleton<GameUIManager>
 
         if (GameManager.Ins != null)
             GameManager.Ins.OnIconClicked(IconType.Player);
-
+        AudioController.Ins.PlayClickSound();
         PopupManager.Ins.OnShowScreen(PopupName.PlayerStat);
     }
 
@@ -217,7 +217,7 @@ public class GameUIManager : Singleton<GameUIManager>
 
         if (GameManager.Ins != null)
             GameManager.Ins.OnIconClicked(IconType.Balo);
-
+        AudioController.Ins.PlayClickSound();
         PopupManager.Ins.OnShowScreen(PopupName.BaloPlayer);
     }
 
@@ -232,7 +232,7 @@ public class GameUIManager : Singleton<GameUIManager>
         {
             GameManager.Ins.OnIconClicked(IconType.Task);
         }
-
+        AudioController.Ins.PlayClickSound();
         PopupManager.Ins.OnShowScreen(PopupName.TaskPlayer);
     }
 
@@ -247,12 +247,13 @@ public class GameUIManager : Singleton<GameUIManager>
         {
             GameManager.Ins.OnIconClicked(IconType.Score);
         }
-
+        AudioController.Ins.PlayClickSound();
         PopupManager.Ins.OnShowScreen(PopupName.ScoreSubject);
     }
 
     public void OnClick_ScheduleIcon()
     {
+        AudioController.Ins.PlayClickSound();
         if (_dialogueOpen)
         {
             return;
@@ -262,6 +263,7 @@ public class GameUIManager : Singleton<GameUIManager>
 
     public void OnClick_SettingIcon()
     {
+        AudioController.Ins.PlayClickSound();
         if (_dialogueOpen)
         {
             return;
@@ -271,6 +273,7 @@ public class GameUIManager : Singleton<GameUIManager>
 
     public void OnClick_TutorialIcon()
     {
+        AudioController.Ins.PlayClickSound();
         if (_dialogueOpen)
         {
             return;

@@ -22,16 +22,17 @@ public class GameManager : Singleton<GameManager>
 
     private bool taskNotificationEnabled = false;
 
-    // Biến theo dõi scene để tránh duplicate check
-    private string lastSceneName = "";
-    // Track exam completion để tránh xử lý trùng
-    private int lastProcessedExamTimestamp = 0;
+    // Biến theo dõi scene để tránh duplicate check
+    private string lastSceneName = "";
+    // Track exam completion để tránh xử lý trùng
+    private int lastProcessedExamTimestamp = 0;
 
     private float taskManagerCheckTimer = 0f;
     private const float TASK_MANAGER_CHECK_INTERVAL = 0.5f; // Check every 0.5 seconds - more responsive
-    private bool taskManagerWasNull = true; // Start as true to detect initial connection
-    private int taskManagerRetryCount = 0;
+    private bool taskManagerWasNull = true; // Start as true to detect initial connection
+    private int taskManagerRetryCount = 0;
     private const int MAX_TASK_MANAGER_RETRIES = 10; // Max retries before giving up temporarily
+    public const string FRIENDLY_POINT_KEY = "PLAYER_FRIENDLY_POINT";
 
     public override void Awake()
     {
@@ -39,29 +40,29 @@ public class GameManager : Singleton<GameManager>
         MakeSingleton(true);
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        // Thông báo cho các hệ thống khác khi GameManager đã sẵn sàng
-        OnGameManagerReady?.Invoke();
+        // Thông báo cho các hệ thống khác khi GameManager đã sẵn sàng
+        OnGameManagerReady?.Invoke();
     }
 
     void OnDestroy()
     {
-        // **QUAN TRỌNG: Hủy đăng ký sự kiện**
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        // **QUAN TRỌNG: Hủy đăng ký sự kiện**
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // **TỐI ƯU: Kiểm tra ngay lập tức không delay**
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // **TỐI ƯU: Kiểm tra ngay lập tức không delay**
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // **SỬA: Reset lastSceneName nếu không phải GameScene để cho phép xử lý lần tiếp theo**
-        if (scene.name != "GameScene")
+        // **SỬA: Reset lastSceneName nếu không phải GameScene để cho phép xử lý lần tiếp theo**
+        if (scene.name != "GameScene")
         {
             lastSceneName = "";
             Debug.Log($"[GameManager] Scene '{scene.name}' loaded - reset lastSceneName for next GameScene load");
             return;
         }
 
-        // Lưới an toàn: nếu trước đó MiniGame có pause, bảo đảm về GameScene luôn chạy bình thường
-        Time.timeScale = 1f;
+        // Lưới an toàn: nếu trước đó MiniGame có pause, bảo đảm về GameScene luôn chạy bình thường
+        Time.timeScale = 1f;
 
         Debug.Log($"[GameManager] Scene '{scene.name}' đã load - Kiểm tra cờ khôi phục...");
 
@@ -77,24 +78,24 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
-        // **SỬA: Sử dụng timestamp để tránh xử lý lặp thay vì dùng lastSceneName**
-        int currentTimestamp = PlayerPrefs.GetInt("EXAM_COMPLETED_TIMESTAMP", 0);
+        // **SỬA: Sử dụng timestamp để tránh xử lý lặp thay vì dùng lastSceneName**
+        int currentTimestamp = PlayerPrefs.GetInt("EXAM_COMPLETED_TIMESTAMP", 0);
         if (currentTimestamp > 0 && currentTimestamp == lastProcessedExamTimestamp)
         {
             Debug.Log($"[GameManager] Bỏ qua vì đã xử lý exam timestamp {currentTimestamp}.");
             return;
         }
 
-        // **MỚI: Lưu timestamp để tránh xử lý lặp**
-        if (currentTimestamp > 0)
+        // **MỚI: Lưu timestamp để tránh xử lý lặp**
+        if (currentTimestamp > 0)
         {
             lastProcessedExamTimestamp = currentTimestamp;
         }
 
         Debug.Log($"[GameManager] Phát hiện cờ khôi phục: RestoreExam={shouldRestoreExam}, RestoreMiniGame={shouldRestoreMiniGame}, Advance={shouldAdvance}");
 
-        // Xoá các cờ NGAY LẬP TỨC để tránh loop nếu có reload
-        if (shouldRestoreExam)
+        // Xoá các cờ NGAY LẬP TỨC để tránh loop nếu có reload
+        if (shouldRestoreExam)
             PlayerPrefs.DeleteKey("ShouldRestoreStateAfterExam");
         if (shouldRestoreMiniGame)
             PlayerPrefs.DeleteKey("ShouldRestoreStateAfterMiniGame");
@@ -102,26 +103,26 @@ public class GameManager : Singleton<GameManager>
             PlayerPrefs.DeleteKey("ShouldAdvanceTimeAfterExam");
         PlayerPrefs.Save();
 
-        // -------------------------------------------------------------------------
-        // SỬA: Tách luồng xử lý Exam và MiniGame để quyết định hiển thị Dialogue
-        // -------------------------------------------------------------------------
+        // -------------------------------------------------------------------------
+        // SỬA: Tách luồng xử lý Exam và MiniGame để quyết định hiển thị Dialogue
+        // -------------------------------------------------------------------------
 
-        // TRƯỜNG HỢP 1: Về từ ExamScene (Đi thi) -> Restore + HIỆN Dialogue
-        if (shouldRestoreExam)
+        // TRƯỜNG HỢP 1: Về từ ExamScene (Đi thi) -> Restore + HIỆN Dialogue
+        if (shouldRestoreExam)
         {
             StartCoroutine(FastRestoreStateCoroutine(showResultDialog: true));
             return;
         }
 
-        // TRƯỜNG HỢP 2: Về từ MiniGame (Game1, Game2...) -> Restore + ẨN Dialogue
-        if (shouldRestoreMiniGame)
+        // TRƯỜNG HỢP 2: Về từ MiniGame (Game1, Game2...) -> Restore + ẨN Dialogue
+        if (shouldRestoreMiniGame)
         {
             StartCoroutine(FastRestoreStateCoroutine(showResultDialog: false));
             return;
         }
 
-        // Nếu chỉ có yêu cầu chuyển ca (không cần khôi phục)
-        if (shouldAdvance)
+        // Nếu chỉ có yêu cầu chuyển ca (không cần khôi phục)
+        if (shouldAdvance)
         {
             StartCoroutine(AdvanceTimeAfterExamCoroutine());
             return;
@@ -136,23 +137,23 @@ public class GameManager : Singleton<GameManager>
         InitializeIconNotifications();
         InitializeTrackingData();
 
-        // **THÊM: Khởi tạo PlayerStatsUI sớm để hệ thống stamina hoạt động**
-        // NHƯNG đảm bảo không làm tăng _openPopupCount
-        StartCoroutine(InitializePlayerStatsUIQuietly());
+        // **THÊM: Khởi tạo PlayerStatsUI sớm để hệ thống stamina hoạt động**
+        // NHƯNG đảm bảo không làm tăng _openPopupCount
+        StartCoroutine(InitializePlayerStatsUIQuietly());
 
-        // **SỬA: Start TaskManager check immediately**
-        StartCoroutine(DelayedTaskNotificationCheck());
+        // **SỬA: Start TaskManager check immediately**
+        StartCoroutine(DelayedTaskNotificationCheck());
     }
 
-    /// <summary>
-    /// **MỚI: Khởi tạo PlayerStatsUI "im lặng" - không tính vào _openPopupCount**
-    /// </summary>
-    private System.Collections.IEnumerator InitializePlayerStatsUIQuietly()
+    /// <summary>
+    /// **MỚI: Khởi tạo PlayerStatsUI "im lặng" - không tính vào _openPopupCount**
+    /// </summary>
+    private System.Collections.IEnumerator InitializePlayerStatsUIQuietly()
     {
         Debug.Log("[GameManager] Initializing PlayerStatsUI quietly...");
 
-        // Đợi PopupManager sẵn sàng
-        yield return new WaitForSeconds(0.3f);
+        // Đợi PopupManager sẵn sàng
+        yield return new WaitForSeconds(0.3f);
 
         if (HHH.Common.PopupManager.Ins == null)
         {
@@ -171,34 +172,34 @@ public class GameManager : Singleton<GameManager>
 
         Debug.Log("[GameManager] Creating PlayerStatsUI in background...");
 
-        // **GIẢI PHÁP: Tạo popup nhưng đảm bảo nó KHÔNG gọi OnPopupOpened**
-        // Bằng cách disable GameObject trước khi ShowScreen
-        popupManager.OnShowScreen(HHH.Common.PopupName.PlayerStat);
+        // **SỬA: Tạo popup trực tiếp thay vì dùng OnShowScreen**
+        // Gọi OnCheckScreen để tạo popup nhưng không show nó
+        var privateMethod = typeof(HHH.Common.PopupManager).GetMethod("OnCheckScreen",
+      System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 
-        // Đợi 1 frame để popup được tạo
-        yield return null;
+        if (privateMethod != null)
+        {
+            privateMethod.Invoke(popupManager, new object[] { HHH.Common.PopupName.PlayerStat, HHH.Common.ParentPopup.Default });
+        }
 
-        // Lấy popup vừa tạo
-        playerStatsPopup = popupManager.GetPopup(HHH.Common.PopupName.PlayerStat);
+        // Đợi 1 frame để popup được tạo
+        yield return null;
+
+        // Lấy popup vừa tạo
+        playerStatsPopup = popupManager.GetPopup(HHH.Common.PopupName.PlayerStat);
 
         if (playerStatsPopup != null)
         {
-            // **QUAN TRỌNG: Đóng popup NGAY LẬP TỨC và giảm _openPopupCount**
-            var basePopup = playerStatsPopup.GetComponent<HHH.Common.BasePopUp>();
+            // **QUAN TRỌNG: Chỉ gọi OnInitScreen để khởi tạo dữ liệu**
+            var basePopup = playerStatsPopup.GetComponent<HHH.Common.BasePopUp>();
             if (basePopup != null)
             {
-                // Gọi OnDeActived để đóng popup đúng cách
-                basePopup.OnDeActived();
+                // Gọi OnDeActived để đảm bảo popup bị ẩn hoàn toàn
+                basePopup.OnDeActived();
             }
 
-            // Đảm bảo popup bị ẩn hoàn toàn
-            playerStatsPopup.SetActive(false);
-
-            // **FIX: Giảm popup counter về 0 vì ta không muốn tính popup này**
-            if (GameUIManager.Ins != null)
-            {
-                GameUIManager.Ins.OnPopupClosed();
-            }
+            // Đảm bảo popup bị ẩn
+            playerStatsPopup.SetActive(false);
 
             Debug.Log("[GameManager] ✓ PlayerStatsUI initialized quietly - stamina system ready");
         }
@@ -212,12 +213,12 @@ public class GameManager : Singleton<GameManager>
     {
         CheckForNotificationTriggers();
 
-        // **SỬA: Improved TaskManager availability check**
-        CheckTaskManagerAvailability();
+        // **SỬA: Improved TaskManager availability check**
+        CheckTaskManagerAvailability();
     }
 
-    // **SỬA: Improved TaskManager availability checking với better error handling**
-    private void CheckTaskManagerAvailability()
+    // **SỬA: Improved TaskManager availability checking với better error handling**
+    private void CheckTaskManagerAvailability()
     {
         taskManagerCheckTimer += Time.deltaTime;
 
@@ -227,8 +228,8 @@ public class GameManager : Singleton<GameManager>
 
             bool taskManagerAvailable = false;
 
-            // **SỬA: More robust TaskManager checking**
-            try
+            // **SỬA: More robust TaskManager checking**
+            try
             {
                 taskManagerAvailable = TaskManager.Instance != null && TaskManager.Instance.gameObject != null;
             }
@@ -238,15 +239,15 @@ public class GameManager : Singleton<GameManager>
                 taskManagerAvailable = false;
             }
 
-            // **SỬA: TaskManager became available**
-            if (taskManagerAvailable && taskManagerWasNull)
+            // **SỬA: TaskManager became available**
+            if (taskManagerAvailable && taskManagerWasNull)
             {
                 Debug.Log("[GameManager] TaskManager is now available - enabling task notifications");
                 taskNotificationEnabled = true;
                 taskManagerRetryCount = 0;
 
-                // **SỬA: Force sync notification state with error handling**
-                try
+                // **SỬA: Force sync notification state with error handling**
+                try
                 {
                     bool hasActiveTasks = TaskManager.Instance.HasPendingTasks();
                     SetIconNotification(IconType.Task, hasActiveTasks);
@@ -260,8 +261,8 @@ public class GameManager : Singleton<GameManager>
 
                 taskManagerWasNull = false;
             }
-            // **SỬA: TaskManager became unavailable**
-            else if (!taskManagerAvailable && !taskManagerWasNull)
+            // **SỬA: TaskManager became unavailable**
+            else if (!taskManagerAvailable && !taskManagerWasNull)
             {
                 taskManagerRetryCount++;
 
@@ -281,17 +282,17 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    // **SỬA: Improved delayed task notification check với better retry logic**
-    private IEnumerator DelayedTaskNotificationCheck()
+    // **SỬA: Improved delayed task notification check với better retry logic**
+    private IEnumerator DelayedTaskNotificationCheck()
     {
         Debug.Log("[GameManager] Starting TaskManager connection check...");
 
-        // **SỬA: Wait for TaskManager with more robust checking**
-        int maxRetries = 20; // Increase max retries
-        int currentRetry = 0;
+        // **SỬA: Wait for TaskManager with more robust checking**
+        int maxRetries = 20; // Increase max retries
+        int currentRetry = 0;
         float retryInterval = 0.25f; // Shorter retry interval
 
-        while (currentRetry < maxRetries)
+        while (currentRetry < maxRetries)
         {
             bool taskManagerReady = false;
 
@@ -307,8 +308,8 @@ public class GameManager : Singleton<GameManager>
 
             if (taskManagerReady)
             {
-                // **SỬA: TaskManager is ready**
-                taskNotificationEnabled = true;
+                // **SỬA: TaskManager is ready**
+                taskNotificationEnabled = true;
                 taskManagerWasNull = false;
                 taskManagerRetryCount = 0;
 
@@ -332,45 +333,45 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForSeconds(retryInterval);
         }
 
-        // **SỬA: Failed to connect after all retries**
-        Debug.LogWarning($"[GameManager] TaskManager not found after {maxRetries} retries - task notifications will be disabled until TaskManager becomes available");
+        // **SỬA: Failed to connect after all retries**
+        Debug.LogWarning($"[GameManager] TaskManager not found after {maxRetries} retries - task notifications will be disabled until TaskManager becomes available");
         taskNotificationEnabled = false;
         SetIconNotification(IconType.Task, false);
         taskManagerWasNull = true;
     }
 
-    // **THÊM: Method hỗ trợ GameStateManager refresh notification states**
-    /// <summary>
-    /// Called by GameStateManager after state restoration to refresh all notification states
-    /// </summary>
-    public void RefreshAllNotificationStatesAfterRestore()
+    // **THÊM: Method hỗ trợ GameStateManager refresh notification states**
+    /// <summary>
+    /// Called by GameStateManager after state restoration to refresh all notification states
+    /// </summary>
+    public void RefreshAllNotificationStatesAfterRestore()
     {
         Debug.Log("[GameManager] Refreshing all notification states after GameStateManager restoration...");
 
-        // Force re-check all notification types
-        StartCoroutine(DelayedNotificationRefreshAfterRestore());
+        // Force re-check all notification types
+        StartCoroutine(DelayedNotificationRefreshAfterRestore());
     }
 
-    /// <summary>
-    /// Delayed refresh để đảm bảo tất cả systems đã sẵn sàng sau restoration
-    /// </summary>
-    private IEnumerator DelayedNotificationRefreshAfterRestore()
+    /// <summary>
+    /// Delayed refresh để đảm bảo tất cả systems đã sẵn sàng sau restoration
+    /// </summary>
+    private IEnumerator DelayedNotificationRefreshAfterRestore()
     {
-        // Đợi một chút để các systems khác hoàn thành initialization
-        yield return new WaitForSeconds(0.5f);
+        // Đợi một chút để các systems khác hoàn thành initialization
+        yield return new WaitForSeconds(0.5f);
 
-        // Re-initialize tracking data để đảm bảo có baseline đúng
-        InitializeTrackingData();
+        // Re-initialize tracking data để đảm bảo có baseline đúng
+        InitializeTrackingData();
 
         yield return new WaitForSeconds(0.1f);
 
-        // Force check tất cả notification types
-        CheckScoreNotification();
+        // Force check tất cả notification types
+        CheckScoreNotification();
         CheckBaloNotification();
         CheckPlayerStatsNotification();
 
-        // TaskManager cần special handling
-        if (TaskManager.Instance != null)
+        // TaskManager cần special handling
+        if (TaskManager.Instance != null)
         {
             taskNotificationEnabled = true;
             taskManagerWasNull = false;
@@ -380,42 +381,42 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("[GameManager] Completed notification refresh after restoration");
     }
 
-    // Giữ nguyên các method khác...
-    private void CheckAndHandlePostExamStateRestore()
+    // Giữ nguyên các method khác...
+    private void CheckAndHandlePostExamStateRestore()
     {
         bool shouldRestore = PlayerPrefs.GetInt("ShouldRestoreStateAfterExam", 0) == 1;
         bool hasState = GameStateManager.HasSavedState();
 
         Debug.Log($"[GameManager] CheckAndHandlePostExamStateRestore:");
-        Debug.Log($"  - ShouldRestoreStateAfterExam flag: {shouldRestore}");
-        Debug.Log($"  - HasSavedState: {hasState}");
+        Debug.Log($"  - ShouldRestoreStateAfterExam flag: {shouldRestore}");
+        Debug.Log($"  - HasSavedState: {hasState}");
 
         if (shouldRestore)
         {
-            // **QUAN TRỌNG: Xóa flag ngay lập tức để tránh loop**
-            PlayerPrefs.DeleteKey("ShouldRestoreStateAfterExam");
+            // **QUAN TRỌNG: Xóa flag ngay lập tức để tránh loop**
+            PlayerPrefs.DeleteKey("ShouldRestoreStateAfterExam");
             PlayerPrefs.Save();
 
             Debug.Log("[GameManager] Đã xóa flag và bắt đầu khôi phục...");
-            // Đây là flow Exam -> showResultDialog = true
-            StartCoroutine(FastRestoreStateCoroutine(showResultDialog: true));
+            // Đây là flow Exam -> showResultDialog = true
+            StartCoroutine(FastRestoreStateCoroutine(showResultDialog: true));
         }
         else
         {
-            // Kiểm tra legacy flag nếu có
-            CheckAndHandlePostExamTimeAdvance();
+            // Kiểm tra legacy flag nếu có
+            CheckAndHandlePostExamTimeAdvance();
         }
     }
 
-    // -------------------------------------------------------------------------
-    // HÀM KHÔI PHỤC TRẠNG THÁI (ĐÃ CẬP NHẬT LOGIC TRỪ THỂ LỰC)
-    // -------------------------------------------------------------------------
-    private IEnumerator FastRestoreStateCoroutine(bool showResultDialog)
+    // -------------------------------------------------------------------------
+    // HÀM KHÔI PHỤC TRẠNG THÁI (ĐÃ CẬP NHẬT LOGIC TRỪ THỂ LỰC)
+    // -------------------------------------------------------------------------
+    private IEnumerator FastRestoreStateCoroutine(bool showResultDialog)
     {
         Debug.Log($"[GameManager] Bắt đầu fast restore (Hiện Dialogue: {showResultDialog})...");
 
-        // 1. Chờ các component load xong
-        bool needWait = (GameClock.Ins == null) || (FindFirstObjectByType<ClockUI>() == null);
+        // 1. Chờ các component load xong
+        bool needWait = (GameClock.Ins == null) || (FindFirstObjectByType<ClockUI>() == null);
         if (needWait)
         {
             yield return StartCoroutine(FastWaitForComponents());
@@ -425,47 +426,47 @@ public class GameManager : Singleton<GameManager>
 
         if (hasStateToRestore)
         {
-            // 2. Khôi phục vị trí và thời gian
-            yield return StartCoroutine(GameStateManager.RestorePostExamState());
+            // 2. Khôi phục vị trí và thời gian
+            yield return StartCoroutine(GameStateManager.RestorePostExamState());
 
-            // 3. Chuyển ca học
-            if (GameClock.Ins != null)
+            // 3. Chuyển ca học
+            if (GameClock.Ins != null)
             {
                 GameClock.Ins.JumpToNextSessionStart();
                 Debug.Log("[GameManager] Đã chuyển sang ca tiếp theo (Chốt hạ)");
             }
 
-            // 4. Refresh icon
-            RefreshAllNotificationStatesAfterRestore();
+            // 4. Refresh icon
+            RefreshAllNotificationStatesAfterRestore();
             yield return null;
 
-            // =====================================================================
-            // **SỬA: LOGIC TRỪ THỂ LỰC - Trực tiếp thao tác với PlayerPrefs**
-            // =====================================================================
-            if (PlayerPrefs.GetInt("DEDUCT_STAMINA_AFTER_MINIGAME", 0) == 1)
+            // =====================================================================
+            // **SỬA: LOGIC TRỪ THỂ LỰC - Trực tiếp thao tác với PlayerPrefs**
+            // =====================================================================
+            if (PlayerPrefs.GetInt("DEDUCT_STAMINA_AFTER_MINIGAME", 0) == 1)
             {
-                // Xóa cờ ngay để tránh trừ lặp lại
-                PlayerPrefs.DeleteKey("DEDUCT_STAMINA_AFTER_MINIGAME");
+                // Xóa cờ ngay để tránh trừ lặp lại
+                PlayerPrefs.DeleteKey("DEDUCT_STAMINA_AFTER_MINIGAME");
                 PlayerPrefs.Save();
 
-                // **SỬA: Trừ trực tiếp vào PlayerPrefs thay vì tìm PlayerStatsUI**
-                const string staminaSaveKey = "PLAYER_STAMINA";
+                // **SỬA: Trừ trực tiếp vào PlayerPrefs thay vì tìm PlayerStatsUI**
+                const string staminaSaveKey = "PLAYER_STAMINA";
                 const int maxStamina = 100;
                 const int staminaCost = 30;
 
                 int currentStamina = PlayerPrefs.GetInt(staminaSaveKey, maxStamina);
                 int oldStamina = currentStamina;
-                
+
                 // Trừ stamina (không cho âm)
                 currentStamina = Mathf.Max(0, currentStamina - staminaCost);
-                
+
                 // Lưu vào PlayerPrefs
                 PlayerPrefs.SetInt(staminaSaveKey, currentStamina);
                 PlayerPrefs.Save();
-                
+
                 Debug.Log($"[GameManager] ✓ Đã trừ {staminaCost} thể lực từ MiniGame: {oldStamina} -> {currentStamina}");
                 Debug.Log($"[GameManager] PlayerPrefs[{staminaSaveKey}] = {PlayerPrefs.GetInt(staminaSaveKey, -1)}");
-                
+
                 // **BONUS: Hiển thị thông báo nếu có NotificationPopupSpawner**
                 if (NotificationPopupSpawner.Ins != null)
                 {
@@ -473,8 +474,8 @@ public class GameManager : Singleton<GameManager>
                 }
             }
 
-            // 5. Hiển thị bảng kết quả (Chỉ hiện nếu showResultDialog = true)
-            if (showResultDialog && GameUIManager.Ins != null)
+            // 5. Hiển thị bảng kết quả (Chỉ hiện nếu showResultDialog = true)
+            if (showResultDialog && GameUIManager.Ins != null)
             {
                 if (GameUIManager.Ins.dialogueRoot != null)
                     GameUIManager.Ins.dialogueRoot.SetActive(true);
@@ -489,8 +490,8 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            // Logic dự phòng khi không có file save
-            if (GameClock.Ins != null) GameClock.Ins.JumpToNextSessionStart();
+            // Logic dự phòng khi không có file save
+            if (GameClock.Ins != null) GameClock.Ins.JumpToNextSessionStart();
             yield return new WaitForSeconds(0.5f);
 
             if (showResultDialog && GameUIManager.Ins != null)
@@ -526,11 +527,11 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("[GameManager] Syncing notification system after GameStateManager restore...");
 
-        // Force refresh IconNotificationManager reference
-        RefreshIconNotificationManager();
+        // Force refresh IconNotificationManager reference
+        RefreshIconNotificationManager();
 
-        // Re-enable task notifications if TaskManager is available
-        if (TaskManager.Instance != null)
+        // Re-enable task notifications if TaskManager is available
+        if (TaskManager.Instance != null)
         {
             taskNotificationEnabled = true;
             taskManagerWasNull = false;
@@ -549,8 +550,8 @@ public class GameManager : Singleton<GameManager>
             }
         }
 
-        // Force check other notifications
-        CheckScoreNotification();
+        // Force check other notifications
+        CheckScoreNotification();
         CheckBaloNotification();
         CheckPlayerStatsNotification();
 
@@ -559,22 +560,22 @@ public class GameManager : Singleton<GameManager>
 
     private void InitializeIconNotifications()
     {
-        // Initialize all icon types as not having notifications
-        foreach (IconType iconType in System.Enum.GetValues(typeof(IconType)))
+        // Initialize all icon types as not having notifications
+        foreach (IconType iconType in System.Enum.GetValues(typeof(IconType)))
         {
             iconNotificationStates[iconType] = false;
         }
 
-        // **SỬA: Improved IconNotificationManager finding với retry logic**
-        if (iconNotificationManager == null)
+        // **SỬA: Improved IconNotificationManager finding với retry logic**
+        if (iconNotificationManager == null)
         {
-            // Try multiple methods to find IconNotificationManager
-            iconNotificationManager = FindFirstObjectByType<IconNotificationManager>();
+            // Try multiple methods to find IconNotificationManager
+            iconNotificationManager = FindFirstObjectByType<IconNotificationManager>();
 
             if (iconNotificationManager == null)
             {
-                // Try finding in GameUIManager as well
-                var gameUIManager = GameUIManager.Ins;
+                // Try finding in GameUIManager as well
+                var gameUIManager = GameUIManager.Ins;
                 if (gameUIManager != null)
                 {
                     iconNotificationManager = gameUIManager.GetComponentInChildren<IconNotificationManager>(true);
@@ -583,8 +584,8 @@ public class GameManager : Singleton<GameManager>
 
             if (iconNotificationManager == null)
             {
-                // Try finding in the entire scene including inactive objects
-                var allIconManagers = Resources.FindObjectsOfTypeAll<IconNotificationManager>();
+                // Try finding in the entire scene including inactive objects
+                var allIconManagers = Resources.FindObjectsOfTypeAll<IconNotificationManager>();
                 if (allIconManagers.Length > 0)
                 {
                     iconNotificationManager = allIconManagers[0];
@@ -653,15 +654,15 @@ public class GameManager : Singleton<GameManager>
         var playerStats = FindFirstObjectByType<PlayerStatsUI>();
         if (playerStats != null)
         {
-            // Get current GPA as baseline
-            var examDB = ExamResultStorageFile.Load();
+            // Get current GPA as baseline
+            var examDB = ExamResultStorageFile.Load();
             if (examDB?.entries != null && examDB.entries.Count > 0)
             {
                 var latestScores = new Dictionary<string, float>();
                 foreach (var entry in examDB.entries)
                 {
                     if (!lastViewedScores.ContainsKey(entry.subjectKey) ||
-                        entry.takenAtUnix > lastViewedScores.GetValueOrDefault(entry.subjectKey, 0))
+                      entry.takenAtUnix > lastViewedScores.GetValueOrDefault(entry.subjectKey, 0))
                     {
                         latestScores[entry.subjectKey] = entry.score4;
                     }
@@ -692,8 +693,8 @@ public class GameManager : Singleton<GameManager>
 
     private void CheckPlayerStatsNotification()
     {
-        // Show notification if GPA has changed
-        bool shouldShow = false;
+        // Show notification if GPA has changed
+        bool shouldShow = false;
 
         var examDB = ExamResultStorageFile.Load();
         if (examDB?.entries != null && examDB.entries.Count > 0)
@@ -702,7 +703,7 @@ public class GameManager : Singleton<GameManager>
             foreach (var entry in examDB.entries)
             {
                 if (!latestScores.ContainsKey(entry.subjectKey) ||
-                    entry.takenAtUnix > lastViewedScores.GetValueOrDefault($"{entry.subjectKey}_{entry.semesterIndex}", 0))
+                  entry.takenAtUnix > lastViewedScores.GetValueOrDefault($"{entry.subjectKey}_{entry.semesterIndex}", 0))
                 {
                     latestScores[entry.subjectKey] = entry.score4;
                 }
@@ -717,8 +718,8 @@ public class GameManager : Singleton<GameManager>
                 }
                 float currentGPA = Mathf.Clamp(totalScore / latestScores.Count, 0f, 4f);
 
-                // Check if GPA has changed (with small tolerance for floating point comparison)
-                if (Mathf.Abs(currentGPA - lastViewedGPA) > 0.01f)
+                // Check if GPA has changed (with small tolerance for floating point comparison)
+                if (Mathf.Abs(currentGPA - lastViewedGPA) > 0.01f)
                 {
                     shouldShow = true;
                 }
@@ -728,30 +729,30 @@ public class GameManager : Singleton<GameManager>
         SetIconNotification(IconType.Player, shouldShow);
     }
 
-    // **SỬA: Completely rewritten task notification checking với comprehensive error handling**
-    private void CheckTaskNotification()
+    // **SỬA: Completely rewritten task notification checking với comprehensive error handling**
+    private void CheckTaskNotification()
     {
-        // **SỬA: Don't check if system is not ready**
-        if (!taskNotificationEnabled)
+        // **SỬA: Don't check if system is not ready**
+        if (!taskNotificationEnabled)
         {
-            // **SỬA: Only hide notification if it's currently showing**
-            if (GetIconNotification(IconType.Task))
+            // **SỬA: Only hide notification if it's currently showing**
+            if (GetIconNotification(IconType.Task))
             {
                 SetIconNotification(IconType.Task, false);
-                // Debug log only when state changes
-                if (Time.frameCount % 600 == 0) // Log occasionally to avoid spam
-                {
+                // Debug log only when state changes
+                if (Time.frameCount % 600 == 0) // Log occasionally to avoid spam
+                {
                     Debug.Log("[GameManager] Task notifications disabled - hiding notification");
                 }
             }
             return;
         }
 
-        // **SỬA: Robust TaskManager checking với multiple validation layers**
-        try
+        // **SỬA: Robust TaskManager checking với multiple validation layers**
+        try
         {
-            // Check if TaskManager instance exists
-            if (TaskManager.Instance == null)
+            // Check if TaskManager instance exists
+            if (TaskManager.Instance == null)
             {
                 Debug.LogWarning("[GameManager] TaskManager.Instance is null - disabling task notifications temporarily");
                 taskNotificationEnabled = false;
@@ -760,8 +761,8 @@ public class GameManager : Singleton<GameManager>
                 return;
             }
 
-            // Check if TaskManager GameObject is still valid
-            if (TaskManager.Instance.gameObject == null)
+            // Check if TaskManager GameObject is still valid
+            if (TaskManager.Instance.gameObject == null)
             {
                 Debug.LogWarning("[GameManager] TaskManager.Instance.gameObject is null - disabling task notifications temporarily");
                 taskNotificationEnabled = false;
@@ -770,8 +771,8 @@ public class GameManager : Singleton<GameManager>
                 return;
             }
 
-            // **SỬA: Get task state with comprehensive error handling**
-            bool hasActiveTasks = false;
+            // **SỬA: Get task state with comprehensive error handling**
+            bool hasActiveTasks = false;
             int taskCount = 0;
 
             try
@@ -796,12 +797,12 @@ public class GameManager : Singleton<GameManager>
                 return;
             }
 
-            // **SỬA: Successfully got task data, update notification**
-            SetIconNotification(IconType.Task, hasActiveTasks);
+            // **SỬA: Successfully got task data, update notification**
+            SetIconNotification(IconType.Task, hasActiveTasks);
 
-            // **SỬA: Reduced logging frequency to avoid spam**
-            if (Time.frameCount % 1200 == 0) // Log every 1200 frames (~20 seconds at 60fps)
-            {
+            // **SỬA: Reduced logging frequency to avoid spam**
+            if (Time.frameCount % 1200 == 0) // Log every 1200 frames (~20 seconds at 60fps)
+            {
                 Debug.Log($"[GameManager] Task notification status: {(hasActiveTasks ? "SHOW" : "HIDE")} ({taskCount} tasks)");
             }
         }
@@ -811,8 +812,8 @@ public class GameManager : Singleton<GameManager>
             Debug.LogError($"[GameManager] Exception type: {ex.GetType().Name}");
             Debug.LogError($"[GameManager] Stack trace: {ex.StackTrace}");
 
-            // Disable temporarily on any unexpected error
-            taskNotificationEnabled = false;
+            // Disable temporarily on any unexpected error
+            taskNotificationEnabled = false;
             SetIconNotification(IconType.Task, false);
             taskManagerWasNull = true;
         }
@@ -820,8 +821,8 @@ public class GameManager : Singleton<GameManager>
 
     private void CheckBaloNotification()
     {
-        // Show notification if new notes have been added to backpack
-        bool shouldShow = false;
+        // Show notification if new notes have been added to backpack
+        bool shouldShow = false;
 
         var notesService = NotesService.Instance;
         if (notesService != null)
@@ -842,8 +843,8 @@ public class GameManager : Singleton<GameManager>
 
     private void CheckScoreNotification()
     {
-        // Show notification if there are new scores or updated scores
-        bool shouldShow = false;
+        // Show notification if there are new scores or updated scores
+        bool shouldShow = false;
 
         var examDB = ExamResultStorageFile.Load();
         if (examDB?.entries != null)
@@ -864,8 +865,8 @@ public class GameManager : Singleton<GameManager>
         SetIconNotification(IconType.Score, shouldShow);
     }
 
-    // Giữ nguyên các method khác như cũ...
-    public void SetIconNotification(IconType iconType, bool showNotification)
+    // Giữ nguyên các method khác như cũ...
+    public void SetIconNotification(IconType iconType, bool showNotification)
     {
         if (!iconNotificationStates.ContainsKey(iconType))
         {
@@ -876,8 +877,8 @@ public class GameManager : Singleton<GameManager>
         {
             iconNotificationStates[iconType] = showNotification;
 
-            // **SỬA: Improved UI update with retry logic**
-            if (iconNotificationManager != null)
+            // **SỬA: Improved UI update with retry logic**
+            if (iconNotificationManager != null)
             {
                 try
                 {
@@ -887,14 +888,14 @@ public class GameManager : Singleton<GameManager>
                 catch (System.Exception ex)
                 {
                     Debug.LogError($"[GameManager] Error setting notification for {iconType}: {ex.Message}");
-                    // Try to re-find IconNotificationManager
-                    iconNotificationManager = FindFirstObjectByType<IconNotificationManager>();
+                    // Try to re-find IconNotificationManager
+                    iconNotificationManager = FindFirstObjectByType<IconNotificationManager>();
                 }
             }
             else
             {
-                // **SỬA: Try to find IconNotificationManager if it's null**
-                iconNotificationManager = FindFirstObjectByType<IconNotificationManager>();
+                // **SỬA: Try to find IconNotificationManager if it's null**
+                iconNotificationManager = FindFirstObjectByType<IconNotificationManager>();
 
                 if (iconNotificationManager != null)
                 {
@@ -914,11 +915,11 @@ public class GameManager : Singleton<GameManager>
                 }
             }
 
-            // **THÊM: Validate NotificationPopupSpawner when notification state changes**
-            ValidateNotificationPopupSpawner();
+            // **THÊM: Validate NotificationPopupSpawner when notification state changes**
+            ValidateNotificationPopupSpawner();
 
-            // Trigger event
-            OnIconNotificationChanged?.Invoke(iconType);
+            // Trigger event
+            OnIconNotificationChanged?.Invoke(iconType);
         }
     }
 
@@ -927,29 +928,29 @@ public class GameManager : Singleton<GameManager>
         return iconNotificationStates.ContainsKey(iconType) && iconNotificationStates[iconType];
     }
 
-    // FIXED: Improve task notification handling when icon is clicked
-    public void OnIconClicked(IconType iconType)
+    // FIXED: Improve task notification handling when icon is clicked
+    public void OnIconClicked(IconType iconType)
     {
         if (iconType == IconType.Task)
         {
-            // FIXED: Don't clear task notification immediately when clicked
-            // Only clear it when Task UI is actually closed
-            Debug.Log($"[GameManager] Task icon clicked - keeping notification until UI is closed");
+            // FIXED: Don't clear task notification immediately when clicked
+            // Only clear it when Task UI is actually closed
+            Debug.Log($"[GameManager] Task icon clicked - keeping notification until UI is closed");
             return;
         }
 
-        // Update the "last viewed" data when icon is clicked
-        UpdateLastViewedData(iconType);
+        // Update the "last viewed" data when icon is clicked
+        UpdateLastViewedData(iconType);
 
         SetIconNotification(iconType, false);
         Debug.Log($"[GameManager] Icon {iconType} clicked - notification cleared");
     }
 
-    // **SỬA: Improved handling of task UI close event với better error handling**
-    public void OnTaskUIClosed()
+    // **SỬA: Improved handling of task UI close event với better error handling**
+    public void OnTaskUIClosed()
     {
-        // **SỬA: Always refresh notification state when task UI is closed với comprehensive error handling**
-        try
+        // **SỬA: Always refresh notification state when task UI is closed với comprehensive error handling**
+        try
         {
             if (TaskManager.Instance != null && TaskManager.Instance.gameObject != null)
             {
@@ -962,8 +963,8 @@ public class GameManager : Singleton<GameManager>
                 SetIconNotification(IconType.Task, false);
                 Debug.LogWarning("[GameManager] TaskManager not available when Task UI closed - setting notification to HIDE");
 
-                // Reset TaskManager tracking to trigger reconnection
-                taskManagerWasNull = true;
+                // Reset TaskManager tracking to trigger reconnection
+                taskManagerWasNull = true;
                 taskNotificationEnabled = false;
             }
         }
@@ -972,8 +973,8 @@ public class GameManager : Singleton<GameManager>
             Debug.LogError($"[GameManager] Error refreshing task notification on UI close: {ex.Message}");
             SetIconNotification(IconType.Task, false);
 
-            // Reset TaskManager tracking on error
-            taskManagerWasNull = true;
+            // Reset TaskManager tracking on error
+            taskManagerWasNull = true;
             taskNotificationEnabled = false;
         }
     }
@@ -986,8 +987,8 @@ public class GameManager : Singleton<GameManager>
                 UpdateLastViewedScores();
                 break;
             case IconType.Task:
-                // ĐÃ SỬA: Không xử lý gì ở đây nữa, để TaskManager tự quản lý
-                Debug.Log("[GameManager] Task viewed - chờ đóng UI để xóa thông báo");
+                // ĐÃ SỬA: Không xử lý gì ở đây nữa, để TaskManager tự quản lý
+                Debug.Log("[GameManager] Task viewed - chờ đóng UI để xóa thông báo");
                 break;
             case IconType.Balo:
                 UpdateLastViewedNotes();
@@ -1038,7 +1039,7 @@ public class GameManager : Singleton<GameManager>
             foreach (var entry in examDB.entries)
             {
                 if (!latestScores.ContainsKey(entry.subjectKey) ||
-                    entry.takenAtUnix > lastViewedScores.GetValueOrDefault($"{entry.subjectKey}_{entry.semesterIndex}", 0))
+                  entry.takenAtUnix > lastViewedScores.GetValueOrDefault($"{entry.subjectKey}_{entry.semesterIndex}", 0))
                 {
                     latestScores[entry.subjectKey] = entry.score4;
                 }
@@ -1056,21 +1057,21 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    /// <summary>
-    /// Manually trigger notification for specific icon (for external systems)
-    /// </summary>
-    /// <param name="iconType">Type of icon</param>
-    public void TriggerIconNotification(IconType iconType)
+    /// <summary>
+    /// Manually trigger notification for specific icon (for external systems)
+    /// </summary>
+    /// <param name="iconType">Type of icon</param>
+    public void TriggerIconNotification(IconType iconType)
     {
         SetIconNotification(iconType, true);
         Debug.Log($"[GameManager] Notification triggered for icon {iconType}");
     }
 
-    /// <summary>
-    /// Force refresh notification for specific icon (useful when data changes externally)
-    /// </summary>
-    /// <param name="iconType">Type of icon to refresh</param>
-    public void RefreshIconNotification(IconType iconType)
+    /// <summary>
+    /// Force refresh notification for specific icon (useful when data changes externally)
+    /// </summary>
+    /// <param name="iconType">Type of icon to refresh</param>
+    public void RefreshIconNotification(IconType iconType)
     {
         switch (iconType)
         {
@@ -1078,8 +1079,8 @@ public class GameManager : Singleton<GameManager>
                 CheckScoreNotification();
                 break;
             case IconType.Task:
-                // **SỬA: Improved TaskManager check với comprehensive error handling**
-                try
+                // **SỬA: Improved TaskManager check với comprehensive error handling**
+                try
                 {
                     if (TaskManager.Instance != null && TaskManager.Instance.gameObject != null)
                     {
@@ -1088,8 +1089,8 @@ public class GameManager : Singleton<GameManager>
                         SetIconNotification(IconType.Task, hasActiveTasks);
                         Debug.Log($"[GameManager] Task notification refreshed via TaskManager: {(hasActiveTasks ? "SHOW" : "HIDE")} ({taskCount} tasks)");
 
-                        // Re-enable notifications if they were disabled
-                        taskNotificationEnabled = true;
+                        // Re-enable notifications if they were disabled
+                        taskNotificationEnabled = true;
                         taskManagerWasNull = false;
                     }
                     else
@@ -1097,8 +1098,8 @@ public class GameManager : Singleton<GameManager>
                         SetIconNotification(IconType.Task, false);
                         Debug.LogWarning("[GameManager] TaskManager not available during refresh - task notification set to false");
 
-                        // Trigger reconnection attempt
-                        taskManagerWasNull = true;
+                        // Trigger reconnection attempt
+                        taskManagerWasNull = true;
                         taskNotificationEnabled = false;
                     }
                 }
@@ -1107,8 +1108,8 @@ public class GameManager : Singleton<GameManager>
                     Debug.LogError($"[GameManager] Error refreshing task notification: {ex.Message}");
                     SetIconNotification(IconType.Task, false);
 
-                    // Reset tracking variables on error
-                    taskManagerWasNull = true;
+                    // Reset tracking variables on error
+                    taskManagerWasNull = true;
                     taskNotificationEnabled = false;
                 }
                 break;
@@ -1121,10 +1122,10 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    /// <summary>
-    /// Clear all notifications
-    /// </summary>
-    public void ClearAllNotifications()
+    /// <summary>
+    /// Clear all notifications
+    /// </summary>
+    public void ClearAllNotifications()
     {
         foreach (IconType iconType in System.Enum.GetValues(typeof(IconType)))
         {
@@ -1133,10 +1134,10 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("[GameManager] All notifications cleared");
     }
 
-    /// <summary>
-    /// Public method to be called when new note is added (from external systems)
-    /// </summary>
-    public void OnNoteAdded(string subjectKey, int sessionIndex)
+    /// <summary>
+    /// Public method to be called when new note is added (from external systems)
+    /// </summary>
+    public void OnNoteAdded(string subjectKey, int sessionIndex)
     {
         string noteKey = $"{subjectKey}_{sessionIndex}";
         if (!lastViewedNotes.Contains(noteKey))
@@ -1146,10 +1147,10 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    /// <summary>
-    /// Public method to be called when new score is added (from external systems)
-    /// </summary>
-    public void OnScoreAdded(string subjectKey, int semesterIndex, long timestamp)
+    /// <summary>
+    /// Public method to be called when new score is added (from external systems)
+    /// </summary>
+    public void OnScoreAdded(string subjectKey, int semesterIndex, long timestamp)
     {
         string key = $"{subjectKey}_{semesterIndex}";
         long lastViewed = lastViewedScores.GetValueOrDefault(key, 0);
@@ -1158,34 +1159,34 @@ public class GameManager : Singleton<GameManager>
         {
             SetIconNotification(IconType.Score, true);
             SetIconNotification(IconType.Player, true); // GPA might have changed
-            Debug.Log($"[GameManager] New score detected: {key} - Score and Player notifications triggered");
+            Debug.Log($"[GameManager] New score detected: {key} - Score and Player notifications triggered");
         }
     }
 
-    /// <summary>
-    /// Manual test method to trigger task notification (for testing)
-    /// </summary>
-    [ContextMenu("Test Task Notification")]
+    /// <summary>
+    /// Manual test method to trigger task notification (for testing)
+    /// </summary>
+    [ContextMenu("Test Task Notification")]
     public void TestTaskNotification()
     {
         SetIconNotification(IconType.Task, true);
         Debug.Log("[GameManager] Task notification manually triggered for testing");
     }
 
-    /// <summary>
-    /// Manual method to clear task notification (for debugging)
-    /// </summary>
-    [ContextMenu("Clear Task Notification")]
+    /// <summary>
+    /// Manual method to clear task notification (for debugging)
+    /// </summary>
+    [ContextMenu("Clear Task Notification")]
     public void ClearTaskNotification()
     {
         SetIconNotification(IconType.Task, false);
         Debug.Log("[GameManager] Task notification manually cleared");
     }
 
-    /// <summary>
-    /// Check TaskManager availability (for debugging)
-    /// </summary>
-    [ContextMenu("Check TaskManager Status")]
+    /// <summary>
+    /// Check TaskManager availability (for debugging)
+    /// </summary>
+    [ContextMenu("Check TaskManager Status")]
     public void CheckTaskManagerStatus()
     {
         try
@@ -1209,30 +1210,30 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    /// <summary>
-    /// **SỬA: Improved Force reconnect to TaskManager**
-    /// </summary>
-    [ContextMenu("Force Reconnect TaskManager")]
+    /// <summary>
+    /// **SỬA: Improved Force reconnect to TaskManager**
+    /// </summary>
+    [ContextMenu("Force Reconnect TaskManager")]
     public void ForceReconnectTaskManager()
     {
         Debug.Log("[GameManager] Forcing TaskManager reconnect...");
 
-        // Reset all tracking variables
-        taskManagerWasNull = true;
+        // Reset all tracking variables
+        taskManagerWasNull = true;
         taskNotificationEnabled = false;
         taskManagerRetryCount = 0;
         taskManagerCheckTimer = TASK_MANAGER_CHECK_INTERVAL; // Trigger immediate check
 
-        // Force immediate check
-        CheckTaskManagerAvailability();
+        // Force immediate check
+        CheckTaskManagerAvailability();
 
         Debug.Log("[GameManager] TaskManager reconnect forced - status will be checked immediately");
     }
 
-    /// <summary>
-    /// ĐÃ SỬA: Phương thức debug để đồng bộ thông báo nhiệm vụ với TaskManager với improved error handling
-    /// </summary>
-    [ContextMenu("Đồng Bộ Thông Báo Nhiệm Vụ Với TaskManager")]
+    /// <summary>
+    /// ĐÃ SỬA: Phương thức debug để đồng bộ thông báo nhiệm vụ với TaskManager với improved error handling
+    /// </summary>
+    [ContextMenu("Đồng Bộ Thông Báo Nhiệm Vụ Với TaskManager")]
     public void SyncTaskNotificationWithTaskManager()
     {
         try
@@ -1243,12 +1244,12 @@ public class GameManager : Singleton<GameManager>
                 int taskCount = TaskManager.Instance.GetActiveTaskCount();
 
                 taskNotificationEnabled = true; // Re-enable if it was disabled
-                taskManagerWasNull = false;
+                taskManagerWasNull = false;
                 taskManagerRetryCount = 0;
                 SetIconNotification(IconType.Task, hasActiveTasks);
 
                 Debug.Log($"[GameManager] Đã đồng bộ thông báo nhiệm vụ: {(hasActiveTasks ? "HIỆN" : "ẨN")} " +
-                         $"(TaskManager báo cáo {taskCount} nhiệm vụ đang hoạt động)");
+                    $"(TaskManager báo cáo {taskCount} nhiệm vụ đang hoạt động)");
             }
             else
             {
@@ -1267,10 +1268,10 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    /// <summary>
-    /// ĐÃ SỬA: Phương thức debug để kiểm tra trạng thái thông báo tất cả icon với improved TaskManager checking
-    /// </summary>
-    [ContextMenu("Kiểm Tra Trạng Thái Tất Cả Thông Báo")]
+    /// <summary>
+    /// ĐÃ SỬA: Phương thức debug để kiểm tra trạng thái thông báo tất cả icon với improved TaskManager checking
+    /// </summary>
+    [ContextMenu("Kiểm Tra Trạng Thái Tất Cả Thông Báo")]
     public void CheckAllNotificationStatus()
     {
         Debug.Log("=== TRẠNG THÁI THÔNG BÁO TẤT CẢ ICON ===");
@@ -1280,8 +1281,8 @@ public class GameManager : Singleton<GameManager>
             Debug.Log($"[GameManager] {iconType}: {(isActive ? "ĐANG HIỆN" : "ĐANG ẨN")}");
         }
 
-        // **SỬA: Comprehensive TaskManager checking**
-        try
+        // **SỬA: Comprehensive TaskManager checking**
+        try
         {
             if (TaskManager.Instance != null && TaskManager.Instance.gameObject != null)
             {
@@ -1312,67 +1313,67 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    /// <summary>
-    /// **MỚI: Manual method để force validate NotificationPopupSpawner**
-    /// </summary>
-    [ContextMenu("Force Validate NotificationPopupSpawner")]
+    /// <summary>
+    /// **MỚI: Manual method để force validate NotificationPopupSpawner**
+    /// </summary>
+    [ContextMenu("Force Validate NotificationPopupSpawner")]
     public void ForceValidateNotificationPopupSpawner()
     {
         ValidateNotificationPopupSpawner();
     }
 
-    /// <summary>
-    /// **DEBUG: Test trừ stamina sau MiniGame**
-    /// </summary>
-    [ContextMenu("TEST: Simulate Return From MiniGame")]
+    /// <summary>
+    /// **DEBUG: Test trừ stamina sau MiniGame**
+    /// </summary>
+    [ContextMenu("TEST: Simulate Return From MiniGame")]
     public void TestSimulateReturnFromMiniGame()
     {
         Debug.Log("[GameManager] ===== TEST: Simulating return from MiniGame =====");
-        
+
         // Kiểm tra stamina trước khi test
         const string staminaSaveKey = "PLAYER_STAMINA";
         int staminaBefore = PlayerPrefs.GetInt(staminaSaveKey, 100);
         Debug.Log($"[GameManager] Stamina BEFORE test: {staminaBefore}");
-        
+
         // Set các cờ giống như khi về từ MiniGame
         PlayerPrefs.SetInt("ShouldRestoreStateAfterMiniGame", 1);
         PlayerPrefs.SetInt("DEDUCT_STAMINA_AFTER_MINIGAME", 1);
         PlayerPrefs.Save();
-        
+
         Debug.Log("[GameManager] Đã set flags - Đang trigger restore...");
-        
+
         // Trigger restore flow
         StartCoroutine(FastRestoreStateCoroutine(showResultDialog: false));
-        
+
         // Sau 2 giây kiểm tra lại stamina
         StartCoroutine(CheckStaminaAfterDelay());
     }
-    
+
     private IEnumerator CheckStaminaAfterDelay()
     {
         yield return new WaitForSeconds(2f);
-        
+
         const string staminaSaveKey = "PLAYER_STAMINA";
         int staminaAfter = PlayerPrefs.GetInt(staminaSaveKey, 100);
         Debug.Log($"[GameManager] Stamina AFTER test: {staminaAfter}");
         Debug.Log("[GameManager] ===== TEST COMPLETED =====");
     }
 
-    /// <summary>
-    /// **MỚI: Manually refresh IconNotificationManager reference**
-    /// </summary>
-    [ContextMenu("Refresh IconNotificationManager Reference")]
+    /// <summary>
+    /// **MỚI: Manually refresh IconNotificationManager reference**
+    /// </summary>
+    [ContextMenu("Refresh IconNotificationManager Reference")]
     public void RefreshIconNotificationManager()
     {
         var oldManager = iconNotificationManager;
 
-        // Try multiple methods to find IconNotificationManager
-        iconNotificationManager = FindFirstObjectByType<IconNotificationManager>();
+        // Try multiple methods to find IconNotificationManager
+        iconNotificationManager = FindFirstObjectByType<IconNotificationManager>();
 
         if (iconNotificationManager == null)
         {
-            // Try finding in GameUIManager as well
-            var gameUIManager = GameUIManager.Ins;
+            // Try finding in GameUIManager as well
+            var gameUIManager = GameUIManager.Ins;
             if (gameUIManager != null)
             {
                 iconNotificationManager = gameUIManager.GetComponentInChildren<IconNotificationManager>(true);
@@ -1381,8 +1382,8 @@ public class GameManager : Singleton<GameManager>
 
         if (iconNotificationManager == null)
         {
-            // Try finding in the entire scene including inactive objects
-            var allIconManagers = Resources.FindObjectsOfTypeAll<IconNotificationManager>();
+            // Try finding in the entire scene including inactive objects
+            var allIconManagers = Resources.FindObjectsOfTypeAll<IconNotificationManager>();
             if (allIconManagers.Length > 0)
             {
                 iconNotificationManager = allIconManagers[0];
@@ -1395,11 +1396,11 @@ public class GameManager : Singleton<GameManager>
             {
                 Debug.Log($"[GameManager] IconNotificationManager reference updated: {iconNotificationManager.name}");
 
-                // Refresh all current notification states
-                foreach (var kvp in iconNotificationStates)
+                // Refresh all current notification states
+                foreach (var kvp in iconNotificationStates)
                 {
                     if (kvp.Value) // Only update active notifications
-                    {
+                    {
                         try
                         {
                             iconNotificationManager.SetNotificationVisible(kvp.Key, kvp.Value);
@@ -1423,20 +1424,20 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    /// <summary>
-    /// **MỚI: Validate NotificationPopupSpawner and attempt recovery if needed**
-    /// </summary>
-    private void ValidateNotificationPopupSpawner()
+    /// <summary>
+    /// **MỚI: Validate NotificationPopupSpawner and attempt recovery if needed**
+    /// </summary>
+    private void ValidateNotificationPopupSpawner()
     {
-        // Chỉ kiểm tra occasionally để tránh performance impact
-        if (Time.frameCount % 300 != 0) return; // Check every 5 seconds at 60fps
+        // Chỉ kiểm tra occasionally để tránh performance impact
+        if (Time.frameCount % 300 != 0) return; // Check every 5 seconds at 60fps
 
-        if (NotificationPopupSpawner.Ins == null)
+        if (NotificationPopupSpawner.Ins == null)
         {
             Debug.LogWarning("[GameManager] NotificationPopupSpawner.Ins is null - attempting recovery...");
 
-            // Try to find NotificationPopupSpawner in scene
-            var spawner = FindFirstObjectByType<NotificationPopupSpawner>();
+            // Try to find NotificationPopupSpawner in scene
+            var spawner = FindFirstObjectByType<NotificationPopupSpawner>();
             if (spawner != null)
             {
                 Debug.Log("[GameManager] Found NotificationPopupSpawner in scene - forcing re-registration...");
@@ -1445,8 +1446,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    // Legacy flag: chỉ chuyển ca (không khôi phục vị trí)
-    private void CheckAndHandlePostExamTimeAdvance()
+    // Legacy flag: chỉ chuyển ca (không khôi phục vị trí)
+    private void CheckAndHandlePostExamTimeAdvance()
     {
         if (PlayerPrefs.GetInt("ShouldAdvanceTimeAfterExam", 0) == 1)
         {
@@ -1482,6 +1483,34 @@ public class GameManager : Singleton<GameManager>
             Debug.LogError("[GameManager] ✗ Không thể chuyển ca - thiếu ClockUI/GameClock");
         }
     }
+
+    /// <summary>
+    /// Lấy điểm thân thiện hiện tại
+    /// </summary>
+    public int GetFriendlyPoint()
+    {
+        return PlayerPrefs.GetInt(FRIENDLY_POINT_KEY, 0);
+    }
+
+    /// <summary>
+    /// Cộng (hoặc trừ) điểm thân thiện và Lưu ngay lập tức
+    /// </summary>
+    public void AddFriendlyPoint(int amount)
+    {
+        int current = GetFriendlyPoint();
+        int newValue = current + amount;
+
+        // (Tuỳ chọn) Chặn không cho âm điểm nếu muốn
+        if (newValue < 0) newValue = 0;
+
+        PlayerPrefs.SetInt(FRIENDLY_POINT_KEY, newValue);
+        PlayerPrefs.Save();
+
+        Debug.Log($"[GameManager] Friendly Point changed: {current} -> {newValue} (Added: {amount})");
+
+        // (Tuỳ chọn) Nếu bạn muốn trigger thông báo cập nhật UI ngay lập tức
+        // TriggerIconNotification(IconType.Player); 
+    }
 }
 
 /// <summary>

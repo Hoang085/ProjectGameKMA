@@ -37,6 +37,11 @@ public class InteractableZone : MonoBehaviour
     [SerializeField] private string staminaSaveKey = "PLAYER_STAMINA";
     [SerializeField] private int maxStamina = 100;
 
+    [Header("Chuyển ca sau khi thực hiện")]
+    [SerializeField] private bool advanceSlotAfterComplete = true;
+    [Tooltip("Thời gian chờ trước khi chuyển ca (giây)")]
+    [SerializeField] private float delayBeforeSlotAdvance = 1f;
+
     private bool _playerInside;
     private float _lastInteractTime;
     private bool _waitingForVideo;
@@ -118,7 +123,7 @@ public class InteractableZone : MonoBehaviour
             }
             else
             {
-                if (restoreStamina) RestorePlayerStamina();
+                StartCoroutine(CoCompleteInteraction());
             }
         }
     }
@@ -144,6 +149,7 @@ public class InteractableZone : MonoBehaviour
         {
             Debug.LogWarning($"[InteractableZone] {name}: Không tìm thấy VideoPopupUI trong scene!");
             if (restoreStamina) RestorePlayerStamina();
+            AdvanceSlotIfEnabled();
             yield break;
         }
 
@@ -169,6 +175,57 @@ public class InteractableZone : MonoBehaviour
         if (restoreStamina) RestorePlayerStamina();
 
         _waitingForVideo = false;
+
+        // **MỚI: Chuyển ca sau khi hoàn thành**
+        AdvanceSlotIfEnabled();
+    }
+
+    /// <summary>
+    /// **MỚI: Hoàn thành tương tác (không có video)**
+    /// </summary>
+    private IEnumerator CoCompleteInteraction()
+    {
+        _waitingForVideo = true;
+
+        if (restoreStamina) RestorePlayerStamina();
+
+        yield return new WaitForSeconds(0.5f); // Chờ ngắn để hiển thị notification
+
+        _waitingForVideo = false;
+
+        // **MỚI: Chuyển ca sau khi hoàn thành**
+        AdvanceSlotIfEnabled();
+    }
+
+    /// <summary>
+    /// **MỚI: Chuyển sang ca tiếp theo nếu được bật**
+    /// </summary>
+    private void AdvanceSlotIfEnabled()
+    {
+        if (!advanceSlotAfterComplete) return;
+
+        if (GameClock.Ins != null)
+        {
+            StartCoroutine(CoAdvanceSlot());
+        }
+        else
+        {
+            Debug.LogWarning("[InteractableZone] GameClock không khả dụng, không thể chuyển ca!");
+        }
+    }
+
+    /// <summary>
+    /// **MỚI: Coroutine chuyển ca với delay**
+    /// </summary>
+    private IEnumerator CoAdvanceSlot()
+    {
+        if (delayBeforeSlotAdvance > 0)
+        {
+            yield return new WaitForSeconds(delayBeforeSlotAdvance);
+        }
+
+        Debug.Log("[InteractableZone] Chuyển sang ca tiếp theo...");
+        GameClock.Ins.JumpToNextSessionStart();
     }
 
     private void RestorePlayerStamina()
