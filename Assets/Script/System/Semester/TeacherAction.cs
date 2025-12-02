@@ -50,6 +50,12 @@ public class TeacherAction : InteractableAction
     [Tooltip("Hiện khi nghỉ quá số buổi quy định")]
     public string exceededAbsenceText = "Em đã nghỉ quá số buổi quy định hoặc không vượt qua điểm quá trình cho phép";
 
+    [Header("Stamina Requirements")]
+    [SerializeField] private int minStaminaRequired = 30;
+    [SerializeField] private string notEnoughStaminaMessage = "Không thể học! Em cần đủ {0} thể lực.";
+    [SerializeField] private string staminaSaveKey = "PLAYER_STAMINA";
+    [SerializeField] private int maxStamina = 100;
+
     [Header("Flow")]
     [Min(0.1f)] public float classSeconds = 3f;
 
@@ -1015,6 +1021,15 @@ public class TeacherAction : InteractableAction
             return;
         }
 
+        // **MỚI: KIỂM TRA STAMINA TRƯỚC KHI CHO PHÉP HỌC**
+        if (!HasEnoughStamina())
+        {
+            // **ĐÓNG DIALOG TRƯỚC KHI HIỂN THỊ NOTIFICATION**
+            UI?.CloseDialogue(unbindTeacher: true);
+            ShowNotEnoughStaminaNotification();
+            return;
+        }
+
         subj.currentSessionIndex = LoadProgress(subj);
 
         // **KIỂM TRA ƯU TIÊN 1: Đã thi rồi (lần đầu hoặc thi lại) -> CHẶN HOÀN TOÀN**
@@ -1706,7 +1721,6 @@ public class TeacherAction : InteractableAction
         // -----------------------------------
 
         // Môn 12 buổi -> Học xong buổi 10 là tạo lịch thi
-        // Lưu ý: Code cũ của bạn là (actualMaxSessions >= 12), số 15 thỏa mãn điều kiện này nên nó trả về 10 -> Lỗi
         if (actualMaxSessions >= 12) return 10;
 
         // Các môn ngắn hạn khác -> Học hết mới thi
@@ -1810,5 +1824,34 @@ public class TeacherAction : InteractableAction
         if (PlayerPrefs.HasKey(kLegacy2)) return true;
         
         return false;
+    }
+    
+    /// <summary>
+    /// **MỚI: Kiểm tra xem người chơi có đủ thể lực không**
+    /// </summary>
+    private bool HasEnoughStamina()
+    {
+        int currentStamina = PlayerPrefs.GetInt(staminaSaveKey, maxStamina);
+        bool hasEnough = currentStamina >= minStaminaRequired;
+        Debug.Log($"[TeacherAction] Stamina check: {currentStamina}/{maxStamina} (required: {minStaminaRequired}) = {hasEnough}");
+        return hasEnough;
+    }
+    
+    /// <summary>
+    /// **MỚI: Hiển thị thông báo không đủ thể lực**
+    /// </summary>
+    private void ShowNotEnoughStaminaNotification()
+    {
+        string message = string.Format(notEnoughStaminaMessage, minStaminaRequired);
+        
+        if (NotificationPopupSpawner.Ins != null)
+        {
+            NotificationPopupSpawner.Ins.Enqueue(message);
+            Debug.Log($"[TeacherAction] Đã gửi notification: {message}");
+        }
+        else
+        {
+            Debug.LogWarning("[TeacherAction] NotificationPopupSpawner không khả dụng!");
+        }
     }
 }

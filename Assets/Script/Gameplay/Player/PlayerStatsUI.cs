@@ -8,11 +8,9 @@ using HHH.Common;
 public class PlayerStatsUI : BasePopUp
 {
     [Header("Text động hiển thị")]
-    [SerializeField] private TMP_Text tittleNameText;   // "Sinh viên năm X"
+    [SerializeField] private TMP_Text tittleNameText;   
     [SerializeField] private TMP_Text numberStamina;    // 100 / 100
-    [SerializeField] private TMP_Text numberMoney;      // 100.000 VND
     [SerializeField] private TMP_Text numberGPA;        // 4.0 ( Xuất sắc )
-    [SerializeField] private TMP_Text numberTraining;   // Điểm rèn luyện
     [SerializeField] private TMP_Text numberFriendly;   // Điểm thân thiện
 
     [Header("Nguồn thời gian (để lấy Term)")]
@@ -61,10 +59,8 @@ public class PlayerStatsUI : BasePopUp
         RegisterToAllTeacherActions();
 
         UpdateGPA();
-        SetMoney(100000);
-        SetTrainingPoint(0);
-        SetFriendlyPoint(0);
-        
+        int currentFriendly = PlayerPrefs.GetInt(GameManager.FRIENDLY_POINT_KEY, 0);
+        SetFriendlyPoint(currentFriendly);
         Debug.Log("[PlayerStatsUI] ========== OnInitScreen END ==========");
     }
 
@@ -86,7 +82,14 @@ public class PlayerStatsUI : BasePopUp
         // Refresh các thông tin khác
         UpdateSemesterTitle(true);
         UpdateGPA();
-        
+        if (GameManager.Ins != null)
+        {
+            SetFriendlyPoint(GameManager.Ins.GetFriendlyPoint());
+        }
+        else
+        {
+            SetFriendlyPoint(PlayerPrefs.GetInt(GameManager.FRIENDLY_POINT_KEY, 0));
+        }
         Debug.Log("[PlayerStatsUI] ========== OnShowScreen END ==========");
     }
 
@@ -249,8 +252,6 @@ public class PlayerStatsUI : BasePopUp
     }
 
     // ======== Stamina ========
-    public void SetMoney(int money) { if (numberMoney) numberMoney.text = $"{money:N0} VND"; }
-    public void SetTrainingPoint(int point) { if (numberTraining) numberTraining.text = point.ToString(); }
     public void SetFriendlyPoint(int point) { if (numberFriendly) numberFriendly.text = point.ToString(); }
 
     public void SetStamina(int current, int max)

@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 3743549763157832528}
   - component: {fileID: 8201462345615772656}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1585,7 +1585,7 @@ GameObject:
   - component: {fileID: 4534571966408928822}
   - component: {fileID: 1791616434449993386}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2799,6 +2799,14 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0}
   blockRaycast: {fileID: 0}
   currentScreen: 0
+  musicSlider: {fileID: 1791616434449993386}
+  sfxSlider: {fileID: 8201462345615772656}
+  musicValueText: {fileID: 3597888958810497201}
+  sfxValueText: {fileID: 4642260659426005516}
+  musicIconImage: {fileID: 4924314672387372331}
+  sfxIconImage: {fileID: 959984925665073752}
+  soundOnSprite: {fileID: -1488772730, guid: 5c9b49f43354dfb42b804f7ccadd2f65, type: 3}
+  soundOffSprite: {fileID: 546707859, guid: 71ab4473ce97dd147aec5e1a48f309e7, type: 3}
 --- !u!1 &6430604926843975777
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,6 @@ public class NPCFriendInteraction : MonoBehaviour
     public GameObject dialogueFriendUI;
 
     [Header("UI Controls - Setup Nút Bấm")]
-
     public Button playGameButton;
     public Button closeGameButton;
     public string targetGameScene = "Game1";
@@ -25,6 +24,16 @@ public class NPCFriendInteraction : MonoBehaviour
 
     [Header("Player Setup")]
     public string playerTag = "Player";
+
+    [Header("Stamina Requirements")]
+    [SerializeField] private int minStaminaRequired = 30;
+    [SerializeField] private string notEnoughStaminaMessage = "Không thể chơi! Cậu cần {0} thể lực.";
+    [SerializeField] private string staminaSaveKey = "PLAYER_STAMINA";
+    [SerializeField] private int maxStamina = 100;
+
+    [Header("Phần thưởng (Friendly Point)")]
+    [SerializeField] private bool addFriendlyPoint = true;
+    [SerializeField] private int friendlyPointReward = 5;
 
     private bool _playerInRange = false;
     private bool _dialogueOpen = false;
@@ -144,10 +153,54 @@ public class NPCFriendInteraction : MonoBehaviour
             return;
         }
 
+        // **MỚI: KIỂM TRA STAMINA TRƯỚC KHI CHO PHÉP CHƠI**
+        if (!HasEnoughStamina())
+        {
+            // **ĐÓNG DIALOG TRƯỚC KHI HIỂN THỊ NOTIFICATION**
+            OnCloseDialog();
+            ShowNotEnoughStaminaNotification();
+            return;
+        }
+
+        if (addFriendlyPoint && GameManager.Ins != null)
+        {
+            GameManager.Ins.AddFriendlyPoint(friendlyPointReward);
+            Debug.Log($"[NPCFriendInteraction] Đã cộng {friendlyPointReward} điểm thân thiện trước khi vào game.");
+        }
+
         Debug.Log($"[NPCFriendInteraction] Chuẩn bị vào {targetGameScene}...");
         GameStateManager.SavePreExamState(targetGameScene);
         OnCloseDialog();
         SceneLoader.Load(targetGameScene);
+    }
+
+    /// <summary>
+    /// **MỚI: Kiểm tra xem người chơi có đủ thể lực không**
+    /// </summary>
+    private bool HasEnoughStamina()
+    {
+        int currentStamina = PlayerPrefs.GetInt(staminaSaveKey, maxStamina);
+        bool hasEnough = currentStamina >= minStaminaRequired;
+        Debug.Log($"[NPCFriendInteraction] Stamina check: {currentStamina}/{maxStamina} (required: {minStaminaRequired}) = {hasEnough}");
+        return hasEnough;
+    }
+    
+    /// <summary>
+    /// **MỚI: Hiển thị thông báo không đủ thể lực**
+    /// </summary>
+    private void ShowNotEnoughStaminaNotification()
+    {
+        string message = string.Format(notEnoughStaminaMessage, minStaminaRequired);
+        
+        if (NotificationPopupSpawner.Ins != null)
+        {
+            NotificationPopupSpawner.Ins.Enqueue(message);
+            Debug.Log($"[NPCFriendInteraction] Đã gửi notification: {message}");
+        }
+        else
+        {
+            Debug.LogWarning("[NPCFriendInteraction] NotificationPopupSpawner không khả dụng!");
+        }
     }
 
     public void OnCloseGameBtnClick()
