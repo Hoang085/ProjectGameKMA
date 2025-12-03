@@ -1,7 +1,7 @@
 {
   "examTitle": "Đề thi cuối kì 10",
   "subjectName": "Phát Triển Game",
-  "durationSeconds": 120,
+  "durationSeconds": 1800,
   "questions": [
     {
       "text": "Game Loop có chức năng chính gì?",

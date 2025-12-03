@@ -1,156 +1,156 @@
 {
   "examTitle": "Đề thi cuối kì 7",
   "subjectName": "Thiết Kế Hệ Thống Nhúng",
-  "durationSeconds": 1200,
+  "durationSeconds": 1800,
   "questions": [
     {
       "text": "Hệ thống nhúng là gì?",
-      "options": ["Máy tính bàn phục vụ đa mục tiêu", "Hệ thống chuyên dụng tích hợp phần cứng và phần mềm", "Robot công nghiệp", "Thiết bị mạng"],
+      "options": [ "Máy tính bàn phục vụ đa mục tiêu", "Hệ thống chuyên dụng tích hợp phần cứng và phần mềm", "Robot công nghiệp", "Thiết bị mạng" ],
       "correctIndex": 1
     },
     {
       "text": "Vi điều khiển (Microcontroller) là gì?",
-      "options": ["CPU hiệu năng cao", "Thiết bị lưu trữ", "Chip tích hợp CPU, RAM, ROM và ngoại vi", "Hệ thống mạng không dây"],
+      "options": [ "CPU hiệu năng cao", "Thiết bị lưu trữ", "Chip tích hợp CPU, RAM, ROM và ngoại vi", "Hệ thống mạng không dây" ],
       "correctIndex": 2
     },
     {
       "text": "Thiết bị nào sau đây là ví dụ của hệ thống nhúng?",
-      "options": ["Máy tính desktop", "Tivi thông minh", "Máy chủ dữ liệu", "Laptop"],
+      "options": [ "Máy tính desktop", "Tivi thông minh", "Máy chủ dữ liệu", "Laptop" ],
       "correctIndex": 1
     },
     {
       "text": "Bộ nhớ Flash trong vi điều khiển được dùng để lưu trữ:",
-      "options": ["Dữ liệu tạm thời", "Chương trình", "Ngăn xếp", "Thanh ghi trạng thái"],
+      "options": [ "Dữ liệu tạm thời", "Chương trình", "Ngăn xếp", "Thanh ghi trạng thái" ],
       "correctIndex": 1
     },
     {
       "text": "GPIO là viết tắt của:",
-      "options": ["General Purpose Input/Output", "General Program IO", "Global Pin Interface Option", "Generic Port Input Only"],
+      "options": [ "General Purpose Input/Output", "General Program IO", "Global Pin Interface Option", "Generic Port Input Only" ],
       "correctIndex": 0
     },
     {
       "text": "ADC dùng để làm gì trong hệ thống nhúng?",
-      "options": ["Chuyển đổi số sang tương tự", "Đo tốc độ xử lý", "Chuyển đổi tương tự sang số", "Xử lý nhiễu"],
+      "options": [ "Chuyển đổi số sang tương tự", "Đo tốc độ xử lý", "Chuyển đổi tương tự sang số", "Xử lý nhiễu" ],
       "correctIndex": 2
     },
     {
       "text": "PWM được dùng để:",
-      "options": ["Điều khiển tốc độ động cơ", "Giảm RAM", "Ghi dữ liệu vào Flash", "Tăng tốc độ CPU"],
+      "options": [ "Điều khiển tốc độ động cơ", "Giảm RAM", "Ghi dữ liệu vào Flash", "Tăng tốc độ CPU" ],
       "correctIndex": 0
     },
     {
       "text": "UART thuộc loại giao tiếp nào?",
-      "options": ["Song song", "Không dây", "Nối tiếp", "Quang học"],
+      "options": [ "Song song", "Không dây", "Nối tiếp", "Quang học" ],
       "correctIndex": 2
     },
     {
       "text": "I2C sử dụng bao nhiêu đường tín hiệu chính?",
-      "options": ["1", "2", "4", "8"],
+      "options": [ "1", "2", "4", "8" ],
       "correctIndex": 1
     },
     {
       "text": "SPI có bao nhiêu đường tín hiệu cơ bản?",
-      "options": ["2", "3", "4", "6"],
+      "options": [ "2", "3", "4", "6" ],
       "correctIndex": 2
     },
     {
       "text": "Ngắt (Interrupt) dùng để:",
-      "options": ["Tạm dừng CPU và xử lý sự kiện", "Xóa bộ nhớ", "Tăng RAM", "Giảm xung nhịp CPU"],
+      "options": [ "Tạm dừng CPU và xử lý sự kiện", "Xóa bộ nhớ", "Tăng RAM", "Giảm xung nhịp CPU" ],
       "correctIndex": 0
     },
     {
       "text": "RTOS là viết tắt của:",
-      "options": ["Real-Time Operating System", "Runtime OS", "Remote Task Operating System", "Real-Time Output Service"],
+      "options": [ "Real-Time Operating System", "Runtime OS", "Remote Task Operating System", "Real-Time Output Service" ],
       "correctIndex": 0
     },
     {
       "text": "Watchdog Timer có chức năng:",
-      "options": ["Đếm thời gian thực", "Reset hệ thống khi treo", "Lưu dữ liệu", "Điều chỉnh điện áp"],
+      "options": [ "Đếm thời gian thực", "Reset hệ thống khi treo", "Lưu dữ liệu", "Điều chỉnh điện áp" ],
       "correctIndex": 1
     },
     {
       "text": "Bus dữ liệu dùng để:",
-      "options": ["Truyền địa chỉ", "Chọn thiết bị", "Truyền dữ liệu giữa các thành phần", "Nguồn cấp cho hệ thống"],
+      "options": [ "Truyền địa chỉ", "Chọn thiết bị", "Truyền dữ liệu giữa các thành phần", "Nguồn cấp cho hệ thống" ],
       "correctIndex": 2
     },
     {
       "text": "EEPROM dùng để lưu trữ:",
-      "options": ["Dữ liệu chỉ đọc", "Dữ liệu mất khi mất điện", "Dữ liệu có thể ghi/xóa nhiều lần", "Dữ liệu trong CPU"],
+      "options": [ "Dữ liệu chỉ đọc", "Dữ liệu mất khi mất điện", "Dữ liệu có thể ghi/xóa nhiều lần", "Dữ liệu trong CPU" ],
       "correctIndex": 2
     },
     {
       "text": "Một hệ thống nhúng thời gian thực cần đáp ứng:",
-      "options": ["Đúng chức năng nhưng không cần đúng thời gian", "Đúng thời gian và đúng chức năng", "Không cần chính xác", "Không cần độ trễ thấp"],
+      "options": [ "Đúng chức năng nhưng không cần đúng thời gian", "Đúng thời gian và đúng chức năng", "Không cần chính xác", "Không cần độ trễ thấp" ],
       "correctIndex": 1
     },
     {
       "text": "DMA giúp CPU:",
-      "options": ["Tăng xung nhịp", "Truyền dữ liệu mà không cần CPU can thiệp", "Giảm điện năng", "Tăng RAM"],
+      "options": [ "Tăng xung nhịp", "Truyền dữ liệu mà không cần CPU can thiệp", "Giảm điện năng", "Tăng RAM" ],
       "correctIndex": 1
     },
     {
       "text": "Lập trình hệ thống nhúng thường sử dụng ngôn ngữ nào?",
-      "options": ["Python", "C/C++", "JavaScript", "PHP"],
+      "options": [ "Python", "C/C++", "JavaScript", "PHP" ],
       "correctIndex": 1
     },
     {
       "text": "Bộ định thời (Timer) dùng để:",
-      "options": ["Xử lý ngắt", "Tạo delay hoặc đếm thời gian", "Lưu dữ liệu", "Tăng tốc CPU"],
+      "options": [ "Xử lý ngắt", "Tạo delay hoặc đếm thời gian", "Lưu dữ liệu", "Tăng tốc CPU" ],
       "correctIndex": 1
     },
     {
       "text": "Kiến trúc Harvard đặc trưng bởi:",
-      "options": ["Bộ nhớ dữ liệu và chương trình tách biệt", "Chỉ dùng 1 bộ nhớ", "Không có thanh ghi", "Không hỗ trợ DMA"],
+      "options": [ "Bộ nhớ dữ liệu và chương trình tách biệt", "Chỉ dùng 1 bộ nhớ", "Không có thanh ghi", "Không hỗ trợ DMA" ],
       "correctIndex": 0
     },
     {
       "text": "MCU khác với MPU ở điểm nào?",
-      "options": ["MCU tích hợp nhiều ngoại vi", "MPU nhỏ hơn", "MCU không có RAM", "MCU không chạy chương trình"],
+      "options": [ "MCU tích hợp nhiều ngoại vi", "MPU nhỏ hơn", "MCU không có RAM", "MCU không chạy chương trình" ],
       "correctIndex": 0
     },
     {
       "text": "Thiết kế hệ thống nhúng bao gồm các bước:",
-      "options": ["Phân tích yêu cầu, thiết kế phần cứng, lập trình, kiểm thử", "Chỉ lập trình", "Chỉ thiết kế mạch", "Tạo giao diện"],
+      "options": [ "Phân tích yêu cầu, thiết kế phần cứng, lập trình, kiểm thử", "Chỉ lập trình", "Chỉ thiết kế mạch", "Tạo giao diện" ],
       "correctIndex": 0
     },
     {
       "text": "Hệ thống nhúng tiêu thụ điện năng thấp vì:",
-      "options": ["Không có CPU", "Tối ưu cho nhiệm vụ cụ thể", "Dùng nguồn lớn", "Không có bộ nhớ"],
+      "options": [ "Không có CPU", "Tối ưu cho nhiệm vụ cụ thể", "Dùng nguồn lớn", "Không có bộ nhớ" ],
       "correctIndex": 1
     },
     {
       "text": "Lỗi phần mềm trong hệ thống nhúng có thể gây:",
-      "options": ["Giảm FPS", "Hệ thống treo hoặc mất an toàn", "Mất giao diện", "Lỗi mạng"],
+      "options": [ "Giảm FPS", "Hệ thống treo hoặc mất an toàn", "Mất giao diện", "Lỗi mạng" ],
       "correctIndex": 1
     },
     {
       "text": "Module cảm biến thường giao tiếp với MCU qua:",
-      "options": ["GPIO, ADC, I2C, SPI", "USB", "HDMI", "PCIe"],
+      "options": [ "GPIO, ADC, I2C, SPI", "USB", "HDMI", "PCIe" ],
       "correctIndex": 0
     },
     {
       "text": "Thiết bị nào là ví dụ của hệ thống nhúng thời gian thực?",
-      "options": ["Máy giặt", "Hệ thống phanh ABS", "Smart TV", "Máy photo"],
+      "options": [ "Máy giặt", "Hệ thống phanh ABS", "Smart TV", "Máy photo" ],
       "correctIndex": 1
     },
     {
       "text": "Low-power mode giúp:",
-      "options": ["Tăng tốc độ xử lý", "Giảm tiêu thụ năng lượng", "Tăng dung lượng Flash", "Tạo xung PWM"],
+      "options": [ "Tăng tốc độ xử lý", "Giảm tiêu thụ năng lượng", "Tăng dung lượng Flash", "Tạo xung PWM" ],
       "correctIndex": 1
     },
     {
       "text": "Lệnh điều khiển servo thường dùng tín hiệu:",
-      "options": ["PWM", "ADC", "DAC", "UART"],
+      "options": [ "PWM", "ADC", "DAC", "UART" ],
       "correctIndex": 0
     },
     {
       "text": "Bảng mạch PCB là viết tắt của:",
-      "options": ["Printed Circuit Board", "Power Control Board", "Program Circuit Base", "Pulse Controller Base"],
+      "options": [ "Printed Circuit Board", "Power Control Board", "Program Circuit Base", "Pulse Controller Base" ],
       "correctIndex": 0
     },
     {
       "text": "Thiết kế nhúng yêu cầu quan trọng nhất là:",
-      "options": ["Giao diện đẹp", "Độ ổn định và thời gian thực", "Chạy đa nền tảng", "Hiệu ứng đồ họa"],
+      "options": [ "Giao diện đẹp", "Độ ổn định và thời gian thực", "Chạy đa nền tảng", "Hiệu ứng đồ họa" ],
       "correctIndex": 1
     }
   ]

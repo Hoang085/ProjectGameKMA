@@ -1,7 +1,7 @@
 {
   "examTitle": "Đề thi cuối kì 3",
   "subjectName": "Cấu Trúc Dữ Liệu Và Giải Thuật",
-  "durationSeconds": 120,
+  "durationSeconds": 1800,
   "questions": [
     {
       "text": "Cấu trúc dữ liệu hàng đợi (Queue) hoạt động theo nguyên tắc nào?",

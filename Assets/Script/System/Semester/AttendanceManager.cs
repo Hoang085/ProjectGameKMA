@@ -32,6 +32,9 @@ public class AttendanceManager : MonoBehaviour
     {
         clock.OnSlotStarted += HandleSlotStarted;
         clock.OnSlotEnded += HandleSlotEnded;
+        
+        // **MỚI: Đăng ký event OnWeekChanged để snapshot số vắng cuối tuần 5**
+        clock.OnWeekChanged += HandleWeekChanged;
 
         // Khởi tạo trạng thái theo ca hiện tại
         HandleSlotStarted(clock.Week, null, clock.SlotIndex1Based);
@@ -42,8 +45,11 @@ public class AttendanceManager : MonoBehaviour
         if (!clock) return;
         clock.OnSlotStarted -= HandleSlotStarted;
         clock.OnSlotEnded -= HandleSlotEnded;
+        
+        // **MỚI: Hủy đăng ký OnWeekChanged**
+        clock.OnWeekChanged -= HandleWeekChanged;
     }
-
+    
     // === Sự kiện Slot ===
     private void HandleSlotStarted(int week, string _, int slotIndex1Based)
     {
@@ -247,4 +253,51 @@ public class AttendanceManager : MonoBehaviour
 
     private static string Normalize(string s) =>
         (s ?? "").Trim().ToLowerInvariant();
+
+    /// <summary>
+    /// **MỚI: Xử lý khi chuyển tuần - tạo snapshot số vắng cuối tuần 5**
+    /// </summary>
+    private void HandleWeekChanged()
+    {
+        int currentWeek = clock.Week;
+        int currentTerm = clock.Term;
+        
+        // Chỉ xử lý khi VỪA chuyển từ tuần 5 sang tuần 6
+        if (currentWeek == 6)
+        {
+            Debug.Log($"[AttendanceManager] ✓ Chuyển sang tuần 6 - Tạo snapshot số vắng cuối tuần 5");
+            CreateWeek5Snapshots(currentTerm);
+        }
+    }
+    
+    /// <summary>
+    /// **MỚI: Tạo snapshot số vắng cho TẤT CẢ môn học ở cuối tuần 5**
+    /// </summary>
+    private void CreateWeek5Snapshots(int term)
+    {
+        var sem = GetCurrentSemester();
+        if (sem == null || sem.Subjects == null) return;
+        
+        foreach (var subjectData in sem.Subjects)
+        {
+            if (subjectData == null || string.IsNullOrWhiteSpace(subjectData.Name)) continue;
+            
+            // Lấy số vắng hiện tại
+            int currentAbsences = GetAbsences(subjectData.Name, term);
+            
+            // Tạo key snapshot
+            string normalizedName = Normalize(subjectData.Name);
+            string snapshotKey = $"abs_W5_T{term}_{normalizedName}";
+            
+            // **CHỈ TẠO NẾU CHƯA CÓ** (tránh ghi đè nếu đã có snapshot từ lần chuyển kỳ trước)
+            if (!PlayerPrefs.HasKey(snapshotKey))
+            {
+                PlayerPrefs.SetInt(snapshotKey, currentAbsences);
+                Debug.Log($"[AttendanceManager] → Snapshot {subjectData.Name}: {currentAbsences} buổi vắng");
+            }
+        }
+        
+        PlayerPrefs.Save();
+        Debug.Log($"[AttendanceManager] ✓ Đã tạo snapshot cho tất cả môn ở cuối tuần 5");
+    }
 }

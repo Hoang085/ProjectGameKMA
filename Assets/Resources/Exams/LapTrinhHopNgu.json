@@ -1,7 +1,7 @@
 ﻿{
   "examTitle": "Đề thi cuối kì 7",
   "subjectName": "Lập Trình Hợp Ngữ",
-  "durationSeconds": 120,
+  "durationSeconds": 1800,
   "questions": [
     {
       "text": "Thanh ghi nào được dùng làm bộ đếm trong các vòng lặp LOOP của Intel x86?",

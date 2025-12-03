@@ -1,7 +1,7 @@
 {
   "examTitle": "Đề thi cuối kì 8",
   "subjectName": "Lập Trình ARM",
-  "durationSeconds": 120,
+  "durationSeconds": 1800,
   "questions": [
     {
       "text": "Tập lệnh ARM sử dụng kiến trúc nào?",
