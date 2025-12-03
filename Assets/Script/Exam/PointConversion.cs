@@ -1,6 +1,6 @@
 public class PointConversion
 {
-    public float Convert10To4(float x)
+    public static float Convert10To4(float x)
     {
         if (x >= 9.0f) return 4.0f;    
         if (x >= 8.5f) return 3.7f;    
@@ -13,7 +13,7 @@ public class PointConversion
         return 0.0f;                  
     }
 
-    public string LetterFrom10(float x)
+    public static string LetterFrom10(float x)
     {
         if (x >= 9.0f) return "A+";
         if (x >= 8.5f) return "A";

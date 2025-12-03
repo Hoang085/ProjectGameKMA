@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 35ebe7761f29f37469c8882074270a8f
+guid: a47200aba20c1d7439c3671ddb53e644
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Avatar_0
+      name: ChibiQuit_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 38
-        width: 904
-        height: 904
+        x: 8
+        y: 0
+        width: 837
+        height: 1280
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd67931d32336944ebd62221672a14cc
-      internalID: 208560124
+      spriteID: add0ae4c211876c4ba7743854a11bcdb
+      internalID: 1822858123
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fe38b6c7cce68cf48bbd0055a0b8d51b
+    spriteID: 80c05421196be3544977e74e328669c1
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Avatar_0: 208560124
+      ChibiQuit_0: 1822858123
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -129,11 +129,15 @@ public class SettingUI : BasePopUp
 
     public void OnClickMenu()
     {
-        SceneLoader.Load("MainMenu");
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
     public void OnClickCheatGame()
     {
+        PopupManager.Ins.OnCloseScreen(PopupName.Setting);
         if (cheatGamePb == null)
         {
             return;

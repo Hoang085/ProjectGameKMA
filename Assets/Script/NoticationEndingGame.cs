@@ -18,17 +18,44 @@ public class NoticationEndingGame : MonoBehaviour
 
     public void GetMes1()
     {
+        // **MỚI: Đảm bảo notification đang active**
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
+        
         textMessage.text = message1;
+        
+        // **MỚI: Debug log để kiểm tra**
+        Debug.Log($"[NoticationEndingGame] Message 1 displayed. GameObject active: {gameObject.activeSelf}");
     }
 
     public void GetMes2()
     {
+        // **MỚI: Đảm bảo notification đang active**
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
+        
         textMessage.text = message2;
+        
+        // **MỚI: Debug log để kiểm tra**
+        Debug.Log($"[NoticationEndingGame] Message 2 displayed. GameObject active: {gameObject.activeSelf}");
     }
 
     public void GetMes3()
     {
+        // **MỚI: Đảm bảo notification đang active**
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
+        
         textMessage.text = message3;
+        
+        // **MỚI: Debug log để kiểm tra**
+        Debug.Log($"[NoticationEndingGame] Message 3 displayed. GameObject active: {gameObject.activeSelf}");
     }
 
     public void OnClickMenu()
