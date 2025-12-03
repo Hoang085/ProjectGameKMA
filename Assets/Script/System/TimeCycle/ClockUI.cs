@@ -28,7 +28,7 @@ public class ClockUI : MonoBehaviour
 
     int minuteOfDay;
     int displayMinuteOfDay;
-    int lastDisplayedMinuteBeforeWarp; // 🟩 thêm: giữ phút cũ trước khi đổi ca
+    int lastDisplayedMinuteBeforeWarp;
     bool hooked;
     bool clockWarping;
     Color _clockBaseColor;
@@ -50,7 +50,7 @@ public class ClockUI : MonoBehaviour
         {
             minuteOfDay = GameClock.Ins.MinuteOfDay;
             displayMinuteOfDay = minuteOfDay;
-            lastDisplayedMinuteBeforeWarp = minuteOfDay; // 🟩 init
+            lastDisplayedMinuteBeforeWarp = minuteOfDay; 
         }
         RefreshUI();
     }
@@ -61,7 +61,6 @@ public class ClockUI : MonoBehaviour
     {
         TryHookGameClock();
 
-        // 🟩 Ghi nhớ giá trị hiển thị cuối cùng khi không warp
         if (!clockWarping)
             lastDisplayedMinuteBeforeWarp = displayMinuteOfDay;
 
@@ -199,7 +198,6 @@ public class ClockUI : MonoBehaviour
         clockWarping = false;
     }
 
-    // Convenience
     public void OnClickNextSlot() { if (GameClock.Ins) GameClock.Ins.NextSlot(); }
     public void JumpToNextSessionNow() { if (GameClock.Ins) GameClock.Ins.JumpToNextSessionStart(); }
 }

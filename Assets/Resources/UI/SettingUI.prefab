@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 208560124, guid: 35ebe7761f29f37469c8882074270a8f, type: 3}
+  m_Sprite: {fileID: -2010266834, guid: 2ccb1a2a89c136147b62c60c0c37146d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -745392582, guid: f8e42ef62b44b60499b206517c5914ff, type: 3}
+  m_Sprite: {fileID: 1822858123, guid: a47200aba20c1d7439c3671ddb53e644, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2161,7 +2161,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tr\u1EDF v\u1EC1 Menu"
+  m_text: "Tho\xE1t Game"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be9925a80bc659c4cae60b5f24f85851, type: 2}
   m_sharedMaterial: {fileID: -7190342717681885157, guid: be9925a80bc659c4cae60b5f24f85851, type: 2}

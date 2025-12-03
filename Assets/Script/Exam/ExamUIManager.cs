@@ -53,13 +53,9 @@ public class ExamUIManager : MonoBehaviour
     private bool _running;
     private bool _submitted;
 
-    private PointConversion _pointConversion;
-
     // ---------- Lifecycle ----------
     void Awake()
     {
-        _pointConversion = new PointConversion();
-
         if (btnPrev) btnPrev.onClick.AddListener(OnPrev);
         if (btnNext) btnNext.onClick.AddListener(OnNext);
         if (btnSubmit) btnSubmit.onClick.AddListener(OnSubmit);
@@ -258,8 +254,8 @@ public class ExamUIManager : MonoBehaviour
                 correct++;
 
         float score10 = Mathf.Round((correct / (float)_exam.questions.Length) * 100f) / 10f;
-        float score4 = _pointConversion.Convert10To4(score10);
-        string letter = _pointConversion.LetterFrom10(score10);
+        float score4 = PointConversion.Convert10To4(score10);
+        string letter = PointConversion.LetterFrom10(score10);
         bool pass = score10 >= 4.0f;
 
         string subjectKey = KeyUtil.MakeKey(_exam.subjectName);

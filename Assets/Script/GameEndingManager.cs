@@ -130,6 +130,17 @@ public class GameEndingManager : MonoBehaviour
 
                 DebugLog("[GameEndingManager] ✓ Video ending đã kết thúc!");
                 _waitingForVideo = false;
+
+                // **MỚI: Chờ thêm vài frame để video popup hoàn toàn đóng**
+                yield return null;
+                yield return null;
+                
+                // **MỚI: Đảm bảo video popup đã tắt hẳn**
+                if (videoPopup.gameObject.activeSelf)
+                {
+                    videoPopup.gameObject.SetActive(false);
+                    DebugLog("[GameEndingManager] Tắt video popup thủ công");
+                }
             }
             else
             {
@@ -143,11 +154,22 @@ public class GameEndingManager : MonoBehaviour
         
         Time.timeScale = 1f;
         
+        // **MỚI: Chờ thêm 1 frame sau khi restore timeScale**
+        yield return null;
+        
         // **MỚI: Hiển thị NoticationEndingGame với message 1**
         if (noticationEndingGame != null)
         {
             DebugLog("[GameEndingManager] Hiển thị NoticationEndingGame với thông điệp 1...");
-            noticationEndingGame.gameObject.SetActive(true);
+            
+            // **MỚI: Đảm bảo GameObject chính của notification đang active**
+            if (!noticationEndingGame.gameObject.activeInHierarchy)
+            {
+                noticationEndingGame.gameObject.SetActive(true);
+                DebugLog("[GameEndingManager] Đã kích hoạt notification GameObject");
+                yield return null; // Chờ 1 frame để Unity kích hoạt object
+            }
+            
             noticationEndingGame.GetMes1();
             
             // Không kết thúc game ngay - chờ người chơi click nút trong notification
