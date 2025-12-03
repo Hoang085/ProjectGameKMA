@@ -18,6 +18,18 @@ public class CheatGamePopupUI : MonoBehaviour
     [SerializeField] private Button btnApplyStamina;
     [SerializeField] private TMP_InputField inputStamina;
 
+    [Header("Apply Cheat Friendly Point")]
+    [SerializeField] private Button btnApplyFriendlyPoint;
+    [SerializeField] private TMP_InputField inputFriendlyPoint;
+
+    [Header("Jump To Term (Học Kì)")]
+    [Tooltip("Danh sách các nút nhảy tới học kì (Kì 1 - Kì 10)")]
+    [SerializeField] private Button[] btnJumpToTerms = new Button[10];
+
+    [Header("Skip Learning Process")]
+    [Tooltip("Nút bỏ qua quá trình học - nhảy tới tuần 5 và đánh dấu hoàn thành tất cả môn")]
+    [SerializeField] private Button btnSkipLearning;
+
     [Header("Data Configuration")]
     [SerializeField] private List<SemesterConfig> allSemesterConfigs;
 
@@ -31,6 +43,311 @@ public class CheatGamePopupUI : MonoBehaviour
 
         if (btnApplyStamina != null)
             btnApplyStamina.onClick.AddListener(OnClickApplyStamina);
+
+        if (btnApplyFriendlyPoint != null)
+            btnApplyFriendlyPoint.onClick.AddListener(OnClickApplyFriendlyPoint);
+
+        if (btnSkipLearning != null)
+            btnSkipLearning.onClick.AddListener(OnClickSkipLearning);
+
+        // Gắn listener cho các nút nhảy học kì
+        SetupJumpToTermButtons();
+    }
+
+    /// <summary>
+    /// **MỚI: Cheat bỏ qua quá trình học**
+    /// Nhảy tới Tuần 5, Chủ Nhật, 7h, Ca 1 và đánh dấu tất cả môn đã hoàn thành
+    /// </summary>
+    private void OnClickSkipLearning()
+    {
+        if (GameClock.Ins == null)
+        {
+            Debug.LogError("[Cheat] Không tìm thấy GameClock!");
+            return;
+        }
+
+        // Lấy kỳ hiện tại
+        int currentTerm = GameClock.Ins.Term;
+
+        // Lấy năm học từ CalendarConfig
+        CalendarConfig config = GameClock.Ins.config;
+        if (config == null)
+        {
+            Debug.LogError("[Cheat] CalendarConfig chưa được gán trong GameClock!");
+            return;
+        }
+
+        int termsPerYear = Mathf.Max(1, config.termsPerYear);
+        int currentYear = ((currentTerm - 1) / termsPerYear) + 1;
+
+        // Nhảy tới Tuần 5, Chủ Nhật (Sunday = 6), 7h, Ca 1
+        GameClock.Ins.SetTime(
+            year: currentYear,
+            term: currentTerm,
+            week: 5,
+            dayIndex1Based: 7, // Chủ Nhật
+            slot: DaySlot.MorningA
+        );
+
+        // Đặt thời gian về 7h sáng
+        GameClock.Ins.SetMinuteOfDay(GameClock.Ins.tSession1, syncSlot: true);
+
+        Debug.Log($"[Cheat] Đã nhảy tới Tuần 5, Chủ Nhật, 7h, Ca 1 (Kỳ {currentTerm})");
+
+        // Lấy SemesterConfig cho kỳ hiện tại
+        int configIndex = currentTerm - 1;
+        if (allSemesterConfigs == null || configIndex < 0 || configIndex >= allSemesterConfigs.Count || allSemesterConfigs[configIndex] == null)
+        {
+            Debug.LogError($"[Cheat] Chưa setup Config cho Kì {currentTerm} trong Inspector!");
+            return;
+        }
+
+        SemesterConfig targetConfig = allSemesterConfigs[configIndex];
+        if (targetConfig.Subjects == null || !targetConfig.Subjects.Any())
+        {
+            Debug.LogWarning($"[Cheat] Kì {currentTerm} không có môn học nào trong Config.");
+            return;
+        }
+
+        // Đánh dấu tất cả các môn đã hoàn thành đủ số buổi
+        MarkAllSubjectsComplete(targetConfig, currentTerm);
+
+        // Tạo lịch thi cho tất cả các môn
+        CreateExamSchedulesForAllSubjects();
+
+        // Hiển thị thông báo
+        if (NotificationPopupSpawner.Ins != null)
+        {
+            NotificationPopupSpawner.Ins.Enqueue($"Đã bỏ qua quá trình học!");
+        }
+
+        // Refresh UI
+        RefreshRelatedUIs(currentTerm);
+
+        OnclickClose();
+    }
+
+    /// <summary>
+    /// **MỚI: Đánh dấu tất cả môn đã hoàn thành đủ số buổi học**
+    /// </summary>
+    private void MarkAllSubjectsComplete(SemesterConfig semesterConfig, int currentTerm)
+    {
+        // Tìm tất cả TeacherAction trong scene
+        var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
+        
+        foreach (var subject in semesterConfig.Subjects)
+        {
+            if (subject == null || string.IsNullOrEmpty(subject.Name)) continue;
+
+            // Tìm TeacherAction tương ứng với môn học
+            TeacherAction matchingTeacher = null;
+            SubjectEntry matchingSubjectEntry = null;
+
+            foreach (var teacher in teachers)
+            {
+                if (teacher == null || teacher.subjects == null) continue;
+
+                foreach (var subjectEntry in teacher.subjects)
+                {
+                    if (subjectEntry == null) continue;
+
+                    // So sánh tên môn (case-insensitive)
+                    if (string.Equals(subjectEntry.subjectName, subject.Name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        matchingTeacher = teacher;
+                        matchingSubjectEntry = subjectEntry;
+                        break;
+                    }
+                }
+
+                if (matchingTeacher != null) break;
+            }
+
+            if (matchingSubjectEntry == null)
+            {
+                Debug.LogWarning($"[Cheat] Không tìm thấy SubjectEntry cho môn {subject.Name}");
+                continue;
+            }
+
+            // Tính số buổi cần học (threshold)
+            int maxSessions = matchingSubjectEntry.maxSessions;
+            int requiredSessions = GetLearningSessionThreshold(maxSessions);
+
+            // Lưu progress vào PlayerPrefs
+            SaveSubjectProgress(matchingSubjectEntry, currentTerm, requiredSessions);
+
+            Debug.Log($"[Cheat] Đã đánh dấu môn {subject.Name} hoàn thành ({requiredSessions}/{maxSessions} buổi)");
+        }
+    }
+
+    /// <summary>
+    /// **MỚI: Lưu progress môn học vào PlayerPrefs**
+    /// </summary>
+    private void SaveSubjectProgress(SubjectEntry subject, int term, int sessionCount)
+    {
+        string subjectKey = GetStableSubjectKey(subject);
+        
+        // Lưu vào key chính
+        string mainKey = $"T{term}_SUBJ_{subjectKey}_session";
+        PlayerPrefs.SetInt(mainKey, sessionCount);
+
+        // Lưu vào legacy keys để tương thích
+        string legacyKey1 = $"T{term}_SUBJ_{NormalizeKey(subject.subjectName)}_session";
+        string legacyKey2 = $"SUBJ_{NormalizeKey(subject.subjectName)}_session";
+        
+        PlayerPrefs.SetInt(legacyKey1, sessionCount);
+        PlayerPrefs.SetInt(legacyKey2, sessionCount);
+        
+        PlayerPrefs.Save();
+    }
+
+    /// <summary>
+    /// **MỚI: Lấy ngưỡng số buổi cần học để được thi**
+    /// </summary>
+    private int GetLearningSessionThreshold(int actualMaxSessions)
+    {
+        // Môn 18 buổi -> Học xong buổi 15
+        if (actualMaxSessions >= 18) return 15;
+
+        // Môn 15 buổi -> Học xong buổi 15
+        if (actualMaxSessions == 15) return 15;
+
+        // Môn 12 buổi -> Học xong buổi 10
+        if (actualMaxSessions >= 12) return 10;
+
+        // Các môn ngắn hạn khác -> Học hết
+        return actualMaxSessions;
+    }
+
+    /// <summary>
+    /// **MỚI: Tạo lịch thi cho tất cả các môn đã hoàn thành**
+    /// </summary>
+    private void CreateExamSchedulesForAllSubjects()
+    {
+        var teachers = FindObjectsByType<TeacherAction>(FindObjectsSortMode.None);
+        
+        foreach (var teacher in teachers)
+        {
+            if (teacher == null || teacher.subjects == null) continue;
+
+            foreach (var subject in teacher.subjects)
+            {
+                if (subject == null || string.IsNullOrEmpty(subject.subjectName)) continue;
+
+                // Gọi CheckAndCreateExamScheduleIfFinished() để tạo lịch thi
+                teacher.CheckAndCreateExamScheduleIfFinished(subject);
+            }
+        }
+
+        Debug.Log("[Cheat] Đã tạo lịch thi cho tất cả các môn");
+    }
+
+    /// <summary>
+    /// **MỚI: Lấy stable subject key giống TeacherAction**
+    /// </summary>
+    private string GetStableSubjectKey(SubjectEntry s)
+    {
+        var baseKey = !string.IsNullOrWhiteSpace(s.subjectKeyForNotes) ? s.subjectKeyForNotes : s.subjectName;
+        return NormalizeKey(baseKey);
+    }
+
+    /// <summary>
+    /// **MỚI: Normalize key giống TeacherAction**
+    /// </summary>
+    private static string NormalizeKey(string s) => (s ?? "").Trim().ToLowerInvariant();
+
+    private void SetupJumpToTermButtons()
+    {
+        for (int i = 0; i < btnJumpToTerms.Length; i++)
+        {
+            if (btnJumpToTerms[i] != null)
+            {
+                int termIndex = i + 1; // Kì 1, Kì 2, ..., Kì 10
+                btnJumpToTerms[i].onClick.RemoveAllListeners();
+                btnJumpToTerms[i].onClick.AddListener(() => OnClickJumpToTerm(termIndex));
+                
+                Debug.Log($"[Cheat] Đã gắn listener cho nút Kì {termIndex}");
+            }
+        }
+    }
+
+    private void OnClickJumpToTerm(int targetTerm)
+    {
+        if (GameClock.Ins == null)
+        {
+            Debug.LogError("[Cheat] Không tìm thấy GameClock!");
+            return;
+        }
+
+        // Lấy thông tin từ CalendarConfig
+        CalendarConfig config = GameClock.Ins.config;
+        if (config == null)
+        {
+            Debug.LogError("[Cheat] CalendarConfig chưa được gán trong GameClock!");
+            return;
+        }
+
+        // Tính toán năm học dựa trên học kì
+        int termsPerYear = Mathf.Max(1, config.termsPerYear);
+        int targetYear = ((targetTerm - 1) / termsPerYear) + 1;
+
+        // Đặt về tuần 1, ngày 1, ca 1 của học kì mới
+        GameClock.Ins.SetTime(
+            year: targetYear,
+            term: targetTerm,
+            week: 1,
+            dayIndex1Based: 1,
+            slot: DaySlot.MorningA
+        );
+
+        // Đặt lại thời gian về đầu ngày (07:00)
+        GameClock.Ins.SetMinuteOfDay(GameClock.Ins.tSession1, syncSlot: true);
+
+        Debug.Log($"[Cheat] Đã nhảy tới Kì {targetTerm}");
+
+        // Hiển thị thông báo nếu có NotificationPopupSpawner
+        if (NotificationPopupSpawner.Ins != null)
+        {
+            NotificationPopupSpawner.Ins.Enqueue($"Đã nhảy tới Kì {targetTerm}!");
+        }
+
+        // Refresh các UI liên quan nếu cần
+        RefreshRelatedUIs(targetTerm);
+
+        OnclickClose();
+    }
+
+    private void RefreshRelatedUIs(int currentTerm)
+    {
+        // Refresh bảng điểm nếu đang mở
+        var scoreBoard = FindFirstObjectByType<ScoreSubjectUI>();
+        if (scoreBoard != null && scoreBoard.gameObject.activeInHierarchy)
+        {
+            scoreBoard.SetSemester(currentTerm);
+            Debug.Log($"[Cheat] Đã refresh bảng điểm cho Kì {currentTerm}");
+        }
+
+        // Refresh ClockUI nếu có
+        var clockUI = FindFirstObjectByType<ClockUI>();
+        if (clockUI != null)
+        {
+            Debug.Log("[Cheat] ClockUI sẽ tự động cập nhật qua GameClock events");
+        }
+
+        // Refresh ScheduleUI nếu đang mở
+        var scheduleUI = FindFirstObjectByType<ScheduleUI>();
+        if (scheduleUI != null && scheduleUI.gameObject.activeInHierarchy)
+        {
+            scheduleUI.RefreshExamScheduleImmediately();
+            Debug.Log("[Cheat] Đã refresh ScheduleUI");
+        }
+
+        // Trigger notification refresh trong GameManager
+        if (GameManager.Ins != null)
+        {
+            GameManager.Ins.RefreshAllNotificationStatesAfterRestore();
+            Debug.Log("[Cheat] Đã refresh notification states");
+        }
     }
 
     public void OnclickClose()
@@ -153,5 +470,29 @@ public class CheatGamePopupUI : MonoBehaviour
         {
             Debug.LogWarning("[Cheat] Thể lực phải là số nguyên!");
         }
+    }
+
+    private void OnClickApplyFriendlyPoint()
+    {
+        if (inputFriendlyPoint == null || string.IsNullOrEmpty(inputFriendlyPoint.text))
+        {
+            Debug.LogWarning("[Cheat] Vui lòng nhập điểm thân thiện!");
+            return;
+        }
+
+        if (!int.TryParse(inputFriendlyPoint.text, out int friendlyPoint))
+        {
+            Debug.LogWarning("[Cheat] Điểm thân thiện phải là số nguyên!");
+            return;
+        }
+
+        friendlyPoint = Mathf.Clamp(friendlyPoint, 0, 1000);
+
+        PlayerPrefs.SetInt(GameManager.FRIENDLY_POINT_KEY, friendlyPoint);
+        PlayerPrefs.Save();
+
+        Debug.Log($"[Cheat] Đã set Điểm Thân Thiện = {friendlyPoint}");
+
+        OnclickClose();
     }
 }

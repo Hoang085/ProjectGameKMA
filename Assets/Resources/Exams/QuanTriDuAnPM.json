@@ -1,156 +1,156 @@
 {
   "examTitle": "Đề thi cuối kì 7",
   "subjectName": "Quản Trị Dự Án Phần Mềm",
-  "durationSeconds": 1200,
+  "durationSeconds": 1800,
   "questions": [
     {
       "text": "Dự án phần mềm là gì?",
-      "options": ["Công việc lặp lại nhiều lần", "Một nhiệm vụ có thời hạn với mục tiêu rõ ràng", "Một hoạt động không có kết thúc", "Một quy trình bảo trì"],
+      "options": [ "Công việc lặp lại nhiều lần", "Một nhiệm vụ có thời hạn với mục tiêu rõ ràng", "Một hoạt động không có kết thúc", "Một quy trình bảo trì" ],
       "correctIndex": 1
     },
     {
       "text": "Ai là người chịu trách nhiệm chính cho việc lập kế hoạch dự án?",
-      "options": ["Nhà tài trợ", "Quản lý dự án", "Lập trình viên", "Khách hàng"],
+      "options": [ "Nhà tài trợ", "Quản lý dự án", "Lập trình viên", "Khách hàng" ],
       "correctIndex": 1
     },
     {
       "text": "Tài liệu SRS mô tả điều gì?",
-      "options": ["Yêu cầu phần mềm", "Thiết kế giao diện", "Kế hoạch kiểm thử", "Cơ sở dữ liệu"],
+      "options": [ "Yêu cầu phần mềm", "Thiết kế giao diện", "Kế hoạch kiểm thử", "Cơ sở dữ liệu" ],
       "correctIndex": 0
     },
     {
       "text": "Gantt Chart dùng để làm gì?",
-      "options": ["Biểu diễn tiến độ dự án", "Mô tả luồng dữ liệu", "Thiết kế hệ thống", "Phân tích rủi ro"],
+      "options": [ "Biểu diễn tiến độ dự án", "Mô tả luồng dữ liệu", "Thiết kế hệ thống", "Phân tích rủi ro" ],
       "correctIndex": 0
     },
     {
       "text": "Critical Path (đường găng) là:",
-      "options": ["Con đường nhanh nhất", "Chuỗi công việc chậm nhất ảnh hưởng deadline", "Các task lặp lại", "Phần công việc không ảnh hưởng dự án"],
+      "options": [ "Con đường nhanh nhất", "Chuỗi công việc chậm nhất ảnh hưởng deadline", "Các task lặp lại", "Phần công việc không ảnh hưởng dự án" ],
       "correctIndex": 1
     },
     {
       "text": "Rủi ro trong dự án là gì?",
-      "options": ["Tình huống chắc chắn xảy ra", "Một sự kiện không chắc chắn có thể ảnh hưởng dự án", "Sai sót của lập trình viên", "Thiếu tài liệu"],
+      "options": [ "Tình huống chắc chắn xảy ra", "Một sự kiện không chắc chắn có thể ảnh hưởng dự án", "Sai sót của lập trình viên", "Thiếu tài liệu" ],
       "correctIndex": 1
     },
     {
       "text": "Lĩnh vực nào sau đây thuộc quản trị dự án?",
-      "options": ["Quản lý phạm vi", "Thiết kế UX/UI", "Viết tài liệu API", "Lập trình"],
+      "options": [ "Quản lý phạm vi", "Thiết kế UX/UI", "Viết tài liệu API", "Lập trình" ],
       "correctIndex": 0
     },
     {
       "text": "Phát biểu nào đúng về Agile?",
-      "options": ["Cứng nhắc và cố định", "Thay đổi linh hoạt theo yêu cầu", "Không cần tài liệu", "Không dùng họp"],
+      "options": [ "Cứng nhắc và cố định", "Thay đổi linh hoạt theo yêu cầu", "Không cần tài liệu", "Không dùng họp" ],
       "correctIndex": 1
     },
     {
       "text": "Scrum Master có vai trò gì?",
-      "options": ["Quản lý tài chính", "Hỗ trợ nhóm Scrum và loại bỏ cản trở", "Viết code", "Kiểm thử phần mềm"],
+      "options": [ "Quản lý tài chính", "Hỗ trợ nhóm Scrum và loại bỏ cản trở", "Viết code", "Kiểm thử phần mềm" ],
       "correctIndex": 1
     },
     {
       "text": "Product Backlog là gì?",
-      "options": ["Danh sách lỗi", "Danh sách tính năng cần phát triển", "Danh sách nhân sự", "Bảng test"],
+      "options": [ "Danh sách lỗi", "Danh sách tính năng cần phát triển", "Danh sách nhân sự", "Bảng test" ],
       "correctIndex": 1
     },
     {
       "text": "Stakeholder trong dự án là:",
-      "options": ["Người tài trợ duy nhất", "Mọi đối tượng liên quan hoặc bị ảnh hưởng bởi dự án", "Chỉ khách hàng", "Chỉ quản lý"],
+      "options": [ "Người tài trợ duy nhất", "Mọi đối tượng liên quan hoặc bị ảnh hưởng bởi dự án", "Chỉ khách hàng", "Chỉ quản lý" ],
       "correctIndex": 1
     },
     {
       "text": "Sprint thông thường kéo dài bao lâu?",
-      "options": ["1–4 tuần", "1 năm", "6 tháng", "1 ngày"],
+      "options": [ "1–4 tuần", "1 năm", "6 tháng", "1 ngày" ],
       "correctIndex": 0
     },
     {
       "text": "Burn-down Chart thể hiện:",
-      "options": ["Số lỗi phát hiện", "Tiến độ công việc còn lại trong Sprint", "Số nhân sự nhóm", "Tài chính dự án"],
+      "options": [ "Số lỗi phát hiện", "Tiến độ công việc còn lại trong Sprint", "Số nhân sự nhóm", "Tài chính dự án" ],
       "correctIndex": 1
     },
     {
       "text": "WBS (Work Breakdown Structure) là:",
-      "options": ["Biểu đồ Gantt", "Cấu trúc phân rã công việc", "Kế hoạch kiểm thử", "Bản thiết kế UI"],
+      "options": [ "Biểu đồ Gantt", "Cấu trúc phân rã công việc", "Kế hoạch kiểm thử", "Bản thiết kế UI" ],
       "correctIndex": 1
     },
     {
       "text": "Phạm vi dự án được xác định trong tài liệu nào?",
-      "options": ["Project Charter", "SRS", "Test Plan", "Design Document"],
+      "options": [ "Project Charter", "SRS", "Test Plan", "Design Document" ],
       "correctIndex": 0
     },
     {
       "text": "Kỹ thuật PERT dùng để:",
-      "options": ["Ước lượng thời gian theo 3 giá trị", "Thiết kế chức năng", "Kiểm thử tích hợp", "Tạo mockup"],
+      "options": [ "Ước lượng thời gian theo 3 giá trị", "Thiết kế chức năng", "Kiểm thử tích hợp", "Tạo mockup" ],
       "correctIndex": 0
     },
     {
       "text": "Trong mô hình Waterfall, giai đoạn nào diễn ra đầu tiên?",
-      "options": ["Coding", "Phân tích yêu cầu", "Kiểm thử", "Bảo trì"],
+      "options": [ "Coding", "Phân tích yêu cầu", "Kiểm thử", "Bảo trì" ],
       "correctIndex": 1
     },
     {
       "text": "Chi phí do thay đổi yêu cầu tăng cao nhất ở giai đoạn nào?",
-      "options": ["Yêu cầu", "Thiết kế", "Kiểm thử", "Triển khai"],
+      "options": [ "Yêu cầu", "Thiết kế", "Kiểm thử", "Triển khai" ],
       "correctIndex": 3
     },
     {
       "text": "Ma trận RACI giúp làm gì?",
-      "options": ["Quản lý rủi ro", "Xác định trách nhiệm của từng vai trò", "Đo chất lượng phần mềm", "Phân phối tài chính"],
+      "options": [ "Quản lý rủi ro", "Xác định trách nhiệm của từng vai trò", "Đo chất lượng phần mềm", "Phân phối tài chính" ],
       "correctIndex": 1
     },
     {
       "text": "Phân tích SWOT dùng để:",
-      "options": ["Đánh giá điểm mạnh và yếu của dự án", "Tính toán chi phí", "Viết tài liệu thiết kế", "Tạo biểu đồ class"],
+      "options": [ "Đánh giá điểm mạnh và yếu của dự án", "Tính toán chi phí", "Viết tài liệu thiết kế", "Tạo biểu đồ class" ],
       "correctIndex": 0
     },
     {
       "text": "Baseline là gì?",
-      "options": ["Tài nguyên cần thiết", "Mốc tham chiếu đã được phê duyệt", "Giai đoạn lập trình", "File code nguồn"],
+      "options": [ "Tài nguyên cần thiết", "Mốc tham chiếu đã được phê duyệt", "Giai đoạn lập trình", "File code nguồn" ],
       "correctIndex": 1
     },
     {
       "text": "Tài liệu mô tả thiết kế hệ thống là:",
-      "options": ["SRS", "SDS (Software Design Specification)", "User Story", "Daily Report"],
+      "options": [ "SRS", "SDS (Software Design Specification)", "User Story", "Daily Report" ],
       "correctIndex": 1
     },
     {
       "text": "User Story bao gồm 3 phần: Ai – làm gì – …?",
-      "options": ["Khi nào", "Để làm gì", "Ở đâu", "Bằng cách nào"],
+      "options": [ "Khi nào", "Để làm gì", "Ở đâu", "Bằng cách nào" ],
       "correctIndex": 1
     },
     {
       "text": "Ma trận rủi ro (Risk Matrix) dựa trên:",
-      "options": ["Xác suất và mức độ ảnh hưởng", "Số nhân sự", "Chi phí thiết bị", "Số dòng code"],
+      "options": [ "Xác suất và mức độ ảnh hưởng", "Số nhân sự", "Chi phí thiết bị", "Số dòng code" ],
       "correctIndex": 0
     },
     {
       "text": "Scope Creep là gì?",
-      "options": ["Giảm phạm vi dự án", "Mở rộng phạm vi không kiểm soát", "Giảm nhân sự", "Thay đổi deadline"],
+      "options": [ "Giảm phạm vi dự án", "Mở rộng phạm vi không kiểm soát", "Giảm nhân sự", "Thay đổi deadline" ],
       "correctIndex": 1
     },
     {
       "text": "Daily Scrum dài bao lâu?",
-      "options": ["4 giờ", "30 phút", "15 phút", "1 giờ"],
+      "options": [ "4 giờ", "30 phút", "15 phút", "1 giờ" ],
       "correctIndex": 2
     },
     {
       "text": "Test Plan thuộc nhóm quản lý nào?",
-      "options": ["Quản lý chất lượng", "Quản lý chi phí", "Quản lý nhân sự", "Quản lý giao tiếp"],
+      "options": [ "Quản lý chất lượng", "Quản lý chi phí", "Quản lý nhân sự", "Quản lý giao tiếp" ],
       "correctIndex": 0
     },
     {
       "text": "Kỹ thuật Earned Value Management (EVM) dùng để:",
-      "options": ["Đánh giá hiệu suất và chi phí dự án", "Thiết kế hệ thống", "Tạo giao diện", "Kiểm thử đơn vị"],
+      "options": [ "Đánh giá hiệu suất và chi phí dự án", "Thiết kế hệ thống", "Tạo giao diện", "Kiểm thử đơn vị" ],
       "correctIndex": 0
     },
     {
       "text": "Biểu đồ PERT được dùng để tính:",
-      "options": ["Chi phí lập trình", "Mốc thời gian dự kiến", "Thiết kế UI", "Cấp bậc nhân sự"],
+      "options": [ "Chi phí lập trình", "Mốc thời gian dự kiến", "Thiết kế UI", "Cấp bậc nhân sự" ],
       "correctIndex": 1
     },
     {
       "text": "Tài liệu tổng quan mô tả mục tiêu, phạm vi, và các bên liên quan của dự án là:",
-      "options": ["Project Charter", "System Manual", "Design Document", "Sprint Backlog"],
+      "options": [ "Project Charter", "System Manual", "Design Document", "Sprint Backlog" ],
       "correctIndex": 0
     }
   ]

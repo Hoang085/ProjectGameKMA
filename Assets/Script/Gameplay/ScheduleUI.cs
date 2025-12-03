@@ -625,22 +625,28 @@ public class ScheduleUI : BasePopUp
             }
         }
     }
-    
+
     /// <summary>
     /// **SỬA: Lấy text hiển thị cho lịch thi dựa trên trạng thái - KIỂM TRA ĐÃ THI TRƯỚC**
     /// </summary>
     private string GetExamDisplayText(SubjectDataInfo subject)
     {
-        // **ƯU TIÊN 1: Hiển thị lịch thi lại nếu có và chưa thi lại**
+        // **ƯU TIÊN 1: Hiển thị lịch thi lại nếu có**
         if (subject.retakeExamInfo != null)
         {
             if (subject.retakeExamInfo.taken)
             {
+                // Kiểm tra xem thi lại có trượt tiếp không
+                string stableKey = GetStableSubjectKey(subject.subjectEntry);
+                if (ExamResultStorageFile.GetLatestScore10Cached(stableKey) < 4.0f)
+                {
+                    return "<color=red>Đã trượt thi lại</color>";
+                }
                 return "Đã hoàn thành thi lại";
             }
             else if (subject.retakeExamInfo.missed)
             {
-                return "Đã bỏ lỡ thi lại";
+                return "<color=red>Đã bỏ lỡ thi lại</color>";
             }
             else
             {
@@ -651,45 +657,58 @@ public class ScheduleUI : BasePopUp
                 return $"<color=orange>THI LẠI - {dayName} - Ca {subject.retakeExamInfo.examSlot} ({timeStr})</color>";
             }
         }
-        
-        // **ƯU TIÊN 2: Hiển thị lịch thi lần đầu - KIỂM TRA ĐÃ THI TRƯỚC**
+
+        // **ƯU TIÊN 2: Hiển thị trạng thái thi lần đầu**
         if (subject.examInfo != null)
         {
             if (subject.examInfo.taken)
             {
+                // **MỚI: Kiểm tra xem có trượt lần đầu không**
+                // Nếu trượt mà chưa có retakeInfo (ở trên null), nghĩa là đang chờ xếp lịch
+                string stableKey = "";
+                if (subject.subjectEntry != null)
+                    stableKey = GetStableSubjectKey(subject.subjectEntry);
+                else
+                    stableKey = NormalizeKey(subject.displayName);
+
+                if (ExamResultStorageFile.HasFailedOriginalExam(stableKey))
+                {
+                    // Đã thi, trượt, nhưng chưa có lịch thi lại
+                    return "<color=red>Chưa đạt - Đang xếp lịch thi lại...</color>";
+                }
+
                 return "Đã hoàn thành thi";
             }
             else if (subject.examInfo.missed)
             {
-                return "Đã bỏ lỡ kỳ thi";
+                return "<color=red>Đã bỏ lỡ kỳ thi</color>";
             }
             else
             {
-                // **CHƯA THI: Bây giờ mới kiểm tra bị cấm thi**
+                // CHƯA THI: Kiểm tra bị cấm thi
                 if (IsSubjectBanned(subject))
                 {
-                    return "<color=red>Bạn bị cấm thi</color>";
+                    return "<color=red>Bị Cấm Thi (Vắng quá nhiều)</color>";
                 }
-                
-                // Format exam time using TeacherAction data
+
                 string dayName = DataKeyText.VN_Weekday(subject.examInfo.examDay);
                 int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(subject.examInfo.examSlot));
                 string timeStr = DataKeyText.FormatHM(startMin);
-                return $"Thời gian thi - {dayName} - Ca {subject.examInfo.examSlot} ({timeStr})";
+                return $"Lịch thi: {dayName} - Ca {subject.examInfo.examSlot} ({timeStr})";
             }
         }
         else
         {
-            // **CHƯA CÓ LỊCH THI: Kiểm tra xem có bị cấm không**
+            // CHƯA CÓ LỊCH: Kiểm tra bị cấm
             if (IsSubjectBanned(subject))
             {
-                return "<color=red>Bạn bị cấm thi</color>";
+                return "<color=red>Bị Cấm Thi (Vắng quá nhiều)</color>";
             }
-            
+
             return "Chưa có lịch thi";
         }
     }
-    
+
     /// <summary>
     /// **MỚI: Kiểm tra xem môn học có bị cấm thi do nghỉ quá số buổi không**
     /// </summary>
@@ -832,16 +851,47 @@ public class ScheduleUI : BasePopUp
     /// </summary>
     private int GetAbsencesFromPlayerPrefs(string subjectName, int currentTerm)
     {
+        // **BƯỚC 1: Lấy số vắng thực tế từ AttendanceManager**
+        int totalAbsences = 0;
         if (AttendanceManager != null)
         {
-            return AttendanceManager.GetAbsences(subjectName, currentTerm);
+            totalAbsences = AttendanceManager.GetAbsences(subjectName, currentTerm);
         }
-
-        // Fallback: sử dụng ĐÚNG key pattern của AttendanceManager
-        // AttendanceManager sử dụng: $"abs_T{term}_{Normalize(subjectName)}"
-        string normalizedName = NormalizeKey(subjectName);
-        string key = $"abs_T{currentTerm}_{normalizedName}";
-        return PlayerPrefs.GetInt(key, 0);
+        else
+        {
+            // Fallback: đọc trực tiếp từ PlayerPrefs
+            string normalizedName = NormalizeKey(subjectName);
+            string key = $"abs_T{currentTerm}_{normalizedName}";
+            totalAbsences = PlayerPrefs.GetInt(key, 0);
+        }
+        
+        // **BƯỚC 2: Kiểm tra tuần hiện tại**
+        int currentWeek = Clock != null ? Clock.Week : 1;
+        
+        if (currentWeek <= 5)
+        {
+            // **TRONG 5 TUẦN ĐẦU: Hiển thị giá trị thực tế**
+            Debug.Log($"[ScheduleUI] {subjectName} (Tuần {currentWeek}): Hiển thị giá trị thực = {totalAbsences}");
+            return totalAbsences;
+        }
+        else
+        {
+            // **SAU TUẦN 5: Lấy snapshot đã lưu ở cuối tuần 5**
+            string snapshotKey = $"abs_W5_T{currentTerm}_{NormalizeKey(subjectName)}";
+            
+            // Nếu chưa có snapshot, tạo ngay bây giờ (fallback)
+            if (!PlayerPrefs.HasKey(snapshotKey))
+            {
+                // Lưu giá trị hiện tại làm snapshot
+                PlayerPrefs.SetInt(snapshotKey, totalAbsences);
+                PlayerPrefs.Save();
+                Debug.Log($"[ScheduleUI] {subjectName}: Tạo snapshot tuần 5 = {totalAbsences}");
+            }
+            
+            int frozenAbsences = PlayerPrefs.GetInt(snapshotKey, totalAbsences);
+            Debug.Log($"[ScheduleUI] {subjectName} (Tuần {currentWeek}): Đóng băng tại tuần 5 = {frozenAbsences} (thực tế = {totalAbsences})");
+            return frozenAbsences;
+        }
     }
 
     /// <summary>
@@ -1003,18 +1053,5 @@ public class ScheduleUI : BasePopUp
         }
 
         return best;
-    }
-
-    /// <summary>
-    /// **MỚI: Get absences cho subject**
-    /// </summary>
-    private int GetAbsencesForSubject(SubjectEntry subject)
-    {
-        if (AttendanceManager != null)
-        {
-            int currentTerm = Clock != null ? Clock.Term : 1;
-            return AttendanceManager.GetAbsences(subject.subjectName, currentTerm);
-        }
-        return 0;
     }
 }

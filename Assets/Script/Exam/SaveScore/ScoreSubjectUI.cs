@@ -136,7 +136,10 @@ public class ScoreSubjectUI : BasePopUp
     {
         // **MỚI: Ưu tiên kiểm tra bị cấm thi**
         if (at.isBanned)
-            return "BỊ CẤM THI";
+            return "Bị Cấm Thi";
+
+        if (at.examTitle == "Bỏ Thi")
+            return "Bỏ Thi";
 
         if (!string.IsNullOrEmpty(at.letter))
             return at.letter.Trim().ToUpperInvariant() == "F" ? "Trượt" : "Đạt";

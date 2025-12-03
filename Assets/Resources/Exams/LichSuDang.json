@@ -1,26 +1,26 @@
 {
   "examTitle": "Đề thi cuối kì 4",
   "subjectName": "Lịch Sử Đảng Cộng Sản Việt Nam",
-  "durationSeconds": 120,
+  "durationSeconds": 1800,
   "questions": [
     {
       "text": "Đảng Cộng sản Việt Nam được thành lập vào ngày nào?",
-      "options": ["3/2/1930", "2/9/1945", "1/5/1930", "19/8/1945"],
+      "options": [ "3/2/1930", "2/9/1945", "1/5/1930", "19/8/1945" ],
       "correctIndex": 0
     },
     {
       "text": "Ai là người chủ trì Hội nghị thành lập Đảng Cộng sản Việt Nam?",
-      "options": ["Trần Phú", "Nguyễn Ái Quốc", "Lê Hồng Phong", "Phạm Văn Đồng"],
+      "options": [ "Trần Phú", "Nguyễn Ái Quốc", "Lê Hồng Phong", "Phạm Văn Đồng" ],
       "correctIndex": 1
     },
     {
       "text": "Hội nghị hợp nhất các tổ chức cộng sản diễn ra tại đâu?",
-      "options": ["Hà Nội", "Quảng Châu", "Hồng Kông (Trung Quốc)", "Thượng Hải"],
+      "options": [ "Hà Nội", "Quảng Châu", "Hồng Kông (Trung Quốc)", "Thượng Hải" ],
       "correctIndex": 2
     },
     {
       "text": "Cương lĩnh chính trị đầu tiên của Đảng do ai soạn thảo?",
-      "options": ["Trần Phú", "Hà Huy Tập", "Lê Hồng Phong", "Nguyễn Ái Quốc"],
+      "options": [ "Trần Phú", "Hà Huy Tập", "Lê Hồng Phong", "Nguyễn Ái Quốc" ],
       "correctIndex": 3
     },
     {
@@ -35,27 +35,27 @@
     },
     {
       "text": "Đại hội Đảng toàn quốc lần thứ II (1951) đã quyết định đổi tên Đảng thành:",
-      "options": ["Đảng Cộng sản Đông Dương", "Đảng Nhân dân Cách mạng", "Đảng Lao động Việt Nam", "Đảng Cộng sản Việt Nam"],
+      "options": [ "Đảng Cộng sản Đông Dương", "Đảng Nhân dân Cách mạng", "Đảng Lao động Việt Nam", "Đảng Cộng sản Việt Nam" ],
       "correctIndex": 2
     },
     {
       "text": "Ai là Tổng Bí thư đầu tiên của Đảng Cộng sản Việt Nam?",
-      "options": ["Trần Phú", "Nguyễn Ái Quốc", "Lê Duẩn", "Hà Huy Tập"],
+      "options": [ "Trần Phú", "Nguyễn Ái Quốc", "Lê Duẩn", "Hà Huy Tập" ],
       "correctIndex": 0
     },
     {
       "text": "Cách mạng Tháng Tám năm 1945 đã giành được thắng lợi vào ngày:",
-      "options": ["2/9/1945", "25/8/1945", "3/9/1945", "19/8/1945"],
+      "options": [ "2/9/1945", "25/8/1945", "3/9/1945", "19/8/1945" ],
       "correctIndex": 3
     },
     {
       "text": "Tuyên ngôn Độc lập được Chủ tịch Hồ Chí Minh đọc tại Quảng trường Ba Đình vào ngày:",
-      "options": ["2/9/1945", "19/8/1945", "1/9/1945", "3/9/1945"],
+      "options": [ "2/9/1945", "19/8/1945", "1/9/1945", "3/9/1945" ],
       "correctIndex": 0
     },
     {
       "text": "Đường lối đổi mới đất nước được thông qua tại Đại hội nào?",
-      "options": ["Đại hội V (1982)", "Đại hội VI (1986)", "Đại hội VII (1991)", "Đại hội VIII (1996)"],
+      "options": [ "Đại hội V (1982)", "Đại hội VI (1986)", "Đại hội VII (1991)", "Đại hội VIII (1996)" ],
       "correctIndex": 1
     },
     {
@@ -70,17 +70,17 @@
     },
     {
       "text": "Tư tưởng Hồ Chí Minh được Đảng khẳng định là nền tảng tư tưởng cùng với chủ nghĩa Mác - Lênin tại Đại hội nào?",
-      "options": ["Đại hội VI (1986)", "Đại hội VII (1991)", "Đại hội VIII (1996)", "Đại hội IX (2001)"],
+      "options": [ "Đại hội VI (1986)", "Đại hội VII (1991)", "Đại hội VIII (1996)", "Đại hội IX (2001)" ],
       "correctIndex": 1
     },
     {
       "text": "Chủ trương xây dựng nền kinh tế nhiều thành phần được nêu ra lần đầu tại Đại hội:",
-      "options": ["Đại hội IV (1976)", "Đại hội IX (2001)", "Đại hội VIII (1996)", "Đại hội VI (1986)"],
+      "options": [ "Đại hội IV (1976)", "Đại hội IX (2001)", "Đại hội VIII (1996)", "Đại hội VI (1986)" ],
       "correctIndex": 3
     },
     {
       "text": "Nghị quyết Trung ương 5 khóa VII đề cập đến vấn đề:",
-      "options": ["Giáo dục", "Kinh tế", "Quốc phòng", "Văn hóa"],
+      "options": [ "Giáo dục", "Kinh tế", "Quốc phòng", "Văn hóa" ],
       "correctIndex": 3
     },
     {
@@ -95,22 +95,22 @@
     },
     {
       "text": "Chiến lược công nghiệp hóa - hiện đại hóa được khẳng định tại Đại hội:",
-      "options": ["VII (1991)", "VIII (1996)", "IX (2001)", "X (2006)"],
+      "options": [ "VII (1991)", "VIII (1996)", "IX (2001)", "X (2006)" ],
       "correctIndex": 2
     },
     {
       "text": "Khẩu hiệu 'Dân biết, dân bàn, dân làm, dân kiểm tra' được nhấn mạnh trong thời kỳ:",
-      "options": ["Kháng chiến chống Mỹ", "Thời kỳ bao cấp", "Thời kỳ kháng chiến chống Pháp", "Đổi mới"],
+      "options": [ "Kháng chiến chống Mỹ", "Thời kỳ bao cấp", "Thời kỳ kháng chiến chống Pháp", "Đổi mới" ],
       "correctIndex": 3
     },
     {
       "text": "Công cuộc đổi mới được bắt đầu từ năm:",
-      "options": ["1986", "1975", "1991", "2000"],
+      "options": [ "1986", "1975", "1991", "2000" ],
       "correctIndex": 0
     },
     {
       "text": "Đại hội X (2006) xác định nhiệm vụ trung tâm của thời kỳ quá độ là:",
-      "options": ["Phát triển nông nghiệp", "Công nghiệp hóa, hiện đại hóa", "Ổn định chính trị", "Đổi mới giáo dục"],
+      "options": [ "Phát triển nông nghiệp", "Công nghiệp hóa, hiện đại hóa", "Ổn định chính trị", "Đổi mới giáo dục" ],
       "correctIndex": 1
     },
     {
@@ -145,7 +145,7 @@
     },
     {
       "text": "Đường lối kháng chiến chống Mỹ cứu nước được khẳng định tại:",
-      "options": ["Đại hội IV (1976)", "Đại hội V (1982)", "Đại hội II (1951)", "Đại hội III (1960)"],
+      "options": [ "Đại hội IV (1976)", "Đại hội V (1982)", "Đại hội II (1951)", "Đại hội III (1960)" ],
       "correctIndex": 3
     },
     {
@@ -160,7 +160,7 @@
     },
     {
       "text": "Trong giai đoạn 1930-1945, nhiệm vụ cách mạng hàng đầu là:",
-      "options": ["Xây dựng CNXH", "Giải phóng dân tộc", "Phát triển kinh tế", "Đấu tranh giai cấp"],
+      "options": [ "Xây dựng CNXH", "Giải phóng dân tộc", "Phát triển kinh tế", "Đấu tranh giai cấp" ],
       "correctIndex": 1
     },
     {
@@ -175,7 +175,7 @@
     },
     {
       "text": "Nghị quyết Trung ương 8 khóa XI (2013) tập trung về lĩnh vực:",
-      "options": ["Khoa học - Công nghệ", "Y tế", "Văn hóa", "Giáo dục - Đào tạo"],
+      "options": [ "Khoa học - Công nghệ", "Y tế", "Văn hóa", "Giáo dục - Đào tạo" ],
       "correctIndex": 3
     },
     {

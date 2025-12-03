@@ -1,7 +1,7 @@
 ﻿{
   "examTitle": "Đề thi cuối kì 1",
   "subjectName": "Toán Cao Cấp",
-  "durationSeconds": 120,
+  "durationSeconds": 1800,
   "questions": [
     {
       "text": "Đạo hàm của f(x) tại x = a luôn tồn tại nếu f(x) khả vi trên toàn bộ miền xác định.",

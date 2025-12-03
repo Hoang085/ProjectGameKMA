@@ -352,4 +352,51 @@ public static class ExamResultStorageFile
         // **SỬA: Xóa luôn PlayerPrefs cache để đồng bộ**
         ClearCache();
     }
+
+    public static void RecordMissedExam(string subjectKey, string subjectName, int semesterIndex = 0)
+    {
+        if (semesterIndex <= 0)
+        {
+            semesterIndex = GetCurrentTermOrDefault1();
+        }
+
+        var existing = GetAllForSubject(subjectKey);
+        foreach (var e in existing)
+        {
+            if (e.semesterIndex == semesterIndex)
+            {
+                Debug.LogWarning($"[ExamResultStorageFile] Môn {subjectName} kì {semesterIndex} đã có kết quả, không ghi đè 'Bỏ Thi'.");
+                return;
+            }
+        }
+
+        var missedAttempt = new ExamAttempt
+        {
+            semesterIndex = semesterIndex,
+            subjectKey = subjectKey,
+            subjectName = subjectName,
+            examTitle = "Bỏ Thi",
+
+            // Điểm 0 và trượt
+            score10 = 0f,
+            score4 = 0f,
+            letter = "F",
+
+            correct = 0,
+            total = 0,
+            durationSeconds = 0,
+
+            // Timestamp hiện tại
+            takenAtIso = DateTime.UtcNow.ToString("o"),
+            takenAtUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
+
+            isRetake = false,
+            isBanned = false // Không phải cấm thi, mà là tự bỏ thi
+        };
+
+        // 3. Lưu vào database
+        AddAttempt(missedAttempt);
+
+        Debug.Log($"[ExamResultStorageFile] Đã ghi nhận môn '{subjectName}' BỎ THI - Điểm 0.0 (Kì {semesterIndex})");
+    }
 }

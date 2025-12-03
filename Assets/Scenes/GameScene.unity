@@ -2640,7 +2640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableFriendshipEnding: 1
-  friendshipThreshold: 20
+  friendshipThreshold: 300
   playVideo: 1
   friendshipEndingVideo: {fileID: 11400000, guid: 6e165cf7a762a634a9dead639d458aa0, type: 2}
   videoPopup: {fileID: 827705193}
@@ -31205,7 +31205,6 @@ MonoBehaviour:
   addNoteWhenFinished: 1
   noteSessionIndex: 0
   weeksPerTerm: 5
-  autoCreateExamSchedule: 1
   onClassStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -31482,7 +31481,6 @@ MonoBehaviour:
   addNoteWhenFinished: 1
   noteSessionIndex: 0
   weeksPerTerm: 5
-  autoCreateExamSchedule: 1
   onClassStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -31638,7 +31636,6 @@ MonoBehaviour:
   addNoteWhenFinished: 1
   noteSessionIndex: 0
   weeksPerTerm: 5
-  autoCreateExamSchedule: 1
   onClassStarted:
     m_PersistentCalls:
       m_Calls: []
