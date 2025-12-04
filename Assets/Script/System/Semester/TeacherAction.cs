@@ -273,16 +273,49 @@ public class TeacherAction : InteractableAction
 
     private SemesterConfig FindConfigForTerm(int term)
     {
-        if (term >= 1 && term <= configsByTerm.Count && configsByTerm[term - 1] != null)
-            return configsByTerm[term - 1];
-
-        var res = Resources.Load<SemesterConfig>($"Semester{term}Config");
-        if (res != null) return res;
-
         foreach (var c in configsByTerm)
         {
             if (c == null) continue;
-            try { if (c.Semester == term) return c; } catch { }
+
+            try
+            {
+                if (c.Semester == term)
+                {
+                    return c;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogWarning($"[TeacherAction][{name}] Error checking config.Semester: {ex.Message}");
+            }
+        }
+
+        int index = term - 1;
+        if (index >= 0 && index < configsByTerm.Count)
+        {
+            var cfg = configsByTerm[index];
+            if (cfg != null)
+            {
+                Debug.Log($"[TeacherAction][{name}] Found at index {index}: {cfg.name} (Semester {cfg.Semester})");
+
+                if (cfg.Semester == term)
+                {
+                    Debug.Log($"[TeacherAction][{name}] Index-based lookup SUCCESS");
+                    return cfg;
+                }
+                else
+                {
+                    Debug.LogWarning($"[TeacherAction][{name}] Config at index {index} is Semester {cfg.Semester}, not {term}! This indicates wrong array setup.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"[TeacherAction][{name}] Config at index {index} is NULL");
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"[TeacherAction][{name}] ⚠ Index {index} out of range (Count: {configsByTerm.Count})");
         }
         return null;
     }
