@@ -79,7 +79,7 @@ public class GameEndingManager : MonoBehaviour
 
     private void Update()
     {
-        // **MỚI: Kiểm tra graduation ending trước (ưu tiên cao nhất)**
+        // Kiểm tra graduation ending trước (ưu tiên cao nhất)
         if (enableGraduationEnding && !_endingTriggered && !_waitingForVideo)
         {
             if (IsGraduationTime())
@@ -156,7 +156,7 @@ public class GameEndingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Kích hoạt bad ending khi có quá nhiều môn trượt**
+    /// Kích hoạt bad ending khi có quá nhiều môn trượt
     /// </summary>
     public void TriggerBadEnding()
     {
@@ -173,7 +173,7 @@ public class GameEndingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Kích hoạt graduation ending (happy ending cuối cùng)**
+    /// Kích hoạt graduation ending (happy ending cuối cùng)
     /// </summary>
     public void TriggerGraduationEnding()
     {
@@ -190,15 +190,14 @@ public class GameEndingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Logic chính: khóa player -> phát video (nếu có) -> hiển thị notification -> end game
+    /// Logic chính
     /// </summary>
     private IEnumerator CoPlayFriendshipEnding()
     {
-        // **MỚI: Xóa tất cả notification trước khi video chạy**
+        // Xóa tất cả notification trước khi video chạy
         if (NotificationPopupSpawner.Ins != null)
         {
             NotificationPopupSpawner.Ins.ClearAllNotifications();
-            DebugLog("[GameEndingManager] Đã xóa tất cả notification trước khi phát friendship ending video");
         }
 
         Time.timeScale = 0f;
@@ -218,24 +217,21 @@ public class GameEndingManager : MonoBehaviour
 
                 videoPopup.PlayProfile_Inspector(friendshipEndingVideo);
                 yield return videoPopup.WaitUntilFinished();
-
-                DebugLog("[GameEndingManager] ✓ Video ending đã kết thúc!");
                 _waitingForVideo = false;
 
-                // **MỚI: Chờ thêm vài frame để video popup hoàn toàn đóng**
+                //Chờ thêm vài frame để video popup hoàn toàn đóng
                 yield return null;
                 yield return null;
                 
-                // **MỚI: Đảm bảo video popup đã tắt hẳn**
+                // Đảm bảo video popup đã tắt hẳn
                 if (videoPopup.gameObject.activeSelf)
                 {
                     videoPopup.gameObject.SetActive(false);
-                    DebugLog("[GameEndingManager] Tắt video popup thủ công");
                 }
             }
             else
             {
-                DebugLog("[GameEndingManager] ✗ Không tìm thấy VideoPopupUI để phát video ending!", isWarning: true);
+                DebugLog("[GameEndingManager] Không tìm thấy VideoPopupUI để phát video ending!", isWarning: true);
             }
         }
         else
@@ -245,15 +241,15 @@ public class GameEndingManager : MonoBehaviour
         
         Time.timeScale = 1f;
         
-        // **MỚI: Chờ thêm 1 frame sau khi restore timeScale**
+        // Chờ thêm 1 frame sau khi restore timeScale
         yield return null;
         
-        // **MỚI: Hiển thị NoticationEndingGame với message 1**
+        // Hiển thị NoticationEndingGame với message 1
         if (noticationEndingGame != null)
         {
             DebugLog("[GameEndingManager] Hiển thị NoticationEndingGame với thông điệp 1...");
             
-            // **MỚI: Đảm bảo GameObject chính của notification đang active**
+            // Đảm bảo GameObject chính của notification đang active
             if (!noticationEndingGame.gameObject.activeInHierarchy)
             {
                 noticationEndingGame.gameObject.SetActive(true);
@@ -264,11 +260,11 @@ public class GameEndingManager : MonoBehaviour
             noticationEndingGame.GetMes1();
             
             // Không kết thúc game ngay - chờ người chơi click nút trong notification
-            DebugLog("[GameEndingManager] ✓ Đã hiển thị notification ending - chờ người chơi tương tác");
+            DebugLog("[GameEndingManager] Đã hiển thị notification ending - chờ người chơi tương tác");
         }
         else
         {
-            DebugLog("[GameEndingManager] ✗ Không tìm thấy NoticationEndingGame!", isWarning: true);
+            DebugLog("[GameEndingManager] Không tìm thấy NoticationEndingGame!", isWarning: true);
             
             // Nếu không có notification, thực hiện flow cũ
             if (delayAfterVideo > 0f)
@@ -282,11 +278,11 @@ public class GameEndingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Coroutine phát bad ending**
+    /// Coroutine phát bad ending
     /// </summary>
     private IEnumerator CoPlayBadEnding()
     {
-        // **MỚI: Xóa tất cả notification trước khi video chạy**
+        // Xóa tất cả notification trước khi video chạy
         if (NotificationPopupSpawner.Ins != null)
         {
             NotificationPopupSpawner.Ins.ClearAllNotifications();
@@ -311,7 +307,7 @@ public class GameEndingManager : MonoBehaviour
                 videoPopup.PlayProfile_Inspector(badEndingVideo);
                 yield return videoPopup.WaitUntilFinished();
 
-                DebugLog("[GameEndingManager] ✓ Bad ending video đã kết thúc!");
+                DebugLog("[GameEndingManager] Bad ending video đã kết thúc!");
                 _waitingForVideo = false;
 
                 yield return null;
@@ -325,7 +321,7 @@ public class GameEndingManager : MonoBehaviour
             }
             else
             {
-                DebugLog("[GameEndingManager] ✗ Không tìm thấy VideoPopupUI để phát video bad ending!", isWarning: true);
+                DebugLog("[GameEndingManager] Không tìm thấy VideoPopupUI để phát video bad ending!", isWarning: true);
             }
         }
         else
@@ -351,11 +347,11 @@ public class GameEndingManager : MonoBehaviour
             
             noticationEndingGame.GetMes2(); // Message 2: Bad ending
             
-            DebugLog("[GameEndingManager] ✓ Đã hiển thị bad ending notification - chờ người chơi tương tác");
+            DebugLog("[GameEndingManager] Đã hiển thị bad ending notification - chờ người chơi tương tác");
         }
         else
         {
-            DebugLog("[GameEndingManager] ✗ Không tìm thấy NoticationEndingGame!", isWarning: true);
+            DebugLog("[GameEndingManager] Không tìm thấy NoticationEndingGame!", isWarning: true);
             
             if (delayAfterVideo > 0f)
             {
@@ -368,7 +364,7 @@ public class GameEndingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Coroutine phát graduation ending (happy ending cuối cùng)**
+    /// Coroutine phát graduation ending (happy ending cuối cùng)
     /// </summary>
     private IEnumerator CoPlayGraduationEnding()
     {
@@ -397,7 +393,7 @@ public class GameEndingManager : MonoBehaviour
                 videoPopup.PlayProfile_Inspector(graduationEndingVideo);
                 yield return videoPopup.WaitUntilFinished();
 
-                DebugLog("[GameEndingManager] ✓ Graduation ending video đã kết thúc!");
+                DebugLog("[GameEndingManager] Graduation ending video đã kết thúc!");
                 _waitingForVideo = false;
 
                 yield return null;
@@ -411,7 +407,7 @@ public class GameEndingManager : MonoBehaviour
             }
             else
             {
-                DebugLog("[GameEndingManager] ✗ Không tìm thấy VideoPopupUI để phát video graduation ending!", isWarning: true);
+                DebugLog("[GameEndingManager] Không tìm thấy VideoPopupUI để phát video graduation ending!", isWarning: true);
             }
         }
         else
@@ -439,7 +435,7 @@ public class GameEndingManager : MonoBehaviour
             float gpa = CalculateOverallGPA();
             noticationEndingGame.GetMes3WithGPA(gpa); // Message 3: Graduation ending + GPA
             
-            DebugLog("[GameEndingManager] ✓ Đã hiển thị graduation ending notification với GPA - chờ người chơi tương tác");
+            DebugLog("[GameEndingManager] Đã hiển thị graduation ending notification với GPA - chờ người chơi tương tác");
         }
         else
         {
@@ -463,7 +459,7 @@ public class GameEndingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Helper method để debug có điều kiện**
+    /// Helper method để debug có điều kiện
     /// </summary>
     private void DebugLog(string message, bool isWarning = false)
     {
@@ -480,7 +476,7 @@ public class GameEndingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Đếm số môn không đạt từ ExamResultStorageFile**
+    /// Đếm số môn không đạt từ ExamResultStorageFile
     /// Bao gồm: Điểm < 4.0, Bị cấm thi, Bỏ thi
     /// </summary>
     private int GetFailedSubjectsCount()
@@ -501,13 +497,10 @@ public class GameEndingManager : MonoBehaviour
 
         foreach (var attempt in db.entries)
         {
-            // SỬA: Thay vì chỉ xét kỳ hiện tại (==), ta xét từ đầu đến kỳ hiện tại (<=)
             if (attempt.semesterIndex > currentTerm)
                 continue;
 
             string key = string.IsNullOrEmpty(attempt.subjectKey) ? attempt.subjectName : attempt.subjectKey;
-
-            // Logic lấy lần thi mới nhất (retake) là đúng, giữ nguyên
             if (!subjectResults.ContainsKey(key) ||
                 attempt.takenAtUnix > subjectResults[key].takenAtUnix)
             {
@@ -564,7 +557,7 @@ public class GameEndingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Lấy kỳ hiện tại từ GameClock**
+    /// Lấy kỳ hiện tại từ GameClock
     /// </summary>
     private int GetCurrentTerm()
     {
@@ -576,7 +569,7 @@ public class GameEndingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Tính GPA tổng suốt 10 kỳ học**
+    /// Tính GPA tổng suốt 10 kỳ học
     /// Chỉ lấy điểm cao nhất của mỗi môn (kể cả retake) để tính trung bình
     /// </summary>
     private float CalculateOverallGPA()
@@ -622,14 +615,11 @@ public class GameEndingManager : MonoBehaviour
 
         float gpa = totalScore / bestScores.Count;
         gpa = Mathf.Clamp(gpa, 0f, 4f);
-
-        DebugLog($"[GameEndingManager] GPA tổng: {gpa:F2} (từ {bestScores.Count} môn)");
-
         return gpa;
     }
 
     /// <summary>
-    /// **MỚI: Kiểm tra có phải thời điểm tốt nghiệp không**
+    /// Kiểm tra có phải thời điểm tốt nghiệp không
     /// </summary>
     private bool IsGraduationTime()
     {

@@ -55,7 +55,7 @@ public class CheatGamePopupUI : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Cheat bỏ qua quá trình học**
+    /// Cheat bỏ qua quá trình học
     /// Nhảy tới Tuần 5, Chủ Nhật, 7h, Ca 1 và đánh dấu tất cả môn đã hoàn thành
     /// </summary>
     private void OnClickSkipLearning()
@@ -80,7 +80,6 @@ public class CheatGamePopupUI : MonoBehaviour
         int termsPerYear = Mathf.Max(1, config.termsPerYear);
         int currentYear = ((currentTerm - 1) / termsPerYear) + 1;
 
-        // Nhảy tới Tuần 5, Chủ Nhật (Sunday = 6), 7h, Ca 1
         GameClock.Ins.SetTime(
             year: currentYear,
             term: currentTerm,
@@ -128,7 +127,7 @@ public class CheatGamePopupUI : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Đánh dấu tất cả môn đã hoàn thành đủ số buổi học**
+    /// Đánh dấu tất cả môn đã hoàn thành đủ số buổi học
     /// </summary>
     private void MarkAllSubjectsComplete(SemesterConfig semesterConfig, int currentTerm)
     {
@@ -181,7 +180,7 @@ public class CheatGamePopupUI : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Lưu progress môn học vào PlayerPrefs**
+    /// Lưu progress môn học vào PlayerPrefs
     /// </summary>
     private void SaveSubjectProgress(SubjectEntry subject, int term, int sessionCount)
     {
@@ -202,25 +201,18 @@ public class CheatGamePopupUI : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Lấy ngưỡng số buổi cần học để được thi**
+    /// Lấy ngưỡng số buổi cần học để được thi
     /// </summary>
     private int GetLearningSessionThreshold(int actualMaxSessions)
     {
-        // Môn 18 buổi -> Học xong buổi 15
         if (actualMaxSessions >= 18) return 15;
-
-        // Môn 15 buổi -> Học xong buổi 15
         if (actualMaxSessions == 15) return 15;
-
-        // Môn 12 buổi -> Học xong buổi 10
         if (actualMaxSessions >= 12) return 10;
-
-        // Các môn ngắn hạn khác -> Học hết
         return actualMaxSessions;
     }
 
     /// <summary>
-    /// **MỚI: Tạo lịch thi cho tất cả các môn đã hoàn thành**
+    /// Tạo lịch thi cho tất cả các môn đã hoàn thành
     /// </summary>
     private void CreateExamSchedulesForAllSubjects()
     {
@@ -243,7 +235,7 @@ public class CheatGamePopupUI : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Lấy stable subject key giống TeacherAction**
+    /// Lấy stable subject key giống TeacherAction
     /// </summary>
     private string GetStableSubjectKey(SubjectEntry s)
     {
@@ -252,7 +244,7 @@ public class CheatGamePopupUI : MonoBehaviour
     }
 
     /// <summary>
-    /// **MỚI: Normalize key giống TeacherAction**
+    /// Normalize key giống TeacherAction
     /// </summary>
     private static string NormalizeKey(string s) => (s ?? "").Trim().ToLowerInvariant();
 
@@ -262,7 +254,7 @@ public class CheatGamePopupUI : MonoBehaviour
         {
             if (btnJumpToTerms[i] != null)
             {
-                int termIndex = i + 1; // Kì 1, Kì 2, ..., Kì 10
+                int termIndex = i + 1;
                 btnJumpToTerms[i].onClick.RemoveAllListeners();
                 btnJumpToTerms[i].onClick.AddListener(() => OnClickJumpToTerm(termIndex));
                 
@@ -426,7 +418,7 @@ public class CheatGamePopupUI : MonoBehaviour
 
         attempt.subjectName = subjectName;
         
-        // **SỬA: Sử dụng KeyUtil.MakeKey() giống TeacherAction để đảm bảo key khớp**
+        // Sử dụng KeyUtil.MakeKey() giống TeacherAction để đảm bảo key khớp
         attempt.subjectKey = KeyUtil.MakeKey(subjectName);
         
         attempt.semesterIndex = term;
