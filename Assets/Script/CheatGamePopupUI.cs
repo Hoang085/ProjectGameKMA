@@ -425,7 +425,10 @@ public class CheatGamePopupUI : MonoBehaviour
         ExamAttempt attempt = new ExamAttempt();
 
         attempt.subjectName = subjectName;
-        attempt.subjectKey = subjectName.Trim().ToLowerInvariant();
+        
+        // **SỬA: Sử dụng KeyUtil.MakeKey() giống TeacherAction để đảm bảo key khớp**
+        attempt.subjectKey = KeyUtil.MakeKey(subjectName);
+        
         attempt.semesterIndex = term;
 
         attempt.score10 = score10;
@@ -444,6 +447,8 @@ public class CheatGamePopupUI : MonoBehaviour
         attempt.isBanned = false;
 
         ExamResultStorageFile.AddAttempt(attempt);
+        
+        Debug.Log($"[CheatGamePopupUI] Đã hack điểm {subjectName} (key: {attempt.subjectKey}) = {score10}");
     }
 
     private void OnClickApplyStamina()

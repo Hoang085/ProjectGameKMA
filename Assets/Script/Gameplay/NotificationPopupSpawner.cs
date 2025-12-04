@@ -298,13 +298,47 @@ public class NotificationPopupSpawner : MonoBehaviour
         _running = false;
     }
 
-#if UNITY_EDITOR
-    [ContextMenu("Test Popup")] private void _Test() => Enqueue("Bạn có thông báo mới!");
-    [ContextMenu("Test Score PointRed")] private void _TestScorePointRed() => TriggerPointRedNotification(IconType.Score);
-    [ContextMenu("Test Task PointRed")] private void _TestTaskPointRed() => TriggerPointRedNotification(IconType.Task);
-    [ContextMenu("Test Balo PointRed")] private void _TestBaloPointRed() => TriggerPointRedNotification(IconType.Balo);
-    [ContextMenu("Test Player PointRed")] private void _TestPlayerPointRed() => TriggerPointRedNotification(IconType.Player);
-    [ContextMenu("Force Re-register with GameManager")] private void _TestForceReregister() => ForceReregisterWithGameManager();
-    [ContextMenu("Refresh Canvas Reference")] private void _TestRefreshCanvas() => FindValidCanvas();
-#endif
+    /// <summary>
+    /// **MỚI: Xóa tất cả notification đang hiển thị và queue**
+    /// Dùng khi cần clear màn hình (ví dụ: khi video ending chạy)
+    /// </summary>
+    public void ClearAllNotifications()
+    {
+        // Xóa queue
+        _queue.Clear();
+        
+        // Stop coroutine đang chạy
+        if (_running)
+        {
+            StopCoroutine(Run());
+            _running = false;
+        }
+        
+        // Destroy tất cả notification popup đang hiển thị
+        if (popupParent != null)
+        {
+            var existingPopups = popupParent.GetComponentsInChildren<NotificationPopupUI>();
+            foreach (var popup in existingPopups)
+            {
+                if (popup != null && popup.gameObject != null)
+                {
+                    Destroy(popup.gameObject);
+                }
+            }
+            Debug.Log($"[NotificationPopupSpawner] Cleared {existingPopups.Length} active notifications");
+        }
+        else
+        {
+            // Fallback: tìm tất cả NotificationPopupUI trong scene
+            var allPopups = FindObjectsByType<NotificationPopupUI>(FindObjectsSortMode.None);
+            foreach (var popup in allPopups)
+            {
+                if (popup != null && popup.gameObject != null)
+                {
+                    Destroy(popup.gameObject);
+                }
+            }
+            Debug.Log($"[NotificationPopupSpawner] Cleared {allPopups.Length} active notifications (fallback)");
+        }
+    }
 }

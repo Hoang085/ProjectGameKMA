@@ -2641,8 +2641,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enableFriendshipEnding: 1
   friendshipThreshold: 300
+  enableBadEnding: 1
+  failedSubjectsThreshold: 15
+  enableGraduationEnding: 1
+  graduationTerm: 10
+  graduationWeek: 6
+  graduationDay: 6
+  graduationSlot: 0
   playVideo: 1
   friendshipEndingVideo: {fileID: 11400000, guid: 6e165cf7a762a634a9dead639d458aa0, type: 2}
+  badEndingVideo: {fileID: 11400000, guid: 1bd582b519d9ea14d9c2b427c192f22e, type: 2}
+  graduationEndingVideo: {fileID: 11400000, guid: a67564d7b9e69f247ac4ff59d4001996, type: 2}
   videoPopup: {fileID: 827705193}
   noticationEndingGame: {fileID: 656719527}
   delayAfterVideo: 1
@@ -6217,6 +6226,144 @@ RectTransform:
   m_AnchoredPosition: {x: 106, y: 10}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &390903945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 390903946}
+  - component: {fileID: 390903948}
+  - component: {fileID: 390903947}
+  m_Layer: 5
+  m_Name: TextGPA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &390903946
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390903945}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 656719524}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 22.6, y: -284}
+  m_SizeDelta: {x: 1348.7, y: 116.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &390903947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390903945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Ch\xFAc m\u1EEBng b\u1EA1n \u0111\xE3 ho\xE0n th\xE0nh ch\u1EB7ng \u0111\u01B0\u1EDDng
+    c\u1EE7a m\xECnh trong su\u1ED1t 5 n\u0103m qua. GPA b\u1EA1n \u0111\u1EA1t \u0111\u01B0\u1EE3c
+    l\xE0: 4.0"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294901833
+  m_fontColor: {r: 0.2847762, g: 0, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 42
+  m_fontSizeBase: 42
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &390903948
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390903945}
+  m_CullTransparentMesh: 1
 --- !u!1 &396015728 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7832983505787970580, guid: b71c7d6c29d78a943977a1eb8c510888, type: 3}
@@ -6495,6 +6642,14 @@ PrefabInstance:
       propertyPath: autoSyncSubjectsFromConfig
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4294368750080800279, guid: 5a6fc207378617b4f8a0266627d27189, type: 3}
+      propertyPath: 'configsByTerm.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+    - target: {fileID: 4294368750080800279, guid: 5a6fc207378617b4f8a0266627d27189, type: 3}
+      propertyPath: 'configsByTerm.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 809b5c34db5a8f24ebb7fe5a9975b6ed, type: 2}
     - target: {fileID: 4294368750080800279, guid: 5a6fc207378617b4f8a0266627d27189, type: 3}
       propertyPath: 'configsByTerm.Array.data[2]'
       value: 
@@ -7932,9 +8087,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+      propertyPath: 'configsByTerm.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bd048d2e2baac444f92115c523f525c0, type: 2}
+    - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+      propertyPath: 'configsByTerm.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 809b5c34db5a8f24ebb7fe5a9975b6ed, type: 2}
+    - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
       propertyPath: 'configsByTerm.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: a7a49bc902c748746873f2fe53c37a68, type: 2}
+    - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+      propertyPath: subjects.Array.data[0].maxSessions
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+      propertyPath: subjects.Array.data[0].subjectName
+      value: "Ti\u1EBFng Anh 1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+      propertyPath: subjects.Array.data[1].maxSessions
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+      propertyPath: subjects.Array.data[1].subjectName
+      value: "To\xE1n Cao C\u1EA5p 2"
+      objectReference: {fileID: 0}
     - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
       propertyPath: subjects.Array.data[2].maxSessions
       value: 10
@@ -7954,6 +8133,14 @@ PrefabInstance:
     - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
       propertyPath: subjects.Array.data[2].examIndexInLoader
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+      propertyPath: subjects.Array.data[0].subjectKeyForNotes
+      value: TiengAnh1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
+      propertyPath: subjects.Array.data[1].subjectKeyForNotes
+      value: ToanCaoCap2
       objectReference: {fileID: 0}
     - target: {fileID: 2300605857459285033, guid: 0417770d3cdf1b342af169cda59ab8df, type: 3}
       propertyPath: subjects.Array.data[2].subjectKeyForNotes
@@ -8344,8 +8531,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294901812
-  m_fontColor: {r: 0.20514297, g: 0, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9496,7 +9683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &656719524
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9510,6 +9697,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1466351972}
+  - {fileID: 390903946}
   - {fileID: 545660765}
   - {fileID: 158647423}
   m_Father: {fileID: 696473193}
@@ -9570,6 +9758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMessage: {fileID: 1466351974}
+  textGPA: {fileID: 390903947}
   onclickMenu: {fileID: 158647424}
 --- !u!1001 &657569354
 PrefabInstance:
@@ -25383,6 +25572,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
+      propertyPath: 'configsByTerm.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 356a661357884794d94f7e0ba618870e, type: 2}
+    - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
       propertyPath: 'configsByTerm.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 2e11ba25ba31d044e93ea8ea772bd384, type: 2}
@@ -25390,6 +25583,14 @@ PrefabInstance:
       propertyPath: 'configsByTerm.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 696a58bb2a1327d449189dc841c6e911, type: 2}
+    - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
+      propertyPath: subjects.Array.data[0].maxSessions
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
+      propertyPath: subjects.Array.data[0].subjectName
+      value: "X\xE1c Su\u1EA5t Th\u1ED1ng K\xEA"
+      objectReference: {fileID: 0}
     - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
       propertyPath: subjects.Array.data[1].maxSessions
       value: 10
@@ -25417,6 +25618,10 @@ PrefabInstance:
     - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
       propertyPath: subjects.Array.data[2].examIndexInLoader
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
+      propertyPath: subjects.Array.data[0].subjectKeyForNotes
+      value: XacSuatThongKe
       objectReference: {fileID: 0}
     - target: {fileID: 2623155719161633744, guid: f1dc0a8078d20164e82f1c087eca3199, type: 3}
       propertyPath: subjects.Array.data[1].subjectKeyForNotes
@@ -29728,6 +29933,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 2e11ba25ba31d044e93ea8ea772bd384, type: 2}
     - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
+      propertyPath: subjects.Array.data[0].maxSessions
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
+      propertyPath: subjects.Array.data[0].subjectName
+      value: "T\u01B0 T\u01B0\u1EDFng HCM"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
+      propertyPath: subjects.Array.data[1].maxSessions
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
+      propertyPath: subjects.Array.data[1].subjectName
+      value: "V\u1EADt L\xFD \u0110\u1EA1i C\u01B0\u01A1ng"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
       propertyPath: subjects.Array.data[2].maxSessions
       value: 10
       objectReference: {fileID: 0}
@@ -29746,6 +29967,14 @@ PrefabInstance:
     - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
       propertyPath: subjects.Array.data[2].examIndexInLoader
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
+      propertyPath: subjects.Array.data[0].subjectKeyForNotes
+      value: TuTuongHCM
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
+      propertyPath: subjects.Array.data[1].subjectKeyForNotes
+      value: VatLyDaiCuong
       objectReference: {fileID: 0}
     - target: {fileID: 4915399565722818755, guid: 80b167af857743c46a5cd4aa335811a5, type: 3}
       propertyPath: subjects.Array.data[2].subjectKeyForNotes
@@ -31035,6 +31264,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
+      propertyPath: 'configsByTerm.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 356a661357884794d94f7e0ba618870e, type: 2}
+    - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
       propertyPath: 'configsByTerm.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 2e11ba25ba31d044e93ea8ea772bd384, type: 2}
@@ -31042,6 +31275,14 @@ PrefabInstance:
       propertyPath: 'configsByTerm.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 696a58bb2a1327d449189dc841c6e911, type: 2}
+    - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
+      propertyPath: subjects.Array.data[0].maxSessions
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
+      propertyPath: subjects.Array.data[0].subjectName
+      value: "C\u1EA5u Tr\xFAc DL v\xE0 GT"
+      objectReference: {fileID: 0}
     - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
       propertyPath: subjects.Array.data[1].maxSessions
       value: 15
@@ -31069,6 +31310,10 @@ PrefabInstance:
     - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
       propertyPath: subjects.Array.data[2].examIndexInLoader
       value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
+      propertyPath: subjects.Array.data[0].subjectKeyForNotes
+      value: CauTrucDlVaGt
       objectReference: {fileID: 0}
     - target: {fileID: 6823964032308792938, guid: ed6faf09db711ff48a25dfed21d64872, type: 3}
       propertyPath: subjects.Array.data[1].subjectKeyForNotes
@@ -31301,6 +31546,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
+      propertyPath: 'configsByTerm.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 356a661357884794d94f7e0ba618870e, type: 2}
+    - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
       propertyPath: 'configsByTerm.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 1eac0b6fdde8f9247932029b21821d94, type: 2}
@@ -31311,6 +31560,10 @@ PrefabInstance:
     - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
       propertyPath: subjects.Array.data[0].maxSessions
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
+      propertyPath: subjects.Array.data[0].subjectName
+      value: "M\u1EA1ng M\xE1y T\xEDnh"
       objectReference: {fileID: 0}
     - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
       propertyPath: subjects.Array.data[1].maxSessions
@@ -31339,6 +31592,10 @@ PrefabInstance:
     - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
       propertyPath: subjects.Array.data[2].examIndexInLoader
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
+      propertyPath: subjects.Array.data[0].subjectKeyForNotes
+      value: MangMayTinh
       objectReference: {fileID: 0}
     - target: {fileID: 6403288402813494078, guid: 2ca51cc9f2e7d0141aecd76ad958c8bf, type: 3}
       propertyPath: subjects.Array.data[1].subjectKeyForNotes
@@ -31440,11 +31697,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ce0ebd556c09414fb141203b03c2584, type: 2}
   - {fileID: 11400000, guid: 796c722d015a5c44896eb2349fb27c23, type: 2}
   subjects:
-  - subjectName: "To\xE1n R\u1EDDi R\u1EA1c"
-    subjectKeyForNotes: ToanRoiRac
-    maxSessions: 15
+  - subjectName: "L\u1ECBch S\u1EED \u0110\u1EA3ng"
+    subjectKeyForNotes: LichSuDang
+    maxSessions: 10
     currentSessionIndex: 0
-    examIndexInLoader: 11
+    examIndexInLoader: 10
   - subjectName: "Qu\u1EA3n Tr\u1ECB MMT"
     subjectKeyForNotes: QuanTriMMT
     maxSessions: 10
@@ -31595,11 +31852,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ce0ebd556c09414fb141203b03c2584, type: 2}
   - {fileID: 11400000, guid: 796c722d015a5c44896eb2349fb27c23, type: 2}
   subjects:
-  - subjectName: "L\u1ECBch S\u1EED \u0110\u1EA3ng"
-    subjectKeyForNotes: LichSuDang
-    maxSessions: 10
+  - subjectName: "To\xE1n R\u1EDDi R\u1EA1c"
+    subjectKeyForNotes: ToanRoiRac
+    maxSessions: 15
     currentSessionIndex: 0
-    examIndexInLoader: 10
+    examIndexInLoader: 11
   - subjectName: "H\u1EC7 Qu\u1EA3n Tr\u1ECB CSDL"
     subjectKeyForNotes: HeQuanTriCSDL
     maxSessions: 10
