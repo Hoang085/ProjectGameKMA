@@ -13860,7 +13860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 944333378}
-  lineMaterial: {fileID: 0}
+  lineMaterial: {fileID: 2100000, guid: 30956c5d65b62754a82c5bf0198f12cd, type: 2}
   lineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   lineWidth: 0.1
   straightLine: 1
