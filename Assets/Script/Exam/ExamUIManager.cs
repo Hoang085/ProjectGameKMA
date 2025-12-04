@@ -43,17 +43,14 @@ public class ExamUIManager : MonoBehaviour
     public TMP_Text dlgResultText;
     public Button dlgCloseButton;
 
-    // ---------- runtime ----------
     private ExamData _exam;
     private int _index;
-    private int[] _userAnswers;  // -1 = chưa chọn
+    private int[] _userAnswers; 
 
-    // timer runtime
     private float _remain;
     private bool _running;
     private bool _submitted;
 
-    // ---------- Lifecycle ----------
     void Awake()
     {
         if (btnPrev) btnPrev.onClick.AddListener(OnPrev);
@@ -113,7 +110,6 @@ public class ExamUIManager : MonoBehaviour
         UpdateClockLabel();
     }
 
-    // ---------- Load & Render ----------
     public void LoadFromLoader()
     {
         if (!loader)
@@ -222,7 +218,6 @@ public class ExamUIManager : MonoBehaviour
         OnSubmit();
     }
 
-    // ---------- Events ----------
     void OnSelectOption(int optionIndex)
     {
         if (_submitted) return;
@@ -294,7 +289,6 @@ public class ExamUIManager : MonoBehaviour
         PlayerPrefs.Save();
         
         Debug.Log($"[ExamUIManager] Exam completed with timestamp: {examTimestamp}");
-        // ===================================
 
         if (btnPrev) btnPrev.interactable = false;
         if (btnNext) btnNext.interactable = false;
@@ -303,8 +297,6 @@ public class ExamUIManager : MonoBehaviour
         ShowFinalDialog(correct, _exam.questions.Length, score10, score4, pass, letter);
     }
 
-
-    // ---------- Final dialog ----------
     void ShowFinalDialog(int correct, int total, float he10, float he4, bool pass, string letter)
     {
         if (dlgCorrectCount) dlgCorrectCount.text = correct.ToString();

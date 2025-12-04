@@ -61,7 +61,6 @@ public class TeacherAction : InteractableAction
 
     [Header("Notes")]
     public bool addNoteWhenFinished = true;
-    [Tooltip("0 = tự đánh số tiếp theo. >0 = dùng số buổi chỉ định")]
     public int noteSessionIndex = 0;
 
     [Header("Calendar (fallback)")]
@@ -95,11 +94,11 @@ public class TeacherAction : InteractableAction
         if (GameClock.Ins != null)
             GameClock.Ins.OnTermChanged += HandleTermChanged;
         
-        // **MỚI: Đăng ký event OnSlotChanged để check lịch thi mỗi khi đổi ca**
+        // Đăng ký event OnSlotChanged để check lịch thi mỗi khi đổi ca
         if (GameClock.Ins != null)
             GameClock.Ins.OnSlotChanged += HandleSlotChanged;
         
-        // **QUAN TRỌNG: Đảm bảo semesterConfig được load cho đúng kỳ hiện tại**
+        // Đảm bảo semesterConfig được load cho đúng kỳ hiện tại
         int currentTerm = GetCurrentTerm();
         if (semesterConfig == null || semesterConfig.Semester != currentTerm)
         {
@@ -112,7 +111,7 @@ public class TeacherAction : InteractableAction
             }
         }
         
-        // **QUAN TRỌNG: Load progress cho tất cả subjects TRƯỚC khi check exam schedules**
+        // Load progress cho tất cả subjects TRƯỚC khi check exam schedules
         if (subjects != null && subjects.Count > 0)
         {
             Debug.Log($"[TeacherAction][{name}] OnEnable: Loading progress for {subjects.Count} subjects...");
@@ -126,10 +125,9 @@ public class TeacherAction : InteractableAction
             }
         }
         
-        // **MỚI: Kiểm tra và tạo lịch thi ngay khi TeacherAction được enable**
+        // Kiểm tra và tạo lịch thi ngay khi TeacherAction được enable
         if (autoCreateExamSchedule && subjects != null && subjects.Count > 0)
         {
-            Debug.Log($"[TeacherAction][{name}] OnEnable: Checking for missing exam schedules...");
             foreach (var subj in subjects)
             {
                 if (subj != null && !string.IsNullOrWhiteSpace(subj.subjectName))
@@ -146,11 +144,11 @@ public class TeacherAction : InteractableAction
         if (GameClock.Ins != null)
         {
             GameClock.Ins.OnTermChanged -= HandleTermChanged;
-            // **MỚI: Hủy đăng ký OnSlotChanged**
+            // Hủy đăng ký OnSlotChanged
             GameClock.Ins.OnSlotChanged -= HandleSlotChanged;
         }
         
-        // **THÊM: Lưu progress khi disable để đảm bảo không mất dữ liệu**
+        // Lưu progress khi disable để đảm bảo không mất dữ liệu
         if (subjects != null && subjects.Count > 0)
         {
             Debug.Log($"[TeacherAction] OnDisable: Saving progress for {subjects.Count} subjects...");
@@ -165,7 +163,7 @@ public class TeacherAction : InteractableAction
     }
 
     /// <summary>
-    /// **MỚI: Xử lý mỗi khi slot thay đổi (mỗi ca học)**
+    /// Xử lý mỗi khi slot thay đổi (mỗi ca học)
     /// Kiểm tra và tạo lịch thi cho các môn đã hoàn thành
     /// </summary>
     private void HandleSlotChanged()
@@ -201,7 +199,7 @@ public class TeacherAction : InteractableAction
     }
     
     /// <summary>
-    /// **MỚI: Kiểm tra và xử lý chuyển ca sau khi thi lại xong**
+    /// Kiểm tra và xử lý chuyển ca sau khi thi lại xong
     /// </summary>
     private void Start()
     {
@@ -220,7 +218,7 @@ public class TeacherAction : InteractableAction
     }
     
     /// <summary>
-    /// **MỚI: Tự động chuyển ca sau khi thi lại xong**
+    /// Tự động chuyển ca sau khi thi lại xong
     /// </summary>
     private IEnumerator AutoAdvanceSessionAfterRetake()
     {
@@ -256,8 +254,6 @@ public class TeacherAction : InteractableAction
 
         semesterConfig = cfg;
         RebuildSubjectsFromConfig(cfg, true);
-
-        // UI_Close();  <-- Nguyên nhân khiến bảng điểm bị tắt đột ngột
 
         Debug.Log($"[TeacherAction] Đã cập nhật dữ liệu sang Kỳ {newTerm} (Không đóng UI)");
     }
@@ -315,7 +311,7 @@ public class TeacherAction : InteractableAction
         }
         else
         {
-            Debug.LogWarning($"[TeacherAction][{name}] ⚠ Index {index} out of range (Count: {configsByTerm.Count})");
+            Debug.LogWarning($"[TeacherAction][{name}] Index {index} out of range (Count: {configsByTerm.Count})");
         }
         return null;
     }
@@ -323,8 +319,7 @@ public class TeacherAction : InteractableAction
     private static string NormalizeKey(string s) => (s ?? "").Trim().ToLowerInvariant();
     
     /// <summary>
-    /// **CẢI THIỆN: Sử dụng KeyUtil.MakeKey() thay vì MakeNoteKey() cũ**
-    /// KeyUtil.MakeKey() xử lý đúng dấu tiếng Việt, đảm bảo khớp với tên thư mục Quiz
+    /// Sử dụng KeyUtil.MakeKey() thay vì MakeNoteKey() cũ
     /// </summary>
     private static string MakeNoteKey(string name)
     {
@@ -504,7 +499,7 @@ public class TeacherAction : InteractableAction
         return $"T{term}_EXAM_{GetStableSubjectKey(s)}";
     }
     
-    // **MỚI: Retake exam key prefix**
+    // Retake exam key prefix
     private string RetakeExamKeyPrefix(SubjectEntry s)
     {
         int term = GetTeacherSemester();
@@ -522,7 +517,7 @@ public class TeacherAction : InteractableAction
         PlayerPrefs.DeleteKey(p + "_taken");
     }
     
-    // **MỚI: Save retake exam assignment - lấy ca gần nhất SAU lần thi đầu**
+    // Save retake exam assignment - lấy ca gần nhất SAU lần thi đầu
     private void SaveRetakeExamAssignment(SubjectEntry s)
     {
         // Lấy lịch thi lần đầu để tìm ca sau đó
@@ -577,7 +572,7 @@ public class TeacherAction : InteractableAction
         return true;
     }
     
-    // **MỚI: Try load retake exam assignment**
+    // Try load retake exam assignment
     private bool TryLoadRetakeExamAssignment(SubjectEntry s, out int term, out int week, out Weekday day, out int slot1Based, out bool missed, out bool taken)
     {
         string p = RetakeExamKeyPrefix(s);
@@ -605,7 +600,7 @@ public class TeacherAction : InteractableAction
         PlayerPrefs.Save();
     }
     
-    // **MỚI: Mark exam as taken (đã thi rồi)**
+    // Mark exam as taken (đã thi rồi)
     private void MarkExamTaken(SubjectEntry s)
     {
         string p = ExamKeyPrefix(s);
@@ -613,7 +608,7 @@ public class TeacherAction : InteractableAction
         PlayerPrefs.Save();
     }
     
-    // **MỚI: Mark retake exam as missed**
+    // Mark retake exam as missed
     private void MarkRetakeExamMissed(SubjectEntry s)
     {
         string p = RetakeExamKeyPrefix(s);
@@ -621,7 +616,7 @@ public class TeacherAction : InteractableAction
         PlayerPrefs.Save();
     }
     
-    // **MỚI: Mark retake exam as taken**
+    // Mark retake exam as taken
     private void MarkRetakeExamTaken(SubjectEntry s)
     {
         string p = RetakeExamKeyPrefix(s);
@@ -641,7 +636,7 @@ public class TeacherAction : InteractableAction
         PlayerPrefs.Save();
     }
     
-    // **MỚI: Clear retake exam assignment**
+    // Clear retake exam assignment
     private void ClearRetakeExamAssignment(SubjectEntry s)
     {
         string p = RetakeExamKeyPrefix(s);
@@ -658,7 +653,7 @@ public class TeacherAction : InteractableAction
     {
         yield return new WaitForSeconds(1f); 
 
-        // **SỬA: Check TẤT CẢ môn, vì có thể player chưa vào ca nào cả**
+        // Check môn, vì có thể player chưa vào ca nào cả
         if (subjects == null || subjects.Count == 0)
         {
             Debug.Log("[TeacherAction] No subjects to check for exam schedules");
@@ -669,24 +664,24 @@ public class TeacherAction : InteractableAction
         {
             if (subj != null && !string.IsNullOrWhiteSpace(subj.subjectName))
             {
-                // **Load progress từ PlayerPrefs trước khi check**
+                // Load progress từ PlayerPrefs trước khi check
                 subj.currentSessionIndex = LoadProgress(subj);
                 
-                // **CẢI THIỆN: Kiểm tra và tạo lịch thi cho MỌI môn đã hoàn thành**
+                // Kiểm tra và tạo lịch thi cho MỌI môn đã hoàn thành
                 CheckAndCreateExamScheduleIfFinished(subj);
                 
-                // **MỚI: Kiểm tra xem có cần tạo lịch thi lại không**
+                // Kiểm tra xem có cần tạo lịch thi lại không
                 CheckAndCreateRetakeSchedule(subj);
             }
         }
         
-        Debug.Log($"[TeacherAction] ✓ CreateMissingExamSchedulesDelayed completed for {subjects.Count} subjects");
+        Debug.Log($"[TeacherAction] CreateMissingExamSchedulesDelayed completed for {subjects.Count} subjects");
     }
 
 
     /// <summary>
-    /// [UPDATED] Hàm tạo lịch thi - KHÔNG TẠO nếu đã bị cấm thi do nghỉ quá số buổi
-    /// **MỚI: Ghi điểm 0 vào ExamResults.json khi bị cấm thi**
+    /// Hàm tạo lịch thi - KHÔNG TẠO nếu đã bị cấm thi do nghỉ quá số buổi
+    /// Ghi điểm 0 vào ExamResults.json khi bị cấm thi
     /// </summary>
     public void CheckAndCreateExamScheduleIfFinished(SubjectEntry subj)
     {
@@ -696,13 +691,12 @@ public class TeacherAction : InteractableAction
         {
             return;
         }
-        // **KIỂM TRA 1: Nghỉ quá số buổi -> GHI ĐIỂM 0 VÀO FILE**
+
+        //Nghỉ quá số buổi
         var att = AttendanceManager.Instance;
         if (att != null && att.HasExceededAbsences(subj.subjectName, GetTeacherSemester()))
         {
-            Debug.Log($"[TeacherAction] ✗ {subj.subjectName} đã bị cấm thi do nghỉ quá số buổi - GHI ĐIỂM 0");
-
-            // **MỚI: Gọi RecordBannedExam() để ghi điểm 0 vào ExamResults.json**
+            // Gọi RecordBannedExam() để ghi điểm 0 vào ExamResults.json
             string subjectKey = GetStableSubjectKey(subj);
             int semester = GetTeacherSemester();
 
@@ -710,29 +704,26 @@ public class TeacherAction : InteractableAction
             if (!ExamResultStorageFile.IsSubjectBanned(subjectKey, semester))
             {
                 ExamResultStorageFile.RecordBannedExam(subjectKey, subj.subjectName, semester);
-                Debug.Log($"[TeacherAction] ✓ Đã ghi nhận môn '{subj.subjectName}' BỊ CẤM THI vào ExamResults.json");
             }
             else
             {
-                Debug.Log($"[TeacherAction] ℹ Môn '{subj.subjectName}' đã có bản ghi cấm thi rồi");
+                Debug.Log($"[TeacherAction] Môn '{subj.subjectName}' đã có bản ghi cấm thi rồi");
             }
 
             return; // Không tạo lịch thi
         }
 
-        // **KIỂM TRA 2: Môn chưa hoàn thành**
         if (!IsCourseFinished(subj))
         {
             return;
         }
 
-        // **TẠO LỊCH THI: Tìm ca tiếp theo**
+        // Tìm ca tiếp theo
         if (TryGetNextScheduledSlot(subj, out var examTerm, out var examWeek, out var examDay, out var examSlot))
         {
             SaveExamAssignment(subj, examTerm, examWeek, examDay, examSlot);
 
             string dayVN = DataKeyText.VN_Weekday(examDay);
-            Debug.Log($"[TeacherAction] ✓ Đã tạo lịch thi: {subj.subjectName} -> Thi vào {dayVN} Ca {examSlot} Tuần {examWeek}");
 
             // Refresh ScheduleUI nếu đang mở
             var schedUI = FindFirstObjectByType<ScheduleUI>(FindObjectsInactive.Include);
@@ -743,15 +734,14 @@ public class TeacherAction : InteractableAction
         }
         else
         {
-            // Fallback: Tìm ca gần nhất tuần sau
+            // Tìm ca gần nhất tuần sau
             if (TryGetNearestExamSlotNextWeek(subj, out var eTerm, out var eWeek, out var eDay, out var eSlot))
             {
                 SaveExamAssignment(subj, eTerm, eWeek, eDay, eSlot);
-                Debug.Log($"[TeacherAction] ✓ Tạo lịch thi Fallback: {subj.subjectName} -> {eDay} Ca {eSlot}");
             }
             else
             {
-                Debug.LogWarning($"[TeacherAction] ✗ Không tìm được ca thi cho {subj.subjectName}");
+                Debug.LogWarning($"[TeacherAction] Không tìm được ca thi cho {subj.subjectName}");
             }
         }
     }
@@ -779,7 +769,7 @@ public class TeacherAction : InteractableAction
     }
     
     /// <summary>
-    /// **TỐI ƯU: Kiểm tra và tạo lịch thi lại nếu cần - GỘP LOGIC**
+    /// Kiểm tra và tạo lịch thi lại nếu cần
     /// </summary>
     private void CheckAndCreateRetakeSchedule(SubjectEntry subj)
     {
@@ -789,11 +779,8 @@ public class TeacherAction : InteractableAction
             return;
         }
         
-        Debug.Log($"[TeacherAction] ✓ Phát hiện flag NEEDS_RETAKE_SCHEDULE cho {subj.subjectName}");
-        
         if (TryLoadRetakeExamAssignment(subj, out _, out _, out _, out _, out _, out _))
         {
-            Debug.Log($"[TeacherAction] ✓ Đã có lịch thi lại cho {subj.subjectName}, bỏ qua");
             return;
         }
         
@@ -801,8 +788,6 @@ public class TeacherAction : InteractableAction
         {
             return;
         }
-        
-        Debug.Log($"[TeacherAction] Lịch thi đầu: Term={examTerm}, Week={examWeek}, Day={examDay}, Slot={examSlot}");
         
         if (!TryGetNearestSessionAfter(subj, examTerm, examWeek, examDay, examSlot,
             out int retakeTerm, out int retakeWeek, out Weekday retakeDay, out int retakeSlot))
@@ -822,9 +807,6 @@ public class TeacherAction : InteractableAction
         string dayVN = DataKeyText.VN_Weekday(retakeDay);
         int startMin = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(retakeSlot));
         string timeStr = DataKeyText.FormatHM(startMin);
-        
-        Debug.Log($"[TeacherAction] ✓ ĐÃ TẠO LỊCH THI LẠI cho {subj.subjectName}:");
-        Debug.Log($"[TeacherAction]   → {dayVN} ca {retakeSlot} ({timeStr}) - Tuần {retakeWeek}, Kỳ {retakeTerm}");
     }
 
     private int GetAbsencesFor(SubjectEntry subj)
@@ -845,21 +827,18 @@ public class TeacherAction : InteractableAction
     }
 
     /// <summary>
-    /// **MỚI: Lấy số buổi học tối đa để hiển thị (12 buổi -> 10, 18 buổi -> 15)**
+    /// Lấy số buổi học tối đa để hiển thị (12 buổi -> 10, 18 buổi -> 15)
     /// </summary>
     private int GetDisplayMaxSessions(int actualMaxSessions)
     {
-        // Môn 12 buổi -> hiển thị /10
         if (actualMaxSessions == 12)
         {
             return 10;
         }
-        // Môn 18 buổi -> hiển thị /15
         else if (actualMaxSessions == 18)
         {
             return 15;
         }
-        // Các trường hợp khác giữ nguyên
         return actualMaxSessions;
     }
 
@@ -880,11 +859,6 @@ public class TeacherAction : InteractableAction
         var today = Clock.Weekday;
         var slot1Based = Clock.SlotIndex1Based;
 
-        Debug.Log($"[TeacherAction] ======== TryFindSubjectForNow ========");
-        Debug.Log($"[TeacherAction] Current time: {today} - Ca {slot1Based}");
-        Debug.Log($"[TeacherAction] Checking {subjects.Count} subjects...");
-
-        // **FIX: Auto-load progress cho subjects có currentSessionIndex = 0**
         // Sau khi ClearAllPlayerPrefs, currentSessionIndex về 0, cần load lại từ PlayerPrefs (hoặc set về 0)
         foreach (var s in subjects)
         {
@@ -908,12 +882,10 @@ public class TeacherAction : InteractableAction
             
             Debug.Log($"[TeacherAction] Checking subject: {s.subjectName}");
             bool isMatch = ScheduleResolver.IsSessionMatch(semesterConfig, s.subjectName, today, slot1Based);
-            Debug.Log($"[TeacherAction]   → IsSessionMatch: {isMatch}");
             
             if (isMatch)
             {
                 subj = s;
-                Debug.Log($"[TeacherAction] ✓ FOUND MATCH: {s.subjectName}");
                 return true;
             }
         }
@@ -944,14 +916,14 @@ public class TeacherAction : InteractableAction
 
         UI.BindTeacher(this);
         
-        // **MỚI: Kiểm tra và cập nhật trạng thái buttons**
+        // Kiểm tra và cập nhật trạng thái buttons
         UpdateExamButtonsState();
         
         UI.OpenDialogue(TitleText(), openText);
     }
     
     /// <summary>
-    /// **SỬA: Cập nhật trạng thái hiển thị các nút thi - CHỈ HIỂN NÚT THI LẠI KHI ĐÚNG CA THI LẠI**
+    /// Cập nhật trạng thái hiển thị các nút thi - CHỈ HIỂN NÚT THI LẠI KHI ĐÚNG CA THI LẠI
     /// </summary>
     private void UpdateExamButtonsState()
     {
@@ -973,15 +945,12 @@ public class TeacherAction : InteractableAction
         {
             if (!examTaken)
             {
-                Debug.Log($"[TeacherAction] ✗ Chưa thi lần đầu - Ẩn nút 'Thi lại' cho {subj.subjectName}");
                 UI?.UpdateExamButtonsVisibility(showRetake: false);
                 return;
             }
         }
         
         bool showRetakeButton = false;
-        
-        // **QUAN TRỌNG: CHỈ HIỆN NÚT KHI ĐÚNG CA THI LẠI**
         if (TryLoadRetakeExamAssignment(subj, 
             out int retakeTerm, out int retakeWeek, out Weekday retakeDay, out int retakeSlot, 
             out bool retakeMissed, out bool retakeTaken))
@@ -994,7 +963,6 @@ public class TeacherAction : InteractableAction
                 return;
             }
             
-            // **KIỂM TRA ĐÚNG CA THI LẠI**
             if (Clock != null)
             {
                 int currentTerm = GetCurrentTerm();
@@ -1010,19 +978,19 @@ public class TeacherAction : InteractableAction
                 if (isRetakeTime)
                 {
                     showRetakeButton = true;
-                    Debug.Log($"[TeacherAction] ✓ ĐÚNG CA THI LẠI - Hiện nút 'Thi lại' cho {subj.subjectName}");
+                    Debug.Log($"[TeacherAction] Hiện nút 'Thi lại' cho {subj.subjectName}");
                 }
                 else
                 {
-                    Debug.Log($"[TeacherAction] ✗ CHƯA ĐẾN CA THI LẠI - Ẩn nút 'Thi lại' cho {subj.subjectName}");
-                    Debug.Log($"[TeacherAction]   Lịch thi lại: T{retakeTerm}/W{retakeWeek}/{retakeDay}/Ca{retakeSlot}");
-                    Debug.Log($"[TeacherAction]   Hiện tại: T{currentTerm}/W{currentWeek}/{currentDay}/Ca{currentSlot}");
+                    Debug.Log($"[TeacherAction] Ẩn nút 'Thi lại' cho {subj.subjectName}");
+                    Debug.Log($"[TeacherAction] Lịch thi lại: T{retakeTerm}/W{retakeWeek}/{retakeDay}/Ca{retakeSlot}");
+                    Debug.Log($"[TeacherAction] Hiện tại: T{currentTerm}/W{currentWeek}/{currentDay}/Ca{currentSlot}");
                 }
             }
         }
         else
         {
-            Debug.Log($"[TeacherAction] ✗ Không tìm thấy lịch thi lại cho {subj.subjectName}");
+            Debug.Log($"[TeacherAction] Không tìm thấy lịch thi lại cho {subj.subjectName}");
         }
         
         UI?.UpdateExamButtonsVisibility(showRetake: showRetakeButton);
@@ -1052,22 +1020,18 @@ public class TeacherAction : InteractableAction
             return;
         }
 
-        // **MỚI: KIỂM TRA STAMINA TRƯỚC KHI CHO PHÉP HỌC**
         if (!HasEnoughStamina())
         {
-            // **ĐÓNG DIALOG TRƯỚC KHI HIỂN THỊ NOTIFICATION**
             UI?.CloseDialogue(unbindTeacher: true);
             ShowNotEnoughStaminaNotification();
             return;
         }
 
         subj.currentSessionIndex = LoadProgress(subj);
-
-        // **KIỂM TRA ƯU TIÊN 1: Đã thi rồi (lần đầu hoặc thi lại) -> CHẶN HOÀN TOÀN**
         bool hasExamSchedule = TryLoadExamAssignment(subj, out _, out _, out _, out _, out _, out bool examTaken);
         bool hasRetakeSchedule = TryLoadRetakeExamAssignment(subj, out _, out _, out _, out _, out bool retakeMissed, out bool retakeTaken);
         
-        // **SỬA: Kiểm tra đã thi (lần đầu hoặc thi lại) TRƯỚC, bất kể ca hiện tại**
+        // Kiểm tra đã thi (lần đầu hoặc thi lại) TRƯỚC, bất kể ca hiện tại
         if (hasExamSchedule && examTaken)
         {
             UI?.OpenDialogue(TitleText(), "Em đã hoàn thành kỳ thi môn này. Không thể điểm danh và học thêm nữa!");
@@ -1089,10 +1053,9 @@ public class TeacherAction : InteractableAction
             }
         }
 
-        // **KIỂM TRA 2: Môn đã hoàn thành**
         if (IsCourseFinished(subj))
         {
-            // **Nếu đã có lịch thi lại và đang trong ca thi lại**
+            // Nếu đã có lịch thi lại và đang trong ca thi lại
             if (hasRetakeSchedule)
             {
                 if (TryLoadRetakeExamAssignment(subj, 
@@ -1114,20 +1077,17 @@ public class TeacherAction : InteractableAction
                         
                         if (isRetakeTime)
                         {
-                            // **ĐÚNG CA THI LẠI: Chặn không cho học, bắt phải thi lại**
-                            UI?.OpenDialogue(TitleText(), "Đây là ca thi lại của em. Vui lòng nhấn nút 'Thi lại' để vào thi!");
+                            UI?.OpenDialogue(TitleText(), "Đây là ca thi lại của em. Vui lòng nhấn nút Thi lại để vào thi!");
                             return;
                         }
                     }
                 }
             }
             
-            // **MÔN ĐÃ HOÀN THÀNH: Không cho học nữa (bất kể có lịch thi chưa)**
             UI?.OpenDialogue(TitleText(), finishedAllSessionsText);
             return;
         }
 
-        // **KIỂM TRA 3: Nghỉ quá số buổi quy định**
         var att = AttendanceManager.Instance;
         if (att != null && att.HasExceededAbsences(subj.subjectName, GetTeacherSemester()))
         {
@@ -1135,7 +1095,7 @@ public class TeacherAction : InteractableAction
             return;
         }
 
-        // **MÔN CHƯA HOÀN THÀNH VÀ CHƯA THI: Cho phép học bình thường**
+        // MÔN CHƯA HOÀN THÀNH VÀ CHƯA THI: Cho phép học bình thường
         if (att != null)
         {
             if (!att.TryCheckIn(subj.subjectName, out string err))
@@ -1151,11 +1111,10 @@ public class TeacherAction : InteractableAction
         
         _state = State.InClass;
         
-        Debug.Log($"[TeacherAction] ========================================");
         Debug.Log($"[TeacherAction][{name}] UI_StartClass for subject: {subj.subjectName}");
         Debug.Log($"[TeacherAction][{name}] onClassStarted is NULL? {(onClassStarted == null ? "YES" : "NO")}");
 
-        // **FALLBACK: Gọi trực tiếp PlayerStatsUI nếu event không hoạt động**
+        // Gọi trực tiếp PlayerStatsUI nếu event không hoạt động
         var playerStatsUI = Object.FindFirstObjectByType<PlayerStatsUI>();
         if (playerStatsUI != null)
         {
@@ -1182,10 +1141,8 @@ public class TeacherAction : InteractableAction
             }
             
             onClassStarted.Invoke();
-            Debug.Log($"[TeacherAction][{name}] ✓ onClassStarted.Invoke() completed");
+            Debug.Log($"[TeacherAction][{name}] onClassStarted.Invoke() completed");
         }
-        
-        Debug.Log($"[TeacherAction] ========================================");
         
         UI?.StartQuizForSubject(quizKey);
     }
@@ -1226,10 +1183,6 @@ public class TeacherAction : InteractableAction
         var att = AttendanceManager.Instance;
 
         AddNoteIfNeeded(subj);
-
-        // =======================================================================
-        // PHẦN 1: LUỒNG THẤT BẠI
-        // =======================================================================
         if (!quizPassed)
         {
             if (att != null)
@@ -1239,28 +1192,23 @@ public class TeacherAction : InteractableAction
 
             string failMsg = $"Chưa đạt yêu cầu kiểm tra! Em chưa đạt điểm tối thiểu trong bài kiểm tra quá trình học. Buổi học này sẽ được tính là vắng mặt. Tài liệu buổi học đã được thêm vào Túi đồ. Lưu ý: Nếu vắng quá số buổi quy định, em sẽ bị cấm thi!";
 
-            // **SỬA: Đóng dialogue cũ trước khi mở mới**
+            // Đóng dialogue cũ trước khi mở mới
             UI?.CloseDialogue(unbindTeacher: false);
             yield return new WaitForSecondsRealtime(0.2f);
             
             UI?.OpenDialogue(TitleText(), failMsg);
             yield return new WaitForSecondsRealtime(4.5f);
-
-            // **KIỂM TRA: Môn có hoàn thành không (attended + absence >= threshold)**
             bool isCourseCompleted = IsCourseFinished(subj);
-
-            // **KIỂM TRA EXCEEDED ABSENCES TRƯỚC KHI TẠO LỊCH**
             bool hasExceededAbsences = att != null && att.HasExceededAbsences(subj.subjectName, GetTeacherSemester());
 
             if (isCourseCompleted)
             {
-                // **SỬA: Đóng dialogue trước khi hiển thị thông báo tiếp theo**
+                // Đóng dialogue trước khi hiển thị thông báo tiếp theo
                 UI?.CloseDialogue(unbindTeacher: false);
                 yield return new WaitForSecondsRealtime(0.2f);
                 
                 if (hasExceededAbsences)
                 {
-                    // **TRƯỜNG HỢP: Hoàn thành nhưng bị cấm thi - KHÔNG TẠO LỊCH**
                     string bannedMsg = $"Em đã vắng {att.GetAbsences(subj.subjectName, GetTeacherSemester())} buổi học môn {subj.subjectName}. Em đã bị cấm thi môn này do nghỉ quá số buổi quy định hoặc không vượt qua điểm quá trình!";
 
                     UI?.OpenDialogue(TitleText(), bannedMsg);
@@ -1268,7 +1216,6 @@ public class TeacherAction : InteractableAction
                 }
                 else
                 {
-                    // **TRƯỜNG HỢP: Hoàn thành và chưa bị cấm - TẠO LỊCH THI**
                     CheckAndCreateExamScheduleIfFinished(subj);
 
                     // Kiểm tra và thông báo nếu tạo lịch thành công
@@ -1283,7 +1230,7 @@ public class TeacherAction : InteractableAction
                         UI?.OpenDialogue(TitleText(), examNoticeMsg);
                         yield return new WaitForSecondsRealtime(4.5f);
                         
-                        // **THÊM: Refresh ScheduleUI nếu đang mở**
+                        // Refresh ScheduleUI nếu đang mở
                         var scheduleUI = Object.FindFirstObjectByType<ScheduleUI>();
                         if (scheduleUI != null && scheduleUI.gameObject.activeInHierarchy)
                         {
@@ -1305,16 +1252,12 @@ public class TeacherAction : InteractableAction
             yield break;
         }
 
-        // =======================================================================
-        // PHẦN 2: LUỒNG THÀNH CÔNG (GIỮ NGUYÊN)
-        // =======================================================================
-
         if (att != null)
         {
             att.ConfirmAttendance(subj.subjectName);
         }
 
-        // **SỬA: Đóng dialogue cũ trước khi mở mới**
+        // Đóng dialogue cũ trước khi mở mới
         UI?.CloseDialogue(unbindTeacher: false);
         yield return new WaitForSecondsRealtime(0.2f);
         
@@ -1367,7 +1310,7 @@ public class TeacherAction : InteractableAction
                 finalMessage = "Chúc mừng em đã hoàn thành môn học. Hãy kiểm tra bảng thông báo để xem lịch thi.";
             }
             
-            // **SỬA: Đóng dialogue cũ trước khi mở dialogue final**
+            // Đóng dialogue cũ trước khi mở dialogue final
             UI?.CloseDialogue(unbindTeacher: false);
             yield return new WaitForSecondsRealtime(0.2f);
             
@@ -1379,7 +1322,7 @@ public class TeacherAction : InteractableAction
                 schedUI.RefreshExamScheduleImmediately();
             }
             
-            // **SỬA: Đợi người chơi đọc thông báo trước khi đóng**
+            // Đợi người chơi đọc thông báo trước khi đóng
             yield return new WaitForSecondsRealtime(5f);
             
             Debug.Log($"[TeacherAction] Chuyển sang ca tiếp theo (End Course)");
@@ -1440,7 +1383,7 @@ public class TeacherAction : InteractableAction
     }
     
     /// <summary>
-    /// **MỚI: Tìm ca gần nhất SAU một thời điểm cho trước (để thi lại)**
+    /// Tìm ca gần nhất SAU một thời điểm cho trước (để thi lại)
     /// </summary>
     private bool TryGetNearestSessionAfter(
         SubjectEntry subj,
@@ -1579,15 +1522,15 @@ public class TeacherAction : InteractableAction
 
         if (now >= examEnd)
         {
-            // 1. Đánh dấu missed trong PlayerPrefs (logic cũ)
+            // Đánh dấu missed trong PlayerPrefs (logic cũ)
             MarkExamMissed(subj);
 
-            // 2. MỚI: Ghi ngay điểm 0 vào file save JSON để hiện lên bảng điểm
+            // Ghi ngay điểm 0 vào file save JSON để hiện lên bảng điểm
             string subjectKey = GetStableSubjectKey(subj);
             int semester = GetTeacherSemester();
             ExamResultStorageFile.RecordMissedExam(subjectKey, subj.subjectName, semester);
 
-            // 3. Thông báo cho người chơi biết họ bị 0 điểm
+            // Thông báo cho người chơi biết họ bị 0 điểm
             UI?.OpenDialogue(TitleText(),
                 "Em đã quá giờ điểm danh vào thi, không thể vào để thi được nữa. Em bị tính 0 điểm môn này.");
             return;
@@ -1597,7 +1540,7 @@ public class TeacherAction : InteractableAction
     }
 
     /// <summary>
-    /// **MỚI: Xử lý thi lại - riêng biệt với thi lần đầu**
+    /// Xử lý thi lại - riêng biệt với thi lần đầu
     /// Được gọi từ nút "Thi lại" trong GameUIManager
     /// </summary>
     public void UI_TakeRetakeExam()
@@ -1643,7 +1586,7 @@ public class TeacherAction : InteractableAction
     }
     
     /// <summary>
-    /// **MỚI: Xử lý thi lại - đã được tách riêng**
+    /// Xử lý thi lại - đã được tách riêng
     /// </summary>
     private void HandleRetakeExam(SubjectEntry subj, int retakeTerm, int retakeWeek, Weekday retakeDay, int retakeSlot)
     {
@@ -1700,15 +1643,6 @@ public class TeacherAction : InteractableAction
         ProceedEnterRetakeExam(subj);
     }
 
-    private void AnnounceExamEnded(Weekday day, int slot1Based)
-    {
-        int start = DataKeyText.GetSlotStartMinute(DataKeyText.SlotFromIndex1Based(slot1Based));
-        int end = start + 15;
-        string dayVN = DataKeyText.VN_Weekday(day);
-        UI?.OpenDialogue(TitleText(),
-            $"Kì thi cuối kì môn vào {dayVN} từ {DataKeyText.FormatHM(start + 5)} đến {DataKeyText.FormatHM(end)} đã kết thúc, em không thể vào thi được nữa");
-    }
-
     private void ProceedEnterExam(SubjectEntry subj)
     {
         UI?.OpenDialogue(TitleText(), $"Em đủ điều kiện để thi môn {subj.subjectName}. Chúc may mắn!");
@@ -1724,7 +1658,7 @@ public class TeacherAction : InteractableAction
     }
     
     /// <summary>
-    /// **MỚI: Proceed vào thi lại**
+    /// Proceed vào thi lại
     /// </summary>
     private void ProceedEnterRetakeExam(SubjectEntry subj)
     {
@@ -1749,22 +1683,14 @@ public class TeacherAction : InteractableAction
     {
         // Môn 18 buổi -> Học xong buổi 15 là tạo lịch thi
         if (actualMaxSessions >= 18) return 15;
-
-        // --- BỔ SUNG DÒNG NÀY ĐỂ SỬA LỖI ---
         // Nếu môn học được setup MaxSessions = 15 thì phải học hết 15 buổi mới thi
         if (actualMaxSessions == 15) return 15;
-        // -----------------------------------
-
         // Môn 12 buổi -> Học xong buổi 10 là tạo lịch thi
         if (actualMaxSessions >= 12) return 10;
-
         // Các môn ngắn hạn khác -> Học hết mới thi
         return actualMaxSessions;
     }
 
-    // -------------------------------------------------------------------------------
-    // Hàm quan trọng: Tìm slot tiếp theo (quét dư ra các tuần sau để tìm lịch thi)
-    // -------------------------------------------------------------------------------
     private bool TryGetNextScheduledSlot(SubjectEntry subj, out int term, out int week, out Weekday day, out int slot1Based)
     {
         term = GetTeacherSemester();
@@ -1803,66 +1729,9 @@ public class TeacherAction : InteractableAction
 
         return false;
     }
-
-    /// <summary>
-    /// MỚI: Tính toán số buổi học ĐÃ TRÔI QUA dựa trên thời gian thực tế của GameClock
-    /// Không phụ thuộc vào việc người chơi có điểm danh hay không.
-    /// </summary>
-    private int CalculatePassedSessionsByTime(SubjectEntry subj, int threshold)
-    {
-        if (!Clock || semesterConfig == null) return 0;
-
-        int passedCount = 0;
-
-        int currentWeek = Mathf.Max(1, Clock.Week);
-        int currentDayInt = (int)Clock.Weekday;
-        int currentSlot = Clock.SlotIndex1Based;
-
-        for (int w = 1; w <= currentWeek; w++)
-        {
-            int endDayLimit = (w < currentWeek) ? (int)Weekday.Sun : currentDayInt;
-
-            for (int d = (int)Weekday.Mon; d <= endDayLimit; d++)
-            {
-                int endSlotLimit = (w == currentWeek && d == currentDayInt) ? currentSlot : 5;
-
-                for (int s = 1; s <= endSlotLimit; s++)
-                {
-                    if (ScheduleResolver.IsSessionMatch(semesterConfig, subj.subjectName, (Weekday)d, s))
-                    {
-                        passedCount++;
-                        if (passedCount >= threshold) return passedCount;
-                    }
-                }
-            }
-        }
-
-        return passedCount;
-    }
     
     /// <summary>
-    /// **MỚI: Kiểm tra xem subject có cần force load progress không**
-    /// </summary>
-    private bool NeedsProgressLoad(SubjectEntry s)
-    {
-        // Nếu currentSessionIndex > 0 thì đã load rồi
-        if (s.currentSessionIndex > 0) return false;
-        
-        // Kiểm tra xem có key nào trong PlayerPrefs không
-        string kNew = NewProgressKey(s);
-        if (PlayerPrefs.HasKey(kNew)) return true;
-        
-        string kLegacy1 = LegacyProgressKey_Term_Name(s);
-        if (PlayerPrefs.HasKey(kLegacy1)) return true;
-        
-        string kLegacy2 = LegacyProgressKey_NoTerm_Name(s);
-        if (PlayerPrefs.HasKey(kLegacy2)) return true;
-        
-        return false;
-    }
-    
-    /// <summary>
-    /// **MỚI: Kiểm tra xem người chơi có đủ thể lực không**
+    /// Kiểm tra xem người chơi có đủ thể lực không
     /// </summary>
     private bool HasEnoughStamina()
     {
@@ -1873,7 +1742,7 @@ public class TeacherAction : InteractableAction
     }
     
     /// <summary>
-    /// **MỚI: Hiển thị thông báo không đủ thể lực**
+    /// Hiển thị thông báo không đủ thể lực
     /// </summary>
     private void ShowNotEnoughStaminaNotification()
     {
@@ -1891,7 +1760,7 @@ public class TeacherAction : InteractableAction
     }
 
     /// <summary>
-    /// **MỚI: Tự động quét các môn đã quá giờ thi mà chưa thi -> Ghi 0 điểm**
+    /// Tự động quét các môn đã quá giờ thi mà chưa thi -> Ghi 0 điểm
     /// Gọi hàm này trong HandleSlotChanged
     /// </summary>
     private void CheckAndRecordMissedExamsAuto()
