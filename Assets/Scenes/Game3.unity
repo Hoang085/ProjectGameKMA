@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a3895ca427e9e4dacb0001538a8567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 120
+  timeLimit: 60
   matchItems:
   - icon: {fileID: 21300000, guid: 345fb93eeab549f43913f436e961b343, type: 3}
   - icon: {fileID: 21300000, guid: ad9e17b151f9937498545462fba2e91a, type: 3}
