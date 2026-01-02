@@ -2640,7 +2640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableFriendshipEnding: 1
-  friendshipThreshold: 300
+  friendshipThreshold: 20
   enableBadEnding: 1
   failedSubjectsThreshold: 15
   enableGraduationEnding: 1
@@ -15885,11 +15885,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ch\xE0o m\u1EEBng b\u1EA1n \u0111\u1EBFn v\u1EDBi Nh\u1EADt k\xFD sinh
-    vi\xEAn! \n\n\u1EDE \u0111\xE2y, b\u1EA1n s\u1EBD s\u1ED1ng tr\u1ECDn v\u1EB9n
-    m\u1ED9t h\u1ECDc k\u1EF3 nh\u01B0 sinh vi\xEAn.\n\nB\u1EB1ng c\xE1ch h\xE3y
-    v\u01B0\u1EE3t qua t\u1EA5t c\u1EA3 c\xE1c m\xF4n trong c\xE1c k\xEC thi c\u0103ng
-    th\u1EB3ng. H\xE3y c\u1ED1 \u0111\u1EA1t \u0111i\u1EC3m t\u1ED1i \u0111a nh\xE9!"
+  m_text: "Ch\xE0o m\u1EEBng b\u1EA1n \u0111\u1EBFn v\u1EDBi \nTri Th\u1EE9c Gi\u1EA3ng
+    \u0110\u01B0\u1EDDng! \n\n\u1EDE \u0111\xE2y, b\u1EA1n s\u1EBD s\u1ED1ng tr\u1ECDn
+    v\u1EB9n m\u1ED9t h\u1ECDc k\u1EF3 nh\u01B0 sinh vi\xEAn.\n\nB\u1EB1ng c\xE1ch
+    h\xE3y v\u01B0\u1EE3t qua t\u1EA5t c\u1EA3 c\xE1c m\xF4n trong c\xE1c k\xEC thi
+    c\u0103ng th\u1EB3ng. H\xE3y c\u1ED1 \u0111\u1EA1t \u0111i\u1EC3m t\u1ED1i \u0111a
+    nh\xE9!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bf22548561c72504cb3267a64cdb5ac6, type: 2}
   m_sharedMaterial: {fileID: 1075481956182358703, guid: bf22548561c72504cb3267a64cdb5ac6, type: 2}
@@ -18148,7 +18149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fced63c5663f8d4b8feaa64c57f9900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fastForwardSpeed: 1
+  fastForwardMultiplier: 0.02
   buttonImage: {fileID: 1183040916}
 --- !u!95 &1183040915
 Animator:

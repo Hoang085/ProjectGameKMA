@@ -9,19 +9,17 @@ public class GameClock : Singleton<GameClock>
     public CalendarConfig config;
 
     [Header("Current Time (1-based)")]
-    [SerializeField] private int _year = 1;              // Năm học
-    [SerializeField] private int _term = 1;              // Kỳ học 
-    [SerializeField] private int _week = 1;              // Tuần trong kỳ
-    [SerializeField] private int _day = 1;               // Ngày trong tuần 
-    [SerializeField] private DaySlot _slot = DaySlot.MorningA; // Ca hiện tại
+    [SerializeField] private int _year = 1;            
+    [SerializeField] private int _term = 1;             
+    [SerializeField] private int _week = 1;             
+    [SerializeField] private int _day = 1;             
+    [SerializeField] private DaySlot _slot = DaySlot.MorningA; 
     [SerializeField] private int _minuteOfDay = 7 * 60;
 
     [Header("Game-time speed")]
-    [Tooltip("1 phút TRONG GAME = X giây THẬT (unscaled time)")]
     [Min(0.01f)] public float secondsPerGameMinute = 30f;
 
     [Header("Pause Control")]
-    [Tooltip("Khi true, GameClock sẽ tạm dừng (không tính thời gian)")]
     [SerializeField] private bool _isPaused = false;
 
     [Header("Session (slot) boundaries - start minutes")]
@@ -65,6 +63,14 @@ public class GameClock : Singleton<GameClock>
         if (!config) Debug.LogWarning("[GameClock] CalendarConfig chưa được gán!");
         NormalizeNow(fullClamp: true);
     }
+    
+    /// <summary>
+    /// Reset bộ đếm tích lũy thời gian. Dùng khi thay đổi tốc độ để tránh nhảy thời gian đột ngột.
+    /// </summary>
+    public void ResetTimeAccumulator()
+    {
+        _secAcc = 0f;
+    }
 
     void OnEnable()
     {
@@ -75,13 +81,11 @@ public class GameClock : Singleton<GameClock>
 
     void Update()
     {
-        // **MỚI: Kiểm tra pause trước khi tính thời gian**
         if (_isPaused)
         {
-            return; // Không tính thời gian khi pause
+            return;
         }
         
-        // dùng unscaled time để không bị ảnh hưởng bởi Time.timeScale
         _secAcc += Time.unscaledDeltaTime;
         if (_secAcc >= secondsPerGameMinute)
         {
@@ -90,7 +94,6 @@ public class GameClock : Singleton<GameClock>
             if (add > 0) AdvanceMinutes(add);
         }
 
-        // hotkeys optional (giữ nguyên cho tiện test)
         if (Input.GetKeyDown(KeyCode.N)) JumpToNextSessionStart();
         if (Input.GetKeyDown(KeyCode.LeftBracket)) { secondsPerGameMinute *= 2f; Debug.Log($"[GameClock] Slower → {secondsPerGameMinute:F2}s/min"); }
         if (Input.GetKeyDown(KeyCode.RightBracket)) { secondsPerGameMinute = Mathf.Max(0.01f, secondsPerGameMinute * 0.5f); Debug.Log($"[GameClock] Faster → {secondsPerGameMinute:F2}s/min"); }

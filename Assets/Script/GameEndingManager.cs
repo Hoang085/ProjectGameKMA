@@ -79,25 +79,28 @@ public class GameEndingManager : MonoBehaviour
 
     private void Update()
     {
-        // Kiểm tra graduation ending trước (ưu tiên cao nhất)
+        // 1. Kiểm tra graduation ending trước (Ưu tiên cao nhất, kiểm tra mỗi frame để chính xác từng giây)
         if (enableGraduationEnding && !_endingTriggered && !_waitingForVideo)
         {
             if (IsGraduationTime())
             {
-                DebugLog($"[GameEndingManager] Đạt thời điểm tốt nghiệp! (Kỳ {graduationTerm}, Tuần {graduationWeek}, {graduationDay}, Ca {(int)graduationSlot + 1})");
+                DebugLog($"[GameEndingManager] Đạt thời điểm tốt nghiệp!");
                 TriggerGraduationEnding();
                 return;
             }
         }
 
-        // Kiểm tra bad ending trước (ưu tiên cao hơn friendship)
-        if (enableBadEnding && !_endingTriggered && !_waitingForVideo)
-        {
-            if (Time.time - _lastCheckTime < checkInterval) return;
-            _lastCheckTime = Time.time;
+        // 2. Logic kiểm tra định kỳ (Dùng chung interval để tối ưu)
+        if (Time.time - _lastCheckTime < checkInterval) return;
+        _lastCheckTime = Time.time; // Cập nhật thời gian 1 lần duy nhất
 
+        if (_endingTriggered || _waitingForVideo) return;
+
+        // --- CHECK BAD ENDING ---
+        if (enableBadEnding)
+        {
             int failedCount = GetFailedSubjectsCount();
-            
+
             if (showDebugLogs && Time.frameCount % 600 == 0)
             {
                 DebugLog($"[GameEndingManager] Số môn trượt: {failedCount}/{failedSubjectsThreshold}");
@@ -107,34 +110,27 @@ public class GameEndingManager : MonoBehaviour
             {
                 DebugLog($"[GameEndingManager] Đạt ngưỡng môn trượt! ({failedCount}/{failedSubjectsThreshold})");
                 TriggerBadEnding();
-                return;
+                return; // Nếu dính bad ending thì return luôn, không check friendship nữa
             }
         }
 
-        // Kiểm tra friendship ending
-        if (!enableFriendshipEnding) return;
-        if (_endingTriggered) return;
-        if (_waitingForVideo) return;
-
-        if (Time.time - _lastCheckTime < checkInterval) return;
-        _lastCheckTime = Time.time;
-
-        if (GameManager.Ins == null)
+        // --- CHECK FRIENDSHIP ENDING ---
+        if (enableFriendshipEnding)
         {
-            return;
-        }
+            if (GameManager.Ins == null) return;
 
-        int currentFriendly = GameManager.Ins.GetFriendlyPoint();
-        
-        if (showDebugLogs && Time.frameCount % 600 == 0) 
-        {
-            DebugLog($"[GameEndingManager] Điểm thân thiện hiện tại: {currentFriendly}/{friendshipThreshold}");
-        }
+            int currentFriendly = GameManager.Ins.GetFriendlyPoint();
 
-        if (currentFriendly >= friendshipThreshold)
-        {
-            DebugLog($"[GameEndingManager] Đạt ngưỡng điểm thân thiện! ({currentFriendly}/{friendshipThreshold})");
-            TriggerFriendshipEnding();
+            if (showDebugLogs && Time.frameCount % 600 == 0)
+            {
+                DebugLog($"[GameEndingManager] Điểm thân thiện hiện tại: {currentFriendly}/{friendshipThreshold}");
+            }
+
+            if (currentFriendly >= friendshipThreshold)
+            {
+                DebugLog($"[GameEndingManager] Đạt ngưỡng điểm thân thiện! ({currentFriendly}/{friendshipThreshold})");
+                TriggerFriendshipEnding();
+            }
         }
     }
 
