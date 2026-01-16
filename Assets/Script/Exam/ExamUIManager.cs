@@ -257,8 +257,26 @@ public class ExamUIManager : MonoBehaviour
         
         bool isRetake = PlayerPrefs.GetInt("EXAM_IS_RETAKE", 0) == 1;
         
+        // Đọc semesterIndex từ PlayerPrefs thay vì dựa vào GameClock
+        int semesterIndex = PlayerPrefs.GetInt("EXAM_SEMESTER_INDEX", 0);
+        if (semesterIndex <= 0)
+        {
+            Debug.LogWarning("[ExamUIManager] EXAM_SEMESTER_INDEX not set! Falling back to GameClock");
+            if (GameClock.Ins != null)
+            {
+                semesterIndex = GameClock.Ins.Term;
+            }
+            else
+            {
+                semesterIndex = 1;
+            }
+        }
+        
+        Debug.Log($"[ExamUIManager] Creating ExamAttempt with semesterIndex = {semesterIndex} for {_exam.subjectName}");
+        
         var attempt = new ExamAttempt
         {
+            semesterIndex = semesterIndex, // **FIX: Set đúng semesterIndex**
             subjectKey = subjectKey,
             subjectName = _exam.subjectName,
             examTitle = string.IsNullOrEmpty(_exam.examTitle) ? "Đề thi" : _exam.examTitle,
@@ -285,10 +303,12 @@ public class ExamUIManager : MonoBehaviour
         PlayerPrefs.SetInt("LAST_EXAM_PASSED", pass ? 1 : 0);
         PlayerPrefs.SetInt("EXAM_COMPLETED_TIMESTAMP", examTimestamp); 
         
+        // Xóa EXAM_SEMESTER_INDEX sau khi dùng xong
         PlayerPrefs.DeleteKey("EXAM_IS_RETAKE");
+        PlayerPrefs.DeleteKey("EXAM_SEMESTER_INDEX");
         PlayerPrefs.Save();
         
-        Debug.Log($"[ExamUIManager] Exam completed with timestamp: {examTimestamp}");
+        Debug.Log($"[ExamUIManager] Exam completed with timestamp: {examTimestamp}, semesterIndex: {semesterIndex}");
 
         if (btnPrev) btnPrev.interactable = false;
         if (btnNext) btnNext.interactable = false;

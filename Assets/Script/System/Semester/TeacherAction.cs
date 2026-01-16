@@ -1651,6 +1651,12 @@ public class TeacherAction : InteractableAction
 
         ExamRouteData.Set(subj.subjectName, subj.subjectKeyForNotes);
         PlayerPrefs.DeleteKey("EXAM_IS_RETAKE");
+        
+        // Lưu semesterIndex để ExamScene biết đang thi kỳ nào
+        int currentSemester = GetTeacherSemester();
+        PlayerPrefs.SetInt("EXAM_SEMESTER_INDEX", currentSemester);
+        Debug.Log($"[TeacherAction] Saving EXAM_SEMESTER_INDEX = {currentSemester} for {subj.subjectName}");
+        
         PlayerPrefs.Save();
         MarkExamTaken(subj);
         
@@ -1667,6 +1673,12 @@ public class TeacherAction : InteractableAction
         ExamRouteData.Set(subj.subjectName, subj.subjectKeyForNotes);
         PlayerPrefs.SetInt("EXAM_IS_RETAKE", 1);
         PlayerPrefs.SetInt("JUST_FINISHED_RETAKE_EXAM", 1);
+        
+        // Lưu semesterIndex để ExamScene biết đang thi kỳ nào
+        int currentSemester = GetTeacherSemester();
+        PlayerPrefs.SetInt("EXAM_SEMESTER_INDEX", currentSemester);
+        Debug.Log($"[TeacherAction] Saving EXAM_SEMESTER_INDEX = {currentSemester} for retake {subj.subjectName}");
+        
         PlayerPrefs.Save();
         MarkRetakeExamTaken(subj);
         Debug.Log("[TeacherAction] ✓ Đã set flag JUST_FINISHED_RETAKE_EXAM - Sẽ tự động chuyển ca khi quay lại");

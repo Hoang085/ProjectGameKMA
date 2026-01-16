@@ -195,17 +195,19 @@ public class PlayerStatsUI : BasePopUp
         var examDB = ExamResultStorageFile.Load();
         if (examDB?.entries == null || examDB.entries.Count == 0) return 0f;
 
-        // Lấy TẤT CẢ điểm hệ 4 của tất cả các kỳ thi (không phân biệt môn hay kỳ)
-        var allScores = examDB.entries
+        // Nhóm theo môn học và lấy điểm thi gần nhất
+        var latestScores = examDB.entries
             .Where(e => !string.IsNullOrEmpty(e.subjectKey))
+            .GroupBy(e => e.subjectKey) // Nhóm theo môn
+            .Select(g => g.OrderByDescending(e => e.takenAtUnix).First()) // Lấy lần thi gần nhất
             .Select(e => e.score4)
             .ToList();
 
-        if (allScores.Count == 0) return 0f;
-        
+        if (latestScores.Count == 0) return 0f;
+
         // GPA = Tổng điểm hệ 4 / Tổng số môn đã thi
-        float gpa = allScores.Average();
-        
+        float gpa = latestScores.Average();
+
         return Mathf.Clamp(gpa, 0f, 4f);
     }
 

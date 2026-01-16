@@ -21,10 +21,10 @@ public class ExamAttempt
     public string takenAtIso;   // ISO 8601 UTC
     public long takenAtUnix;    // dự phòng sort nhanh
     
-    // **MỚI: Hỗ trợ thi lại - đơn giản hơn**
+    // Hỗ trợ thi lại
     public bool isRetake = false;  // true nếu đây là lần thi lại
     
-    // **MỚI: Đánh dấu bị cấm thi - điểm 0 tự động**
+    // Đánh dấu bị cấm thi - điểm 0 tự động
     public bool isBanned = false;  // true nếu bị cấm thi (ghi điểm 0 vào GPA)
 }
 
