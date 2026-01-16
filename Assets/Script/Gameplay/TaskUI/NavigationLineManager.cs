@@ -28,7 +28,7 @@ public class NavigationLineManager : MonoBehaviour
     [SerializeField] private float targetBackwardOffset = 0.6f;  // kéo trước mặt NPC
 
     [Header("Animation (optional)")]
-    [SerializeField] private bool animateLine = true;            // nhấp nháy nhẹ
+    [SerializeField] private bool animateLine = true;           
     [SerializeField] private float animationSpeed = 2f;
     [SerializeField] private float pulseIntensity = 0.3f;
 
@@ -200,7 +200,7 @@ public class NavigationLineManager : MonoBehaviour
         dir.y = 0f;
         Vector3 n = dir.sqrMagnitude > 0.0001f ? dir.normalized : Vector3.forward;
 
-        // 1) Offset để không dính chân
+        // 1) Offset để không trùng
         Vector3 start = playerTransform.position + n * playerForwardOffset;
         Vector3 end = targetTransform.position - n * targetBackwardOffset;
 
