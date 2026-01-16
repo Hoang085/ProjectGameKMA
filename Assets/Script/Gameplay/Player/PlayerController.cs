@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Cinemachine;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class PlayerController : MonoBehaviour
@@ -13,6 +14,18 @@ public class PlayerController : MonoBehaviour
     public float turnSmoothTime = 0.1f; // thoi gian de xoay muot
     private float _turnSmoothVelocity; // tham so giup xoay muot
 
+    [Header("Camera Zoom")]
+    [Tooltip("Reference đến Cinemachine FreeLook camera")]
+    public CinemachineFreeLook freeLookCamera;
+    [Tooltip("Tốc độ zoom camera")]
+    public float zoomSpeed = 2f;
+    [Tooltip("Khoảng cách camera tối thiểu (gần nhất)")]
+    public float minCameraDistance = 2f;
+    [Tooltip("Khoảng cách camera tối đa (xa nhất)")]
+    public float maxCameraDistance = 10f;
+    [Tooltip("Khoảng cách camera mặc định")]
+    public float defaultCameraDistance = 5f;
+
     [Header("Refs")]
     public Transform cam;
 
@@ -25,6 +38,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 _moveInput;
     private bool _runHeld;
     private bool _jumpPressed;
+    
+    // Cache cho camera zoom
+    private float _currentCameraDistance;
+    private float[] _originalOrbits;
 
     private void Awake()
     {
@@ -39,6 +56,26 @@ public class PlayerController : MonoBehaviour
         _rb.freezeRotation = true;
         _rb.interpolation = RigidbodyInterpolation.Interpolate;
         _rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
+        // Tự động tìm FreeLook camera nếu chưa assign
+        if (!freeLookCamera)
+        {
+#if UNITY_2023_1_OR_NEWER
+            freeLookCamera = FindFirstObjectByType<CinemachineFreeLook>();
+#else
+            freeLookCamera = FindObjectOfType<CinemachineFreeLook>();
+#endif
+        }
+
+        // Lưu orbit radius gốc của camera
+        if (freeLookCamera != null)
+        {
+            _originalOrbits = new float[3];
+            _originalOrbits[0] = freeLookCamera.m_Orbits[0].m_Radius;
+            _originalOrbits[1] = freeLookCamera.m_Orbits[1].m_Radius;
+            _originalOrbits[2] = freeLookCamera.m_Orbits[2].m_Radius;
+            _currentCameraDistance = defaultCameraDistance;
+        }
     }
 
     private void Update()
@@ -69,6 +106,33 @@ public class PlayerController : MonoBehaviour
         _moveInput.y = Input.GetAxisRaw("Vertical");
         _runHeld = Input.GetMouseButton(1);
         if (Input.GetKeyDown(KeyCode.Space)) _jumpPressed = true;
+
+        // Xử lý zoom camera bằng chuột giữa
+        HandleCameraZoom();
+    }
+
+    // Xử lý zoom camera khi lăn chuột giữa
+    private void HandleCameraZoom()
+    {
+        if (freeLookCamera == null) return;
+
+        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+        
+        if (Mathf.Abs(scrollInput) > 0.01f)
+        {
+            // Lăn lên (scrollInput > 0) -> zoom in (gần hơn)
+            // Lăn xuống (scrollInput < 0) -> zoom out (xa hơn)
+            _currentCameraDistance -= scrollInput * zoomSpeed;
+            _currentCameraDistance = Mathf.Clamp(_currentCameraDistance, minCameraDistance, maxCameraDistance);
+
+            // Tính tỷ lệ zoom dựa trên khoảng cách mặc định
+            float zoomRatio = _currentCameraDistance / defaultCameraDistance;
+
+            // Áp dụng zoom cho cả 3 orbit (top, middle, bottom)
+            freeLookCamera.m_Orbits[0].m_Radius = _originalOrbits[0] * zoomRatio;
+            freeLookCamera.m_Orbits[1].m_Radius = _originalOrbits[1] * zoomRatio;
+            freeLookCamera.m_Orbits[2].m_Radius = _originalOrbits[2] * zoomRatio;
+        }
     }
 
     // Set up animator cho speed và state Isgrounded
